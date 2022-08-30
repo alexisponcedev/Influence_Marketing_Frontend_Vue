@@ -1,0 +1,19 @@
+.row-pointer tbody tr :hover {
+    cursor: pointer;
+}
+
+.row-grab tbody tr :hover {
+    cursor: grab;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.display-inline-block {
+    display: inline-block !important;
+}
+
+.word-wrap-break-word {
+    word-wrap: break-word;
+}

@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from 'vuetify/es5/util/colors';
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -7,28 +7,47 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - init-project',
-    title: 'init-project',
+    title: 'IM CXM',
     htmlAttrs: {
       lang: 'en'
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: ''
+      },
+      {
+        name: 'format-detection',
+        content: 'telephone=no'
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ['@/assets/scss/custom.scss', '@/assets/scss/octavia-design-system/octavia-design-system.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/octavia.kit',
+    '~/plugins/v-perfect-scrollbar.client.js',
+    '~/plugins/vue-navigation-bar.client.js',
+    '~/plugins/apexChart.client.js',
+    '~/plugins/vue-draggable.js',
+    '~/plugins/date-picker.js',
+    '~/plugins/vue2Editor.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,34 +65,46 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-webfontloader',
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
-  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss/variables.scss'],
+    defaultAssets: {
+      font: false,
+    },
+    treeShake: true,
     theme: {
-      dark: true,
+      dark: false,
       themes: {
+        light: {
+          primary: '#304156',
+          secondary: '#475569',
+          success: colors.green,
+          danger: colors.red,
+          warning: colors.deepOrange,
+          info: colors.indigo,
+          dark: '#242939',
+          background: '#f2f3f8'
+        },
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          primary: '#475569',
+          secondary: '#304156',
+          success: colors.green,
+          danger: colors.red,
+          warning: colors.deepOrange,
+          info: colors.indigo
         }
       }
     }
   },
+  webfontloader: {
+    google: {
+      families: ['Archivo:400;500;600;700'],
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
-}
+  build: {}
+};
