@@ -3,17 +3,20 @@
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab>Regions</v-tab>
+          <v-tab>Adventures</v-tab>
         </v-tabs>
       </v-col>
       <v-col>
-        <v-btn class="float-right" color="primary" to="Add"> Add Region </v-btn>
+        <v-btn class="float-right" color="primary" to="Adventures/Add">
+          Add Adventure
+        </v-btn>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
         <v-card>
           <table-standard
+            grid
             :config="config"
             class="row-pointer"
             :items="Adventures"
@@ -27,8 +30,8 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { AdventureResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
-import { AdventureResource, Region } from "@/repositories";
 
 @Component({ layout: "panel" })
 export default class AllAdventures extends Vue {
@@ -41,31 +44,36 @@ export default class AllAdventures extends Vue {
 
   config = {
     headers: [
-      { text: "Name", value: "name" },
-      { text: "Adventures", value: "", sortable: false },
+      { text: "Country Name", value: "country_name" },
+      { text: "Region", value: "region.name" },
       { text: "", value: "actions", sortable: false },
     ],
     actions: [
       {
         type: "delete",
         icon: "mdi-delete",
-        onClick: (Region: Region) => {
+        onClick: (Adventure: AdventureResource) => {
           AppStore.showDeleteConfirmationModal({
-            deleteItemTitle: Region.name || "",
-            deleteItem: Region,
-            agreeButton: { callback: this.deleteRegion },
+            deleteItemTitle: Adventure.country_name || "",
+            deleteItem: Adventure,
+            agreeButton: { callback: this.deleteAdventure },
           });
         },
       },
     ],
-    grid:{
-      title: 'country_name'
-    }
+    grid: {
+      image: (Adventure: AdventureResource) =>
+        Adventure.slides && Adventure.slides.length
+          ? Adventure.slides[0]
+          : undefined,
+      title: "country_name",
+      subtitle: "region.name",
+    },
   };
 
   mounted() {
-    if (this.$route.query.regionId) {
-      this.regionId = +this.$route.query.regionId;
+    if (this.$route.params.regionId) {
+      this.regionId = +this.$route.params.regionId;
       this.updateAdventures();
     }
   }
@@ -74,7 +82,7 @@ export default class AllAdventures extends Vue {
     this.Adventures = (await Api.Adventure.getByRegionId(this.regionId!)) || [];
   }
 
-  deleteRegion(Adventure: AdventureResource) {
+  deleteAdventure(Adventure: AdventureResource) {
     Api.Adventure.delete(Adventure.id!).finally(this.updateAdventures);
   }
 }

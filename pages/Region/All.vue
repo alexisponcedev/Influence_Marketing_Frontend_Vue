@@ -26,7 +26,7 @@
             :items="Api.Region.all"
             :loading="Api.Region.loading"
             @click:row="
-              (Region) => $router.push('/Region/' + Region.id + '/Adventure')
+              (Region) => $router.push('/Region/' + Region.id + '/Adventures')
             "
           />
         </v-card>

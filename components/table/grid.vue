@@ -58,8 +58,12 @@
           >
             <v-card outlined @click="clickRow(item)">
               <v-img
-                v-if="config.grid.image"
                 height="200"
+                v-if="
+                  config.grid.image && typeof config.grid.image === 'function'
+                    ? config.grid.image(item)
+                    : getProperty(item, config.grid.image)
+                "
                 :src="
                   typeof config.grid.image === 'function'
                     ? config.grid.image(item)
@@ -198,7 +202,7 @@ export default class StandardTable extends Vue {
 
   get filteredItems() {
     return this.items.filter(
-      item =>
+      (item) =>
         !this.searchQuery ||
         !this.searchQuery.length ||
         JSON.stringify(item)
