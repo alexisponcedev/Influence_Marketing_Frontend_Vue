@@ -43,7 +43,11 @@ export default class AdventureForm extends Vue {
   locations: Array<{ title: string; to: string }> = [];
 
   Region: RegionResource = {};
-  newAdventure: Adventure = {};
+  newAdventure: Adventure = {
+    highlights: [""],
+    slide_urls: [""],
+    region_id: +this.$route.params.regionId || 0,
+  };
   regionId: number | null = null;
 
   adventureFormFields: Array<FormField> = [];
@@ -87,6 +91,8 @@ export default class AdventureForm extends Vue {
       this.newAdventure = fromResource<Adventure>(
         await Api.Adventure.get(+this.$route.params.id)
       );
+
+    console.log(this.newAdventure);
   }
 
   async updateRegion() {
@@ -116,6 +122,12 @@ export default class AdventureForm extends Vue {
         colAttrs: { cols: 12 },
       },
       {
+        label: "Highlights",
+        modelKey: "highlights",
+        type: "form-field-text-array",
+        colAttrs: { cols: 12 },
+      },
+      {
         label: "Testimonial",
         modelKey: "testimonial",
         type: "form-field-textarea",
@@ -126,6 +138,18 @@ export default class AdventureForm extends Vue {
         modelKey: "client_name",
         type: "form-field-text",
         colAttrs: { cols: 12 },
+      },
+      {
+        label: "Map Photo",
+        modelKey: "map_url",
+        type: "form-field-text",
+        colAttrs: { cols: 12, md: 6 },
+      },
+      {
+        label: "Slider Photos",
+        modelKey: "slide_urls",
+        type: "form-field-text-array",
+        colAttrs: { cols: 12, md: 6 },
       },
     ];
   }
@@ -138,7 +162,8 @@ export default class AdventureForm extends Vue {
           adventure: this.newAdventure,
         });
       else await Api.Adventure.create(this.newAdventure);
-      if (!this.editMode) this.$router.push("/Adventure/All");
+      if (!this.editMode)
+        this.$router.push("/Region/" + this.Region.id + "/Adventures");
     }
   }
 

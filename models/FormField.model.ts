@@ -12,6 +12,7 @@ export interface FormField {
     | "form-field-text-markup"
     | "form-field-text-preview"
     | "form-field-text-preview-xl"
+    | "form-field-text-array"
     | "form-field-textarea"
     | "form-field-title"
     | "form-field-password"
