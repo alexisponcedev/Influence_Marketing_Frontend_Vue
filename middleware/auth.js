@@ -12,13 +12,10 @@ function goToAuth(redirect) {
 export default function authMiddleware({
   redirect
 }) {
-  const profile = localStorage.getItem("profile");
   const access_token = localStorage.getItem("access_token");
   const expires_at = localStorage.getItem("access_token_expires_at");
   if (!access_token)
     logout(redirect);
-  else if (!profile || profile.active_org == [])
-    goToAuth(redirect);
   else if (expires_at) {
     const now = new Date();
     const expires = new Date(expires_at);

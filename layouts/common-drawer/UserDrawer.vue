@@ -84,19 +84,5 @@ export default class UserDrawer extends Vue {
   editProfile() {
     this.$router.push("/User/Profile");
   }
-
-  mounted() {
-    // if (!Api.Organization.all.length) Api.Organization.getAll();
-  }
-
-  // async setSelectedOrganization(org_id: number) {
-  //   if (getProfile().level == "IM Admin")
-  //     await Api.Organization.attachUser({
-  //       user_id: getProfile().user_id!,
-  //       org_ids: Api.Organization.all.map((org) => org.id!),
-  //     });
-  //   await Api.User.setActiveOrg(org_id);
-  //   this.$router.push("/Auth");
-  // }
 }
 </script>

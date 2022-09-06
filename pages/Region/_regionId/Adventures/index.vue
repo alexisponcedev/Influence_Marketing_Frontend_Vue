@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <breadcrumbs :locations="locations" />
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
@@ -30,7 +31,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { AdventureResource } from "@/repositories";
+import { AdventureResource, RegionResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
 
 @Component({ layout: "panel" })
@@ -40,7 +41,9 @@ export default class AllAdventures extends Vue {
   tab = "";
 
   regionId: number | null = null;
+  Region: RegionResource = {};
   Adventures: Array<AdventureResource> = [];
+  locations: Array<{ title: string; to: string }> = [];
 
   config = {
     headers: [
@@ -72,14 +75,44 @@ export default class AllAdventures extends Vue {
   };
 
   mounted() {
+    this.init();
+  }
+
+  async init() {
     if (this.$route.params.regionId) {
       this.regionId = +this.$route.params.regionId;
-      this.updateAdventures();
+      await this.updateAdventures();
+      await this.updateRegion();
     }
+    this.updateLocations();
+  }
+
+  updateLocations() {
+    this.locations = [
+      {
+        title: "Regions",
+        to: "/Region/All",
+      },
+      {
+        title: this.Region.name!,
+        to: "/Region/" + this.Region.id + "/Adventures",
+      },
+    ];
   }
 
   async updateAdventures() {
     this.Adventures = (await Api.Adventure.getByRegionId(this.regionId!)) || [];
+  }
+
+  async updateRegion() {
+    if (!Api.Region.all.length)
+      this.Region = (await Api.Region.get(this.regionId!))!;
+    else {
+      const finded = Api.Region.all.filter(
+        (Region) => Region.id == this.regionId
+      );
+      if (finded && finded.length) this.Region = finded[0];
+    }
   }
 
   deleteAdventure(Adventure: AdventureResource) {

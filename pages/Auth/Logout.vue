@@ -9,12 +9,12 @@ import { Api } from "@/store";
 @Component
 export default class Logout extends Vue {
   mounted() {
-    // Api.Auth.logout().finally(() => {
-    //   localStorage.removeItem("profile");
-    //   localStorage.removeItem("access_token");
-    //   localStorage.removeItem("access_token_expires_at");
-    //   this.$router.push("/Auth");
-    // });
+    Api.Auth.Logout().finally(() => {
+      localStorage.removeItem("profile");
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("access_token_expires_at");
+      this.$router.push("/Auth");
+    });
   }
 }
 </script>

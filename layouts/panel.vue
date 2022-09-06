@@ -12,7 +12,7 @@ import defaultLayout from "./default.vue";
   components: {
     defaultLayout,
   },
-  // middleware: ["auth"],
+  middleware: ["auth"],
 })
 export default class ContactCenterPanelLayout extends Vue {}
 </script>

@@ -12,7 +12,7 @@ export default class Auth extends Vue {
   }
 
   async init() {
-    if (localStorage.getItem("access_token")) this.$router.push("/Brand/All");
+    if (localStorage.getItem("access_token")) this.$router.push("/Region/All");
     else this.$router.push("/Auth/Login");
   }
 }
