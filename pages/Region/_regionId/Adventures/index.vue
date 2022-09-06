@@ -22,6 +22,9 @@
             class="row-pointer"
             :items="Adventures"
             :loading="Api.Adventure.loading"
+            @click:row="
+              (Region) => $router.push('Adventures/Edit/' + Region.id)
+            "
           />
         </v-card>
       </v-col>
@@ -52,6 +55,11 @@ export default class AllAdventures extends Vue {
       { text: "", value: "actions", sortable: false },
     ],
     actions: [
+      {
+        type: "edit",
+        icon: "mdi-pencil",
+        to: "Adventures/Edit/[id]",
+      },
       {
         type: "delete",
         icon: "mdi-delete",

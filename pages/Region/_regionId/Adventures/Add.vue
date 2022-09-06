@@ -13,27 +13,27 @@
         <v-card-text>
           <form-standard
             ref="detailsForm"
-            :model="newBrand"
-            :fields="brandFormFields"
+            :model="newAdventure"
+            :fields="adventureFormFields"
             @submit="detailsFormSubmit"
           />
         </v-card-text>
       </v-tab-item>
     </v-tabs-items>
-    <loading-overlay :show="Api.Brand.loading" />
+    <loading-overlay :show="Api.Adventure.loading" />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { Brand, BrandResource } from "@/repositories";
+import { Adventure, RegionResource } from "@/repositories";
 import { fromResource } from "@/utils/fromResource";
 import Validation from "@/utils/validation";
 import { FormField } from "@/models";
 import { Api } from "@/store";
 
 @Component({ layout: "panel" })
-export default class BrandForm extends Vue {
+export default class AdventureForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
   Api = Api;
@@ -42,101 +42,103 @@ export default class BrandForm extends Vue {
 
   locations: Array<{ title: string; to: string }> = [];
 
-  newBrand: Brand = {};
+  Region: RegionResource = {};
+  newAdventure: Adventure = {};
+  regionId: number | null = null;
 
-  brandFormFields: Array<FormField> = [];
-  customFieldsFormForceUpdateIndex = 0;
+  adventureFormFields: Array<FormField> = [];
+
+  mounted() {
+    if (this.$route.params.regionId) {
+      this.regionId = +this.$route.params.regionId;
+      this.updateRegion();
+    }
+  }
 
   async initDetailsTab() {
-    await this.getBrand();
-    this.updateBrandFormFields();
+    await this.getAdventure();
+    this.updateAdventureFormFields();
     this.updateLocations();
   }
 
   updateLocations() {
     this.locations = [
       {
-        title: "Brands",
-        to: "/Brand/All",
+        title: "Regions",
+        to: "/Region/All",
       },
       {
-        title: this.newBrand.name!,
-        to: "/Brand/Edit/" + this.newBrand.id,
+        title: this.Region.name!,
+        to: "/Region/" + this.Region.id + "/Adventures",
+      },
+      {
+        title: this.newAdventure.country_name!,
+        to:
+          "/Region/" +
+          this.regionId +
+          "/Adventures/Edit/" +
+          this.newAdventure.id,
       },
     ];
   }
 
-  async initCustomFieldsTab() {
-    this.customFieldsFormForceUpdateIndex++;
-  }
-
-  async getBrand() {
+  async getAdventure() {
     if (this.editMode)
-      this.newBrand = fromResource<Brand>(
-        await Api.Brand.get(+this.$route.params.id)
+      this.newAdventure = fromResource<Adventure>(
+        await Api.Adventure.get(+this.$route.params.id)
       );
   }
 
-  updateBrandFormFields() {
-    this.brandFormFields = [
+  async updateRegion() {
+    if (!Api.Region.all.length)
+      this.Region = (await Api.Region.get(this.regionId!))!;
+    else {
+      const finded = Api.Region.all.filter(
+        (Region) => Region.id == this.regionId
+      );
+      if (finded && finded.length) this.Region = finded[0];
+    }
+  }
+
+  updateAdventureFormFields() {
+    this.adventureFormFields = [
       {
-        label: "Name",
-        modelKey: "name",
+        label: "Country Name",
+        modelKey: "country_name",
         type: "form-field-text",
         rules: [Validation.required],
         colAttrs: { cols: 12 },
       },
       {
-        type: "form-field-file",
-        label: "Logo",
-        modelKey: "file",
-        if: this.media_upload_show,
+        label: "Description",
+        modelKey: "description",
+        type: "form-field-textarea",
         colAttrs: { cols: 12 },
       },
       {
-        type: "form-field-preview",
-        label: "Logo",
-        modelKey: "logo",
-        if: this.media_preview_show,
-        onClick: this.removeLogo,
+        label: "Testimonial",
+        modelKey: "testimonial",
+        type: "form-field-textarea",
+        colAttrs: { cols: 12 },
+      },
+      {
+        label: "Client Name",
+        modelKey: "client_name",
+        type: "form-field-text",
         colAttrs: { cols: 12 },
       },
     ];
   }
 
-  get_record_id() {
-    return this.newBrand.id!;
-  }
-
-  media_preview_show() {
-    return this.editMode && !!(this.newBrand as BrandResource).thumbnail;
-  }
-
-  media_upload_show() {
-    return (
-      !this.editMode ||
-      (this.editMode && !(this.newBrand as BrandResource).thumbnail)
-    );
-  }
-
-  removeLogo() {
-    (this.newBrand as BrandResource).thumbnail = undefined;
-  }
-
   async detailsFormSubmit() {
     if (this.formValidate()) {
-      if (this.editMode && this.newBrand.id)
-        await Api.Brand.update({
-          id: this.newBrand.id,
-          name: this.newBrand.name!,
-          file: (this.newBrand as any).file,
+      if (this.editMode && this.newAdventure.id)
+        await Api.Adventure.update({
+          id: this.newAdventure.id,
+          adventure: this.newAdventure,
         });
-      else
-        await Api.Brand.create({
-          name: this.newBrand.name!,
-          file: (this.newBrand as any).file,
-        });
-      if (!this.editMode) this.$router.push("/Brand/All");
+      else await Api.Adventure.create(this.newAdventure);
+      if (!this.editMode) this.$router.push("/Adventure/All");
     }
   }
 
