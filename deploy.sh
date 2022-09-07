@@ -1,8 +1,9 @@
-API_PATH="https://imcxm.exodusapi.influencedev.com/docs/api-docs.json"
+BASE_API_PATH="https://imcxm.exodusapi.influencedev.com/api"
 export $(grep -v '^#' .env | xargs -d '\r\n')
-echo "API_PATH=$API_PATH"
+echo "BASE_API_PATH=$BASE_API_PATH"
+
+sed -i "s#export const BASE_PATH = \".*\".replace#export const BASE_PATH = \"$BASE_API_PATH\".replace#" ./repositories/base.ts
 
 yarn install
-yarn generate:openapi -- -i $API_PATH
 yarn build
 yarn generate
