@@ -20,7 +20,7 @@ export default class api__auth extends VuexModule {
     this.setLoading(true);
     const response = await AuthApiFactory()
       .authLogin(User)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .catch((error) => ResponseHandler.ErrorHandler(error, true))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response)) {
@@ -44,7 +44,7 @@ export default class api__auth extends VuexModule {
       })
     )
       .userLogout()
-      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .catch((error) => ResponseHandler.ErrorHandler(error, true))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
   }

@@ -64,8 +64,8 @@ export default class Login extends Vue {
       Api.Auth.login({
         email: this.email,
         password: this.password,
-      }).then(() => {
-        this.$router.push("/Auth");
+      }).then((response) => {
+        if (response.access_token) this.$router.push("/Auth");
       });
   }
 
