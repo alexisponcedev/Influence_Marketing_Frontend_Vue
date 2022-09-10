@@ -26,6 +26,9 @@
             <template v-slot:[`item.image`]="{ item }">
               <v-img :src="item.image" max-height="64" max-width="64" />
             </template>
+            <template v-slot:[`item.logo`]="{ item }">
+              <v-img :src="item.logo" max-height="64" max-width="64" />
+            </template>
             <template
               v-for="header in config.headers.filter(
                 (header) => !!header.valueFunc

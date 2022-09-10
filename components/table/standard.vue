@@ -120,13 +120,19 @@
       :headers="headers"
       :show-select="showSelect"
       :single-select="singleSelect"
+      :options.sync="optionsSync"
+      :server-items-length="total"
       @click:row="clickRow"
+      :footer-props="{ 'items-per-page-options': itemsPerPageOptions }"
     >
       <template v-slot:[`item.thumbnail`]="{ item }">
         <v-img :src="item.thumbnail" max-height="64" max-width="64" />
       </template>
       <template v-slot:[`item.image`]="{ item }">
         <v-img :src="item.image" max-height="64" max-width="64" />
+      </template>
+      <template v-slot:[`item.logo`]="{ item }">
+        <v-img :src="item.logo" max-height="64" max-width="64" />
       </template>
       <template
         v-for="header in config.headers.filter((header) => !!header.valueFunc)"
@@ -182,7 +188,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { Vue, Component, Prop, PropSync, Emit } from "vue-property-decorator";
 import exportCSVFile from "@/utils/exportCSVFile";
 import { IIndexable } from "@/utils/IIndexable";
 
@@ -197,6 +203,10 @@ export default class StandardTable extends Vue {
   @Prop(Boolean) readonly loading!: Boolean;
   @Prop(Boolean) readonly grid!: Boolean;
   @Prop(Array) readonly items!: Array<Object>;
+  @Prop(Number) readonly total!: Number;
+  @PropSync("options", { type: Object }) readonly optionsSync!: Object;
+  @Prop({ default: () => [5, 10, 15, -1] })
+  readonly itemsPerPageOptions!: Array<number>;
   @Prop(Object) readonly config!: {
     globalActions?: Array<{
       text?: string;

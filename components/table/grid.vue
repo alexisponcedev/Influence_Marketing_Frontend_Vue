@@ -60,9 +60,10 @@
               <v-img
                 height="200"
                 v-if="
-                  config.grid.image && typeof config.grid.image === 'function'
+                  config.grid.image &&
+                  (typeof config.grid.image === 'function'
                     ? config.grid.image(item)
-                    : getProperty(item, config.grid.image)
+                    : getProperty(item, config.grid.image))
                 "
                 :src="
                   typeof config.grid.image === 'function'
@@ -166,7 +167,7 @@ export default class StandardTable extends Vue {
       image: string | ((item: any) => string);
       title: string | ((item: any) => string);
       subtitle?: string | ((item: any) => string);
-      chips?: Array<string> | ((item: any) => Array<string>);
+      chips?: string | ((item: any) => Array<string>);
     };
   };
 
