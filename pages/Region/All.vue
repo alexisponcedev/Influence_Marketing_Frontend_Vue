@@ -22,8 +22,8 @@
           <table-standard
             grid
             :config="config"
+            :items="regions"
             class="row-pointer"
-            :items="Api.Region.all"
             :loading="Api.Region.loading"
             @click:row="
               (Region) => $router.push('/Region/' + Region.id + '/Adventures')
@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { Api, AppStore } from "@/store";
-import { Region } from "@/repositories";
+import { Region, RegionFullResource } from "@/repositories";
 
 @Component({ layout: "panel" })
 export default class AllRegion extends Vue {
@@ -47,6 +47,7 @@ export default class AllRegion extends Vue {
 
   tab = "";
 
+  regions: Array<RegionFullResource> = [];
   addRegionShow: boolean = false;
 
   config = {
@@ -60,7 +61,7 @@ export default class AllRegion extends Vue {
       {
         type: "delete",
         icon: "mdi-delete",
-        onClick: (Region: Region) => {
+        onClick: (Region: RegionFullResource) => {
           AppStore.showDeleteConfirmationModal({
             deleteItemTitle: Region.name || "",
             deleteItem: Region,
@@ -72,7 +73,8 @@ export default class AllRegion extends Vue {
     grid: {
       title: "name",
       image: "image",
-      subtitle: "adventures",
+      chips: (Region: RegionFullResource) =>
+        Region.adventures?.map((adventure) => adventure.country_name),
     },
   };
 
@@ -80,8 +82,9 @@ export default class AllRegion extends Vue {
     this.updateRegions();
   }
 
-  updateRegions() {
-    Api.Region.getAll();
+  async updateRegions() {
+    if (this.activeSite)
+      this.regions = (await Api.Region.getBySiteId(this.activeSite)) || [];
   }
 
   deleteRegion(Region: Region) {
@@ -90,6 +93,11 @@ export default class AllRegion extends Vue {
 
   addRegion(Region: Region) {
     Api.Region.create(Region).finally(this.updateRegions);
+  }
+
+  get activeSite() {
+    const active_site = localStorage.getItem("active_site");
+    return active_site ? +active_site : null;
   }
 }
 </script>

@@ -1,20 +1,20 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-  Region,
+  Site,
+  SiteResource,
   Configuration,
-  RegionResource,
-  RegionApiFactory,
+  SiteApiFactory,
 } from "@/repositories";
 
 @Module({
-  name: "api__region",
+  name: "api__site",
   stateFactory: true,
   namespaced: true,
 })
-export default class api__region extends VuexModule {
+export default class api__site extends VuexModule {
   loading: Boolean = false;
-  all: Array<RegionResource> = [];
+  all: Array<SiteResource> = [];
 
   @Mutation
   setLoading(status: Boolean) {
@@ -22,36 +22,19 @@ export default class api__region extends VuexModule {
   }
 
   @Mutation
-  updateAll(all: Array<RegionResource>) {
+  updateAll(all: Array<SiteResource>) {
     this.all = all;
   }
 
   @Action({ commit: "updateAll" })
   async getAll() {
     this.setLoading(true);
-    const response = await RegionApiFactory(
+    const response = await SiteApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .regionList()
-      .catch((error) => ResponseHandler.ErrorHandler(error))
-      .finally(() => this.setLoading(false));
-    this.setLoading(false);
-    if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data.data;
-    return [];
-  }
-
-  @Action
-  async getBySiteId(siteId: number) {
-    this.setLoading(true);
-    const response = await RegionApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .getBySiteId(siteId)
+      .siteList()
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
@@ -63,12 +46,12 @@ export default class api__region extends VuexModule {
   @Action
   async get(id: number) {
     this.setLoading(true);
-    const response = await RegionApiFactory(
+    const response = await SiteApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .getRegion(id)
+      .getSite(id)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
@@ -78,14 +61,14 @@ export default class api__region extends VuexModule {
   }
 
   @Action
-  async create(region: Region) {
+  async create(Site: Site) {
     this.setLoading(true);
-    const response = await RegionApiFactory(
+    const response = await SiteApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .addRegion(region)
+      .addSite(Site)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
@@ -95,14 +78,14 @@ export default class api__region extends VuexModule {
   }
 
   @Action
-  async update(payload: { id: number; region: Region }) {
+  async update(payload: { id: number; Site: Site }) {
     this.setLoading(true);
-    const response = await RegionApiFactory(
+    const response = await SiteApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .updateRegion(payload.id, payload.region)
+      .updateSite(payload.id, payload.Site)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
@@ -114,12 +97,12 @@ export default class api__region extends VuexModule {
   @Action
   async delete(id: number) {
     this.setLoading(true);
-    const response = await RegionApiFactory(
+    const response = await SiteApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .deleteRegion(id)
+      .deleteSite(id)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);

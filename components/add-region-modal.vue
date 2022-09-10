@@ -38,6 +38,7 @@ export default class addRegionModal extends Vue {
     id: 0,
     name: "",
     image: "",
+    site_id: +(localStorage.getItem("active_site") || 0),
   };
 
   submit() {
@@ -48,6 +49,7 @@ export default class addRegionModal extends Vue {
         id: 0,
         name: "",
         image: "",
+        site_id: +(localStorage.getItem("active_site") || 0),
       };
     }
   }

@@ -86,16 +86,15 @@
               </v-card-subtitle>
               <v-card-text v-if="config.grid.chips">
                 <v-chip
-                  v-for="(chip, index) in config.grid.chips"
+                  v-for="(chip, index) in typeof config.grid.chips ===
+                  'function'
+                    ? config.grid.chips(item)
+                    : getProperty(item, config.grid.chips)"
                   :key="index"
-                  class="mr-1"
+                  class="mr-1 mb-1"
                   small
                 >
-                  {{
-                    typeof chip === "function"
-                      ? chip(item)
-                      : getProperty(item, chip)
-                  }}
+                  {{ chip }}
                 </v-chip>
               </v-card-text>
 
@@ -167,7 +166,7 @@ export default class StandardTable extends Vue {
       image: string | ((item: any) => string);
       title: string | ((item: any) => string);
       subtitle?: string | ((item: any) => string);
-      chips?: Array<string | ((item: any) => string)>;
+      chips?: Array<string> | ((item: any) => Array<string>);
     };
   };
 
