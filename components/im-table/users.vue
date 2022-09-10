@@ -5,7 +5,7 @@
     :loading="Api.User.loading"
     :items="items || Api.User.all"
     @click:row="
-      user =>
+      (user) =>
         $router.push(
           (prefixPath ? '/' + prefixPath : '') + '/User/Edit/' + user.id
         )
@@ -33,15 +33,15 @@ export default class AllUser extends Vue {
       { text: "Name", value: "name" },
       { text: "Level", value: "level" },
       { text: "Email", value: "email" },
-      { text: "", value: "actions", sortable: false }
+      { text: "", value: "actions", sortable: false, width: "0" },
     ]
-      .filter(header => !this.hiddenHeader?.includes(header.value))
-      .filter(header => !this.noActions || header.value != "actions"),
+      .filter((header) => !this.hiddenHeader?.includes(header.value))
+      .filter((header) => !this.noActions || header.value != "actions"),
     actions: [
       {
         type: "edit",
         icon: "mdi-pencil",
-        to: "/User/Edit/[id]"
+        to: "/User/Edit/[id]",
       },
       {
         type: "delete",
@@ -50,10 +50,10 @@ export default class AllUser extends Vue {
           AppStore.showDeleteConfirmationModal({
             deleteItemTitle: user.name || "",
             deleteItem: user,
-            agreeButton: { callback: this.deleteUser }
+            agreeButton: { callback: this.deleteUser },
           });
-        }
-      }
+        },
+      },
     ],
     globalActions: [
       {
@@ -62,9 +62,9 @@ export default class AllUser extends Vue {
         icon: "mdi-plus",
         to:
           "/User/Add" +
-          (this.addKey ? "/?" + this.addKey + "=" + this.$route.params.id : "")
-      }
-    ].filter(_ => !this.noActions)
+          (this.addKey ? "/?" + this.addKey + "=" + this.$route.params.id : ""),
+      },
+    ].filter((_) => !this.noActions),
   };
 
   mounted() {

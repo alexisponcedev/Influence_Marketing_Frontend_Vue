@@ -5,6 +5,12 @@ export const items = () => [{
     to: "Region/All"
   },
   {
+    title: "Rules",
+    icon: "mdi-certificate-outline",
+    group: "Rule",
+    to: "Rule/All"
+  },
+  {
     divider: true
   },
   {

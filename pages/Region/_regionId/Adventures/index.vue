@@ -52,7 +52,7 @@ export default class AllAdventures extends Vue {
     headers: [
       { text: "Country Name", value: "country_name" },
       { text: "Region", value: "region.name" },
-      { text: "", value: "actions", sortable: false },
+      { text: "", value: "actions", sortable: false, width: "0" },
     ],
     actions: [
       {

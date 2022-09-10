@@ -55,7 +55,7 @@ export default class AllRegion extends Vue {
       { text: "Name", value: "name" },
       { text: "Image", value: "image", sortable: false },
       { text: "Adventures", value: "" },
-      { text: "", value: "actions", sortable: false },
+      { text: "", value: "actions", sortable: false, width: "0" },
     ],
     actions: [
       {

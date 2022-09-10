@@ -138,7 +138,7 @@
         v-if="config.actions"
         v-slot:[`item.actions`]="{ item, itemIndex }"
       >
-        <div @click.stop.prevent="() => {}">
+        <div style="display: flex" @click.stop.prevent="() => {}">
           <template
             v-for="(action, actionIndex) in config.actions"
             @click="null"
