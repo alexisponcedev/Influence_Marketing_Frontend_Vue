@@ -38,8 +38,9 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { Api, AppStore } from "@/store";
 import { Region, RegionFullResource } from "@/repositories";
+import assetsPath from "@/utils/assetsPath";
+import { Api, AppStore } from "@/store";
 
 @Component({ layout: "panel" })
 export default class AllRegion extends Vue {
@@ -72,7 +73,7 @@ export default class AllRegion extends Vue {
     ],
     grid: {
       title: "name",
-      image: "image",
+      image: (Region: RegionFullResource) => assetsPath(Region.image),
       chips: (Region: RegionFullResource) =>
         Region.adventures?.map((adventure) => adventure.country_name),
     },
