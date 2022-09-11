@@ -35,6 +35,7 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { AdventureResource, RegionResource } from "@/repositories";
+import assetsPath from "@/utils/assetsPath";
 import { Api, AppStore } from "@/store";
 
 @Component({ layout: "panel" })
@@ -75,7 +76,7 @@ export default class AllAdventures extends Vue {
     grid: {
       image: (Adventure: AdventureResource) =>
         Adventure.slides && Adventure.slides.length
-          ? Adventure.slides[0]
+          ? assetsPath(Adventure.slides[0])
           : undefined,
       title: "country_name",
       subtitle: "region.name",

@@ -106,5 +106,10 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  env: {
+    BASE_API_PATH: process.env.BASE_API_PATH || 'https://imcxm.exodusapi.influencedev.com/api',
+    BASE_ASSETS_PATH: process.env.BASE_ASSETS_PATH || 'https://assets.exodusapi.influencedev.com',
+  }
 };
