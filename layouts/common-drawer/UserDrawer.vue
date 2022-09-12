@@ -46,7 +46,7 @@
               @click="setActiveSite(Site.id)"
             >
               <v-list-item-avatar class="mr-8" v-if="Site.flag_url">
-                <v-img :src="Site.flag_url" />
+                <v-img :src="assetsPath(Site.flag_url)" />
               </v-list-item-avatar>
               <v-list-item-icon v-else>
                 <v-icon x-large> mdi-domain </v-icon>
@@ -65,11 +65,13 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import getProfile from "@/utils/getProfile";
+import assetsPath from "@/utils/assetsPath";
 import { Api } from "@/store";
 
 @Component
 export default class UserDrawer extends Vue {
   getProfile = getProfile;
+  assetsPath = assetsPath;
   Api = Api;
 
   selectedSite: number | null = this.activeSite;
