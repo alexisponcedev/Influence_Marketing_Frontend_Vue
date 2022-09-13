@@ -17,6 +17,12 @@ export const items = () => [{
     to: "Contents"
   },
   {
+    title: "Settings",
+    icon: "mdi-cog-outline",
+    group: "Settings",
+    to: "Settings"
+  },
+  {
     divider: true
   },
   {

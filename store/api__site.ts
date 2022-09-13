@@ -110,4 +110,38 @@ export default class api__site extends VuexModule {
       return response.data;
     return {};
   }
+
+  @Action
+  async getSiteStatus(siteId: number) {
+    this.setLoading(true);
+    const response = await SiteApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .getSiteStatus(siteId)
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    this.setLoading(false);
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data.data?.enable || 0;
+    return {};
+  }
+
+  @Action
+  async setSiteStatus(payload: { siteId: number; status: number }) {
+    this.setLoading(true);
+    const response = await SiteApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .setSiteStatus(payload.siteId, payload.status)
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    this.setLoading(false);
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data;
+    return {};
+  }
 }
