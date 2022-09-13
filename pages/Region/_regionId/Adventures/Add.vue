@@ -91,8 +91,6 @@ export default class AdventureForm extends Vue {
       this.newAdventure = fromResource<Adventure>(
         await Api.Adventure.get(+this.$route.params.id)
       );
-
-    console.log(this.newAdventure);
   }
 
   async updateRegion() {
@@ -104,6 +102,7 @@ export default class AdventureForm extends Vue {
       );
       if (finded && finded.length) this.Region = finded[0];
     }
+    this.updateLocations();
   }
 
   updateAdventureFormFields() {
