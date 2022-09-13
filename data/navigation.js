@@ -11,6 +11,12 @@ export const items = () => [{
     to: "Rule/All"
   },
   {
+    title: "Contents",
+    icon: "mdi-file-document-multiple-outline",
+    group: "Contents",
+    to: "Contents"
+  },
+  {
     divider: true
   },
   {
