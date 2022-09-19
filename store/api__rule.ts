@@ -51,7 +51,7 @@ export default class api__rule extends VuexModule {
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .getRulesBySiteId(siteId)
+      .getRules(siteId)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);

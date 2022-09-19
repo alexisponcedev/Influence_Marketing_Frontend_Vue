@@ -1,5 +1,6 @@
 function logout(redirect) {
   localStorage.removeItem("profile");
+  localStorage.removeItem("active_site");
   localStorage.removeItem("access_token");
   localStorage.removeItem("access_token_expires_at");
   goToAuth(redirect);

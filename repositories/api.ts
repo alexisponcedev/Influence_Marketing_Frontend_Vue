@@ -284,10 +284,10 @@ export interface InlineResponse2001 {
 export interface InlineResponse20010 {
     /**
      * 
-     * @type {MediaTypeResource}
+     * @type {Array<MediaTypeResource>}
      * @memberof InlineResponse20010
      */
-    'data'?: MediaTypeResource;
+    'data'?: Array<MediaTypeResource>;
 }
 /**
  * 
@@ -297,10 +297,10 @@ export interface InlineResponse20010 {
 export interface InlineResponse20011 {
     /**
      * 
-     * @type {Array<PageResource>}
+     * @type {MediaTypeResource}
      * @memberof InlineResponse20011
      */
-    'data'?: Array<PageResource>;
+    'data'?: MediaTypeResource;
 }
 /**
  * 
@@ -310,10 +310,10 @@ export interface InlineResponse20011 {
 export interface InlineResponse20012 {
     /**
      * 
-     * @type {PageResource}
+     * @type {Array<PageResource>}
      * @memberof InlineResponse20012
      */
-    'data'?: PageResource;
+    'data'?: Array<PageResource>;
 }
 /**
  * 
@@ -323,10 +323,10 @@ export interface InlineResponse20012 {
 export interface InlineResponse20013 {
     /**
      * 
-     * @type {RegionResource}
+     * @type {PageResource}
      * @memberof InlineResponse20013
      */
-    'data'?: RegionResource;
+    'data'?: PageResource;
 }
 /**
  * 
@@ -336,10 +336,10 @@ export interface InlineResponse20013 {
 export interface InlineResponse20014 {
     /**
      * 
-     * @type {Array<RuleResource>}
+     * @type {RegionResource}
      * @memberof InlineResponse20014
      */
-    'data'?: Array<RuleResource>;
+    'data'?: RegionResource;
 }
 /**
  * 
@@ -492,10 +492,10 @@ export interface InlineResponse2008 {
 export interface InlineResponse2009 {
     /**
      * 
-     * @type {Array<MediaTypeResource>}
+     * @type {Array<RuleResource>}
      * @memberof InlineResponse2009
      */
-    'data'?: Array<MediaTypeResource>;
+    'data'?: Array<RuleResource>;
 }
 /**
  * Login model
@@ -2233,39 +2233,6 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {string} siteName Site Name
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBySiteName: async (siteName: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'siteName' is not null or undefined
-            assertParamExists('getBySiteName', 'siteName', siteName)
-            const localVarPath = `/constant/getBySiteName/{siteName}`
-                .replace(`{${"siteName"}}`, encodeURIComponent(String(siteName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {number} id Constant ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2289,6 +2256,39 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} siteName Site Name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConstants: async (siteName: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'siteName' is not null or undefined
+            assertParamExists('getConstants', 'siteName', siteName)
+            const localVarPath = `/constant/getConstants/{siteName}`
+                .replace(`{${"siteName"}}`, encodeURIComponent(String(siteName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
 
     
@@ -2385,22 +2385,22 @@ export const ConstantApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} siteName Site Name
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getBySiteName(siteName: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getBySiteName(siteName, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @param {number} id Constant ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async getConstant(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getConstant(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} siteName Site Name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getConstants(siteName: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getConstants(siteName, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2452,21 +2452,21 @@ export const ConstantApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @param {string} siteName Site Name
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBySiteName(siteName: string, options?: any): AxiosPromise<InlineResponse2004> {
-            return localVarFp.getBySiteName(siteName, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {number} id Constant ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getConstant(id: number, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.getConstant(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} siteName Site Name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConstants(siteName: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.getConstants(siteName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2522,17 +2522,6 @@ export class ConstantApi extends BaseAPI {
 
     /**
      * 
-     * @param {string} siteName Site Name
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConstantApi
-     */
-    public getBySiteName(siteName: string, options?: AxiosRequestConfig) {
-        return ConstantApiFp(this.configuration).getBySiteName(siteName, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {number} id Constant ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2540,6 +2529,17 @@ export class ConstantApi extends BaseAPI {
      */
     public getConstant(id: number, options?: AxiosRequestConfig) {
         return ConstantApiFp(this.configuration).getConstant(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} siteName Site Name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConstantApi
+     */
+    public getConstants(siteName: string, options?: AxiosRequestConfig) {
+        return ConstantApiFp(this.configuration).getConstants(siteName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2584,10 +2584,6 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2610,6 +2606,39 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('getAdventureList', 'regionId', regionId)
             const localVarPath = `/exodus/getAdventureList/{regionId}`
                 .replace(`{${"regionId"}}`, encodeURIComponent(String(regionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} siteName Site Name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConstantsBySiteName: async (siteName: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'siteName' is not null or undefined
+            assertParamExists('getConstantsBySiteName', 'siteName', siteName)
+            const localVarPath = `/exodus/getBySiteName/{siteName}`
+                .replace(`{${"siteName"}}`, encodeURIComponent(String(siteName)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2725,6 +2754,39 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @param {number} siteId Site ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRulesBySiteId: async (siteId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'siteId' is not null or undefined
+            assertParamExists('getRulesBySiteId', 'siteId', siteId)
+            const localVarPath = `/exodus/getRulesBySiteId/{siteId}`
+                .replace(`{${"siteId"}}`, encodeURIComponent(String(siteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2784,6 +2846,16 @@ export const ExodusAPIsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} siteName Site Name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getConstantsBySiteName(siteName: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getConstantsBySiteName(siteName, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2808,6 +2880,16 @@ export const ExodusAPIsApiFp = function(configuration?: Configuration) {
          */
         async getRegionsBysiteId(siteId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRegionsBysiteId(siteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} siteId Site ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRulesBySiteId(siteId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRulesBySiteId(siteId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2849,6 +2931,15 @@ export const ExodusAPIsApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @param {string} siteName Site Name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConstantsBySiteName(siteName: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.getConstantsBySiteName(siteName, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2871,6 +2962,15 @@ export const ExodusAPIsApiFactory = function (configuration?: Configuration, bas
          */
         getRegionsBysiteId(siteId: number, options?: any): AxiosPromise<InlineResponse2007> {
             return localVarFp.getRegionsBysiteId(siteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} siteId Site ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRulesBySiteId(siteId: number, options?: any): AxiosPromise<InlineResponse2009> {
+            return localVarFp.getRulesBySiteId(siteId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2914,6 +3014,17 @@ export class ExodusAPIsApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} siteName Site Name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExodusAPIsApi
+     */
+    public getConstantsBySiteName(siteName: string, options?: AxiosRequestConfig) {
+        return ExodusAPIsApiFp(this.configuration).getConstantsBySiteName(siteName, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExodusAPIsApi
@@ -2941,6 +3052,17 @@ export class ExodusAPIsApi extends BaseAPI {
      */
     public getRegionsBysiteId(siteId: number, options?: AxiosRequestConfig) {
         return ExodusAPIsApiFp(this.configuration).getRegionsBysiteId(siteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} siteId Site ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExodusAPIsApi
+     */
+    public getRulesBySiteId(siteId: number, options?: AxiosRequestConfig) {
+        return ExodusAPIsApiFp(this.configuration).getRulesBySiteId(siteId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3421,7 +3543,7 @@ export const MediaTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async _0df5be1eea3e1425a62af192ccf1a514(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
+        async _0df5be1eea3e1425a62af192ccf1a514(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20010>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator._0df5be1eea3e1425a62af192ccf1a514(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3462,7 +3584,7 @@ export const MediaTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ebb7786f5d04ac4384dd799a77052087(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20010>> {
+        async ebb7786f5d04ac4384dd799a77052087(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20011>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ebb7786f5d04ac4384dd799a77052087(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3481,7 +3603,7 @@ export const MediaTypeApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        _0df5be1eea3e1425a62af192ccf1a514(options?: any): AxiosPromise<InlineResponse2009> {
+        _0df5be1eea3e1425a62af192ccf1a514(options?: any): AxiosPromise<InlineResponse20010> {
             return localVarFp._0df5be1eea3e1425a62af192ccf1a514(options).then((request) => request(axios, basePath));
         },
         /**
@@ -3518,7 +3640,7 @@ export const MediaTypeApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ebb7786f5d04ac4384dd799a77052087(id: number, options?: any): AxiosPromise<InlineResponse20010> {
+        ebb7786f5d04ac4384dd799a77052087(id: number, options?: any): AxiosPromise<InlineResponse20011> {
             return localVarFp.ebb7786f5d04ac4384dd799a77052087(id, options).then((request) => request(axios, basePath));
         },
     };
@@ -3819,7 +3941,7 @@ export const PageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPage(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20012>> {
+        async getPage(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20013>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPage(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3828,7 +3950,7 @@ export const PageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pageList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20011>> {
+        async pageList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20012>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pageList(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3877,7 +3999,7 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPage(id: number, options?: any): AxiosPromise<InlineResponse20012> {
+        getPage(id: number, options?: any): AxiosPromise<InlineResponse20013> {
             return localVarFp.getPage(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3885,7 +4007,7 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pageList(options?: any): AxiosPromise<InlineResponse20011> {
+        pageList(options?: any): AxiosPromise<InlineResponse20012> {
             return localVarFp.pageList(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4069,6 +4191,10 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4239,7 +4365,7 @@ export const RegionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRegion(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20013>> {
+        async getRegion(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20014>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRegion(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4306,7 +4432,7 @@ export const RegionApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRegion(id: number, options?: any): AxiosPromise<InlineResponse20013> {
+        getRegion(id: number, options?: any): AxiosPromise<InlineResponse20014> {
             return localVarFp.getRegion(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4530,10 +4656,10 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRulesBySiteId: async (siteId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRules: async (siteId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'siteId' is not null or undefined
-            assertParamExists('getRulesBySiteId', 'siteId', siteId)
-            const localVarPath = `/rule/getRulesBySiteId/{siteId}`
+            assertParamExists('getRules', 'siteId', siteId)
+            const localVarPath = `/rule/getRules/{siteId}`
                 .replace(`{${"siteId"}}`, encodeURIComponent(String(siteId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4683,8 +4809,8 @@ export const RuleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRulesBySiteId(siteId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20014>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getRulesBySiteId(siteId, options);
+        async getRules(siteId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRules(siteId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4692,7 +4818,7 @@ export const RuleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rulesList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20014>> {
+        async rulesList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.rulesList(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4750,15 +4876,15 @@ export const RuleApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRulesBySiteId(siteId: number, options?: any): AxiosPromise<InlineResponse20014> {
-            return localVarFp.getRulesBySiteId(siteId, options).then((request) => request(axios, basePath));
+        getRules(siteId: number, options?: any): AxiosPromise<InlineResponse2009> {
+            return localVarFp.getRules(siteId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rulesList(options?: any): AxiosPromise<InlineResponse20014> {
+        rulesList(options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.rulesList(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4821,8 +4947,8 @@ export class RuleApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RuleApi
      */
-    public getRulesBySiteId(siteId: number, options?: AxiosRequestConfig) {
-        return RuleApiFp(this.configuration).getRulesBySiteId(siteId, options).then((request) => request(this.axios, this.basePath));
+    public getRules(siteId: number, options?: AxiosRequestConfig) {
+        return RuleApiFp(this.configuration).getRules(siteId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
