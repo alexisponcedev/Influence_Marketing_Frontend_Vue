@@ -4,7 +4,7 @@
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab href="#Details">Rules and Regulations Details</v-tab>
+          <v-tab href="#Details">Page Details</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
@@ -13,35 +13,34 @@
         <v-card-text>
           <form-standard
             ref="detailsForm"
-            :model="Rule"
+            :model="Page"
             :fields="detailsFormFields"
             @submit="detailsFormSubmit"
           />
         </v-card-text>
       </v-tab-item>
     </v-tabs-items>
-    <loading-overlay :show="Api.Rule.loading" />
+    <loading-overlay :show="Api.Page.loading" />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { fromResource } from "@/utils/fromResource";
-import { Rule } from "@/repositories";
+import Validation from "@/utils/validation";
+import { Page } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
 
 @Component({ layout: "panel" })
-export default class RuleForm extends Vue {
+export default class PageForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
   Api = Api;
 
   tab = "";
 
-  Rule: Rule = {
-    site_id: +(localStorage.getItem("active_site") || 0),
-  };
+  Page: Page = {};
 
   locations: Array<{ title: string; to: string }> = [];
 
@@ -59,12 +58,12 @@ export default class RuleForm extends Vue {
   updateLocations() {
     this.locations = [
       {
-        title: "Rules & Regulations",
-        to: "/Rule/All",
+        title: "Pages",
+        to: "/Page/All",
       },
       {
-        title: this.Rule.title || "",
-        to: "/Rule/Edit/" + this.Rule.id!,
+        title: this.Page.title || "",
+        to: "/Page/Edit/" + this.Page.id!,
       },
     ];
   }
@@ -76,8 +75,8 @@ export default class RuleForm extends Vue {
 
   async getEntity() {
     if (this.editMode)
-      this.Rule = fromResource<Rule>(
-        await Api.Rule.get(+this.$route.params.id)
+      this.Page = fromResource<Page>(
+        await Api.Page.get(+this.$route.params.id)
       );
   }
 
@@ -87,12 +86,13 @@ export default class RuleForm extends Vue {
         type: "form-field-text",
         label: "Title",
         modelKey: "title",
+        rules: [Validation.required],
         colAttrs: { cols: 12 },
       },
       {
-        type: "form-field-text-markup",
-        label: "Text",
-        modelKey: "text",
+        type: "form-field-text",
+        label: "URL",
+        modelKey: "url",
         colAttrs: { cols: 12 },
       },
     ];
@@ -101,12 +101,12 @@ export default class RuleForm extends Vue {
   async detailsFormSubmit() {
     if (this.detailsFormValidate()) {
       if (this.editMode)
-        await Api.Rule.update({
-          id: +this.Rule.id!,
-          Rule: this.Rule,
+        await Api.Page.update({
+          id: +this.Page.id!,
+          Page: this.Page,
         });
-      else await Api.Rule.create(this.Rule);
-      if (!this.editMode) this.$router.push("/Rule/All");
+      else await Api.Page.create(this.Page);
+      if (!this.editMode) this.$router.push("/Page/All");
     }
   }
 

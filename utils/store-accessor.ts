@@ -7,6 +7,7 @@ import api__auth from "@/store/api__auth";
 import api__user from "@/store/api__user";
 import api__site from "@/store/api__site";
 import api__rule from "@/store/api__rule";
+import api__page from "@/store/api__page";
 import api__region from "@/store/api__region";
 import api__constant from "@/store/api__constant";
 import api__adventure from "@/store/api__adventure";
@@ -22,6 +23,7 @@ class Api {
   static Region: api__region;
   static Constant: api__constant;
   static Adventure: api__adventure;
+  static Page: api__page;
 }
 
 function initialiseStores(store: Store<any>): void {
@@ -30,6 +32,7 @@ function initialiseStores(store: Store<any>): void {
   Api.User = getModule(api__user, store);
   Api.Site = getModule(api__site, store);
   Api.Rule = getModule(api__rule, store);
+  Api.Page = getModule(api__page, store);
   Api.Region = getModule(api__region, store);
   Api.Constant = getModule(api__constant, store);
   Api.Adventure = getModule(api__adventure, store);

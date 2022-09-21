@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <v-tabs background-color="transparent">
-          <v-tab>All Rules and Regulations</v-tab>
+          <v-tab>All Pages</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
@@ -11,11 +11,11 @@
       <v-col>
         <v-card>
           <table-standard
-            :items="Rules"
             :config="config"
             class="row-pointer"
-            :loading="Api.Rule.loading"
-            @click:row="(Rule) => $router.push('/Rule/Edit/' + Rule.id)"
+            :items="Api.Page.all"
+            :loading="Api.Page.loading"
+            @click:row="(Page) => $router.push('/Page/Edit/' + Page.id)"
           />
         </v-card>
       </v-col>
@@ -25,64 +25,57 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { RuleResource } from "@/repositories";
+import { PageResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
 
 @Component({ layout: "panel" })
-export default class AllRules extends Vue {
+export default class AllPages extends Vue {
   Api = Api;
-
-  Rules: Array<RuleResource> = [];
 
   config = {
     headers: [
       { text: "Title", value: "title" },
+      { text: "URL", value: "url" },
       { text: "", value: "actions", sortable: false, width: "0" },
     ],
     actions: [
       {
         type: "edit",
         icon: "mdi-pencil",
-        to: "/Rule/Edit/[id]",
+        to: "/Page/Edit/[id]",
       },
       {
         type: "delete",
         icon: "mdi-delete",
-        onClick: (Rule: RuleResource) => {
+        onClick: (Page: PageResource) => {
           AppStore.showDeleteConfirmationModal({
-            deleteItemTitle: Rule.title || "",
-            deleteItem: Rule,
-            agreeButton: { callback: this.deleteRule },
+            deleteItemTitle: Page.title || "",
+            deleteItem: Page,
+            agreeButton: { callback: this.deletePage },
           });
         },
       },
     ],
     globalActions: [
       {
-        text: "Add Rule",
+        text: "Add Page",
         color: "primary",
         icon: "mdi-plus",
-        to: "/Rule/Add",
+        to: "/Page/Add",
       },
     ],
   };
 
   mounted() {
-    this.updateRules();
+    this.updatePages();
   }
 
-  async updateRules() {
-    if (this.activeSite)
-      this.Rules = (await Api.Rule.getBySiteId(this.activeSite)) || [];
+  async updatePages() {
+    await Api.Page.getAll();
   }
 
-  deleteRule(Rule: RuleResource) {
-    Api.Rule.delete(Rule.id!).then(this.updateRules);
-  }
-
-  get activeSite() {
-    const active_site = localStorage.getItem("active_site");
-    return active_site ? +active_site : null;
+  deletePage(Page: PageResource) {
+    Api.Page.delete(Page.id!).then(this.updatePages);
   }
 }
 </script>
