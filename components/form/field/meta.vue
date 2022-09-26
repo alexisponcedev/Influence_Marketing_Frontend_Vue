@@ -12,8 +12,9 @@
 
     </label>
 
+    {{ model }}
 
-    <v-row v-for="(row, index) in model" :key="index">
+    <v-row v-for="(row, index) in model" :key="`meta_${index}`">
       <v-col cols="2">
         <v-text-field
           v-model="model[index].rel"
@@ -77,6 +78,8 @@
       </v-col>
 
     </v-row>
+
+
   </v-col>
 </template>
 
@@ -89,17 +92,18 @@ import Validation from "~/utils/validation";
 @Component
 export default class TextArrayFormField extends Vue {
   Validation = Validation;
-  @Prop({default: "text"}) readonly type!: "text" | "password";
+  @Prop({default: "text"}) readonly type!: "text";
   @Prop(Object) readonly field!: FormField;
   @VModel() model!: Array<MetaInterface>;
 
   addRow() {
     if (!this.model) this.model = [];
-    console.log(this.model);
     this.model.push({rel: '', name: '', content: ''});
+    console.log(this.model);
   }
 
   removeRow(index: number) {
+    console.log(`remove index ${index}`)
     this.model.splice(index, 1);
   }
 }

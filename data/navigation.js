@@ -36,10 +36,10 @@ export const items = () => [
     to: "Blocks/Reusable",
   },
   {
-    title: "Content Blocks",
+    title: "Components",
     icon: "mdi-border-radius",
-    group: "Block/Content",
-    to: "Blocks/Content",
+    group: "Components",
+    to: "components/All",
   },
   {
     divider: true,

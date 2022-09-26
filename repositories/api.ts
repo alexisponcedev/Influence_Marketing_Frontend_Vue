@@ -347,6 +347,8 @@ export interface ComponentResource {
      * @memberof ComponentResource
      */
     'data'?: string;
+
+    'image'? : string
 }
 /**
  * Constant model
