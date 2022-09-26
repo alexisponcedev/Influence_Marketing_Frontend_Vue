@@ -7,7 +7,7 @@ const Validation = {
   required: (v: any) => (!Array.isArray(v) && !(typeof v == "object") && !(typeof v == "string") && v != null) || (Array.isArray(v) && !!v.length) || (typeof v == "string" && !!v.length) || (typeof v == "object" && !!v && !!Object.keys(v).length) || "This field should not be left blank.",
   password: (v: string) => !v || password_pattern.test(v) || "Password must be 9 characters including one uppercase letter, one special character and alphanumeric characters",
   email: (v: string) => email_pattern.test(v) || "The Email must be a valid email address",
-  url: (v: string) => url_pattern.test(v) || "The Email must be a valid email address",
+  url: (v: string) => url_pattern.test(v) || "The URL must be a valid url address",
   password_confirmation: (cp: string, p: string) => cp == p || "Password and confirm password must be same",
   phone: (v: string) => phone_pattern.test(v) || "The Phone must be a valid"
 };

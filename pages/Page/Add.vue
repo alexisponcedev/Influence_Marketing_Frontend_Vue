@@ -46,8 +46,9 @@ export default class PageForm extends Vue {
 
   tab = "";
 
-  Page: Page = {};
-
+  Page: Page = {
+    meta : [{rel : '' , name : '' , content : ''}]
+  };
 
 
   locations: Array<{ title: string; to: string }> = [];
@@ -118,7 +119,6 @@ export default class PageForm extends Vue {
         colAttrs: { cols: 12 },
       },
 
-
       {
         type: "form-field-checkbox",
         label: "Show Header",
@@ -153,13 +153,13 @@ export default class PageForm extends Vue {
         rules: [],
         colAttrs: { cols: 6 },
       },
-      {
-        type: "form-field-textarea",
-        label: "Meta",
-        modelKey: "meta",
-        rules: [],
-        colAttrs: { cols: 12 },
-      },
+      // {
+      //   type: "form-field-textarea",
+      //   label: "Meta",
+      //   modelKey: "meta",
+      //   rules: [],
+      //   colAttrs: { cols: 12 },
+      // },
       {
         type: "form-field-meta",
         label: "Meta",

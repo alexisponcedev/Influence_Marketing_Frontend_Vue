@@ -12,8 +12,6 @@
 
     </label>
 
-    {{ model }}
-
     <v-row v-for="(row, index) in model" :key="`meta_${index}`">
       <v-col cols="2">
         <v-text-field
