@@ -30,6 +30,14 @@ const selectItems: Dictionary<Array<Item>> = {
       value: "PROPERTY",
     },
   ],
+  themes : [
+    {
+      title : 'Light', value : 'light'
+    },
+    {
+      title : 'Dark' , value : 'Dark'
+    }
+  ],
   user_level: [
     {
       title: "User",

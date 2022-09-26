@@ -1,6 +1,8 @@
 <template>
   <v-container fluid>
+
     <breadcrumbs v-if="editMode" :locations="locations" />
+
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
@@ -8,18 +10,21 @@
         </v-tabs>
       </v-col>
     </v-row>
+
     <v-tabs-items v-model="tab">
       <v-tab-item value="Details">
         <v-card-text>
           <form-standard
             ref="detailsForm"
             :model="Page"
+
             :fields="detailsFormFields"
-            @submit="detailsFormSubmit"
+            @submit="pageFormSubmit"
           />
         </v-card-text>
       </v-tab-item>
     </v-tabs-items>
+
     <loading-overlay :show="Api.Page.loading" />
   </v-container>
 </template>
@@ -31,6 +36,8 @@ import Validation from "@/utils/validation";
 import { Page } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
+import selectItems from "~/utils/select-items";
+import getProfile from "~/utils/getProfile";
 
 @Component({ layout: "panel" })
 export default class PageForm extends Vue {
@@ -62,7 +69,7 @@ export default class PageForm extends Vue {
         to: "/Page/All",
       },
       {
-        title: this.Page.title || "",
+        title: this.Page.name || "",
         to: "/Page/Edit/" + this.Page.id!,
       },
     ];
@@ -84,15 +91,71 @@ export default class PageForm extends Vue {
     this.detailsFormFields = [
       {
         type: "form-field-text",
-        label: "Title",
-        modelKey: "title",
+        label: "Name",
+        modelKey: "name",
+        placeholder : 'First letter should be capital ex: Product',
         rules: [Validation.required],
         colAttrs: { cols: 12 },
       },
+
       {
         type: "form-field-text",
-        label: "URL",
-        modelKey: "url",
+        label: "Route",
+        placeholder : 'ex: products/[product_id]',
+        modelKey: "route",
+        rules: [Validation.required],
+        colAttrs: { cols: 12 },
+      },
+
+      {
+        type: "form-field-text",
+        label: "Fetch From Url",
+        placeholder : 'ex: https://impim.dev-api.hisenseportal.com/api/',
+        modelKey: "fetchUrl",
+        rules: [Validation.url],
+        colAttrs: { cols: 12 },
+      },
+
+      {
+        type: "form-field-text",
+        label: "Page Custom Class",
+        placeholder : 'ex: bg-gray-50 text-black hover:red-500 transition duration-100 ...',
+        modelKey: "class",
+        rules: [],
+        colAttrs: { cols: 12 },
+      },
+
+      {
+        type: "form-field-textarea",
+        label: "Meta",
+        modelKey: "meta",
+        rules: [],
+        colAttrs: { cols: 12 },
+      },
+      {
+        type: "form-field-checkbox",
+        label: "Show Header",
+        modelKey: "showHeader",
+        rules: [],
+        colAttrs: { cols: 3 },
+      },
+
+      {
+        type: "form-field-checkbox",
+        label: "Show Footer",
+        modelKey: "showFooter",
+        rules: [],
+        colAttrs: { cols: 3 },
+      },
+      {
+        label: "Level",
+        modelKey: "level",
+        "item-text": "title",
+        "item-value": "value",
+        placeholder : 'Select theme of this page',
+        type: "form-field-select",
+        rules: [Validation.required],
+        items: selectItems.themes,
         colAttrs: { cols: 12 },
       },
     ];
@@ -113,6 +176,18 @@ export default class PageForm extends Vue {
   detailsFormValidate() {
     return (this.$refs.detailsForm as any).validate();
   }
+
+  async pageFormSubmit() {
+    if (this.formValidate()) {
+        await Api.Page.create(this.Page);
+        this.$router.push("/Page/All");
+    }
+  }
+
+  formValidate() {
+    return (this.$refs.mainForm as any).validate();
+  }
+
 
   @Watch("tab")
   tabChanged(newTab: string, _: string) {

@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+
     <v-row>
       <v-col>
         <v-tabs background-color="transparent">
@@ -7,6 +8,7 @@
         </v-tabs>
       </v-col>
     </v-row>
+
     <v-row>
       <v-col>
         <v-card>
@@ -20,6 +22,7 @@
         </v-card>
       </v-col>
     </v-row>
+
   </v-container>
 </template>
 
@@ -34,7 +37,7 @@ export default class AllPages extends Vue {
 
   config = {
     headers: [
-      { text: "Title", value: "title" },
+      { text: "Name", value: "name" },
       { text: "URL", value: "url" },
       { text: "", value: "actions", sortable: false, width: "0" },
     ],
@@ -49,7 +52,7 @@ export default class AllPages extends Vue {
         icon: "mdi-delete",
         onClick: (Page: PageResource) => {
           AppStore.showDeleteConfirmationModal({
-            deleteItemTitle: Page.title || "",
+            deleteItemTitle: Page.name || "",
             deleteItem: Page,
             agreeButton: { callback: this.deletePage },
           });
