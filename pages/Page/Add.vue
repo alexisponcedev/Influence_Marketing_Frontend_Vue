@@ -133,6 +133,13 @@ export default class PageForm extends Vue {
         colAttrs: { cols: 12 },
       },
       {
+        type: "form-field-meta",
+        label: "Meta",
+        modelKey: "meta",
+        rules: [],
+        colAttrs: { cols: 12 },
+      },
+      {
         type: "form-field-checkbox",
         label: "Show Header",
         modelKey: "showHeader",
