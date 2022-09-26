@@ -17,7 +17,6 @@
           <form-standard
             ref="detailsForm"
             :model="Page"
-
             :fields="detailsFormFields"
             @submit="pageFormSubmit"
           />
@@ -49,11 +48,14 @@ export default class PageForm extends Vue {
 
   Page: Page = {};
 
+
+
   locations: Array<{ title: string; to: string }> = [];
 
   detailsFormFields: Array<FormField> = [];
 
   mounted() {
+    this.Page.meta = [];
     this.init();
   }
 
@@ -77,7 +79,7 @@ export default class PageForm extends Vue {
 
   async initDetailsTab() {
     await this.getEntity();
-    this.updateDetailsFormFields();
+    this.updatePageFormFields();
   }
 
   async getEntity() {
@@ -87,7 +89,7 @@ export default class PageForm extends Vue {
       );
   }
 
-  updateDetailsFormFields() {
+  updatePageFormFields() {
     this.detailsFormFields = [
       {
         type: "form-field-text",
@@ -169,7 +171,7 @@ export default class PageForm extends Vue {
   }
 
   async detailsFormSubmit() {
-    if (this.detailsFormValidate()) {
+    if (this.pageFormValidate()) {
       if (this.editMode)
         await Api.Page.update({
           id: +this.Page.id!,
@@ -180,7 +182,7 @@ export default class PageForm extends Vue {
     }
   }
 
-  detailsFormValidate() {
+  pageFormValidate() {
     return (this.$refs.detailsForm as any).validate();
   }
 
