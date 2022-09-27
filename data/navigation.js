@@ -1,5 +1,11 @@
 export const items = () => [
   {
+    title: "Components",
+    icon: "mdi-border-radius",
+    group: "Components",
+    to: "components/All",
+  },
+  {
     title: "Pages",
     icon: "mdi-file-document-multiple-outline",
     group: "Page",
@@ -34,12 +40,6 @@ export const items = () => [
     icon: "mdi-border-none-variant",
     group: "Block/Reusable",
     to: "Blocks/Reusable",
-  },
-  {
-    title: "Components",
-    icon: "mdi-border-radius",
-    group: "Components",
-    to: "components/All",
   },
   {
     divider: true,

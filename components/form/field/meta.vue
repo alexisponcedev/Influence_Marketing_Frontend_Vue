@@ -88,14 +88,20 @@ import {MetaInterface} from "~/models/Meta.model";
 import Validation from "~/utils/validation";
 
 @Component
-export default class TextArrayFormField extends Vue {
-  Validation = Validation;
+export default class TextMetaFormField extends Vue {
   @Prop({default: "text"}) readonly type!: "text";
   @Prop(Object) readonly field!: FormField;
   @VModel() model!: Array<MetaInterface>;
 
-  addRow() {
+  Validation = Validation;
+
+  mounted(){
+    // if(typeof this.model !== Array) this.model = [];
     if (!this.model) this.model = [];
+  }
+
+  addRow() {
+
     this.model.push({rel: '', name: '', content: ''});
     console.log(this.model);
   }

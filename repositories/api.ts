@@ -309,13 +309,19 @@ export interface Component {
      * @type {string}
      * @memberof Component
      */
-    'props'?: string;
+    'description'?: string;
     /**
      *
      * @type {string}
      * @memberof Component
      */
-    'data'?: string;
+    'image'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Component
+     */
+    'props'?: string;
 }
 /**
  * Component Resource model
@@ -337,18 +343,22 @@ export interface ComponentResource {
     'name'?: string;
     /**
      *
-     * @type {object}
+     * @type {string}
      * @memberof ComponentResource
      */
-    'props'?: object;
+    'description'?: string;
     /**
      *
      * @type {string}
      * @memberof ComponentResource
      */
-    'data'?: string;
-
-    'image'? : string
+    'image'?: string;
+    /**
+     *
+     * @type {object}
+     * @memberof ComponentResource
+     */
+    'props'?: object;
 }
 /**
  * Constant model
@@ -1017,34 +1027,52 @@ export interface Page {
     'name'?: string;
     /**
      *
-     * @type {boolean}
+     * @type {string}
      * @memberof Page
      */
-    'isHome'?: boolean;
+    'route'?: string;
     /**
      *
      * @type {string}
      * @memberof Page
      */
-    'className'?: string;
+    'fetchUrl'?: string;
     /**
      *
-     * @type {Array<any>}
+     * @type {string}
      * @memberof Page
      */
     'meta'?: Array<any>;
     /**
      *
-     * @type {string}
+     * @type {boolean}
      * @memberof Page
      */
-    'dynamicRoute'?: string;
+    'showHeader'?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof Page
+     */
+    'showFooter'?: boolean;
     /**
      *
      * @type {string}
      * @memberof Page
      */
-    'pageRoute'?: string;
+    'theme'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Page
+     */
+    'class'?: string;
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof Page
+     */
+    'component_ids'?: Array<number>;
 }
 /**
  * Page Full Resource model
@@ -1066,16 +1094,16 @@ export interface PageFullResource {
     'name'?: string;
     /**
      *
-     * @type {boolean}
+     * @type {string}
      * @memberof PageFullResource
      */
-    'isHome'?: boolean;
+    'route'?: string;
     /**
      *
      * @type {string}
      * @memberof PageFullResource
      */
-    'className'?: string;
+    'fetchUrl'?: string;
     /**
      *
      * @type {string}
@@ -1084,53 +1112,71 @@ export interface PageFullResource {
     'meta'?: string;
     /**
      *
-     * @type {string}
+     * @type {boolean}
      * @memberof PageFullResource
      */
-    'dynamicRoute'?: string;
+    'showHeader'?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PageFullResource
+     */
+    'showFooter'?: boolean;
     /**
      *
      * @type {string}
      * @memberof PageFullResource
      */
-    'pageRoute'?: string;
+    'theme'?: string;
     /**
      *
-     * @type {Array<PageFullResourceConponents>}
+     * @type {string}
      * @memberof PageFullResource
      */
-    'conponents'?: Array<PageFullResourceConponents>;
+    'class'?: string;
+    /**
+     *
+     * @type {Array<PageFullResourceComponents>}
+     * @memberof PageFullResource
+     */
+    'components'?: Array<PageFullResourceComponents>;
 }
 /**
  *
  * @export
- * @interface PageFullResourceConponents
+ * @interface PageFullResourceComponents
  */
-export interface PageFullResourceConponents {
+export interface PageFullResourceComponents {
     /**
      *
      * @type {number}
-     * @memberof PageFullResourceConponents
+     * @memberof PageFullResourceComponents
      */
     'id'?: number;
     /**
      *
      * @type {string}
-     * @memberof PageFullResourceConponents
+     * @memberof PageFullResourceComponents
      */
     'name'?: string;
     /**
      *
-     * @type {object}
-     * @memberof PageFullResourceConponents
+     * @type {string}
+     * @memberof PageFullResourceComponents
      */
-    'props'?: object;
+    'description'?: string;
     /**
      *
      * @type {string}
-     * @memberof PageFullResourceConponents
+     * @memberof PageFullResourceComponents
      */
-    'data'?: string;
+    'image'?: string;
+    /**
+     *
+     * @type {object}
+     * @memberof PageFullResourceComponents
+     */
+    'props'?: object;
 }
 /**
  * Page Resource model
@@ -1152,16 +1198,16 @@ export interface PageResource {
     'name'?: string;
     /**
      *
-     * @type {boolean}
+     * @type {string}
      * @memberof PageResource
      */
-    'isHome'?: boolean;
+    'route'?: string;
     /**
      *
      * @type {string}
      * @memberof PageResource
      */
-    'className'?: string;
+    'fetchUrl'?: string;
     /**
      *
      * @type {string}
@@ -1170,16 +1216,34 @@ export interface PageResource {
     'meta'?: string;
     /**
      *
-     * @type {string}
+     * @type {boolean}
      * @memberof PageResource
      */
-    'dynamicRoute'?: string;
+    'showHeader'?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PageResource
+     */
+    'showFooter'?: boolean;
     /**
      *
      * @type {string}
      * @memberof PageResource
      */
-    'pageRoute'?: string;
+    'theme'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageResource
+     */
+    'class'?: string;
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof PageResource
+     */
+    'component_ids'?: Array<number>;
 }
 /**
  * Post model

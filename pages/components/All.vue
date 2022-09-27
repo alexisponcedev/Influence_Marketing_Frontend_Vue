@@ -22,17 +22,15 @@
           <table-standard
             grid
             :config="config"
-            :items="regions"
+            :items="componenets"
             class="row-pointer"
-            :loading="Api.Region.loading"
-            @click:row="
-              (Region) => $router.push('/Region/' + Region.id + '/Adventures')
-            "
+            :loading="Api.Component.loading"
+            @click:row=" (Component) => $router.push('/Component/' + Component.id + '/') "
           />
         </v-card>
       </v-col>
     </v-row>
-    <add-region-modal :show.sync="addCetegory" @submit="addRegion" />
+<!--    <add-region-modal :show.sync="addCetegory" @submit="addRegion" />-->
   </v-container>
 </template>
 

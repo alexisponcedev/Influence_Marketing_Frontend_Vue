@@ -1,6 +1,6 @@
 <template>
     <v-card color="#FCFCFC" elevation="0" class="px-7 page-builder-header">
-        <v-row align="center">
+        <v-row align="center" justify="">
             <v-col cols="12" md="6">
                 <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
                 <span class="text-subtitle-2 grey--text text--darken-2">65" 4K ULED™ Premium Hisense Android Smart TV (2021)</span>

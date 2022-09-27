@@ -54,7 +54,6 @@ export default class api__page extends VuexModule {
       .getPage(id)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
-    this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data.data;
     return {};

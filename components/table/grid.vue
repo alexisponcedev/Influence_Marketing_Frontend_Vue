@@ -25,8 +25,9 @@
       <v-btn
         small
         class="mx-1"
-        v-if="config.globalActions && config.globalActions.length == 1"
+        v-if="config.globalActions && config.globalActions.length === 1"
         :color="config.globalActions[0].color"
+        :class="config.globalActions[0].class"
         @click="
           config.globalActions[0].action
             ? $emit(config.globalActions[0].action)
@@ -154,6 +155,7 @@ export default class StandardTable extends Vue {
   @Prop(Object) readonly config!: {
     globalActions?: Array<{
       text?: string;
+      class?:String,
       color?: string;
       action?: string;
     }>;

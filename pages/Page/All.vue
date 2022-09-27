@@ -35,10 +35,13 @@ import { Api, AppStore } from "@/store";
 export default class AllPages extends Vue {
   Api = Api;
 
+
   config = {
     headers: [
       { text: "Name", value: "name" },
-      { text: "URL", value: "url" },
+      { text: "Route", value: "route" },
+      { text: "Fetch URL", value: "fetchUrl" },
+      { text: "Theme", value: "theme" },
       { text: "", value: "actions", sortable: false, width: "0" },
     ],
     actions: [
@@ -62,6 +65,7 @@ export default class AllPages extends Vue {
     globalActions: [
       {
         text: "Add Page",
+        class : 'btn',
         color: "primary",
         icon: "mdi-plus",
         to: "/Page/Add",

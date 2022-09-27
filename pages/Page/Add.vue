@@ -1,7 +1,12 @@
 <template>
   <v-container fluid>
 
-    <breadcrumbs v-if="editMode" :locations="locations" />
+    <div v-if="editMode" class="d-flex justify-space-between align-center">
+      <breadcrumbs  :locations="locations" />
+      <v-btn elevation="0" color="grey darken-4 white--text"  class="btn" :to="`/Page/Edit/${Page.id}/PageBuilder`">
+        Go to Page Builder
+      </v-btn>
+    </div>
 
     <v-row>
       <v-col>
@@ -15,10 +20,10 @@
       <v-tab-item value="Details">
         <v-card-text>
           <form-standard
-            ref="detailsForm"
+            ref="pagesForm"
             :model="Page"
             :fields="detailsFormFields"
-            @submit="pageFormSubmit"
+            @submit="submit"
           />
         </v-card-text>
       </v-tab-item>
@@ -36,9 +41,11 @@ import { Page } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
 import selectItems from "~/utils/select-items";
-import getProfile from "~/utils/getProfile";
+import HoverButton from "~/components/base/HoverButton.vue";
 
-@Component({ layout: "panel" })
+@Component({
+  components: {HoverButton},
+  layout: "panel" })
 export default class PageForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
@@ -50,18 +57,16 @@ export default class PageForm extends Vue {
     meta : [{rel : '' , name : '' , content : ''}]
   };
 
-
   locations: Array<{ title: string; to: string }> = [];
 
   detailsFormFields: Array<FormField> = [];
 
   mounted() {
-    this.Page.meta = [];
     this.init();
   }
 
   async init() {
-    await this.initDetailsTab();
+    await this.initPagesTab();
     this.updateLocations();
   }
 
@@ -78,16 +83,14 @@ export default class PageForm extends Vue {
     ];
   }
 
-  async initDetailsTab() {
+  async initPagesTab() {
     await this.getEntity();
     this.updatePageFormFields();
   }
 
   async getEntity() {
     if (this.editMode)
-      this.Page = fromResource<Page>(
-        await Api.Page.get(+this.$route.params.id)
-      );
+      this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
   }
 
   updatePageFormFields() {
@@ -100,7 +103,6 @@ export default class PageForm extends Vue {
         rules: [Validation.required],
         colAttrs: { cols: 12 },
       },
-
       {
         type: "form-field-text",
         label: "Route",
@@ -109,7 +111,6 @@ export default class PageForm extends Vue {
         rules: [Validation.required],
         colAttrs: { cols: 12 },
       },
-
       {
         type: "form-field-text",
         label: "Fetch From Url",
@@ -118,7 +119,6 @@ export default class PageForm extends Vue {
         rules: [Validation.url],
         colAttrs: { cols: 12 },
       },
-
       {
         type: "form-field-checkbox",
         label: "Show Header",
@@ -126,7 +126,6 @@ export default class PageForm extends Vue {
         rules: [],
         colAttrs: { cols: 3 },
       },
-
       {
         type: "form-field-checkbox",
         label: "Show Footer",
@@ -153,13 +152,6 @@ export default class PageForm extends Vue {
         rules: [],
         colAttrs: { cols: 6 },
       },
-      // {
-      //   type: "form-field-textarea",
-      //   label: "Meta",
-      //   modelKey: "meta",
-      //   rules: [],
-      //   colAttrs: { cols: 12 },
-      // },
       {
         type: "form-field-meta",
         label: "Meta",
@@ -170,39 +162,39 @@ export default class PageForm extends Vue {
     ];
   }
 
-  async detailsFormSubmit() {
-    if (this.pageFormValidate()) {
-      if (this.editMode)
-        await Api.Page.update({
-          id: +this.Page.id!,
-          Page: this.Page,
-        });
-      else await Api.Page.create(this.Page);
-      if (!this.editMode) this.$router.push("/Page/All");
-    }
-  }
+  // async detailsFormSubmit() {
+  //   if (this.formValidate()) {
+  //     if (this.editMode)
+  //       await Api.Page.update({
+  //         id: +this.Page.id!,
+  //         Page: this.Page,
+  //       });
+  //     else await Api.Page.create(this.Page);
+  //     if (!this.editMode) this.$router.push("/Page/All");
+  //   }
+  // }
 
-  pageFormValidate() {
-    return (this.$refs.detailsForm as any).validate();
-  }
-
-  async pageFormSubmit() {
-    if (this.formValidate()) {
-        await Api.Page.create(this.Page);
-        this.$router.push("/Page/All");
-    }
+  async submit() {
+      if (this.formValidate()) {
+        if (this.editMode)
+          await Api.Page.update({
+            id: +this.Page.id!,
+            Page: this.Page,
+          });
+        else await Api.Page.create(this.Page);
+        if (!this.editMode) this.$router.push("/Page/All");
+      }
   }
 
   formValidate() {
-    return (this.$refs.mainForm as any).validate();
+    return (this.$refs.pagesForm as any).validate();
   }
-
 
   @Watch("tab")
   tabChanged(newTab: string, _: string) {
     switch (newTab) {
       case "Details":
-        this.initDetailsTab();
+        this.initPagesTab();
         break;
       default:
         break;
