@@ -105,7 +105,7 @@ export default class PageForm extends Vue {
       },
       {
         type: "form-field-text",
-        label: "Route",
+        label: "Page URL",
         placeholder : 'ex: products/[product_id]',
         modelKey: "route",
         rules: [Validation.required],
@@ -113,7 +113,7 @@ export default class PageForm extends Vue {
       },
       {
         type: "form-field-text",
-        label: "Fetch From Url",
+        label: "Load data from external api",
         placeholder : 'ex: https://impim.dev-api.hisenseportal.com/api/',
         modelKey: "fetchUrl",
         rules: [Validation.url],
