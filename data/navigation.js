@@ -38,8 +38,8 @@ export const items = () => [
   {
     title: "Content Blocks",
     icon: "mdi-border-radius",
-    group: "Components",
-    to: "components/All",
+    group: "Block",
+    to: "Block/All",
   },
   {
     divider: true,

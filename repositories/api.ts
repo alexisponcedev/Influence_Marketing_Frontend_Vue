@@ -222,7 +222,7 @@ export interface BlockResource {
      * @type {string}
      * @memberof BlockResource
      */
-    'title'?: string;
+    'name'?: string;
     /**
      *
      * @type {number}
@@ -234,7 +234,7 @@ export interface BlockResource {
      * @type {string}
      * @memberof BlockResource
      */
-    'html_code'?: string;
+    'image'?: string;
     /**
      *
      * @type {string}
@@ -321,7 +321,7 @@ export interface Component {
      * @type {string}
      * @memberof Component
      */
-    'props'?: string;
+    'props'?: Array<any>;
 }
 /**
  * Component Resource model

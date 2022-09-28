@@ -20,7 +20,8 @@ export interface FormField {
     | "form-field-date-standard"
     | "form-field-date-year"
     | "form-field-download-button"
-    | "form-field-meta";
+    | "form-field-meta"
+    | "form-field-image";
   onClick?: () => any;
   if?: () => Boolean;
   modelKey?: string;

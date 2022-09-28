@@ -1,21 +1,18 @@
 import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-  Adventure,
   Configuration,
-  ComponentResource,
-  ComponentApiFactory,
-  Component,
+  CategoryResource, CategoryApiFactory, Category,
 } from "@/repositories";
 
 @Module({
-  name: "api__component",
+  name: "api__category",
   stateFactory: true,
   namespaced: true,
 })
-export default class api__component extends VuexModule {
+export default class api__category extends VuexModule {
   loading: Boolean = false;
-  all: Array<ComponentResource> = [];
+  all: Array<CategoryResource> = [];
 
   @Mutation
   setLoading(status: Boolean) {
@@ -23,19 +20,19 @@ export default class api__component extends VuexModule {
   }
 
   @Mutation
-  updateAll(all: Array<ComponentResource>) {
+  updateAll(all: Array<CategoryResource>) {
     this.all = all;
   }
 
   @Action({commit: "updateAll"})
   async getAll() {
     this.setLoading(true);
-    const response = await ComponentApiFactory(
+    const response = await CategoryApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .componentList()
+      ._062b0e17b0b265231ad33ece1785b1fe()
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
@@ -46,46 +43,44 @@ export default class api__component extends VuexModule {
   @Action
   async get(id: number) {
     this.setLoading(true);
-    const response = await ComponentApiFactory(
+    const response = await CategoryApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .getComponent(id)
+      ._0fd985657bea3b2f3a919bdc16fec5b9(id)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
-    this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data.data;
     return {};
   }
 
   @Action
-  async create(component: Component) {
+  async create(category: Category) {
     this.setLoading(true);
-    const response = await ComponentApiFactory(
+    const response = await CategoryApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .addComponent(component)
+      ._8a437c9b58cb5726b37615e8a5a9857c(category)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
-    this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data;
     return {};
   }
 
   @Action
-  async update(payload: { id: number; component: Component }) {
+  async update(payload: { id: number; category: Category }) {
     this.setLoading(true);
-    const response = await ComponentApiFactory(
+    const response = await CategoryApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .updateComponent(payload.id, payload.component)
+      ._2aeef67a0c5f4a9161985387cab71ccc(payload.id, payload.category)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
@@ -96,35 +91,17 @@ export default class api__component extends VuexModule {
   @Action
   async delete(id: number) {
     this.setLoading(true);
-    const response = await ComponentApiFactory(
+    const response = await CategoryApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .deleteComponent(id)
+      .c22ffb01fe96cd5baf6a4174466b2672(id)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
-    this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data;
     return {};
   }
-
-  // @Action
-  // async getByCategoryId(categoryId: number) {
-  //   this.setLoading(true);
-  //   const response = await ComponentApiFactory(
-  //     new Configuration({
-  //       accessToken: localStorage.getItem("access_token") || "",
-  //     })
-  //   )
-  //     .getComponentByCategoryId(categoryId)
-  //     .catch((error) => ResponseHandler.ErrorHandler(error))
-  //     .finally(() => this.setLoading(false));
-  //   this.setLoading(false);
-  //   if (response && response.data && ResponseHandler.checkResponse(response))
-  //     return response.data.data;
-  //   return [];
-  // }
 
 }

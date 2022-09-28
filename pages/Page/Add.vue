@@ -22,7 +22,7 @@
           <form-standard
             ref="pagesForm"
             :model="Page"
-            :fields="detailsFormFields"
+            :fields="formFields"
             @submit="submit"
           />
         </v-card-text>
@@ -59,7 +59,7 @@ export default class PageForm extends Vue {
 
   locations: Array<{ title: string; to: string }> = [];
 
-  detailsFormFields: Array<FormField> = [];
+  formFields: Array<FormField> = [];
 
   mounted() {
     this.init();
@@ -94,7 +94,7 @@ export default class PageForm extends Vue {
   }
 
   updatePageFormFields() {
-    this.detailsFormFields = [
+    this.formFields = [
       {
         type: "form-field-text",
         label: "Name",
