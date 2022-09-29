@@ -62,7 +62,7 @@ export default class AllComponents extends Vue {
         icon: "mdi-delete",
         onClick: (Component: BlockResource) => {
           AppStore.showDeleteConfirmationModal({
-            deleteItemTitle: Component.title || "",
+            deleteItemTitle: Component.name || "",
             deleteItem: Component,
             agreeButton: {callback: this.deleteBlock},
           });

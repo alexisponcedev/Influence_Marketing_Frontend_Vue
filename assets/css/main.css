@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+  .btn {
+    @apply tw-bg-red-500 tw-py-10 tw-px-5 tw-text-white
+  }
+}

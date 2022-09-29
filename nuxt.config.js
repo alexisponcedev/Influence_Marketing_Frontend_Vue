@@ -37,7 +37,12 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/scss/custom.scss', '@/assets/scss/octavia-design-system/octavia-design-system.scss'],
+  css: [
+    '@/assets/scss/custom.scss',
+    '@/assets/scss/octavia-design-system/octavia-design-system.scss',
+    '@/assets/css/main.css',
+
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -59,6 +64,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -106,7 +112,16 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+        'postcss-import' : {}
+      },
+    },
+
+  },
 
   env: {
     BASE_API_PATH: process.env.BASE_API_PATH || 'https://imcxm.exodusapi.influencedev.com/api',
