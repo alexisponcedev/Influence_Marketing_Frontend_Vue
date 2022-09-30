@@ -17,17 +17,29 @@
 
     <div class="tw-grid tw-grid-cols-6 tw-gap-6" style="margin-top : 88px !important">
 
-      <div class="bg-white tw-col-span-5 tw-rounded-lg tw-overflow-hidden">
-        <block-introduction ref="BlockIntroduction"  @get:structure="loadStructure"/>
+      <div class="bg-white tw-col-span-5 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-space-y-2 tw-p-2">
+
+
+        <div class="tw-border tw-border-dashed tw-border-gray-300 tw-rounded-lg tw-p-2">
+          <block-introduction ref="BlockIntroduction"  @edit-component="editStructure"/>
+        </div>
+
+        <div class="tw-border tw-border-dashed tw-border-gray-300 tw-rounded-lg tw-p-2">
+          <block-introduction ref="BlockIntroduction"  @edit-component="editStructure"/>
+        </div>
+
+
       </div>
 
-      <div class="bg-white tw-rounded-lg tw-p-5">
-        <v-text-field  v-if="currentStructure.hasOwnProperty('largeTitle')" type="text" v-model="currentStructure.smallTitle.value"        />
-        <v-text-field  v-if="currentStructure.hasOwnProperty('largeTitle')" type="text" v-model="currentStructure.largeTitle.value"        />
-        <v-text-field  v-if="currentStructure.hasOwnProperty('largeTitle')" type="text" v-model="currentStructure.paragraph.value"        />
-<!--        <pre>{{currentStructure}}</pre>-->
+      <div class="bg-white tw-rounded-lg ">
+        <structure-editor v-if="currentComponent"
+                         @close="currentComponent = null"
+                          :title="currentComponent.title"
+                          v-model="currentComponent.structure" />
+        <div v-else class="tw-p-4">
+          show list of commentents
+        </div>
       </div>
-
 
     </div>
 
@@ -45,10 +57,10 @@ export default class PageBuilder extends Vue {
 
   tab = "";
 
-  currentStructure = {};
+  currentComponent = null;
 
-  loadStructure(structure : any){
-    this.currentStructure = structure
+  editStructure(component : any){
+    this.currentComponent = component
   }
 }
 </script>
