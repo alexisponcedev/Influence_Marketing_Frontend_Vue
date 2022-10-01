@@ -1,31 +1,32 @@
 export const blocks = () => [
   {
-    group : 'Text' ,
-    items : [
+    name : 'Headers' ,
+    blocks : [
       {
         name : 'Introduction',
-        image : '@/assets/blocks/' ,
-        structure : [
-          {
-            name : 'Title' ,
-            type : String,
-            required : Boolean
-          },
-
-          {
-            name : 'Paragraph' ,
-            type : Text,
-            required : Boolean
-          },
-          {
-            name : 'Image' ,
-            type : File,
-            required : Boolean
-          },
-          
-        ],
+        title : 'Introduction Component',
+        image : "introduction.png"
+      },
+      {
+        name : 'Introduction',
+        title : 'Introduction Component',
+        image : "introduction.png"
+      }
+    ]
+  },
+  {
+    name : 'Video' ,
+    blocks : [
+      {
+        name : 'Introduction',
+        title : 'Introduction Component',
+        image : "introduction.png"
+      },
+      {
+        name : 'Introduction',
+        title : 'Introduction Component',
+        image : "introduction.png"
       }
     ]
   }
-
 ];
