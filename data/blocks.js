@@ -13,6 +13,11 @@ export const blocks = () => [
     name: 'Landing Page',
     blocks: [
       {
+        name: 'LandingSlider',
+        title: 'Landing Slider',
+        image: "LandingSlider.png"
+      },
+      {
         name: 'LandingProductsBox',
         title: 'Landing Product Box',
         image: "LandingProductsBox.png"
