@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="background-color: #F2F3F8; height: 100vh">
+  <v-container fluid style="background-color: #F2F3F8;height: 100vh">
 
     <v-card color="#FCFCFC" elevation="0" class="mb-4 px-7 page-builder-header">
       <v-row align="center">
@@ -16,11 +16,9 @@
       </v-row>
     </v-card>
 
-    <div class="tw-grid tw-grid-cols-6 tw-gap-6" style="margin-top : 88px !important">
+    <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px !important">
 
-      <div
-        class="bg-white tw-col-span-5 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2">
-
+      <div class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2" style="max-height: 88vh">
         <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
           <block-container v-for="(block , i) in blocksList" :key="block.id"
                            class="tw-mb-2"
@@ -35,10 +33,9 @@
         </draggable>
         <block-drop/>
 
-
       </div>
 
-      <div class="bg-white tw-rounded-lg ">
+      <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
         <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
@@ -59,6 +56,14 @@ import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
 import draggable from 'vuedraggable'
 
+interface BlockInterface {
+  id : Number ,
+  selected : Boolean ,
+  structure : Object,
+  name : String ,
+  title : String ,
+  image : String
+}
 @Component({
   components: {draggable}
 })
@@ -67,7 +72,7 @@ export default class PageBuilder extends Vue {
 
   tab = "";
 
-  blocksList : Object[] = [];
+  blocksList : BlockInterface[] = [];
 
   editIndex : Number = -1;
 

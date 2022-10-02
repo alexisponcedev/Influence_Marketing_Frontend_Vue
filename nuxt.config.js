@@ -42,6 +42,10 @@ export default {
     '@/assets/scss/octavia-design-system/octavia-design-system.scss',
     '@/assets/css/main.css',
 
+
+    // '@/assets/base/_bootstrapStyle.scss',
+    // '@/assets/base/_customBootstrap.scss',
+
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

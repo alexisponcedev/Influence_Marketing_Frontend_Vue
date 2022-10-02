@@ -1,31 +1,31 @@
 export const blocks = () => [
   {
-    name : 'Headers' ,
-    blocks : [
+    name: 'Samples',
+    blocks: [
       {
-        name : 'Introduction',
-        title : 'Introduction Component',
-        image : "introduction.png"
-      },
-      {
-        name : 'Introduction',
-        title : 'Introduction Component',
-        image : "introduction.png"
+        name: 'Sample',
+        title: 'Sample Component',
+        image: "sample.png"
       }
     ]
   },
   {
-    name : 'Video' ,
-    blocks : [
+    name: 'Landing Page',
+    blocks: [
       {
-        name : 'Introduction',
-        title : 'Introduction Component',
-        image : "introduction.png"
+        name: 'LandingProductsBox',
+        title: 'Landing Product Box',
+        image: "LandingProductsBox.png"
       },
       {
-        name : 'Introduction',
-        title : 'Introduction Component',
-        image : "introduction.png"
+        name: 'LandingVideoPlayer',
+        title: 'Landing Video Player',
+        image: "LandingVideoPlayer.png"
+      },
+      {
+        name: 'Subscribe',
+        title: 'Subscribe',
+        image: "subscribe.png"
       }
     ]
   }

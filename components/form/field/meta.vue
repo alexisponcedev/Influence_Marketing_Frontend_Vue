@@ -95,19 +95,15 @@ export default class TextMetaFormField extends Vue {
 
   Validation = Validation;
 
-  mounted(){
-    // if(typeof this.model !== Array) this.model = [];
+  mounted() {
     if (!this.model) this.model = [];
   }
 
   addRow() {
-
     this.model.push({rel: '', name: '', content: ''});
-    console.log(this.model);
   }
 
   removeRow(index: number) {
-    console.log(`remove index ${index}`)
     this.model.splice(index, 1);
   }
 }

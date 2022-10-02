@@ -5,10 +5,11 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import Validation from "~/utils/validation";
+import {StructureField} from "~/utils/StructureField";
 
 @Component
 export default class PageContent extends Vue {
-  @VModel({ type: Object }) item!: Object
+  @VModel({ type: StructureField }) item!: StructureField
 
   field = {
     label : 'Filed',
