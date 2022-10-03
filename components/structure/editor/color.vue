@@ -9,7 +9,7 @@ import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import {StructureField} from "~/utils/StructureField";
 
 @Component
-export default class PageContent extends Vue {
+export default class StructureColorEditor extends Vue {
   @VModel({ type: StructureField }) structure!: StructureField
 }
 </script>

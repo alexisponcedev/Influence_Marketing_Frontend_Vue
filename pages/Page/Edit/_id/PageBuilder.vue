@@ -78,7 +78,10 @@ export default class PageBuilder extends Vue {
 
   addBlock(block: any){
     let id = this.blocksList.length + 1;
-    this.blocksList.push({ id: id, selected: false, structure: {}, ...block, });
+    this.blocksList.push({ id: id, selected: false, props: {data : {} , class : '' , style : ''}, ...block, });
+
+    // this.blocksList.push({ id: id, selected: false, structure : {}, ...block, });
+
     this.selectBlock(this.blocksList.length - 1);
   }
 
@@ -100,7 +103,6 @@ export default class PageBuilder extends Vue {
   duplicateBlock(i: any) {
     let newBlock = JSON.parse(JSON.stringify(this.blocksList[i]));
     newBlock.id = this.blocksList.length + 1;
-    console.log(newBlock , newBlock.id);
     this.blocksList.splice(i + 1, 0, newBlock)
   }
 

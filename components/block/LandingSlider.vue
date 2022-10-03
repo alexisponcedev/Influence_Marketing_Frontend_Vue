@@ -27,11 +27,12 @@ export default class LandingProductsBox extends Vue {
     if (this.isEmpty)
       this.model = {
         title: {type: StructureType.String, title: 'Top Title', value: 'French Door Refrigerator Recall Information'},
+        Slider: {type: StructureType.Select, title: 'Select Slider', value: 0},
         list: {
           type: StructureType.List,
           title: 'Items',
           newItem: {
-            link: {type: StructureType.String, title: 'Go to', value: '/products'},
+            URL: {type: StructureType.Url, title: 'Go to url when click', value: '/products'},
             image: {
               type: StructureType.Image,
               title: 'Upload Image',
@@ -42,14 +43,19 @@ export default class LandingProductsBox extends Vue {
           },
           value: [
             {
-              link: {type: StructureType.String, title: 'Go to', value: '/products'},
-              image: {
+              url: {type: StructureType.Url, title: 'Target URL', value: '/products'},
+              smallImage: {
                 type: StructureType.Image,
-                title: 'Upload Image',
+                title: 'Small Image',
                 src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-                alt: 'Some note about this image',
+                alt: 'Small Image for Slider',
               },
-              title: {type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
+              largeImage: {
+                type: StructureType.Image,
+                title: 'Large Image',
+                src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+                alt: 'Large Image for Slider',
+              },
             },
 
             {

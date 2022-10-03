@@ -7,7 +7,7 @@ import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import {StructureField} from "~/utils/StructureField";
 
 @Component
-export default class StructureStringEditor extends Vue {
+export default class StructureUrlEditor extends Vue {
   @VModel({ type: StructureField }) item!: StructureField
 
   field = {

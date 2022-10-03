@@ -57,7 +57,7 @@ export default class LandingProductItem extends Vue {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0px 24px;
+  padding: 7px 24px;
   gap: 10px;
   width: 134px;
   border: 1px solid #000000;

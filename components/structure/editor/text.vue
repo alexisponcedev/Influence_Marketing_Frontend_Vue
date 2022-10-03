@@ -8,7 +8,7 @@ import Validation from "~/utils/validation";
 import {StructureField} from "~/utils/StructureField";
 
 @Component
-export default class StructureTextEditorText extends Vue {
+export default class StructureTextEditor extends Vue {
   @VModel({ type: StructureField }) item!: StructureField
 
   field = {

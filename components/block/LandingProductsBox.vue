@@ -31,7 +31,7 @@ export default class LandingProductsBox extends Vue {
           type: StructureType.List,
           title: 'Items',
           newItem: {
-            link: {type: StructureType.String, title: 'Go to', value: '/products'},
+            link: {type: StructureType.String, title: 'Shop Now URL', value: '/products'},
             image: {
               type: StructureType.Image,
               title: 'Upload Image',
@@ -42,7 +42,7 @@ export default class LandingProductsBox extends Vue {
           },
           value: [
             {
-              link: {type: StructureType.String, title: 'Go to', value: '/products'},
+              link: {type: StructureType.String, title: 'Shop Now URL', value: '/products'},
               image: {
                 type: StructureType.Image,
                 title: 'Upload Image',
@@ -53,7 +53,7 @@ export default class LandingProductsBox extends Vue {
             },
 
             {
-              link: {type: StructureType.String, title: 'Go to', value: '/products'},
+              link: {type: StructureType.String, title: 'Shop Now URL', value: '/products'},
               image: {
                 type: StructureType.Image,
                 title: 'Upload Image',
@@ -64,7 +64,7 @@ export default class LandingProductsBox extends Vue {
             },
 
             {
-              link: {type: StructureType.String, title: 'Go to', value: '/products'},
+              link: {type: StructureType.String, title: 'Shop Now URL', value: '/products'},
               image: {
                 type: StructureType.Image,
                 title: 'Upload Image',
@@ -75,7 +75,7 @@ export default class LandingProductsBox extends Vue {
             },
 
             {
-              link: {type: StructureType.String, title: 'Go to', value: '/products'},
+              link: {type: StructureType.String, title: 'Shop Now URL', value: '/products'},
               image: {
                 type: StructureType.Image,
                 title: 'Upload Image',
@@ -86,7 +86,7 @@ export default class LandingProductsBox extends Vue {
             },
 
             {
-              link: {type: StructureType.String, title: 'Go to', value: '/products'},
+              link: {type: StructureType.String, title: 'Shop Now URL', value: '/products'},
               image: {
                 type: StructureType.Image,
                 title: 'Upload Image',

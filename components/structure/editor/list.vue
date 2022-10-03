@@ -19,7 +19,7 @@
 import {Vue, Component, VModel, Prop} from "vue-property-decorator";
 
 @Component
-export default class PageContent extends Vue {
+export default class StructureListEditor extends Vue {
   @VModel({ type: Array }) items!: any
 
   field = {

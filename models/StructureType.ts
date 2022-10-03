@@ -6,4 +6,6 @@ export enum StructureType {
   Image = 'image',
   Color = 'color',
   List = 'list',
+  Url = 'url',
+  Select = 'select',
 }

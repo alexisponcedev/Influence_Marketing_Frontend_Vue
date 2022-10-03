@@ -20,7 +20,7 @@ import {Vue, Component, Prop, VModel, Emit} from "vue-property-decorator";
 import {StructureField} from "~/utils/StructureField";
 
 @Component
-export default class PageContent extends Vue {
+export default class StructureEditor extends Vue {
   @Prop(String) readonly title: string | undefined
   @Prop({type: Boolean, default: false}) readonly simple: boolean | undefined
   @VModel({type: StructureField}) structure!: StructureField
