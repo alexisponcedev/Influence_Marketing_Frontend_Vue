@@ -17,13 +17,13 @@
 
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Emit} from "vue-property-decorator";
-import {StructureField} from "~/utils/StructureField";
+import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureEditor extends Vue {
   @Prop(String) readonly title: string | undefined
   @Prop({type: Boolean, default: false}) readonly simple: boolean | undefined
-  @VModel({type: StructureField}) structure!: StructureField
+  @VModel({type: StructureField }) structure!: StructureField | any
 
   @Emit('close')
   close() {

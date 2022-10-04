@@ -32,22 +32,15 @@
           </block-container>
         </draggable>
         <block-drop/>
-
       </div>
-
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
         <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
                           :title="blocksList[editIndex].title"
                           v-model="blocksList[editIndex].structure"/>
-
-
       </div>
-
     </div>
-
-
   </v-container>
 </template>
 
@@ -78,10 +71,7 @@ export default class PageBuilder extends Vue {
 
   addBlock(block: any){
     let id = this.blocksList.length + 1;
-    this.blocksList.push({ id: id, selected: false, props: {data : {} , class : '' , style : ''}, ...block, });
-
-    // this.blocksList.push({ id: id, selected: false, structure : {}, ...block, });
-
+    this.blocksList.push({ id: id, selected: false, structure: {}, ...block, });
     this.selectBlock(this.blocksList.length - 1);
   }
 

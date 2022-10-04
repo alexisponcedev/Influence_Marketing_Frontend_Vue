@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
-import {StructureField} from "~/utils/StructureField";
+import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureColorEditor extends Vue {
