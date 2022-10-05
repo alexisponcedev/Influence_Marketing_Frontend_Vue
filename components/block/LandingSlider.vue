@@ -33,7 +33,7 @@ enum SliderMonitorSize {
 @Component
 export default class LandingSlider extends Vue {
   @Prop(Number) readonly id: number | undefined
-  @VModel({type: Object}) model!: Object
+  @VModel({type: Object }) model!: any
 
   activeSlide = 0;
   monitorSize = SliderMonitorSize;
@@ -159,6 +159,7 @@ export default class LandingSlider extends Vue {
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
   }
+
 
   get maxWidth(){
     return this.isEmpty ? {} :  {

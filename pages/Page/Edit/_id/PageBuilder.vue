@@ -9,16 +9,22 @@
             class="text-subtitle-2 grey--text text--darken-2">65" 4K ULED™ Premium Hisense Android Smart TV (2021)</span>
         </v-col>
         <v-col cols="12" md="6" class="text-right">
-          <v-btn elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
+          <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
           <v-btn elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
-          <v-btn elevation="0" color="grey darken-4 white--text" class="control-btns">Save Page</v-btn>
+          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
+            Draft
+          </v-btn>
+          <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">Save Page
+          </v-btn>
         </v-col>
       </v-row>
     </v-card>
 
     <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px !important">
 
-      <div class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2" style="max-height: 88vh">
+      <div
+        class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
+        style="max-height: 88vh">
         <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
           <block-container v-for="(block , i) in blocksList" :key="block.id"
                            class="tw-mb-2"
@@ -41,6 +47,8 @@
                           v-model="blocksList[editIndex].structure"/>
       </div>
     </div>
+
+    <loading-overlay :show="Api.Page.loading"/>
   </v-container>
 </template>
 
@@ -48,15 +56,17 @@
 import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
 import draggable from 'vuedraggable'
+import {Content, Draft} from "~/repositories";
 
 interface BlockInterface {
-  id : Number ,
-  selected : Boolean ,
-  structure : Object,
-  name : String ,
-  title : String ,
-  image : String
+  id: Number,
+  selected: Boolean,
+  structure: Object,
+  name: String,
+  title: String,
+  image: String
 }
+
 @Component({
   components: {draggable}
 })
@@ -65,13 +75,23 @@ export default class PageBuilder extends Vue {
 
   tab = "";
 
-  blocksList : BlockInterface[] = [];
+  blocksList: BlockInterface[] = [];
 
-  editIndex : Number = -1;
+  editIndex: Number = -1;
 
-  addBlock(block: any){
+  mounted() {
+    // this.getDraft().then(res => {
+    //   if (res.data!.page_draft)
+    //     this.blocksList = res.data!.page_draft as BlockInterface[];
+    //   else
+        this.loadFromLocalStorage();
+    // })
+    setInterval(this.saveToLocalStorage, 5000)
+  }
+
+  addBlock(block: any) {
     let id = this.blocksList.length + 1;
-    this.blocksList.push({ id: id, selected: false, structure: {}, ...block, });
+    this.blocksList.push({id: id, selected: false, structure: {}, ...block,});
     this.selectBlock(this.blocksList.length - 1);
   }
 
@@ -80,7 +100,7 @@ export default class PageBuilder extends Vue {
     this.blocksList[index].selected = true;
   }
 
-  editBlock(i : Number) {
+  editBlock(i: Number) {
     this.selectBlock(i);
     this.editIndex = i;
   }
@@ -110,28 +130,43 @@ export default class PageBuilder extends Vue {
     }
   }
 
-  cancelEditing(){
+  cancelEditing() {
     this.editIndex = -1;
   }
 
-  get getPageCache(){
+  get getPageCache() {
     return `page_${this.$route.params.id}_data`;
   }
 
-  saveToLocalStorage(){
-    localStorage.setItem(this.getPageCache , JSON.stringify(this.blocksList));
+  saveToLocalStorage() {
+    localStorage.setItem(this.getPageCache, JSON.stringify(this.blocksList));
     console.log('data is saved into local storage')
   }
 
-  loadFromLocalStorage(){
-    if(this.blocksList.length === 0){
+  loadFromLocalStorage() {
+    if (this.blocksList.length === 0) {
+      console.log('loading data from local storage');
       this.blocksList = JSON.parse(localStorage.getItem(this.getPageCache) ?? "[]");
     }
   }
 
-  mounted(){
-    this.loadFromLocalStorage();
-    setInterval( this.saveToLocalStorage , 5000)
+  discard() {
+
   }
+
+  async savePage() {
+    let content : Content = {page_id: +this.$route.params.id, page_content: this.blocksList}
+    await Api.Page.savePageContent(content);
+  }
+
+  async saveDraft() {
+    let draft : Draft = {page_id: +this.$route.params.id, page_draft: this.blocksList};
+    await Api.Page.saveDraft(draft)
+  }
+
+  async getDraft() {
+    return await Api.Page.getDraft(+this.$route.params.id)
+  }
+
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <form-field-textarea :field = "field" v-model="item.value" />
+  <form-field-textarea :field = "field" v-model="model.value" />
 </template>
 
 <script lang="ts">
@@ -9,7 +9,7 @@ import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureTextEditor extends Vue {
-  @VModel({ type: StructureField }) item!: StructureField
+  @VModel({ type: StructureField }) model!: StructureField
 
   field = {
     label : 'Filed',
@@ -18,7 +18,7 @@ export default class StructureTextEditor extends Vue {
   }
 
   mounted(){
-    this.field.label = this.item.title ?? 'field';
+    this.field.label = this.model.title ?? 'field';
   }
 }
 </script>

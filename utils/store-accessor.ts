@@ -14,12 +14,14 @@ import api__adventure from "@/store/api__adventure";
 import api__component from "@/store/api__component";
 import api__category from "@/store/api__category";
 import api__block from "@/store/api__block";
+import api__asset from "@/store/api__asset";
 
 let AppStore: appStore;
 let ThemeConfig = themeConfig;
 
 class Api {
   static Auth: api__auth;
+  static Asset: api__asset;
   static User: api__user;
   static Site: api__site;
   static Rule: api__rule;
@@ -27,7 +29,7 @@ class Api {
   static Constant: api__constant;
   static Adventure: api__adventure;
   static Page: api__page;
-  static Component: api__component;
+  // static Component: api__component;
   static Category: api__category;
   static Block: api__block;
 }
@@ -39,7 +41,8 @@ function initialiseStores(store: Store<any>): void {
   Api.Site = getModule(api__site, store);
   Api.Rule = getModule(api__rule, store);
   Api.Page = getModule(api__page, store);
-  Api.Component = getModule(api__component, store);
+  Api.Asset = getModule(api__asset, store);
+  // Api.Component = getModule(api__component, store);
   Api.Category = getModule(api__category, store);
   Api.Region = getModule(api__region, store);
   Api.Constant = getModule(api__constant, store);

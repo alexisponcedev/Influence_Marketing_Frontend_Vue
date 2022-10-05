@@ -1,20 +1,19 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-  Page,
-  PageResource,
+  AssetResource,
   Configuration,
-  PageApiFactory, Draft, Content,
+  AssetApiFactory, Asset,
 } from "@/repositories";
 
 @Module({
-  name: "api__page",
+  name: "api__asset",
   stateFactory: true,
   namespaced: true,
 })
-export default class api__page extends VuexModule {
+export default class api__asset extends VuexModule {
   loading: Boolean = false;
-  all: Array<PageResource> = [];
+  all: Array<AssetResource> = [];
 
   @Mutation
   setLoading(status: Boolean) {
@@ -22,19 +21,35 @@ export default class api__page extends VuexModule {
   }
 
   @Mutation
-  updateAll(all: Array<PageResource>) {
+  updateAll(all: Array<AssetResource>) {
     this.all = all;
   }
 
   @Action({ commit: "updateAll" })
   async getAll() {
     this.setLoading(true);
-    const response = await PageApiFactory(
+    const response = await AssetApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .pageList()
+      .assetList()
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data.data;
+    return [];
+  }
+
+  @Action({ commit: "updateAll" })
+  async searchAssets(search : string) {
+    this.setLoading(true);
+    const response : any = await AssetApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .doSearchAsset(search)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
@@ -45,12 +60,28 @@ export default class api__page extends VuexModule {
   @Action
   async get(id: number) {
     this.setLoading(true);
-    const response = await PageApiFactory(
+    const response = await AssetApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .getPage(id)
+      .getAsset(id)
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data.data;
+    return {};
+  }
+
+  @Action
+  async create(Asset: Asset) {
+    this.setLoading(true);
+    const response = await AssetApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .addAsset(Asset)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
@@ -59,78 +90,14 @@ export default class api__page extends VuexModule {
   }
 
   @Action
-  async create(Page: Page) {
+  async update(payload: { id: number; Asset: Asset }) {
     this.setLoading(true);
-    const response = await PageApiFactory(
+    const response = await AssetApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .addPage(Page)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
-      .finally(() => this.setLoading(false));
-    if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data;
-    return {};
-  }
-
-  @Action
-  async saveDraft(draft : Draft) {
-    this.setLoading(true);
-    const response = await PageApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .updatePageDraft(Number(draft.page_id) , draft)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
-      .finally(() => this.setLoading(false));
-    if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data;
-    return {};
-  }
-
-  @Action
-  async getDraft(id : number) {
-    this.setLoading(true);
-    const response = await PageApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .getPageDraft(id)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
-      .finally(() => this.setLoading(false));
-    if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data;
-    return {};
-  }
-
-  @Action
-  async savePageContent(content : Content) {
-    this.setLoading(true);
-    const response = await PageApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .updatePageContent(Number(content.page_id) , content)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
-      .finally(() => this.setLoading(false));
-    if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data;
-    return {};
-  }
-
-  @Action
-  async update(payload: { id: number; Page: Page }) {
-    this.setLoading(true);
-    const response = await PageApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .updatePage(payload.id, payload.Page)
+      .updateAsset(payload.id, payload.Asset)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
@@ -141,12 +108,12 @@ export default class api__page extends VuexModule {
   @Action
   async delete(id: number) {
     this.setLoading(true);
-    const response = await PageApiFactory(
+    const response = await AssetApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .deletePage(id)
+      .deleteAsset(id)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))

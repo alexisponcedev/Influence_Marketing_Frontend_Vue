@@ -1,8 +1,8 @@
 <template>
   <div class="tw-p-2 tw-rounded-lg ">
-    <h6 style="margin-bottom: 3px">{{items.title}}</h6>
+    <h6 style="margin-bottom: 3px">{{model.title}}</h6>
     <div class="tw-space-y-4 tw-mb-4">
-      <div class="tw-bg-gray-50" v-for="(fields , index) in items.value" :key="`structure-list-${index}`">
+      <div class="tw-bg-gray-50" v-for="(fields , index) in model.value" :key="`structure-list-${index}`">
 
         <div class="tw-flex tw-items-center tw-justify-between">
           <h6 class="tw-mx-2.5 tw-my-1">Item {{ index + 1}}</h6>
@@ -21,7 +21,7 @@ import {Vue, Component, VModel, Prop} from "vue-property-decorator";
 
 @Component
 export default class StructureListEditor extends Vue {
-  @VModel({ type: Array }) items!: any
+  @VModel({ type: Array }) model!: any
 
   field = {
     label : 'Filed',
@@ -30,13 +30,13 @@ export default class StructureListEditor extends Vue {
   }
 
   mounted(){
-    this.field.label = this.items.title ?? 'field';
+    this.field.label = this.model.title ?? 'field';
   }
   addNew(){
-    this.items.value.push(this.items.newItem);
+    this.model.value.push(JSON.parse(JSON.stringify(this.model.newItem)));
   }
   removeItem(i : any){
-    this.items.value.splice(i , 1);
+    this.model.value.splice(i , 1);
   }
 }
 </script>

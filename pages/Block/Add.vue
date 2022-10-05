@@ -38,7 +38,7 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { fromResource } from "@/utils/fromResource";
 import Validation from "@/utils/validation";
-import { Component as Block } from "@/repositories";
+// import { Component as Block } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
 import selectItems from "~/utils/select-items";
@@ -54,9 +54,9 @@ export default class BlockForm extends Vue {
 
   tab = "";
 
-  Component: Block = {
-    props : []
-  };
+  // Component: Block = {
+  //   props : []
+  // };
 
   locations: Array<{ title: string; to: string }> = [];
 
@@ -72,16 +72,16 @@ export default class BlockForm extends Vue {
   }
 
   updateLocations() {
-    this.locations = [
-      {
-        title: "All Blocks",
-        to: "/Block/All",
-      },
-      {
-        title: this.Component.name || "",
-        to: "/Block/Edit/" + this.Component.id!,
-      },
-    ];
+  //   this.locations = [
+  //     {
+  //       title: "All Blocks",
+  //       to: "/Block/All",
+  //     },
+  //     {
+  //       title: this.Component.name || "",
+  //       to: "/Block/Edit/" + this.Component.id!,
+  //     },
+  //   ];
   }
 
   async initBlocksTab() {
@@ -90,8 +90,8 @@ export default class BlockForm extends Vue {
   }
 
   async getEntity() {
-    if (this.editMode)
-      this.Component = (await Api.Component.get(+this.$route.params.id)) as Block;
+    // if (this.editMode)
+      // this.Component = (await Api.Component.get(+this.$route.params.id)) as Block;
   }
 
   updateFormFields() {
@@ -134,17 +134,17 @@ export default class BlockForm extends Vue {
   }
 
 
-  async submit() {
-      if (this.formValidate()) {
-        if (this.editMode)
-          await Api.Component.update({
-            id: this.Component.id!,
-            component: this.Component,
-          });
-        else await Api.Component.create(this.Component);
-        if (!this.editMode) this.$router.push("/Block/All");
-      }
-  }
+  // async submit() {
+  //     if (this.formValidate()) {
+  //       if (this.editMode)
+  //         await Api.Component.update({
+  //           id: this.Component.id!,
+  //           component: this.Component,
+  //         });
+  //       else await Api.Component.create(this.Component);
+  //       if (!this.editMode) this.$router.push("/Block/All");
+  //     }
+  // }
 
   formValidate() {
     return (this.$refs.refForm as any).validate();

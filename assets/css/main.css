@@ -11,5 +11,16 @@
   /*.btn {*/
   /*  @apply tw-bg-red-500 tw-py-10 tw-px-5 tw-text-white*/
   /*}*/
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 

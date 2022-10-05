@@ -1,7 +1,7 @@
 <template>
   <form-field-select
     :field = "field"
-    v-model="item.value" />
+    v-model="model.value" />
 </template>
 
 <script lang="ts">
@@ -10,7 +10,7 @@ import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureSelectEditor extends Vue {
-  @VModel({ type: StructureField }) item!: StructureField
+  @VModel({ type: StructureField }) model!: StructureField
 
   field = {
     label : 'Filed',
@@ -22,9 +22,9 @@ export default class StructureSelectEditor extends Vue {
   }
 
   mounted(){
-    this.field.label = this.item.title ?? 'field';
+    this.field.label = this.model.title ?? 'field';
 
-    this.field.items = this.item.items;
+    this.field.items = this.model.items;
   }
 }
 </script>

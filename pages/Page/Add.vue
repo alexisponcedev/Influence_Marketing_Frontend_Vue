@@ -90,7 +90,8 @@ export default class PageForm extends Vue {
 
   async getEntity() {
     if (this.editMode)
-      this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+     this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+    console.log('get entity for page : ' , this.Page);
   }
 
   updatePageFormFields() {
@@ -163,18 +164,6 @@ export default class PageForm extends Vue {
       },
     ];
   }
-
-  // async detailsFormSubmit() {
-  //   if (this.formValidate()) {
-  //     if (this.editMode)
-  //       await Api.Page.update({
-  //         id: +this.Page.id!,
-  //         Page: this.Page,
-  //       });
-  //     else await Api.Page.create(this.Page);
-  //     if (!this.editMode) this.$router.push("/Page/All");
-  //   }
-  // }
 
   async submit() {
       if (this.formValidate()) {

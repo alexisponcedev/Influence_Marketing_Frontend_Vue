@@ -10,6 +10,21 @@ export const blocks = () => [
     ]
   },
   {
+    name: 'Header',
+    blocks: [
+      {
+        name: 'LandingSlider',
+        title: 'Menu',
+        image: "LandingSlider.png"
+      },
+      {
+        name: 'LandingSlider',
+        title: 'Search Section',
+        image: "LandingSlider.png"
+      },
+    ]
+  },
+  {
     name: 'Landing Page',
     blocks: [
       {
