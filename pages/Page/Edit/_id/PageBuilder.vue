@@ -112,7 +112,7 @@ export default class PageBuilder extends Vue {
   }
 
   async getTemplates() {
-    this.templates = await Api.Template.getAll()
+    // this.templates = await Api.Template.getAll()
     this.templateFiled.items = this.templates as Template[];
   }
 
