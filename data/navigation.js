@@ -1,34 +1,59 @@
-export const items = () => [{
-    title: "Adventures",
-    icon: "mdi-rv-truck",
-    group: "Region",
-    to: "Region/All"
-  },
+export const items = () => [
   {
-    title: "Rules",
-    icon: "mdi-certificate-outline",
-    group: "Rule",
-    to: "Rule/All"
-  },
-  {
-    title: "Contents",
+    title: "Pages",
     icon: "mdi-file-document-multiple-outline",
-    group: "Contents",
-    to: "Contents"
+    group: "Page",
+    to: "Page/All",
+  },
+  {
+    title: "Products",
+    icon: "mdi-border-all",
+    group: "Product",
+    to: "Product",
+  },
+  {
+    title: "Blog Posts",
+    icon: "mdi-post",
+    group: "Blog",
+    to: "Blog",
+  },
+  {
+    title: "Menus",
+    icon: "mdi-menu",
+    group: "Menu",
+    to: "Menu",
+  },
+  {
+    title: "Templates",
+    icon: "mdi-file-outline",
+    group: "Template",
+    to: "Template",
+  },
+  {
+    title: "Reusable Blocks",
+    icon: "mdi-border-none-variant",
+    group: "Block/Reusable",
+    to: "Blocks/Reusable",
+  },
+  {
+    title: "Content Blocks",
+    icon: "mdi-border-radius",
+    group: "Block",
+    to: "Block/All",
+  },
+  {
+    divider: true,
   },
   {
     title: "Settings",
     icon: "mdi-cog-outline",
     group: "Settings",
-    to: "Settings"
-  },
-  {
-    divider: true
+    to: "Settings",
   },
   {
     title: "Users",
     icon: "mdi-account-tie",
     group: "User",
-    to: "User/All"
-  }
+    to: "User/All",
+  },
 ];

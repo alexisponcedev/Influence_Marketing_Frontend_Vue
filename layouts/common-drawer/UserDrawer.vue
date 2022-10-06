@@ -35,29 +35,6 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <template v-if="Api.Site.all.length">
-        <div class="heading-label pa-0 mb-4">Site</div>
-        <v-list dense>
-          <v-list-item-group color="primary" v-model="selectedSite">
-            <v-list-item
-              v-for="Site in Api.Site.all"
-              :key="Site.id"
-              :value="Site.id"
-              @click="setActiveSite(Site.id)"
-            >
-              <v-list-item-avatar class="mr-8" v-if="Site.flag_url">
-                <v-img :src="assetsPath(Site.flag_url)" />
-              </v-list-item-avatar>
-              <v-list-item-icon v-else>
-                <v-icon x-large> mdi-domain </v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title v-text="Site.name" />
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </template>
     </div>
   </vue-perfect-scrollbar>
 </template>
@@ -74,24 +51,8 @@ export default class UserDrawer extends Vue {
   assetsPath = assetsPath;
   Api = Api;
 
-  selectedSite: number | null = this.activeSite;
-
-  mounted() {
-    if (!Api.Site.all.length) Api.Site.getAll();
-  }
-
   editProfile() {
     this.$router.push("/User/Profile");
-  }
-
-  get activeSite() {
-    const active_site = localStorage.getItem("active_site");
-    return active_site ? +active_site : null;
-  }
-
-  setActiveSite(site_id: number) {
-    localStorage.setItem("active_site", "" + site_id);
-    this.$router.push("/Auth");
   }
 }
 </script>

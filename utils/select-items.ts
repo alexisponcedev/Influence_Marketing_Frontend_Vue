@@ -1,4 +1,4 @@
-import { Dictionary } from "@/models";
+import {Dictionary} from "@/models";
 
 interface Item {
   title: string;
@@ -30,6 +30,14 @@ const selectItems: Dictionary<Array<Item>> = {
       value: "PROPERTY",
     },
   ],
+  themes: [
+    {
+      title: 'Light', value: 'light'
+    },
+    {
+      title: 'Dark', value: 'Dark'
+    }
+  ],
   user_level: [
     {
       title: "User",
@@ -51,4 +59,4 @@ function getItemTitle(value: string, ItemKey: string): string {
 }
 
 export default selectItems;
-export { getItemTitle };
+export {getItemTitle};
