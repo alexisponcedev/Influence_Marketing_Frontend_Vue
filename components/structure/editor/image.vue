@@ -6,8 +6,8 @@
 
 
     <button @click="show = true" class="tw-text-center tw-w-full">
-      <div v-if="model.src" class="tw-flex tw-items-center tw-justify-center tw-space-x-2  tw-bg-white tw-py-3.5 tw-px-2 tw-rounded-lg  hover:tw-bg-blue-200">
-        <img class="tw-w-10 tw-object-cover tw-max-h-8 tw-rounded" :src="model.src" alt="alt about imgae">
+      <div v-if="model.src" class="tw-flex tw-items-center tw-justify-start tw-space-x-2  tw-bg-white tw-py-3.5 tw-px-2 tw-rounded-lg  hover:tw-bg-blue-200">
+        <img class=" tw-max-h-10 tw-max-w-10 tw-object-cover  tw-rounded" :src="model.src" alt="alt about imgae">
         <div class="tw-line-clamp-1">{{model.alt}}</div>
       </div>
       <div v-else class="tw-flex tw-items-center tw-justify-center tw-space-x-2  tw-bg-white tw-py-3.5 tw-rounded-lg tw-text-center tw-w-full hover:tw-bg-blue-200">

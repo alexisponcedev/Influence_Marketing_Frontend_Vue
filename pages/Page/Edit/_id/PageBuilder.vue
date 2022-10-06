@@ -40,6 +40,10 @@
         <block-drop/>
       </div>
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
+
+        <h6 class="tw-p-2">Page Template</h6>
+        <form-field-select :field="templateFiled" v-model="templateId"/>
+
         <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
@@ -53,10 +57,11 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
+import {Vue, Component, Watch} from "vue-property-decorator";
 import {Api} from "@/store";
 import draggable from 'vuedraggable'
-import {Content, Draft} from "~/repositories";
+import {Content, Draft, Page, Template} from "~/repositories";
+import Validation from "~/utils/validation";
 
 interface BlockInterface {
   id: Number,
@@ -77,16 +82,38 @@ export default class PageBuilder extends Vue {
 
   blocksList: BlockInterface[] = [];
 
+  templates: Template[] = []
+
+  templateId: Number = 1;
+
   editIndex: Number = -1;
 
-  mounted() {
-    // this.getDraft().then(res => {
-    //   if (res.data!.page_draft)
-    //     this.blocksList = res.data!.page_draft as BlockInterface[];
-    //   else
+  templateFiled = {
+    label: "Theme",
+    modelKey: "theme",
+    "item-text": "name",
+    "item-value": "id",
+    placeholder: 'Select Template',
+    type: "form-field-select",
+    rules: [Validation.required],
+    items: [],
+    colAttrs: {cols: 12},
+  };
+
+  async mounted() {
+    this.getDraft().then(res => {
+      if (res.data!.page_draft)
+        this.blocksList = res.data!.page_draft as BlockInterface[];
+      else
         this.loadFromLocalStorage();
-    // })
+    })
     setInterval(this.saveToLocalStorage, 5000)
+    await this.getTemplates();
+  }
+
+  async getTemplates() {
+    this.templates = await Api.Template.getAll()
+    this.templateFiled.items = this.templates as Template[];
   }
 
   addBlock(block: any) {
@@ -155,12 +182,12 @@ export default class PageBuilder extends Vue {
   }
 
   async savePage() {
-    let content : Content = {page_id: +this.$route.params.id, page_content: this.blocksList}
+    let content: Content = {page_id: +this.$route.params.id, page_content: this.blocksList}
     await Api.Page.savePageContent(content);
   }
 
   async saveDraft() {
-    let draft : Draft = {page_id: +this.$route.params.id, page_draft: this.blocksList};
+    let draft: Draft = {page_id: +this.$route.params.id, page_draft: this.blocksList};
     await Api.Page.saveDraft(draft)
   }
 

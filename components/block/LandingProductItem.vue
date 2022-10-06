@@ -1,7 +1,9 @@
 <template>
-  <div class='main-container tw-flex tw-flex-col tw-items-center hover:bg-gray-100 tw-transition tw-duration-200' v-if="!isEmpty">
+  <div class='main-container tw-flex tw-flex-col tw-items-center hover:bg-gray-100 tw-transition tw-duration-200'
+       v-if="!isEmpty">
     <div>
-      <a href='#' title='Shop Televisions' class="image-box tw-flex tw-justify-center tw-items-center" v-if="model.hasOwnProperty('image')">
+      <a href='#' title='Shop Televisions' class="image-box tw-flex tw-justify-center tw-items-center"
+         v-if="model.hasOwnProperty('image')">
         <img
           :src="model.image.src"
           :alt='model.image.alt'
@@ -30,14 +32,19 @@ export default class LandingProductItem extends Vue {
   mounted() {
     if (this.isEmpty)
       this.model = {
-        link: {type: StructureType.String, title: 'Go to', value: '/products'},
+        link: {
+          id: 0,
+          type: StructureType.String,
+          title: 'Go to', value: '/products'
+        },
         image: {
+          id: 1,
           type: StructureType.Image,
           title: 'Upload Image',
           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
           alt: 'Some note about this image',
         },
-        title: {type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
+        title: {id: 2, type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
       }
   }
 
@@ -48,10 +55,11 @@ export default class LandingProductItem extends Vue {
 </script>
 
 <style scoped>
-.main-container{
-  height : 468px
+.main-container {
+  height: 468px
 }
-.button{
+
+.button {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -63,11 +71,13 @@ export default class LandingProductItem extends Vue {
   border: 1px solid #000000;
   border-radius: 48px;
 }
-.image-box{
+
+.image-box {
   width: 264px;
   height: 264px;
   margin-bottom: 12px;
 }
+
 .title {
   font-family: 'hisense';
   font-style: normal;

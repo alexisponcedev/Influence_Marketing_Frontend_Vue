@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 >Content</h4>
+    <h5 >Content</h5>
     <v-expansion-panels>
       <v-expansion-panel
         v-for="(group,i) in Blocks"

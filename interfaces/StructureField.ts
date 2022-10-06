@@ -1,6 +1,7 @@
 import {StructureType} from "~/models/StructureType";
 
 export interface StructureFieldInterface {
+  id : number,
   type: StructureType;
   title : string,
   value? : any,
@@ -10,6 +11,7 @@ export interface StructureFieldInterface {
 }
 
 export class StructureField implements StructureFieldInterface{
+  id : number = 0;
   title: string = '';
   type: StructureType = StructureType.String;
   items : any = [];

@@ -25,12 +25,14 @@ export default class LandingVideoPlayer extends Vue {
     if (this.isEmpty)
       this.model = {
         title: {
+          id : 0 ,
           type: StructureType.String,
           title: 'Title',
           value: 'Stay up to date with emails\n' +
             'about new products & other news',
         },
         Url: {
+          id : 1,
           type: StructureType.String,
           title: 'Submit URL',
           value: 'https://target-url.com/to/add/subscription',

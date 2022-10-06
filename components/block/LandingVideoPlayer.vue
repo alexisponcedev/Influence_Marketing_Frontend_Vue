@@ -32,7 +32,8 @@ export default class LandingVideoPlayer extends Vue {
     if (this.isEmpty)
       this.model = {
         video : {
-          type : StructureType.File,
+          id : 0 ,
+          type : StructureType.Url,
           title : 'Video' ,
           alt: 'Some note about this image',
           src : 'https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1'},

@@ -8,21 +8,19 @@
       <v-row>
         <form-field-text :field="searchField" v-model="search"/>
         <v-col cols="2" class="py-0 pb-6 word-wrap-break-word">
-          <button class="tw-p-3.5 tw-bg-gray-100 tw-rounded tw-border tw-border-gray-200 tw-border-solid" @click="addNewAsset">
+          <button class="tw-p-3.5 tw-bg-gray-100 tw-rounded tw-border tw-border-gray-200 tw-border-solid"
+                  @click="addNewAsset">
             <v-icon>mdi-cloud-upload</v-icon>
           </button>
         </v-col>
       </v-row>
 
 
-
-
-
       <div class="tw-space-y-2 tw-max-h-80 tw-overflow-y-auto no-scrollbar">
         <structure-editor-asset-item
           v-for="asset in Api.Asset.all" :key="asset.id"
           :asset="asset"
-          @selected="selected" />
+          @selected="selected"/>
       </div>
 
       <v-progress-linear class="tw-mt-2" v-show="Api.Asset.loading" indeterminate color="cyan"/>
@@ -31,7 +29,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn @click="cancel" text color="red"> Cancel </v-btn>
+      <v-btn @click="cancel" text color="red"> Cancel</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -50,7 +48,7 @@ export default class StructureAssetList extends Vue {
 
   Api = Api;
 
-  assets : Asset[] = [];
+  assets: Asset[] = [];
 
   search: string = '';
 
@@ -61,16 +59,19 @@ export default class StructureAssetList extends Vue {
     colAttrs: {cols: 10}
   }
 
-  mounted(){
+  mounted() {
     this.getAssets();
   }
 
-  async getAssets(){
-    await Api.Asset.getAll()
+  async getAssets() {
+    if (this.search)
+      await Api.Asset.searchAssets(this.search)
+    else
+      await Api.Asset.getAll()
   }
 
-  selected(asset : Asset){
-    this.$emit('selected' , asset);
+  selected(asset: Asset) {
+    this.$emit('selected', asset);
   }
 
   addNewAsset() {
@@ -82,5 +83,11 @@ export default class StructureAssetList extends Vue {
     this.$emit('cancel');
     return true;
   }
+
+  @Watch('search')
+  searchUpdated(){
+    this.getAssets()
+  }
+
 }
 </script>

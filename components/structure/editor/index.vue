@@ -31,7 +31,13 @@ export default class StructureEditor extends Vue {
   }
 
   get structureKeys() {
-    return this.structure ? Object.keys(this.structure) : [];
+
+    return this.structure ?
+      // Object.keys(this.structure)
+      Object.entries(this.structure)
+        .sort((a : any , b : any) => { if(a[1].id < b[1].id) return -1; else if(a[1].id > b[1].id) return 1; return 0})
+        .map(i => i[0])
+      : [];
   }
 }
 </script>

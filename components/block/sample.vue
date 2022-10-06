@@ -29,14 +29,16 @@ export default class BlockTextIntroduction extends Vue {
     if (this.isEmpty)
       this.model = {
         image: {
+          id : 0 ,
           type: StructureType.Image,
           title: 'Upload Image',
           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
           alt: 'Some note about this image',
         },
-        smallTitle: {type: StructureType.String, title: 'Samll Title', value: 'Quantom Dot Color'},
-        largeTitle: {type: StructureType.String, title: 'Large Title', value: 'Over One Billion Color'},
+        smallTitle: {id : 1, type: StructureType.String, title: 'Samll Title', value: 'Quantom Dot Color'},
+        largeTitle: {id : 2 , type: StructureType.String, title: 'Large Title', value: 'Over One Billion Color'},
         paragraph: {
+          id : 3,
           type: StructureType.Text,
           title: 'Paragraph Text',
           value: 'Quantum Dot produces over one billion colors, purer, richer, more brilliant and accurate colors than a regular\n' +

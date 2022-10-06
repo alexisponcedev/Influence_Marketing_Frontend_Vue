@@ -42,6 +42,7 @@ export default class LandingSlider extends Vue {
     if (this.isEmpty)
       this.model = {
         size: {
+          id : 0,
           type: StructureType.Select,
           title: 'Slider Monitor Size',
           value: 'desktop',
@@ -52,23 +53,27 @@ export default class LandingSlider extends Vue {
           ]
         },
         list: {
+          id : 1,
           type: StructureType.List,
           title: 'Items',
           newItem: {
-            url: {type: StructureType.Url, title: 'Target URL', value: '/products'},
+            url: {id : 0 , type: StructureType.Url, title: 'Target URL', value: '/products'},
             mobile: {
+              id : 1,
               type: StructureType.Image,
               title: 'Mobile Image',
               src: 'https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg',
               alt: 'Small Image for Slider',
             },
             tablet: {
+              id : 2,
               type: StructureType.Image,
               title: 'Tablet Image',
               src: 'https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg',
               alt: 'Large Image for Slider',
             },
             desktop: {
+              id : 3,
               type: StructureType.Image,
               title: 'Desktop Image',
               src: 'https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg',
@@ -77,20 +82,23 @@ export default class LandingSlider extends Vue {
           },
           value: [
             {
-              url: {type: StructureType.Url, title: 'Target URL', value: '/products'},
+              url: {id : 0 , type: StructureType.Url, title: 'Target URL', value: '/products'},
               mobile: {
+                id : 1,
                 type: StructureType.Image,
                 title: 'Mobile Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg',
                 alt: 'Small Image for Slider',
               },
               tablet: {
+                id : 2,
                 type: StructureType.Image,
                 title: 'Tablet Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg',
                 alt: 'Large Image for Slider',
               },
               desktop: {
+                id : 3,
                 type: StructureType.Image,
                 title: 'Desktop Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg',
@@ -98,20 +106,23 @@ export default class LandingSlider extends Vue {
               },
             },
             {
-              url: {type: StructureType.Url, title: 'Target URL', value: '/products'},
+              url: {id : 0 , type: StructureType.Url, title: 'Target URL', value: '/products'},
               mobile: {
+                id : 1,
                 type: StructureType.Image,
                 title: 'Mobile Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile-v2__ScaleMaxWidthWzg1MF0.jpg',
                 alt: 'Small Image for Slider',
               },
               tablet: {
+                id : 2,
                 type: StructureType.Image,
                 title: 'Tablet Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile__ScaleMaxWidthWzE1MzZd.jpg',
                 alt: 'Large Image for Slider',
               },
               desktop: {
+                id : 3,
                 type: StructureType.Image,
                 title: 'Desktop Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/de5912bcef/Homepage-Banner-HUSA-desk-update-v3__ScaleMaxWidthWzI1NjBd.png',
@@ -119,20 +130,23 @@ export default class LandingSlider extends Vue {
               },
             },
             {
-              url: {type: StructureType.Url, title: 'Target URL', value: '/products'},
+              url: {id : 0 ,type: StructureType.Url, title: 'Target URL', value: '/products'},
               mobile: {
+                id : 1 ,
                 type: StructureType.Image,
                 title: 'Mobile Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v5__ScaleMaxWidthWzg1MF0.jpg',
                 alt: 'Small Image for Slider',
               },
               tablet: {
+                id : 2 ,
                 type: StructureType.Image,
                 title: 'Tablet Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v3__ScaleMaxWidthWzE1MzZd.jpg',
                 alt: 'Large Image for Slider',
               },
               desktop: {
+                id : 3 ,
                 type: StructureType.Image,
                 title: 'Desktop Image',
                 src: 'https://assets.hisense-usa.com/assets/HomePageSlides/eeaefdc6f6/Perfect-match-sweepstakes-v2__ScaleMaxWidthWzI1NjBd.jpg',

@@ -1,15 +1,16 @@
 <template>
-  <div v-if="asset" class="tw-flex tw-items-center tw-space-x-2 tw-cursor-pointer hover:tw-bg-green-50 tw-transition tw-duration-200 tw-p-1.5 tw-rounded-lg">
-    <img  :src="asset.thumb ?? asset.url" @click="selected"
-          class="tw-object-cover tw-h-12  tw-w-16 tw-rounded tw-bg-gray-100"
-          alt="asset file" />
+  <div v-if="asset"
+       class="tw-flex tw-items-center tw-space-x-2 tw-cursor-pointer hover:tw-bg-green-50 tw-transition tw-duration-200 tw-p-1.5 tw-rounded-lg">
+    <img :src="image" @click="selected"
+         class="tw-object-cover tw-max-h-12  tw-w-16 tw-rounded tw-bg-gray-100"
+         alt="asset file"/>
     <div class="tw-flex-1 tw-flex tw-flex-col tw-justify-center" @click="selected">
-      <div class="tw-mb-1 tw-text-gray-600 tw-font-bold">{{  asset.title }}</div>
-      <div>{{  asset.description }}</div>
+      <div class="tw-mb-1 tw-text-gray-600 tw-font-bold">{{ asset.title }}</div>
+      <div>{{ asset.description }}</div>
     </div>
     <div>
       <button @click="deleteAsset">
-        <v-icon>mdi-delete</v-icon>
+        <v-icon light class="danger--text">mdi-delete</v-icon>
       </button>
     </div>
 
@@ -27,11 +28,18 @@ export default class StructureImageEditor extends Vue {
   Api = Api;
 
   selected() {
-    this.$emit('selected' , this.asset);
+    this.$emit('selected', this.asset);
   }
 
   deleteAsset() {
     Api.Asset.delete(this.asset.id).then(Api.Asset.getAll);
+  }
+
+  get image() : string | undefined {
+    if (['png', 'jpeg', 'jpg', 'webp'].includes(this.asset.extension.toLowerCase()))
+      return this.asset.thumb
+    else
+      return '/file.png'
   }
 }
 </script>
