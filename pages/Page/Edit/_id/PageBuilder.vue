@@ -114,17 +114,10 @@ export default class PageBuilder extends Vue {
     // await this.getTemplates();
   }
 
-<<<<<<< Updated upstream
-  async getTemplates() {
-    // this.templates = await Api.Template.getAll()
-    // this.templateFiled.items = this.templates as Template[];
-  }
-=======
   // async getTemplates() {
   //   this.templates = await Api.Template.getAll() as Template[];
   //   this.templateFiled.items = this.templates as [];
   // }
->>>>>>> Stashed changes
 
   addBlock(block: any) {
     let id = this.blocksList.length + 1;
