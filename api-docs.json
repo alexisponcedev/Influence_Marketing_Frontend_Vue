@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://imcxm.exodusapi.influencedev.com/api",
+            "url": "https://imcxm.dev-api.hisenseportal.com/api",
             "description": "CXM API Server"
         }
     ],
@@ -1484,10 +1484,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/PageResource"
-                                            }
+                                            "$ref": "#/components/schemas/PageListResource"
                                         }
                                     },
                                     "type": "object"
@@ -1666,6 +1663,70 @@
                                             "items": {
                                                 "$ref": "#/components/schemas/BlockResource"
                                             }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getTemplates": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetTemplateList",
+                "responses": {
+                    "200": {
+                        "description": "Get Template List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TemplateResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getTemplateInfo/{tempId}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetTemplateInfo",
+                "parameters": [
+                    {
+                        "name": "tempId",
+                        "in": "path",
+                        "description": "Template ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Template",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/TemplateResource"
                                         }
                                     },
                                     "type": "object"
@@ -4535,6 +4596,12 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -5020,6 +5087,12 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "template_content": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object",

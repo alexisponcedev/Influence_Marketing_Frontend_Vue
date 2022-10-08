@@ -29,6 +29,7 @@
       </v-tab-item>
     </v-tabs-items>
 
+
     <loading-overlay :show="Api.Page.loading" />
   </v-container>
 </template>
@@ -45,7 +46,8 @@ import HoverButton from "~/components/base/HoverButton.vue";
 
 @Component({
   components: {HoverButton},
-  layout: "panel" })
+  layout: "panel"
+})
 export default class PageForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
@@ -191,5 +193,7 @@ export default class PageForm extends Vue {
         break;
     }
   }
+
+
 }
 </script>

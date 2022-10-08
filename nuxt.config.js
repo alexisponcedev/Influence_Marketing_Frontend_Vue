@@ -129,7 +129,7 @@ export default {
   },
 
   env: {
-    BASE_API_PATH: process.env.BASE_API_PATH || 'https://imcxm.exodusapi.influencedev.com/api',
+    BASE_API_PATH: process.env.BASE_API_PATH || 'https://imcxm.dev-api.hisenseportal.com/api',
     BASE_ASSETS_PATH: process.env.BASE_ASSETS_PATH || 'https://assets.exodusapi.influencedev.com',
   }
 };
