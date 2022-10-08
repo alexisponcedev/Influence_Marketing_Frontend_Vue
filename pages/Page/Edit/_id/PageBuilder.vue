@@ -14,7 +14,8 @@
           <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
             Draft
           </v-btn>
-          <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">Save Page
+          <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">
+            Publish
           </v-btn>
         </v-col>
       </v-row>
@@ -41,10 +42,12 @@
       </div>
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
 
-        <h6 class="tw-p-2">Page Template</h6>
-        <form-field-select :field="templateFiled" v-model="templateId"/>
+<!--        <div v-show="editIndex === -1">-->
+<!--          <h6 class="tw-p-2">Page Template</h6>-->
+<!--          <form-field-select :field="templateFiled" v-model="templateId"/>-->
 
-        <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
+          <block-selector v-show="editIndex === -1"  class="tw-p-4" @add-block="addBlock"/>
+<!--        </div>-->
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
                           :title="blocksList[editIndex].title"
@@ -84,21 +87,21 @@ export default class PageBuilder extends Vue {
 
   templates: Template[] = []
 
-  templateId: Number = 1;
+  // templateId: Number = 1;
 
   editIndex: Number = -1;
 
-  templateFiled = {
-    label: "Theme",
-    modelKey: "theme",
-    "item-text": "name",
-    "item-value": "id",
-    placeholder: 'Select Template',
-    type: "form-field-select",
-    rules: [Validation.required],
-    items: [],
-    colAttrs: {cols: 12},
-  };
+  // templateFiled = {
+  //   label: "Template",
+  //   modelKey: "template",
+  //   "item-text": "name",
+  //   "item-value": "id",
+  //   placeholder: 'Select Template',
+  //   type: "form-field-select",
+  //   rules: [Validation.required],
+  //   items: [],
+  //   colAttrs: {cols: 12},
+  // };
 
   async mounted() {
     this.getDraft().then(res => {
@@ -108,13 +111,20 @@ export default class PageBuilder extends Vue {
         this.loadFromLocalStorage();
     })
     setInterval(this.saveToLocalStorage, 5000)
-    await this.getTemplates();
+    // await this.getTemplates();
   }
 
+<<<<<<< Updated upstream
   async getTemplates() {
     // this.templates = await Api.Template.getAll()
     // this.templateFiled.items = this.templates as Template[];
   }
+=======
+  // async getTemplates() {
+  //   this.templates = await Api.Template.getAll() as Template[];
+  //   this.templateFiled.items = this.templates as [];
+  // }
+>>>>>>> Stashed changes
 
   addBlock(block: any) {
     let id = this.blocksList.length + 1;

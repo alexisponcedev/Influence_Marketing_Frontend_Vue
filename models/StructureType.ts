@@ -8,4 +8,5 @@ export enum StructureType {
   List = 'list',
   Url = 'url',
   Select = 'select',
+  Object = 'object',
 }
