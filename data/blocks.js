@@ -59,20 +59,5 @@ export const blocks = () => [
         image: "subscribe.png"
       }
     ]
-  },
-  {
-    name: 'Products',
-    blocks: [
-      {
-        name: 'ProductsBanner',
-        title: 'product banner',
-        image: "LandingSlider.png"
-      },
-      {
-        name: 'ProductsListAndAside',
-        title: 'Products List and Aside',
-        image: "LandingSlider.png.png"
-      },
-    ]
   }
 ];
