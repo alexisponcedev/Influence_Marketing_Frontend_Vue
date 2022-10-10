@@ -6,7 +6,7 @@
         <v-col cols="12" md="5">
           <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
           <span
-            class="text-subtitle-2 grey--text text--darken-2">{{ Page.title}}</span>
+            class="text-subtitle-2 grey--text text--darken-2">65" 4K ULED™ Premium Hisense Android Smart TV (2021)</span>
         </v-col>
         <v-col cols="12" md="7" class="text-right">
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
@@ -42,13 +42,20 @@
         <block-drop/>
       </div>
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
-        <block-selector v-show="editIndex === -1"  class="tw-p-4" @add-block="addBlock"/>
+
+<!--        <div v-show="editIndex === -1">-->
+<!--          <h6 class="tw-p-2">Page Template</h6>-->
+<!--          <form-field-select :field="templateFiled" v-model="templateId"/>-->
+
+          <block-selector v-show="editIndex === -1"  class="tw-p-4" @add-block="addBlock"/>
+<!--        </div>-->
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
                           :title="blocksList[editIndex].title"
                           v-model="blocksList[editIndex].structure"/>
       </div>
     </div>
+
 
     <template-selector ref="templateManager"/>
 
@@ -83,7 +90,6 @@ export default class PageBuilder extends Vue {
   blocksList: BlockInterface[] = [];
 
   templates: Template[] = []
-  Page : Page = {};
 
   // templateId: Number = 1;
 
@@ -103,20 +109,13 @@ export default class PageBuilder extends Vue {
   // };
 
   async mounted() {
-    await this.loadPage();
-    // console.log(this.Page);
-    if(this.Page.draft && this.Page.draft.length > 0)
-      this.blocksList = this.Page.draft as Array<BlockInterface>;
-    else
-      this.blocksList = this.Page.content as Array<BlockInterface>;
-
-    // this.getDraft().then(res => {
-    //   if (res.data!.page_draft)
-    //     this.blocksList = res.data!.page_draft as BlockInterface[];
-    //   else
-    //     this.loadFromLocalStorage();
-    // })
-    // this.interval = setInterval(this.saveToLocalStorage, 5000)
+    this.getDraft().then(res => {
+      if (res.data!.page_draft)
+        this.blocksList = res.data!.page_draft as BlockInterface[];
+      else
+        this.loadFromLocalStorage();
+    })
+    this.interval = setInterval(this.saveToLocalStorage, 5000)
     // await this.getTemplates();
   }
 
@@ -125,9 +124,6 @@ export default class PageBuilder extends Vue {
     clearInterval(this.interval);
   }
 
-  async loadPage(){
-    this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-  }
   // async getTemplates() {
   //   this.templates = await Api.Template.getAll() as Template[];
   //   this.templateFiled.items = this.templates as [];
@@ -183,8 +179,8 @@ export default class PageBuilder extends Vue {
   }
 
   saveToLocalStorage() {
-    // localStorage.setItem(this.getPageCache, JSON.stringify(this.blocksList));
-    // console.log('data is saved into local storage')
+    localStorage.setItem(this.getPageCache, JSON.stringify(this.blocksList));
+    console.log('data is saved into local storage')
   }
 
   loadFromLocalStorage() {
@@ -195,6 +191,7 @@ export default class PageBuilder extends Vue {
   }
 
   discard() {
+
   }
 
   async savePage() {
@@ -203,7 +200,7 @@ export default class PageBuilder extends Vue {
   }
 
   saveTemplate(){
-    (this.$refs.templateManager as any).open(true , this.blocksList);
+    ((this.$refs.templateManager) as any).open(true , this.blocksList);
   }
 
   async saveDraft() {

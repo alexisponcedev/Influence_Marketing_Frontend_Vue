@@ -27,7 +27,7 @@ export const items = () => [
     title: "Templates",
     icon: "mdi-file-outline",
     group: "Template",
-    to: "Template",
+    to: "Template/All",
   },
   {
     title: "Reusable Blocks",

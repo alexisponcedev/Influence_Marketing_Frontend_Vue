@@ -3,19 +3,19 @@
 
     <div class="tw-flex tw-justify-between tw-items-center">
       <div class="product-class">50" Class</div>
-      <div class="product-model">100L5G-DLT100B</div>
+      <div class="product-model">{{ model.model}}</div>
     </div>
 
-    <div class="product-new "> New</div>
+    <div class="product-new "> <span v-if="model.isNew">New</span></div>
 
     <img
       src="https://assets.hisense-usa.com/assets/GalleryImages/Product/475/cbf5a253da/a4gv___ScaleMaxWidthWzY0MF0.png"
       alt="image address"
       class="product-image tw-mb-6">
 
-    <div class="product-series tw-mb-12">Laser Series</div>
+    <div class="product-series tw-mb-12">{{  model.series }}</div>
 
-    <div class="product-detail tw-mb-6">100" 4K Smart Laser TV</div>
+    <div class="product-detail tw-mb-6">{{ model.name }}</div>
 
     <div class="tw-flex tw-justify-center tw-items-center tw-space-x-2  tw-mb-6">
       <div class="product-coming-soon">Comming Soon</div>

@@ -58,14 +58,14 @@ export default class api__template extends VuexModule {
   }
 
   @Action
-  async create(id : number) {
+  async create(template : Template) {
     this.setLoading(true);
     const response = await TemplateApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .getTemplate(id)
+      .addTemplate(template)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))

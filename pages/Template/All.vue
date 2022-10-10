@@ -5,7 +5,7 @@
     <v-row>
       <v-col>
         <v-tabs background-color="transparent">
-          <v-tab>All Pages</v-tab>
+          <v-tab>All Templates</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
@@ -16,9 +16,9 @@
           <table-standard
             :config="config"
             class="row-pointer"
-            :items="Api.Page.all"
-            :loading="Api.Page.loading"
-            @click:row="(Page) => $router.push('/Page/Edit/' + Page.id)"
+            :items="Api.Template.all"
+            :loading="Api.Template.loading"
+            @click:row="(Template) => $router.push('/Template/Edit/' + Template.id)"
           />
         </v-card>
       </v-col>
@@ -29,61 +29,58 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { PageResource } from "@/repositories";
+import { TemplateResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
 
 @Component({ layout: "panel" })
-export default class AllPages extends Vue {
+export default class AllTemplates extends Vue {
   Api = Api;
 
 
   config = {
     headers: [
-      { text: "Title", value: "title" },
-      { text: "Route", value: "route" },
-      { text: "Fetch URL", value: "fetchUrl" },
-      { text: "Theme", value: "theme" },
+      { text: "Name", value: "name" },
       { text: "", value: "actions", sortable: false, width: "0" },
     ],
     actions: [
       {
         type: "edit",
         icon: "mdi-pencil",
-        to: "/Page/Edit/[id]",
+        to: "/Template/Edit/[id]",
       },
       {
         type: "delete",
         icon: "mdi-delete",
-        onClick: (Page: PageResource) => {
+        onClick: (Template: TemplateResource) => {
           AppStore.showDeleteConfirmationModal({
-            deleteItemTitle: Page.name || "",
-            deleteItem: Page,
-            agreeButton: { callback: this.deletePage },
+            deleteItemTitle: Template.name || "",
+            deleteItem: Template,
+            agreeButton: { callback: this.deleteTemplate },
           });
         },
       },
     ],
     globalActions: [
       {
-        text: "Add Page",
+        text: "Add Template",
         class : 'btn',
         color: "primary",
         icon: "mdi-plus",
-        to: "/Page/Add",
+        to: "/Template/Add",
       },
     ],
   };
 
   mounted() {
-    this.updatePages();
+    this.updateTemplates();
   }
 
-  async updatePages() {
-    await Api.Page.getAll();
+  async updateTemplates() {
+    await Api.Template.getAll();
   }
 
-  deletePage(Page: PageResource) {
-    Api.Page.delete(Page.id!).then(this.updatePages);
+  deleteTemplate(Template: TemplateResource) {
+    Api.Template.delete(Template.id!).then(this.updateTemplates);
   }
 }
 </script>

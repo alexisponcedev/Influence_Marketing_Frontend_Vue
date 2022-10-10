@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://imcxm.exodusapi.influencedev.com/api",
+            "url": "https://imcxm.dev-api.hisenseportal.com/api",
             "description": "CXM API Server"
         }
     ],

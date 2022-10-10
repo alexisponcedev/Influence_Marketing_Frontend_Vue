@@ -8,6 +8,8 @@ export interface StructureFieldInterface {
   src? : string,
   alt? : string,
   items? : any,
+  itemText? : string,
+  itemValue? : string,
 }
 
 export class StructureField implements StructureFieldInterface{
@@ -18,4 +20,6 @@ export class StructureField implements StructureFieldInterface{
 
   alt : string = '';
   src : string = '';
+  itemText : string = 'title';
+  itemValue : string = 'value';
 }

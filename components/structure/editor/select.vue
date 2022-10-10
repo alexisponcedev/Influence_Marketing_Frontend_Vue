@@ -15,7 +15,7 @@ export default class StructureSelectEditor extends Vue {
   field = {
     label : 'Filed',
     rules : [],
-    'item-text' : 'title',
+    'item-text' :  'title',
     'item-value' : 'value',
     colAttrs : {cols : 12},
     items : []
@@ -23,7 +23,8 @@ export default class StructureSelectEditor extends Vue {
 
   mounted(){
     this.field.label = this.model.title ?? 'field';
-
+    this.field["item-text"] = this.model.itemText ?? 'title';
+    this.field["item-value"] = this.model.itemValue ?? 'value';
     this.field.items = this.model.items;
   }
 }

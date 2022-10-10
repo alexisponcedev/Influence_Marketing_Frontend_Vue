@@ -2,8 +2,8 @@
   <v-container fluid>
 
     <div v-if="editMode" class="d-flex justify-space-between align-center">
-      <breadcrumbs  :locations="locations" />
-      <v-btn elevation="0" color="grey darken-4 white--text"  class="btn" :to="`/Page/Edit/${Page.id}/PageBuilder`">
+      <breadcrumbs :locations="locations"/>
+      <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPageBuilder">
         Go to Page Builder
       </v-btn>
     </div>
@@ -29,23 +29,24 @@
       </v-tab-item>
     </v-tabs-items>
 
-    <loading-overlay :show="Api.Page.loading" />
+
+    <template-selector @template-selected="templateSelected" ref="templateSelector"/>
+    <loading-overlay :show="Api.Page.loading"/>
   </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { fromResource } from "@/utils/fromResource";
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import { Page } from "@/repositories";
-import { FormField } from "@/models";
-import { Api } from "@/store";
-import selectItems from "~/utils/select-items";
+import {Page} from "@/repositories";
+import {FormField} from "@/models";
+import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 
 @Component({
   components: {HoverButton},
-  layout: "panel" })
+  layout: "panel"
+})
 export default class PageForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
@@ -54,7 +55,9 @@ export default class PageForm extends Vue {
   tab = "";
 
   Page: Page = {
-    meta : [{rel : '' , name : '' , content : ''}]
+    meta: [{rel: '', name: '', content: ''}],
+    content: [],
+    draft: []
   };
 
   locations: Array<{ title: string; to: string }> = [];
@@ -77,7 +80,7 @@ export default class PageForm extends Vue {
         to: "/Page/All",
       },
       {
-        title: this.Page.name || "",
+        title: this.Page.title || "",
         to: "/Page/Edit/" + this.Page.id!,
       },
     ];
@@ -90,38 +93,38 @@ export default class PageForm extends Vue {
 
   async getEntity() {
     if (this.editMode)
-     this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-    console.log('get entity for page : ' , this.Page);
+      this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+    console.log('get entity for page : ', this.Page);
   }
 
   updatePageFormFields() {
     this.formFields = [
       {
         type: "form-field-text",
-        label: "Name",
-        modelKey: "name",
-        placeholder : 'First letter should be capital ex: Product',
+        label: "Title",
+        modelKey: "title",
+        placeholder: 'First letter should be capital ex: Product',
         rules: [Validation.required],
-        colAttrs: { cols: 12 },
+        colAttrs: {cols: 12},
       },
       {
         type: "form-field-text-prefix",
         label: "Page URL",
-        prefixLabel : 'Base Url',
-        prefix : 'https://hisense-usa.com/',
-        placeholder : 'ex: products/[product_id]',
+        prefixLabel: 'Base Url',
+        prefix: 'https://hisense-usa.com/',
+        placeholder: 'ex: products/[product_id]',
         modelKey: "route",
         rules: [Validation.required],
-        colAttrs: { cols: 12 },
+        colAttrs: {cols: 12},
       },
-      {
-        type: "form-field-text",
-        label: "Load data from external api",
-        placeholder : 'ex: https://impim.dev-api.hisenseportal.com/api/',
-        modelKey: "fetchUrl",
-        rules: [Validation.url],
-        colAttrs: { cols: 12 },
-      },
+      // {
+      //   type: "form-field-text",
+      //   label: "Load data from external api",
+      //   placeholder: 'ex: https://impim.dev-api.hisenseportal.com/api/',
+      //   modelKey: "fetchUrl",
+      //   rules: [Validation.url],
+      //   colAttrs: {cols: 12},
+      // },
       // {
       //   type: "form-field-checkbox",
       //   label: "Show Header",
@@ -160,25 +163,41 @@ export default class PageForm extends Vue {
         label: "Meta",
         modelKey: "meta",
         rules: [],
-        colAttrs: { cols: 12 },
+        colAttrs: {cols: 12},
       },
     ];
   }
 
   async submit() {
-      if (this.formValidate()) {
-        if (this.editMode)
-          await Api.Page.update({
-            id: +this.Page.id!,
-            Page: this.Page,
-          });
-        else await Api.Page.create(this.Page);
-        if (!this.editMode) this.$router.push("/Page/All");
-      }
+    if (this.formValidate()) {
+      if (this.editMode)
+        await Api.Page.update({
+          id: +this.Page.id!,
+          Page: this.Page,
+        });
+      else await Api.Page.create(this.Page);
+      if (!this.editMode) this.$router.push("/Page/All");
+    }
   }
 
   formValidate() {
     return (this.$refs.pagesForm as any).validate();
+  }
+
+  goToPageBuilder() {
+    if (!this.Page.content || this.Page.content?.length === 0)
+      (this.$refs.templateSelector as any).open();
+    else
+      this.openPageBuilder();
+  }
+
+  openPageBuilder() {
+    this.$router.push(`/Page/Edit/${this.Page.id}/PageBuilder`);
+  }
+
+  templateSelected(template: any) {
+    this.Page.content = template.content;
+    this.submit().then(this.openPageBuilder);
   }
 
   @Watch("tab")
@@ -191,5 +210,7 @@ export default class PageForm extends Vue {
         break;
     }
   }
+
+
 }
 </script>
