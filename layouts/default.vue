@@ -2,7 +2,7 @@
   <v-app>
     <slot>
       <Nuxt />
-    </slot>\
+    </slot>
     <SnackBar />
     <ConfirmationModal />
   </v-app>

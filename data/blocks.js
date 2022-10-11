@@ -9,17 +9,6 @@ export const blocks = () => [
       }
     ]
   },
-
-  {
-    name: 'Template',
-    blocks: [
-      {
-        name: 'Sample',
-        title: 'Page Loader',
-        image: "sample.png"
-      },
-    ]
-  },
   {
     name: 'Header',
     blocks: [

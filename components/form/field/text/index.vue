@@ -10,12 +10,8 @@
       :type="type"
       :rules="field.rules"
       :placeholder="field.placeholder"
-      :readonly="
-        typeof field.readonly === 'function' ? field.readonly() : field.readonly
-      "
-      :disabled="
-        typeof field.disabled === 'function' ? field.disabled() : field.disabled
-      "
+      :readonly="typeof field.readonly === 'function' ? field.readonly() : field.readonly"
+      :disabled="typeof field.disabled === 'function' ? field.disabled() : field.disabled"
     />
   </v-col>
 </template>

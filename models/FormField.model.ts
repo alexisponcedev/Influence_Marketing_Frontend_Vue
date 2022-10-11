@@ -8,6 +8,7 @@ export interface FormField {
     | "form-field-select"
     | "form-field-select-combobox"
     | "form-field-select-autocomplete"
+    | "form-field-select-page"
     | "form-field-text"
     | "form-field-text-markup"
     | "form-field-text-preview"

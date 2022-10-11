@@ -11,25 +11,17 @@
       :item-value="field['item-value']"
       :placeholder="field.placeholder"
       :items="typeof field.items === 'function' ? field.items() : field.items"
-      :loading="
-        typeof field.loading === 'function' ? field.loading() : field.loading
-      "
-      :readonly="
-        typeof field.readonly === 'function' ? field.readonly() : field.readonly
-      "
-      :disabled="
-        typeof field.disabled === 'function' ? field.disabled() : field.disabled
-      "
-      :multiple="
-        typeof field.multiple === 'function' ? field.multiple() : field.multiple
-      "
+      :loading="typeof field.loading === 'function' ? field.loading() : field.loading "
+      :readonly="typeof field.readonly === 'function' ? field.readonly() : field.readonly"
+      :disabled=" typeof field.disabled === 'function' ? field.disabled() : field.disabled "
+      :multiple=" typeof field.multiple === 'function' ? field.multiple() : field.multiple "
     />
   </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel } from "vue-property-decorator";
-import { FormField } from "@/models";
+import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {FormField} from "@/models";
 
 @Component
 export default class AutoCompleteFormField extends Vue {

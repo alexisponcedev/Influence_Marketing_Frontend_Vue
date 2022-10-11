@@ -27,6 +27,7 @@ import {StructureType} from "~/models/StructureType";
 @Component
 export default class LandingProductItem extends Vue {
   @Prop(Number) readonly id: number | undefined
+  @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
   mounted() {

@@ -50,6 +50,7 @@ import {CategoryResource} from "~/repositories";
 @Component
 export default class ProductGrid extends Vue {
   @Prop(Number) readonly id: number | undefined
+  @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: any
 
   Api = Api;

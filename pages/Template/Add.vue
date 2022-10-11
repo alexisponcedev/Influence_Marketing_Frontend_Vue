@@ -29,6 +29,9 @@
       </v-tab-item>
     </v-tabs-items>
 
+
+    <page-preview :value="Template.content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
+
     <loading-overlay :show="Api.Template.loading"/>
   </v-container>
 </template>
@@ -100,7 +103,7 @@ export default class EntityForm extends Vue {
         modelKey: "name",
         placeholder: 'enter the template name',
         rules: [Validation.required],
-        colAttrs: {cols: 6},
+        colAttrs: {cols: 12},
       },
     ];
   }

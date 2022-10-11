@@ -29,9 +29,9 @@
       </v-tab-item>
     </v-tabs-items>
 
+    <page-preview :value="Page.content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
-
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>
 </template>
@@ -108,56 +108,12 @@ export default class PageForm extends Vue {
         colAttrs: {cols: 12},
       },
       {
-        type: "form-field-text-prefix",
+        type: "form-field-select-page",
         label: "Page URL",
-        prefixLabel: 'Base Url',
-        prefix: 'https://hisense-usa.com/',
-        placeholder: 'ex: products/[product_id]',
         modelKey: "route",
-        rules: [Validation.required],
+        rules: [],
         colAttrs: {cols: 12},
       },
-      // {
-      //   type: "form-field-text",
-      //   label: "Load data from external api",
-      //   placeholder: 'ex: https://impim.dev-api.hisenseportal.com/api/',
-      //   modelKey: "fetchUrl",
-      //   rules: [Validation.url],
-      //   colAttrs: {cols: 12},
-      // },
-      // {
-      //   type: "form-field-checkbox",
-      //   label: "Show Header",
-      //   modelKey: "showHeader",
-      //   rules: [],
-      //   colAttrs: { cols: 3 },
-      // },
-      // {
-      //   type: "form-field-checkbox",
-      //   label: "Show Footer",
-      //   modelKey: "showFooter",
-      //   rules: [],
-      //   colAttrs: { cols: 9 },
-      // },
-      // {
-      //   label: "Theme",
-      //   modelKey: "theme",
-      //   "item-text": "title",
-      //   "item-value": "value",
-      //   placeholder : 'Select theme of this page',
-      //   type: "form-field-select",
-      //   rules: [Validation.required],
-      //   items: selectItems.themes,
-      //   colAttrs: { cols: 6 },
-      // },
-      // {
-      //   type: "form-field-text",
-      //   label: "Page Custom Class",
-      //   placeholder : 'ex: bg-gray-50 text-black hover:red-500 transition duration-100 ...',
-      //   modelKey: "class",
-      //   rules: [],
-      //   colAttrs: { cols: 6 },
-      // },
       {
         type: "form-field-meta",
         label: "Meta",

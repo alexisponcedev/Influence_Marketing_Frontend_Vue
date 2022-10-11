@@ -38,6 +38,7 @@ import {StructureType} from "~/models/StructureType";
 @Component
 export default class LandingSlider extends Vue {
   @Prop(Number) readonly id: number | undefined
+  @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: any
 
   mounted() {

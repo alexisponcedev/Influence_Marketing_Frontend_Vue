@@ -10,7 +10,7 @@
         </v-col>
         <v-col cols="12" md="7" class="text-right">
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
-          <v-btn elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
+          <v-btn :to="`/Page/Edit/${Page.id}/PagePreview`" elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
           <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template
           </v-btn>
           <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
@@ -44,6 +44,7 @@ export default class PageBuilderSection extends Vue {
   tab = "";
 
   blocksList: BlockInterface[] = [];
+
 
   Page: Page = {};
 
