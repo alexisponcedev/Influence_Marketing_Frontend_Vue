@@ -31,6 +31,7 @@
 
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
+
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>
 </template>
@@ -55,7 +56,7 @@ export default class PageForm extends Vue {
   tab = "";
 
   Page: Page = {
-    meta: [{rel: '', name: '', content: ''}],
+    meta: [],
     content: [],
     draft: []
   };
@@ -94,7 +95,6 @@ export default class PageForm extends Vue {
   async getEntity() {
     if (this.editMode)
       this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-    console.log('get entity for page : ', this.Page);
   }
 
   updatePageFormFields() {
@@ -196,8 +196,8 @@ export default class PageForm extends Vue {
   }
 
   templateSelected(template: any) {
-    this.Page.content = template.content;
-    this.submit().then(this.openPageBuilder);
+    Api.Page.savePageContent({ page_id : this.Page.id , page_content :  template.content})
+      .then(this.openPageBuilder);
   }
 
   @Watch("tab")

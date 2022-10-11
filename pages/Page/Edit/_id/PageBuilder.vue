@@ -6,12 +6,13 @@
         <v-col cols="12" md="5">
           <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
           <span
-            class="text-subtitle-2 grey--text text--darken-2">{{ Page.title}}</span>
+            class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
         </v-col>
         <v-col cols="12" md="7" class="text-right">
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
           <v-btn elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
-          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template</v-btn>
+          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template
+          </v-btn>
           <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
             Draft
           </v-btn>
@@ -22,33 +23,7 @@
       </v-row>
     </v-card>
 
-    <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px !important">
-
-      <div
-        class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
-        style="max-height: 88vh">
-        <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
-          <block-container v-for="(block , i) in blocksList" :key="block.id"
-                           class="tw-mb-2"
-                           @edit="editBlock(i)"
-                           @delete="deleteBlock(i)"
-                           @duplicate="duplicateBlock(i)"
-                           @move-up="moveUpBlock(i)"
-                           @move-down="moveDownBlock(i)"
-                           :block="block">
-            <component :is="`block-${block.name}`" :id="block.id" v-model="block.structure"/>
-          </block-container>
-        </draggable>
-        <block-drop/>
-      </div>
-      <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
-        <block-selector v-show="editIndex === -1"  class="tw-p-4" @add-block="addBlock"/>
-        <structure-editor v-if="editIndex > -1"
-                          @close="cancelEditing"
-                          :title="blocksList[editIndex].title"
-                          v-model="blocksList[editIndex].structure"/>
-      </div>
-    </div>
+    <page-builder v-model="blocksList"/>
 
     <template-selector ref="templateManager"/>
 
@@ -57,163 +32,50 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Watch} from "vue-property-decorator";
+import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
-import draggable from 'vuedraggable'
-import {Content, Draft, Page, Template} from "~/repositories";
-import Validation from "~/utils/validation";
+import {Content, Page} from "~/repositories";
+import {BlockInterface} from "~/interfaces/BlockInterface";
 
-interface BlockInterface {
-  id: Number,
-  selected: Boolean,
-  structure: Object,
-  name: String,
-  title: String,
-  image: String
-}
-
-@Component({
-  components: {draggable}
-})
-export default class PageBuilder extends Vue {
+@Component
+export default class PageBuilderSection extends Vue {
   Api = Api;
 
   tab = "";
 
   blocksList: BlockInterface[] = [];
 
-  templates: Template[] = []
-  Page : Page = {};
-
-  // templateId: Number = 1;
-
-  editIndex: Number = -1;
-  interval : any = null;
-
-  // templateFiled = {
-  //   label: "Template",
-  //   modelKey: "template",
-  //   "item-text": "name",
-  //   "item-value": "id",
-  //   placeholder: 'Select Template',
-  //   type: "form-field-select",
-  //   rules: [Validation.required],
-  //   items: [],
-  //   colAttrs: {cols: 12},
-  // };
+  Page: Page = {};
 
   async mounted() {
-    await this.loadPage();
-    // console.log(this.Page);
-    if(this.Page.draft && this.Page.draft.length > 0)
+    this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+    if (this.Page.draft && this.Page.draft.length > 0)
       this.blocksList = this.Page.draft as Array<BlockInterface>;
     else
-      this.blocksList = this.Page.content as Array<BlockInterface>;
-
-    // this.getDraft().then(res => {
-    //   if (res.data!.page_draft)
-    //     this.blocksList = res.data!.page_draft as BlockInterface[];
-    //   else
-    //     this.loadFromLocalStorage();
-    // })
-    // this.interval = setInterval(this.saveToLocalStorage, 5000)
-    // await this.getTemplates();
-  }
-
-  destroyed() {
-    console.log('interval cleared');
-    clearInterval(this.interval);
-  }
-
-  async loadPage(){
-    this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-  }
-  // async getTemplates() {
-  //   this.templates = await Api.Template.getAll() as Template[];
-  //   this.templateFiled.items = this.templates as [];
-  // }
-
-  addBlock(block: any) {
-    let id = this.blocksList.length + 1;
-    this.blocksList.push({id: id, selected: false, structure: {}, ...block,});
-    this.selectBlock(this.blocksList.length - 1);
-  }
-
-  selectBlock(index: any) {
-    this.blocksList.forEach(i => i.selected = false);
-    this.blocksList[index].selected = true;
-  }
-
-  editBlock(i: Number) {
-    this.selectBlock(i);
-    this.editIndex = i;
-  }
-
-  deleteBlock(i: any) {
-    this.cancelEditing();
-    this.blocksList.splice(i, 1);
-  }
-
-  duplicateBlock(i: any) {
-    let newBlock = JSON.parse(JSON.stringify(this.blocksList[i]));
-    newBlock.id = this.blocksList.length + 1;
-    this.blocksList.splice(i + 1, 0, newBlock)
-  }
-
-  moveUpBlock(i: any) {
-    if (i > 0 && this.blocksList.length > 1) {
-      const block = this.blocksList.splice(i, 1)[0];
-      this.blocksList.splice(i - 1, 0, block)
-    }
-  }
-
-  moveDownBlock(i: any) {
-    if (this.blocksList.length > 1 && i < this.blocksList.length) {
-      const block = this.blocksList.splice(i, 1)[0];
-      this.blocksList.splice(i + 1, 0, block)
-    }
-  }
-
-  cancelEditing() {
-    this.editIndex = -1;
-  }
-
-  get getPageCache() {
-    return `page_${this.$route.params.id}_data`;
-  }
-
-  saveToLocalStorage() {
-    // localStorage.setItem(this.getPageCache, JSON.stringify(this.blocksList));
-    // console.log('data is saved into local storage')
-  }
-
-  loadFromLocalStorage() {
-    if (this.blocksList.length === 0) {
-      console.log('loading data from local storage');
-      this.blocksList = JSON.parse(localStorage.getItem(this.getPageCache) ?? "[]");
-    }
+      this.blocksList = (this.Page.content ? this.Page.content : []) as Array<BlockInterface>;
   }
 
   discard() {
+    this.$router.push('/Page/Edit/' + this.Page.id);
   }
 
   async savePage() {
     let content: Content = {page_id: +this.$route.params.id, page_content: this.blocksList}
     await Api.Page.savePageContent(content);
-  }
+    // this.triggerDeploy();
 
-  saveTemplate(){
-    (this.$refs.templateManager as any).open(true , this.blocksList);
+  }
+  // triggerDeploy(){
+  //   console.log('trigger deploy public site');
+  //   this.$axios.$get('https://forge.laravel.com/servers/580060/sites/1766519/deploy/http?token=zevvn1zF5xg7U1gtp2Rur3dxntCyOKm03Q2lOY4e');
+  // }
+
+  saveTemplate() {
+    (this.$refs.templateManager as any).open(true, this.blocksList);
   }
 
   async saveDraft() {
-    let draft: Draft = {page_id: +this.$route.params.id, page_draft: this.blocksList};
-    await Api.Page.saveDraft(draft)
+    await Api.Page.saveDraft({page_id: +this.$route.params.id, page_draft: this.blocksList})
   }
-
-  async getDraft() {
-    return await Api.Page.getDraft(+this.$route.params.id)
-  }
-
 }
 </script>

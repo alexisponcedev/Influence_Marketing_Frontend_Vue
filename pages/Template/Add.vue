@@ -11,13 +11,13 @@
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab href="#Details">Template Details</v-tab>
+          <v-tab href="#Templates">Template Details</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
 
     <v-tabs-items v-model="tab">
-      <v-tab-item value="Details">
+      <v-tab-item value="Templates">
         <v-card-text>
           <form-standard
             ref="TemplatesForm"
@@ -29,8 +29,6 @@
       </v-tab-item>
     </v-tabs-items>
 
-
-    <template-selector @template-selected="templateSelected" ref="templateSelector"/>
     <loading-overlay :show="Api.Template.loading"/>
   </v-container>
 </template>
@@ -47,7 +45,7 @@ import HoverButton from "~/components/base/HoverButton.vue";
   components: {HoverButton},
   layout: "panel"
 })
-export default class TemplateForm extends Vue {
+export default class EntityForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
   Api = Api;
@@ -92,7 +90,6 @@ export default class TemplateForm extends Vue {
   async getEntity() {
     if (this.editMode)
       this.Template = (await Api.Template.get(+this.$route.params.id)) as Template;
-    console.log('get entity for Template : ', this.Template);
   }
 
   updateTemplateFormFields() {
@@ -124,26 +121,10 @@ export default class TemplateForm extends Vue {
     return (this.$refs.TemplatesForm as any).validate();
   }
 
-  // goToTemplateBuilder() {
-  //   if (!this.Template.content || this.Template.content?.length === 0)
-  //     (this.$refs.templateSelector as any).open();
-  //   else
-  //     this.openTemplateBuilder();
-  // }
-
-  openTemplateBuilder() {
-    this.$router.push(`/Template/Edit/${this.Template.id}/TemplateBuilder`);
-  }
-
-  // templateSelected(template: any) {
-  //   this.Template.content = template.content;
-  //   this.submit().then(this.openTemplateBuilder);
-  // }
-
   @Watch("tab")
   tabChanged(newTab: string, _: string) {
     switch (newTab) {
-      case "Details":
+      case "Templates":
         this.initTemplatesTab();
         break;
       default:

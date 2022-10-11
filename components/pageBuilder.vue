@@ -20,7 +20,7 @@
         <block-drop/>
       </div>
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
-        <block-selector v-show="editIndex === -1"  class="tw-p-4" @add-block="addBlock"/>
+        <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
                           :title="blocksList[editIndex].title"
@@ -36,20 +36,57 @@
 import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import draggable from "vuedraggable";
 
-interface BlockInterface {
-  id: Number,
-  selected: Boolean,
-  structure: Object,
-  name: String,
-  title: String,
-  image: String
-}
-
 @Component({
   components: {draggable}
 })
 export default class PageBuilder extends Vue {
-  @VModel({type: Object}) model!: Object
+  @VModel({type: Array}) blocksList!: any
 
+  editIndex: Number = -1;
+
+  cancelEditing() {
+    this.editIndex = -1;
+  }
+
+  addBlock(block: any) {
+    let id = this.blocksList.length + 1;
+    this.blocksList.push({id: id, selected: false, structure: {}, ...block,});
+    this.selectBlock(this.blocksList.length - 1);
+  }
+
+  selectBlock(index: any) {
+    this.blocksList.forEach((item: { selected: boolean; }) => item.selected = false);
+    this.blocksList[index].selected = true;
+  }
+
+  editBlock(i: Number) {
+    this.selectBlock(i);
+    this.editIndex = i;
+  }
+
+  deleteBlock(i: any) {
+    this.cancelEditing();
+    this.blocksList.splice(i, 1);
+  }
+
+  duplicateBlock(i: any) {
+    let newBlock = JSON.parse(JSON.stringify(this.blocksList[i]));
+    newBlock.id = this.blocksList.length + 1;
+    this.blocksList.splice(i + 1, 0, newBlock)
+  }
+
+  moveUpBlock(i: any) {
+    if (i > 0 && this.blocksList.length > 1) {
+      const block = this.blocksList.splice(i, 1)[0];
+      this.blocksList.splice(i - 1, 0, block)
+    }
+  }
+
+  moveDownBlock(i: any) {
+    if (this.blocksList.length > 1 && i < this.blocksList.length) {
+      const block = this.blocksList.splice(i, 1)[0];
+      this.blocksList.splice(i + 1, 0, block)
+    }
+  }
 }
 </script>
