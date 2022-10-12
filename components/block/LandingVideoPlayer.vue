@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!isEmpty">
-    <div class="tw-p-2 tw-my-1.5 tw-text-gray-500 tw-text-sm tw-bg-gray-50 tw-rounded-lg tw-inline-block">In order to choose video player component please click here ..</div>
+  <div v-if="!isEmpty" style="margin-bottom : -8px">
+    <div v-if="editable" class="tw-p-2 tw-my-1.5 tw-text-gray-500 tw-text-sm tw-bg-gray-50 tw-rounded-lg tw-inline-block">In order to choose video player component please click here ..</div>
     <div class='tw-aspect-video' >
       <iframe
         @click="clicked"
@@ -26,6 +26,7 @@ import {StructureType} from "~/models/StructureType";
 @Component
 export default class LandingVideoPlayer extends Vue {
   @Prop(Number) readonly id: number | undefined
+  @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
   mounted() {

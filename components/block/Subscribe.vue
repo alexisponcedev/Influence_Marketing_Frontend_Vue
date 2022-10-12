@@ -19,6 +19,7 @@ import {StructureType} from "~/models/StructureType";
 @Component
 export default class LandingVideoPlayer extends Vue {
   @Prop(Number) readonly id: number | undefined
+  @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
   mounted() {
@@ -40,10 +41,10 @@ export default class LandingVideoPlayer extends Vue {
       }
   }
 
-  clicked() {
-    console.log('you have clicked me easily ');
-    this.$emit('click');
-  }
+  // clicked() {
+  //   console.log('you have clicked me easily ');
+  //   this.$emit('click');
+  // }
 
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;

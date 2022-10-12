@@ -9,17 +9,6 @@ export const blocks = () => [
       }
     ]
   },
-
-  {
-    name: 'Template',
-    blocks: [
-      {
-        name: 'Sample',
-        title: 'Page Loader',
-        image: "sample.png"
-      },
-    ]
-  },
   {
     name: 'Header',
     blocks: [
@@ -69,8 +58,8 @@ export const blocks = () => [
         image: "Product Banner.png"
       },
       {
-        name: 'ProductsListAndAside',
-        title: 'Products List and Aside',
+        name: 'ProductsGrid',
+        title: 'Products Grid',
         image: "Product Grid.png"
       },
     ]

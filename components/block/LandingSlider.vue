@@ -1,6 +1,5 @@
 <template>
   <div class='tw-mx-auto tw-flex tw-justify-center tw-relative' style="min-height: 682px" v-if="!isEmpty" :class="maxWidth">
-
     <div v-if="activeSlide === index" v-for="(image , index) in model.list.value" :key="index" >
       <img v-if="model.size.value === monitorSize.mobile" class="tw-bg-gray-50 tw-w-full tw-min-h-96"
            :src="image.mobile.src" :alt="image.mobile.alt"/>
@@ -33,6 +32,7 @@ enum SliderMonitorSize {
 @Component
 export default class LandingSlider extends Vue {
   @Prop(Number) readonly id: number | undefined
+  @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object }) model!: any
 
   activeSlide = 0;
