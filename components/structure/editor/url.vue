@@ -1,5 +1,8 @@
 <template>
-  <form-field-text :field = "field" v-model="model.value" />
+  <form-field-select-page-name
+    :field="field"
+    v-model="model.value"
+  />
 </template>
 
 <script lang="ts">
@@ -8,15 +11,18 @@ import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureUrlEditor extends Vue {
-  @VModel({ type: StructureField }) model!: StructureField
+  @VModel({type: StructureField}) model!: StructureField
 
   field = {
-    label : 'Filed',
-    rules : [],
-    colAttrs : {cols : 12}
+    label: "Page URL",
+    placeholder: 'Enter page name',
+    'item-text' : 'title',
+    'item-value' : 'value',
+    rules: [],
+    colAttrs: {cols: 12},
   }
 
-  mounted(){
+  mounted() {
     this.field.label = this.model.title ?? 'field';
   }
 }

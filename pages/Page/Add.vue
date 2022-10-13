@@ -29,9 +29,10 @@
       </v-tab-item>
     </v-tabs-items>
 
-    <page-preview :value="Page.content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
+    <page-preview :value="Page.widgets" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
+
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>
 </template>
@@ -39,7 +40,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Page} from "@/repositories";
+import {Page, Template} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
@@ -57,8 +58,10 @@ export default class PageForm extends Vue {
 
   Page: Page = {
     meta: [],
-    content: [],
-    draft: []
+    widgets: [],
+    draft: [],
+    model_id : 0,
+    model_type : ''
   };
 
   locations: Array<{ title: string; to: string }> = [];
@@ -108,7 +111,7 @@ export default class PageForm extends Vue {
         colAttrs: {cols: 12},
       },
       {
-        type: "form-field-select-page",
+        type: "form-field-select-page-route",
         label: "Page URL",
         modelKey: "route",
         rules: [],
@@ -141,7 +144,7 @@ export default class PageForm extends Vue {
   }
 
   goToPageBuilder() {
-    if (!this.Page.content || this.Page.content?.length === 0)
+    if (!this.Page.widgets || this.Page.widgets?.length === 0)
       (this.$refs.templateSelector as any).open();
     else
       this.openPageBuilder();
@@ -152,7 +155,7 @@ export default class PageForm extends Vue {
   }
 
   templateSelected(template: any) {
-    Api.Page.savePageContent({ page_id : this.Page.id , page_content :  template.content})
+    Api.Page.savePageWidgets({ page_id : this.Page.id , widgets :  template.widgets})
       .then(this.openPageBuilder);
   }
 

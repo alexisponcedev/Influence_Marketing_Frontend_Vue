@@ -107,14 +107,14 @@ export default class api__page extends VuexModule {
   }
 
   @Action
-  async savePageContent(content : Content) {
+  async savePageWidgets(content : Content) {
     this.setLoading(true);
     const response = await PageApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .updatePageContent(Number(content.page_id) , content)
+      .updatePageWidgets(Number(content.page_id) , content)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))

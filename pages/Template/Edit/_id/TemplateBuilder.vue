@@ -12,13 +12,13 @@
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
           <v-btn elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
           <v-btn @click="saveTemplate" elevation="0" color="grey darken-4 white--text" class="control-btns">
-            Publish
+            Save Template
           </v-btn>
         </v-col>
       </v-row>
     </v-card>
 
-    <page-builder v-model="blocksList"/>
+    <page-builder v-model="Template.template_content"/>
 
     <loading-overlay :show="Api.Template.loading"/>
   </v-container>
@@ -36,13 +36,14 @@ export default class TemplateBuilderSection extends Vue {
 
   tab = "";
 
-  blocksList: BlockInterface[] = [];
+  // blocksList: BlockInterface[] = [];
 
   Template: any = {};
 
   async mounted() {
-    this.Template = (await Api.Template.get(+this.$route.params.id)) as Template;
-    this.blocksList = (this.Template.content ? this.Template.content : []) as Array<BlockInterface>;
+    let template = (await Api.Template.get(+this.$route.params.id)) as Template;
+    template.template_content = (template.template_content ? template.template_content : []) as Array<BlockInterface>;
+    this.Template = template;
   }
 
   discard() {

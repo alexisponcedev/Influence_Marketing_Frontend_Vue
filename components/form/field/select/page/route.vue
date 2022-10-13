@@ -1,22 +1,12 @@
 <template>
   <v-col cols="12">
     <v-row>
-      <v-col class="py-0" v-bind="{cols : 4}">
-        <label> Parent Page Route </label>
-        <v-autocomplete
-          outlined
-          v-model="parentRoute"
-          :rules="field.rules"
-          :item-text="'title'"
-          :item-value="'value'"
-          placeholder="Parent Route"
-          :items="items"
-          :loading="typeof field.loading === 'function' ? field.loading() : field.loading "
-          :readonly="typeof field.readonly === 'function' ? field.readonly() : field.readonly"
-          :disabled=" typeof field.disabled === 'function' ? field.disabled() : field.disabled "
-          :multiple=" typeof field.multiple === 'function' ? field.multiple() : field.multiple "
-        />
-      </v-col>
+      <form-field-select-page-name
+        :field="selectField"
+        v-model="parentRoute"
+        :rules="selectField.rules"
+        :placeholder="selectField.placeholder"
+      />
       <form-field-text
         :field="textField"
         v-model="pageRoute"
@@ -40,21 +30,28 @@
 
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {FormField} from "@/models";
+import {FormField} from "~/models";
 import {Api} from "~/utils/store-accessor";
 import {Page} from "~/repositories";
 
 @Component
-export default class AutoCompleteSelectPageFormField extends Vue {
+export default class AutoCompleteSelectPageRouteFormField extends Vue {
   @VModel({type: String, default: ''}) model!: String;
   @Prop(Object) readonly field!: FormField;
 
   Api = Api;
 
-
   parentRoute: string = '/';
   pageRoute: string = '';
 
+  selectField = {
+    label: "Parent Page URL",
+    placeholder: 'Enter page name',
+    'item-text' : 'title',
+    'item-value' : 'value',
+    rules: [],
+    colAttrs: {cols: 4},
+  }
   textField = {
     label: this.field.label,
     placeholder: 'Enter page name',

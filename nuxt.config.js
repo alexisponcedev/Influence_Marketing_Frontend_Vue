@@ -70,7 +70,11 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxt/postcss8',
+    '@nuxt/image',
   ],
+  image: {
+    domains: ['https://assets.hisense-usa.com', 'http://localhost']
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

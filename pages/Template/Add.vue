@@ -30,7 +30,7 @@
     </v-tabs-items>
 
 
-    <page-preview :value="Template.content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
+    <page-preview :value="Template.template_content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
 
     <loading-overlay :show="Api.Template.loading"/>
   </v-container>
