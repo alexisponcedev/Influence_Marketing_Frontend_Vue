@@ -73,7 +73,11 @@ export default {
     '@nuxt/image',
   ],
   image: {
-    domains: ['https://assets.hisense-usa.com', 'http://localhost']
+    domains: [
+      'https://assets.hisense-usa.com',
+      'http://localhost',
+      'https://imcxm.dev.hisenseportal.com/'
+    ]
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
