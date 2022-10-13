@@ -4,7 +4,7 @@ import {
   Page,
   PageResource,
   Configuration,
-  PageApiFactory, Draft, Content,
+  PageApiFactory, Draft, Widgets,
 } from "@/repositories";
 
 @Module({
@@ -107,14 +107,14 @@ export default class api__page extends VuexModule {
   }
 
   @Action
-  async savePageWidgets(content : Content) {
+  async savePageWidgets(widgets : Widgets) {
     this.setLoading(true);
     const response = await PageApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .updatePageWidgets(Number(content.page_id) , content)
+      .updatePageWidgets(Number(widgets.page_id) , widgets)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))

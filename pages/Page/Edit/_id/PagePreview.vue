@@ -8,7 +8,7 @@
 <script lang="ts">
 import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
-import {Content, Page} from "~/repositories";
+import {Page} from "~/repositories";
 import {BlockInterface} from "~/interfaces/BlockInterface";
 
 @Component

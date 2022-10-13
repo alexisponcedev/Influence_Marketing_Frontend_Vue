@@ -68,6 +68,14 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     return this.parentRoute
       + (this.parentRoute === '/' ? '' : '/')
       + this.getSlug(this.pageRoute);
+
+
+    // let route = this.parentRoute
+    //   + (this.parentRoute === '/' ? '' : '/')
+    //   + this.getSlug(this.pageRoute);
+    // let count = this.items.filter(i => i.value === route).length
+    // if(count > 0) route = route + '-' + (count + 1);
+    // return route;
   }
 
   @Watch('calculateRoute')
@@ -90,11 +98,13 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
       // .replace(/[^\w-]+/g, '')
   }
 
+  @Watch('value')
+  onValueChanged(){
+    this.getRoutes();
+  }
+
   async mounted() {
-
-    console.log('items is mounted ', this.model);
     this.getRoutes()
-
     this.items = ((await Api.Page.getAll()) as Array<Page>)
       .map(page => {
         return {

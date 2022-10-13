@@ -18,7 +18,7 @@
       </v-row>
     </v-card>
 
-    <page-builder v-model="Template.template_content"/>
+    <page-builder v-model="Template.widgets"/>
 
     <loading-overlay :show="Api.Template.loading"/>
   </v-container>
@@ -42,7 +42,7 @@ export default class TemplateBuilderSection extends Vue {
 
   async mounted() {
     let template = (await Api.Template.get(+this.$route.params.id)) as Template;
-    template.template_content = (template.template_content ? template.template_content : []) as Array<BlockInterface>;
+    template.widgets = (template.widgets ? template.widgets : []) as Array<BlockInterface>;
     this.Template = template;
   }
 

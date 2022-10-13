@@ -5473,7 +5473,7 @@
                     "name": {
                         "type": "string"
                     },
-                    "template_content": {
+                    "widgets": {
                         "type": "array",
                         "items": {
                             "type": "object"

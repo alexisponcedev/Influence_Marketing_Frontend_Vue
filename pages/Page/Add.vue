@@ -29,7 +29,7 @@
       </v-tab-item>
     </v-tabs-items>
 
-    <page-preview :value="Page.widgets" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
+    <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
 
@@ -40,7 +40,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Page, Template} from "@/repositories";
+import {Page} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
@@ -57,6 +57,7 @@ export default class PageForm extends Vue {
   tab = "";
 
   Page: Page = {
+    title : '',
     meta: [],
     widgets: [],
     draft: [],
@@ -106,7 +107,7 @@ export default class PageForm extends Vue {
         type: "form-field-text",
         label: "Title",
         modelKey: "title",
-        placeholder: 'First letter should be capital ex: Product',
+        placeholder: 'please enter page title',
         rules: [Validation.required],
         colAttrs: {cols: 12},
       },
@@ -155,7 +156,7 @@ export default class PageForm extends Vue {
   }
 
   templateSelected(template: any) {
-    Api.Page.savePageWidgets({ page_id : this.Page.id , widgets :  template.widgets})
+    Api.Page.saveDraft({ page_id : this.Page.id , page_draft :  template.widgets})
       .then(this.openPageBuilder);
   }
 
@@ -168,6 +169,22 @@ export default class PageForm extends Vue {
       default:
         break;
     }
+  }
+
+  get pageTitle() {
+    return this.Page.title;
+  }
+
+  @Watch('pageTitle')
+  pageTitleChanged(){
+    console.log('pageTitle has changed' , this.pageTitle );
+    let parentRoute = '/';
+    if(this.Page.route && this.Page.route !== '')
+    {
+      let lastIndexOf = this.Page.route!.lastIndexOf('/');
+      parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+    }
+    this.Page.route = parentRoute + this.Page.title
   }
 
 

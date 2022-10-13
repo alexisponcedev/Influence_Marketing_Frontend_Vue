@@ -55,7 +55,6 @@ export default class LandingSlider extends Vue {
   }
 
   get Image(){
-    console.log(this.model);
     return this.model
     && this.model.media
     && this.model.media.url !== ''

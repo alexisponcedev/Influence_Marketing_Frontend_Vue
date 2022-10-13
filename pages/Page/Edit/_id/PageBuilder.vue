@@ -34,7 +34,7 @@
 <script lang="ts">
 import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
-import {Content, Page} from "~/repositories";
+import {Page, Widgets} from "~/repositories";
 import {BlockInterface} from "~/interfaces/BlockInterface";
 
 @Component
@@ -61,8 +61,8 @@ export default class PageBuilderSection extends Vue {
   }
 
   async savePage() {
-    let content: Content = {page_id: +this.$route.params.id, widgets: this.blocksList}
-    await Api.Page.savePageWidgets(content);
+    let widgets : Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
+    await Api.Page.savePageWidgets(widgets);
     // this.triggerDeploy();
 
   }
