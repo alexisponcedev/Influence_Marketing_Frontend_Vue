@@ -1484,10 +1484,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/PageResource"
-                                            }
+                                            "$ref": "#/components/schemas/PageListResource"
                                         }
                                     },
                                     "type": "object"
@@ -1666,6 +1663,195 @@
                                             "items": {
                                                 "$ref": "#/components/schemas/BlockResource"
                                             }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getTemplates": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetTemplateList",
+                "responses": {
+                    "200": {
+                        "description": "Get Template List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TemplateResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getTemplateInfo/{tempId}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetTemplateInfo",
+                "parameters": [
+                    {
+                        "name": "tempId",
+                        "in": "path",
+                        "description": "Template ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Template",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/TemplateResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getProducts": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetProductList",
+                "responses": {
+                    "200": {
+                        "description": "Get Product List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProductResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getProductInfo/{productId}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetProductInfo",
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProductResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getStaticPages": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetStaticPages",
+                "responses": {
+                    "200": {
+                        "description": "Static Page Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getDynamicPages/{modelId}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetDynamicPages",
+                "parameters": [
+                    {
+                        "name": "modelId",
+                        "in": "path",
+                        "description": "Model ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dynamic Page Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageListResource"
                                         }
                                     },
                                     "type": "object"
@@ -2428,7 +2614,7 @@
                 "tags": [
                     "Page"
                 ],
-                "operationId": "UpdatePageContent",
+                "operationId": "updatePageWidgets",
                 "parameters": [
                     {
                         "name": "pageId",
@@ -2724,6 +2910,189 @@
                                     },
                                     "type": "object"
                                 }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/product": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "ProductList",
+                "responses": {
+                    "200": {
+                        "description": "Product Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProductResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "AddProduct",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product Create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/product/{id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "GetProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProductResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "UpdateProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Product Update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "DeleteProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Product Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
                             }
                         }
                     }
@@ -4308,7 +4677,7 @@
                     "id": {
                         "type": "integer"
                     },
-                    "name": {
+                    "title": {
                         "type": "string"
                     },
                     "route": {
@@ -4328,6 +4697,12 @@
                         "items": {
                             "type": "object"
                         }
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_type": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -4339,7 +4714,7 @@
                     "id": {
                         "type": "integer"
                     },
-                    "name": {
+                    "title": {
                         "type": "string"
                     },
                     "route": {
@@ -4354,11 +4729,23 @@
                             "type": "object"
                         }
                     },
+                    "draft": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
                     "content": {
                         "type": "array",
                         "items": {
                             "type": "object"
                         }
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_type": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -4384,6 +4771,31 @@
                     },
                     "url": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductResource": {
+                "title": "Product Resource",
+                "description": "Product Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "product_id": {
+                        "type": "integer"
+                    },
+                    "product_meta": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "product_content": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -4535,6 +4947,12 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -4835,7 +5253,7 @@
                     "id": {
                         "type": "integer"
                     },
-                    "name": {
+                    "title": {
                         "type": "string"
                     },
                     "route": {
@@ -4856,6 +5274,12 @@
                         "items": {
                             "type": "integer"
                         }
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_type": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -4889,6 +5313,34 @@
                 "type": "object",
                 "xml": {
                     "name": "Post"
+                }
+            },
+            "Product": {
+                "title": "Product",
+                "description": "Product model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "product_id": {
+                        "type": "integer"
+                    },
+                    "product_meta": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "product_content": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Product"
                 }
             },
             "Region": {
@@ -5020,6 +5472,12 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object",

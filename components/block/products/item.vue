@@ -8,17 +8,18 @@
 
     <div class="product-new "> <span v-if="model.isNew">New</span></div>
 
-    <img
-      src="https://assets.hisense-usa.com/assets/GalleryImages/Product/475/cbf5a253da/a4gv___ScaleMaxWidthWzY0MF0.png"
-      alt="image address"
-      class="product-image tw-mb-6">
+    <div class="tw-flex tw-items-center tw-justify--center">
+      <nuxt-img format="webp" :src="Image"
+        alt="image address" class="product-image tw-mx-auto tw-mb-6"/>
+    </div>
+
 
     <div class="product-series tw-mb-12">{{  model.series }}</div>
 
     <div class="product-detail tw-mb-6">{{ model.name }}</div>
 
     <div class="tw-flex tw-justify-center tw-items-center tw-space-x-2  tw-mb-6">
-      <div class="product-coming-soon">Comming Soon</div>
+      <div class="product-coming-soon">Coming Soon</div>
       <div class="product-link">View Product</div>
     </div>
 
@@ -51,6 +52,16 @@ export default class LandingSlider extends Vue {
           value: 'https://load-from-pim-server.com/api',
         },
       }
+  }
+
+  get Image(){
+    return this.model
+    && this.model.media
+    && this.model.media.url !== ''
+      ?
+      this.model.media.url
+      :
+      "https://assets.hisense-usa.com/assets/GalleryImages/Product/475/cbf5a253da/a4gv___ScaleMaxWidthWzY0MF0.png";
   }
 
   get isEmpty(): Boolean {

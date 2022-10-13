@@ -29,9 +29,10 @@
       </v-tab-item>
     </v-tabs-items>
 
-    <page-preview :value="Page.content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
+    <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
+
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>
 </template>
@@ -56,9 +57,12 @@ export default class PageForm extends Vue {
   tab = "";
 
   Page: Page = {
+    title : '',
     meta: [],
-    content: [],
-    draft: []
+    widgets: [],
+    draft: [],
+    model_id : 0,
+    model_type : ''
   };
 
   locations: Array<{ title: string; to: string }> = [];
@@ -103,12 +107,12 @@ export default class PageForm extends Vue {
         type: "form-field-text",
         label: "Title",
         modelKey: "title",
-        placeholder: 'First letter should be capital ex: Product',
+        placeholder: 'please enter page title',
         rules: [Validation.required],
         colAttrs: {cols: 12},
       },
       {
-        type: "form-field-select-page",
+        type: "form-field-select-page-route",
         label: "Page URL",
         modelKey: "route",
         rules: [],
@@ -141,7 +145,7 @@ export default class PageForm extends Vue {
   }
 
   goToPageBuilder() {
-    if (!this.Page.content || this.Page.content?.length === 0)
+    if (!this.Page.widgets || this.Page.widgets?.length === 0)
       (this.$refs.templateSelector as any).open();
     else
       this.openPageBuilder();
@@ -152,7 +156,7 @@ export default class PageForm extends Vue {
   }
 
   templateSelected(template: any) {
-    Api.Page.savePageContent({ page_id : this.Page.id , page_content :  template.content})
+    Api.Page.saveDraft({ page_id : this.Page.id , page_draft :  template.widgets})
       .then(this.openPageBuilder);
   }
 
@@ -165,6 +169,22 @@ export default class PageForm extends Vue {
       default:
         break;
     }
+  }
+
+  get pageTitle() {
+    return this.Page.title;
+  }
+
+  @Watch('pageTitle')
+  pageTitleChanged(){
+    console.log('pageTitle has changed' , this.pageTitle );
+    let parentRoute = '/';
+    if(this.Page.route && this.Page.route !== '')
+    {
+      let lastIndexOf = this.Page.route!.lastIndexOf('/');
+      parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+    }
+    this.Page.route = parentRoute + this.Page.title
   }
 
 

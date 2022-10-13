@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-preview :value="Page.draft ?? Page.content" class="tw-bg-white" />
+    <page-preview :show-title="false" :value="Page.draft ?? Page.widgets" class="tw-bg-white" />
     <loading-overlay :show="Api.Page.loading"/>
   </div>
 </template>
@@ -8,7 +8,7 @@
 <script lang="ts">
 import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
-import {Content, Page} from "~/repositories";
+import {Page} from "~/repositories";
 import {BlockInterface} from "~/interfaces/BlockInterface";
 
 @Component

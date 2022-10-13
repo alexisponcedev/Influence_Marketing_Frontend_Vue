@@ -34,7 +34,7 @@
 <script lang="ts">
 import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
-import {Content, Page} from "~/repositories";
+import {Page, Widgets} from "~/repositories";
 import {BlockInterface} from "~/interfaces/BlockInterface";
 
 @Component
@@ -53,7 +53,7 @@ export default class PageBuilderSection extends Vue {
     if (this.Page.draft && this.Page.draft.length > 0)
       this.blocksList = this.Page.draft as Array<BlockInterface>;
     else
-      this.blocksList = (this.Page.content ? this.Page.content : []) as Array<BlockInterface>;
+      this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
   }
 
   discard() {
@@ -61,8 +61,8 @@ export default class PageBuilderSection extends Vue {
   }
 
   async savePage() {
-    let content: Content = {page_id: +this.$route.params.id, page_content: this.blocksList}
-    await Api.Page.savePageContent(content);
+    let widgets : Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
+    await Api.Page.savePageWidgets(widgets);
     // this.triggerDeploy();
 
   }

@@ -8,22 +8,32 @@ export const blocks = () => [
         image: "sample.png"
       }
     ]
-  },
-  {
-    name: 'Header',
+  },{
+    name: 'Text',
     blocks: [
       {
-        name: 'LandingSlider',
-        title: 'Menu',
-        image: "LandingSlider.png"
-      },
-      {
-        name: 'LandingSlider',
-        title: 'Search Section',
-        image: "LandingSlider.png"
-      },
+        name: 'ULEDImageAndTextItem',
+        title: 'Image with Text Items',
+        image: "sample.png"
+      }
     ]
   },
+
+  // {
+  //   name: 'Header',
+  //   blocks: [
+  //     {
+  //       name: 'LandingSlider',
+  //       title: 'Menu',
+  //       image: "LandingSlider.png"
+  //     },
+  //     {
+  //       name: 'LandingSlider',
+  //       title: 'Search Section',
+  //       image: "LandingSlider.png"
+  //     },
+  //   ]
+  // },
   {
     name: 'Landing Page',
     blocks: [

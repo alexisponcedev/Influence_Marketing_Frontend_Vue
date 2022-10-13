@@ -33,7 +33,7 @@ export default class LandingProductsBox extends Vue {
           type: StructureType.List,
           title: 'Items',
           newItem: {
-            link: { id : 0 , type: StructureType.String, title: 'Shop Now URL', value: '/products'},
+            link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
             image: {
               id : 1,
               type: StructureType.Image,
@@ -45,7 +45,7 @@ export default class LandingProductsBox extends Vue {
           },
           value: [
             {
-              link: { id : 0 , type: StructureType.String, title: 'Shop Now URL', value: '/products'},
+              link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
               image: {
                 id : 1 ,
                 type: StructureType.Image,
@@ -56,7 +56,7 @@ export default class LandingProductsBox extends Vue {
               title: {id : 2 , type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
             },
             {
-              link: {id : 0 , type: StructureType.String, title: 'Shop Now URL', value: '/products'},
+              link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
               image: {
                 id : 1,
                 type: StructureType.Image,
@@ -67,7 +67,7 @@ export default class LandingProductsBox extends Vue {
               title: {id : 2 ,type: StructureType.String, title: 'Title', value: 'REFRIGERATORS'},
             },
             {
-              link: {id : 0 , type: StructureType.String, title: 'Shop Now URL', value: '/products'},
+              link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
               image: {
                 id : 1 ,
                 type: StructureType.Image,
@@ -78,7 +78,7 @@ export default class LandingProductsBox extends Vue {
               title: {id : 2 , type: StructureType.String, title: 'Title', value: 'DISHWASHERS'},
             },
             {
-              link: { id : 0 , type: StructureType.String, title: 'Shop Now URL', value: '/products'},
+              link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
               image: {
                 id : 1,
                 type: StructureType.Image,
@@ -89,7 +89,7 @@ export default class LandingProductsBox extends Vue {
               title: { id : 2 , type: StructureType.String, title: 'Title', value: 'BEVERAGE + WINE COOLER'},
             },
             {
-              link: {id : 0 , type: StructureType.String, title: 'Shop Now URL', value: '/products'},
+              link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
               image: {
                 id : 1 ,
                 type: StructureType.Image,

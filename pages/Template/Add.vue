@@ -3,7 +3,8 @@
 
     <div v-if="editMode" class="d-flex justify-space-between align-center">
       <breadcrumbs :locations="locations"/>
-      <v-btn elevation="0" color="grey darken-4 white--text" class="btn" :to="`/Template/Edit/${Template.id}/TemplateBuilder`">
+      <v-btn elevation="0" color="grey darken-4 white--text" class="btn"
+             :to="`/Template/Edit/${Template.id}/TemplateBuilder`">
         Go to Template Builder
       </v-btn>
     </div>
@@ -30,7 +31,7 @@
     </v-tabs-items>
 
 
-    <page-preview :value="Template.content" class="tw-bg-white tw-mt-10 tw-rounded-lg" />
+    <page-preview :value="Template.widgets" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
 
     <loading-overlay :show="Api.Template.loading"/>
   </v-container>
@@ -56,7 +57,9 @@ export default class EntityForm extends Vue {
   tab = "";
 
   Template: Template = {
-    template_content: [],
+    id: 0,
+    name: '',
+    widgets: [],
   };
 
   locations: Array<{ title: string; to: string }> = [];

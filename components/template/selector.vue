@@ -40,7 +40,7 @@ export default class TemplateSelector extends Vue {
   }
 
   open(addNew = false , content = []){
-    this.template.template_content = content;
+    this.template.widgets = content;
     this.addNewTemplate = addNew;
     this.show = true;
   }

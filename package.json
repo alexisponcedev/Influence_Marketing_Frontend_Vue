@@ -33,11 +33,12 @@
   },
   "devDependencies": {
     "@mdi/font": "^6.7.96",
+    "@nuxt/image": "^0.7.1",
     "@nuxt/postcss8": "^1.1.3",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/vuetify": "^1.12.1",
-    "@openapitools/openapi-generator-cli": "^2.4.25",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "@tailwindcss/line-clamp": "^0.4.2",
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.16",

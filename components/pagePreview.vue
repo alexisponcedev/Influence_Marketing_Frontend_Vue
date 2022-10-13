@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div v-if="showTitle" class="title">Page Preview</div>
+
     <component
       :editable="false"
       v-for="block in blocksList" :key="block.id"
@@ -17,6 +19,16 @@ import draggable from "vuedraggable";
   components: {draggable}
 })
 export default class PageBuilder extends Vue {
+  @Prop({type : Boolean , default : true}) showTitle! : boolean
   @VModel({type: Array}) blocksList!: any
 }
 </script>
+
+
+<style lang="scss" scoped>
+  .title{
+    font-weight: bold;
+    font-size: 15px !important;
+    padding: 0px 5px;
+  }
+</style>
