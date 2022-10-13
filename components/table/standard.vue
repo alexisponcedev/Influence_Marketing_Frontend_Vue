@@ -17,7 +17,9 @@
     :loading="loading"
     :gridOnly="gridOnly"
     @click:row="clickRow"
+    :gridCenter="gridCenter"
     @showListView="gridMode = false"
+    v-on="$listeners"
   />
   <div v-else>
     <v-card-title>
@@ -92,6 +94,20 @@
         </v-icon>
         {{ config.globalActions[0].text }}
       </v-btn>
+      <v-btn
+        v-if="selectedRows.length"
+        small
+        outlined
+        class="mx-1"
+        color="danger"
+        @click="
+          $emit('submitSelectedRows', selectedRows);
+          selectedRows = [];
+        "
+      >
+        <v-icon left v-html="selectButtonIcon" />
+        {{ selectButtonText }} {{ selectedRows.length }} item
+      </v-btn>
     </v-card-title>
     <v-dialog v-model="customizeViewShow" max-width="300">
       <v-card>
@@ -114,6 +130,7 @@
       </v-card>
     </v-dialog>
     <v-data-table
+      v-model="selectedRows"
       item-key="id"
       :loading="loading"
       :items="items"
@@ -159,7 +176,7 @@
               :to="getActionTo(action.to, item)"
               :key="'1-' + itemIndex + '-' + actionIndex"
             >
-              <v-icon small>
+              <v-icon :left="!!action.text" small>
                 {{ action.icon }}
               </v-icon>
               {{ action.text }}
@@ -173,7 +190,7 @@
               @click.stop="action.onClick(item)"
               :key="'2-' + itemIndex + '-' + actionIndex"
             >
-              <v-icon small>
+              <v-icon :left="!!action.text" small>
                 {{ action.icon }}
               </v-icon>
               {{ action.text }}
@@ -200,11 +217,15 @@ export default class StandardTable extends Vue {
   @Prop(Boolean) readonly showSelect!: Boolean;
   @Prop(Boolean) readonly reorderable!: Boolean;
   @Prop(Boolean) readonly exportable!: Boolean;
+  @Prop(Boolean) readonly gridCenter!: Boolean;
   @Prop(Boolean) readonly gridOnly!: Boolean;
   @Prop(Boolean) readonly loading!: Boolean;
   @Prop(Boolean) readonly grid!: Boolean;
   @Prop(Array) readonly items!: Array<Object>;
   @Prop(Number) readonly total!: Number;
+  @Prop({ default: "mdi-delete", type: String })
+  readonly selectButtonIcon!: String;
+  @Prop({ default: "Remove", type: String }) readonly selectButtonText!: String;
   @PropSync("options", { type: Object }) readonly optionsSync!: Object;
   @Prop({ default: () => [5, 10, 15, -1] })
   readonly itemsPerPageOptions!: Array<number>;
@@ -241,6 +262,7 @@ export default class StandardTable extends Vue {
   customizeViewShow: Boolean = false;
   reorderMode: Boolean = false;
   gridMode: Boolean = false;
+  selectedRows: Array<any> = [];
 
   mounted() {
     if (this.grid) this.gridMode = true;

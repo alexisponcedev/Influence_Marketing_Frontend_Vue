@@ -72,21 +72,39 @@
                     : getProperty(item, config.grid.image)
                 "
               />
-              <v-card-title v-if="config.grid.title">
+              <v-card-title
+                v-if="config.grid.title"
+                :class="{
+                  'text-h4': gridCenter,
+                  'font-weight-bold': gridCenter,
+                  'justify-content-center': gridCenter,
+                }"
+              >
                 {{
                   typeof config.grid.title === "function"
                     ? config.grid.title(item)
                     : getProperty(item, config.grid.title)
                 }}
               </v-card-title>
-              <v-card-subtitle v-if="config.grid.subtitle">
+              <v-card-subtitle
+                :class="{
+                  'text-center': gridCenter,
+                  ' pt-2 pb-0': gridCenter,
+                }"
+                v-if="config.grid.subtitle"
+              >
                 {{
                   typeof config.grid.subtitle === "function"
                     ? config.grid.subtitle(item)
                     : getProperty(item, config.grid.subtitle)
                 }}
               </v-card-subtitle>
-              <v-card-text v-if="config.grid.chips">
+              <v-card-text
+                :class="{
+                  'text-center': gridCenter,
+                }"
+                v-if="config.grid.chips"
+              >
                 <v-chip
                   v-for="(chip, index) in typeof config.grid.chips ===
                   'function'
@@ -100,7 +118,12 @@
                 </v-chip>
               </v-card-text>
 
-              <v-card-actions v-if="config.actions">
+              <v-card-actions
+                :class="{
+                  'flex-flow-column': gridCenter,
+                }"
+                v-if="config.actions"
+              >
                 <v-spacer />
                 <template
                   v-for="(action, actionIndex) in config.actions"
@@ -108,31 +131,34 @@
                 >
                   <v-btn
                     v-if="action.to"
+                    class="ma-1"
                     :icon="!action.text"
                     :text="!!action.text"
                     :outlined="!!action.text"
                     :to="getActionTo(action.to, item)"
                     :key="'1-' + itemIndex + '-' + actionIndex"
                   >
-                    <v-icon small>
+                    <v-icon>
                       {{ action.icon }}
                     </v-icon>
                     {{ action.text }}
                   </v-btn>
                   <v-btn
                     v-else
+                    class="ma-1"
                     :icon="!action.text"
                     :text="!!action.text"
                     :outlined="!!action.text"
                     @click.stop="action.onClick(item)"
                     :key="'2-' + itemIndex + '-' + actionIndex"
                   >
-                    <v-icon small>
+                    <v-icon>
                       {{ action.icon }}
                     </v-icon>
                     {{ action.text }}
                   </v-btn>
                 </template>
+                <v-spacer v-if="gridCenter" />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -152,10 +178,11 @@ export default class StandardTable extends Vue {
   @Prop(Array) readonly items!: Array<Object>;
   @Prop(Boolean) readonly gridOnly!: Boolean;
   @Prop(Boolean) readonly loading!: Boolean;
+  @Prop(Boolean) readonly gridCenter!: Boolean;
   @Prop(Object) readonly config!: {
     globalActions?: Array<{
       text?: string;
-      class?:String,
+      class?: String;
       color?: string;
       action?: string;
     }>;
