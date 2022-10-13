@@ -9,7 +9,7 @@
     <div class="product-new "> <span v-if="model.isNew">New</span></div>
 
     <div class="tw-flex tw-items-center tw-justify--center">
-      <img format="webp" :src="Image"
+      <img :src="Image"
         alt="image address" class="product-image tw-mx-auto tw-mb-6"/>
     </div>
 

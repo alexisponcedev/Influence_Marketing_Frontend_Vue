@@ -70,13 +70,13 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxt/postcss8',
-    '@nuxt/image',
+    // '@nuxt/image',
   ],
   image: {
     domains: [
       'https://assets.hisense-usa.com',
-      'http://localhost',
-      'https://imcxm.dev.hisenseportal.com/'
+      // 'http://localhost',
+      // 'https://imcxm.dev.hisenseportal.com/'
     ]
   },
 
