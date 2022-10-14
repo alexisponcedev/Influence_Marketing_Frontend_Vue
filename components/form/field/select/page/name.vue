@@ -10,7 +10,7 @@
       :item-text="'title'"
       :item-value="'value'"
       placeholder="Parent Route"
-      :items="items"
+      :items="Api.Page.routes"
       :loading="typeof field.loading === 'function' ? field.loading() : field.loading "
       :readonly="typeof field.readonly === 'function' ? field.readonly() : field.readonly"
       :disabled=" typeof field.disabled === 'function' ? field.disabled() : field.disabled "
@@ -27,7 +27,8 @@ import {Page} from "~/repositories";
 
 @Component
 export default class AutoCompleteSelectPageNameFormField extends Vue {
-  @VModel() model!: Array<String>;
+  @VModel() model!: Array<String>
+  @Prop({type: Object, default: () => []}) pages!: Array<any>
   @Prop({
     type: Object, default: {
       label: 'Page Url',
@@ -39,18 +40,8 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
 
   Api = Api;
 
-  items: Array<any> = [];
-
-
   async mounted() {
-
-    this.items = ((await Api.Page.getAll()) as Array<Page>)
-      .map(page => {
-        return {
-          title: 'https://hisense-usa.com' + page.route,
-          value: page.route
-        }
-      });
+    if(Api.Page.routes.length === 0) await Api.Page.getRoutes();
   }
 }
 </script>
