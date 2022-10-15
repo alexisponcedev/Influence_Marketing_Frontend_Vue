@@ -89,7 +89,10 @@
         "
         :to="config.globalActions[0].to"
       >
-        <v-icon v-if="config.globalActions[0].icon" left>
+        <v-icon
+          v-if="config.globalActions[0].icon"
+          :left="!!config.globalActions[0].text"
+        >
           {{ config.globalActions[0].icon }}
         </v-icon>
         {{ config.globalActions[0].text }}
