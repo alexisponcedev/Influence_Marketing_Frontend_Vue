@@ -55,7 +55,7 @@ export default class AllPages extends Vue {
         icon: "mdi-delete",
         onClick: (Page: PageResource) => {
           AppStore.showDeleteConfirmationModal({
-            deleteItemTitle: Page.name || "",
+            deleteItemTitle: Page.title || "",
             deleteItem: Page,
             agreeButton: { callback: this.deletePage },
           });
