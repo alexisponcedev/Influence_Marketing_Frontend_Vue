@@ -5,6 +5,7 @@
 @layer base {
   @import "~assets/fonts/gotham/font-face.css";
   @import "~assets/fonts/hisense/font-face.css";
+  @import "~assets/fonts/socicon/font-face.css";
 }
 
 @layer components{
@@ -21,6 +22,20 @@
   .no-scrollbar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  .socicon::before, [class^="socicon-"]::before, [class*=" socicon-"]::before {
+    display: inline-block;
+    font-family: 'socicon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Improve font-rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

@@ -12,7 +12,7 @@
 
         <v-expansion-panel-content>
           <div v-for="(block , j) in group.blocks" :key="`${i}-${j}`" class="tw-border-2 tw-border-solid tw-border-gray-200 tw-rounded-lg tw-p-2 tw-bg-gray-50 tw-mb-2" >
-            <img :src="`/blocks/${block.image}`" alt="component thumbnail" class="tw-rounded-lg tw-bg-gray-50 tw-h-28 tw-w-full tw-object-cover">
+            <img :src="`/blocks/${block.image}`" alt="component thumbnail" class="tw-rounded tw-bg-gray-50 tw-max-h-28 tw-w-full tw-object-cover">
             <div class="tw-flex tw-items-center tw-justify-between">
               <p class="tw-font-italic" style="margin-bottom: 0 !important;">{{block.title}}</p>
               <button @click="addBlock(block)">

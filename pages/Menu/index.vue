@@ -1,68 +1,36 @@
 <template>
   <v-container fluid>
 
-    <v-tabs show-arrows v-model="tab" background-color="transparent">
-      <v-tab href="#hamburger">Hamburger Menu</v-tab>
-      <v-tab href="#centerOptions">Center Options</v-tab>
-      <v-tab href="#rightOptions">Right Options</v-tab>
-    </v-tabs>
+    <v-card >
+      <div class="tw-p-2 tw-space-y-2">
+        <nuxt-link to="/Menu/header" class="tw-block tw-h-20 tw-bg-gray-50 tw-text-center tw-py-5 tw-rounded-xl tw-flex tw-items-center tw-justify-center hover:tw-bg-gray-100 tw-border tw-border-dashed tw-border-gray-200">
+          Edit Header Menu
+        </nuxt-link>
 
-
-    <v-card>
-      <v-tabs-items v-model="tab">
-        <v-tab-item value="hamburger">
-          <v-card-text>
-            <h6>Hamburger Menu Items</h6>
-            <menu-items v-model="menu.hamburger"/>
-          </v-card-text>
-        </v-tab-item>
-        <v-tab-item value="centerOptions">
-          <v-card-text>
-            <h6>Center Options</h6>
-
-
-            <div class="tw-space-y-3">
-              <menu-option v-for="(option , i) in menu.centerOption" :key="`center_option_${i}`"
-                           :value="option" @input="v => option = v"/>
-
-              <button
-                @click="addNewOption(menu.centerOption)"
-                class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
-                Add New Option
-              </button>
-            </div>
-
-
-          </v-card-text>
-        </v-tab-item>
-        <v-tab-item value="rightOptions">
-          <v-card-text>
-            <h6>Right Options</h6>
-            <div class="tw-space-y-3">
-              <menu-option v-for="(option , i) in menu.rightOption" :key="`center_option_${i}`"
-                           :value="option" @input="v => option = v"/>
-
-              <button
-                @click="addNewOption(menu.rightOption)"
-                class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
-                Add New Option
-              </button>
-            </div>
-          </v-card-text>
-        </v-tab-item>
-      </v-tabs-items>
+        <div class="tw-text-center tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-py-32">
+          Page Content Is Here
+        </div>
+        <nuxt-link to="/Menu/footer" class="tw-block tw-h-20 tw-bg-gray-50 tw-text-center tw-py-20 tw-rounded-xl tw-flex tw-items-center tw-justify-center hover:tw-bg-gray-100 tw-border tw-border-dashed tw-border-gray-200">
+          Edit Footer Menu
+        </nuxt-link>
+      </div>
 
     </v-card>
 
-    <v-card class="mt-5">
-      <v-card-text align="end">
-        <v-btn color="success" @click="submit">Save Changes</v-btn>
-      </v-card-text>
-    </v-card>
+<!--    <v-card >-->
+<!--      <div class="tw-flex tw-items-center tw-justify-center tw-space-x-4" style="height: 500px">-->
+<!--        <nuxt-link to="/Menu/header"-->
+<!--                   class="tw-w-48 tw-h-48 tw-border tw-border-dashed tw-border-gray-300 hover:tw-bg-gray-50 tw-rounded-xl tw-flex tw-items-center tw-justify-center">-->
 
-    <menu-item ref="menuItemEditor" v-model="menu.hamburger"/>
+<!--          Header Menu-->
+<!--        </nuxt-link>-->
 
-    <!-- <loading-overlay :show="Api.Site.loading" /> -->
+<!--        <nuxt-link to="/Menu/footer" class="tw-w-48 tw-h-48 tw-border tw-border-dashed tw-border-gray-300 hover:tw-bg-gray-50 tw-rounded-xl tw-flex tw-items-center tw-justify-center">-->
+<!--          Footer Menu-->
+<!--        </nuxt-link>-->
+<!--      </div>-->
+
+<!--    </v-card>-->
   </v-container>
 </template>
 
@@ -79,148 +47,6 @@ export default class Menus extends Vue {
 
   tab = "centerOptions";
 
-  menu = {
-    hamburger: [
-      {id: 0, name: 'Company', url: '/'},
-      {id: 1, name: 'Commercial', url: '/'},
-      {id: 2, name: 'Support', url: '/'},
-      {id: 3, name: 'Register', url: '/'},
-      {id: 4, name: 'Contact', url: '/'},
-    ],
-    centerOption: [
-      {
-        name: 'TV + Audio',
-        url : '/',
-        columns: [
-          [
-            {name: 'TELEVISIONS', url: '/'},
-            {name: 'LASER TV', url: '/'},
-            {name: '4K ULED', url: '/'},
-            {name: '4K UHD', url: '/'},
-            {name: 'SMART TV PLATFORMS', url: '/'},
-            {name: 'ALL TVs', url: '/'},
-          ],
-          [
-            {name: 'HOME AUDIO', 'url': ''},
-            {name: '2.0 CH SOUNDBARS', 'url': ''},
-            {name: '2.1 CH SOUNDBARS', 'url': ''},
-            {name: '3.1 CH SOUNDBARS', 'url': ''},
-            {name: 'ALL HOME AUDIO', 'url': ''},
-          ]
-        ],
-        products: [
-          {
-            name: 'Product Name 1',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
-          },
-          {
-            name: 'Product Name 2',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/448/f5c88a7895/u8h__ScaleMaxWidthWzY0MF0.png'
-          },
-        ]
-      },
-      {
-        name: 'APPLIANCES',
-        url : '/',
-        columns: [
-          [
-            {name: 'EXPLORE HOME APPLIANCES', url: '/'},
-            {name: 'DISHWASHERS', url: '/'},
-            {name: 'BEVERAGE + WINE COOLERS', url: '/'},
-            {name: 'REFRIGERATORS', url: '/'},
-          ],
-        ],
-        products: [
-          {
-            name: 'Product Name 1',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png'
-          },
-          {
-            name: 'Product Name 2',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/471/596d3db992/micro-closed_ScaleMaxHeightWzc1MF0__ScaleMaxWidthWzY0MF0.png'
-          },
-          {
-            name: 'Product Name 3',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/158/7051a421d1/Carousel-5-min__ScaleMaxWidthWzY0MF0.png'
-          },
-        ]
-      },
-      {
-        name: 'AIR PRODUCTS',
-        url : '/',
-        columns: [
-          [
-            {name: 'EXPLORE AIR PRODUCTS', url: '/'},
-            {name: 'WINDOW AC', url: '/'},
-            {name: 'PORTABLE AC', url: '/'},
-            {name: 'DEHUMIDIFIERS', url: '/'},
-            {name: 'AIR PURIFIER', url: '/'},
-            {name: 'ALL AIR PRODUCTS', url: '/'},
-          ],
-        ],
-        products: [
-          {
-            name: 'Product Name 1',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/397/761648fb97/AW0822CW1W-front__ScaleMaxWidthWzY0MF0.png'
-          },
-          {
-            name: 'Product Name 2',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/400/386becd4f1/DH5022K1W-front__ScaleMaxWidthWzY0MF0.png'
-          },
-          {
-            name: 'Product Name 3',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/396/2d8dfdfe04/1-front-AP1022TW1GD-1__ScaleMaxWidthWzY0MF0.png'
-          },
-        ]
-      },
-    ],
-    rightOption: [
-      {
-        name: 'Commercial',
-        url : '/',
-        columns: [
-          [
-            {name: 'Commercial Displays', url: '/'},
-            {name: 'Commercial Refrigerators', url: '/'},
-          ],
-        ],
-        products: [
-          {
-            name: 'Product Name 1',
-            url: '/',
-            image: 'https://assets.hisense-usa.com/assets/PageMenuImage/169/f982c6d16b/Hisense-Commercial-header-menu_-Recovered__ScaleMaxWidthWzY0MF0.png'
-          },
-        ]
-      },
-    ]
-  }
-
-  addNewOption(list : any){
-    list.push({
-      name: 'New Option Title',
-      url : '/',
-      columns: [
-        [
-          {name: 'Sample Item', url: '/'},
-        ],
-      ],
-      products: [
-        {
-          name: 'Product Name 1',
-          url: '/',
-          image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
-        },
-      ]
-    },)
-  }
-
 }
 </script>
+

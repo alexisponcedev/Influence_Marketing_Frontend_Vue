@@ -33,7 +33,6 @@ export default class ProductBanner extends Vue {
           title : 'Banner Title',
           value : 'Introducing <br /> The All New U Series'
         },
-
         subtitle : {
           id : 1,
           type : StructureType.String,
@@ -47,7 +46,6 @@ export default class ProductBanner extends Vue {
           src : 'https://assets.hisense-usa.com/assets/ProductCategoryImages/2693e641dd/Hisense-New-TVs-header__ScaleMaxWidthWzEwMjRd.png',
           alt : 'banner image',
         },
-
       }
   }
 

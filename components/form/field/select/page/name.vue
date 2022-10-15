@@ -28,7 +28,7 @@ import {Page} from "~/repositories";
 @Component
 export default class AutoCompleteSelectPageNameFormField extends Vue {
   @VModel() model!: Array<String>
-  @Prop({type: Object, default: () => []}) pages!: Array<any>
+  // @Prop({type: Array , default: () => []}) pages!: Array<any>
   @Prop({
     type: Object, default: {
       label: 'Page Url',

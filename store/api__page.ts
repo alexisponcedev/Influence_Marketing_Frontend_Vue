@@ -49,6 +49,8 @@ export default class api__page extends VuexModule {
     return [];
   }
 
+
+
   @Action({ commit: "updateRoutes" })
   async getRoutes() {
     this.setLoading(true);

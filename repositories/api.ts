@@ -1140,10 +1140,10 @@ export interface Menu {
     'title'?: string;
     /**
      *
-     * @type {string}
+     * @type {any}
      * @memberof Menu
      */
-    'url'?: string;
+    'widgets'?: any;
 }
 /**
  * Menu Resource model
@@ -1165,10 +1165,10 @@ export interface MenuResource {
     'title'?: string;
     /**
      *
-     * @type {string}
+     * @type {Array<object>}
      * @memberof MenuResource
      */
-    'url'?: string;
+    'widgets'?: Array<object>;
 }
 /**
  * Page model
@@ -1404,7 +1404,7 @@ export interface PageResource {
      * @type {string}
      * @memberof PageResource
      */
-    'name'?: string;
+    'title'?: string;
     /**
      *
      * @type {string}
