@@ -84,14 +84,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    'nuxt-webfontloader',
+    'nuxt-webfontloader'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
     defaultAssets: {
-      font: false,
+      font: false
     },
     treeShake: true,
     theme: {

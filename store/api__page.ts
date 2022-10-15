@@ -15,6 +15,7 @@ import {
 export default class api__page extends VuexModule {
   loading: Boolean = false;
   all: Array<PageResource> = [];
+  routes : Array<any> = [];
 
   @Mutation
   setLoading(status: Boolean) {
@@ -24,6 +25,12 @@ export default class api__page extends VuexModule {
   @Mutation
   updateAll(all: Array<PageResource>) {
     this.all = all;
+  }
+
+  @Mutation
+  updateRoutes(routes: Array<any>) {
+    // this.routes = [{title : 'Static Route' , value : '#'}] .concat(routes);
+    this.routes = routes;
   }
 
   @Action({ commit: "updateAll" })
@@ -39,6 +46,34 @@ export default class api__page extends VuexModule {
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data.data;
+    return [];
+  }
+
+
+
+  @Action({ commit: "updateRoutes" })
+  async getRoutes() {
+    this.setLoading(true);
+    const response = await PageApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .pageList()
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data.data!.map(page => {
+        return {
+          title: 'https://hisense-usa.com' + page.route,
+          value: page.route
+        }
+      });
+    return [];
+  }
+
+  @Action({ commit: "updateRoutes" })
+  clearRoutes() {
     return [];
   }
 

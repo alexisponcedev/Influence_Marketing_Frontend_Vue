@@ -16,6 +16,7 @@ import api__category from "@/store/api__category";
 import api__block from "@/store/api__block";
 import api__asset from "@/store/api__asset";
 import api__template from "@/store/api__template";
+import api__menu from "~/store/api__menu";
 
 let AppStore: appStore;
 let ThemeConfig = themeConfig;
@@ -30,6 +31,7 @@ class Api {
   static Constant: api__constant;
   static Adventure: api__adventure;
   static Page: api__page;
+  static Menu: api__menu;
   static Template: api__template;
   // static Component: api__component;
   static Category: api__category;
@@ -43,6 +45,7 @@ function initialiseStores(store: Store<any>): void {
   Api.Site = getModule(api__site, store);
   Api.Rule = getModule(api__rule, store);
   Api.Page = getModule(api__page, store);
+  Api.Menu = getModule(api__menu, store);
   Api.Template = getModule(api__template, store);
   Api.Asset = getModule(api__asset, store);
   // Api.Component = getModule(api__component, store);
