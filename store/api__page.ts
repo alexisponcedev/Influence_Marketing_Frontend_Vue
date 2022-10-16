@@ -49,6 +49,22 @@ export default class api__page extends VuexModule {
     return [];
   }
 
+  @Action({ commit: "updateAll" })
+  async getDynamicPages() {
+    this.setLoading(true);
+    const response = await PageApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .getListDynamicPage()
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data.data;
+    return [];
+  }
+
 
 
   @Action({ commit: "updateRoutes" })

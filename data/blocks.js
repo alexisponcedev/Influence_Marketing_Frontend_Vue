@@ -72,6 +72,14 @@ export const blocks = () => [
         title: 'Products Grid',
         image: "Product Grid.png"
       },
+
+      {
+        name: 'ProductInfoAndSliderBox',
+        title: 'Products Info and Slider Box',
+        image: "ProductInfoAndSliderBox.png"
+      },
+
+
     ]
   }
 ];
