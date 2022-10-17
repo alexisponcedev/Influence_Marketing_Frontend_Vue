@@ -9634,6 +9634,11 @@
   "resolved" "https://registry.npmjs.org/vue-client-only/-/vue-client-only-2.1.0.tgz"
   "version" "2.1.0"
 
+"vue-debounce@^4.0.0":
+  "integrity" "sha512-+BrcKfLpyDpUJ58ZrAvI35irRCgYHFpnF3NJZwwaz8/kkKmEq6TWPXBIhLh2HQAsUZNwo52K/vQyiEFsJ/1RYA=="
+  "resolved" "https://registry.npmjs.org/vue-debounce/-/vue-debounce-4.0.0.tgz"
+  "version" "4.0.0"
+
 "vue-drag-drop@^1.1.4":
   "integrity" "sha512-zrpvKcD5LPVbht7cJ7ZBY0poS8GDLibRck18Zx0polkoSSpTPNMAv/m/b98xtZ3I1jdWGyiPybfPgKFFkygjhQ=="
   "resolved" "https://registry.npmjs.org/vue-drag-drop/-/vue-drag-drop-1.1.4.tgz"
@@ -9745,7 +9750,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2.0.0", "vue@^2.6.12", "vue@^2.6.4", "vue@^2.7.2", "vue@>=2":
+"vue@*", "vue@^2.0.0", "vue@^2.6.12", "vue@^2.6.4", "vue@^2.7.2", "vue@>= 2.0.0", "vue@>=2":
   "integrity" "sha512-ncwlZx5qOcn754bCu5/tS/IWPhXHopfit79cx+uIlLMyt3vCMGcXai5yCG5y+I6cDmEj4ukRYyZail9FTQh7lQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.8.tgz"
   "version" "2.7.8"

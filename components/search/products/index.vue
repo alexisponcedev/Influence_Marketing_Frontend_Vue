@@ -1,7 +1,8 @@
 <template>
   <div class="">
     <v-text-field
-      v-model="search"
+      :value="search"
+      v-debounce:700ms="runSearch"
       label="Search Products"
       placeholder="please enter product name or model ..."
       clearable
@@ -53,11 +54,14 @@ export default class SearchProductIndex extends Vue {
     this.searchProduct();
   }
 
+  runSearch(search : string){
+    this.search = search;
+  }
   searchProduct() {
     this.loading = true;
     let query = [`search=${this.search}`];
     if(this.category_id > 0) query.push(`category_id=${this.category_id}`)
-    this.$axios.$get(`https://impim.dev-api.hisenseportal.com/api/cms/getProductsList?category_id=${query.join('&')}`)
+    this.$axios.$get(`https://impim.dev-api.hisenseportal.com/api/cms/getProductsList?${query.join('&')}`)
       .then(res => {
         this.products = this.max > 0 ? res.data.slice(0, this.max) : res.data;
         if(this.run) this.products = this.run(this.products);
