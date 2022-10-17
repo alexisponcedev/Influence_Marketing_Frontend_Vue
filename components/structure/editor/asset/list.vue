@@ -6,7 +6,23 @@
 
     <v-card-text>
       <v-row>
-        <form-field-text :field="searchField" v-model="search"/>
+
+
+<!--        <v-text-field-->
+<!--          outlined-->
+<!--          single-line-->
+<!--          :value="search"-->
+<!--          v-debounce:700ms="runSearch"-->
+<!--          placeholder="search assets"-->
+<!--        />-->
+
+        <form-field-text
+          :field="searchField"
+          :value="search"
+          v-debounce:700ms="runSearch"
+          debounce-events="input"
+        />
+
         <v-col cols="2" class="py-0 pb-6 word-wrap-break-word">
           <button class="tw-p-3.5 tw-bg-gray-100 tw-rounded tw-border tw-border-gray-200 tw-border-solid"
                   @click="addNewAsset">
@@ -63,6 +79,11 @@ export default class StructureAssetList extends Vue {
     this.getAssets();
   }
 
+  runSearch(search: string) {
+    console.log('run search : ' ,search);
+    this.search = search;
+  }
+
   async getAssets() {
     if (this.search)
       await Api.Asset.searchAssets(this.search)
@@ -85,7 +106,7 @@ export default class StructureAssetList extends Vue {
   }
 
   @Watch('search')
-  searchUpdated(){
+  searchUpdated() {
     this.getAssets()
   }
 

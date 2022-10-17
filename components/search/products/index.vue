@@ -31,7 +31,6 @@
 <script lang="ts">
 import {Vue, Component, VModel, Watch, Prop} from "vue-property-decorator";
 import {Api} from "~/utils/store-accessor";
-import {Page} from "~/repositories";
 
 @Component
 export default class SearchProductIndex extends Vue {
