@@ -17,7 +17,7 @@ export default class StructureUrlEditor extends Vue {
     label: "Page URL",
     placeholder: 'Enter page name',
     'item-text' : 'title',
-    'item-value' : 'value',
+    'item-value' : 'absolute',
     rules: [],
     colAttrs: {cols: 12},
   }

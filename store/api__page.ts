@@ -81,8 +81,10 @@ export default class api__page extends VuexModule {
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data.data!.map(page => {
         return {
-          title: 'https://hisense-usa.com' + page.route,
-          value: page.route
+          title: page.title,
+          route: 'https://hisense-usa.com' + page.route,
+          relative: page.route,
+          absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!.toLowerCase().replace(/ /g, '-'))
         }
       });
     return [];

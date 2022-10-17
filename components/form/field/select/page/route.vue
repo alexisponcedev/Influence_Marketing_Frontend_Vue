@@ -48,7 +48,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     label: "Parent Page URL",
     placeholder: 'Enter page name',
     'item-text' : 'title',
-    'item-value' : 'value',
+    'item-value' : 'relative',
     rules: [],
     colAttrs: {cols: 4},
   }
