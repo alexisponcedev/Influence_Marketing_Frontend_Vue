@@ -57,8 +57,7 @@ export default {
     '~/plugins/apexChart.client.js',
     '~/plugins/vue-draggable.js',
     '~/plugins/date-picker.js',
-    '~/plugins/vue2Editor.js',
-    '~/plugins/debounce.js'
+    '~/plugins/vue2Editor.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

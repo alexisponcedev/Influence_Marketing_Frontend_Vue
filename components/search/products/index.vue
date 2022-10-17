@@ -1,8 +1,8 @@
 <template>
   <div class="">
     <v-text-field
-      :value="search"
-      v-debounce:700ms="runSearch"
+      v-model="search"
+      @keyup="searchWithDebounceTime"
       label="Search Products"
       placeholder="please enter product name or model ..."
       clearable
@@ -37,6 +37,7 @@ export default class SearchProductIndex extends Vue {
   @Prop({type : Number}) category_id!:number
   @Prop({type : Number , default : 9}) max!:number
   @Prop({type : Boolean , default : false}) alwaysShow!:boolean
+  @Prop({type : Boolean , default : false}) initLoad!:boolean
   @VModel({type: Array}) model!: any
   @Prop(Function) run! : Function
   Api = Api;
@@ -50,12 +51,18 @@ export default class SearchProductIndex extends Vue {
 
 
   mounted() {
-    this.searchProduct();
+    if(this.initLoad) this.searchProduct();
   }
 
-  runSearch(search : string){
-    this.search = search;
+  _timer : any = null;
+
+  searchWithDebounceTime() {
+    clearTimeout(this._timer);
+    this._timer = setTimeout(() => {
+      this.searchProduct();
+    }, 700);
   }
+
   searchProduct() {
     this.loading = true;
     let query = [`search=${this.search}`];
@@ -70,18 +77,18 @@ export default class SearchProductIndex extends Vue {
       });
   }
 
-  @Watch('search')
-  onSearchChanged() {
-    this.searchProduct();
-  }
+  // @Watch('search')
+  // onSearchChanged() {
+  //   this.searchWithDebounceTime();
+  // }
 
   @Watch('category_id')
   onCategoryIdChanged(){
     this.searchProduct()
+    // this.searchWithDebounceTime()
   }
 
   addProduct(product: Object) {
-    console.log('trying to add product to list', product);
     this.$emit('addProduct', product);
   }
 

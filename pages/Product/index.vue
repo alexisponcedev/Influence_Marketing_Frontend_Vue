@@ -35,12 +35,14 @@
               ></v-progress-circular>
             </div>
             <div v-else>
-              <search-products ref="searchProducts"
-                               :max="-1"
-                               :run="appendPageData"
-                               :always-show="true"
-                               :category_id="selectedCategory.id"
-                               v-model="search">
+              <search-products
+                ref="searchProducts"
+                :max="-1"
+                :initLoad="true"
+                :run="appendPageData"
+                :always-show="true"
+                :category_id="selectedCategory.id"
+                v-model="search">
 
 
                 <template #placeholder>
@@ -59,13 +61,16 @@
 
 
                 <template #default="{products}">
-                  <div class="tw-grid tw-grid-cols-6 tw-gap-2">
+                  <div class="tw-grid tw-grid-cols-5 3xl:tw-grid-cols-6  tw-gap-2">
                     <div v-for="product in products" :key="product.id"
                          class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-2">
 
-                      <img :src="product.image" alt=""
-                           style="min-height: 160px;"
-                           class="tw-mx-auto tw-max-h-40 tw-object-cover tw-min-h-40">
+                      <div class="tw-h-40 tw-w-full tw-flex tw-items-center tw-justify-center">
+                        <img :src="product.image" alt=""
+                             style="min-height: 110px;"
+                             class="tw-object-cover tw-max-h-full">
+                      </div>
+
 
                       <div class="tw-font-semibold tw-line-clamp-1 tw-text-center" :title="product.name">
                         {{ product.name }}

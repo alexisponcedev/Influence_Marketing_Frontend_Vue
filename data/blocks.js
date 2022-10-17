@@ -243,7 +243,7 @@ export const blocks = () => [
         image: "MoreTvAmericaBox.png",
       },
       {
-        name: "MoreTvFindHisense",
+        name: "MoreTvLessTalk",
         title: "MoreTv less talk",
         image: "MoreTvLessTalk.png",
       },
