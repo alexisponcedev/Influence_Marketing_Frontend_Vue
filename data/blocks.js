@@ -72,12 +72,42 @@ export const blocks = () => [
         title: 'Products Grid',
         image: "Product Grid.png"
       },
-
       {
         name: 'ProductInfoAndSliderBox',
         title: 'Products Info and Slider Box',
         image: "ProductInfoAndSliderBox.png"
       },
+      {
+        name: 'ProductArticles',
+        title: 'Product Articles',
+        image: "ProductArticles.png"
+      },
+      {
+        name: 'ProductBigScreen',
+        title: 'Product Big Screen',
+        image: "ProductBigScreen.png"
+      },
+      {
+        name: 'ProductFindMeAtStore',
+        title: 'Product Find Me At Store',
+        image: "ProductFindMeAtStore.png"
+      },
+      {
+        name: 'ProductImage',
+        title: 'Product Image',
+        image: "ProductImage.png"
+      },
+      {
+        name: 'ProductMenu',
+        title: 'Product Menu',
+        image: "ProductMenu.png"
+      },
+      {
+        name: 'ProductResources',
+        title: 'Product Resources',
+        image: "ProductResources.png"
+      },
+
 
 
     ]

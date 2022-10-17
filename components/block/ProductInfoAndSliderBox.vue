@@ -2,7 +2,6 @@
   <div>
     <img src="/blocks/ProductInfoAndSliderBox.png" alt="">
   </div>
-
 </template>
 
 <script lang="ts">
