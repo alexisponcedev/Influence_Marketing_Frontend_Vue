@@ -78,38 +78,40 @@ export const blocks = () => [
         image: "ProductInfoAndSliderBox.png"
       },
       {
-        name: 'ProductArticles',
-        title: 'Product Articles',
-        image: "ProductArticles.png"
+        name: 'ProductCategoryBox',
+        title: 'Product Category',
+        image: "ProductCategoryBox.png"
       },
       {
-        name: 'ProductBigScreen',
-        title: 'Product Big Screen',
-        image: "ProductBigScreen.png"
+        name: 'ProductImageBox',
+        title: 'Product Image Box',
+        image: "ProductImageBox.png"
       },
       {
-        name: 'ProductFindMeAtStore',
+        name: 'ProductBigContent',
+        title: 'Product Big Content',
+        image: "ProductBigContent.png"
+      },
+      {
+        name: 'ProductNewsBox',
+        title: 'Product News Box',
+        image: "ProductNewsBox.png"
+      },
+      {
+        name: 'ProductDetailsBox',
+        title: 'Product Full Specs',
+        image: "ProductDetailsBox.png"
+      },
+      {
+        name: 'ProductFineMeInStore',
         title: 'Product Find Me At Store',
-        image: "ProductFindMeAtStore.png"
+        image: "ProductFineMeInStore.png"
       },
       {
-        name: 'ProductImage',
-        title: 'Product Image',
-        image: "ProductImage.png"
-      },
-      {
-        name: 'ProductMenu',
-        title: 'Product Menu',
-        image: "ProductMenu.png"
-      },
-      {
-        name: 'ProductResources',
+        name: 'ProductRecrossesBox',
         title: 'Product Resources',
-        image: "ProductResources.png"
+        image: "ProductRecrossesBox.png"
       },
-
-
-
     ]
   }
 ];
