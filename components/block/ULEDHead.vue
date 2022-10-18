@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/ULEDImageBoxWithBtn.png" alt="" />
+        <img src="/blocks/ULEDHead.png" alt="" />
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import { StructureType } from "~/models/StructureType";
 import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockULEDImageBoxWithBtn extends Vue {
+export default class BlockULEDHead extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
     @VModel({ type: Object }) model!: Object;
@@ -36,15 +36,21 @@ export default class BlockULEDImageBoxWithBtn extends Vue {
                 image: {
                     id: 1,
                     type: StructureType.Image,
-                    title: "Upload Image",
-                    src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-                    alt: "Some note about this image",
+                    title: 'Upload header',
+                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/9ae312d30e/cat-uled-tvs-header-img__ScaleMaxWidthWzMwNDhd.jpg-er4sxv.jpg',
+                    alt: 'uled header',
                 },
-                Btn: {
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "Let’s get real. These are the TVs your old TV should be worried about.",
+                },
+                link: {
                     id: 2,
                     type: StructureType.Url,
-                    title: "Btn",
-                    value: "JargOn / JargOff",
+                    title: "See the range",
+                    value: "/",
                 },
             };
         }
