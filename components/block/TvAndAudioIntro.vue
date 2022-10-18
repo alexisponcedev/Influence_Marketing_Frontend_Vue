@@ -34,8 +34,8 @@ export default class BlockTvAndAudioIntro extends Vue {
                         { title: 'Dark', value: this.Theme.dark },
                     ]
                 },
-                largeTitle: {
-                    id: 1, type: StructureType.String, title: 'Large Title', value: 'introducing <br/> Hisense Soundbars' },
+                largeTitle: { id: 1, type: StructureType.String, title: 'Large Title', value: 'introducing' },
+                coloredTitle: { id: 1, type: StructureType.String, title: 'Colored Title', value: 'Hisense Soundbars' },
                 paragraph: {
                     id: 2,
                     type: StructureType.Text,

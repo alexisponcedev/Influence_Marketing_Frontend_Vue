@@ -34,29 +34,28 @@ export default class BlockTvAndAudioSmartChoice extends Vue {
                         { title: 'Dark', value: this.Theme.dark },
                     ]
                 },
-                title: {
+              title: {
                     id: 1,
                     type: StructureType.String,
-                    title: "Title",
-                    value: "4K HDR  ",
+                    title: "Black Title",
+                    value: "Make The",
                 },
+              coloredTitle: {
+                id: 1,
+                type: StructureType.String,
+                title: "Colored Title",
+                value: "Smart Choice",
+              },
                 paragraph: {
                     id: 2,
                     type: StructureType.String,
                     title: "Paragraph",
                     value: "The Hisense 4K UHD Smart Laser TV with Wide Color Gamut features a dual-color laser that displays a cinema-like picture full of rich, vibrant and true-to-life colors on an incredible 120” display. At every distance and angle, images are sharp and comfortable to watch for an immersive home-theater experience.",
                 },
-                leftImage: {
+                image: {
                     id: 3,
                     type: StructureType.Image,
                     title: 'Upload left Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-                    alt: 'Some note about this image',
-                },
-                rightImage: {
-                    id: 4,
-                    type: StructureType.Image,
-                    title: 'Upload right Image',
                     src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
                     alt: 'Some note about this image',
                 },
