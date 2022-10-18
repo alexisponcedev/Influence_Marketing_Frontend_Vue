@@ -58,10 +58,10 @@ export default class BlockULEDAllTech extends Vue {
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
               alt: "Some note about this image",
             },
-            discription: {
+            description: {
               id: 1,
               type: StructureType.String,
-              title: "Discription",
+              title: "Description",
               value: "Discover a New Expanse of Color",
             },
           },
@@ -74,10 +74,10 @@ export default class BlockULEDAllTech extends Vue {
                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                 alt: "Some note about this image",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },
@@ -89,10 +89,10 @@ export default class BlockULEDAllTech extends Vue {
                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                 alt: "Some note about this image",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },
@@ -104,10 +104,10 @@ export default class BlockULEDAllTech extends Vue {
                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                 alt: "Some note about this image",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },
@@ -119,10 +119,10 @@ export default class BlockULEDAllTech extends Vue {
                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                 alt: "Some note about this image",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },

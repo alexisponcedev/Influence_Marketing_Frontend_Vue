@@ -70,10 +70,10 @@ export default class BlockMoreTvBox extends Vue {
               title: "Model",
               value: "FireTv",
             },
-            discription: {
+            description: {
               id: 3,
               type: StructureType.String,
-              title: "Discription",
+              title: "Description",
               value: "Discover a New Expanse of Color",
             },
             link: {
@@ -104,10 +104,10 @@ export default class BlockMoreTvBox extends Vue {
                 title: "Model",
                 value: "FireTv",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               link: {
@@ -137,10 +137,10 @@ export default class BlockMoreTvBox extends Vue {
                 title: "Model",
                 value: "FireTv",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               link: {
@@ -170,10 +170,10 @@ export default class BlockMoreTvBox extends Vue {
                 title: "Model",
                 value: "FireTv",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               link: {
@@ -203,10 +203,10 @@ export default class BlockMoreTvBox extends Vue {
                 title: "Model",
                 value: "FireTv",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               link: {
@@ -236,10 +236,10 @@ export default class BlockMoreTvBox extends Vue {
                 title: "Model",
                 value: "FireTv",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               link: {
@@ -269,10 +269,10 @@ export default class BlockMoreTvBox extends Vue {
                 title: "Model",
                 value: "FireTv",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               link: {

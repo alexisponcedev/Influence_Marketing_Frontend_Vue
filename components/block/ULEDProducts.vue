@@ -44,10 +44,10 @@ export default class BlockULEDProducts extends Vue {
               title: "Title",
               value: "LASER TVS",
             },
-            discription: {
+            description: {
               id: 1,
               type: StructureType.String,
-              title: "Discription",
+              title: "Description",
               value: "Discover a New Expanse of Color",
             },
             image: {
@@ -78,10 +78,10 @@ export default class BlockULEDProducts extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               image: {
@@ -111,10 +111,10 @@ export default class BlockULEDProducts extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               image: {
@@ -144,10 +144,10 @@ export default class BlockULEDProducts extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               image: {
@@ -177,10 +177,10 @@ export default class BlockULEDProducts extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 1,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
               image: {

@@ -2163,21 +2163,21 @@ footer.footer {
 	margin-bottom: 35px;
 	padding: 5px;
 }
-.specs .discription-list dt {
+.specs .description-list dt {
 	display: none;
 	visibility: hidden;
 	pointer-events: none;
 	text-indent: 0;
 	width: 100%;
 }
-.specs .discription-list dd {
+.specs .description-list dd {
 	font-size: 15px;
 	line-height: 30px;
 	margin: 0;
 	padding: 5px;
 	color: #292929;
 }
-.specs .discription-list dd::before {
+.specs .description-list dd::before {
 	content: attr(data-label);
 	font-weight: 700;
 	font-size: 15px;
@@ -2187,10 +2187,10 @@ footer.footer {
 }
 
 @media (max-width: 575px) {
-	.specs .discription-list dd {
+	.specs .description-list dd {
 		font-size: 15px;
 	}
-	.specs .discription-list dd::before {
+	.specs .description-list dd::before {
 		font-weight: 600;
 		font-size: 13px;
 	}
@@ -3125,7 +3125,7 @@ footer.footer {
 	line-height: 20px;
 }
 /* /////////////////////////////////////// tv page ////////////////////////////////////////////////////// */
-.tv-page .specs .discription-list dd::before {
+.tv-page .specs .description-list dd::before {
 	color: #b3b3b3;
 }
 /* /////////////////////////////////////// product support //////////////////////////////////////////////// */

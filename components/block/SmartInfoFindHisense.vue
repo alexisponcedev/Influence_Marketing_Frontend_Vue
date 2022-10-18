@@ -39,10 +39,10 @@ export default class BlockSmartInfoFindHisense extends Vue {
                     title: "Title",
                     value: "LASER TVS",
                 },
-                discription: {
+                description: {
                     id: 2,
                     type: StructureType.String,
-                    title: "Discription",
+                    title: "Description",
                     value: "Discover a New Expanse of Color",
                 },
                 link: {

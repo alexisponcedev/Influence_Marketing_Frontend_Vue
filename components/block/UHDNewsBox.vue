@@ -51,10 +51,10 @@ export default class BlocUHDkNewsBox extends Vue {
                             title: "Title",
                             value: "ULED—Beautiful from the Inside Out",
                         },
-                        discription: {
+                        description: {
                             id: 2,
                             type: StructureType.String,
-                            title: "Discription",
+                            title: "Description",
                             value:
                                 "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
                         },
@@ -74,10 +74,10 @@ export default class BlocUHDkNewsBox extends Vue {
                                 title: "Title",
                                 value: "ULED—Beautiful from the Inside Out",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value:
                                     "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
                             },
@@ -96,10 +96,10 @@ export default class BlocUHDkNewsBox extends Vue {
                                 title: "Title",
                                 value: "ULED—Beautiful from the Inside Out",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value:
                                     "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
                             },
@@ -118,10 +118,10 @@ export default class BlocUHDkNewsBox extends Vue {
                                 title: "Title",
                                 value: "ULED—Beautiful from the Inside Out",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value:
                                     "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
                             },
