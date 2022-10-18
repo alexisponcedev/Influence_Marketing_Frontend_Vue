@@ -28,8 +28,8 @@ export default class BlockULEDImageBoxWithBtn extends Vue {
         title: "Theme",
         value: Theme.dark,
         items: [
-          {title: "Light", value: this.Theme.light},
-          {title: "Dark", value: this.Theme.dark},
+          { title: "Light", value: this.Theme.light },
+          { title: "Dark", value: this.Theme.dark },
         ],
       },
       image: {
