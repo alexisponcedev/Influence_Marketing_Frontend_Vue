@@ -47,9 +47,6 @@ export default class BlockProductNewsBox extends Vue {
           },
           title: {id : 2,type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
         },
-
-
-
         value: [
           {
             image: {
@@ -62,7 +59,6 @@ export default class BlockProductNewsBox extends Vue {
             title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Ultra Short Throw. Ultra Convenient.'},
             note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'},
           },
-
           {
             image: {
               id : 1 ,
@@ -96,51 +92,6 @@ export default class BlockProductNewsBox extends Vue {
             title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Smart TV Platform.'},
             note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'The smart Android TV platform brings great content to the biggest screen in your home. Install apps from the Google Play Store and open your favorite streaming services for limitless entertainment.'},
           },
-          {
-            image: {
-              id : 1 ,
-              type: StructureType.Image,
-              title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/74b132ee29/L5G_KeyFeature-05__ScaleMaxWidthWzMwNDhd.jpg-bpdvwj.jpg',
-              alt: 'Some note about this image',
-            },
-            title: {id : 2 , type: StructureType.String, title: 'Title', value: 'HDR10.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'With 4K resolution, HDR10 support, and 2700 Lumens peak brightness, the L5G faithfully recreates a world of incredible color and detail. The fixed-focal length of the L5G delivers unmatched picture clarity and focus uniformity.'},
-          },
-          {
-            image: {
-              id : 1 ,
-              type: StructureType.Image,
-              title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/d20b3573a9/L5G_KeyFeature-06__ScaleMaxWidthWzMwNDhd.jpg-71sf7j.jpg',
-              alt: 'Some note about this image',
-            },
-            title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Game Mode.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'No need to manually change TV settings when you’re about to drop in. High-speed HDMI ports detect when a gaming console is the active input source and automatically adjusts picture and signal processing settings to optimize game performance.'},
-          },
-          {
-            image: {
-              id : 1 ,
-              type: StructureType.Image,
-              title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/455ab21fd5/L5G_KeyFeature-07__ScaleMaxWidthWzMwNDhd.jpg-al7o9k.jpg',
-              alt: 'Some note about this image',
-            },
-            title: {id : 2 , type: StructureType.String, title: 'Title', value: '25,000+ hr Life Span.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'Experience true-to-life color with impressive dynamic range that just doesn’t quit. The L5G’s X-Fusion™ Laser Engine exceeds the Rec.709 standard for UHD 4K and lasts long enough to enjoy more than 25,000 hours of content.'},
-          },
-          {
-            image: {
-              id : 1 ,
-              type: StructureType.Image,
-              title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/47e209bc74/L5G_KeyFeature-08__ScaleMaxWidthWzMwNDhd.jpg-kfqbwv.jpg',
-              alt: 'Some note about this image',
-            },
-            title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Smart Features.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'With built-in Wi-Fi, Bluetooth, Google Assistant, Works with Alexa, the L5G and its included Voice Remote can be integrated with your smart home ecosystem to create automations to your heart’s desire.'},
-          },
-
         ]
       },
     }
