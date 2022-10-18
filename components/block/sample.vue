@@ -47,6 +47,7 @@ export default class BlockTextIntroduction extends Vue {
       }
     }
   }
+
   mounted() {
     if (this.isEmpty) this.reset();
   }

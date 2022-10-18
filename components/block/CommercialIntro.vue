@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/MoreTvHead.png" alt="">
+        <img src="/blocks/CommercialIntro.png" alt="">
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import { Theme } from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockMoreTvHead extends Vue {
+export default class BlockCommercialIntro extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
     @VModel({ type: Object }) model!: Object
@@ -33,31 +33,19 @@ export default class BlockMoreTvHead extends Vue {
             { title: 'Dark', value: this.Theme.dark },
           ]
         },
-        image: {
-          id: 1,
-          type: StructureType.Image,
-          title: 'Header Image',
-          src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-          alt: 'MoreTv Head',
-        },
         title: {
+          id: 1,
+          type: StructureType.String,
+          title: "Title",
+          value: "It's Time to Rethink TV",
+        },
+        paragraph: {
           id: 2,
           type: StructureType.String,
-          title: 'Header title',
-          value:"Less talk. More TV."
+          title: "Paragraph",
+          value: "Hisense Laser TV is revolution in display technology, delivering a cinema-like picture with ultra wide color gamut at a massive scale. The use of pure color lasers beaming at an ambient light rejecting screen from just inches away gives you a beautifully bright picture with true-to-life color. Add to that built-in Dolby Atmos Sound, 4K Resolution, Smooth Motion, and a Smart TV OS, Laser TV will quite literally change the way you watch TV.",
         },
-        description: {
-          id: 3,
-          type: StructureType.String,
-          title: 'Header Image',
-          value: "8 in 10 Americans believe a brand should invest in products, not ads. We couldn’t agree more."
-        },
-        link: {
-          id: 4,
-          type: StructureType.Url,
-          title: 'See The Lineup',
-          value:"/"
-        },
+
       }
     }
     mounted() {

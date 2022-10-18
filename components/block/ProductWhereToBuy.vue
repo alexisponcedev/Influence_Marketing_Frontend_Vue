@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/TvAndAudioHead.png" alt="">
+    <img src="/blocks/ProductWhereToBuy.png" alt=""/>
   </div>
 </template>
 
@@ -9,12 +9,11 @@ import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
-
 @Component
-export default class BlockTvAndAudioHead extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop(Number) readonly product_id!: number
-  @VModel({type: Object}) model!: Object
+export default class BlockProductWhereToBuy extends Vue {
+  @Prop(Number) readonly id: number | undefined;
+  @Prop(Number) readonly product_id!: number;
+  @VModel({type: Object}) model!: Object;
 
   Theme = Theme;
 
@@ -26,21 +25,32 @@ export default class BlockTvAndAudioHead extends Vue {
       theme: {
         id: 0,
         type: StructureType.Select,
-        title: 'Theme',
+        title: "Theme",
         value: Theme.dark,
         items: [
-          {title: 'Light', value: this.Theme.light},
-          {title: 'Dark', value: this.Theme.dark},
-        ]
+          {title: "Light", value: this.Theme.light},
+          {title: "Dark", value: this.Theme.dark},
+        ],
       },
-      image: {
+      title: {
         id: 1,
-        type: StructureType.Image,
-        title: 'Header Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/2b3d1d5b30/Television-Hero__ScaleMaxWidthWzMwNDhd.jpg-kqo0zn.jpg',
-        alt: 'Some note about this image',
+        type: StructureType.String,
+        title: 'title',
+        value: "Ready to buy?"
       },
-    }
+      littleTitle: {
+        id: 1,
+        type: StructureType.String,
+        title: 'little Title',
+        value: "See where you can order"
+      },
+      link: {
+        id: 2,
+        type: StructureType.Url,
+        title: 'where to buy',
+        value: ""
+      },
+    };
   }
 
   mounted() {
@@ -50,12 +60,14 @@ export default class BlockTvAndAudioHead extends Vue {
 
   loadProduct() {
     // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
-      .then(res => {
+    this.$axios
+      .$get("https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781")
+      .then((res) => {
         this.product = res.data;
-      }).finally(() => {
-      this.loadingProduct = false;
-    })
+      })
+      .finally(() => {
+        this.loadingProduct = false;
+      });
   }
 
   get isEmpty(): Boolean {

@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel} from "vue-property-decorator";
 import draggable from "vuedraggable";
 
 @Component({

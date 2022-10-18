@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/TvAndAudioIntro.png" alt="">
+    <img src="/blocks/LasterHead.png" alt="">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockTvAndAudioIntro extends Vue {
+export default class BlockLasterHead extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object
@@ -27,21 +27,37 @@ export default class BlockTvAndAudioIntro extends Vue {
         id: 0,
         type: StructureType.Select,
         title: 'Theme',
-        value: Theme.light,
+        value: Theme.dark,
         items: [
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
-      largeTitle: {id: 1, type: StructureType.String, title: 'Large Title', value: 'Introducing'},
-      coloredTitle: {id: 1, type: StructureType.String, title: 'Colored Title', value: 'Hisense Soundbars'},
-      paragraph: {
-        id: 2,
-        type: StructureType.Text,
-        title: 'Paragraph Text',
-        value: 'Hisense Soundbars creates incredible sound in a simple, compact design. Big sound that delivers a huge entertainment experience.'
+      image: {
+        id: 1,
+        type: StructureType.Image,
+        title: 'Upload Image',
+        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/98546a4425/lasertv4k-logo-white__ScaleMaxWidthWzMwNDhd.png-40bmxc.png',
+        alt: 'Some note about this image',
       },
-      link: {id: 3, type: StructureType.Url, title: 'Shop Soundbars Now', value: '/products'},
+      title: {
+        id: 2,
+        type: StructureType.String,
+        title: "Title",
+        value: "BIG.BOLD.BEAUTIFUL.",
+      },
+      paragraph: {
+        id: 3,
+        type: StructureType.String,
+        title: "Paragraph",
+        value: "Every seat in your house becomes the best seat with the Hisense 100” and 120” 4K UHD Smart Laser TV with Wide Color Gamut. Immerse yourself in this incredible TV and experience the game, a movie, or your favorite TV show like never before.",
+      },
+      link: {
+        id: 4,
+        type: StructureType.Url,
+        title: "SHOP LASER TVs",
+        value: "https://www.hisense-usa.com/tv-and-audio/televisions/all-tvs/?prop301=Laser+Display",
+      },
     }
   }
 

@@ -118,9 +118,44 @@ export const blocks = () => [
         image: "ProductDetailsBox.png",
       },
       {
-        name: "ProductResourcesBox",
+        name: "ProductResourceBox",
         title: "Product Resources",
-        image: "ProductResourcesBox.png",
+        image: "ProductResourceBox.png",
+      },
+      {
+        name: "ProductReviewBox",
+        title: "Product Reviews box",
+        image: "ProductReviewBox.png",
+      },
+      {
+        name: "ProductTwinImages",
+        title: "Product twin images",
+        image: "ProductTwinImages.png",
+      },
+      {
+        name: "ProductWhereToBuy",
+        title: "Product where to buy",
+        image: "ProductWhereToBuy.png",
+      },
+      {
+        name: "ProductMoreTv",
+        title: "Product more tv",
+        image: "ProductMoreTv.png",
+      },
+      {
+        name: "ProductFeaturesWithImage",
+        title: "Product Feature with image",
+        image: "ProductFeaturesWithImage.png",
+      },
+      {
+        name: "ProductTextWithImageBox",
+        title: "Product text with image box",
+        image: "ProductTextWithImageBox.png",
+      },
+      {
+        name: "ProductTextWithIcon",
+        title: "Product text with icon",
+        image: "ProductTextWithIcon.png",
       },
     ],
   },
@@ -346,6 +381,41 @@ export const blocks = () => [
         name: "MoreTvLessTalkForm",
         title: "MoreTv less talk form",
         image: "MoreTvLessTalkForm.png",
+      },
+    ],
+  },
+  {
+    name: "LaserTv",
+    blocks: [
+      {
+        name: "LasterHead",
+        title: "laser Head",
+        image: "LasterHead.png",
+      },
+      {
+        name: "ImageBox",
+        title: "image box",
+        image: "ImageBox.png",
+      },
+      {
+        name: "CommercialIntro",
+        title: "commercial intro",
+        image: "CommercialIntro.png",
+      },
+      {
+        name: "LasterImageAndTextBox",
+        title: "Laster image and text box",
+        image: "LasterImageAndTextBox.png",
+      },
+      {
+        name: "LasterTitleAndSubTitleBox",
+        title: "Laster title and subtitle box",
+        image: "LasterTitleAndSubTitleBox.png",
+      },
+      {
+        name: "LasterFinedWithImage",
+        title: "laster find with image",
+        image: "LasterFinedWithImage.png",
       },
     ],
   },
