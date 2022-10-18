@@ -37,7 +37,7 @@ export default class BlockTvAndAudioHead extends Vue {
         id: 1,
         type: StructureType.Image,
         title: 'Header Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/2b3d1d5b30/Television-Hero__ScaleMaxWidthWzMwNDhd.jpg-kqo0zn.jpg',
         alt: 'Some note about this image',
       },
     }

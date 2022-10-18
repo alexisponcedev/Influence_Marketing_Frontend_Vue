@@ -73,7 +73,7 @@ export default class PageBuilderSection extends Vue {
     console.log('trigger deploy public site');
 
     let url = "https://forge.laravel.com/servers/600754/sites/1780869/deploy/http?token=RcEhkrL2mu85g03sjg08d6sePRocU71JSagXlUSk";
-    let win = window.open(url, 'triggerForge', "height=200,width=100");
+    let win = window.open(url, 'triggerForge', "height=100,width=100");
     setTimeout(() => {
       if (win) win.close();
     }, 3000);
