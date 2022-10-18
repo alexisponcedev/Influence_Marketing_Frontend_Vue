@@ -18,7 +18,7 @@ export default class BlockProductCategoryBox extends Vue {
 
   Theme = Theme;
 
-  reset(){
+    reset(){
     this.model = {
       theme: {
         id: 0,
@@ -30,18 +30,24 @@ export default class BlockProductCategoryBox extends Vue {
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
-      WhereToBuy:{
-        id : 1 ,
-        type : StructureType
+      whereToBuy: {
+        id: 0,
+        type: StructureType.Select,
+        title: 'Show Where To Buy',
+        value: true,
+        items: [
+          {title: 'True', value: true},
+          {title: 'False', value: false},
+        ]
       },
       support : {
-        id : 2 ,
+        id : 1,
         type : StructureType.Url,
-        title : 'Support',
+        title : 'Support Page',
         value : '',
       },
       tags: {
-        id : 1,
+        id : 2,
         type: StructureType.List,
         title: 'Tags',
         newItem: {
@@ -49,7 +55,7 @@ export default class BlockProductCategoryBox extends Vue {
         value: [
           {
             title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Sample Tag Title'},
-            target : { id : 0 , type : StructureType.IdSelector , title : 'ID Selector' , value : ''},
+            target : { id : 0 , type : StructureType.String , title : 'ID Selector' , value : ''},
           },
         ]
       },
