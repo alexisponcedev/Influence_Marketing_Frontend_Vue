@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 
@@ -30,27 +30,35 @@ export default class LandingProductItem extends Vue {
   @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
+  reset(){
+    this.model = {
+      link: {
+        id: 0,
+        type: StructureType.String,
+        title: 'Go to', value: '/products'
+      },
+      image: {
+        id: 1,
+        type: StructureType.Image,
+        title: 'Upload Image',
+        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+        alt: 'Some note about this image',
+      },
+      title: {id: 2, type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
+    }
+  }
+
   mounted() {
-    if (this.isEmpty)
-      this.model = {
-        link: {
-          id: 0,
-          type: StructureType.String,
-          title: 'Go to', value: '/products'
-        },
-        image: {
-          id: 1,
-          type: StructureType.Image,
-          title: 'Upload Image',
-          src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-          alt: 'Some note about this image',
-        },
-        title: {id: 2, type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
-      }
+    if (this.isEmpty) this.reset();
   }
 
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
+  }
+  @Watch('isEmpty')
+  onValueChanged(){
+    console.log('component is empty now');
+    if(this.isEmpty) this.reset();
   }
 }
 </script>

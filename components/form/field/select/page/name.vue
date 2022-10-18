@@ -18,7 +18,7 @@
     >
       <template v-slot:item="{ item }">
         <v-list-item-content>
-          <v-list-item-title v-text="item.title"></v-list-item-title>
+          <v-list-item-title :class="{ 'blue--text' : item.model_id > 0}" v-text="item.title"></v-list-item-title>
           <v-list-item-subtitle v-text="item.route"></v-list-item-subtitle>
         </v-list-item-content>
       </template>
@@ -34,8 +34,6 @@ import {Page} from "~/repositories";
 
 @Component
 export default class AutoCompleteSelectPageNameFormField extends Vue {
-  @Prop({type : String , default : 'title'}) itemText! : string
-  @Prop({type : String , default : 'absolute'}) itemValue! : string
   @VModel() model!: Array<String>
 
   @Prop({
