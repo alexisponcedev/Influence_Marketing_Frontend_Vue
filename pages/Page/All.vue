@@ -36,7 +36,6 @@ import { Api, AppStore } from "@/store";
 export default class AllPages extends Vue {
   Api = Api;
 
-
   config = {
     headers: [
       { text: "Title", value: "title" },
