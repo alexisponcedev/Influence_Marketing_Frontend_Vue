@@ -62,7 +62,7 @@ export default class BlockTvAndAudioSmartChoice extends Vue {
                 },
                 link: {
                     id:5,
-                    type: StructureType.Link,
+                    type: StructureType.Url,
                     title: "learn more",
                     value: "/products",
                 }

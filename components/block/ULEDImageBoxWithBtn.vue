@@ -42,7 +42,7 @@ export default class BlockULEDImageBoxWithBtn extends Vue {
                 },
                 Btn: {
                     id: 2,
-                    type: StructureType.Link,
+                    type: StructureType.Url,
                     title: "Btn",
                     value: "JargOn / JargOff",
                 },

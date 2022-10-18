@@ -1193,7 +1193,7 @@ export interface Menu {
      * @type {Array<object>}
      * @memberof Menu
      */
-    'widgets'?: Array<object>;
+    'widgets'?: Array<any>;
 }
 /**
  * Menu Resource model

@@ -78,7 +78,7 @@ export default class BlockMoreTvBox extends Vue {
             },
             link: {
               id: 4,
-              type: StructureType.Link,
+              type: StructureType.Url,
               title: "Get Notified",
               value: "/",
             },
@@ -112,7 +112,7 @@ export default class BlockMoreTvBox extends Vue {
               },
               link: {
                 id: 4,
-                type: StructureType.Link,
+                type: StructureType.Url,
                 title: "Get Notified",
                 value: "/",
               },
@@ -145,7 +145,7 @@ export default class BlockMoreTvBox extends Vue {
               },
               link: {
                 id: 4,
-                type: StructureType.Link,
+                type: StructureType.Url,
                 title: "Get Notified",
                 value: "/",
               },
@@ -178,7 +178,7 @@ export default class BlockMoreTvBox extends Vue {
               },
               link: {
                 id: 4,
-                type: StructureType.Link,
+                type: StructureType.Url,
                 title: "Get Notified",
                 value: "/",
               },
@@ -211,7 +211,7 @@ export default class BlockMoreTvBox extends Vue {
               },
               link: {
                 id: 4,
-                type: StructureType.Link,
+                type: StructureType.Url,
                 title: "Get Notified",
                 value: "/",
               },
@@ -244,7 +244,7 @@ export default class BlockMoreTvBox extends Vue {
               },
               link: {
                 id: 4,
-                type: StructureType.Link,
+                type: StructureType.Url,
                 title: "Get Notified",
                 value: "/",
               },
@@ -277,7 +277,7 @@ export default class BlockMoreTvBox extends Vue {
               },
               link: {
                 id: 4,
-                type: StructureType.Link,
+                type: StructureType.Url,
                 title: "Get Notified",
                 value: "/",
               },
