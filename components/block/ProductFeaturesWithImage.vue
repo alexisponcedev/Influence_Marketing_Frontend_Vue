@@ -57,6 +57,12 @@ export default class BlockProductFeaturesWithImage extends Vue {
         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/26632e121d/pdp-3_6-u9-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-t34p4p.jpg',
         alt: 'featured image'
       },
+      link: {
+        id: 3,
+        type: StructureType.Url,
+        title: 'Shop TV',
+        value: "/"
+      },
     };
   }
 
