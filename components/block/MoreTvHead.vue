@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import { Theme } from "~/interfaces/ThemeEnum";
 
@@ -39,6 +39,24 @@ export default class BlockMoreTvHead extends Vue {
           title: 'Header Image',
           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
           alt: 'MoreTv Head',
+        },
+        title: {
+          id: 2,
+          type: StructureType.String,
+          title: 'Header title',
+          value:"Less talk. More TV."
+        },
+        description: {
+          id: 3,
+          type: StructureType.String,
+          title: 'Header Image',
+          value: "8 in 10 Americans believe a brand should invest in products, not ads. We couldn’t agree more."
+        },
+        link: {
+          id: 4,
+          type: StructureType.Url,
+          title: 'See The Lineup',
+          value:"/"
         },
       }
     }

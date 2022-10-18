@@ -65,7 +65,7 @@ export default class PageBuilderSection extends Vue {
   async savePage() {
     let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
     await Api.Page.savePageWidgets(widgets);
-    this.triggerDeploy();
+    // this.triggerDeploy();
 
   }
 
