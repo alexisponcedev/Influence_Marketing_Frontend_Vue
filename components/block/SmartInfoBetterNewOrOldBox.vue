@@ -48,7 +48,7 @@ export default class BlockSmartInfoBetterNewOrOldBox extends Vue {
                 },
                 link:{
                     id:3,
-                    type: StructureType.Link,
+                    type: StructureType.Url,
                     title: "Shop All Tvs",
                     value: "/products",
                 }

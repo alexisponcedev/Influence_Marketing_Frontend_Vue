@@ -82,7 +82,7 @@ export default class Menus extends Vue {
 
   tab = "";
 
-  Menu: Menu = {
+  Menu: any = {
     id: 1,
     title: 'header',
     widgets: {

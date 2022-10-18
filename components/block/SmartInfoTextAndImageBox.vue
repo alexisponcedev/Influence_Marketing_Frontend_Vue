@@ -59,7 +59,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                         },
                         link: {
                             id: 3,
-                            type: StructureType.Link,
+                            type: StructureType.Url,
                             title: "Discover",
                             value: "",
                         },
@@ -87,7 +87,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             },
                             link: {
                                 id: 3,
-                                type: StructureType.Link,
+                                type: StructureType.Url,
                                 title: "Discover",
                                 value: "",
                             },
@@ -114,7 +114,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             },
                             link: {
                                 id: 3,
-                                type: StructureType.Link,
+                                type: StructureType.Url,
                                 title: "Discover",
                                 value: "",
                             },
@@ -141,7 +141,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             },
                             link: {
                                 id: 3,
-                                type: StructureType.Link,
+                                type: StructureType.Url,
                                 title: "Discover",
                                 value: "",
                             },
@@ -168,7 +168,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             },
                             link: {
                                 id: 3,
-                                type: StructureType.Link,
+                                type: StructureType.Url,
                                 title: "Discover",
                                 value: "",
                             },
@@ -195,7 +195,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             },
                             link: {
                                 id: 3,
-                                type: StructureType.Link,
+                                type: StructureType.Url,
                                 title: "Discover",
                                 value: "",
                             },
@@ -222,7 +222,7 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             },
                             link: {
                                 id: 3,
-                                type: StructureType.Link,
+                                type: StructureType.Url,
                                 title: "Discover",
                                 value: "",
                             },

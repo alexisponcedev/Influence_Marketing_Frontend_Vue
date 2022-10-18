@@ -47,7 +47,7 @@ export default class BlockSmartInfoFindHisense extends Vue {
                 },
                 link: {
                     id: 2,
-                    type: StructureType.Link,
+                    type: StructureType.Url,
                     title: "explore",
                     value: "/",
                 },
