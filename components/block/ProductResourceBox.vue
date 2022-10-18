@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/ProductRecrossesBox.png" alt="">
+    <img src="/blocks/ProductResourceBox.png" alt="">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockProductRecrossesBox extends Vue {
+export default class BlockProductResourceBox extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object

@@ -8,4 +8,5 @@ export enum StructureType {
   Url = 'url',
   Select = 'select',
   Object = 'object',
+  IdSelector = 'IdSelector',
 }

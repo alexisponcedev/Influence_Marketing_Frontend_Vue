@@ -30,7 +30,30 @@ export default class BlockProductCategoryBox extends Vue {
             {title: 'Light', value: this.Theme.light},
             {title: 'Dark', value: this.Theme.dark},
           ]
-        }
+        },
+        WhereToBuy:{
+          id : 1 ,
+          type : StructureType
+        },
+        support : {
+          id : 2 ,
+          type : StructureType.Url,
+          title : 'Support',
+          value : '',
+        },
+        tags: {
+          id : 1,
+          type: StructureType.List,
+          title: 'Tags',
+          newItem: {
+          },
+          value: [
+            {
+              title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Sample Tag Title'},
+              target : { id : 0 , type : StructureType.IdSelector , title : 'ID Selector' , value : ''},
+            },
+          ]
+        },
       }
     }
   }

@@ -63,7 +63,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               title: "Title",
               value: "LASER TVS",
             },
-            discription: {
+            description: {
               id: 3,
               type: StructureType.String,
               title: "Discription",
@@ -91,7 +91,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
                 title: "Discription",
@@ -118,7 +118,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
                 title: "Discription",
@@ -145,7 +145,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
                 title: "Discription",
@@ -172,7 +172,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
                 title: "Title",
                 value: "LASER TVS",
               },
-              discription: {
+              description: {
                 id: 3,
                 type: StructureType.String,
                 title: "Discription",
