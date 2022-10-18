@@ -176,17 +176,17 @@ export default class PageForm extends Vue {
     return this.Page.title;
   }
 
-  @Watch('pageTitle')
-  pageTitleChanged(){
-    console.log('pageTitle has changed' , this.pageTitle );
-    let parentRoute = '/';
-    if(this.Page.route && this.Page.route !== '')
-    {
-      let lastIndexOf = this.Page.route!.lastIndexOf('/');
-      parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
-    }
-    this.Page.route = parentRoute + this.Page.title
-  }
+  // @Watch('pageTitle')
+  // pageTitleChanged(){
+  //   console.log('pageTitle has changed' , this.pageTitle );
+  //   let parentRoute = '/';
+  //   if(this.Page.route && this.Page.route !== '')
+  //   {
+  //     let lastIndexOf = this.Page.route!.lastIndexOf('/');
+  //     parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+  //   }
+  //   this.Page.route = parentRoute + this.Page.title
+  // }
 
 
 }

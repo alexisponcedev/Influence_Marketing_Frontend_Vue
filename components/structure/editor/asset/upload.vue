@@ -5,16 +5,19 @@
     </v-card-title>
 
     <v-card-text>
-      <form-field-text :field="titleField" v-model="title"/>
-      <form-field-text :field="descriptionFiled" v-model="description"/>
+      <form-field-text :field="titleField" v-model="Asset.title"/>
+      <form-field-text :field="descriptionFiled" v-model="Asset.description"/>
       <form-field-file :field="fileField" v-model="file"/>
-      <v-progress-linear v-if="uploading" indeterminate color="cyan"/>
+      <div class="tw-my-2 tw-text-center tw-w-full">OR</div>
+      <form-field-text :field="urlField" v-model="Asset.url"/>
+
+      <v-progress-linear v-if="saving" indeterminate color="cyan"/>
     </v-card-text>
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn :disabled="uploading" @click="upload" text color="green"> Upload</v-btn>
-      <v-btn :disabled="uploading" @click="cancel" text color="red"> Cancel</v-btn>
+      <v-btn :disabled="saving" @click="save" text color="green"> Upload</v-btn>
+      <v-btn :disabled="saving" @click="cancel" text color="red"> Cancel</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -33,17 +36,29 @@ export default class StructureFileUploader extends Vue {
 
   Api = Api;
 
+  Asset: Asset = {
+    title: 'sample asset title',
+    description: 'some note about this asset',
+    location: 'asset/image',
+    extension: 'ext',
+    thumb: '',
+    url: '',
+  };
+
   file: any = null;
 
-  uploading: Boolean = false;
-
-  title: string = '';
-
-  description: string = '';
+  saving: Boolean = false;
 
   titleField = {
     label: 'Asset Title',
     placeholder: 'asset name or title',
+    rules: [],
+    colAttrs: {cols: 12}
+  }
+
+  urlField = {
+    label: 'Asset URL',
+    placeholder: 'enter asset url',
     rules: [],
     colAttrs: {cols: 12}
   }
@@ -66,36 +81,35 @@ export default class StructureFileUploader extends Vue {
   cancel() {
   }
 
-
   uploaded(asset: Asset): Asset {
     this.$emit('uploaded', asset);
     return asset;
   }
 
-  upload() {
+  async save() {
+    this.saving = true;
+    if (this.Asset.url === '') {
+      let res = await this.upload();
+      this.Asset.extension = res.extension;
+      this.Asset.thumb = res.view_link.replace(res.file_name, '500x500-' + res.file_name);
+      this.Asset.url = res.view_link;
+    } else {
+      this.Asset.extension = this.Asset.url!.substr(this.Asset.url!.lastIndexOf('.') + 1)
+      this.Asset.thumb = this.Asset.url;
+    }
+    await this.saveAsset();
+    this.saving = false;
+  }
+
+  async upload() {
     let formData = new FormData();
     formData.append('attachment', this.file);
     formData.append('keep_original_name', '0');
-
-    let res = null;
-    this.uploading = true;
-    this.$axios.$post('https://assets.dev-api.hisenseportal.com/api/v1/upload/' + AssetTokens.image, formData)
-      .then(res => {
-        this.saveAsset({
-          title: this.title,
-          description: this.description,
-          location: 'asset/image',
-          extension: res.extension,
-          thumb: res.view_link.replace(res.file_name, '500x500-' + res.file_name),
-          url: res.view_link,
-        }).then(res => {
-          this.uploading = false;
-        });
-      });
+    return this.$axios.$post('https://assets.dev-api.hisenseportal.com/api/v1/upload/' + AssetTokens.image, formData);
   }
 
-  async saveAsset(asset: Asset) {
-    return await Api.Asset.create(asset)
+  async saveAsset() {
+    return await Api.Asset.create(this.Asset)
       .then(response => {
         this.$emit('uploaded', response);
       })

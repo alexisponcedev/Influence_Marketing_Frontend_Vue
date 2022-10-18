@@ -13,7 +13,11 @@ module.exports = {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '3xl': '1650px',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),

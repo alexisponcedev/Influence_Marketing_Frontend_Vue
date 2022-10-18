@@ -1,5 +1,20 @@
 <template>
   <v-container fluid>
+
+
+    <div class="tw-flex tw-space-x-2">
+      <div
+        class="category tw-py-3 tw-px-3 tw-border tw-border-solid tw-border-gray-300 tw-text-gray-400 tw-rounded-xl
+        tw-text-center tw-bg-gray-50 tw-bg-opacity-30 hover:tw-bg-gray-50 tw-cursor-pointer tw-uppercase tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-2 "
+        v-for="category in categories" :key="category.id"
+        @click="selectCategory(category)"
+        :class="{'selected' : selectedCategory.id === category.id}"
+      >
+        <img :src="category.image" alt="category image" class="tw-h-10">
+        <div>{{ category.name }}</div>
+
+      </div>
+    </div>
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
@@ -10,22 +25,164 @@
     <v-row>
       <v-col cols="12">
         <v-card>
-          <v-card-text> Products </v-card-text>
+          <v-card-text>
+            <div v-if="categories.length === 0"
+                 class="tw-my-32 tw-text-center tw-flex tw-flex-col tw-justify-center tw-items-center tw-space-y-4 ">
+              <div>Loading Categories</div>
+              <v-progress-circular
+                indeterminate
+                color="blue"
+              ></v-progress-circular>
+            </div>
+            <div v-else>
+              <search-products
+                ref="searchProducts"
+                :max="-1"
+                :initLoad="true"
+                :run="appendPageData"
+                :always-show="true"
+                :category_id="selectedCategory.id"
+                v-model="search">
+
+
+                <template #placeholder>
+                  <div class="tw-grid tw-grid-cols-6 tw-gap-2">
+                    <div v-for="i in 14" :key="i"
+                         class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-3.5">
+                      <div class="tw-bg-gray-50 tw-h-36 tw-w-full tw-object-cover tw-rounded-xl"/>
+                      <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-bg-gray-100"/>
+                      <div class="tw-gray-700 tw-flex tw-justify-between">
+                        <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20"/>
+                        <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20"/>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+
+
+                <template #default="{products}">
+                  <div class="tw-grid tw-grid-cols-5 3xl:tw-grid-cols-6  tw-gap-2">
+                    <div v-for="product in products" :key="product.id"
+                         class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-2">
+
+                      <div class="tw-h-40 tw-w-full tw-flex tw-items-center tw-justify-center">
+                        <img :src="product.image" alt=""
+                             style="min-height: 110px;"
+                             class="tw-object-cover tw-max-h-full">
+                      </div>
+
+
+                      <div class="tw-font-semibold tw-line-clamp-1 tw-text-center" :title="product.name">
+                        {{ product.name }}
+                      </div>
+
+                      <div class="tw-flex tw-items-center tw-justify-between tw-space-x-2" style="min-height: 32px">
+                        <div>{{ product.model }}</div>
+
+                        <div v-if="product.page">
+                          <nuxt-link :to="`/Page/Edit/${product.page.id}`"
+                                     class="tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-2">
+                            Open
+                          </nuxt-link>
+                        </div>
+                        <div v-else class="tw-rounded" style="min-width: 50px;">
+                          <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan"/>
+                          <button v-else @click="addNewPage(product)"
+                                  class="tw-text-gray-600 tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
+                            tw-whitespace-nowrap hover:tw-text-gray-700 hover:tw-bg-gray-100 tw-px-1 tw-py-1">
+                            Add Page
+                          </button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </search-products>
+            </div>
+
+
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <!-- <loading-overlay :show="Api.Site.loading" /> -->
   </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { Api } from "@/store";
+import {Vue, Component, Watch} from "vue-property-decorator";
+import {Api} from "@/store";
+import {Page, PageResource} from "~/repositories";
 
-@Component({ layout: "panel" })
-export default class Products extends Vue {
+@Component({layout: "panel"})
+export default class ProductsPage extends Vue {
   Api = Api;
 
   tab = "";
+
+  search: string = '';
+
+  addingPage: Number = 0;
+
+  categories: Array<any> = [];
+
+  pages: Array<PageResource> = [];
+
+  selectedCategory: any = {id: 0, name: ''};
+
+  mounted() {
+    this.init();
+  }
+
+  init() {
+    this.loadCategories();
+    this.loadCreatedPages();
+  }
+
+  async loadCreatedPages() {
+    this.pages = (await Api.Page.getDynamicPages()) as Array<PageResource>;
+  }
+
+  // alreadyHavePage(product_id : number){
+  //   return this.pages.find(i => i.id === product_id)
+  // }
+
+  loadCategories() {
+    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')
+      .then(res => {
+        this.categories = res.data;
+        if (this.categories.length > 0)
+          this.selectedCategory = this.categories[0];
+      });
+  }
+
+  selectCategory(category: any) {
+    this.selectedCategory = category;
+  }
+
+  addNewPage(product: any) {
+    this.addingPage = product.id;
+    Api.Page.create({
+      title: product.name, route: '/products/[...param]',
+      widgets: [], model_id: product.id, model_type: 'product',
+    }).then(res => {
+      this.$router.push(`Page/Edit/${res.id}`)
+    }).finally(() => {
+      this.addingPage = 0;
+    });
+  }
+
+  appendPageData(products: Array<any>) {
+    return products.map((product) => ({...product, page: this.pages.find(i => i.model_id === product.id)}));
+  }
+
 }
 </script>
+<style scoped>
+.selected {
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #252525 !important;
+  color: black;
+}
+</style>

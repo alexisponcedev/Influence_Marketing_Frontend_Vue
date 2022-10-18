@@ -2,13 +2,9 @@
   <div>
     <div v-if="placeholder">
       <div class="tw-flex tw-items-center tw-space-x-3 tw-border tw-border-solid tw-border-gray-200 tw-rounded-xl tw-p-1.5 hover:tw-bg-gray-100 tw-cursor-pointer tw-animate-pulse">
-
         <div class="tw-h-14 tw-w-32  tw-bg-gray-100 tw-rounded-lg" />
-
         <div class="tw-flex-1 tw-space-y-2.5">
-
           <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-bg-gray-100"/>
-
           <div class="tw-gray-700 tw-flex tw-justify-between">
             <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20" />
             <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20" />
@@ -21,7 +17,7 @@
          :title="model.name"
          @click="select">
 
-      <img :src="Image" alt="image address" class="tw-h-14 tw-max-w-52 tw-object-cover "/>
+      <img :src="model.image" alt="image address" class="tw-h-14 tw-max-w-52 tw-object-cover "/>
 
       <div>
         <div class="product-detail tw-line-clamp-1">{{ model.name }}</div>
@@ -47,15 +43,15 @@ export default class LandingSlider extends Vue {
   @Prop(Boolean) readonly placeholder!: boolean
   @VModel({type: Object}) model!: any
 
-  get Image() {
-    return !this.isEmpty && this.model
-    && this.model.media
-    && this.model.media.url !== ''
-      ?
-      this.model.media.url
-      :
-      "https://assets.hisense-usa.com/assets/GalleryImages/Product/475/cbf5a253da/a4gv___ScaleMaxWidthWzY0MF0.png";
-  }
+  // get Image() {
+  //   return !this.isEmpty && this.model
+  //   && this.model.media
+  //   && this.model.media.url !== ''
+  //     ?
+  //     this.model.media.url
+  //     :
+  //     "https://assets.hisense-usa.com/assets/GalleryImages/Product/475/cbf5a253da/a4gv___ScaleMaxWidthWzY0MF0.png";
+  // }
 
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;

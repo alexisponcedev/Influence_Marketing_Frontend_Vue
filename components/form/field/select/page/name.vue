@@ -7,15 +7,22 @@
       outlined
       v-model="model"
       :rules="field.rules"
-      :item-text="'title'"
-      :item-value="'value'"
+      :item-text="field['item-text']"
+      :item-value="field['item-value']"
       placeholder="Parent Route"
       :items="Api.Page.routes"
       :loading="typeof field.loading === 'function' ? field.loading() : field.loading "
       :readonly="typeof field.readonly === 'function' ? field.readonly() : field.readonly"
       :disabled=" typeof field.disabled === 'function' ? field.disabled() : field.disabled "
       :multiple=" typeof field.multiple === 'function' ? field.multiple() : field.multiple "
-    />
+    >
+      <template v-slot:item="{ item }">
+        <v-list-item-content>
+          <v-list-item-title v-text="item.title"></v-list-item-title>
+          <v-list-item-subtitle v-text="item.route"></v-list-item-subtitle>
+        </v-list-item-content>
+      </template>
+    </v-autocomplete>
   </v-col>
 </template>
 
@@ -27,12 +34,16 @@ import {Page} from "~/repositories";
 
 @Component
 export default class AutoCompleteSelectPageNameFormField extends Vue {
+  @Prop({type : String , default : 'title'}) itemText! : string
+  @Prop({type : String , default : 'absolute'}) itemValue! : string
   @VModel() model!: Array<String>
-  // @Prop({type: Array , default: () => []}) pages!: Array<any>
+
   @Prop({
     type: Object, default: {
       label: 'Page Url',
       placeholder: 'Enter page name',
+      'item-text' : 'title',
+      'item-value' : 'absolute',
       rules: [],
       colAttrs: {cols: 12},
     }

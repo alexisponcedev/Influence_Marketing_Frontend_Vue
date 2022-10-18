@@ -6,7 +6,9 @@
 
     <v-card-text>
       <v-row>
+
         <form-field-text :field="searchField" v-model="search"/>
+
         <v-col cols="2" class="py-0 pb-6 word-wrap-break-word">
           <button class="tw-p-3.5 tw-bg-gray-100 tw-rounded tw-border tw-border-gray-200 tw-border-solid"
                   @click="addNewAsset">
@@ -18,7 +20,7 @@
 
       <div class="tw-space-y-2 tw-max-h-80 tw-overflow-y-auto no-scrollbar">
         <structure-editor-asset-item
-          v-for="asset in Api.Asset.all" :key="asset.id"
+          v-for="asset in Api.Asset.all.slice(0,20)" :key="asset.id"
           :asset="asset"
           @selected="selected"/>
       </div>
@@ -39,8 +41,6 @@ import {Vue, Component, Prop, Watch, VModel, Emit} from "vue-property-decorator"
 import {StructureField} from "~/interfaces/StructureField";
 import {Api} from "~/utils/store-accessor";
 import {Asset} from "~/repositories";
-import {AssetTokens} from "~/models/AssetTokens";
-
 
 @Component
 export default class StructureAssetList extends Vue {
@@ -62,6 +62,16 @@ export default class StructureAssetList extends Vue {
   mounted() {
     this.getAssets();
   }
+
+  _timer : any = null;
+
+  searchWithDebounceTime() {
+    clearTimeout(this._timer);
+    this._timer = setTimeout(() => {
+      this.getAssets();
+    }, 700);
+  }
+
 
   async getAssets() {
     if (this.search)
@@ -85,8 +95,8 @@ export default class StructureAssetList extends Vue {
   }
 
   @Watch('search')
-  searchUpdated(){
-    this.getAssets()
+  searchUpdated() {
+    this.searchWithDebounceTime()
   }
 
 }
