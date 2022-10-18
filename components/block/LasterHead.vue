@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/TvAndAudioSmartChoice.png" alt="">
+        <img src="/blocks/LasterHead.png" alt="">
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import { Theme } from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockTvAndAudioSmartChoice extends Vue {
+export default class BlockLasterHead extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
     @VModel({ type: Object }) model!: Object
@@ -34,31 +34,31 @@ export default class BlockTvAndAudioSmartChoice extends Vue {
                         { title: 'Dark', value: this.Theme.dark },
                     ]
                 },
-                title: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "4K HDR  ",
-                },
-                paragraph: {
-                    id: 2,
-                    type: StructureType.String,
-                    title: "Paragraph",
-                    value: "The Hisense 4K UHD Smart Laser TV with Wide Color Gamut features a dual-color laser that displays a cinema-like picture full of rich, vibrant and true-to-life colors on an incredible 120” display. At every distance and angle, images are sharp and comfortable to watch for an immersive home-theater experience.",
-                },
                 image: {
-                    id: 3,
+                    id: 1,
                     type: StructureType.Image,
                     title: 'Upload Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/98546a4425/lasertv4k-logo-white__ScaleMaxWidthWzMwNDhd.png-40bmxc.png',
                     alt: 'Some note about this image',
                 },
+                title: {
+                    id: 2,
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "BIG.BOLD.BEAUTIFUL.",
+                },
+                paragraph: {
+                    id: 3,
+                    type: StructureType.String,
+                    title: "Paragraph",
+                    value: "Every seat in your house becomes the best seat with the Hisense 100” and 120” 4K UHD Smart Laser TV with Wide Color Gamut. Immerse yourself in this incredible TV and experience the game, a movie, or your favorite TV show like never before.",
+                },
                 link: {
-                    id:4,
+                    id: 4,
                     type: StructureType.Url,
-                    title: "learn more",
-                    value: "/products",
-                }
+                    title: "SHOP LASER TVs",
+                    value: "https://www.hisense-usa.com/tv-and-audio/televisions/all-tvs/?prop301=Laser+Display",
+                },
             }
         }
         // this.loadProduct();

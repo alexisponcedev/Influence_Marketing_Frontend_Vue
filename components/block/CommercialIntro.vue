@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/TvAndAudioSmartChoice.png" alt="">
+        <img src="/blocks/CommercialIntro.png" alt="">
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import { Theme } from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockTvAndAudioSmartChoice extends Vue {
+export default class BlockCommercialIntro extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
     @VModel({ type: Object }) model!: Object
@@ -38,27 +38,15 @@ export default class BlockTvAndAudioSmartChoice extends Vue {
                     id: 1,
                     type: StructureType.String,
                     title: "Title",
-                    value: "4K HDR  ",
+                    value: "It's Time to Rethink TV",
                 },
                 paragraph: {
                     id: 2,
                     type: StructureType.String,
                     title: "Paragraph",
-                    value: "The Hisense 4K UHD Smart Laser TV with Wide Color Gamut features a dual-color laser that displays a cinema-like picture full of rich, vibrant and true-to-life colors on an incredible 120” display. At every distance and angle, images are sharp and comfortable to watch for an immersive home-theater experience.",
+                    value: "Hisense Laser TV is revolution in display technology, delivering a cinema-like picture with ultra wide color gamut at a massive scale. The use of pure color lasers beaming at an ambient light rejecting screen from just inches away gives you a beautifully bright picture with true-to-life color. Add to that built-in Dolby Atmos Sound, 4K Resolution, Smooth Motion, and a Smart TV OS, Laser TV will quite literally change the way you watch TV.",
                 },
-                image: {
-                    id: 3,
-                    type: StructureType.Image,
-                    title: 'Upload Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-                    alt: 'Some note about this image',
-                },
-                link: {
-                    id:4,
-                    type: StructureType.Url,
-                    title: "learn more",
-                    value: "/products",
-                }
+               
             }
         }
         // this.loadProduct();
