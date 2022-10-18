@@ -10,7 +10,9 @@
         </v-col>
         <v-col cols="12" md="7" class="text-right">
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
-          <v-btn :to="`/Page/Edit/${Page.id}/PagePreview`" elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
+          <v-btn :to="`/Page/Edit/${Page.id}/PagePreview`" elevation="0" outlined color="grey darken-4"
+                 class="control-btns">Preview
+          </v-btn>
           <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template
           </v-btn>
           <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
@@ -61,15 +63,21 @@ export default class PageBuilderSection extends Vue {
   }
 
   async savePage() {
-    let widgets : Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
+    let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
     await Api.Page.savePageWidgets(widgets);
-    // this.triggerDeploy();
+    this.triggerDeploy();
 
   }
-  // triggerDeploy(){
-  //   console.log('trigger deploy public site');
-  //   this.$axios.$get('https://forge.laravel.com/servers/580060/sites/1766519/deploy/http?token=zevvn1zF5xg7U1gtp2Rur3dxntCyOKm03Q2lOY4e');
-  // }
+
+  triggerDeploy() {
+    console.log('trigger deploy public site');
+
+    let url = "https://forge.laravel.com/servers/600754/sites/1780869/deploy/http?token=RcEhkrL2mu85g03sjg08d6sePRocU71JSagXlUSk";
+    let win = window.open(url, 'triggerForge', "height=200,width=100");
+    setTimeout(() => {
+      if (win) win.close();
+    }, 3000);
+  }
 
   saveTemplate() {
     (this.$refs.templateManager as any).open(true, this.blocksList);
