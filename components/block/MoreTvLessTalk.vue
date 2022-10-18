@@ -66,10 +66,10 @@ export default class BlockMoreTvLessTalk extends Vue {
                             src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                             alt: "MoreTv tech item",
                         },
-                        discription: {
+                        description: {
                             id: 1,
                             type: StructureType.String,
-                            title: "Discription",
+                            title: "Description",
                             value: "One billion+ colors, we’ve counted",
                         },
                     },
@@ -82,10 +82,10 @@ export default class BlockMoreTvLessTalk extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "MoreTv tech item",
                             },
-                            discription: {
+                            description: {
                                 id: 1,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "One billion+ colors, we’ve counted",
                             },
                         },
@@ -97,10 +97,10 @@ export default class BlockMoreTvLessTalk extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "MoreTv tech item",
                             },
-                            discription: {
+                            description: {
                                 id: 1,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "One billion+ colors, we’ve counted",
                             },
                         },
@@ -112,10 +112,10 @@ export default class BlockMoreTvLessTalk extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "MoreTv tech item",
                             },
-                            discription: {
+                            description: {
                                 id: 1,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "One billion+ colors, we’ve counted",
                             },
                         },
@@ -127,10 +127,10 @@ export default class BlockMoreTvLessTalk extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "MoreTv tech item",
                             },
-                            discription: {
+                            description: {
                                 id: 1,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "One billion+ colors, we’ve counted",
                             },
                         },
@@ -142,10 +142,10 @@ export default class BlockMoreTvLessTalk extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "MoreTv tech item",
                             },
-                            discription: {
+                            description: {
                                 id: 1,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "One billion+ colors, we’ve counted",
                             },
                         },

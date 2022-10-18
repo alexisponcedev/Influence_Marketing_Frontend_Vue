@@ -66,7 +66,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
             description: {
               id: 3,
               type: StructureType.String,
-              title: "Discription",
+              title: "Description",
               value: "Discover a New Expanse of Color",
             },
           },
@@ -94,7 +94,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },
@@ -121,7 +121,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },
@@ -148,7 +148,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },
@@ -175,7 +175,7 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               description: {
                 id: 3,
                 type: StructureType.String,
-                title: "Discription",
+                title: "Description",
                 value: "Discover a New Expanse of Color",
               },
             },

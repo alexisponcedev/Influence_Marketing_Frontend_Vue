@@ -51,10 +51,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                             src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                             alt: "Some note about this image",
                         },
-                        discription: {
+                        description: {
                             id: 2,
                             type: StructureType.String,
-                            title: "Discription",
+                            title: "Description",
                             value: "Thousands of streaming channels at your fingertips",
                         },
                         link: {
@@ -79,10 +79,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "Some note about this image",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "Thousands of streaming channels at your fingertips",
                             },
                             link: {
@@ -106,10 +106,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "Some note about this image",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "Thousands of streaming channels at your fingertips",
                             },
                             link: {
@@ -133,10 +133,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "Some note about this image",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "Thousands of streaming channels at your fingertips",
                             },
                             link: {
@@ -160,10 +160,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "Some note about this image",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "Thousands of streaming channels at your fingertips",
                             },
                             link: {
@@ -187,10 +187,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "Some note about this image",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "Thousands of streaming channels at your fingertips",
                             },
                             link: {
@@ -214,10 +214,10 @@ export default class BlockSmartInfoTextAndImageBox extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
                                 alt: "Some note about this image",
                             },
-                            discription: {
+                            description: {
                                 id: 2,
                                 type: StructureType.String,
-                                title: "Discription",
+                                title: "Description",
                                 value: "Thousands of streaming channels at your fingertips",
                             },
                             link: {
