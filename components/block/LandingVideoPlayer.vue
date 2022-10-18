@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 
@@ -29,24 +29,34 @@ export default class LandingVideoPlayer extends Vue {
   @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
+  reset(){
+    this.model = {
+      video : {
+        id : 0 ,
+        type : StructureType.Url,
+        title : 'Video' ,
+        alt: 'Some note about this image',
+        src : 'https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1'},
+    }
+  }
+
   mounted() {
-    if (this.isEmpty)
-      this.model = {
-        video : {
-          id : 0 ,
-          type : StructureType.Url,
-          title : 'Video' ,
-          alt: 'Some note about this image',
-          src : 'https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1'},
-      }
+    if (this.isEmpty) this.reset();
   }
 
   clicked(){
     console.log('you have clicked me easily ');
     this.$emit('click');
   }
+
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
+  }
+
+  @Watch('isEmpty')
+  onValueChanged(){
+    console.log('component is empty now');
+    if(this.isEmpty) this.reset();
   }
 }
 </script>

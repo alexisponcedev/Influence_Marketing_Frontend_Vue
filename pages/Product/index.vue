@@ -143,10 +143,6 @@ export default class ProductsPage extends Vue {
     this.pages = (await Api.Page.getDynamicPages()) as Array<PageResource>;
   }
 
-  // alreadyHavePage(product_id : number){
-  //   return this.pages.find(i => i.id === product_id)
-  // }
-
   loadCategories() {
     this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')
       .then(res => {
@@ -162,8 +158,9 @@ export default class ProductsPage extends Vue {
 
   addNewPage(product: any) {
     this.addingPage = product.id;
+    let slug = `${product.name} ${product.model} ${product.brand!.name}`.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
     Api.Page.create({
-      title: product.name, route: '/products/[...param]',
+      title: product.name, route: '/products/' + slug,
       widgets: [], model_id: product.id, model_type: 'product',
     }).then(res => {
       this.$router.push(`Page/Edit/${res.id}`)

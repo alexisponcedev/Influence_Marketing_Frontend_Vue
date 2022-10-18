@@ -82,6 +82,8 @@ export default class api__page extends VuexModule {
       return response.data.data!.map(page => {
         return {
           title: page.title,
+          model_id : page.model_id,
+          model_type : page.model_type,
           route: 'https://hisense-usa.com' + page.route,
           relative: page.route,
           absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!.toLowerCase().replace(/ /g, '-'))

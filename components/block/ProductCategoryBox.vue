@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
@@ -18,47 +18,55 @@ export default class BlockProductCategoryBox extends Vue {
 
   Theme = Theme;
 
-  mounted() {
-    if (this.isEmpty) {
-      this.model = {
-        theme: {
-          id: 0,
-          type: StructureType.Select,
-          title: 'Theme',
-          value: Theme.dark,
-          items: [
-            {title: 'Light', value: this.Theme.light},
-            {title: 'Dark', value: this.Theme.dark},
-          ]
+  reset(){
+    this.model = {
+      theme: {
+        id: 0,
+        type: StructureType.Select,
+        title: 'Theme',
+        value: Theme.dark,
+        items: [
+          {title: 'Light', value: this.Theme.light},
+          {title: 'Dark', value: this.Theme.dark},
+        ]
+      },
+      WhereToBuy:{
+        id : 1 ,
+        type : StructureType
+      },
+      support : {
+        id : 2 ,
+        type : StructureType.Url,
+        title : 'Support',
+        value : '',
+      },
+      tags: {
+        id : 1,
+        type: StructureType.List,
+        title: 'Tags',
+        newItem: {
         },
-        WhereToBuy:{
-          id : 1 ,
-          type : StructureType
-        },
-        support : {
-          id : 2 ,
-          type : StructureType.Url,
-          title : 'Support',
-          value : '',
-        },
-        tags: {
-          id : 1,
-          type: StructureType.List,
-          title: 'Tags',
-          newItem: {
+        value: [
+          {
+            title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Sample Tag Title'},
+            target : { id : 0 , type : StructureType.IdSelector , title : 'ID Selector' , value : ''},
           },
-          value: [
-            {
-              title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Sample Tag Title'},
-              target : { id : 0 , type : StructureType.IdSelector , title : 'ID Selector' , value : ''},
-            },
-          ]
-        },
-      }
+        ]
+      },
     }
+  }
+
+  mounted() {
+    if (this.isEmpty) this.reset();
   }
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
+  }
+
+  @Watch('isEmpty')
+  onValueChanged(){
+    console.log('component is empty now');
+    if(this.isEmpty) this.reset();
   }
 }
 </script>

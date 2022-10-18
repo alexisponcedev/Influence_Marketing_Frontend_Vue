@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 
@@ -24,89 +24,99 @@ export default class LandingProductsBox extends Vue {
   @Prop({ default: true }) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
-  mounted() {
-    if (this.isEmpty)
-      this.model = {
-        title: { id : 0 , type: StructureType.String, title: 'Top Title', value: 'French Door Refrigerator Recall Information'},
-        list: {
-          id : 1,
-          type: StructureType.List,
-          title: 'Items',
-          newItem: {
+
+  reset(){
+    this.model = {
+      title: { id : 0 , type: StructureType.String, title: 'Top Title', value: 'French Door Refrigerator Recall Information'},
+      list: {
+        id : 1,
+        type: StructureType.List,
+        title: 'Items',
+        newItem: {
+          link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+          image: {
+            id : 1,
+            type: StructureType.Image,
+            title: 'Upload Image',
+            src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+            alt: 'Some note about this image',
+          },
+          title: {id : 2,type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
+        },
+        value: [
+          {
             link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
             image: {
-              id : 1,
+              id : 1 ,
               type: StructureType.Image,
               title: 'Upload Image',
               src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
               alt: 'Some note about this image',
             },
-            title: {id : 2,type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
+            title: {id : 2 , type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
           },
-          value: [
-            {
-              link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
-              image: {
-                id : 1 ,
-                type: StructureType.Image,
-                title: 'Upload Image',
-                src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-                alt: 'Some note about this image',
-              },
-              title: {id : 2 , type: StructureType.String, title: 'Title', value: 'TELEVISIONS'},
+          {
+            link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            image: {
+              id : 1,
+              type: StructureType.Image,
+              title: 'Upload Image',
+              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/4e2c190508/content_dp-refrigerator-min-hloqgg.png',
+              alt: 'Some note about this image',
             },
-            {
-              link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
-              image: {
-                id : 1,
-                type: StructureType.Image,
-                title: 'Upload Image',
-                src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/4e2c190508/content_dp-refrigerator-min-hloqgg.png',
-                alt: 'Some note about this image',
-              },
-              title: {id : 2 ,type: StructureType.String, title: 'Title', value: 'REFRIGERATORS'},
+            title: {id : 2 ,type: StructureType.String, title: 'Title', value: 'REFRIGERATORS'},
+          },
+          {
+            link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            image: {
+              id : 1 ,
+              type: StructureType.Image,
+              title: 'Upload Image',
+              src: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/278/e7a660ef50/Artboard-1__ScaleMaxWidthWzY0MF0.png',
+              alt: 'Some note about this image',
             },
-            {
-              link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
-              image: {
-                id : 1 ,
-                type: StructureType.Image,
-                title: 'Upload Image',
-                src: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/278/e7a660ef50/Artboard-1__ScaleMaxWidthWzY0MF0.png',
-                alt: 'Some note about this image',
-              },
-              title: {id : 2 , type: StructureType.String, title: 'Title', value: 'DISHWASHERS'},
+            title: {id : 2 , type: StructureType.String, title: 'Title', value: 'DISHWASHERS'},
+          },
+          {
+            link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            image: {
+              id : 1,
+              type: StructureType.Image,
+              title: 'Upload Image',
+              src: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png',
+              alt: 'Some note about this image',
             },
-            {
-              link: { id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
-              image: {
-                id : 1,
-                type: StructureType.Image,
-                title: 'Upload Image',
-                src: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png',
-                alt: 'Some note about this image',
-              },
-              title: { id : 2 , type: StructureType.String, title: 'Title', value: 'BEVERAGE + WINE COOLER'},
+            title: { id : 2 , type: StructureType.String, title: 'Title', value: 'BEVERAGE + WINE COOLER'},
+          },
+          {
+            link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            image: {
+              id : 1 ,
+              type: StructureType.Image,
+              title: 'Upload Image',
+              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/d199b89212/content_dp-dehumidifier-min-yli72a.png',
+              alt: 'Some note about this image',
             },
-            {
-              link: {id : 0 , type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
-              image: {
-                id : 1 ,
-                type: StructureType.Image,
-                title: 'Upload Image',
-                src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/d199b89212/content_dp-dehumidifier-min-yli72a.png',
-                alt: 'Some note about this image',
-              },
-              title: {id : 2 ,type: StructureType.String, title: 'Title', value: 'AIR PRODUCTS'},
-            },
+            title: {id : 2 ,type: StructureType.String, title: 'Title', value: 'AIR PRODUCTS'},
+          },
 
-          ]
-        },
-      }
+        ]
+      },
+    }
+  }
+
+  mounted() {
+    if (this.isEmpty) this.reset();
   }
 
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
+  }
+
+  @Watch('isEmpty')
+  onValueChanged(){
+    console.log('component is empty now');
+    if(this.isEmpty) this.reset();
   }
 }
 </script>

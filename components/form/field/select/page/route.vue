@@ -48,7 +48,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     label: "Parent Page URL",
     placeholder: 'Enter page name',
     'item-text' : 'title',
-    'item-value' : 'relative',
+    'item-value' : 'absolute',
     rules: [],
     colAttrs: {cols: 4},
   }
@@ -64,18 +64,9 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
 
 
   get calculateRoute() {
-
     return this.parentRoute
       + (this.parentRoute === '/' ? '' : '/')
       + this.getSlug(this.pageRoute);
-
-
-    // let route = this.parentRoute
-    //   + (this.parentRoute === '/' ? '' : '/')
-    //   + this.getSlug(this.pageRoute);
-    // let count = this.items.filter(i => i.value === route).length
-    // if(count > 0) route = route + '-' + (count + 1);
-    // return route;
   }
 
   @Watch('calculateRoute')
@@ -95,7 +86,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     return str
       .toLowerCase()
       .replace(/ /g, '-')
-      // .replace(/[^\w-]+/g, '')
+      .replace(/[^\w-]+/g, '')
   }
 
   @Watch('value')

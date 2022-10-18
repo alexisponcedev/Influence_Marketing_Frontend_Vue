@@ -11,6 +11,7 @@
                            @edit="editBlock(i)"
                            @delete="deleteBlock(i)"
                            @duplicate="duplicateBlock(i)"
+                           @reset="resetBlock(i)"
                            @move-up="moveUpBlock(i)"
                            @move-down="moveDownBlock(i)"
                            :block="block">
@@ -74,7 +75,9 @@ export default class PageBuilder extends Vue {
     newBlock.id = this.blocksList.length + 1;
     this.blocksList.splice(i + 1, 0, newBlock)
   }
-
+  resetBlock(i: any) {
+    this.blocksList[i].structure = [];
+  }
   moveUpBlock(i: any) {
     if (i > 0 && this.blocksList.length > 1) {
       const block = this.blocksList.splice(i, 1)[0];

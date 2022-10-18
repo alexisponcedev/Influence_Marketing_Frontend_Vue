@@ -1,44 +1,48 @@
 <template>
   <div v-if="!isEmpty" class="main-container tw-flex tw-items-center tw-justify-around">
 
-      <div class="title">{{ model.title.value }}</div>
-      <div class="xBorder tw-flex tw-items-center tw-justify-between ">
-        <div class="xPlaceholder">Enter Your Email here</div>
-        <div class="xButton">Subscribe</div>
-      </div>
+    <div class="title">{{ model.title.value }}</div>
+    <div class="xBorder tw-flex tw-items-center tw-justify-between ">
+      <div class="xPlaceholder">Enter Your Email here</div>
+      <div class="xButton">Subscribe</div>
+    </div>
 
   </div>
 
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 
 @Component
 export default class LandingVideoPlayer extends Vue {
   @Prop(Number) readonly id: number | undefined
-  @Prop({ default: true }) readonly editable: Boolean | undefined
+  @Prop({default: true}) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
-  mounted() {
-    if (this.isEmpty)
-      this.model = {
-        title: {
-          id : 0 ,
-          type: StructureType.String,
-          title: 'Title',
-          value: 'Stay up to date with emails\n' +
-            'about new products & other news',
-        },
-        Url: {
-          id : 1,
-          type: StructureType.String,
-          title: 'Submit URL',
-          value: 'https://target-url.com/to/add/subscription',
-        }
+  reset() {
+    this.model = {
+      title: {
+        id: 0,
+        type: StructureType.String,
+        title: 'Title',
+        value: 'Stay up to date with emails\n' +
+          'about new products & other news',
+      },
+      Url: {
+        id: 1,
+        type: StructureType.String,
+        title: 'Submit URL',
+        value: 'https://target-url.com/to/add/subscription',
       }
+    }
+  }
+
+  mounted() {
+    if (this.isEmpty) this.reset();
+
   }
 
   // clicked() {
@@ -48,6 +52,12 @@ export default class LandingVideoPlayer extends Vue {
 
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
+  }
+
+  @Watch('isEmpty')
+  onValueChanged() {
+    console.log('component is empty now');
+    if (this.isEmpty) this.reset();
   }
 }
 </script>
@@ -59,7 +69,7 @@ export default class LandingVideoPlayer extends Vue {
 }
 
 .title {
-  font-family: 'hisense' , serif !important;
+  font-family: 'hisense', serif !important;
   font-style: normal;
   font-weight: 500;
   font-size: 26px !important;
