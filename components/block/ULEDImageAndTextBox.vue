@@ -28,35 +28,98 @@ export default class BlockULEDImageAndTextBox extends Vue {
         title: "Theme",
         value: Theme.dark,
         items: [
-          {title: "Light", value: this.Theme.light},
-          {title: "Dark", value: this.Theme.dark},
+          { title: "Light", value: this.Theme.light },
+          { title: "Dark", value: this.Theme.dark },
         ],
       },
-      tinyTitle: {
+      list: {
         id: 1,
-        type: StructureType.String,
-        title: "Tiny Title",
-        value: "LASER TVS",
-      },
-      title: {
-        id: 2,
-        type: StructureType.String,
-        title: "Title",
-        value: "LASER TVS",
-      },
-      description: {
-        id: 3,
-        type: StructureType.String,
-        title: "Description",
-        value: "Discover a New Expanse of Color",
-      },
-      image: {
-        id: 4,
-        type: StructureType.Image,
-        title: "Upload Image",
-        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-        alt: "Some note about this image",
-      },
+        type: StructureType.List,
+        title: "List",
+        newItem: {
+          littleTitle: {
+            id: 1,
+            type: StructureType.String,
+            title: "little Title",
+            value: "4K ULED™",
+          },
+          title: {
+            id: 2,
+            type: StructureType.String,
+            title: "Title",
+            value: "Sharper, smoother pictures",
+          },
+          description: {
+            id: 3,
+            type: StructureType.String,
+            title: "description",
+            value: "Like 4K great, but better. Each TV in the ULED Series has our exclusive ULED technologies. They continually boost color, contrast, brightness, motion… What it means is you’ll always see the best possible picture. No wonder these are the TVs your old TV is worried about.",
+          },
+          image: {
+            id: 4,
+            type: StructureType.Image,
+            title: "Upload Image",
+            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/8195a563af/pdp-3_6-u7-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-gxkl4e.jpg",
+            alt: "featured image",
+          },
+        },
+        value: [
+          {
+            tinyTitle: {
+              id: 1,
+              type: StructureType.String,
+              title: "Tiny Title",
+              value: "4K ULED™",
+            },
+            title: {
+              id: 2,
+              type: StructureType.String,
+              title: "Title",
+              value: "Sharper, smoother pictures",
+            },
+            description: {
+              id: 3,
+              type: StructureType.String,
+              title: "description",
+              value: "Like 4K great, but better. Each TV in the ULED Series has our exclusive ULED technologies. They continually boost color, contrast, brightness, motion… What it means is you’ll always see the best possible picture. No wonder these are the TVs your old TV is worried about.",
+            },
+            image: {
+              id: 4,
+              type: StructureType.Image,
+              title: "Upload Image",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/8195a563af/pdp-3_6-u7-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-gxkl4e.jpg",
+              alt: "featured image",
+            },
+          },
+          {
+            tinyTitle: {
+              id: 1,
+              type: StructureType.String,
+              title: "Tiny Title",
+              value: "4K ULED™",
+            },
+            title: {
+              id: 2,
+              type: StructureType.String,
+              title: "Title",
+              value: "Sharper, smoother pictures",
+            },
+            description: {
+              id: 3,
+              type: StructureType.String,
+              title: "description",
+              value: "Like 4K great, but better. Each TV in the ULED Series has our exclusive ULED technologies. They continually boost color, contrast, brightness, motion… What it means is you’ll always see the best possible picture. No wonder these are the TVs your old TV is worried about.",
+            },
+            image: {
+              id: 4,
+              type: StructureType.Image,
+              title: "Upload Image",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/8195a563af/pdp-3_6-u7-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-gxkl4e.jpg",
+              alt: "featured image",
+            },
+          },
+        ]
+      }
     };
   }
 
