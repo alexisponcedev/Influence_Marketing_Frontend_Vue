@@ -161,6 +161,10 @@ export default class PageForm extends Vue {
       .then(this.openPageBuilder);
   }
 
+  @Watch('')
+
+
+
   @Watch("tab")
   tabChanged(newTab: string, _: string) {
     switch (newTab) {

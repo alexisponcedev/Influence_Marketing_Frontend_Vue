@@ -37,7 +37,13 @@ export default class BlockLasterFinedWithImage extends Vue {
         id: 1,
         type: StructureType.String,
         title: "Title",
-        value: "Find Your Laser TV",
+        value: "Find Your",
+      },
+      coloredTitle: {
+        id: 1,
+        type: StructureType.String,
+        title: "Colored Title",
+        value: "Laser TV",
       },
 
       description: {

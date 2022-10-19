@@ -160,6 +160,26 @@ export const blocks = () => [
     ],
   },
   {
+    name: "Product Support",
+    blocks: [
+      {
+        name: "ProductSupportInfo",
+        title: "Product Support Info",
+        image: "ProductSupportInfo.png",
+      },
+      {
+        name: "ProductSupportLinks",
+        title: "Product Support Links",
+        image: "ProductSupportLinks.png",
+      },
+      {
+        name: "NeedHelpBox",
+        title: "Need Help",
+        image: "NeedHelpBox.png",
+      },
+    ],
+  },
+  {
     name: "TvAndAudio",
     blocks: [
       {

@@ -20,91 +20,91 @@
         <v-tabs show-arrows v-model="tab" background-color="transparent">
           <v-tab :href="`#${ProductSearchStatus.all}`">All Products</v-tab>
           <v-tab :href="`#${ProductSearchStatus.active}`">Active Products</v-tab>
-          <v-tab :href="`#${ProductSearchStatus.inactive}`">Active Products</v-tab>
+          <v-tab :href="`#${ProductSearchStatus.inactive}`">Inactive Products</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
 
     <v-card>
-          <v-card-text>
-            <div v-if="categories.length === 0"
-                 class="tw-my-32 tw-text-center tw-flex tw-flex-col tw-justify-center tw-items-center tw-space-y-4 ">
-              <div>Loading Categories</div>
-              <v-progress-circular
-                indeterminate
-                color="blue"
-              ></v-progress-circular>
-            </div>
-            <div v-else>
-              <search-products
-                ref="searchProducts"
-                :max="-1"
-                :status="tab"
-                :initLoad="true"
-                :run="appendPageData"
-                :always-show="true"
-                :category_id="selectedCategory.id"
-                v-model="search">
+      <v-card-text>
+        <div v-if="categories.length === 0"
+             class="tw-my-32 tw-text-center tw-flex tw-flex-col tw-justify-center tw-items-center tw-space-y-4 ">
+          <div>Loading Categories</div>
+          <v-progress-circular
+            indeterminate
+            color="blue"
+          ></v-progress-circular>
+        </div>
+        <div v-else>
+          <search-products
+            ref="searchProducts"
+            :max="-1"
+            :status="tab"
+            :initLoad="true"
+            :run="appendPageData"
+            :always-show="true"
+            :category_id="selectedCategory.id"
+            v-model="search">
 
-                <template #placeholder>
-                  <div class="tw-grid tw-grid-cols-6 tw-gap-2">
-                    <div v-for="i in 14" :key="i"
-                         class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-3.5">
-                      <div class="tw-bg-gray-50 tw-h-36 tw-w-full tw-object-cover tw-rounded-xl"/>
-                      <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-bg-gray-100"/>
-                      <div class="tw-gray-700 tw-flex tw-justify-between">
-                        <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20"/>
-                        <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20"/>
-                      </div>
-                    </div>
+            <template #placeholder>
+              <div class="tw-grid tw-grid-cols-6 tw-gap-2">
+                <div v-for="i in 14" :key="i"
+                     class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-3.5">
+                  <div class="tw-bg-gray-50 tw-h-36 tw-w-full tw-object-cover tw-rounded-xl"/>
+                  <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-bg-gray-100"/>
+                  <div class="tw-gray-700 tw-flex tw-justify-between">
+                    <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20"/>
+                    <div class="tw-bg-gray-100 tw-rounded-xl tw-h-4 tw-w-20"/>
                   </div>
-                </template>
+                </div>
+              </div>
+            </template>
 
 
-                <template #default="{products}">
-                  <div class="tw-grid tw-grid-cols-5 3xl:tw-grid-cols-6  tw-gap-2">
-                    <div v-for="product in products" :key="product.id"
-                         class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-2">
+            <template #default="{products}">
+              <div class="tw-grid tw-grid-cols-5 3xl:tw-grid-cols-6  tw-gap-2">
+                <div v-for="product in products" :key="product.id"
+                     class="tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-flex-col tw-justify-center tw-space-y-2">
 
-                      <div class="tw-h-40 tw-w-full tw-flex tw-items-center tw-justify-center">
-                        <img :src="product.image" alt=""
-                             style="min-height: 110px;"
-                             class="tw-object-cover tw-max-h-full">
-                      </div>
+                  <div class="tw-h-40 tw-w-full tw-flex tw-items-center tw-justify-center">
+                    <img :src="product.image" alt=""
+                         style="min-height: 110px;"
+                         class="tw-object-cover tw-max-h-full">
+                  </div>
 
 
-                      <div class="tw-font-semibold tw-line-clamp-1 tw-text-center" :title="product.name">
-                        {{ product.name }}
-                      </div>
+                  <div class="tw-font-semibold tw-line-clamp-1 tw-text-center" :title="product.name">
+                    {{ product.name }}
+                  </div>
 
-                      <div class="tw-flex tw-items-center tw-justify-between tw-space-x-2" style="min-height: 32px">
-                        <div>{{ product.model }}</div>
+                  <div class="tw-flex tw-items-center tw-justify-between tw-space-x-2" style="min-height: 32px">
+                    <div>{{ product.model }}</div>
 
-                        <div v-if="product.page">
-                          <nuxt-link :to="`/Page/Edit/${product.page.id}`"
-                                     class="tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-2">
-                            Open
-                          </nuxt-link>
-                        </div>
-                        <div v-else class="tw-rounded" style="min-width: 50px;">
-                          <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan"/>
-                          <button v-else @click="addNewPage(product)"
-                                  class="tw-text-gray-600 tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
+                    <div v-if="product.page">
+                      <nuxt-link :to="`/Page/Edit/${product.page.id}`"
+                                 class="tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-2">
+                        Open
+                      </nuxt-link>
+                    </div>
+                    <div v-else class="tw-rounded" style="min-width: 50px;">
+                      <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan"/>
+                      <button v-else @click="addNewPage(product)"
+                              class="tw-text-gray-600 tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
                             tw-whitespace-nowrap hover:tw-text-gray-700 hover:tw-bg-gray-100 tw-px-1 tw-py-1">
-                            Add Page
-                          </button>
+                        Add Page
+                      </button>
 
-                        </div>
-                      </div>
                     </div>
                   </div>
-                </template>
-              </search-products>
-            </div>
+                </div>
+              </div>
+            </template>
+          </search-products>
+        </div>
 
 
-          </v-card-text>
-        </v-card>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 
@@ -162,14 +162,41 @@ export default class ProductsPage extends Vue {
   addNewPage(product: any) {
     this.addingPage = product.id;
     let slug = `${product.name} ${product.model} ${product.brand!.name}`.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    let route = '/products/' + slug;
     Api.Page.create({
-      title: product.name, route: '/products/' + slug,
-      widgets: [], model_id: product.id, model_type: 'product',
-    }).then(res => {
-      this.$router.push(`Page/Edit/${res.id}`)
-    }).finally(() => {
-      this.addingPage = 0;
-    });
+      title: product.name,
+      route: route,
+      widgets: [],
+      meta: [
+        {rel: 'property="og:site_name"', name: 'property="og:title"', content: 'Hisense USA'},
+        {rel: 'property="og:title"', name: 'property="og:title"', content: product.name},
+        {rel: 'property="og:description"', name: 'property="og:description"', content: product.name},
+        {rel: 'property="og:image"', name: 'property="og:image"', content: product.image},
+        {rel: 'property="og:url"', name: 'property="og:url"', content: route},
+        {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
+        {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
+      ],
+      model_id: product.id,
+      model_type: 'product',
+    })
+      .then(res => {
+        Api.Page.create({
+          title: product.name,
+          route: '/support/models/' + slug,
+          widgets: [
+
+          ],
+          model_id: product.id,
+          model_type: 'support',
+        })
+        return res;
+      })
+      .then(res => {
+        this.$router.push(`Page/Edit/${res.id}`)
+      })
+      .finally(() => {
+        this.addingPage = 0;
+      });
   }
 
   appendPageData(products: Array<any>) {
