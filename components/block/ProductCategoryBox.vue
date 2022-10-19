@@ -44,18 +44,20 @@ export default class BlockProductCategoryBox extends Vue {
         id : 1,
         type : StructureType.Url,
         title : 'Support Page',
-        value : '',
+        value : '/',
       },
       tags: {
         id : 2,
         type: StructureType.List,
         title: 'Tags',
         newItem: {
+          title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Item Title'},
+          target : { id : 0 , type : StructureType.idSelector , title : 'ID Selector' , value : ''},
         },
         value: [
           {
             title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Sample Tag Title'},
-            target : { id : 0 , type : StructureType.String , title : 'ID Selector' , value : ''},
+            target : { id : 0 , type : StructureType.idSelector , title : 'ID Selector' , value : ''},
           },
         ]
       },

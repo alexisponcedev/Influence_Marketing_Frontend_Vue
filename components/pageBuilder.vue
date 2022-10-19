@@ -8,6 +8,8 @@
         <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
           <block-container v-for="(block , i) in blocksList" :key="block.id"
                            class="tw-mb-2"
+                           :selectable="selectable"
+                           @component-selected="componentSelected(i)"
                            @edit="editBlock(i)"
                            @delete="deleteBlock(i)"
                            @duplicate="duplicateBlock(i)"
@@ -24,6 +26,7 @@
         <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
                           @close="cancelEditing"
+                          @enable-select-mode="enableSelectMode"
                           :title="blocksList[editIndex].title"
                           v-model="blocksList[editIndex].structure"/>
       </div>
@@ -36,6 +39,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import draggable from "vuedraggable";
+import {EventBus} from "~/plugins/event.client";
 
 @Component({
   components: {draggable}
@@ -44,6 +48,29 @@ export default class PageBuilder extends Vue {
   @VModel({type: Array}) blocksList!: any
 
   editIndex: Number = -1;
+
+  // selectable: boolean = false;
+
+  selectItem : any = {};
+
+  get selectable(){
+    return this.selectItem && Object.keys(this.selectItem).length > 0;
+  }
+
+  mounted() {
+      EventBus.listen('enable-select-mode', (target: any) => {
+        this.selectItem = target;
+      });
+  }
+
+  destroy() {
+      EventBus.remove('enable-select-mode');
+  }
+
+  componentSelected(i: number) {
+    this.selectItem.value = `#${this.blocksList[i].name}${this.blocksList[i].id}`;
+    this.selectItem = {};
+  }
 
   cancelEditing() {
     this.editIndex = -1;
@@ -55,12 +82,14 @@ export default class PageBuilder extends Vue {
     this.selectBlock(this.blocksList.length - 1);
   }
 
-  selectBlock(index: any) {
+  selectBlock(index: number) {
     this.blocksList.forEach((item: { selected: boolean; }) => item.selected = false);
     this.blocksList[index].selected = true;
   }
 
-  editBlock(i: Number) {
+
+
+  editBlock(i: number) {
     this.selectBlock(i);
     this.editIndex = i;
   }
@@ -75,9 +104,11 @@ export default class PageBuilder extends Vue {
     newBlock.id = this.blocksList.length + 1;
     this.blocksList.splice(i + 1, 0, newBlock)
   }
+
   resetBlock(i: any) {
     this.blocksList[i].structure = [];
   }
+
   moveUpBlock(i: any) {
     if (i > 0 && this.blocksList.length > 1) {
       const block = this.blocksList.splice(i, 1)[0];
