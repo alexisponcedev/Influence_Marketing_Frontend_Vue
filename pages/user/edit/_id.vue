@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import EntityForm from "../../Add.vue";
+import EntityForm from "../add.vue";
 
 @Component({
   layout: "panel",
@@ -12,5 +12,5 @@ import EntityForm from "../../Add.vue";
     EntityForm,
   },
 })
-export default class editEntity extends Vue {}
+export default class editForm extends Vue {}
 </script>

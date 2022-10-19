@@ -47,7 +47,7 @@ export default class TemplateBuilderSection extends Vue {
   }
 
   discard() {
-    this.$router.push('/Template/Edit/' + this.Template.id);
+    this.$router.push('/template/edit/' + this.Template.id);
   }
 
   async saveTemplate() {

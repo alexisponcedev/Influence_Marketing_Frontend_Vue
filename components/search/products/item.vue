@@ -43,16 +43,6 @@ export default class LandingSlider extends Vue {
   @Prop(Boolean) readonly placeholder!: boolean
   @VModel({type: Object}) model!: any
 
-  // get Image() {
-  //   return !this.isEmpty && this.model
-  //   && this.model.media
-  //   && this.model.media.url !== ''
-  //     ?
-  //     this.model.media.url
-  //     :
-  //     "https://assets.hisense-usa.com/assets/GalleryImages/Product/475/cbf5a253da/a4gv___ScaleMaxWidthWzY0MF0.png";
-  // }
-
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
   }

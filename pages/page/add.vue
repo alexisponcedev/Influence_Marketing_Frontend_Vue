@@ -82,11 +82,11 @@ export default class PageForm extends Vue {
     this.locations = [
       {
         title: "Pages",
-        to: "/Page/All",
+        to: "/page/all",
       },
       {
         title: this.Page.title || "",
-        to: "/Page/Edit/" + this.Page.id!,
+        to: "/page/edit/" + this.Page.id!,
       },
     ];
   }
@@ -137,7 +137,7 @@ export default class PageForm extends Vue {
         });
       else await Api.Page.create(this.Page);
       Api.Page.clearRoutes();
-      if (!this.editMode) this.$router.push("/Page/All");
+      if (!this.editMode) this.$router.push("/page/all");
     }
   }
 
@@ -153,7 +153,7 @@ export default class PageForm extends Vue {
   }
 
   openPageBuilder() {
-    this.$router.push(`/Page/Edit/${this.Page.id}/PageBuilder`);
+    this.$router.push(`/page/edit/${this.Page.id}/PageBuilder`);
   }
 
   templateSelected(template: any) {
