@@ -81,7 +81,7 @@
                     <div>{{ product.model }}</div>
 
                     <div v-if="product.page">
-                      <nuxt-link :to="`/Page/Edit/${product.page.id}`"
+                      <nuxt-link :to="`/page/edit/${product.page.id}`"
                                  class="tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-2">
                         Open
                       </nuxt-link>

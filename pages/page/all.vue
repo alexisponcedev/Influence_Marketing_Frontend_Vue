@@ -4,25 +4,24 @@
 
     <v-row>
       <v-col>
-        <v-tabs background-color="transparent">
-          <v-tab>All Pages</v-tab>
+        <v-tabs v-model="tab" background-color="transparent">
+          <v-tab :href="`#${PageType.all}`">All Pages</v-tab>
+          <v-tab :href="`#${PageType.static}`">Static Pages</v-tab>
+          <v-tab :href="`#${PageType.product}`">Product Pages</v-tab>
+          <v-tab :href="`#${PageType.support}`">Support Pages</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col>
-        <v-card>
+    <v-card>
           <table-standard
             :config="config"
             class="row-pointer"
-            :items="Api.Page.all"
+            :items="pagesList"
             :loading="Api.Page.loading"
-            @click:row="(Page) => $router.push('/Page/Edit/' + Page.id)"
+            @click:row="(Page) => $router.push('/page/edit/' + Page.id)"
           />
         </v-card>
-      </v-col>
-    </v-row>
 
   </v-container>
 </template>
@@ -31,16 +30,21 @@
 import { Vue, Component } from "vue-property-decorator";
 import { PageResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
+import {PageTypeEnum} from "~/interfaces/PageTypeEnum";
 
 @Component({ layout: "panel" })
 export default class AllPages extends Vue {
   Api = Api;
 
+  tab = PageTypeEnum.all;
+
+  PageType = PageTypeEnum;
+
   config = {
     headers: [
       { text: "Title", value: "title" },
       { text: "Route", value: "route" },
-      { text: "Model", value: "model_type" },
+      // { text: "Model", value: "model_type" },
       // { text: "Product", value: "model_id" },
       { text: "", value: "actions", sortable: false, width: "0" },
     ],
@@ -48,7 +52,7 @@ export default class AllPages extends Vue {
       {
         type: "edit",
         icon: "mdi-pencil",
-        to: "/Page/Edit/[id]",
+        to: "/page/edit/[id]",
       },
       {
         type: "delete",
@@ -68,7 +72,7 @@ export default class AllPages extends Vue {
         class : 'btn',
         color: "primary",
         icon: "mdi-plus",
-        to: "/Page/Add",
+        to: "/page/add",
       },
     ],
   };
@@ -83,6 +87,18 @@ export default class AllPages extends Vue {
 
   deletePage(Page: PageResource) {
     Api.Page.delete(Page.id!).then(this.updatePages);
+  }
+
+  get pagesList(){
+    let pages : Array<any> = [];
+    console.log(this.tab);
+    switch (this.tab) {
+      case PageTypeEnum.all : pages = Api.Page.all; break;
+      case PageTypeEnum.static : pages = Api.Page.all.filter(page => page.model_type == null); break;
+      case PageTypeEnum.product : pages = Api.Page.all.filter(page => page.model_type === 'product'); break;
+      case PageTypeEnum.support : pages = Api.Page.all.filter(page => page.model_type === 'support'); break;
+    }
+    return pages;
   }
 }
 </script>

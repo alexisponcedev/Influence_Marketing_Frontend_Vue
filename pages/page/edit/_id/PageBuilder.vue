@@ -10,7 +10,9 @@
         </v-col>
         <v-col cols="12" md="7" class="text-right">
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
-          <v-btn :to="`/Page/Edit/${Page.id}/PagePreview`" elevation="0" outlined color="grey darken-4" class="control-btns">Preview</v-btn>
+          <v-btn :to="`/page/edit/${Page.id}/PagePreview`" elevation="0" outlined color="grey darken-4"
+                 class="control-btns">Preview
+          </v-btn>
           <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template
           </v-btn>
           <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
@@ -45,50 +47,37 @@ export default class PageBuilderSection extends Vue {
 
   blocksList: BlockInterface[] = [];
 
+
   Page: Page = {};
 
-  Product : Object = {};
-  Media : Array<any> = [];
-
-
-  productLoaded : boolean = false;
-  mediaLoaded : boolean = false;
-
   async mounted() {
-
-    // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.$route.params.id).then(res => {
-    //   this.Product = res.data;
-    //   this.productLoaded = true;
-    // })
-    //
-    //
-    // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProductMedia/' + this.$route.params.id).then(res => {
-    //   this.mediaLoaded = true;
-    //   this.Media = res.data;
-    // });
-
-    //load page
-    // this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-    // if (this.Page.draft && this.Page.draft.length > 0)
-    //   this.blocksList = this.Page.draft as Array<BlockInterface>;
-    // else
-    //   this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
+    this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+    if (this.Page.draft && this.Page.draft.length > 0)
+      this.blocksList = this.Page.draft as Array<BlockInterface>;
+    else
+      this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
   }
 
   discard() {
-    this.$router.push('/Page/Edit/' + this.Page.id);
+    this.$router.push('/page/edit/' + this.Page.id);
   }
 
   async savePage() {
-    let widgets : Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
+    let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
     await Api.Page.savePageWidgets(widgets);
     // this.triggerDeploy();
 
   }
-  // triggerDeploy(){
-  //   console.log('trigger deploy public site');
-  //   this.$axios.$get('https://forge.laravel.com/servers/580060/sites/1766519/deploy/http?token=zevvn1zF5xg7U1gtp2Rur3dxntCyOKm03Q2lOY4e');
-  // }
+
+  triggerDeploy() {
+    console.log('trigger deploy public site');
+
+    let url = "https://forge.laravel.com/servers/600754/sites/1780869/deploy/http?token=RcEhkrL2mu85g03sjg08d6sePRocU71JSagXlUSk";
+    let win = window.open(url, 'triggerForge', "height=100,width=100");
+    setTimeout(() => {
+      if (win) win.close();
+    }, 3000);
+  }
 
   saveTemplate() {
     (this.$refs.templateManager as any).open(true, this.blocksList);

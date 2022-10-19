@@ -4,7 +4,7 @@
     <div v-if="editMode" class="d-flex justify-space-between align-center">
       <breadcrumbs :locations="locations"/>
       <v-btn elevation="0" color="grey darken-4 white--text" class="btn"
-             :to="`/Template/Edit/${Template.id}/TemplateBuilder`">
+             :to="`/template/edit/${Template.id}/TemplateBuilder`">
         Go to Template Builder
       </v-btn>
     </div>
@@ -79,11 +79,11 @@ export default class EntityForm extends Vue {
     this.locations = [
       {
         title: "Templates",
-        to: "/Template/All",
+        to: "/template/all",
       },
       {
         title: this.Template.name || "",
-        to: "/Template/Edit/" + this.Template.id!,
+        to: "/template/edit/" + this.Template.id!,
       },
     ];
   }
@@ -119,7 +119,7 @@ export default class EntityForm extends Vue {
           Template: this.Template,
         });
       else await Api.Template.create(this.Template);
-      if (!this.editMode) this.$router.push("/Template/All");
+      if (!this.editMode) this.$router.push("/template/all");
     }
   }
 

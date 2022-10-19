@@ -18,7 +18,7 @@
             class="row-pointer"
             :items="Api.Template.all"
             :loading="Api.Template.loading"
-            @click:row="(Template) => $router.push('/Template/Edit/' + Template.id)"
+            @click:row="(Template) => $router.push('/template/edit/' + Template.id)"
           />
         </v-card>
       </v-col>
@@ -46,7 +46,7 @@ export default class AllTemplates extends Vue {
       {
         type: "edit",
         icon: "mdi-pencil",
-        to: "/Template/Edit/[id]",
+        to: "/template/edit/[id]",
       },
       {
         type: "delete",
@@ -66,7 +66,7 @@ export default class AllTemplates extends Vue {
         class : 'btn',
         color: "primary",
         icon: "mdi-plus",
-        to: "/Template/Add",
+        to: "/template/add",
       },
     ],
   };
