@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Theme} from "~/interfaces/ThemeEnum";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import { Theme } from "~/interfaces/ThemeEnum";
 
 
 @Component
 export default class BlockMoreTvExperts extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
-  @VModel({type: Object}) model!: Object
+  @VModel({ type: Object }) model!: Object
 
   Theme = Theme;
 
@@ -29,8 +29,8 @@ export default class BlockMoreTvExperts extends Vue {
         title: 'Theme',
         value: Theme.dark,
         items: [
-          {title: 'Light', value: this.Theme.light},
-          {title: 'Dark', value: this.Theme.dark},
+          { title: 'Light', value: this.Theme.light },
+          { title: 'Dark', value: this.Theme.dark },
         ]
       },
       title: {
@@ -46,6 +46,71 @@ export default class BlockMoreTvExperts extends Vue {
         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
         alt: 'MoreTv Head',
       },
+      list: {
+        id: 3,
+        type: StructureType.List,
+        title: 'quotes',
+        newItem: {
+          quote: {
+            id: 0,
+            type: StructureType.String,
+            title: 'quote',
+            value: "Best Budget TV for watching sports"
+          },
+          image: {
+            id: 1,
+            type: StructureType.Image,
+            title: 'quote image',
+            src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+            alt: 'MoreTv Head',
+          },
+        },
+        value: [
+          {
+            quote: {
+              id: 0,
+              type: StructureType.String,
+              title: 'quote',
+              value: "Best Budget TV for watching sports"
+            },
+            image: {
+              id: 1,
+              type: StructureType.Image,
+              title: 'quote image',
+              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+              alt: 'MoreTv Head',
+            },
+          }, {
+            quote: {
+              id: 0,
+              type: StructureType.String,
+              title: 'quote',
+              value: "Best Budget TV for watching sports"
+            },
+            image: {
+              id: 1,
+              type: StructureType.Image,
+              title: 'quote image',
+              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+              alt: 'MoreTv Head',
+            },
+          }, {
+            quote: {
+              id: 0,
+              type: StructureType.String,
+              title: 'quote',
+              value: "Best Budget TV for watching sports"
+            },
+            image: {
+              id: 1,
+              type: StructureType.Image,
+              title: 'quote image',
+              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+              alt: 'MoreTv Head',
+            },
+          }
+        ]
+      }
     }
   }
 
@@ -60,8 +125,8 @@ export default class BlockMoreTvExperts extends Vue {
       .then(res => {
         this.product = res.data;
       }).finally(() => {
-      this.loadingProduct = false;
-    })
+        this.loadingProduct = false;
+      })
   }
 
   get isEmpty(): Boolean {
