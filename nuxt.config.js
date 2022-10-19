@@ -50,6 +50,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/event.client.js',
     '~/plugins/dragAndDrop.js',
     '~/plugins/octavia.kit',
     '~/plugins/v-perfect-scrollbar.client.js',

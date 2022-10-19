@@ -35,7 +35,7 @@ export default class LandingVideoPlayer extends Vue {
         id: 1,
         type: StructureType.String,
         title: 'Submit URL',
-        value: 'https://target-url.com/to/add/subscription',
+        value: 'https://imcrm.dev-api.hisenseportal.com/api/hisense/lead',
       }
     }
   }
