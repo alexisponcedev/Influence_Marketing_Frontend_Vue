@@ -1,5 +1,5 @@
 export interface MetaInterface {
-  rel?: string,
+  rel: string,
   name : string,
   content : string
 }

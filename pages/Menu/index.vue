@@ -14,23 +14,7 @@
           Edit Footer Menu
         </nuxt-link>
       </div>
-
     </v-card>
-
-<!--    <v-card >-->
-<!--      <div class="tw-flex tw-items-center tw-justify-center tw-space-x-4" style="height: 500px">-->
-<!--        <nuxt-link to="/Menu/header"-->
-<!--                   class="tw-w-48 tw-h-48 tw-border tw-border-dashed tw-border-gray-300 hover:tw-bg-gray-50 tw-rounded-xl tw-flex tw-items-center tw-justify-center">-->
-
-<!--          Header Menu-->
-<!--        </nuxt-link>-->
-
-<!--        <nuxt-link to="/Menu/footer" class="tw-w-48 tw-h-48 tw-border tw-border-dashed tw-border-gray-300 hover:tw-bg-gray-50 tw-rounded-xl tw-flex tw-items-center tw-justify-center">-->
-<!--          Footer Menu-->
-<!--        </nuxt-link>-->
-<!--      </div>-->
-
-<!--    </v-card>-->
   </v-container>
 </template>
 

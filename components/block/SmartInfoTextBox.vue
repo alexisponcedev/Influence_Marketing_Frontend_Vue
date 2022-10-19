@@ -70,7 +70,7 @@ export default class BlockSmartInfoTextBox extends Vue {
 
   @Watch('isEmpty')
   onValueChanged() {
-    console.log('component is empty now');
+
     if (this.isEmpty) this.reset();
   }
 }

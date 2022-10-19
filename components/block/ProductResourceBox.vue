@@ -42,7 +42,7 @@ export default class BlockProductResourceBox extends Vue {
 
   @Watch('isEmpty')
   onValueChanged(){
-    console.log('component is empty now');
+
     if(this.isEmpty) this.reset();
   }
 }

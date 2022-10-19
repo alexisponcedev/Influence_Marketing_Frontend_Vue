@@ -1,36 +1,48 @@
 <template>
   <v-col class="py-0" v-bind="field.colAttrs">
-
-
     <label>
-
       {{ field.label }}
-
       <v-btn icon color="primary" @click="addRow">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
-
     </label>
 
     <v-row v-for="(row, index) in model" :key="`meta_${index}`">
+
+      <!--      <v-col cols="2">-->
+      <!--        <v-text-field-->
+      <!--          v-model="model[index].rel"-->
+      <!--          outlined-->
+      <!--          single-line-->
+      <!--          placeholder="Rel (optional)"-->
+      <!--          :type="type"-->
+      <!--          :readonly="-->
+      <!--          typeof field.readonly === 'function'-->
+      <!--            ? field.readonly()-->
+      <!--            : field.readonly-->
+      <!--        "-->
+      <!--          :disabled="-->
+      <!--          typeof field.disabled === 'function'-->
+      <!--            ? field.disabled()-->
+      <!--            : field.disabled-->
+      <!--        "-->
+      <!--        />-->
+      <!--      </v-col>-->
+
       <v-col cols="2">
-        <v-text-field
-          v-model="model[index].rel"
+        <v-autocomplete
           outlined
-          single-line
-          placeholder="Rel (optional)"
-          :type="type"
-          :readonly="
-          typeof field.readonly === 'function'
-            ? field.readonly()
-            : field.readonly
-        "
-          :disabled="
-          typeof field.disabled === 'function'
-            ? field.disabled()
-            : field.disabled
-        "
+          v-model="model[index].rel"
+          @change="updateName(index)"
+          :rules="field.rules"
+          item-text="text"
+          item-value="value"
+          placeholder="Meta Type"
+          :items="MetaTypes"
+          :readonly="typeof field.readonly === 'function' ? field.readonly() : field.readonly"
+          :disabled=" typeof field.disabled === 'function' ? field.disabled() : field.disabled "
         />
+
       </v-col>
       <v-col cols="2">
         <v-text-field
@@ -45,10 +57,8 @@
             ? field.readonly()
             : field.readonly
         "
-          :disabled="
-          typeof field.disabled === 'function'
-            ? field.disabled()
-            : field.disabled
+          :disabled=" model[index].rel !== 'blank' ||
+          (typeof field.disabled === 'function' ? field.disabled() : field.disabled)
         "
         />
       </v-col>
@@ -95,10 +105,26 @@ export default class TextMetaFormField extends Vue {
 
   Validation = Validation;
 
+  MetaTypes : Array<{ text : String , value : String }> = [
+    { text : 'blank' , value : 'blank'},
+    { text : 'og:site_name' , value : 'property="og:site_name"'},
+    { text : 'og:title' , value : 'property="og:title"'},
+    { text : 'og:description' , value : 'property="og:description"'},
+    { text : 'og:image' , value : 'property="og:image"'},
+    { text : 'og:url' , value : 'property="og:url"'},
+    { text : 'og:type' , value : 'property="og:type"'},
+    { text : 'og:locale' , value : 'property="og:locale"'},
+  ]
+
   mounted() {
     if (!this.model) this.model = [];
   }
 
+  updateName(index : number){
+      if(this.model[index] && this.model[index].rel.includes('og:')){
+        this.model[index].name = this.model[index].rel;
+      }
+  }
   addRow() {
     this.model.push({rel: '', name: '', content: ''});
   }
@@ -106,5 +132,7 @@ export default class TextMetaFormField extends Vue {
   removeRow(index: number) {
     this.model.splice(index, 1);
   }
+
+
 }
 </script>

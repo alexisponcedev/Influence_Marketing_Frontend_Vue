@@ -83,7 +83,7 @@ export default class LandingSlider extends Vue {
 
   @Watch('isEmpty')
   onValueChanged(){
-    console.log('component is empty now');
+
     if(this.isEmpty) this.reset();
   }
 
