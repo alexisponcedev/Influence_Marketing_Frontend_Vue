@@ -43,7 +43,7 @@ export default class BlockProductSupportInfo extends Vue {
         value:
           'MONDAY-FRIDAY\n' +
           '9AM - 9PM EST\n' +
-          '\n\n' +
+          '\n' +
           'SATURDAY-SUNDAY\n' +
           '9AM - 6PM EST\n'
       },

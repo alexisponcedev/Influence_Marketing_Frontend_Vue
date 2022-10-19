@@ -45,7 +45,9 @@ export default class api__page extends VuexModule {
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data.data;
+      return response.data.data!.map(page => {
+        return { ... page , hasData : page.widgets && page.widgets.length > 0 ? 'Yes' : ''}
+      });
     return [];
   }
 

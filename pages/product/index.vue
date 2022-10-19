@@ -159,6 +159,9 @@ export default class ProductsPage extends Vue {
     this.tab = this.ProductSearchStatus.all;
   }
 
+  getSupportWidgets(){
+    return [{"id":1,"name":"Header","image":"Header.png","title":"Header Menu","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"dark"}}},{"id":3,"name":"ProductInfoAndSliderBox","image":"ProductInfoAndSliderBox.png","title":"Products Info and Slider Box","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"dark"}}},{"id":4,"name":"ProductSupportInfo","image":"ProductSupportInfo.png","title":"Product Support Info","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"light"},"title":{"id":1,"type":"string","title":"Title","value":"Product Support"},"paragraph":{"id":3,"type":"text","title":"Paragraph Text","value":"MONDAY-FRIDAY\n9AM - 9PM EST\n\n\nSATURDAY-SUNDAY\n9AM - 6PM EST"}}},{"id":5,"name":"ProductSupportLinks","image":"ProductSupportLinks.png","title":"Product Support Links","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"light"}}},{"id":6,"name":"NeedHelpBox","image":"NeedHelpBox.png","title":"Need Help","selected":false,"structure":{"list":{"id":1,"type":"list","title":"Items","value":[{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"Register Product"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"FAQ's"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"VIDEOS"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"REPLACEMENT PARTS"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"CONTACT HISENSE"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"TECHNICAL SUPPORT"}}],"newItem":[]}}},{"id":2,"name":"Footer","image":"Footer.png","title":"Footer Menu","selected":true,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"dark"}}}];
+  }
   addNewPage(product: any) {
     this.addingPage = product.id;
     let slug = `${product.name} ${product.model} ${product.brand!.name}`.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
@@ -166,7 +169,6 @@ export default class ProductsPage extends Vue {
     Api.Page.create({
       title: product.name,
       route: route,
-      widgets: [],
       meta: [
         {rel: 'property="og:site_name"', name: 'property="og:title"', content: 'Hisense USA'},
         {rel: 'property="og:title"', name: 'property="og:title"', content: product.name},
@@ -183,11 +185,10 @@ export default class ProductsPage extends Vue {
         Api.Page.create({
           title: product.name,
           route: '/support/models/' + slug,
-          widgets: [
-
-          ],
           model_id: product.id,
           model_type: 'support',
+        }).then(support => {
+          Api.Page.savePageWidgets({page_id : support.id , widgets : this.getSupportWidgets()})
         })
         return res;
       })
