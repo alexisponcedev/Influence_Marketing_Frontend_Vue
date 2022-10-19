@@ -18,13 +18,14 @@
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab>Products</v-tab>
+          <v-tab :href="`#${ProductSearchStatus.all}`">All Products</v-tab>
+          <v-tab :href="`#${ProductSearchStatus.active}`">Active Products</v-tab>
+          <v-tab :href="`#${ProductSearchStatus.inactive}`">Active Products</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-card>
+
+    <v-card>
           <v-card-text>
             <div v-if="categories.length === 0"
                  class="tw-my-32 tw-text-center tw-flex tw-flex-col tw-justify-center tw-items-center tw-space-y-4 ">
@@ -38,12 +39,12 @@
               <search-products
                 ref="searchProducts"
                 :max="-1"
+                :status="tab"
                 :initLoad="true"
                 :run="appendPageData"
                 :always-show="true"
                 :category_id="selectedCategory.id"
                 v-model="search">
-
 
                 <template #placeholder>
                   <div class="tw-grid tw-grid-cols-6 tw-gap-2">
@@ -104,8 +105,6 @@
 
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
@@ -113,6 +112,7 @@
 import {Vue, Component, Watch} from "vue-property-decorator";
 import {Api} from "@/store";
 import {Page, PageResource} from "~/repositories";
+import {ProductSearchStatusEnum} from "~/interfaces/ProductStatusEnum";
 
 @Component({layout: "panel"})
 export default class ProductsPage extends Vue {
@@ -121,6 +121,8 @@ export default class ProductsPage extends Vue {
   tab = "";
 
   search: string = '';
+
+  ProductSearchStatus = ProductSearchStatusEnum;
 
   addingPage: Number = 0;
 
@@ -154,6 +156,7 @@ export default class ProductsPage extends Vue {
 
   selectCategory(category: any) {
     this.selectedCategory = category;
+    this.tab = this.ProductSearchStatus.all;
   }
 
   addNewPage(product: any) {

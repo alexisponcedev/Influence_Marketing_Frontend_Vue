@@ -18,9 +18,9 @@
       </div>
 
       <div v-else>
-        <slot :products="products">
+        <slot :products="productsList">
           <div class="tw-grid tw-grid-cols-4 tw-gap-2">
-            <search-products-item v-for="product in products" :key="product.id" :value="product" @select="addProduct"/>
+            <search-products-item v-for="product in productsList" :key="product.id" :value="product" @select="addProduct"/>
           </div>
         </slot>
       </div>
@@ -31,6 +31,9 @@
 <script lang="ts">
 import {Vue, Component, VModel, Watch, Prop} from "vue-property-decorator";
 import {Api} from "~/utils/store-accessor";
+import {ProductSearchStatusEnum} from "~/interfaces/ProductStatusEnum";
+
+
 
 @Component
 export default class SearchProductIndex extends Vue {
@@ -38,7 +41,9 @@ export default class SearchProductIndex extends Vue {
   @Prop({type : Number , default : 9}) max!:number
   @Prop({type : Boolean , default : false}) alwaysShow!:boolean
   @Prop({type : Boolean , default : false}) initLoad!:boolean
+  @Prop({type : String , default : ProductSearchStatusEnum.all}) status!: ProductSearchStatusEnum
   @VModel({type: Array}) model!: any
+
   @Prop(Function) run! : Function
   Api = Api;
 
@@ -81,6 +86,28 @@ export default class SearchProductIndex extends Vue {
   // onSearchChanged() {
   //   this.searchWithDebounceTime();
   // }
+
+  get productsList(){
+    let products = [];
+    switch (this.status) {
+      case ProductSearchStatusEnum.all :
+        products = this.products;
+        break;
+      case ProductSearchStatusEnum.active :
+        products = this.products
+          .filter((product : any) => {
+            return product.hasOwnProperty('page') && product.page
+          });
+        break;
+      case ProductSearchStatusEnum.inactive :
+        products = this.products
+          .filter((product : any) => {
+            return !product.hasOwnProperty('page') || !product.page
+          });
+        break;
+    }
+    return products;
+  }
 
   @Watch('category_id')
   onCategoryIdChanged(){
