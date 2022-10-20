@@ -113,19 +113,19 @@ export default class PageForm extends Vue {
     this.initMetaTags();
   }
 
-  initMetaTags(){
-    if(this.Page.meta?.length === 0){
+  initMetaTags() {
+    if (this.Page.meta?.length === 0) {
       this.Page.meta = [
-        {rel : 'blank' , name  : 'title' , content : ''},
-        {rel : 'blank' , name  : 'description' , content : ''},
+        {rel: 'blank', name: 'title', content: ''},
+        {rel: 'blank', name: 'description', content: ''},
 
-        { rel : 'property="og:site_name"' , name : 'property="og:site_name"' , content : 'Hisense USA'},
-        { rel : 'property="og:title"' , name : 'property="og:title"' , content : ''},
-        { rel : 'property="og:description"' , name : 'property="og:description"' , content : ''},
-        { rel : 'property="og:image"' , name : 'property="og:image"' , content : ''},
-        { rel : 'property="og:url"' , name : 'property="og:url"' , content : ''},
-        { rel : 'property="og:type"' , name : 'property="og:type"' , content : 'website'},
-        { rel : 'property="og:locale"' , name : 'property="og:locale"' , content : 'en_US'},
+        {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
+        {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
+        {rel: 'property="og:description"', name: 'property="og:description"', content: ''},
+        {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
+        {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
+        {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
+        {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
       ];
     }
   }
@@ -201,8 +201,8 @@ export default class PageForm extends Vue {
     return (this.$refs.pagesForm as any).validate();
   }
 
-  gotoLiveWebsite(){
-    window.open('https://public.stage.hisenseportal.com' + this.Page.route , '_blank');
+  gotoLiveWebsite() {
+    window.open('https://public.stage.hisenseportal.com' + this.Page.route, '_blank');
   }
 
   goToPageBuilder() {
@@ -246,7 +246,7 @@ export default class PageForm extends Vue {
   @Watch('pageRoute')
   onPageRouteChanged() {
     this.Page.meta!.forEach(item => {
-      if (item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
+      if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
     })
   }
 
@@ -260,9 +260,10 @@ export default class PageForm extends Vue {
     }
     this.Page.route = parentRoute + this.Page.title
 
+
     this.Page.meta!.forEach(item => {
-      if (item.rel.includes('og:title')) item.content = this.Page.title;
-      if (item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
+      if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
+      if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
     })
   }
 
