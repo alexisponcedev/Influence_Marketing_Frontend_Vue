@@ -86,7 +86,11 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     return str
       .toLowerCase()
       .replace(/ /g, '-')
-      .replace(/[^\w-]+/g, '')
+
+      .replace('"' , '')
+      .replace("'" , '')
+
+      // .replace(/[^\w-]+/g, '')
   }
 
   @Watch('value')
@@ -96,13 +100,15 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
 
   async mounted() {
     this.getRoutes()
-    this.items = ((await Api.Page.getAll()) as Array<Page>)
-      .map(page => {
-        return {
-          title: 'https://hisense-usa.com' + page.route,
-          value: page.route
-        }
-      });
+    if(Api.Page.all.length === 0){
+      this.items = ((await Api.Page.getAll()) as Array<Page>)
+        .map(page => {
+          return {
+            title: 'https://hisense-usa.com' + page.route,
+            value: page.route
+          }
+        });
+    }
   }
 }
 </script>

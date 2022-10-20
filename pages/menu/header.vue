@@ -2,9 +2,10 @@
   <v-container fluid>
 
     <v-tabs show-arrows v-model="tab" background-color="transparent">
-      <v-tab href="#hamburger">Hamburger Menu</v-tab>
       <v-tab href="#centerOptions">Center Options</v-tab>
       <v-tab href="#rightOptions">Right Options</v-tab>
+      <v-tab href="#hamburger">Hamburger Menu</v-tab>
+
     </v-tabs>
 
     <v-card>
@@ -80,7 +81,7 @@ import {Menu} from "~/repositories";
 export default class Menus extends Vue {
   Api = Api;
 
-  tab = "";
+  tab = "centerOptions";
 
   Menu: any = {
     id: 1,

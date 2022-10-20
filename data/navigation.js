@@ -35,12 +35,12 @@ export const items = () => [
     group: "block/reusable",
     to: "blocks/reusable",
   },
-  {
-    title: "Content Blocks",
-    icon: "mdi-border-radius",
-    group: "block",
-    to: "block/all",
-  },
+  // {
+  //   title: "Content Blocks",
+  //   icon: "mdi-border-radius",
+  //   group: "block",
+  //   to: "block/all",
+  // },
   {
     divider: true,
   },

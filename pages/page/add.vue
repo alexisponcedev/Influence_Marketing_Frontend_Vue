@@ -3,31 +3,61 @@
 
     <div v-if="editMode" class="d-flex justify-space-between align-center">
       <breadcrumbs :locations="locations"/>
-      <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPageBuilder">
-        Go to Page Builder
-      </v-btn>
+      <div class="tw-flex tw-items-center tw-space-x-2">
+        <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
+          Live Website
+        </v-btn>
+        <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPageBuilder">
+          Go to Page Builder
+        </v-btn>
+      </div>
+
     </div>
 
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
           <v-tab href="#Details">Page Details</v-tab>
+          <v-tab href="#Metas">Page Metas</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
 
-    <v-tabs-items v-model="tab">
-      <v-tab-item value="Details">
-        <v-card-text>
-          <form-standard
-            ref="pagesForm"
-            :model="Page"
-            :fields="formFields"
-            @submit="submit"
-          />
-        </v-card-text>
-      </v-tab-item>
-    </v-tabs-items>
+
+    <v-card>
+
+
+      <v-tabs-items v-model="tab">
+        <v-tab-item value="Details">
+          <v-card-text>
+            <form-standard
+              ref="pagesForm"
+              :model="Page"
+              :fields="formFields"
+              :preview="true"
+              @submit="submit"
+            />
+          </v-card-text>
+        </v-tab-item>
+        <v-tab-item value="Metas">
+          <v-card-text>
+            <form-standard
+              ref="pagesForm"
+              :model="Page"
+              :preview="true"
+              :fields="formFields"
+            />
+          </v-card-text>
+        </v-tab-item>
+      </v-tabs-items>
+
+
+    </v-card>
+
+    <button
+      class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+      @click="submit">Save
+    </button>
 
     <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
 
@@ -56,13 +86,17 @@ export default class PageForm extends Vue {
 
   tab = "";
 
+
+  meta: Array<{ rel: string, name: string, content: string }> = [];
+
   Page: Page = {
-    title : '',
+    title: '',
+    route: '',
     meta: [],
     widgets: [],
     draft: [],
-    model_id : 0,
-    model_type : ''
+    model_id: 0,
+    model_type: ''
   };
 
   locations: Array<{ title: string; to: string }> = [];
@@ -97,8 +131,7 @@ export default class PageForm extends Vue {
   }
 
   async getEntity() {
-    if (this.editMode)
-      this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+    if (this.editMode) this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
   }
 
   updatePageFormFields() {
@@ -118,6 +151,11 @@ export default class PageForm extends Vue {
         rules: [],
         colAttrs: {cols: 12},
       },
+    ];
+  }
+
+  updateMetaFormFields() {
+    this.formFields = [
       {
         type: "form-field-meta",
         label: "Meta",
@@ -145,6 +183,10 @@ export default class PageForm extends Vue {
     return (this.$refs.pagesForm as any).validate();
   }
 
+  gotoLiveWebsite(){
+    window.open('https://hisense-usa.com' + this.Page.route , '_blank');
+  }
+
   goToPageBuilder() {
     if (!this.Page.widgets || this.Page.widgets?.length === 0)
       (this.$refs.templateSelector as any).open();
@@ -157,19 +199,18 @@ export default class PageForm extends Vue {
   }
 
   templateSelected(template: any) {
-    Api.Page.saveDraft({ page_id : this.Page.id , page_draft :  template.widgets})
+    Api.Page.saveDraft({page_id: this.Page.id, page_draft: template.widgets})
       .then(this.openPageBuilder);
   }
-
-  @Watch('')
-
-
 
   @Watch("tab")
   tabChanged(newTab: string, _: string) {
     switch (newTab) {
       case "Details":
-        this.initPagesTab();
+        this.updatePageFormFields();
+        break;
+      case "Metas" :
+        this.updateMetaFormFields();
         break;
       default:
         break;
@@ -180,17 +221,32 @@ export default class PageForm extends Vue {
     return this.Page.title;
   }
 
-  // @Watch('pageTitle')
-  // pageTitleChanged(){
-  //   console.log('pageTitle has changed' , this.pageTitle );
-  //   let parentRoute = '/';
-  //   if(this.Page.route && this.Page.route !== '')
-  //   {
-  //     let lastIndexOf = this.Page.route!.lastIndexOf('/');
-  //     parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
-  //   }
-  //   this.Page.route = parentRoute + this.Page.title
-  // }
+  get pageRoute() {
+    return this.Page.route;
+  }
+
+  @Watch('pageRoute')
+  onPageRouteChanged() {
+    this.Page.meta!.forEach(item => {
+      if (item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
+    })
+  }
+
+
+  @Watch('pageTitle')
+  onPageTitleChanged() {
+    let parentRoute = '/';
+    if (this.Page.route && this.Page.route !== '') {
+      let lastIndexOf = this.Page.route!.lastIndexOf('/') + 1;
+      parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+    }
+    this.Page.route = parentRoute + this.Page.title
+
+    this.Page.meta!.forEach(item => {
+      if (item.rel.includes('og:title')) item.content = this.Page.title;
+      if (item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
+    })
+  }
 
 
 }

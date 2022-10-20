@@ -2,28 +2,31 @@
   <v-container fluid>
 
 
-    <div class="tw-flex tw-space-x-2">
+    <v-row>
+      <v-col>
+        <v-tabs show-arrows v-model="tab" background-color="transparent">
+<!--          <v-tab :href="`#${ProductSearchStatus.all}`">All Products</v-tab>-->
+          <v-tab :href="`#${ProductSearchStatus.active}`" class="tw-w-full" >Active Products</v-tab>
+          <v-tab :href="`#${ProductSearchStatus.inactive}`" class="tw-w-full">Inactive Products</v-tab>
+        </v-tabs>
+      </v-col>
+    </v-row>
+
+
+    <div class="tw-flex tw-space-x-2 tw-mb-3">
       <div
-        class="category tw-py-3 tw-px-3 tw-border tw-border-solid tw-border-gray-300 tw-text-gray-400 tw-rounded-xl
+        class="category tw-py-1.5 tw-px-2 tw-border tw-border-solid tw-border-gray-300 tw-text-gray-400 tw-rounded-xl
         tw-text-center tw-bg-gray-50 tw-bg-opacity-30 hover:tw-bg-gray-50 tw-cursor-pointer tw-uppercase tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-2 "
         v-for="category in categories" :key="category.id"
         @click="selectCategory(category)"
         :class="{'selected' : selectedCategory.id === category.id}"
       >
-        <img :src="category.image" alt="category image" class="tw-h-10">
+        <img v-if="category.image" :src="category.image" alt="category image" class="tw-h-10">
         <div>{{ category.name }}</div>
 
       </div>
     </div>
-    <v-row>
-      <v-col>
-        <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab :href="`#${ProductSearchStatus.all}`">All Products</v-tab>
-          <v-tab :href="`#${ProductSearchStatus.active}`">Active Products</v-tab>
-          <v-tab :href="`#${ProductSearchStatus.inactive}`">Inactive Products</v-tab>
-        </v-tabs>
-      </v-col>
-    </v-row>
+
 
     <v-card>
       <v-card-text>
@@ -130,7 +133,7 @@ export default class ProductsPage extends Vue {
 
   pages: Array<PageResource> = [];
 
-  selectedCategory: any = {id: 0, name: ''};
+  selectedCategory: any = { id: null , name: '' };
 
   mounted() {
     this.init();
@@ -148,9 +151,13 @@ export default class ProductsPage extends Vue {
   loadCategories() {
     this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')
       .then(res => {
-        this.categories = res.data;
-        if (this.categories.length > 0)
-          this.selectedCategory = this.categories[0];
+        this.categories =[
+          {"id":null,"name":"All Categories" , image : null},
+          ...res.data.filter( (i : any) => i.id < 7)
+        ]
+
+        // if (this.categories.length > 0)
+        //   this.selectedCategory = this.categories[0];
       });
   }
 
