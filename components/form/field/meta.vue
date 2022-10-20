@@ -145,12 +145,5 @@ export default class TextMetaFormField extends Vue {
   removeRow(index: number) {
     this.model.splice(index, 1);
   }
-
-  @Watch('value')
-  onValueChanged(){
-    this.model = this.value;
-  }
-
-
 }
 </script>
