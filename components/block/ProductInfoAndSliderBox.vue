@@ -32,7 +32,17 @@ export default class BlockTextIntroduction extends Vue {
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
-      }
+      },
+      whereToBuy: {
+        id: 1,
+        type: StructureType.Select,
+        title: 'Show Where To Buy',
+        value: true,
+        items: [
+          {title: 'True', value: true},
+          {title: 'False', value: false},
+        ]
+      },
     }
   }
   mounted() {

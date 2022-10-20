@@ -57,7 +57,7 @@
             ? field.readonly()
             : field.readonly
         "
-          :disabled=" model[index].rel !== 'blank' ||
+          :disabled=" model[index].rel.includes('og:')  ||
           (typeof field.disabled === 'function' ? field.disabled() : field.disabled)
         "
         />
@@ -107,6 +107,7 @@ export default class TextMetaFormField extends Vue {
 
   MetaTypes : Array<{ text : String , value : String }> = [
     { text : 'blank' , value : 'blank'},
+    { text : 'http-equiv' , value : 'http-equiv'},
     { text : 'og:site_name' , value : 'property="og:site_name"'},
     { text : 'og:title' , value : 'property="og:title"'},
     { text : 'og:description' , value : 'property="og:description"'},
