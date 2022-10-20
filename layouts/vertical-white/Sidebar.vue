@@ -28,7 +28,7 @@
         <v-list-item class="px-0">
           <v-list-item-title class="pa-8">
             <NuxtLink to="/">
-              <v-img :src="require('~/assets/im-logo.svg')" />
+              <v-img :src="require('~/assets/images/menu/logo-dark.png')" />
             </NuxtLink>
           </v-list-item-title>
 

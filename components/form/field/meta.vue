@@ -68,7 +68,7 @@
           outlined
           single-line
           :type="type"
-          :rules="[Validation.required]"
+          :rules="[]"
           placeholder="Content"
           append-outer-icon="mdi-delete"
           @click:append-outer="removeRow(index)"
@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {FormField} from "@/models";
 import {MetaInterface} from "~/models/Meta.model";
 import Validation from "~/utils/validation";
@@ -118,7 +118,19 @@ export default class TextMetaFormField extends Vue {
   ]
 
   mounted() {
-    if (!this.model) this.model = [];
+    if (!this.model || this.model.length === 0) this.model = [
+      {rel : 'blank' , name  : 'title' , content : ''},
+      {rel : 'blank' , name  : 'description' , content : ''},
+
+
+      { rel : 'property="og:site_name"' , name : 'property="og:site_name"' , content : 'Hisense USA'},
+      { rel : 'property="og:title"' , name : 'property="og:title"' , content : ''},
+      { rel : 'property="og:description"' , name : 'property="og:description"' , content : ''},
+      { rel : 'property="og:image"' , name : 'property="og:image"' , content : ''},
+      { rel : 'property="og:url"' , name : 'property="og:url"' , content : ''},
+      { rel : 'property="og:type"' , name : 'property="og:type"' , content : 'website'},
+      { rel : 'property="og:locale"' , name : 'property="og:locale"' , content : 'en_US'},
+    ];
   }
 
   updateName(index : number){
@@ -132,6 +144,11 @@ export default class TextMetaFormField extends Vue {
 
   removeRow(index: number) {
     this.model.splice(index, 1);
+  }
+
+  @Watch('value')
+  onValueChanged(){
+    this.model = this.value;
   }
 
 

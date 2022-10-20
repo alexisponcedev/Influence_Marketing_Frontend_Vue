@@ -5,7 +5,7 @@
         <v-card-text class="text-center">
           <img
             class="px-14 py-8"
-            src="~/assets/im-logo.svg"
+            src="~/assets/images/menu/logo-dark.png"
             alt="Influence Marketing"
           />
 
