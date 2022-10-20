@@ -232,6 +232,11 @@ export const blocks = () => [
         title: "UHD News box",
         image: "UHDNewsBox.png",
       },
+      {
+        name: "UHDAbilityBox",
+        title: "UHD News box",
+        image: "UHDAbilityBox.png",
+      },
     ],
   },
   {
@@ -437,6 +442,47 @@ export const blocks = () => [
         title: "laster find with image",
         image: "LasterFinedWithImage.png",
       },
+    ],
+  },
+  {
+    name: "Home Appliances",
+    blocks: [
+      {
+        name: "HomeApplianceTextBox",
+        title: "Home Appliance TextBox",
+        image: "HomeApplianceTextBox.png",
+      },
+      {
+        name: "HomeApplianceTextBoxWithImage",
+        title: "Home Appliance TextBox With Image",
+        image: "HomeApplianceTextBoxWithImage.png",
+      },
+      {
+        name: "HomeApplianceFeatures",
+        title: "Home Appliance Features",
+        image: "HomeApplianceFeatures.png",
+      },
+      {
+        name: "HomeApplianceImageWithBackground",
+        title: "Home Appliance Image With Background",
+        image: "HomeApplianceImageWithBackground.png",
+      },
+      {
+        name: "HomeApplianceQA",
+        title: "Home Appliance QA",
+        image: "HomeApplianceQA.png",
+      },
+    ],
+  },
+  {
+    name: "CES",
+    blocks: [
+      {
+        name: "CESHomeIntro",
+        title: "4K UHD Introduction",
+        image: "CESHomeIntro.png",
+      },
+
     ],
   },
 ];

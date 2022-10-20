@@ -36,17 +36,11 @@ export default class BlockProductSupportInfo extends Vue {
       title: {
         id: 1, type: StructureType.String, title: 'Title', value: 'Product Support'
       },
-      paragraph: {
-        id: 3,
-        type: StructureType.Text,
-        title: 'Paragraph Text',
-        value:
-          'MONDAY-FRIDAY\n' +
-          '9AM - 9PM EST\n' +
-          '\n' +
-          'SATURDAY-SUNDAY\n' +
-          '9AM - 6PM EST\n'
-      },
+      subtitle: { id: 2, type: StructureType.String, title: 'Title', value: 'SUPPORT HOURS:' },
+      firstDay: { id: 2, type: StructureType.String, title: 'First Days', value: 'MONDAY-FRIDAY' },
+      firstTime: { id: 2, type: StructureType.String, title: 'First Time', value: '9AM - 9PM EST' },
+      secondDay: { id: 2, type: StructureType.String, title: 'Second Days', value: 'SATURDAY-SUNDAY' },
+      secondTime: { id: 2, type: StructureType.String, title: 'Second Time', value: '9AM - 6PM EST' },
     }
   }
 
