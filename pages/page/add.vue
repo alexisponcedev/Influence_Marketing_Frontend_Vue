@@ -110,6 +110,24 @@ export default class PageForm extends Vue {
   async init() {
     await this.initPagesTab();
     this.updateLocations();
+    this.initMetaTags();
+  }
+
+  initMetaTags(){
+    if(this.Page.meta?.length === 0){
+      this.Page.meta = [
+        {rel : 'blank' , name  : 'title' , content : ''},
+        {rel : 'blank' , name  : 'description' , content : ''},
+
+        { rel : 'property="og:site_name"' , name : 'property="og:site_name"' , content : 'Hisense USA'},
+        { rel : 'property="og:title"' , name : 'property="og:title"' , content : ''},
+        { rel : 'property="og:description"' , name : 'property="og:description"' , content : ''},
+        { rel : 'property="og:image"' , name : 'property="og:image"' , content : ''},
+        { rel : 'property="og:url"' , name : 'property="og:url"' , content : ''},
+        { rel : 'property="og:type"' , name : 'property="og:type"' , content : 'website'},
+        { rel : 'property="og:locale"' , name : 'property="og:locale"' , content : 'en_US'},
+      ];
+    }
   }
 
   updateLocations() {
