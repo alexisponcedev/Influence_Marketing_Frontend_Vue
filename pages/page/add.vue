@@ -184,7 +184,7 @@ export default class PageForm extends Vue {
   }
 
   gotoLiveWebsite(){
-    window.open('https://hisense-usa.com' + this.Page.route , '_blank');
+    window.open('https://public.stage.hisenseportal.com' + this.Page.route , '_blank');
   }
 
   goToPageBuilder() {
