@@ -85,7 +85,7 @@ export const blocks = () => [
     ],
   },
   {
-    name: "Single Product",
+    name: "PDP Components",
     blocks: [
       {
         name: "ProductInfoAndSliderBox",
@@ -144,9 +144,9 @@ export const blocks = () => [
         image: "ProductResourceBox.png",
       },
       {
-        name: "ProductMoreTV",
+        name: "ProductMoreTv",
         title: "Product More TV",
-        image: "ProductMoreTV.png",
+        image: "ProductMoreTv.png",
       },
       {
         name: "ProductRelatedItemsBox",
@@ -193,11 +193,6 @@ export const blocks = () => [
         name: "ProductNewsBox",
         title: "Product News Box",
         image: "ProductNewsBox.png",
-      },
-      {
-        name: "ProductResourceBox",
-        title: "Product Resources",
-        image: "ProductResourceBox.png",
       },
       {
         name: "ProductReviewBox",
