@@ -44,11 +44,15 @@ export default class BlockProductWhereToBuy extends Vue {
         title: 'little Title',
         value: "See where you can order"
       },
-      link: {
-        id: 2,
-        type: StructureType.Url,
-        title: 'where to buy',
-        value: ""
+      whereToBuy: {
+        id: 1,
+        type: StructureType.Select,
+        title: 'Show Where To Buy',
+        value: true,
+        items: [
+          {title: 'True', value: true},
+          {title: 'False', value: false},
+        ]
       },
     };
   }

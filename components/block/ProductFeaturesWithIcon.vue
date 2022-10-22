@@ -38,7 +38,7 @@ export default class BlockProductFeaturesWithIcon extends Vue {
       image: {
         id: 1,
         type: StructureType.Image,
-        title: 'description',
+        title: 'Image',
         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/26632e121d/pdp-3_6-u9-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-t34p4p.jpg',
         alt: 'featured image'
       },
@@ -47,7 +47,7 @@ export default class BlockProductFeaturesWithIcon extends Vue {
       paragraph: {
         id: 4,
         type: StructureType.Text,
-        title: 'paragraph',
+        title: 'Paragraph',
         value: "A great TV is just a great TV. Not an ‘immersive harmony of sound and vision’. Cut through the usual tech B.S with our jargon / jargoff filter."
       },
       listOn: {
@@ -168,8 +168,6 @@ export default class BlockProductFeaturesWithIcon extends Vue {
 
         ],
       },
-
-
     };
   }
 

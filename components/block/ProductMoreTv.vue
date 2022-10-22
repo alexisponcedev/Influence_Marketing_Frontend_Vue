@@ -35,13 +35,13 @@ export default class BlockProductMoreTv extends Vue {
       title: {
         id: 1,
         type: StructureType.String,
-        title: 'title',
+        title: 'Title',
         value: "More TVs your old TV should be worried about"
       },
       description: {
         id: 2,
-        type: StructureType.String,
-        title: 'description',
+        type: StructureType.Text,
+        title: 'Description',
         value: "et's face it, if you didn't want a better TV, you wouldn't be reading this. Take a look at a few more options for replacing your old TV."
       },
     };
