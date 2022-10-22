@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/ProductTextWithImageBox.png" alt="" />
+    <img src="/blocks/ProductTextWithIcon.png" alt="" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import { StructureType } from "~/models/StructureType";
 import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockProductTextWithImageBox extends Vue {
+export default class BlockProductTextWithIcon extends Vue {
   @Prop(Number) readonly id: number | undefined;
   @Prop(Number) readonly product_id!: number;
   @VModel({ type: Object }) model!: Object;
@@ -60,50 +60,6 @@ export default class BlockProductTextWithImageBox extends Vue {
           },
         },
         value: [
-          {
-            image: {
-              id: 0,
-              type: StructureType.Image,
-              title: "image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/3494e63c06/Film_Maker_Mode__ScaleMaxWidthWzMwNDhd.png-tzyefj.png",
-              alt: "featured image",
-            },
-            title: {
-              id: 1,
-              type: StructureType.String,
-              title: "title",
-              value: "Filmmaker Mode",
-            },
-            description: {
-              id: 2,
-              type: StructureType.String,
-              title: "feature description",
-              value:
-                "By disabling all post-processing (e.g. motion smoothing) and preserving the correct aspect ratios, colors and frame rates, Filmmaker Mode enables your TV to display the movie or television show’s content precisely as it was intended by the filmmaker.",
-            },
-          },
-          {
-            image: {
-              id: 0,
-              type: StructureType.Image,
-              title: "image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/3494e63c06/Film_Maker_Mode__ScaleMaxWidthWzMwNDhd.png-tzyefj.png",
-              alt: "featured image",
-            },
-            title: {
-              id: 1,
-              type: StructureType.String,
-              title: "title",
-              value: "Filmmaker Mode",
-            },
-            description: {
-              id: 2,
-              type: StructureType.String,
-              title: "feature description",
-              value:
-                "By disabling all post-processing (e.g. motion smoothing) and preserving the correct aspect ratios, colors and frame rates, Filmmaker Mode enables your TV to display the movie or television show’s content precisely as it was intended by the filmmaker.",
-            },
-          },
           {
             image: {
               id: 0,
