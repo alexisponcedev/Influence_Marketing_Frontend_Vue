@@ -82,6 +82,11 @@ export const blocks = () => [
         title: "Products Grid",
         image: "Product Grid.png",
       },
+    ],
+  },
+  {
+    name: "Single Product",
+    blocks: [
       {
         name: "ProductInfoAndSliderBox",
         title: "Products Info and Slider Box",
@@ -91,6 +96,83 @@ export const blocks = () => [
         name: "ProductCategoryBox",
         title: "Product Submenu",
         image: "ProductCategoryBox.png",
+      },
+
+      {
+        name: "ImageBox",
+        title: "Product Image",
+        image: "ImageBox.png",
+      },
+      {
+        name: "ULEDTextBox",
+        title: "TextBox 1",
+        image: "ULEDTextBox.png",
+      },
+      {
+        name: "ProductTextWithImageBox",
+        title: "TextBox 2",
+        image: "ProductTextWithImageBox.png",
+      },
+      {
+        name: "ProductStaticContent",
+        title: "TextBox 3",
+        image: "ProductStaticContent.png",
+      },
+      {
+        name: "ProductFeaturesWithImage",
+        title: "Product Feature With Image",
+        image: "ProductFeaturesWithImage.png",
+      },
+      {
+        name: "ProductTextWithIcon",
+        title: "Product Text With Icon",
+        image: "ProductTextWithIcon.png",
+      },
+      {
+        name: "ProductDetailsBox",
+        title: "Product Specs",
+        image: "ProductDetailsBox.png",
+      },
+      {
+        name: "ProductWhereToBuy",
+        title: "Where To buy",
+        image: "ProductWhereToBuy.png",
+      },
+      {
+        name: "ProductResourceBox",
+        title: "Product Resources",
+        image: "ProductResourceBox.png",
+      },
+      {
+        name: "ProductMoreTV",
+        title: "Product More TV",
+        image: "ProductMoreTV.png",
+      },
+      {
+        name: "ProductRelatedItemsBox",
+        title: "Related Products",
+        image: "ProductRelatedItemsBox.png",
+      },
+
+      {
+        name: "ProductTwinImages",
+        title: "Product twin images",
+        image: "ProductTwinImages.png",
+      },
+      {
+        name: "ProductFeaturesWithImage",
+        title: "Product Feature With Image",
+        image: "ProductFeaturesWithImage.png",
+      },
+      {
+        name: "ProductFeaturesWithIcon",
+        title: "Product Features With Icon",
+        image: "ProductFeaturesWithIcon.png",
+      },
+      {
+        name: "ProductFeatureWithParagraph",
+        title: "Product Features With Paragraph",
+        image: "ProductFeatureWithParagraph.png",
       },
       {
         name: "ProductBigContent",
@@ -113,11 +195,6 @@ export const blocks = () => [
         image: "ProductNewsBox.png",
       },
       {
-        name: "ProductDetailsBox",
-        title: "Product Details Box",
-        image: "ProductDetailsBox.png",
-      },
-      {
         name: "ProductResourceBox",
         title: "Product Resources",
         image: "ProductResourceBox.png",
@@ -126,36 +203,6 @@ export const blocks = () => [
         name: "ProductReviewBox",
         title: "Product Reviews box",
         image: "ProductReviewBox.png",
-      },
-      {
-        name: "ProductTwinImages",
-        title: "Product twin images",
-        image: "ProductTwinImages.png",
-      },
-      {
-        name: "ProductWhereToBuy",
-        title: "Product where to buy",
-        image: "ProductWhereToBuy.png",
-      },
-      {
-        name: "ProductMoreTv",
-        title: "Product more tv",
-        image: "ProductMoreTv.png",
-      },
-      {
-        name: "ProductFeaturesWithImage",
-        title: "Product Feature with image",
-        image: "ProductFeaturesWithImage.png",
-      },
-      {
-        name: "ProductTextWithImageBox",
-        title: "Product text with image box",
-        image: "ProductTextWithImageBox.png",
-      },
-      {
-        name: "ProductTextWithIcon",
-        title: "Product text with icon",
-        image: "ProductTextWithIcon.png",
       },
     ],
   },
