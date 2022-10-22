@@ -47,25 +47,25 @@ export default class BlockProductFeatureWithImage extends Vue {
       littleTitle: {
         id: 1,
         type: StructureType.String,
-        title: 'little title',
+        title: 'Little Title',
         value: "4K ULED ™"
       },
       title: {
         id: 2,
         type: StructureType.String,
-        title: 'title',
+        title: 'Title',
         value: "Sharper, smoother pictures"
       },
       description: {
         id: 3,
         type: StructureType.String,
-        title: 'description',
+        title: 'Description',
         value: "4K greatness, but better. The U8G has our exclusive ULED technologies. They boost color, contrast, brightness, motion… we could go on. It’s the TV your old TV wants to be."
       },
       image: {
         id: 4,
         type: StructureType.Image,
-        title: 'description',
+        title: 'Image',
         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/26632e121d/pdp-3_6-u9-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-t34p4p.jpg',
         alt: 'featured image'
       },

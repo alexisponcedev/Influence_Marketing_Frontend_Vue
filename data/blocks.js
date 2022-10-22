@@ -119,9 +119,9 @@ export const blocks = () => [
         image: "ProductStaticContent.png",
       },
       {
-        name: "ProductFeaturesWithImage",
+        name: "ProductFeatureWithImage",
         title: "Product Feature With Image",
-        image: "ProductFeaturesWithImage.png",
+        image: "ProductFeatureWithImage.png",
       },
       {
         name: "ProductTextWithIcon",
