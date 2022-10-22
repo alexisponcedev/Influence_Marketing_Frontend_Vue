@@ -36,7 +36,7 @@ export default class BlockSmartInfoBetterNewOrOldBox extends Vue {
         id: 1,
         type: StructureType.String,
         title: "Title",
-        value: "LASER TVS",
+        value: "You want a TV that’s better than your old TV. You want a Hisense smart TV.",
       },
       image: {
         id: 2,

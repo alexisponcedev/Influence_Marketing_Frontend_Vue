@@ -29,7 +29,13 @@ export default class BlockProductResourceBox extends Vue {
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
-      }
+      },
+      supportUrl : {
+        id : 1 , type : StructureType.Url , title : 'Support URL' , value : '/'
+      },
+      installationUrl : {
+        id : 2 , type : StructureType.Url , title : 'Installation URL' , value : '/'
+      },
     }
   }
 

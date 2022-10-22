@@ -36,13 +36,13 @@ export default class BlockSmartInfoFindHisense extends Vue {
           id: 1,
           type: StructureType.String,
           title: "Title",
-          value: "LASER TVS",
+          value: "Find your Hisense smart TV",
         },
         description: {
           id: 2,
           type: StructureType.String,
           title: "Description",
-          value: "Discover a New Expanse of Color",
+          value: "We make it simple to find the right smart TV for you. Take a look at our options and enjoy more entertainment and apps more easily.",
         },
         link: {
           id: 2,

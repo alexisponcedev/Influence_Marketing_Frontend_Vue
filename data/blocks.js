@@ -19,16 +19,6 @@ export const blocks = () => [
       },
     ],
   },
-  // {
-  //   name: 'Text',
-  //   blocks: [
-  //     {
-  //       name: 'ULEDImageAndTextItem',
-  //       title: 'Image with Text Items',
-  //       image: "sample.png"
-  //     }
-  //   ]
-  // },
   {
     name: "Header and Footer",
     blocks: [
@@ -261,6 +251,16 @@ export const blocks = () => [
       },
     ],
   },
+  // {
+  //   name: "Smart TV",
+  //   blocks: [
+  //     {
+  //       name: "TvAndAudioHead",
+  //       title: "tv and audio head",
+  //       image: "TvAndAudioHead.png",
+  //     },
+  //   ],
+  // },
   {
     name: "UHD",
     blocks: [
@@ -377,7 +377,7 @@ export const blocks = () => [
     ],
   },
   {
-    name: "SmartInfo",
+    name: "Smart TV",
     blocks: [
       {
         name: "SmartInfoHead",
@@ -394,11 +394,17 @@ export const blocks = () => [
         title: "SmartInfo text box",
         image: "SmartInfoTextBox.png",
       },
+
       {
-        name: "SmartInfoTextAndImageBox",
-        title: "SmartInfo text and image box",
-        image: "SmartInfoTextAndImageBox.png",
+        name: "ProductFeatureWithImageWithBTN",
+        title: "Product Feature With Image With BTN",
+        image: "ProductFeatureWithImageWithBTN.png",
       },
+      // {
+      //   name: "SmartInfoTextAndImageBox",
+      //   title: "SmartInfo text and image box",
+      //   image: "SmartInfoTextAndImageBox.png",
+      // },
       {
         name: "SmartInfoInteractBox",
         title: "SmartInfo interact box",

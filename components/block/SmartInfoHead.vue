@@ -35,7 +35,7 @@ export default class BlockSmartInfoHead extends Vue {
       image: {
         id: 1,
         type: StructureType.Image,
-        title: 'Upload header',
+        title: 'Image',
         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
         alt: 'smart header',
       },
