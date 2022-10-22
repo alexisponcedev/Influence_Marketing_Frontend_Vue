@@ -40,28 +40,28 @@ export default class BlockTvAndAudioFindProduct extends Vue {
         value: "Find Your",
       },
       coloredTitle: {
-        id: 1,
+        id: 2,
         type: StructureType.String,
         title: "Colored Title",
         value: "Hisense TV",
       },
       tinyTitle: {
-        id: 2,
+        id: 3,
         type: StructureType.String,
         title: "tiny title",
         value: "Take a look at our selection of models and see whats right for you.",
       },
       link: {
-        id: 3,
+        id: 4,
         type: StructureType.Url,
         title: "Shop Now",
         value: "/products",
       },
       image: {
-        id: 4,
+        id: 5,
         type: StructureType.Image,
         title: "Upload Image",
-        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/7281523f01/banner-new__ScaleMaxWidthWzMwNDhd.png-sigwnx.png",
         alt: "Some note about this image",
       },
     }

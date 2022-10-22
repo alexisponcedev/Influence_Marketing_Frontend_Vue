@@ -34,14 +34,14 @@ export default class BlockTvAndAudioIntro extends Vue {
         ]
       },
       largeTitle: {id: 1, type: StructureType.String, title: 'Large Title', value: 'Introducing'},
-      coloredTitle: {id: 1, type: StructureType.String, title: 'Colored Title', value: 'Hisense Soundbars'},
+      coloredTitle: {id: 2, type: StructureType.String, title: 'Colored Title', value: 'Hisense Soundbars'},
       paragraph: {
-        id: 2,
+        id: 3,
         type: StructureType.Text,
         title: 'Paragraph Text',
         value: 'Hisense Soundbars creates incredible sound in a simple, compact design. Big sound that delivers a huge entertainment experience.'
       },
-      link: {id: 3, type: StructureType.Url, title: 'Shop Soundbars Now', value: '/products'},
+      link: {id: 4, type: StructureType.Url, title: 'Shop Soundbars Now', value: '/products'},
     }
   }
 

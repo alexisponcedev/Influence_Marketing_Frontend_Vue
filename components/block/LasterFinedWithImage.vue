@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/LasterFinedWithImage.png" alt=""/>
+    <img src="/blocks/LaserFinedWithImage.png" alt=""/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockLasterFinedWithImage extends Vue {
+export default class BlockLaserFinedWithImage extends Vue {
   @Prop(Number) readonly id: number | undefined;
   @Prop(Number) readonly product_id!: number;
   @VModel({type: Object}) model!: Object;
