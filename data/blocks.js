@@ -109,6 +109,11 @@ export const blocks = () => [
         image: "ProductStaticContent.png",
       },
       {
+        name: "ProductBigScreenTextsBox",
+        title: "TextBox 4",
+        image: "ProductBigScreenTextsBox.png",
+      },
+      {
         name: "ProductFeatureWithImage",
         title: "Product Feature With Image",
         image: "ProductFeatureWithImage.png",
@@ -230,9 +235,9 @@ export const blocks = () => [
         image: "TvAndAudioIntro.png",
       },
       {
-        name: "TvAndAudioLasterIntro",
-        title: "tv and audio laster intro",
-        image: "TvAndAudioLasterIntro.png",
+        name: "TvAndAudioLaserIntro",
+        title: "tv and audio Laser intro",
+        image: "TvAndAudioLaserIntro.png",
       },
       {
         name: "TvAndAudioSmartChoice",
@@ -240,9 +245,9 @@ export const blocks = () => [
         image: "TvAndAudioSmartChoice.png",
       },
       {
-        name: "TvAndAudioFineHisense",
+        name: "TvAndAudioFindHisense",
         title: "tv and audio fine hisense",
-        image: "TvAndAudioFineHisense.png",
+        image: "TvAndAudioFindHisense.png",
       },
       {
         name: "TvAndAudioFindProduct",
@@ -251,16 +256,6 @@ export const blocks = () => [
       },
     ],
   },
-  // {
-  //   name: "Smart TV",
-  //   blocks: [
-  //     {
-  //       name: "TvAndAudioHead",
-  //       title: "tv and audio head",
-  //       image: "TvAndAudioHead.png",
-  //     },
-  //   ],
-  // },
   {
     name: "UHD",
     blocks: [
@@ -461,9 +456,9 @@ export const blocks = () => [
     name: "LaserTv",
     blocks: [
       {
-        name: "LasterHead",
+        name: "LaserHead",
         title: "laser Head",
-        image: "LasterHead.png",
+        image: "LaserHead.png",
       },
       {
         name: "ImageBox",
@@ -476,19 +471,19 @@ export const blocks = () => [
         image: "CommercialIntro.png",
       },
       {
-        name: "LasterImageAndTextBox",
-        title: "Laster image and text box",
-        image: "LasterImageAndTextBox.png",
+        name: "LaserImageAndTextBox",
+        title: "Laser image and text box",
+        image: "LaserImageAndTextBox.png",
       },
       {
-        name: "LasterTitleAndSubTitleBox",
-        title: "Laster title and subtitle box",
-        image: "LasterTitleAndSubTitleBox.png",
+        name: "LaserTitleAndSubTitleBox",
+        title: "Laser title and subtitle box",
+        image: "LaserTitleAndSubTitleBox.png",
       },
       {
-        name: "LasterFinedWithImage",
-        title: "laster find with image",
-        image: "LasterFinedWithImage.png",
+        name: "LaserFinedWithImage",
+        title: "Laser find with image",
+        image: "LaserFinedWithImage.png",
       },
     ],
   },

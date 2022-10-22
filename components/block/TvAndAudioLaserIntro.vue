@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/TvAndAudioLasterIntro.png" alt="">
+    <img src="/blocks/TvAndAudioLaserIntro.png" alt="">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockTvAndAudioLasterIntro extends Vue {
+export default class BlockTvAndAudioLaserIntro extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object

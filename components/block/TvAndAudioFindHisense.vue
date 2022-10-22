@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/TvAndAudioFineHisense.png" alt=""/>
+    <img src="/blocks/TvAndAudioFindHisense.png" alt=""/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockTvAndAudioFineHisense extends Vue {
+export default class BlockTvAndAudioFindHisense extends Vue {
   @Prop(Number) readonly id: number | undefined;
   @Prop(Number) readonly product_id!: number;
   @VModel({type: Object}) model!: Object;

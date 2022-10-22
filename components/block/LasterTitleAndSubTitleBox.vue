@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/LasterTitleAndSubTitleBox.png" alt=""/>
+    <img src="/blocks/LaserTitleAndSubTitleBox.png" alt=""/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockLasterTitleAndSubTitleBox extends Vue {
+export default class BlockLaserTitleAndSubTitleBox extends Vue {
   @Prop(Number) readonly id: number | undefined;
   @Prop(Number) readonly product_id!: number;
   @VModel({type: Object}) model!: Object;

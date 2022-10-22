@@ -40,22 +40,22 @@ export default class BlockTvAndAudioSmartChoice extends Vue {
         value: "Make The",
       },
       coloredTitle: {
-        id: 1,
+        id: 2,
         type: StructureType.String,
         title: "Colored Title",
         value: "Smart Choice",
       },
       paragraph: {
-        id: 2,
+        id: 3,
         type: StructureType.String,
         title: "Paragraph",
-        value: "The Hisense 4K UHD Smart Laser TV with Wide Color Gamut features a dual-color laser that displays a cinema-like picture full of rich, vibrant and true-to-life colors on an incredible 120” display. At every distance and angle, images are sharp and comfortable to watch for an immersive home-theater experience.",
+        value: "Owning a Smart TV makes life easy! Navigate the simple interface to stream over 500,000 movies and TV shows with the Roku OS. With Android TV, you can use your voice to ask the Google Assistant to find your favorite channels or connect your Alexa-enabled devices for hands-free control. Whether you’re looking to cut the cord or stream content, there's no shortage of options from which to choose.",
       },
       image: {
-        id: 3,
+        id: 4,
         type: StructureType.Image,
         title: 'Upload left Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/867b78c83f/download_ScaleMaxWidthWzMwNDhd__ScaleMaxWidthWzMwNDhd.png-akouj4.png-xl6sfw.png',
         alt: 'Some note about this image',
       },
       link: {

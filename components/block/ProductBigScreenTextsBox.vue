@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/LaserHead.png" alt="">
+    <img src="/blocks/ProductBigScreenTextsBox.png" alt="">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockLaserHead extends Vue {
+export default class BlockProductBigScreenTextsBox extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object
@@ -27,36 +27,24 @@ export default class BlockLaserHead extends Vue {
         id: 0,
         type: StructureType.Select,
         title: 'Theme',
-        value: Theme.dark,
+        value: Theme.light,
         items: [
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
-      image: {
-        id: 1,
-        type: StructureType.Image,
-        title: 'Upload Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/98546a4425/lasertv4k-logo-white__ScaleMaxWidthWzMwNDhd.png-40bmxc.png',
-        alt: 'Some note about this image',
+      coloredTitle: {
+        id: 1, type: StructureType.String, title: 'Title', value: 'More clear,'
       },
-      title: {
-        id: 2,
-        type: StructureType.String,
-        title: "Title",
-        value: "BIG.BOLD.BEAUTIFUL.",
+
+      blackTitle: {
+        id: 1, type: StructureType.String, title: 'Title', value: 'more defined'
       },
       paragraph: {
-        id: 3,
-        type: StructureType.String,
-        title: "Paragraph",
-        value: "Every seat in your house becomes the best seat with the Hisense 100” and 120” 4K UHD Smart Laser TV with Wide Color Gamut. Immerse yourself in this incredible TV and experience the game, a movie, or your favorite TV show like never before.",
-      },
-      link: {
-        id: 4,
-        type: StructureType.Url,
-        title: "SHOP LASER TVs",
-        value: "https://www.hisense-usa.com/tv-and-audio/televisions/all-tvs/?prop301=Laser+Display",
+        id: 2,
+        type: StructureType.Text,
+        title: 'Paragraph',
+        value: 'The A6 Series 4K UHD Smart TV is an entertainment must‐ have that features tons of built‐in apps via the Smart Platform - VIDAA, making it easier than ever to personalize your entertainment experience. Other details include DTS® Virtual:X™ for crisp audio, and Motion Rate 120 keeps up with the fastest sports, movies and gaming. The screen size also makes it ideal for smaller rooms and budgets.'
       },
     }
   }

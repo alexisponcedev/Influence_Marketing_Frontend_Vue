@@ -42,18 +42,12 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
         id: 2,
         type: StructureType.List,
         title: "Items",
-        newItem: {
-          link: {
-            id: 0,
-            type: StructureType.Url,
-            title: "Shop Now URL",
-            value: "/products",
-          },
+        newItem:  {
           image: {
             id: 1,
             type: StructureType.Image,
-            title: "Upload Image",
-            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+            title: "Image",
+            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/e84932379d/laser-tv__ScaleMaxWidthWzMwNDhd.png-hkxn30.png",
             alt: "Some note about this image",
           },
           title: {
@@ -68,19 +62,46 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
             title: "Description",
             value: "Discover a New Expanse of Color",
           },
+          link: {
+            id: 4,
+            type: StructureType.Url,
+            title: "Shop Now URL",
+            value: "/products",
+          },
         },
         value: [
           {
+            image: {
+              id: 1,
+              type: StructureType.Image,
+              title: "Image",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/e84932379d/laser-tv__ScaleMaxWidthWzMwNDhd.png-hkxn30.png",
+              alt: "Some note about this image",
+            },
+            title: {
+              id: 2,
+              type: StructureType.String,
+              title: "Title",
+              value: "LASER TVS",
+            },
+            description: {
+              id: 3,
+              type: StructureType.String,
+              title: "Description",
+              value: "Discover a New Expanse of Color",
+            },
             link: {
-              id: 0,
+              id: 4,
               type: StructureType.Url,
               title: "Shop Now URL",
               value: "/products",
             },
+          },
+          {
             image: {
               id: 1,
               type: StructureType.Image,
-              title: "Upload Image",
+              title: "Image",
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/dcbd61174f/u6h-infill__ScaleMaxWidthWzMwNDhd.png-rdv98j.png",
               alt: "Some note about this image",
             },
@@ -96,18 +117,18 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               title: "Description",
               value: "Great for Entertainment",
             },
-          },
-          {
             link: {
-              id: 0,
+              id: 4,
               type: StructureType.Url,
               title: "Shop Now URL",
               value: "/products",
             },
+          },
+          {
             image: {
               id: 1,
               type: StructureType.Image,
-              title: "Upload Image",
+              title: "Image",
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/02f59535b5/U7H-main__ScaleMaxWidthWzMwNDhd.png-kztgtc.png",
               alt: "Some note about this image",
             },
@@ -123,18 +144,18 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               title: "Description",
               value: "Great for Gaming",
             },
-          },
-          {
             link: {
-              id: 0,
+              id: 4,
               type: StructureType.Url,
               title: "Shop Now URL",
               value: "/products",
             },
+          },
+          {
             image: {
               id: 1,
               type: StructureType.Image,
-              title: "Upload Image",
+              title: "Image",
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/a9521cbb0e/U8h-infill__ScaleMaxWidthWzMwNDhd.png-r0i6kn.png",
               alt: "Some note about this image",
             },
@@ -150,32 +171,11 @@ export default class BlockTvAndAudioTvShopBox extends Vue {
               title: "Description",
               value: "Great for Everything",
             },
-          },
-          {
             link: {
-              id: 0,
+              id: 4,
               type: StructureType.Url,
               title: "Shop Now URL",
               value: "/products",
-            },
-            image: {
-              id: 1,
-              type: StructureType.Image,
-              title: "Upload Image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-              alt: "Some note about this image",
-            },
-            title: {
-              id: 2,
-              type: StructureType.String,
-              title: "Title",
-              value: "LASER TVS",
-            },
-            description: {
-              id: 3,
-              type: StructureType.String,
-              title: "Description",
-              value: "Discover a New Expanse of Color",
             },
           },
         ],
