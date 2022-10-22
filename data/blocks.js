@@ -60,6 +60,37 @@ export const blocks = () => [
     ],
   },
   {
+    name: "Home Page - new",
+    blocks: [
+      {
+        name: "HomePageMBSlider",
+        title: "Home Page Slider",
+        image: "HomePageMBSlider.png",
+      },
+      {
+        name: "HomePageMBProductsSlider",
+        title: "Home Page Products List",
+        image: "HomePageMBProductsSlider.png",
+      },
+
+      {
+        name: "HomePageMBVideoPlayer",
+        title: "Home Page Video Player",
+        image: "HomePageMBVideoPlayer.png",
+      },
+      {
+        name: "HomePageMBTextedBoxes",
+        title: "Home Page Text Boxes",
+        image: "HomePageMBTextedBoxes.png",
+      },
+      {
+        name: "HomePageMBDiscovery",
+        title: "Home Page Discovery",
+        image: "HomePageMBDiscovery.png",
+      },
+    ],
+  },
+  {
     name: "Products",
     blocks: [
       {
@@ -71,6 +102,21 @@ export const blocks = () => [
         name: "ProductsGrid",
         title: "Products Grid",
         image: "Product Grid.png",
+      },
+    ],
+  },
+  {
+    name: "Products - New",
+    blocks: [
+      {
+        name: "ProductsBannerV2",
+        title: "product banner",
+        image: "ProductsBannerV2.png",
+      },
+      {
+        name: "ProductsGridV2",
+        title: "Products Grid",
+        image: "ProductsGridV2.png",
       },
     ],
   },
@@ -217,6 +263,32 @@ export const blocks = () => [
     ],
   },
   {
+    name: "Support - new",
+    blocks: [
+      {
+        name: "ProductsBannerV2",
+        title: "Banner",
+        image: "ProductsBannerV2.png",
+      },
+      {
+        name: "ProductsCategoriesWithSearch",
+        title: "Products Categories With Search",
+        image: "ProductsCategoriesWithSearch.png",
+      },
+      {
+        name: "ProductsSupportOptions",
+        title: "Products Support Options",
+        image: "ProductsSupportOptions.png",
+      },
+      {
+        name: "SupportNeedMoreWithButton",
+        title: "Support Need More With Button",
+        image: "SupportNeedMoreWithButton.png",
+      },
+    ],
+  },
+
+  {
     name: "TvAndAudio",
     blocks: [
       {
@@ -246,7 +318,7 @@ export const blocks = () => [
       },
       {
         name: "TvAndAudioFindHisense",
-        title: "tv and audio fine hisense",
+        title: "tv and audio find hisense",
         image: "TvAndAudioFindHisense.png",
       },
       {
@@ -484,6 +556,31 @@ export const blocks = () => [
         name: "LaserFinedWithImage",
         title: "Laser find with image",
         image: "LaserFinedWithImage.png",
+      },
+    ],
+  },
+  {
+    name: "Commercial",
+    blocks: [
+      {
+        name: "CommercialIntro",
+        title: "commercial intro",
+        image: "CommercialIntro.png",
+      },
+      {
+        name: "ImageBox",
+        title: "Commercial Image Box",
+        image: "ImageBox.png",
+      },
+      {
+        name: "CommercialTowImageBox",
+        title: "Commercial Tow Image Box",
+        image: "CommercialTowImageBox.png",
+      },
+      {
+        name: "CommercialBecomeAPartner",
+        title: "Commercial Become A Partner",
+        image: "CommercialBecomeAPartner.png",
       },
     ],
   },

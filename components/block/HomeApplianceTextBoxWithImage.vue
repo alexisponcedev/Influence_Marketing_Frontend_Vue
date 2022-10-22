@@ -40,16 +40,21 @@ export default class BlockHomeApplianceTextBoxWithImage extends Vue {
           id: 2, type: StructureType.String, title: 'Colored Title', value: 'DISHWASHER'
         },
         paragraph: {
-          id: 4, type: StructureType.Text, title: 'Paragraph', value: 'Seamlessly integrating premium design with cutting-edge technology, the Hisense Dishwasher is perfect for large families. A stainless steel finish, condensation drying and movable upper basket, are just some of the features that make this a must-have for your kitchen a wise choice.'
+          id: 3, type: StructureType.Text, title: 'Paragraph', value: 'Seamlessly integrating premium design with cutting-edge technology, the Hisense Dishwasher is perfect for large families. A stainless steel finish, condensation drying and movable upper basket, are just some of the features that make this a must-have for your kitchen a wise choice.'
         },
         image: {
-          id: 1,
+          id: 4,
           type: StructureType.Image,
           title: 'Image',
           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/7ef1e22810/Artboard-1__ScaleMaxWidthWzMwNDhd.png-5i5s5q.png',
           alt: 'Some note about this image',
         },
-
+        link:{
+          id : 5,
+          type : StructureType.Url,
+          title : 'Shop Now URL',
+          value : '/'
+        }
       }
     }
     mounted() {
