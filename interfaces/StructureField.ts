@@ -17,6 +17,7 @@ export class StructureField implements StructureFieldInterface{
   title: string = '';
   type: StructureType = StructureType.String;
   items : any = [];
+  value :any = null;
 
   alt : string = '';
   src : string = '';

@@ -47,7 +47,7 @@ export default class BlockTvAndAudioSmartChoice extends Vue {
       },
       paragraph: {
         id: 3,
-        type: StructureType.String,
+        type: StructureType.Text,
         title: "Paragraph",
         value: "Owning a Smart TV makes life easy! Navigate the simple interface to stream over 500,000 movies and TV shows with the Roku OS. With Android TV, you can use your voice to ask the Google Assistant to find your favorite channels or connect your Alexa-enabled devices for hands-free control. Whether you’re looking to cut the cord or stream content, there's no shortage of options from which to choose.",
       },

@@ -42,12 +42,12 @@ export default class BlockCommercialIntro extends Vue {
         coloredTitle: {
           id: 1,
           type: StructureType.String,
-          title: "Title",
+          title: "Colored Title",
           value: " Rethink TV",
         },
         paragraph: {
           id: 2,
-          type: StructureType.String,
+          type: StructureType.Text,
           title: "Paragraph",
           value: "Hisense Laser TV is revolution in display technology, delivering a cinema-like picture with ultra wide color gamut at a massive scale. The use of pure color lasers beaming at an ambient light rejecting screen from just inches away gives you a beautifully bright picture with true-to-life color. Add to that built-in Dolby Atmos Sound, 4K Resolution, Smooth Motion, and a Smart TV OS, Laser TV will quite literally change the way you watch TV.",
         },

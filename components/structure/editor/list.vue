@@ -8,7 +8,7 @@
           <h6 class="tw-mx-2.5 tw-my-1">Item {{ index + 1}}</h6>
           <button class="tw-p-2" @click="removeItem(index)"><v-icon small>mdi-delete</v-icon></button>
         </div>
-        <structure-editor :simple="true" :value="fields" @input="v => fields = v"/>
+        <structure-editor :key="model.title + model.id" :simple="true" :value="fields" @input="v => fields = v"/>
       </div>
     </div>
     <button class="tw-text-center tw-px-3 tw-font-bold tw-py-3 tw-rounded-lg tw-bg-green-300 tw-w-full" @click="addNew">Add new item</button>

@@ -41,58 +41,30 @@ export default class BlocUHDAbilityBox extends Vue {
             id: 0,
             type: StructureType.Image,
             title: "Main Image",
-            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/f42d1cf104/Game-Mode-min__ScaleMaxWidthWzMwNDhd.jpg-ytwax3.jpg",
+            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/5c4cd12cc5/Motion-Rate-min__ScaleMaxWidthWzMwNDhd.jpg-zdeklf.jpg",
             alt: "Some note about this image",
           },
           smallImage: {
             id: 1,
             type: StructureType.Image,
             title: "Small Image",
-            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/b20eaf78a7/Game-mode__ScaleMaxWidthWzMwNDhd.png-a0ht61.png",
+            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/20ff8ee94b/motion__ScaleMaxWidthWzMwNDhd.png-tdk718.png",
             alt: "Some note about this image",
           },
           title: {
             id: 2,
             type: StructureType.String,
             title: "Title",
-            value: "Game Mode",
+            value: "Motion Rate 120",
           },
           description: {
             id: 3,
             type: StructureType.String,
             title: "Description",
-            value: "Super-low latency kills input lag for easier frags, because your controller commands are virtually instant on screen.",
+            value: "Makes fast-moving scenes smooth like butter."
           },
         },
         value: [
-          {
-            image: {
-              id: 0,
-              type: StructureType.Image,
-              title: "Main Image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/f42d1cf104/Game-Mode-min__ScaleMaxWidthWzMwNDhd.jpg-ytwax3.jpg",
-              alt: "Some note about this image",
-            },
-            smallImage: {
-              id: 1,
-              type: StructureType.Image,
-              title: "Small Image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/b20eaf78a7/Game-mode__ScaleMaxWidthWzMwNDhd.png-a0ht61.png",
-              alt: "Some note about this image",
-            },
-            title: {
-              id: 2,
-              type: StructureType.String,
-              title: "Title",
-              value: "Game Mode",
-            },
-            description: {
-              id: 3,
-              type: StructureType.String,
-              title: "Description",
-              value: "Super-low latency kills input lag for easier frags, because your controller commands are virtually instant on screen.",
-            },
-          },
           {
             image: {
               id: 0,
@@ -118,7 +90,35 @@ export default class BlocUHDAbilityBox extends Vue {
               id: 3,
               type: StructureType.String,
               title: "Description",
-              value: "Makes fast-moving scenes smooth like butter.",
+              value: "Makes fast-moving scenes smooth like butter."
+            },
+          },
+          {
+            image: {
+              id: 0,
+              type: StructureType.Image,
+              title: "Main Image",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/f42d1cf104/Game-Mode-min__ScaleMaxWidthWzMwNDhd.jpg-ytwax3.jpg",
+              alt: "Some note about this image",
+            },
+            smallImage: {
+              id: 1,
+              type: StructureType.Image,
+              title: "Small Image",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/b20eaf78a7/Game-mode__ScaleMaxWidthWzMwNDhd.png-a0ht61.png",
+              alt: "Some note about this image",
+            },
+            title: {
+              id: 2,
+              type: StructureType.String,
+              title: "Title",
+              value: "Game Mode",
+            },
+            description: {
+              id: 3,
+              type: StructureType.String,
+              title: "Description",
+              value: "Super-low latency kills input lag for easier frags, because your controller commands are virtually instant on screen."
             },
           },
         ],

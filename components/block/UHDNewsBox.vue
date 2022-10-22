@@ -36,26 +36,25 @@ export default class BlocUHDkNewsBox extends Vue {
         id: 1,
         type: StructureType.List,
         title: "Items",
-        newItem: {
+        newItem:  {
           image: {
             id: 0,
             type: StructureType.Image,
             title: "Upload Image",
-            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/dece2f50ff/Android-TV-min__ScaleMaxWidthWzMwNDhd.jpg-nhodhc.jpg",
             alt: "Some note about this image",
           },
           title: {
             id: 1,
             type: StructureType.String,
             title: "Title",
-            value: "ULED—Beautiful from the Inside Out",
+            value: "Let Android TV entertain you",
           },
           description: {
             id: 2,
-            type: StructureType.String,
+            type: StructureType.Text,
             title: "Description",
-            value:
-              "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
+            value: "Hisense 4K UHD Android TVs put a world of entertainment at your fingertips. Instantly tap into more than 5,000 apps and games on your big screen. Android TV makes it easy to discover and watch movies, TV shows, music and games.",
           },
         },
         value: [
@@ -64,21 +63,20 @@ export default class BlocUHDkNewsBox extends Vue {
               id: 0,
               type: StructureType.Image,
               title: "Upload Image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/dece2f50ff/Android-TV-min__ScaleMaxWidthWzMwNDhd.jpg-nhodhc.jpg",
               alt: "Some note about this image",
             },
             title: {
               id: 1,
               type: StructureType.String,
               title: "Title",
-              value: "ULED—Beautiful from the Inside Out",
+              value: "Let Android TV entertain you",
             },
             description: {
               id: 2,
-              type: StructureType.String,
+              type: StructureType.Text,
               title: "Description",
-              value:
-                "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
+              value: "Hisense 4K UHD Android TVs put a world of entertainment at your fingertips. Instantly tap into more than 5,000 apps and games on your big screen. Android TV makes it easy to discover and watch movies, TV shows, music and games.",
             },
           },
           {
@@ -86,21 +84,20 @@ export default class BlocUHDkNewsBox extends Vue {
               id: 0,
               type: StructureType.Image,
               title: "Upload Image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/5b6fe1b839/Roku-TV-min__ScaleMaxWidthWzMwNDhd.jpg-o82n6r.jpg",
               alt: "Some note about this image",
             },
             title: {
               id: 1,
               type: StructureType.String,
               title: "Title",
-              value: "ULED—Beautiful from the Inside Out",
+              value: "Start streaming with Roku TV",
             },
             description: {
               id: 2,
-              type: StructureType.String,
+              type: StructureType.Text,
               title: "Description",
-              value:
-                "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
+              value: "It’s easy to watch what you love with a Hisense 4K Roku TV. Search by title, actor or director to stream for free or at the lowest cost across thousands of channels. Great for cable, satellite, streaming and free TV with a HDTV antenna. You can even fire up your games console, all from the simple home screen.",
             },
           },
           {
@@ -108,21 +105,20 @@ export default class BlocUHDkNewsBox extends Vue {
               id: 0,
               type: StructureType.Image,
               title: "Upload Image",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/a632a531ff/XClass_HisenseWebsiteImage_1020212x1__ScaleMaxWidthWzMwNDhd.png-gdb3la.png",
               alt: "Some note about this image",
             },
             title: {
               id: 1,
               type: StructureType.String,
               title: "Title",
-              value: "ULED—Beautiful from the Inside Out",
+              value: "Welcome to your joy with XClass TV",
             },
             description: {
               id: 2,
               type: StructureType.String,
               title: "Description",
-              value:
-                "Take your TV experience from great to incredible with the Hisense 4K ULED™ TV. Our exclusive ULED™ technology including the Hi-View™ engine boosts color, contrast, brightness and motion.",
+              value: "XClass TV brings you all the joy of TV and none of the frustration. You’re greeted by a home screen that puts the apps and services you love in one place. Quickly pick up where you left off with your recently watched programs, plus get recommendations based on what you watch. Get access to over thousands of movies and TV shows.",
             },
           },
         ],

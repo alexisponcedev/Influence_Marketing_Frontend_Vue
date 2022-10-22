@@ -191,9 +191,11 @@ export default class PageForm extends Vue {
           id: +this.Page.id!,
           Page: this.Page,
         });
-      else await Api.Page.create(this.Page);
+      else {
+        let page = await Api.Page.create(this.Page);
+        this.$router.push("/page/edit/" + page.id);
+      }
       Api.Page.clearRoutes();
-      if (!this.editMode) this.$router.push("/page/all");
     }
   }
 
@@ -206,7 +208,11 @@ export default class PageForm extends Vue {
   }
 
   goToPageBuilder() {
-    if (!this.Page.widgets || this.Page.widgets?.length === 0)
+    if (
+      (!this.Page.widgets || this.Page.widgets?.length === 0)
+      &&
+      (!this.Page.draft || this.Page.draft?.length === 0)
+    )
       (this.$refs.templateSelector as any).open();
     else
       this.openPageBuilder();
@@ -245,10 +251,10 @@ export default class PageForm extends Vue {
 
   @Watch('pageRoute')
   onPageRouteChanged() {
-    if(this.Page.meta)
-    this.Page.meta!.forEach(item => {
-      if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
-    })
+    if (this.Page.meta)
+      this.Page.meta!.forEach(item => {
+        if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
+      })
   }
 
 
@@ -262,11 +268,11 @@ export default class PageForm extends Vue {
     this.Page.route = parentRoute + this.Page.title
 
 
-    if(this.Page.meta)
-    this.Page.meta!.forEach(item => {
-      if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
-      if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
-    })
+    if (this.Page.meta)
+      this.Page.meta!.forEach(item => {
+        if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
+        if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
+      })
   }
 
 

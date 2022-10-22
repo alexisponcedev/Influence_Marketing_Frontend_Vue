@@ -25,10 +25,10 @@
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
         <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
-                          @close="cancelEditing"
-                          @enable-select-mode="enableSelectMode"
+                          :key="blocksList[editIndex].title+ blocksList[editIndex].id"
+                          v-model="blocksList[editIndex].structure"
                           :title="blocksList[editIndex].title"
-                          v-model="blocksList[editIndex].structure"/>
+                          @close="cancelEditing"/>
       </div>
     </div>
 
@@ -51,20 +51,20 @@ export default class PageBuilder extends Vue {
 
   // selectable: boolean = false;
 
-  selectItem : any = {};
+  selectItem: any = {};
 
-  get selectable(){
+  get selectable() {
     return this.selectItem && Object.keys(this.selectItem).length > 0;
   }
 
   mounted() {
-      EventBus.listen('enable-select-mode', (target: any) => {
-        this.selectItem = target;
-      });
+    EventBus.listen('enable-select-mode', (target: any) => {
+      this.selectItem = target;
+    });
   }
 
   destroy() {
-      EventBus.remove('enable-select-mode');
+    EventBus.remove('enable-select-mode');
   }
 
   componentSelected(i: number) {
@@ -86,7 +86,6 @@ export default class PageBuilder extends Vue {
     this.blocksList.forEach((item: { selected: boolean; }) => item.selected = false);
     this.blocksList[index].selected = true;
   }
-
 
 
   editBlock(i: number) {

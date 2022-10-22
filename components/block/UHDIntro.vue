@@ -37,17 +37,17 @@ export default class BlockUHDIntro extends Vue {
         id: 1,
         type: StructureType.Image,
         title: "Upload Image",
-        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/33be11cdf7/4KUHD__ScaleMaxWidthWzMwNDhd.png-yrrphd.png",
         alt: "Some note about this image",
       },
       largeTitle: {
-        id: 2, type: StructureType.String, title: 'Large Title', value: 'introducing <br/> Hisense Soundbars'
+        id: 2, type: StructureType.String, title: 'Large Title', value: "Regular HD’s bigger, better looking brother"
       },
       paragraph: {
         id: 3,
         type: StructureType.Text,
         title: 'Paragraph Text',
-        value: 'Hisense Soundbars creates incredible sound in a simple, compact design. Big <br /> sound that delivers a huge entertainment experience.'
+        value: "More color. More contrast. More whoa that’s realistic. Our 4K UHD TVs have four times the resolution of regular 1080p high-definition TVs. So movies, sports, and even movies about sports, all look four times better."
       },
       link: {id: 4, type: StructureType.Url, title: 'Shop Soundbars Now', value: '/products'},
     }

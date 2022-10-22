@@ -1,7 +1,6 @@
 <template>
   <div class="tw-flex tw-w-full tw-flex-1" v-if="!isEmpty">
-
-
+    
     <div class="filter-box">
       <div v-if="loadingFilters" class="tw-h-96 tw-w-full tw-text-cyan-500 tw-text-center tw-flex tw-flex-col tw-items-center tw-justify-center">
         Loading filters ...

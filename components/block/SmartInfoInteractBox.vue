@@ -32,6 +32,9 @@ export default class BlockSmartInfoInteractBox extends Vue {
             { title: "Dark", value: this.Theme.dark },
           ],
         },
+        iframeLink:{
+          id : 1 , type : StructureType.String , title : 'Link' , value : 'https://touchlessdemos.withgoogle.com/retail/nest/streamingdemo/en-us'
+        }
       };
     }
     mounted() {

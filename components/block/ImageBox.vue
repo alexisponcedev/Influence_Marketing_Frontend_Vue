@@ -1,6 +1,7 @@
 <template>
     <div>
-        <img src="/blocks/ImageBox.png" alt="">
+<!--        <img src="/blocks/ImageBox.png" alt="">-->
+        <img :src="model.image.src" :alt="model.image.alt"/>
     </div>
 </template>
 
