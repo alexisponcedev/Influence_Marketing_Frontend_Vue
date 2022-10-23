@@ -30,23 +30,28 @@
       <v-tabs-items v-model="tab">
         <v-tab-item value="Details">
           <v-card-text>
-            <form-standard
-              ref="pagesForm"
-              :model="Page"
-              :fields="formFields"
-              :preview="true"
-              @submit="submit"
-            />
+
+            <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
+            <form-field-select-page-route :field="formFields[1]" v-model="Page.route"/>
+
+<!--            <form-standard-->
+<!--              ref="pagesForm"-->
+<!--              :model="Page"-->
+<!--              :fields="formFields"-->
+<!--              :preview="true"-->
+<!--              @submit="submit"-->
+<!--            />-->
           </v-card-text>
         </v-tab-item>
         <v-tab-item value="Metas">
           <v-card-text>
-            <form-standard
-              ref="pagesForm"
-              :model="Page"
-              :preview="true"
-              :fields="formFields"
-            />
+            <form-field-meta :field="formFields[2]" v-model="Page.meta"/>
+<!--            <form-standard-->
+<!--              ref="pagesForm"-->
+<!--              :model="Page"-->
+<!--              :preview="true"-->
+<!--              :fields="formFields"-->
+<!--            />-->
           </v-card-text>
         </v-tab-item>
       </v-tabs-items>
@@ -169,11 +174,6 @@ export default class PageForm extends Vue {
         rules: [],
         colAttrs: {cols: 12},
       },
-    ];
-  }
-
-  updateMetaFormFields() {
-    this.formFields = [
       {
         type: "form-field-meta",
         label: "Meta",
@@ -183,6 +183,18 @@ export default class PageForm extends Vue {
       },
     ];
   }
+
+  // updateMetaFormFields() {
+  //   this.formFields = [
+  //     {
+  //       type: "form-field-meta",
+  //       label: "Meta",
+  //       modelKey: "meta",
+  //       rules: [],
+  //       colAttrs: {cols: 12},
+  //     },
+  //   ];
+  // }
 
   async submit() {
     if (this.formValidate()) {
@@ -233,9 +245,9 @@ export default class PageForm extends Vue {
       case "Details":
         this.updatePageFormFields();
         break;
-      case "Metas" :
-        this.updateMetaFormFields();
-        break;
+      // case "Metas" :
+        // this.updateMetaFormFields();
+        // break;
       default:
         break;
     }
@@ -257,15 +269,23 @@ export default class PageForm extends Vue {
       })
   }
 
-
-  @Watch('pageTitle')
-  onPageTitleChanged() {
+  pageTitleChanged(){
     let parentRoute = '/';
     if (this.Page.route && this.Page.route !== '') {
       let lastIndexOf = this.Page.route!.lastIndexOf('/') + 1;
       parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
     }
     this.Page.route = parentRoute + this.Page.title
+  }
+
+  @Watch('pageTitle')
+  onPageTitleChanged() {
+    // let parentRoute = '/';
+    // if (this.Page.route && this.Page.route !== '') {
+    //   let lastIndexOf = this.Page.route!.lastIndexOf('/') + 1;
+    //   parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+    // }
+    // this.Page.route = parentRoute + this.Page.title
 
 
     if (this.Page.meta)
