@@ -289,41 +289,41 @@ export const blocks = () => [
   },
 
   {
-    name: "TvAndAudio",
+    name: "TVAndAudio",
     blocks: [
       {
-        name: "TvAndAudioHead",
-        title: "tv and audio head",
+        name: "TVAndAudioHead",
+        title: "TV and audio head",
         image: "TvAndAudioHead.png",
       },
       {
-        name: "TvAndAudioTvShopBox",
-        title: "tv and audio tv shop box",
+        name: "TVAndAudioTvShopBox",
+        title: "TV and audio tv shop box",
         image: "TvAndAudioTvShopBox.png",
       },
       {
-        name: "TvAndAudioIntro",
-        title: "tv and audio intro",
+        name: "TVAndAudioIntro",
+        title: "TV and audio intro",
         image: "TvAndAudioIntro.png",
       },
       {
-        name: "TvAndAudioLaserIntro",
-        title: "tv and audio Laser intro",
+        name: "TVAndAudioLaserIntro",
+        title: "TV and audio Laser intro",
         image: "TvAndAudioLaserIntro.png",
       },
       {
-        name: "TvAndAudioSmartChoice",
-        title: "tv and audio smart choice",
+        name: "TVAndAudioSmartChoice",
+        title: "TV and audio smart choice",
         image: "TvAndAudioSmartChoice.png",
       },
       {
-        name: "TvAndAudioFindHisense",
-        title: "tv and audio find hisense",
+        name: "TVAndAudioFindHisense",
+        title: "TV and audio find hisense",
         image: "TvAndAudioFindHisense.png",
       },
       {
-        name: "TvAndAudioFindProduct",
-        title: "tv and audio find product",
+        name: "TVAndAudioFindProduct",
+        title: "TV and audio find product",
         image: "TvAndAudioFindProduct.png",
       },
     ],

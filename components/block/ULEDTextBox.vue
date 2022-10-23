@@ -38,7 +38,13 @@ export default class BlockULEDTextBox extends Vue {
         title: "Title",
         value: "LASER TVS",
       },
-      description: {
+      paragraphOne: {
+        id: 2,
+        type: StructureType.String,
+        title: "Description",
+        value: "Discover a New Expanse of Color",
+      },
+      paragraphTwo: {
         id: 2,
         type: StructureType.String,
         title: "Description",
