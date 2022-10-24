@@ -33,12 +33,8 @@ export default class BlockMoreTvExperts extends Vue {
           { title: 'Dark', value: this.Theme.dark },
         ]
       },
-      title: {
-        id: 1,
-        type: StructureType.String,
-        title: 'title',
-        value: "The experts agree.<br/>We make<br/> awesome TVs."
-      },
+      title: { id: 1, type: StructureType.String, title: 'Title', value: "The experts agree." },
+      coloredTitle: { id: 1, type: StructureType.String, title: 'Colored Title', value: "We make awesome TVs." },
       image: {
         id: 2,
         type: StructureType.Image,
@@ -54,13 +50,13 @@ export default class BlockMoreTvExperts extends Vue {
           quote: {
             id: 0,
             type: StructureType.String,
-            title: 'quote',
+            title: 'Quote',
             value: "Best Budget TV for watching sports"
           },
           image: {
             id: 1,
             type: StructureType.Image,
-            title: 'quote image',
+            title: 'Quote image',
             src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
             alt: 'MoreTv Head',
           },
@@ -70,45 +66,47 @@ export default class BlockMoreTvExperts extends Vue {
             quote: {
               id: 0,
               type: StructureType.String,
-              title: 'quote',
+              title: 'Quote',
               value: "Best Budget TV for watching sports"
             },
             image: {
               id: 1,
               type: StructureType.Image,
-              title: 'quote image',
+              title: 'Quote image',
               src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
               alt: 'MoreTv Head',
             },
-          }, {
+          },
+          {
             quote: {
               id: 0,
               type: StructureType.String,
-              title: 'quote',
-              value: "Best Budget TV for watching sports"
+              title: 'Quote',
+              value: "In a class all of its own"
             },
             image: {
               id: 1,
               type: StructureType.Image,
-              title: 'quote image',
+              title: 'Quote image',
               src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
               alt: 'MoreTv Head',
             },
-          }, {
+          },
+          {
             quote: {
               id: 0,
               type: StructureType.String,
-              title: 'quote',
-              value: "Best Budget TV for watching sports"
+              title: 'Quote',
+              value: "Dazzling bright and full of features"
             },
             image: {
               id: 1,
               type: StructureType.Image,
-              title: 'quote image',
+              title: 'Quote image',
               src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
               alt: 'MoreTv Head',
             },
-          }
+          },
         ]
       }
     }

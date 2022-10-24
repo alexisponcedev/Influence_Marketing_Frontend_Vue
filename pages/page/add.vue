@@ -24,41 +24,40 @@
     </v-row>
 
 
-    <v-card>
+    <v-form ref="form" @submit.prevent="submit">
+      <v-card>
+        <v-tabs-items v-model="tab">
+          <v-tab-item value="Details">
+            <v-card-text>
+
+              <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
+              <form-field-select-page-route :field="formFields[1]" v-model="Page.route"/>
+
+              <!--            <form-standard-->
+              <!--              ref="pagesForm"-->
+              <!--              :model="Page"-->
+              <!--              :fields="formFields"-->
+              <!--              :preview="true"-->
+              <!--              @submit="submit"-->
+              <!--            />-->
+            </v-card-text>
+          </v-tab-item>
+          <v-tab-item value="Metas">
+            <v-card-text>
+              <form-field-meta :field="formFields[2]" v-model="Page.meta"/>
+              <!--            <form-standard-->
+              <!--              ref="pagesForm"-->
+              <!--              :model="Page"-->
+              <!--              :preview="true"-->
+              <!--              :fields="formFields"-->
+              <!--            />-->
+            </v-card-text>
+          </v-tab-item>
+        </v-tabs-items>
 
 
-      <v-tabs-items v-model="tab">
-        <v-tab-item value="Details">
-          <v-card-text>
-
-            <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
-            <form-field-select-page-route :field="formFields[1]" v-model="Page.route"/>
-
-<!--            <form-standard-->
-<!--              ref="pagesForm"-->
-<!--              :model="Page"-->
-<!--              :fields="formFields"-->
-<!--              :preview="true"-->
-<!--              @submit="submit"-->
-<!--            />-->
-          </v-card-text>
-        </v-tab-item>
-        <v-tab-item value="Metas">
-          <v-card-text>
-            <form-field-meta :field="formFields[2]" v-model="Page.meta"/>
-<!--            <form-standard-->
-<!--              ref="pagesForm"-->
-<!--              :model="Page"-->
-<!--              :preview="true"-->
-<!--              :fields="formFields"-->
-<!--            />-->
-          </v-card-text>
-        </v-tab-item>
-      </v-tabs-items>
-
-
-    </v-card>
-
+      </v-card>
+    </v-form>
     <button
       class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
       @click="submit">Save
@@ -212,7 +211,8 @@ export default class PageForm extends Vue {
   }
 
   formValidate() {
-    return (this.$refs.pagesForm as any).validate();
+    return (this.$refs.form as any).validate();
+    // return (this.$refs.pagesForm as any).validate();
   }
 
   gotoLiveWebsite() {
@@ -246,8 +246,8 @@ export default class PageForm extends Vue {
         this.updatePageFormFields();
         break;
       // case "Metas" :
-        // this.updateMetaFormFields();
-        // break;
+      // this.updateMetaFormFields();
+      // break;
       default:
         break;
     }
@@ -269,7 +269,7 @@ export default class PageForm extends Vue {
       })
   }
 
-  pageTitleChanged(){
+  pageTitleChanged() {
     let parentRoute = '/';
     if (this.Page.route && this.Page.route !== '') {
       let lastIndexOf = this.Page.route!.lastIndexOf('/') + 1;

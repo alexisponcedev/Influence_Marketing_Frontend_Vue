@@ -25,6 +25,7 @@ export default class HomePageMBTextedBoxes extends Vue {
         title: 'Link',
         value: '/'
       },
+      littleTitle:{id : 1 , type : StructureType.String , Text : 'Little Title' , value : ''},
       list: {
         id: 1,
         type: StructureType.List,

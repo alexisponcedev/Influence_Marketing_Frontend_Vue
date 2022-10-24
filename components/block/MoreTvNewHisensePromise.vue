@@ -36,27 +36,27 @@ export default class BlockMoreTvNewHisensePromise extends Vue {
         title: {
           id: 1, type: StructureType.String, title: 'Title', value: 'The Hisense Promise'
         },
-        tinyTitle: {
-          id: 2, type: StructureType.String, title: 'tiny Title', value: 'Great TVs. Great Prices. No B.S.'
+        subTitle: {
+          id: 2, type: StructureType.String, title: 'Subtitle', value: 'Great TVs. Great Prices. No B.S.'
         },
-        paragraph: {
+        text: {
           id: 2,
           type: StructureType.Text,
-          title: 'Paragraph Text',
+          title: 'Text',
           value: 'Sure, we may not be the biggest or the most well known but there’s one thing you can count on – Hisense will always strive to make the latest technologies available to all.'
         },
         image: {
           id: 3,
           type: StructureType.Image,
-          title: "Upload Image sign",
+          title: "Signature Image",
           src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
           alt: "hisense sign",
         },
         video: {
           id: 4,
-          type: StructureType.File,
-          title: "Upload Image person",
-          src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+          type: StructureType.String,
+          title: "Video URL",
+          value: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
           alt: "video",
         },
       }
