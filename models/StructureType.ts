@@ -9,4 +9,5 @@ export enum StructureType {
   Select = 'select',
   Object = 'object',
   idSelector = 'idSelector',
+  Null = 'null',
 }

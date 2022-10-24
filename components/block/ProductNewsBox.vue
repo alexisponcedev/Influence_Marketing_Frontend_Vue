@@ -30,8 +30,18 @@ export default class BlockProductNewsBox extends Vue {
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
+      divider: {
+        id: 2,
+        type: StructureType.Select,
+        title: 'Line Divider',
+        value: true,
+        items: [
+          {title: 'Show', value: true},
+          {title: "Don't show", value: false},
+        ]
+      },
       list: {
-        id : 1,
+        id : 3,
         type: StructureType.List,
         title: 'Items',
 
@@ -57,7 +67,8 @@ export default class BlockProductNewsBox extends Vue {
               alt: 'Some note about this image',
             },
             title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Ultra Short Throw. Ultra Convenient.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'},
+            smallTitle: {id : 3 , type: StructureType.String, title: 'Small Title', value: ''},
+            note: {id : 4 , type: StructureType.Text, title: 'Note', value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'},
           },
           {
             image: {
@@ -68,7 +79,8 @@ export default class BlockProductNewsBox extends Vue {
               alt: 'Some note about this image',
             },
             title: {id : 2 , type: StructureType.String, title: 'Title', value: 'ALR Daylight Screen.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'The L5G comes with a perfectly paired Ambient Light Rejecting (ALR) screen to remove the guesswork from a UST projector setup. The ALR Daylight screen produces an incredibly bright image and features a scratch-resistant surface – no more worrying about hanging it in a high-traffic room. Screen assembly is required.'},
+            smallTitle: {id : 3 , type: StructureType.String, title: 'Small Title', value: ''},
+            note: {id : 4 , type: StructureType.Text, title: 'Note', value: 'The L5G comes with a perfectly paired Ambient Light Rejecting (ALR) screen to remove the guesswork from a UST projector setup. The ALR Daylight screen produces an incredibly bright image and features a scratch-resistant surface – no more worrying about hanging it in a high-traffic room. Screen assembly is required.'},
           },
           {
             image: {
@@ -79,7 +91,8 @@ export default class BlockProductNewsBox extends Vue {
               alt: 'Some note about this image',
             },
             title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Cinematic Sound.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'With built-in 30W Dolby Atmos® sound, the L5G delivers cinematic sound that seemingly flows all around you. For the true audiophiles, the L5G’s eARC support means you get full signal pass-thru to your surround sound system.'},
+            smallTitle: {id : 3 , type: StructureType.String, title: 'Small Title', value: ''},
+            note: {id : 4 , type: StructureType.Text, title: 'Note', value: 'With built-in 30W Dolby Atmos® sound, the L5G delivers cinematic sound that seemingly flows all around you. For the true audiophiles, the L5G’s eARC support means you get full signal pass-thru to your surround sound system.'},
           },
           {
             image: {
@@ -90,7 +103,8 @@ export default class BlockProductNewsBox extends Vue {
               alt: 'Some note about this image',
             },
             title: {id : 2 , type: StructureType.String, title: 'Title', value: 'Smart TV Platform.'},
-            note: {id : 2 , type: StructureType.Text, title: 'Note', value: 'The smart Android TV platform brings great content to the biggest screen in your home. Install apps from the Google Play Store and open your favorite streaming services for limitless entertainment.'},
+            smallTitle: {id : 3 , type: StructureType.String, title: 'Small Title', value: ''},
+            note: {id : 4 , type: StructureType.Text, title: 'Note', value: 'The smart Android TV platform brings great content to the biggest screen in your home. Install apps from the Google Play Store and open your favorite streaming services for limitless entertainment.'},
           },
         ]
       },

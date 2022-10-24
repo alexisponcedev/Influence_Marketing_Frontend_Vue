@@ -1,7 +1,25 @@
 <template>
-  <div>
-    <img src="/blocks/ProductFeatureWithImage.png" alt=""/>
+  <div class="tw-flex tw-items-center " :class="{'tw-flex-row-reverse' : model.direction.value === Direction.rtl }" v-if="!isEmpty">
+    <div class="tw-flex-1">
+      <img
+        :src="model.image.src"
+        style="width: 720px; height: 720px"
+        class="tw-bg-grey-50 tw-object-cover"
+        :alt="model.image.alt"/>
+    </div>
+
+    <div class="tw-flex-1 tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9">
+      <h4 class="small-title tw-text-black">{{ model.littleTitle.value }}</h4>
+      <h2 class="large-title tw-text-black">{{ model.title.value }}</h2>
+      <p class="paragraph tw-text-black">
+        {{ model.description.value }}
+      </p>
+    </div>
+
   </div>
+  <!--  <div>-->
+  <!--    <img src="/blocks/ProductFeatureWithImage.png" alt=""/>-->
+  <!--  </div>-->
 </template>
 
 <script lang="ts">
@@ -108,5 +126,18 @@ export default class BlockProductFeatureWithImage extends Vue {
 </script>
 
 <style type="text/css">
+.small-title {
+  font-size: 15px;
+  font-weight: 700;
+}
 
+.large-title {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.paragraph {
+  font-size: 18px;
+  font-weight: 400;
+}
 </style>
