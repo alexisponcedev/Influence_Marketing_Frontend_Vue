@@ -1,6 +1,6 @@
 <template>
   <v-col>
-    <label v-if="field.label">
+    <label v-if="field.label && field.label !== ''">
       {{ field.label }}
     </label>
     <vue-editor v-model="model.value" :editor-toolbar="customToolbar"/>

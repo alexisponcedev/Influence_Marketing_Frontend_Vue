@@ -719,4 +719,20 @@ export const blocks = () => [
 
     ],
   },
+  {
+    name: "FAQ",
+    blocks: [
+      {
+        name: "FAQhead",
+        title: "FAQ Head",
+        image: "FAQhead.png",
+      },
+      {
+        name: "TextEditor",
+        title: "Text Editor",
+        image: "TextEditor.png",
+      },
+
+    ],
+  },
 ];
