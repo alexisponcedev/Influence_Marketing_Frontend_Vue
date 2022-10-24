@@ -50,7 +50,7 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
   Api = Api;
 
   async mounted() {
-    if(Api.Page.routes.length === 0) await Api.Page.getRoutes();
+    if(Api.Page.routes.length === 0 && !Api.Page.loading) await Api.Page.getRoutes();
   }
 }
 </script>

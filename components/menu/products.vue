@@ -61,8 +61,8 @@ export default class MenuItemEditor extends Vue {
   urlField = {
     label: "",
     placeholder: 'Enter page name',
-    'item-text': 'title',
-    'item-value': 'value',
+    'item-text' : 'title',
+    'item-value' : 'absolute',
     rules: [],
     colAttrs: {cols: 7},
   }

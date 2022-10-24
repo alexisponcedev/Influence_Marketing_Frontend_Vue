@@ -7,8 +7,6 @@
         <form-field-select-page-name
           :field="optionUrlField"
           v-model="model.url"
-          :rules="[]"
-          placeholder="p"
         />
         <v-col justify="center">
           <v-btn icon elevation="0" text @click="editTitle = false">
@@ -88,6 +86,7 @@ export default class MenuOptionEditor extends Vue {
 
   optionTitleField = {
     label: '',
+
     placeholder: 'Option Title',
     rules: [],
     colAttrs: {cols: 4},
@@ -96,8 +95,8 @@ export default class MenuOptionEditor extends Vue {
   optionUrlField = {
     label: "",
     placeholder: 'Enter page name',
-    'item-text': 'title',
-    'item-value': 'value',
+    'item-text' : 'title',
+    'item-value' : 'absolute',
     rules: [],
     colAttrs: {cols: 7},
   }
