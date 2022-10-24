@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/ProductFineMeInStore.png" alt="">
+    <img src="/blocks/SupportNeedAssistance.png" alt="">
   </div>
 </template>
 
@@ -11,14 +11,14 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockProductFineMeInStore extends Vue {
+export default class SupportNeedAssistance extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object
 
   Theme = Theme;
 
-  reset(){
+    reset(){
     this.model = {
       theme: {
         id: 0,
@@ -29,14 +29,16 @@ export default class BlockProductFineMeInStore extends Vue {
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
-      }
+      },
+      title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'Need More Assistance?'},
+      linkTitle : {id : 1 , type : StructureType.String , title : 'Link Title' , value : 'Contact Us'},
+      linkUrl : {id : 1 , type : StructureType.String , title : 'Link Url' , value : '/'},
     }
   }
 
   mounted() {
     if (this.isEmpty) this.reset();
   }
-
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
   }

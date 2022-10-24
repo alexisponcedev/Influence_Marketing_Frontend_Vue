@@ -30,6 +30,26 @@ export default class BlockProductBigContent extends Vue {
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
+      flex: {
+        id: 0,
+        type: StructureType.Select,
+        title: 'Title Flex',
+        value: 'row',
+        items: [
+          {title: 'Row', value: 'row'},
+          {title: 'Column', value: 'column'},
+        ]
+      },
+      order: {
+        id: 0,
+        type: StructureType.Select,
+        title: 'Title Order',
+        value: '',
+        items: [
+          {title: 'Normal', value: ''},
+          {title: 'Reverse', value: 'reverse'},
+        ]
+      },
       blackTitle: {id : 1, type: StructureType.String, title: 'Black Title', value: 'Big Screen'},
       coloredTitle: {id : 1, type: StructureType.String, title: 'Colored Title', value: 'big entertainment'},
       smallTitle: {id : 2 , type: StructureType.String, title: 'Small Title', value: 'L5G SERIES - 4K SMART LASER TV'},

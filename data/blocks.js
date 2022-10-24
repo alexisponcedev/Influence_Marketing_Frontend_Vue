@@ -17,6 +17,11 @@ export const blocks = () => [
         title: "image box",
         image: "ImageBox.png",
       },
+      {
+        name: "TextEditor",
+        title: "Text Editor",
+        image: "TextEditor.png",
+      },
     ],
   },
   {
@@ -72,7 +77,6 @@ export const blocks = () => [
         title: "Home Page Products List",
         image: "HomePageMBProductsSlider.png",
       },
-
       {
         name: "HomePageMBVideoPlayer",
         title: "Home Page Video Player",
@@ -211,13 +215,13 @@ export const blocks = () => [
       },
       {
         name: "ProductBigContent",
-        title: "Product Big Screen",
+        title: "Product Big Content",
         image: "ProductBigContent.png",
       },
       {
-        name: "ProductFineMeInStore",
+        name: "ProductFindMeInStore",
         title: "Product Find Me At Store",
-        image: "ProductFineMeInStore.png",
+        image: "ProductFindMeInStore.png",
       },
       {
         name: "ProductImageBox",
@@ -233,6 +237,11 @@ export const blocks = () => [
         name: "ProductReviewBox",
         title: "Product Reviews box",
         image: "ProductReviewBox.png",
+      },
+      {
+        name: "Specs",
+        title: "Specs",
+        image: "Specs.png",
       },
     ],
   },
@@ -257,7 +266,47 @@ export const blocks = () => [
     ],
   },
   {
-    name: "Support - new",
+    name: "Product Support V2",
+    blocks: [
+      {
+        name: "ProductSupportNewHead",
+        title: "Product Support Info",
+        image: "ProductSupportNewHead.png",
+      },
+      {
+        name: "ProductSupportNavBar",
+        title: "Product Support NavBar",
+        image: "ProductSupportNavBar.png",
+      },
+      // {
+      //   name: "ProductSupportVideoBox",
+      //   title: "Product Support Video Box",
+      //   image: "ProductSupportVideoBox.png",
+      // },
+      // {
+      //   name: "ProductSupportFAQ",
+      //   title: "Product Support FAQ",
+      //   image: "ProductSupportFAQ.png",
+      // },
+      {
+        name: "ProductSupportRegister",
+        title: "Product Support Register",
+        image: "ProductSupportRegister.png",
+      },
+      // {
+      //   name: "ProductSupportReplacement",
+      //   title: "Product Support Replacement",
+      //   image: "ProductSupportReplacement.png",
+      // },
+      {
+        name: "SupportNeedAssistance",
+        title: "Support Need Assistance",
+        image: "SupportNeedAssistance.png",
+      },
+    ],
+  },
+  {
+    name: "Support Landing Page",
     blocks: [
       {
         name: "ProductsBannerV2",
@@ -374,10 +423,15 @@ export const blocks = () => [
         title: "ULED all tech",
         image: "ULEDAllTech.png",
       },
+      // {
+      //   name: "ULEDImageAndTextBox",
+      //   title: "ULED image and text box",
+      //   image: "ULEDImageAndTextBox.png",
+      // },
       {
-        name: "ULEDImageAndTextBox",
-        title: "ULED image and text box",
-        image: "ULEDImageAndTextBox.png",
+        name: "ProductFeatureWithImage",
+        title: "Image Box With Text",
+        image: "ProductFeatureWithImage.png",
       },
       {
         name: "ULEDGreatTvTextBox",

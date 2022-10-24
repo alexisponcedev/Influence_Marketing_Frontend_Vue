@@ -52,11 +52,17 @@ export default class BlockLaserFinedWithImage extends Vue {
         title: "description",
         value: "Rethink how you watch your favorite shows with Laser TV, bringing a new type of cinema experience to your home.",
       },
-      link: {
+      linkTitle: {
+        id: 3,
+        type: StructureType.String,
+        title: "Link Title",
+        value: "SHOP LASER TVs",
+      },
+      linkUrl: {
         id: 3,
         type: StructureType.Url,
-        title: "Unlock the detail and clarity of 4K Ultra HD resolution. With 8.3 million pixels, 4K UHD resolution provides razor-sharp, stunningly realistic images with incredible detail.",
-        value: "https://www.hisense-usa.com/tv-and-audio/televisions/all-tvs/?prop301=Laser+Display",
+        title: "Link URL",
+        value: "/",
       },
     };
   }

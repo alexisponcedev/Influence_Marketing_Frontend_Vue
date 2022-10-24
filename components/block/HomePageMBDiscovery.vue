@@ -41,7 +41,7 @@ export default class HomePageMBDiscovery extends Vue {
               id: 1,
               type: StructureType.Image,
               title: 'Upload Image',
-              src: '',
+              src:"http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355b2b6a3d41.webp",
               alt: 'Some note about this image',
             },
             title: {id: 2, type: StructureType.String, title: 'Title', value: '100 Days. $100 Reward. No Regrets.'},

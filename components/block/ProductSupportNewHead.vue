@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/ProductBigScreenTextsBox.png" alt="">
+    <img src="/blocks/ProductSupportNewHead.png" alt="">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockProductBigScreenTextsBox extends Vue {
+export default class ProductSupportNewHead extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object
@@ -21,43 +21,20 @@ export default class BlockProductBigScreenTextsBox extends Vue {
   product: Object = {};
   loadingProduct: boolean = true;
 
-  reset() {
+  reset(){
     this.model = {
       theme: {
         id: 0,
         type: StructureType.Select,
         title: 'Theme',
-        value: Theme.light,
+        value: Theme.dark,
         items: [
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
-      titleOrder: {
-        id: 0,
-        type: StructureType.Select,
-        title: 'Title - First element',
-        value: 'black',
-        items: [
-          {title: 'Black Title', value: 'black'},
-          {title: 'Colored Title', value: 'colored'},
-        ]
-      },
-      coloredTitle: {
-        id: 1, type: StructureType.String, title: 'Title', value: 'More clear,'
-      },
-      blackTitle: {
-        id: 1, type: StructureType.String, title: 'Title', value: 'more defined'
-      },
-      paragraph: {
-        id: 2,
-        type: StructureType.Text,
-        title: 'Paragraph',
-        value: 'The A6 Series 4K UHD Smart TV is an entertainment must‐ have that features tons of built‐in apps via the Smart Platform - VIDAA, making it easier than ever to personalize your entertainment experience. Other details include DTS® Virtual:X™ for crisp audio, and Motion Rate 120 keeps up with the fastest sports, movies and gaming. The screen size also makes it ideal for smaller rooms and budgets.'
-      },
     }
   }
-
   mounted() {
     if (this.isEmpty) this.reset();
     // this.loadProduct();
@@ -78,13 +55,26 @@ export default class BlockProductBigScreenTextsBox extends Vue {
   }
 
   @Watch('isEmpty')
-  onValueChanged() {
+  onValueChanged(){
 
-    if (this.isEmpty) this.reset();
+    if(this.isEmpty) this.reset();
   }
 }
 </script>
 
 <style type="text/css">
+.small-title {
+  font-size: 15px;
+  font-weight: 700;
+}
 
+.large-title {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.paragraph {
+  font-size: 18px;
+  font-weight: 400;
+}
 </style>
