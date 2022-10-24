@@ -22,7 +22,6 @@ export default class BlockCommercialBecomeAPartner extends Vue {
     @VModel({ type: Object }) model!: any
 
     Theme = Theme;
-    editMode : Boolean = false;
 
     product: Object = {};
 
@@ -42,7 +41,7 @@ export default class BlockCommercialBecomeAPartner extends Vue {
         text: {
           id: 2,
           type: StructureType.Null,
-          title: "Text",
+          title: "",
           value: "",
         },
       }
