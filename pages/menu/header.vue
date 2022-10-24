@@ -20,11 +20,12 @@
           <v-card-text>
             <h6>Center Options</h6>
             <div class="tw-space-y-3">
-              <menu-option v-for="(option , index) in Menu.widgets.centerOption"
-                           :key="`center_option_${index}`"
-                           :value="option"
-                           @input="v => option = v"
-                           @deleteOption="deleteOption(Menu.widgets.centerOption , index)"
+              <menu-option
+                v-for="(option , index) in Menu.widgets.centerOption"
+                :key="`center_option_${index}`"
+                :value="option"
+                @input="v => option = v"
+                @deleteOption="deleteOption(Menu.widgets.centerOption , index)"
               />
               <button
                 @click="addNewOption(Menu.widgets.centerOption)"

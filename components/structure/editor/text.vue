@@ -17,11 +17,12 @@ export default class StructureTextEditor extends Vue {
   @VModel({type: StructureField}) model!: StructureField
 
   customToolbar = [
-    ["bold", "italic", "underline" , {list: "ordered"}, {list: "bullet"}],
-    [{ 'align': [] } , { 'header': [1, 2, 3, 4, 5, 6, false] } , { size: [ 'small', false, 'large', 'huge' ]}],
+    ["bold", "italic", "underline", {list: "ordered"}, {list: "bullet"}],
+    [{'align': []}, {'header': [1, 2, 3, 4, 5, 6, false]}, {size: ['small', false, 'large', 'huge']}],
     [
-      {color: ["#00AAA6","#00CCCC","#000000","#101010" ,"#252525","#FFFFFF","#EAEAEA","#D9D9D9","#F6F7FD","#9747FF","#1E518A","#0C4955"]},
-      {background: ["#00AAA6","#00CCCC","#000000","#101010" ,"#252525","#FFFFFF","#EAEAEA","#D9D9D9","#F6F7FD","#9747FF","#1E518A","#0C4955"]}],
+      {color: ["#00AAA6", "#00CCCC", "#000000", "#101010", "#252525", "#FFFFFF", "#EAEAEA", "#D9D9D9", "#F6F7FD", "#9747FF", "#1E518A", "#0C4955", "#ffbbf3", "#2b0038",]},
+      {background: ["#00AAA6", "#00CCCC", "#000000", "#101010", "#252525", "#FFFFFF", "#EAEAEA", "#D9D9D9", "#F6F7FD", "#9747FF", "#1E518A", "#0C4955", '#ffbbf3', "#2b0038"]}
+    ],
     ["link", "image"],
     ["clean"]
   ]
@@ -38,12 +39,12 @@ export default class StructureTextEditor extends Vue {
 }
 </script>
 
-<style >
+<style>
 .ql-editor {
   min-height: 100px !important;
 }
 
-.ql-editor  strong {
+.ql-editor strong {
   font-weight: bold !important;
 }
 </style>

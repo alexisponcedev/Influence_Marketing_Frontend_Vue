@@ -735,4 +735,54 @@ export const blocks = () => [
 
     ],
   },
+  {
+    name: "100 Days",
+    blocks: [
+      {
+        name: "HeaderMenu",
+        title: "Header Menu",
+        image: "HeaderMenu.png",
+      },
+      {
+        name: "HeaderBanner",
+        title: "Header Banner",
+        image: "HeaderBanner.png",
+      },
+      {
+        name: "ClaimPrize",
+        title: "Claim Prize",
+        image: "ClaimPrize.png",
+      },
+      {
+        name: "DoubleWarranty",
+        title: "Double Warranty",
+        image: "DoubleWarranty.png",
+      },
+      {
+        name: "EligibleModels",
+        title: "Eligible Models",
+        image: "EligibleModels.png",
+      },
+      {
+        name: "ExpertsAdv",
+        title: "Experts Adv",
+        image: "ExpertsAdv.png",
+      },
+      {
+        name: "DigitalTrends",
+        title: "Digital Trends",
+        image: "DigitalTrends.png",
+      },
+      {
+        name: "FeatureBadges",
+        title: "Feature Badges",
+        image: "FeatureBadges.png",
+      },
+      {
+        name: "Guarantee",
+        title: "Feature",
+        image: "Guarantee.png",
+      },
+    ],
+  },
 ];
