@@ -78,7 +78,7 @@ export default class BlockMoreTvBox extends Vue {
           link: {
             id: 4,
             type: StructureType.Url,
-            title: "Get Notified",
+            title: "Learn More Link",
             value: "/",
           },
         },
@@ -112,7 +112,7 @@ export default class BlockMoreTvBox extends Vue {
             link: {
               id: 4,
               type: StructureType.Url,
-              title: "Get Notified",
+              title: "Learn More Link",
               value: "/",
             },
           },
@@ -145,7 +145,7 @@ export default class BlockMoreTvBox extends Vue {
             link: {
               id: 4,
               type: StructureType.Url,
-              title: "Get Notified",
+              title: "Learn More Link",
               value: "/",
             },
           },
@@ -178,7 +178,7 @@ export default class BlockMoreTvBox extends Vue {
             link: {
               id: 4,
               type: StructureType.Url,
-              title: "Get Notified",
+              title: "Learn More Link",
               value: "/",
             },
           },
@@ -211,7 +211,7 @@ export default class BlockMoreTvBox extends Vue {
             link: {
               id: 4,
               type: StructureType.Url,
-              title: "Get Notified",
+              title: "Learn More Link",
               value: "/",
             },
           },
@@ -244,7 +244,7 @@ export default class BlockMoreTvBox extends Vue {
             link: {
               id: 4,
               type: StructureType.Url,
-              title: "Get Notified",
+              title: "Learn More Link",
               value: "/",
             },
           },
@@ -277,7 +277,7 @@ export default class BlockMoreTvBox extends Vue {
             link: {
               id: 4,
               type: StructureType.Url,
-              title: "Get Notified",
+              title: "Learn More Link",
               value: "/",
             },
           },

@@ -105,6 +105,7 @@ export default class StructureFileUploader extends Vue {
     let formData = new FormData();
     formData.append('attachment', this.file);
     formData.append('keep_original_name', '0');
+    formData.append('meta', JSON.stringify({title : this.Asset.title , description : this.Asset.description}));
     return this.$axios.$post('https://assets.dev-api.hisenseportal.com/api/v1/upload/' + AssetTokens.image, formData);
   }
 

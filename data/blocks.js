@@ -194,16 +194,10 @@ export const blocks = () => [
         title: "Related Products",
         image: "ProductRelatedItemsBox.png",
       },
-
       {
         name: "ProductTwinImages",
         title: "Product twin images",
         image: "ProductTwinImages.png",
-      },
-      {
-        name: "ProductFeaturesWithImage",
-        title: "Product Feature With Image",
-        image: "ProductFeaturesWithImage.png",
       },
       {
         name: "ProductFeaturesWithIcon",
@@ -287,7 +281,6 @@ export const blocks = () => [
       },
     ],
   },
-
   {
     name: "TVAndAudio",
     blocks: [
@@ -335,6 +328,11 @@ export const blocks = () => [
         name: "UHDIntro",
         title: "UHD intro",
         image: "UHDIntro.png",
+      },
+      {
+        name: "ImageBox",
+        title: "Image Box",
+        image: "ImageBox.png",
       },
       {
         name: "UHDNewsBox",
@@ -394,6 +392,47 @@ export const blocks = () => [
     ],
   },
   {
+    name: "Smart TV",
+    blocks: [
+      {
+        name: "SmartInfoHead",
+        title: "SmartInfo Head",
+        image: "SmartInfoHead.png",
+      },
+      {
+        name: "SmartInfoTvsBox",
+        title: "SmartInfo tvs box",
+        image: "SmartInfoTvsBox.png",
+      },
+      {
+        name: "SmartInfoTextBox",
+        title: "SmartInfo text box",
+        image: "SmartInfoTextBox.png",
+      },
+
+      {
+        name: "ProductFeatureWithImageWithBTN",
+        title: "Product Feature With Image With BTN",
+        image: "ProductFeatureWithImageWithBTN.png",
+      },
+      {
+        name: "SmartInfoInteractBox",
+        title: "SmartInfo interact box",
+        image: "SmartInfoInteractBox.png",
+      },
+      {
+        name: "SmartInfoFindHisense",
+        title: "SmartInfo find hisense",
+        image: "SmartInfoFindHisense.png",
+      },
+      {
+        name: "SmartInfoBetterNewOrOldBox",
+        title: "Smart info better new or old box",
+        image: "SmartInfoBetterNewOrOldBox.png",
+      },
+    ],
+  },
+  {
     name: "MoreTv",
     blocks: [
       {
@@ -444,52 +483,6 @@ export const blocks = () => [
     ],
   },
   {
-    name: "Smart TV",
-    blocks: [
-      {
-        name: "SmartInfoHead",
-        title: "SmartInfo Head",
-        image: "SmartInfoHead.png",
-      },
-      {
-        name: "SmartInfoTvsBox",
-        title: "SmartInfo tvs box",
-        image: "SmartInfoTvsBox.png",
-      },
-      {
-        name: "SmartInfoTextBox",
-        title: "SmartInfo text box",
-        image: "SmartInfoTextBox.png",
-      },
-
-      {
-        name: "ProductFeatureWithImageWithBTN",
-        title: "Product Feature With Image With BTN",
-        image: "ProductFeatureWithImageWithBTN.png",
-      },
-      // {
-      //   name: "SmartInfoTextAndImageBox",
-      //   title: "SmartInfo text and image box",
-      //   image: "SmartInfoTextAndImageBox.png",
-      // },
-      {
-        name: "SmartInfoInteractBox",
-        title: "SmartInfo interact box",
-        image: "SmartInfoInteractBox.png",
-      },
-      {
-        name: "SmartInfoFindHisense",
-        title: "SmartInfo find hisense",
-        image: "SmartInfoFindHisense.png",
-      },
-      {
-        name: "SmartInfoBetterNewOrOldBox",
-        title: "Smart info better new or old box",
-        image: "SmartInfoBetterNewOrOldBox.png",
-      },
-    ],
-  },
-  {
     name: "MoreTvNew",
     blocks: [
       {
@@ -498,29 +491,55 @@ export const blocks = () => [
         image: "MoreTvHead.png",
       },
       {
+        name: "MoreTvBox",
+        title: "MoreTv box",
+        image: "MoreTvBox.png",
+      },
+      {
+        name: "MoreTvVideoBox",
+        title: "MoreTv video box",
+        image: "MoreTvVideoBox.png",
+      },
+      {
+        name: "MoreTvAmericaBox",
+        title: "MoreTv america box",
+        image: "MoreTvAmericaBox.png",
+      },
+      {
         name: "MoreTvLessTalk",
         title: "MoreTv less talk",
         image: "MoreTvLessTalk.png",
+      },
+      {
+        name: "MoreTvHisensePromise",
+        title: "MoreTv hisense promise",
+        image: "MoreTvHisensePromise.png",
+      },
+      {
+        name: "MoreTvGrabSlider",
+        title: "MoreTv grab slider",
+        image: "MoreTvGrabSlider.png",
+      },
+      {
+        name: "MoreTvLessTalkForm",
+        title: "MoreTv less talk form",
+        image: "MoreTvLessTalkForm.png",
       },
       {
         name: "MoreTvExperts",
         title: "MoreTv experts",
         image: "MoreTvExperts.png",
       },
+
       {
         name: "MoreTvNewHisensePromise",
         title: "MoreTvNew hisense promise",
         image: "MoreTvNewHisensePromise.png",
       },
       {
-        name: "MoreTvNewItemsBox",
-        title: "MoreTvNew item box",
-        image: "MoreTvNewItemsBox.png",
-      },
-      {
-        name: "MoreTvLessTalkForm",
-        title: "MoreTv less talk form",
-        image: "MoreTvLessTalkForm.png",
+        name: "MoreTVNewItemsBox",
+        title: "More TV New Items Box",
+        image: "MoreTVNewItemsBox.png",
       },
     ],
   },
@@ -621,6 +640,27 @@ export const blocks = () => [
         name: "CESHomeIntro",
         title: "4K UHD Introduction",
         image: "CESHomeIntro.png",
+      },
+
+    ],
+  },
+  {
+    name: "Company",
+    blocks: [
+      {
+        name: "ImageBox",
+        title: "Header Image",
+        image: "ImageBox.png",
+      },
+      {
+        name: "CompanySubmenu",
+        title: "Company Submenu",
+        image: "CompanySubmenu.png",
+      },
+      {
+        name: "CompanyInfo",
+        title: "Company Info",
+        image: "CompanyInfo.png",
       },
 
     ],

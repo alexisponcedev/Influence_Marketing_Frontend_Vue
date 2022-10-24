@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img v-if="model.image" :src="model.image.src" :alt="model.image.alt"/>
-    <img v-else src="/blocks/ImageBox.png" alt="">
+
+    <img src="/blocks/CompanyInfo.png" alt="">
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockImageBox extends Vue {
+export default class BlockCompanyInfo extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop(Number) readonly product_id!: number
   @VModel({type: Object}) model!: Object
@@ -34,13 +34,9 @@ export default class BlockImageBox extends Vue {
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
-      image: {
-        id: 1,
-        type: StructureType.Image,
-        title: 'Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-        alt: 'Some note about this image',
-      },
+      title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'Mission And Vision'},
+      subtitle : {id : 2 , type : StructureType.String , title : 'Subtitle' , value : "Hisense USA's MISSION AND VISION"},
+      text : {id : 3 , type : StructureType.Text , title : 'Text' , value : ""},
     }
   }
 

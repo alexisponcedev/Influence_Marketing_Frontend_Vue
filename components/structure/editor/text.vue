@@ -1,5 +1,10 @@
 <template>
-  <form-field-textarea :field = "field" v-model="model.value" />
+  <v-col>
+    <label>
+      {{ field.label }}
+    </label>
+    <vue-editor v-model="model.value" :editor-toolbar="customToolbar"/>
+  </v-col>
 </template>
 
 <script lang="ts">
@@ -9,16 +14,28 @@ import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureTextEditor extends Vue {
-  @VModel({ type: StructureField }) model!: StructureField
+  @VModel({type: StructureField}) model!: StructureField
+
+  customToolbar = [
+    ["bold", "italic", "underline"],
+    [{list: "ordered"}, {list: "bullet"}],
+    // ["image", "code-block"]
+  ]
 
   field = {
-    label : 'Filed',
-    rules : [],
-    colAttrs : {cols : 12}
+    label: 'Textarea',
+    rules: [],
+    colAttrs: {cols: 12}
   }
 
-  mounted(){
+  mounted() {
     this.field.label = this.model.title ?? 'field';
   }
 }
 </script>
+
+<style >
+.ql-editor  strong {
+  font-weight: bold !important;
+}
+</style>

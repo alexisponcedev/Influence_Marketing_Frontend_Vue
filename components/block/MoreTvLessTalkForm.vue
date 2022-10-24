@@ -33,19 +33,34 @@ export default class BlockMoreTvLessTalkForm extends Vue {
             { title: 'Dark', value: this.Theme.dark },
           ]
         },
+        whiteTitle: {
+          id: 1, type: StructureType.String, title: 'Title', value: 'Less Talk.'
+        },
         title: {
-          id: 1, type: StructureType.String, title: 'Title', value: 'Less Talk.<br />More Winning.'
+          id: 2, type: StructureType.String, title: 'Colored Title', value: 'More Winning.'
         },
         paragraph: {
-          id: 2,
+          id: 3,
           type: StructureType.Text,
-          title: 'Paragraph Text',
+          title: 'Subtitle',
           value: 'Answer the question and enter the draw to win a Hisense U6H 4K ULED TV.'
         },
+        formText: {
+          id: 4,
+          type: StructureType.Text,
+          title: 'Form Text',
+          value: 'What proportion of the American public believes a brand should invest in their products, not pretentious, artsy advertisements?'
+        },
+        termsAndConditionsUrl: {
+          id: 5,
+          type: StructureType.Url,
+          title: 'Term and conditions URL',
+          value: '/'
+        },
         image: {
-          id: 3,
+          id: 6,
           type: StructureType.Image,
-          title: "Upload Image sign",
+          title: "Image",
           src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
           alt: "hisense sign",
         },

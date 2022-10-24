@@ -35,13 +35,13 @@ export default class BlockMoreTvVideoBox extends Vue {
         },
         video: {
           id: 1,
-          type: StructureType.File,
+          type: StructureType.String,
           title: "Upload video",
-          src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+          value: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
           alt: "Some note about this video",
         },
         title: {
-          id: 2, type: StructureType.String, title: 'Title', value: 'America spoke. <br/> Joel listened.'
+          id: 2, type: StructureType.Text, title: 'Title', value: 'America spoke. <br/> Joel listened.'
         },
         paragraph: {
           id: 3,

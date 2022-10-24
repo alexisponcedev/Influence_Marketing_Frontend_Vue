@@ -34,10 +34,16 @@ export default class BlockMoreTvLessTalk extends Vue {
           ]
         },
         title: {
-          id: 1, type: StructureType.String, title: 'Title', value: 'Why less talk <br /> means more TV.'
+          id: 1, type: StructureType.String, title: 'Title', value: 'Why '
         },
-        littleTitle: {
-          id: 2, type: StructureType.String, title: 'little Title', value: 'We let our technology do the talking, not our ads.'
+        primaryColoredTitle: {
+          id: 1, type: StructureType.String, title: 'Colored Title', value: 'Less Talk.'
+        },
+        title2: {
+          id: 1, type: StructureType.String, title: 'Title', value: 'means more TV.'
+        },
+        subTitle: {
+          id: 2, type: StructureType.String, title: 'Subtitle', value: 'We let our technology do the talking, not our ads.'
         },
         image: {
           id: 3,
