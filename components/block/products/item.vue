@@ -14,7 +14,7 @@
     </div>
 
 
-    <div class="product-series tw-mb-12">{{  model.series }}</div>
+    <div class="product-series tw-mb-12"></div>
 
     <div class="product-detail tw-mb-6">{{ model.name }}</div>
 

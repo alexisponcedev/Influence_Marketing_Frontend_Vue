@@ -44,7 +44,7 @@ export default class AllPages extends Vue {
     headers: [
       { text: "Title", value: "title" },
       { text: "Route", value: "route" },
-      { text: "Has Data", value: "hasData" },
+      // { text: "Has Data", value: "hasData" },
       // { text: "Model", value: "model_type" },
       // { text: "Product", value: "model_id" },
       { text: "", value: "actions", sortable: false, width: "0" },

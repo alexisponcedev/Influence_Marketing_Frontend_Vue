@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/FAQhead.png" alt="" />
+    <img src="/blocks/LetsGetRealTextBox.png" alt="" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import { StructureType } from "~/models/StructureType";
 import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockFAQhead extends Vue {
+export default class BlockLetsGetRealTextBox extends Vue {
   @Prop(Number) readonly id: number | undefined;
   @Prop(Number) readonly product_id!: number;
   @VModel({ type: Object }) model!: Object;
@@ -33,11 +33,7 @@ export default class BlockFAQhead extends Vue {
           { title: "Dark", value: this.Theme.dark },
         ],
       },
-
-      width:{id : 1 , type : StructureType.String , title : 'Width' , value : '1000'},
-      height:{id : 1 , type : StructureType.String , title : 'Height' , value : '972'},
-      color:{ id : 2 , type : StructureType.Color, title : 'Background Color' , value : '#000' },
-      title:{id : 1 , type : StructureType.Text , title : 'Title' , value : 'FREQUENTLY ASKED QUESTIONS'},
+      title:{id : 1 , type : StructureType.Text , title : 'Title' , value : '<h2 class="ql-align-center">Let\'s Get real.</h2><h2 class="ql-align-center">Youre here because </h2><h2 class="ql-align-center">you want a new TV.</h2>'},
     };
   }
 

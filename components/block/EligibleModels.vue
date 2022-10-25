@@ -58,7 +58,8 @@ export default class BlockEligibleModels extends Vue {
             title: 'Specs',
             value: '<ul><li>4K Quantum Dot ULED Google TV</li><li>Up to 600 nits Peak Brightness</li><li>Dolby Vision™ Dolby Atmos®</li><li>HDR10 / HDR10+ / HLG</li><li>Voice Remote</li></ul>'
           },
-          link: {id: 5, type: StructureType.Url, title: 'Learn More', value: '/'},
+          shopNow: {id: 5, type: StructureType.Url, title: 'Shop Now', value: '/'},
+          learnMore: {id: 6, type: StructureType.Url, title: 'Learn More', value: '/'},
         },
         value: [
           {
@@ -78,7 +79,8 @@ export default class BlockEligibleModels extends Vue {
               title: 'Specs',
               value: '<ul><li>4K Quantum Dot ULED Google TV</li><li>Up to 600 nits Peak Brightness</li><li>Dolby Vision™ Dolby Atmos®</li><li>HDR10 / HDR10+ / HLG</li><li>Voice Remote</li></ul>'
             },
-            link: {id: 5, type: StructureType.Url, title: 'Learn More', value: '/'},
+            shopNow: {id: 5, type: StructureType.Url, title: 'Shop Now', value: '/'},
+            learnMore: {id: 6, type: StructureType.Url, title: 'Learn More', value: '/'},
           },
           {
             title: {id: 0, type: StructureType.String, title: 'Link Title', value: 'Better'},
@@ -97,7 +99,8 @@ export default class BlockEligibleModels extends Vue {
               title: 'Specs',
               value: '<ul><li>4K Quantum Dot ULED Google TV</li><li>120Hz Native Refresh</li><li>Up to 1000 nits Peak Brightness</li><li>Dolby Vision™ Dolby Atmos®</li><li>IMAX Enchanced|Filmmaker Mode</li><li>Voice Remote</li></ul>'
             },
-            link: {id: 5, type: StructureType.Url, title: 'Learn More', value: '/'},
+            shopNow: {id: 5, type: StructureType.Url, title: 'Shop Now', value: '/'},
+            learnMore: {id: 6, type: StructureType.Url, title: 'Learn More', value: '/'},
           },
           {
             title: {id: 0, type: StructureType.String, title: 'Link Title', value: 'Best'},
@@ -116,7 +119,8 @@ export default class BlockEligibleModels extends Vue {
               title: 'Specs',
               value: '<ul><li>MINI-LED</li><li>4K Quantum Dot Google TV</li><li>120Hz Native Refresh</li><li>Up to 1500 nits Peak Brightness</li><li>Dolby Vision™ Dolby Atmos®</li><li>IMAX Enchanced|Filmmaker Mode</li><li>Voice Remote</li></ul>'
             },
-            link: {id: 5, type: StructureType.Url, title: 'Learn More', value: '/'},
+            shopNow: {id: 5, type: StructureType.Url, title: 'Shop Now', value: '/'},
+            learnMore: {id: 6, type: StructureType.Url, title: 'Learn More', value: '/'},
           },
           {
             title: {id: 0, type: StructureType.String, title: 'Link Title', value: ''},
@@ -135,11 +139,12 @@ export default class BlockEligibleModels extends Vue {
               title: 'Specs',
               value: '<ul><li>4K Ultra HD</li><li>Google TV</li><li>60Hz Native Refresh</li><li>DTS VirtualX</li><li>Voice Remote</li></ul>'
             },
-            link: {id: 5, type: StructureType.Url, title: 'Learn More', value: '/'},
+            shopNow: {id: 5, type: StructureType.Url, title: 'Shop Now', value: '/'},
+            learnMore: {id: 6, type: StructureType.Url, title: 'Learn More', value: '/'},
           },
         ]
       },
-
+      link : {id :5 , type : StructureType.Url , title : 'Shop All Eligable Models' , value : '/'}
     };
   }
 
