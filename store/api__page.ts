@@ -29,11 +29,20 @@ export default class api__page extends VuexModule {
 
   @Mutation
   updateRoutes(routes: Array<any>) {
-    // this.routes = [{title : 'Static Route' , value : '#'}] .concat(routes);
-    this.routes = routes;
+    this.routes = routes.map((page : any) => {
+      return {
+        title: page.title,
+        model_id : page.model_id,
+        model_type : page.model_type,
+        route: 'https://hisense-usa.com' + page.route,
+        relative: page.route,
+        absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!.toLowerCase().replace(/ /g, '-'))
+      }
+    });
   }
 
   @Action({ commit: "updateAll" })
+  @Action({ commit: "updateRoutes" })
   async getAll() {
     this.setLoading(true);
     const response = await PageApiFactory(
@@ -41,13 +50,11 @@ export default class api__page extends VuexModule {
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .pageList()
+      .getListAllPages()
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data.data!.map(page => {
-        return { ... page , hasData : page.widgets && page.widgets.length > 0 ? 'Yes' : ''}
-      });
+      return response.data.data;
     return [];
   }
 
@@ -72,25 +79,16 @@ export default class api__page extends VuexModule {
   @Action({ commit: "updateRoutes" })
   async getRoutes() {
     this.setLoading(true);
-    const response = await PageApiFactory(
+    const response : any = await PageApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .pageList()
+      .getListAllPages()
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data.data!.map(page => {
-        return {
-          title: page.title,
-          model_id : page.model_id,
-          model_type : page.model_type,
-          route: 'https://hisense-usa.com' + page.route,
-          relative: page.route,
-          absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!.toLowerCase().replace(/ /g, '-'))
-        }
-      });
+      return response.data.data;
     return [];
   }
 

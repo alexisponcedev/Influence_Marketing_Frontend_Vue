@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/HeaderMenu.png" alt=""/>
+    <img src="/blocks/HeaderGoogleTv.png" alt=""/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
-export default class BlockHeaderMenu extends Vue {
+export default class BlockHeaderGoogleTv extends Vue {
   @Prop(Number) readonly id: number | undefined;
   @Prop(Number) readonly product_id!: number;
   @VModel({type: Object}) model!: Object;

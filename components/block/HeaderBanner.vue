@@ -29,12 +29,26 @@ export default class BlockHeaderBanner extends Vue {
           {title: "Dark", value: this.Theme.dark},
         ],
       },
-      image: {
-        id: 1, type: StructureType.Image, title: 'Image',
+      mobile: {
+        id: 1, type: StructureType.Image, title: 'Mobile Image',
+        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/8d994c5faa/MobileHeader__ScaleMaxWidthWzMwNDhd.jpg-p5h3yt.jpg',
+        alt : 'Image Data',
+      },
+      tablet: {
+        id: 2, type: StructureType.Image, title: 'Tablet Image',
+        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/8d994c5faa/MobileHeader__ScaleMaxWidthWzMwNDhd.jpg-p5h3yt.jpg',
+        alt : 'Image Data',
+      },
+      desktop: {
+        id: 3, type: StructureType.Image, title: 'Desktop Image',
         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/3cd5e3c19c/HUSA-100-Day-v-copy-2__ScaleMaxWidthWzMwNDhd.png-gs3474.png',
         alt : 'Image Data',
       },
-      text : {id : 2 , type : StructureType.Text , title : 'Text' , value : '<h5 class="ql-align-center">From September 1st - October 31st,</h5><h4 class="ql-align-center">\\nBUY A <span style="color: rgb(255, 187, 243);">65"OR LARGER</span> HISENSE GOOGLE TV WITH A </h4><h4 class="ql-align-center">\\n100 DAY GUARANTEE <span style="color: rgb(255, 187, 243);">AND </span>GET AWARDED <span style="color: rgb(255, 187, 243);">$100*</span></h4>'}
+      text : {
+        id : 4 ,
+        type : StructureType.Text ,
+        title : 'Text' ,
+        value : '<h5 class="ql-align-center">From September 1st - October 31st,</h5><h4 class="ql-align-center">BUY A <span style="color: rgb(255, 187, 243);">65"OR LARGER</span> HISENSE GOOGLE TV WITH A </h4><h4 class="ql-align-center">100 DAY GUARANTEE <span style="color: rgb(255, 187, 243);">AND </span>GET AWARDED <span style="color: rgb(255, 187, 243);">$100*</span></h4>'}
     };
   }
 

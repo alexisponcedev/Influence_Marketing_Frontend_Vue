@@ -31,7 +31,7 @@ export default class BlockClaimPrize extends Vue {
       },
       title: {id: 1, type: StructureType.String, title: 'Title', value: 'HOW IT WORKS'},
       list: {
-        id: 1,
+        id: 2,
         type: StructureType.List,
         title: 'Items',
         newItem: {
@@ -83,6 +83,7 @@ export default class BlockClaimPrize extends Vue {
 
         ]
       },
+      text : {id : 3 , type : StructureType.Text , title : 'Footer Text' , value : '*Must register to be eligible for the 100 Day No Regrets Guarantee and $100 Lovin’ Hisense Reward. For full program details, visit: http://hisense-promos.com/noregrets' }
     }
     ;
   }

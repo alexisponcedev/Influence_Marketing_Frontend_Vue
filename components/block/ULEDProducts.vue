@@ -59,14 +59,14 @@ export default class BlockULEDProducts extends Vue {
           link: {
             id: 3,
             type: StructureType.Url,
-            title: "Shop Now URL",
+            title: "Discover",
             value: "/products",
           },
           btn: {
             id: 4,
             type: StructureType.Url,
-            title: "Shop Now URL",
-            value: "/products",
+            title: "Where To Buy",
+            value: "/",
           },
         },
         value: [
@@ -90,18 +90,30 @@ export default class BlockULEDProducts extends Vue {
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
               alt: "Some note about this image",
             },
-            link: {
-              id: 3,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
+
+            // list:{
+            //   id : 3 , type : StructureType.List , title : 'Links' , newItem : {} , value : [
+            //     {
+            //       linkTitle : {id : 0 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            //       linkUrl : {id : 1 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+            //     }
+            //   ]
+            // },
+
+            linkTitle : {id : 3 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            linkUrl : {id : 4 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+
+            whereToBuy: {
+              id: 5,
+              type: StructureType.Select,
+              title: 'Show Where To Buy',
+              value: true,
+              items: [
+                {title: 'True', value: true},
+                {title: 'False', value: false},
+              ]
             },
-            btn: {
-              id: 4,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
-            },
+            model : {id : 6 , type : StructureType.String , title : 'Product Model' , value : ''}
           },
           {
             title: {
@@ -123,18 +135,30 @@ export default class BlockULEDProducts extends Vue {
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
               alt: "Some note about this image",
             },
-            link: {
-              id: 3,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
+
+            // list:{
+            //   id : 3 , type : StructureType.List , title : 'Links' , newItem : {} , value : [
+            //     {
+            //       linkTitle : {id : 0 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            //       linkUrl : {id : 1 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+            //     }
+            //   ]
+            // },
+
+            linkTitle : {id : 3 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            linkUrl : {id : 4 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+
+            whereToBuy: {
+              id: 5,
+              type: StructureType.Select,
+              title: 'Show Where To Buy',
+              value: true,
+              items: [
+                {title: 'True', value: true},
+                {title: 'False', value: false},
+              ]
             },
-            btn: {
-              id: 4,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
-            },
+            model : {id : 6 , type : StructureType.String , title : 'Product Model' , value : ''}
           },
           {
             title: {
@@ -156,18 +180,30 @@ export default class BlockULEDProducts extends Vue {
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
               alt: "Some note about this image",
             },
-            link: {
-              id: 3,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
+
+            // list:{
+            //   id : 3 , type : StructureType.List , title : 'Links' , newItem : {} , value : [
+            //     {
+            //       linkTitle : {id : 0 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            //       linkUrl : {id : 1 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+            //     }
+            //   ]
+            // },
+
+            linkTitle : {id : 3 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            linkUrl : {id : 4 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+
+            whereToBuy: {
+              id: 5,
+              type: StructureType.Select,
+              title: 'Show Where To Buy',
+              value: true,
+              items: [
+                {title: 'True', value: true},
+                {title: 'False', value: false},
+              ]
             },
-            btn: {
-              id: 4,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
-            },
+            model : {id : 6 , type : StructureType.String , title : 'Product Model' , value : ''}
           },
           {
             title: {
@@ -189,18 +225,30 @@ export default class BlockULEDProducts extends Vue {
               src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
               alt: "Some note about this image",
             },
-            link: {
-              id: 3,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
+
+            // list:{
+            //   id : 3 , type : StructureType.List , title : 'Links' , newItem : {} , value : [
+            //     {
+            //       linkTitle : {id : 0 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            //       linkUrl : {id : 1 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+            //     }
+            //   ]
+            // },
+
+            linkTitle : {id : 3 , type : StructureType.String , title : 'Link Title' , value : 'Discover'},
+            linkUrl : {id : 4 , type : StructureType.Url , title : 'Link URL' , value : '/'},
+
+            whereToBuy: {
+              id: 5,
+              type: StructureType.Select,
+              title: 'Show Where To Buy',
+              value: true,
+              items: [
+                {title: 'True', value: true},
+                {title: 'False', value: false},
+              ]
             },
-            btn: {
-              id: 4,
-              type: StructureType.Url,
-              title: "Shop Now URL",
-              value: "/products",
-            },
+            model : {id : 6 , type : StructureType.String , title : 'Product Model' , value : ''}
           },
         ],
       },

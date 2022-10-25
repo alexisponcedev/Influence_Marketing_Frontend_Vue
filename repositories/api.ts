@@ -557,6 +557,12 @@ export interface DynamicPageResource {
      * @memberof DynamicPageResource
      */
     'model_type'?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof DynamicPageResource
+     */
+    'template_id'?: number;
 }
 /**
  *
@@ -1193,7 +1199,7 @@ export interface Menu {
      * @type {Array<object>}
      * @memberof Menu
      */
-    'widgets'?: Array<any>;
+    'widgets'?: Array<object>;
 }
 /**
  * Menu Resource model
@@ -1256,14 +1262,19 @@ export interface Page {
      * @memberof Page
      */
     'meta'?: Array<any>;
-    'widgets'?: Array<any>;
-    'draft'?: Array<any>;
     /**
      *
      * @type {Array<number>}
      * @memberof Page
      */
     'block_ids'?: Array<number>;
+    /**
+     *
+     * @type {Array<object>}
+     * @memberof Page
+     */
+    'widgets'?: Array<object>;
+    'draft'?: Array<object>;
     /**
      *
      * @type {number}
@@ -1276,6 +1287,12 @@ export interface Page {
      * @memberof Page
      */
     'model_type'?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof Page
+     */
+    'template_id'?: number;
 }
 /**
  * Page Draft Resource model
@@ -1436,6 +1453,12 @@ export interface PageListResource {
      * @memberof PageListResource
      */
     'model_type'?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof PageListResource
+     */
+    'template_id'?: number;
 }
 /**
  * Page Resource model
@@ -1497,6 +1520,12 @@ export interface PageResource {
      * @memberof PageResource
      */
     'model_type'?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof PageResource
+     */
+    'template_id'?: number;
 }
 /**
  * Post model
@@ -5101,6 +5130,39 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          *
+         * @param {string} string string
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        doSearchPage: async (string: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'string' is not null or undefined
+            assertParamExists('doSearchPage', 'string', string)
+            const localVarPath = `/husa/searchPage/{string}`
+                .replace(`{${"string"}}`, encodeURIComponent(String(string)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5529,6 +5591,16 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
         },
         /**
          *
+         * @param {string} string string
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async doSearchPage(string: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.doSearchPage(string, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5672,6 +5744,15 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          *
+         * @param {string} string string
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        doSearchPage(string: string, options?: any): AxiosPromise<void> {
+            return localVarFp.doSearchPage(string, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5800,6 +5881,17 @@ export class HUSAAPIsApi extends BaseAPI {
      */
     public d0f15b1af046a8e16188381fef27782f(options?: AxiosRequestConfig) {
         return HUSAAPIsApiFp(this.configuration).d0f15b1af046a8e16188381fef27782f(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @param {string} string string
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HUSAAPIsApi
+     */
+    public doSearchPage(string: string, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).doSearchPage(string, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7039,6 +7131,39 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        getListAllPages: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/page/getSummaryPages`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         getListDynamicPage: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/page/getDynamicPages`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7135,6 +7260,45 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @param {Page} page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importPage: async (page: Page, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('importPage', 'page', page)
+            const localVarPath = `/page/importPage`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(page, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -7375,6 +7539,15 @@ export const PageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async getListAllPages(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20027>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getListAllPages(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async getListDynamicPage(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20027>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getListDynamicPage(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -7397,6 +7570,16 @@ export const PageApiFp = function(configuration?: Configuration) {
          */
         async getPageDraft(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20026>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPageDraft(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @param {Page} page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async importPage(page: Page, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Page>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.importPage(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7484,6 +7667,14 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        getListAllPages(options?: any): AxiosPromise<InlineResponse20027> {
+            return localVarFp.getListAllPages(options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         getListDynamicPage(options?: any): AxiosPromise<InlineResponse20027> {
             return localVarFp.getListDynamicPage(options).then((request) => request(axios, basePath));
         },
@@ -7504,6 +7695,15 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          */
         getPageDraft(id: number, options?: any): AxiosPromise<InlineResponse20026> {
             return localVarFp.getPageDraft(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {Page} page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importPage(page: Page, options?: any): AxiosPromise<Page> {
+            return localVarFp.importPage(page, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -7590,6 +7790,16 @@ export class PageApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PageApi
      */
+    public getListAllPages(options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).getListAllPages(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
     public getListDynamicPage(options?: AxiosRequestConfig) {
         return PageApiFp(this.configuration).getListDynamicPage(options).then((request) => request(this.axios, this.basePath));
     }
@@ -7614,6 +7824,17 @@ export class PageApi extends BaseAPI {
      */
     public getPageDraft(id: number, options?: AxiosRequestConfig) {
         return PageApiFp(this.configuration).getPageDraft(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @param {Page} page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public importPage(page: Page, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).importPage(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
