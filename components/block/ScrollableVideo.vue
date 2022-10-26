@@ -15,7 +15,9 @@ export default class HomeScrollableVideo extends Vue {
   @VModel({type: Object}) model!: Object
 
   reset() {
-    this.model = {}
+    this.model = {
+      video : {id : 1 , type : StructureType.String , title : 'Video' , value : 'https://player.vimeo.com/external/589889816.hd.mp4?s=3a4d44392283549cd4e6b8172bb7b8342ec44062&profile_id=175'},
+    }
   }
 
   mounted() {

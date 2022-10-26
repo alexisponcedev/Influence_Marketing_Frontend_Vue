@@ -15,7 +15,13 @@ export default class HomeColorFeature extends Vue {
   @VModel({type: Object}) model!: Object
 
   reset() {
-    this.model = {}
+    this.model = {
+      text : {id : 0 , type : StructureType.Text , title  : 'Text' , value : 'Experience color like never before. The L9G uses pure red, green,and blue lasers to achieve new levels of color performance, reaching '},
+      leftVideo : {id : 1 , type : StructureType.Video, title : 'Left Side Video' , value : 'https://player.vimeo.com/external/585409801.hd.mp4?s=36b793ad850bc1bcdc5563fadff9d9218f620ec9&profile_id=175'},
+      leftTitle : {id : 2 , type : StructureType.Text , title : 'Left Side Text' , value : '<p><strong>107%</strong>  BT.2020 Color Space</p>'},
+      rightVideo : {id : 3 , type : StructureType.Video , title : 'Right Side Video' , value : 'https://player.vimeo.com/external/585409581.hd.mp4?s=302e82593e6e3329de848c6c31e971a1255c9db6&profile_id=175'},
+      rightTitle : {id : 4 , type : StructureType.Text , title : 'Right Side Text' , value : '<p><strong>1+ Billion colors</strong></p>'},
+    }
   }
 
   mounted() {

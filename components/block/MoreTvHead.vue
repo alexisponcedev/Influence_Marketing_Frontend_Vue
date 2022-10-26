@@ -42,7 +42,7 @@ export default class BlockMoreTvHead extends Vue {
         },
         title: {
           id: 2,
-          type: StructureType.String,
+          type: StructureType.Text,
           title: 'Header title',
           value:"Less talk. More TV."
         },
@@ -62,17 +62,6 @@ export default class BlockMoreTvHead extends Vue {
     }
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
-    }
-
-    loadProduct() {
-        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
-            .then(res => {
-                this.product = res.data;
-            }).finally(() => {
-                this.loadingProduct = false;
-            })
     }
 
     get isEmpty(): Boolean {
@@ -81,7 +70,6 @@ export default class BlockMoreTvHead extends Vue {
 
   @Watch('isEmpty')
   onValueChanged(){
-
     if(this.isEmpty) this.reset();
   }
 }

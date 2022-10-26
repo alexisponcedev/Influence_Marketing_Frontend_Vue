@@ -19,6 +19,7 @@
         <v-tabs show-arrows v-model="tab" background-color="transparent">
           <v-tab href="#Details">Page Details</v-tab>
           <v-tab href="#Metas">Page Metas</v-tab>
+<!--          <v-tab href="#Live">Live Preview</v-tab>-->
         </v-tabs>
       </v-col>
     </v-row>
@@ -53,6 +54,9 @@
               <!--            />-->
             </v-card-text>
           </v-tab-item>
+<!--          <v-tab-item value="Live">-->
+<!--              <iframe class="tw-w-full " style="min-height: 500px" :src="`https://public.stage.hisenseportal.com/${Page.route}`" />-->
+<!--          </v-tab-item>-->
         </v-tabs-items>
 
 
@@ -90,6 +94,7 @@ export default class PageForm extends Vue {
 
   tab = "";
 
+  route : string = '';
 
   meta: Array<{ rel: string, name: string, content: string }> = [];
 

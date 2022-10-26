@@ -15,7 +15,15 @@ export default class HomePureColor extends Vue {
   @VModel({type: Object}) model!: Object
 
   reset() {
-    this.model = {}
+    this.model = {
+      title: {id: 0, type: StructureType.String, title: 'Title', value: '3 Pure-Color Lasers.'},
+      video: {
+        id: 1,
+        type: StructureType.Video,
+        title: 'Video',
+        value: 'https://player.vimeo.com/external/585404879.hd.mp4?s=862ec08597335d11ae1fc97988b9711a9182d37f&profile_id=175'
+      },
+    }
   }
 
   mounted() {

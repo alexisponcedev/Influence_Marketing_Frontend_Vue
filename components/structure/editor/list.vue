@@ -2,8 +2,7 @@
   <div class="tw-p-2 tw-rounded-lg ">
     <h6 style="margin-bottom: 3px">{{model.title}}</h6>
     <div class="tw-space-y-4 tw-mb-4">
-      <div class="tw-bg-gray-50" v-for="(fields , index) in model.value" :key="`structure-list-${index}`">
-
+      <div class="tw-border tw-border-gray-200 tw-rounded-lg tw-border-solid" v-for="(fields , index) in model.value" :key="`${key}-${index}`">
         <div class="tw-flex tw-items-center tw-justify-between">
           <h6 class="tw-mx-2.5 tw-my-1">Item {{ index + 1}}</h6>
           <button class="tw-p-2" @click="removeItem(index)"><v-icon small>mdi-delete</v-icon></button>
@@ -28,6 +27,8 @@ export default class StructureListEditor extends Vue {
     rules : [],
     colAttrs : {cols : 12}
   }
+
+  key = Math.round(Math.random() * 100000);
 
   mounted(){
     this.field.label = this.model.title ?? 'field';
