@@ -314,7 +314,7 @@ export const blocks = () => [
   {
     name: "L9G",
     blocks: [
-      {name: "LetsGetRealTextBox", title: "Lets Get Real TextBox", image: "LetsGetRealTextBox.png",},
+      // {name: "LetsGetRealTextBox", title: "Lets Get Real TextBox", image: "LetsGetRealTextBox.png",},
       {name: "HeroBanner", title: "HeroBanner", image: "HeroBanner.png"},
       {name: "ScrollableVideo", title: "ScrollableVideo", image: "ScrollableVideo.png"},
       {name: "PureColor", title: "PureColor", image: "PureColor.png"},
@@ -324,16 +324,25 @@ export const blocks = () => [
       {name: "ScreenSize", title: "ScreenSize", image: "ScreenSize.png"},
       {name: "LightRejection", title: "LightRejection", image: "LightRejection.png"},
       {name: "DolbyVision", title: "DolbyVision", image: "DolbyVision.png"},
-      {name: "DolbyAtoms", title: "DolbyAtoms", image: "DolbyAtoms.png"},
+      // {name: "DolbyAtoms", title: "DolbyAtoms", image: "DolbyAtoms.png"},
       {name: "FineTouches", title: "FineTouches", image: "FineTouches.png"},
       {name: "AndroidTv", title: "AndroidTv", image: "AndroidTv.png"},
-      {name: "FeatureBlocks", title: "FeatureBlocks", image: "FeatureBlocks.png"},
+      {name: "FeatureBlock", title: "Feature Block", image: "FeatureBlock.png"},
       {name: "Awards", title: "Awards", image: "Awards.png"},
-      {name: "Comments", title: "Comments", image: "Comments.png"},
+      // {name: "Comments", title: "Comments", image: "Comments.png"},
       {name: "FAQs", title: "FAQs", image: "FAQs.png"},
-      {name: "Specs", title: "Specs", image: "Specs.png"},
+      // {name: "Specs", title: "Specs", image: "Specs.png"},
       {name: "Retailers", title: "Retailers", image: "Retailers.png"},
-      {name: "Resources", title: "Resources", image: "Resources.png"},
+      // {name: "Resources", title: "Resources", image: "Resources.png"},
     ],
   },
+
+  {
+    name: "Forms",
+    blocks: [
+      {name: "ProductSupportRegister", title: "Product Support Register", image: "ProductSupportRegister.png"},
+      {name: "RegisterForm", title: "Register Form", image: "RegisterForm.png"},
+    ],
+  },
+
 ];

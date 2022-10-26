@@ -31,8 +31,9 @@ export default class BlockProductSupportRegister extends Vue {
         ]
       },
       title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'Register Laser TV'},
-      subtitle : {id : 1 , type : StructureType.String , title : 'Subtitle' , value : 'Get started with registering your Hisense product.'},
-      submitURL : {id : 1 , type : StructureType.String , title : 'Submit URL' , value : 'https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product'},
+      subtitle : {id : 2 , type : StructureType.String , title : 'Subtitle' , value : 'Get started with registering your Hisense product.'},
+      submitURL : {id : 3 , type : StructureType.String , title : 'Submit URL' , value : 'https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product'},
+      modelText:{id : 4 , type : StructureType.Text , title : 'Modal Text' , value : '' }
     }
   }
 

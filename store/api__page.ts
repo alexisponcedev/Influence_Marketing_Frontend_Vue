@@ -36,7 +36,7 @@ export default class api__page extends VuexModule {
         model_type : page.model_type,
         route: 'https://hisense-usa.com' + page.route,
         relative: page.route,
-        absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!.toLowerCase().replace(/ /g, '-'))
+        absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!/*.toLowerCase()*/.replace(/ /g, '-'))
       }
     });
   }

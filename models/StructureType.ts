@@ -3,6 +3,7 @@ export enum StructureType {
   Text = 'text',
   File = 'file',
   Image = 'image',
+  Video = 'Video',
   Color = 'color',
   List = 'list',
   Url = 'url',

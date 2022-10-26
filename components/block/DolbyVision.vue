@@ -15,7 +15,11 @@ export default class HomeDolbyVision extends Vue {
   @VModel({type: Object}) model!: Object
 
   reset() {
-    this.model = {}
+    this.model = {
+      title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'Dolby Vision'},
+      image : {id : 1 , type : StructureType.Image , title : 'Image' , src : 'https://assets.hisense-usa.com/resources/themes/default/images/products/lg9/dolbyvision-L9Gusn.jpg' , alt : 'Image Alt'},
+      text : {id : 2 , type : StructureType.Text , title : 'Image' , value : '<p>Dolby Vision is a next-level HDR format that optimizes every scene on every screen. This high-dynamic range technology gives you amazing color and contrast, so you can discover even more detail in bright and dark scenes. This is entertainment without compromise. </p><p><br></p><p><span class="ql-size-small">* Coming via Firmware update, Summer 2022.</span></p>'},
+    }
   }
 
   mounted() {

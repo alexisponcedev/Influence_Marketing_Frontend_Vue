@@ -29,7 +29,8 @@ export default class BlockProductDetailsBox extends Vue {
           {title: 'Light', value: this.Theme.light},
           {title: 'Dark', value: this.Theme.dark},
         ]
-      }
+      },
+      title : {id : 1 , type : StructureType.String , title : 'Title' , value : ''}
     }
   }
 
