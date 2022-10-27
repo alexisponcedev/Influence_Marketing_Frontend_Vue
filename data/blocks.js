@@ -345,27 +345,20 @@ export const blocks = () => [
       {name: "RegisterForm", title: "Register Form", image: "RegisterForm.png"},
     ],
   },
-  {
-    name: "Sponsership",
-    blocks: [
-      {name: "SponsorshipDescriptionGrayBg", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
-      {name: "SponsorshipTextGradient", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
-      {name: "SponsorshipTitleBox", title: "", image: ".png"},
-      {name: "SponsorshipVideoAndTextBox", title: "", image: ".png"},
-      {name: "SponsorshipBigImageAndText", title: "", image: ".png"},
-      {name: "SponsorshipImagesWithButton", title: "", image: ".png"},
-      {name: "SponsorImageAndText", title: "", image: ".png"},
-      {name: "SponsorImageAndLogo", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-      {name: "", title: "", image: ".png"},
-    ],
-  },
+
+  // {
+  //   name: "Sponsership",
+  //   blocks: [
+  //     {name: "SponsorshipDescriptionGrayBg", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
+  //     {name: "SponsorshipTextGradient", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
+  //     {name: "SponsorshipTitleBox", title: "SponsorshipTitleBox", image: "SponsorshipTitleBox.png"},
+  //     {name: "SponsorshipVideoAndTextBox", title: "SponsorshipVideoAndTextBox", image: "SponsorshipVideoAndTextBox.png"},
+  //     {name: "SponsorshipBigImageAndText", title: "SponsorshipBigImageAndText", image: "SponsorshipBigImageAndText.png"},
+  //     {name: "SponsorshipImagesWithButton", title: "SponsorshipImagesWithButton", image: "SponsorshipImagesWithButton.png"},
+  //     {name: "SponsorImageAndText", title: "SponsorImageAndText", image: "SponsorImageAndText.png"},
+  //     {name: "SponsorImageAndLogo", title: "SponsorImageAndLogo", image: "SponsorImageAndLogo.png"},
+  //   ],
+  // },
 
 
 ];

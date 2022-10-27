@@ -23,7 +23,6 @@
       >
         <img v-if="category.image" :src="category.image" alt="category image" class="tw-h-10">
         <div>{{ category.name }}</div>
-
       </div>
     </div>
 
