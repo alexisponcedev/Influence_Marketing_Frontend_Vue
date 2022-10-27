@@ -144,7 +144,8 @@ export default class BlockEligibleModels extends Vue {
           },
         ]
       },
-      link : {id :5 , type : StructureType.Url , title : 'Shop All Eligable Models' , value : '/'}
+      link : {id :5 , type : StructureType.Url , title : 'Shop All Eligable Models' , value : '/'},
+      text :{id : 6 , type : StructureType.Text , title : 'Text' , value : '<p class="ql-align-center">Offer valid from September 1st - October 31st.</p><p class="ql-align-center"><span style="background-color: rgb(255, 255, 255); color: rgb(34, 2, 55);">For full program details, visit:&nbsp;</span><a href="https://public.hisenseportal.com/Day100#" rel="noopener noreferrer" target="_blank" style="background-color: rgb(255, 255, 255); color: rgb(136, 90, 164);">http://hisense-promos.com/noregrets</a></p>'}
     };
   }
 

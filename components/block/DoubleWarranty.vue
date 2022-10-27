@@ -36,6 +36,13 @@ export default class BlockDoubleWarranty extends Vue {
       },
       title : {id : 2 , type : StructureType.String , title : 'Title' , value : '**Get double the warranty with Hisense Google TVs!'},
       grayTitle : {id : 3 , type : StructureType.String , title : 'gray Title' , value : '**compared to the 1 year industry standard.'},
+
+      leftTitle :{id : 4 , type : StructureType.String , title :'Left Title' , value : 'Shop all eligible models' },
+      leftText :{id : 5 , type : StructureType.String , title :'Left Text' , value : 'Find the TV that’s right for you.' },
+
+      rightTitle :{id : 6 , type : StructureType.String , title :'Right Title' , value : 'Register your purchase' },
+      rightText :{id : 7 , type : StructureType.String , title :'Right Text' , value : 'Register your TV within 14 days.' },
+
     };
   }
 
