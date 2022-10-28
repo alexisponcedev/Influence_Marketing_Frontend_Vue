@@ -19,7 +19,7 @@
       <template v-slot:item="{ item }">
         <v-list-item-content>
           <v-list-item-title :class="{ 'blue--text' : item.model_id > 0}" v-text="item.title"></v-list-item-title>
-          <v-list-item-subtitle v-text="item.route"></v-list-item-subtitle>
+          <v-list-item-subtitle v-text="item.domain"></v-list-item-subtitle>
         </v-list-item-content>
       </template>
     </v-autocomplete>
@@ -41,7 +41,7 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
       label: 'Page Url',
       placeholder: 'Enter page name',
       'item-text' : 'title',
-      'item-value' : 'absolute',
+      'item-value' : 'domain',
       rules: [],
       colAttrs: {cols: 12},
     }
@@ -50,7 +50,6 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
   Api = Api;
 
   async mounted() {
-
     if(Api.Page.routes.length === 0 && !Api.Page.loading) await Api.Page.getRoutes();
   }
 }

@@ -30,7 +30,7 @@
           <v-card>
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
-              <form-field-select-page-route :field="formFields[1]" v-model="Page.route"/>
+              <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -76,6 +76,7 @@ export default class PageForm extends Vue {
   meta: Array<{ rel: string, name: string, content: string }> = [];
 
   Page: Page = {
+    id : 0,
     title: '',
     route: '',
     meta: [],
@@ -165,18 +166,6 @@ export default class PageForm extends Vue {
     ];
   }
 
-  // updateMetaFormFields() {
-  //   this.formFields = [
-  //     {
-  //       type: "form-field-meta",
-  //       label: "Meta",
-  //       modelKey: "meta",
-  //       rules: [],
-  //       colAttrs: {cols: 12},
-  //     },
-  //   ];
-  // }
-
   async submit() {
     if (this.formValidate()) {
       if (this.editMode)
@@ -194,7 +183,6 @@ export default class PageForm extends Vue {
 
   formValidate() {
     return (this.$refs.form as any).validate();
-    // return (this.$refs.pagesForm as any).validate();
   }
 
   gotoLiveWebsite() {
@@ -227,9 +215,6 @@ export default class PageForm extends Vue {
       case "Details":
         this.updatePageFormFields();
         break;
-      // case "Metas" :
-      // this.updateMetaFormFields();
-      // break;
       default:
         break;
     }
@@ -262,21 +247,11 @@ export default class PageForm extends Vue {
 
   @Watch('pageTitle')
   onPageTitleChanged() {
-    // let parentRoute = '/';
-    // if (this.Page.route && this.Page.route !== '') {
-    //   let lastIndexOf = this.Page.route!.lastIndexOf('/') + 1;
-    //   parentRoute = this.Page.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
-    // }
-    // this.Page.route = parentRoute + this.Page.title
-
-
     if (this.Page.meta)
       this.Page.meta!.forEach(item => {
         if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
         if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
       })
   }
-
-
 }
 </script>

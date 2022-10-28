@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-grid tw-grid-cols-3 tw-gap-2" v-if="model.length > 0">
+  <div class="tw-grid tw-grid-cols-3 tw-gap-2" v-if="model && model.length > 0">
     <div class="tw-space-y-1.5">
       <div class="tw-p-2 tw-rounded-lg tw-bg-white tw-flex tw-flex-col tw-space-y-2 tw-items-center tw-justify-center ">
         <img src="~/assets/Images/meta/google.png" width="72px" alt="Google Logo"/>
