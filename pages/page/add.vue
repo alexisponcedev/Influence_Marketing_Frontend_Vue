@@ -69,7 +69,7 @@ export default class PageForm extends Vue {
 
   Api = Api;
 
-  tab = "Metas";
+  tab = "";
 
   route: string = '';
 
