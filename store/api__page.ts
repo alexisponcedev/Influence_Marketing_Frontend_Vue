@@ -31,6 +31,7 @@ export default class api__page extends VuexModule {
   updateRoutes(routes: Array<any>) {
     this.routes = routes.map((page : any) => {
       return {
+        id : page.id,
         title: page.title,
         model_id : page.model_id,
         model_type : page.model_type,
@@ -78,6 +79,29 @@ export default class api__page extends VuexModule {
 
   @Action({ commit: "updateRoutes" })
   async getRoutes() {
+    // return [
+    //   {
+    //     id : 1,
+    //     title: 'Landing Page',
+    //     model_id : 0,
+    //     model_type : '',
+    //     route: '/',
+    //   },
+    //   {
+    //     id : 2,
+    //     title: 'Products',
+    //     model_id : 5,
+    //     model_type : 'product',
+    //     route: '/products',
+    //   },
+    //   {
+    //     id : 3,
+    //     title: 'Products Page',
+    //     model_id : 5,
+    //     model_type : 'product',
+    //     route: '/products/all-tvs',
+    //   },
+    // ]
     this.setLoading(true);
     const response : any = await PageApiFactory(
       new Configuration({

@@ -29,6 +29,19 @@ export default class BlockGuarantee extends Vue {
           { title: "Dark", value: this.Theme.dark },
         ],
       },
+      image: {
+        id: 1, type: StructureType.Image, title: 'Image',
+        src: 'https://public.hisenseportal.com/_next/static/media/guarantee.70088343.png',
+        alt: 'Image Alt'
+      },
+      title : {id : 2 , type : StructureType.String , title : 'Title' , value : ''},
+      text : {id : 3 , type : StructureType.Text , title : 'gray Title' , value : '<p>For full program details, visit:<a href="#">http://hisense-promos.com/noregrets</a></p>'},
+
+      leftTitle :{id : 4 , type : StructureType.String , title :'Left Title' , value : 'Shop all eligible models' },
+      leftText :{id : 5 , type : StructureType.String , title :'Left Text' , value : 'Find the TV that’s right for you.' },
+
+      rightTitle :{id : 6 , type : StructureType.String , title :'Right Title' , value : 'Register your purchase' },
+      rightText :{id : 7 , type : StructureType.String , title :'Right Text' , value : 'Register your TV within 14 days.' },
     };
   }
 

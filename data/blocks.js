@@ -333,6 +333,7 @@ export const blocks = () => [
       {name: "FAQs", title: "FAQs", image: "FAQs.png"},
       // {name: "Specs", title: "Specs", image: "Specs.png"},
       {name: "Retailers", title: "Retailers", image: "Retailers.png"},
+      {name: "WhereToBuy", title: "WhereToBuy", image: "WhereToBuy.png"},
       // {name: "Resources", title: "Resources", image: "Resources.png"},
     ],
   },
@@ -344,5 +345,20 @@ export const blocks = () => [
       {name: "RegisterForm", title: "Register Form", image: "RegisterForm.png"},
     ],
   },
+
+  // {
+  //   name: "Sponsership",
+  //   blocks: [
+  //     {name: "SponsorshipDescriptionGrayBg", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
+  //     {name: "SponsorshipTextGradient", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
+  //     {name: "SponsorshipTitleBox", title: "SponsorshipTitleBox", image: "SponsorshipTitleBox.png"},
+  //     {name: "SponsorshipVideoAndTextBox", title: "SponsorshipVideoAndTextBox", image: "SponsorshipVideoAndTextBox.png"},
+  //     {name: "SponsorshipBigImageAndText", title: "SponsorshipBigImageAndText", image: "SponsorshipBigImageAndText.png"},
+  //     {name: "SponsorshipImagesWithButton", title: "SponsorshipImagesWithButton", image: "SponsorshipImagesWithButton.png"},
+  //     {name: "SponsorImageAndText", title: "SponsorImageAndText", image: "SponsorImageAndText.png"},
+  //     {name: "SponsorImageAndLogo", title: "SponsorImageAndLogo", image: "SponsorImageAndLogo.png"},
+  //   ],
+  // },
+
 
 ];

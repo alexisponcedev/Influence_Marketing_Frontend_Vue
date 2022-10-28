@@ -25,7 +25,7 @@
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
         <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
-                          :key="blocksList[editIndex].title+ blocksList[editIndex].id"
+                          :key="blocksList[editIndex].title + blocksList[editIndex].id"
                           v-model="blocksList[editIndex].structure"
                           :title="blocksList[editIndex].title"
                           @close="cancelEditing"/>

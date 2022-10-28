@@ -4,8 +4,7 @@
       v-if="selectable"
       class="tw-z-10 tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-green-500 tw-bg-opacity-30
       tw-cursor-pointer tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-4"
-      @click="componentSelected"
-    >
+      @click="componentSelected">
       <div class="tw-text-2xl tw-text-white tw-font-semibold"> #{{ block.name }}{{ block.id }}</div>
       <!--      <div class="tw-text-lg tw-text-white tw-font-semibold"> click to select </div>-->
     </div>
@@ -48,22 +47,24 @@
       </div>
       <slot/>
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    selectable : {type : Boolean , default : false},
+    selectable: {type: Boolean, default: false},
     block: {
       type: Object, default: () => {
       }
     }
   },
+  data() {
+    return {}
+  },
   methods: {
     componentSelected() {
-      console.log('component is selected' , this.block);
+      console.log('component is selected', this.block);
       this.$emit('component-selected', this.block);
     },
     deleteBlock() {
@@ -83,7 +84,7 @@ export default {
     },
     edit() {
       this.$emit('edit', this.block);
-    }
+    },
   }
 }
 </script>

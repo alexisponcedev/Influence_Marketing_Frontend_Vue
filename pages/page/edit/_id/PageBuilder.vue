@@ -47,7 +47,6 @@ export default class PageBuilderSection extends Vue {
 
   blocksList: BlockInterface[] = [];
 
-
   Page: Page = {};
 
   async mounted() {

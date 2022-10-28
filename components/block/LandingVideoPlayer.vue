@@ -1,7 +1,10 @@
 <template>
   <div v-if="!isEmpty" style="margin-bottom : -8px">
-    <div v-if="editable" class="tw-p-2 tw-my-1.5 tw-text-gray-500 tw-text-sm tw-bg-gray-50 tw-rounded-lg tw-inline-block">In order to choose video player component please click here ..</div>
-    <div class='tw-aspect-video' >
+    <div v-if="editable"
+         class="tw-p-2 tw-my-1.5 tw-text-gray-500 tw-text-sm tw-bg-gray-50 tw-rounded-lg tw-inline-block">In order to
+      choose video player component please click here ..
+    </div>
+    <div class='tw-aspect-video'>
       <iframe
         @click="clicked"
         ref="videoPlayer"
@@ -12,7 +15,7 @@
         height='100%'
         allow='autoplay; fullscreen'
         allowfullscreen=''
-        data-ready='true' />
+        data-ready='true'/>
     </div>
   </div>
 
@@ -26,17 +29,17 @@ import {StructureType} from "~/models/StructureType";
 @Component
 export default class LandingVideoPlayer extends Vue {
   @Prop(Number) readonly id: number | undefined
-  @Prop({ default: true }) readonly editable: Boolean | undefined
+  @Prop({default: true}) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
-  reset(){
+  reset() {
     this.model = {
-      video : {
-        id : 0 ,
-        type : StructureType.Url,
-        title : 'Video' ,
-        alt: 'Some note about this image',
-        src : 'https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1'},
+      video: {
+        id: 0,
+        type: StructureType.Url,
+        title: 'Video',
+        value: 'https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1'
+      },
     }
   }
 
@@ -44,7 +47,7 @@ export default class LandingVideoPlayer extends Vue {
     if (this.isEmpty) this.reset();
   }
 
-  clicked(){
+  clicked() {
     console.log('you have clicked me easily ');
     this.$emit('click');
   }
@@ -54,9 +57,9 @@ export default class LandingVideoPlayer extends Vue {
   }
 
   @Watch('isEmpty')
-  onValueChanged(){
+  onValueChanged() {
 
-    if(this.isEmpty) this.reset();
+    if (this.isEmpty) this.reset();
   }
 }
 </script>

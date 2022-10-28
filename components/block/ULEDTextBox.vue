@@ -38,6 +38,7 @@ export default class BlockULEDTextBox extends Vue {
         title: "Title",
         value: "LASER TVS",
       },
+
       paragraphOne: {
         id: 2,
         type: StructureType.String,
@@ -50,6 +51,7 @@ export default class BlockULEDTextBox extends Vue {
         title: "Description",
         value: "Discover a New Expanse of Color",
       },
+      text : {id : 3 , type : StructureType.Text , title : 'Text' , value : 'Say hello to your new TV. Our ULED Series of TVs brings you bigger screens, multiple platforms and premium tech like 4K ULED. The result? Pictures get brighter, colors are more accurate, motion moves more fluidly and contrast is stronger. So streaming shows, watching sports and gaming, err, games, all looks better than ever.'}
     };
   }
 

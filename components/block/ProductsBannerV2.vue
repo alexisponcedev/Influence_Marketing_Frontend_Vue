@@ -40,7 +40,7 @@ export default class ProductsBannerV2 extends Vue {
           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
           alt: 'Some note about this image',
         },
-        title : {id : 2 , type : StructureType.String , title : 'Title' , value : 'Televisions'}
+        title : {id : 2 , type : StructureType.Text , title : 'Title' , value : 'Televisions'}
       }
     }
 

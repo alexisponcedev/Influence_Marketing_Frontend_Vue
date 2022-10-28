@@ -74,8 +74,10 @@ export default class SearchProductIndex extends Vue {
     if(this.category_id > 0) query.push(`category_id=${this.category_id}`)
     this.$axios.$get(`https://impim.dev-api.hisenseportal.com/api/cms/getProductsList?${query.join('&')}`)
       .then(res => {
-        this.products = this.max > 0 ? res.data.slice(0, this.max) : res.data;
-        if(this.run) this.products = this.run(this.products);
+        let products = this.max > 0 ? res.data.slice(0, this.max) : res.data;
+        products = products.filter((p : any) => p.brand.id === 1)
+        if(this.run) products = this.run(products);
+        this.products = products;
       })
       .finally(() => {
         this.loading = false;
