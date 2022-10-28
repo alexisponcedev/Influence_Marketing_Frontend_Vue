@@ -8,9 +8,7 @@
     <div class="tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9">
       <h4 class="small-title tw-text-black">{{ model.smallTitle.value }}</h4>
       <h2 class="large-title tw-text-black">{{ model.largeTitle.value }}</h2>
-      <p class="paragraph tw-text-black">
-        {{ model.paragraph.value }}
-      </p>
+      <p class="paragraph tw-text-black" v-html="model.paragraph.value" />
     </div>
   </div>
 </template>
