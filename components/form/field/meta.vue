@@ -8,10 +8,10 @@
       <div class="tw-p-2 tw-rounded-lg tw-bg-white tw-space-y-2">
         <div>Preview</div>
 
-        <div>
-          <div class="tw-text-blue-600">{{model[googleTitleIndex].content}}</div>
+        <div >
+          <div v-if="googleTitleIndex >= 0" class="tw-text-blue-600">{{model[googleTitleIndex].content}}</div>
           <div class="tw-text-green-800 tw-font-sm"> {{`https://hisese-usa.com${route}`}} </div>
-          <div class="tw-text-gray-500 tw-font-sm">{{model[googleDescriptionIndex].content}}</div>
+          <div v-if="googleDescriptionIndex >= 0" class="tw-text-gray-500 tw-font-sm">{{model[googleDescriptionIndex].content}}</div>
         </div>
       </div>
       <hr class="hr-border">
@@ -40,14 +40,13 @@
 
 
         <div class="tw-border tw-border-solid tw-border-gray-200 tw-bg-gray-50">
-          <img v-if="model[ogImageIndex].content" :src="model[ogImageIndex].content" alt="Meta Image">
+          <img v-if="ogImageIndex > 0 && model[ogImageIndex].content" :src="model[ogImageIndex].content" alt="Meta Image">
 
           <div class="tw-p-2">
-            <div class="tw-text-gray-500 tw-font-sm">{{model[ogUrlIndex].content}}</div>
-            <div class="tw-font-semibold tw-text-gray-800">{{model[ogTitleIndex].content}}</div>
-          <div class="tw-text-gray-500 tw-font-sm">{{model[ogDescriptionIndex].content}}</div>
+            <div v-if="ogUrlIndex > 0" class="tw-text-gray-500 tw-font-sm">{{model[ogUrlIndex].content}}</div>
+            <div v-if="ogTitleIndex > 0" class="tw-font-semibold tw-text-gray-800">{{model[ogTitleIndex].content}}</div>
+            <div v-if="ogDescriptionIndex > 0" class="tw-text-gray-500 tw-font-sm">{{model[ogDescriptionIndex].content}}</div>
           </div>
-
           
         </div>
       </div>
@@ -92,9 +91,9 @@
     </div>
     <div class="tw-space-y-1.5">
 
-      <div class="tw-p-2 tw-flex tw-justify-between tw-items-center tw-rounded-t-lg tw-space-y-2 tw-bg-gray-200" style="    border-bottom: 2px solid black;">
+      <div class="tw-px-2 tw-py-2 tw-flex tw-justify-between tw-items-center tw-rounded-t-lg  tw-bg-gray-200" style="    border-bottom: 2px solid black;">
         <div>Custom Meta</div> 
-        <button class="tw-bg-white tw-rounded tw-font-sm tw-px-2 tw-py-0.8 tw-shadow " @click.prevent="addRow">+ Add</button>
+        <button class="tw-bg-white tw-rounded tw-font-sm tw-px-2 tw-py-0.5 tw-shadow " @click.prevent="addRow">+ Add</button>
       </div>
 
       <hr class="hr-border" />
@@ -137,10 +136,9 @@ export default class TextMetaFormField extends Vue {
   ]
 
   mounted() {
-    if (!this.model || this.model.length === 0) this.model = [
+    if (!this.model || this.model.length < 8) this.model = [
       {rel: 'blank', name: 'title', content: ''},
       {rel: 'blank', name: 'description', content: ''},
-
 
       {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
       {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
@@ -175,25 +173,26 @@ export default class TextMetaFormField extends Vue {
   }
 
   get ogSiteNameIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:site_name'))
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:site_name'))
   }
   get ogTitleIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:title'))
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:title'))
   }
   get ogDescriptionIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:description'))
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:description'))
   }
   get ogImageIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:image'))
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:image'))
   }
   get ogUrlIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:url'))
+    console.log(this.model.findIndex(i => i.rel && i.rel.includes('og:url')));
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:url'))
   }
   get ogTypeIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:type'))
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:type'))
   }
   get ogLocaleIndex(){
-    return this.model.findIndex(i => i.rel.includes('og:locale'))
+    return this.model.findIndex(i => i.rel && i.rel.includes('og:locale'))
   }
 
   get customTags(){
