@@ -1,0 +1,37 @@
+<template>
+<div>
+    <img src="/blocks/SponsorshipImagesWithButton.png" alt=""/>
+  </div>
+</template>
+
+<script lang="ts">
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+
+@Component
+export default class SponsorshipImagesWithButton extends Vue {
+  @Prop(Number) readonly id: number | undefined
+  @Prop({default: true}) readonly editable: Boolean | undefined
+  @VModel({type: Object}) model!: Object
+
+  reset() {
+    this.model = {
+      image : {id : 0 , type : StructureType.Image , title : 'Image' , src : '' , alt : 'Image Alt'},
+      link : {id : 1 , type : StructureType.Url , title : 'Link' , value : ''}
+    }
+  }
+
+  mounted() {
+    if (this.isEmpty) this.reset();
+  }
+
+  get isEmpty(): Boolean {
+    return this.model && Object.keys(this.model).length === 0;
+  }
+
+  @Watch('isEmpty')
+  onValueChanged() {
+    if (this.isEmpty) this.reset();
+  }
+}
+</script>

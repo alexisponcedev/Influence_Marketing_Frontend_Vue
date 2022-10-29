@@ -348,24 +348,28 @@ export const blocks = () => [
   {
     name: "ContactUs",
     blocks: [
+      {name: "ServiceSupportFormNew", title: "ServiceSupportFormNew", image: "ServiceSupportFormNew.png"},
       {name: "ContactUsForm", title: "Contact Us Form", image: "ContactUsForm.png"},
-      {name: "ContactUsNewForm", title: "Contact Us Form New Form", image: "ContactUsNewForm.png"},
+      {name: "ContactUsNewForm", title: "ContactUsNewForm", image: "ContactUsNewForm.png"},
+      {name: "ContactUsPhoneUs", title: "ContactUsPhoneUs", image: "ContactUsPhoneUs.png"},
+      {name: "ContactUsAboutHisense", title: "ContactUsAboutHisense", image: "ContactUsAboutHisense.png"},
+
     ],
   },
 
-  // {
-  //   name: "Sponsership",
-  //   blocks: [
-  //     {name: "SponsorshipDescriptionGrayBg", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
-  //     {name: "SponsorshipTextGradient", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
-  //     {name: "SponsorshipTitleBox", title: "SponsorshipTitleBox", image: "SponsorshipTitleBox.png"},
-  //     {name: "SponsorshipVideoAndTextBox", title: "SponsorshipVideoAndTextBox", image: "SponsorshipVideoAndTextBox.png"},
-  //     {name: "SponsorshipBigImageAndText", title: "SponsorshipBigImageAndText", image: "SponsorshipBigImageAndText.png"},
-  //     {name: "SponsorshipImagesWithButton", title: "SponsorshipImagesWithButton", image: "SponsorshipImagesWithButton.png"},
-  //     {name: "SponsorImageAndText", title: "SponsorImageAndText", image: "SponsorImageAndText.png"},
-  //     {name: "SponsorImageAndLogo", title: "SponsorImageAndLogo", image: "SponsorImageAndLogo.png"},
-  //   ],
-  // },
+  {
+    name: "Sponsership",
+    blocks: [
+      {name: "SponsorshipDescriptionGrayBg", title: "SponsorshipDescriptionGrayBg", image: "SponsorshipDescriptionGrayBg.png"},
+      {name: "SponsorshipTextGradient", title: "SponsorshipTextGradient", image: "SponsorshipTextGradient.png"},
+      {name: "SponsorshipTitleBox", title: "SponsorshipTitleBox", image: "SponsorshipTitleBox.png"},
+      {name: "SponsorshipVideoAndTextBox", title: "SponsorshipVideoAndTextBox", image: "SponsorshipVideoAndTextBox.png"},
+      {name: "SponsorshipBigImageAndText", title: "SponsorshipBigImageAndText", image: "SponsorshipBigImageAndText.png"},
+      {name: "SponsorshipImagesWithButton", title: "SponsorshipImagesWithButton", image: "SponsorshipImagesWithButton.png"},
+      {name: "SponsorImageAndText", title: "SponsorImageAndText", image: "SponsorImageAndText.png"},
+      {name: "SponsorImageAndLogo", title: "SponsorImageAndLogo", image: "SponsorImageAndLogo.png"},
+    ],
+  },
 
 
 ];
