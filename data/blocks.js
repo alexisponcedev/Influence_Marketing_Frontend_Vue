@@ -345,6 +345,13 @@ export const blocks = () => [
       {name: "RegisterForm", title: "Register Form", image: "RegisterForm.png"},
     ],
   },
+  {
+    name: "ContactUs",
+    blocks: [
+      {name: "ContactUsForm", title: "Contact Us Form", image: "ContactUsForm.png"},
+      {name: "ContactUsNewForm", title: "Contact Us Form New Form", image: "ContactUsNewForm.png"},
+    ],
+  },
 
   // {
   //   name: "Sponsership",

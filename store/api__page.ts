@@ -39,7 +39,6 @@ export default class api__page extends VuexModule {
         model_type : page.model_type,
         route: page.route,
         domain: 'https://hisense-usa.com' + page.route,
-        // absolute: page.route!.toString().replace('[...param]' , page.model_id + '/' + page.title!/*.toLowerCase()*/.replace(/ /g, '-'))
       }
     });
   }
@@ -81,43 +80,6 @@ export default class api__page extends VuexModule {
 
   @Action({ commit: "updateRoutes" })
   async getRoutes() {
-    // return [
-    //   {
-    //     id : 1,
-    //     title: 'Landing Page',
-    //     model_id : 0,
-    //     model_type : '',
-    //     route: '/',
-    //   },
-    //   {
-    //     id : 2,
-    //     title: 'Products',
-    //     model_id : 5,
-    //     model_type : 'product',
-    //     route: '/products',
-    //   },
-    //   {
-    //     id : 3,
-    //     title: 'All TVs',
-    //     model_id : 0,
-    //     model_type : '',
-    //     route: '/products/all-tvs',
-    //   },
-    //   {
-    //     id : 4,
-    //     title: '4K ULED',
-    //     model_id : 0,
-    //     model_type : '',
-    //     route: '/products/all-tvs/4k-uled',
-    //   },
-    //   {
-    //     id : 5,
-    //     title: '4K ULED',
-    //     model_id : 0,
-    //     model_type : '',
-    //     route: '/products/all-tvs/4k-uled',
-    //   },
-    // ]
     this.setLoading(true);
     const response : any = await PageApiFactory(
       new Configuration({

@@ -85,12 +85,10 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
 
   getSlug(str: string): string {
     return str
-      // .toLowerCase()
+      .toLowerCase()
       .replace(/ /g, '-')
-
       .replace('"', '')
       .replace("'", '')
-
     // .replace(/[^\w-]+/g, '')
   }
 

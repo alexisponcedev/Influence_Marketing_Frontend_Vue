@@ -47,7 +47,7 @@
             <div v-if="ogTitleIndex > 0" class="tw-font-semibold tw-text-gray-800">{{model[ogTitleIndex].content}}</div>
             <div v-if="ogDescriptionIndex > 0" class="tw-text-gray-500 tw-font-sm">{{model[ogDescriptionIndex].content}}</div>
           </div>
-          
+
         </div>
       </div>
       <hr class="hr-border">
@@ -92,7 +92,7 @@
     <div class="tw-space-y-1.5">
 
       <div class="tw-px-2 tw-py-2 tw-flex tw-justify-between tw-items-center tw-rounded-t-lg  tw-bg-gray-200" style="    border-bottom: 2px solid black;">
-        <div>Custom Meta</div> 
+        <div>Custom Meta</div>
         <button class="tw-bg-white tw-rounded tw-font-sm tw-px-2 tw-py-0.5 tw-shadow " @click.prevent="addRow">+ Add</button>
       </div>
 
@@ -138,11 +138,11 @@ export default class TextMetaFormField extends Vue {
   mounted() {
     if (!this.model || this.model.length < 8) this.model = [
       {rel: 'blank', name: 'title', content: ''},
-      {rel: 'blank', name: 'description', content: ''},
+      {rel: 'blank', name: 'description', content: 'Hisense USA'},
 
       {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
       {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
-      {rel: 'property="og:description"', name: 'property="og:description"', content: ''},
+      {rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA'},
       {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
       {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
       {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
@@ -209,21 +209,21 @@ export default class TextMetaFormField extends Vue {
   border: none;
 }
 .x-input {
-  border: none; 
+  border: none;
   background-color: white;
   padding: 11px;
 }
 .x-input:focus {
-  outline: none 
+  outline: none
 }
 
 
 .x-gray-input {
-  border: none; 
+  border: none;
   background-color: rgb(233, 233, 233);
   padding: 11px;
 }
 .x-gray-input:focus {
-  outline: none 
+  outline: none
 }
 </style>
