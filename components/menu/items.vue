@@ -60,7 +60,7 @@ export default class MenuItemEditor extends Vue {
     label: "",
     placeholder: 'Enter page name',
     'item-text' : 'title',
-    'item-value' : 'absolute',
+    'item-value': 'route',
     rules: [],
     colAttrs: {cols: 7},
   }
