@@ -1,8 +1,9 @@
 <template>
   <div class="tw-flex tw-w-full tw-flex-1" v-if="!isEmpty">
-    
+
     <div class="filter-box">
-      <div v-if="loadingFilters" class="tw-h-96 tw-w-full tw-text-cyan-500 tw-text-center tw-flex tw-flex-col tw-items-center tw-justify-center">
+      <div v-if="loadingFilters"
+           class="tw-h-96 tw-w-full tw-text-cyan-500 tw-text-center tw-flex tw-flex-col tw-items-center tw-justify-center">
         Loading filters ...
         <v-progress-linear class="tw-mt-2" indeterminate color="cyan"/>
       </div>
@@ -25,7 +26,8 @@
         <span class="total-result-title">Total Result : {{ products.total }}</span>
         <span class="total-result-link">View All</span>
       </div>
-      <div v-if="loadingProducts" class="tw-h-60 tw-w-full tw-text-cyan-500 tw-text-center tw-flex tw-flex-col tw-items-center tw-justify-center">
+      <div v-if="loadingProducts"
+           class="tw-h-60 tw-w-full tw-text-cyan-500 tw-text-center tw-flex tw-flex-col tw-items-center tw-justify-center">
         Loading Products ...
         <v-progress-linear class="tw-mt-2 tw-max-w-sm" indeterminate color="cyan"/>
       </div>
@@ -49,7 +51,7 @@ import {CategoryResource} from "~/repositories";
 @Component
 export default class ProductGrid extends Vue {
   @Prop(Number) readonly id: number | undefined
-  @Prop({ default: true }) readonly editable: Boolean | undefined
+  @Prop({default: true}) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: any
 
   Api = Api;
@@ -61,23 +63,24 @@ export default class ProductGrid extends Vue {
   products: Array<any> = [];
   filterTypes: Array<any> = [];
 
+  reset() {
+    this.model = {
+      category: {
+        id: 0,
+        type: StructureType.Select,
+        title: 'Select Category',
+        value: this.categories.length > 0 ? this.categories[0].id : 0,
+        itemText: 'name',
+        itemValue: 'id',
+        items: this.categories
+      },
+    }
+  }
 
   async mounted() {
-
     this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
-
-    if (this.isEmpty)
-      this.model = {
-        category: {
-          id: 0,
-          type: StructureType.Select,
-          title: 'Select Category',
-          value: this.categories.length > 0 ? this.categories[0].id : 0,
-          itemText: 'name',
-          itemValue: 'id',
-          items: this.categories
-        },
-      }
+    if (this.isEmpty) this.reset();
+    this.model.category.items = this.categories;
     this.updatePreview();
   }
 
@@ -87,7 +90,7 @@ export default class ProductGrid extends Vue {
 
 
   updatePreview(category_id: number = 0) {
-    if(category_id === 0 && this.model.hasOwnProperty('category') && this.model.category.value > 0)
+    if (category_id === 0 && this.model.hasOwnProperty('category') && this.model.category.value > 0)
       category_id = this.model.category.value;
 
     this.loadingFilters = true;
@@ -120,6 +123,10 @@ export default class ProductGrid extends Vue {
     this.updatePreview(this.categoryId);
   }
 
+  @Watch('isEmpty')
+  onValueChanged() {
+    if (this.isEmpty) this.reset();
+  }
 }
 </script>
 
