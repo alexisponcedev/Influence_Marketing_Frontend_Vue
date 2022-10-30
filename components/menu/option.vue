@@ -3,20 +3,6 @@
 
     <div v-if="!isArray">
 
-
-<!--      <v-row v-if="editTitle">-->
-<!--        <form-field-text :field="optionTitleField" v-model="model.name"/>-->
-<!--        <form-field-select-page-name-->
-<!--          :field="optionUrlField"-->
-<!--          v-model="model.url"-->
-<!--        />-->
-<!--        <v-col justify="center">-->
-<!--          <v-btn icon elevation="0" text @click="editTitle = false">-->
-<!--            <v-icon class="red&#45;&#45;text">mdi-check</v-icon>-->
-<!--          </v-btn>-->
-<!--        </v-col>-->
-<!--      </v-row>-->
-
       <v-row v-if="enableEdit" align="start">
         <v-col cols="11">
           <structure-editor-url :inline="true" v-model="editingItem"/>
