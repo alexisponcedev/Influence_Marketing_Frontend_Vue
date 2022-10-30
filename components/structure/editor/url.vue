@@ -2,18 +2,20 @@
   <div class="tw-px-2">
     <div class="tw-mb-1"> {{ model.title }}</div>
 
-    <div class="tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-pt-1" style="background-color: #fdfdfd">
+    <div class="tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-pt-1"
+         :class="{'tw-flex tw-space-x-2' : inline}"
+         style="background-color: #fdfdfd">
 
       <form-field-text :field="titleField" v-model="model.title"/>
 
       <form-field-select :field="typeField" v-model="type"/>
 
-      <form-field-select-page-name v-if="type === LinkType.Internal" :field="selectField" v-model="route"/>
-      <form-field-text v-if="type === LinkType.Internal" :field="queryField" v-model="query"/>
+      <form-field-select-page-name v-if="type === UrlTypeEnum.Internal" :field="selectField" v-model="route"/>
+      <form-field-text v-if="type === UrlTypeEnum.Internal" :field="queryField" v-model="query"/>
 
-      <form-field-text v-if="type === LinkType.External" :field="urlFiled" v-model="model.value"/>
+      <form-field-text v-if="type === UrlTypeEnum.External" :field="urlFiled" v-model="model.value"/>
 
-      <form-field-text v-if="type === LinkType.openChannelAdvisor" :field="productField" v-model="productModel"/>
+      <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor" :field="productField" v-model="productModel"/>
     </div>
     {{ model.value }}
   </div>
@@ -24,20 +26,18 @@
 import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import {StructureField} from "~/interfaces/StructureField";
 import Validation from "~/utils/validation";
+import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 
-enum LinkType {
-  Internal = 'internal',
-  External = 'external',
-  openChannelAdvisor = 'openChannelAdvisor',
-}
+
 
 @Component
 export default class StructureUrlEditor extends Vue {
+  @Prop({type : Boolean , default : false}) inline! : Boolean
   @VModel({type: StructureField}) model!: StructureField
 
-  LinkType = LinkType;
+  UrlTypeEnum = UrlTypeEnum;
 
-  type = LinkType.Internal;
+  type = UrlTypeEnum.Internal;
   route = '';
   query = '';
 
@@ -48,24 +48,24 @@ export default class StructureUrlEditor extends Vue {
     rules: [],
     'item-text': 'title',
     'item-value': 'value',
-    colAttrs: {cols: 12},
+    colAttrs: {cols: this.inline ? 2 : 12},
     items: [
-      {title: 'Internal URL', value: LinkType.Internal},
-      {title: 'External URL', value: LinkType.External},
-      {title: 'Open Channel Advisor', value: LinkType.openChannelAdvisor}
+      {title: 'Internal URL', value: UrlTypeEnum.Internal},
+      {title: 'External URL', value: UrlTypeEnum.External},
+      {title: 'Open Channel Advisor', value: UrlTypeEnum.openChannelAdvisor}
     ]
   }
   titleField = {
     label: "Url Title",
     placeholder: 'Enter Title',
     rules: [],
-    colAttrs: {cols: 12},
+    colAttrs: {cols: this.inline ? 3 :  12},
   }
   productField = {
     label: "Product Model",
     placeholder: 'Enter Product Model',
     rules: [],
-    colAttrs: {cols: 12},
+    colAttrs: {cols: this.inline ? 6 :  12},
   }
   selectField = {
     label: "Page URL",
@@ -73,19 +73,19 @@ export default class StructureUrlEditor extends Vue {
     'item-text': 'title',
     'item-value': 'route',
     rules: [],
-    colAttrs: {cols: 12},
+    colAttrs: {cols: this.inline ? 3 :  12},
   }
   urlFiled = {
     label: "External URL",
     placeholder: 'Enter a valid url',
     rules: [],
-    colAttrs: {cols: 12},
+    colAttrs: {cols: this.inline ? 6 :  12},
   }
   queryField = {
     label: "Query params (optional)",
     placeholder: 'filter=55&category_id=3...',
     rules: [],
-    colAttrs: {cols: 12},
+    colAttrs: {cols: this.inline ? 3 :  12},
   }
 
   mounted() {
@@ -94,7 +94,7 @@ export default class StructureUrlEditor extends Vue {
       let arr = this.model.value.split('?');
       this.route = arr[0];
       this.query = arr.length > 1 ? arr[1] : '';
-      this.type = this.model.value.includes('https://') ? LinkType.External : LinkType.Internal;
+      this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
     }
   }
 
