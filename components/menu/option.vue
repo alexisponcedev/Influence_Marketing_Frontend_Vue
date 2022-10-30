@@ -2,18 +2,36 @@
   <div class="tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-p-3">
 
     <div v-if="!isArray">
-      <v-row v-if="editTitle">
-        <form-field-text :field="optionTitleField" v-model="model.name"/>
-        <form-field-select-page-name
-          :field="optionUrlField"
-          v-model="model.url"
-        />
-        <v-col justify="center">
-          <v-btn icon elevation="0" text @click="editTitle = false">
-            <v-icon class="red--text">mdi-check</v-icon>
-          </v-btn>
+
+
+<!--      <v-row v-if="editTitle">-->
+<!--        <form-field-text :field="optionTitleField" v-model="model.name"/>-->
+<!--        <form-field-select-page-name-->
+<!--          :field="optionUrlField"-->
+<!--          v-model="model.url"-->
+<!--        />-->
+<!--        <v-col justify="center">-->
+<!--          <v-btn icon elevation="0" text @click="editTitle = false">-->
+<!--            <v-icon class="red&#45;&#45;text">mdi-check</v-icon>-->
+<!--          </v-btn>-->
+<!--        </v-col>-->
+<!--      </v-row>-->
+
+      <v-row v-if="enableEdit" align="start">
+        <v-col cols="11">
+          <structure-editor-url :inline="true" v-model="editingItem"/>
+        </v-col>
+        <v-col>
+          <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-2" style="margin-top:27px">
+            <button class="tw-bg-green-500 tw-bg-opacity-20 tw-text-green-500 tw-rounded-lg tw-px-2 tw-py-3.5 tw-w-full" @click="confirmEdit"> Save
+            </button>
+            <button class="tw-bg-red-500 tw-bg-opacity-20 tw-text-red-500 tw-rounded-lg tw-px-2 tw-py-3.5 tw-w-full"  @click="cancelEdit"> Cancel
+            </button>
+          </div>
         </v-col>
       </v-row>
+
+
       <div v-else
            class="tw-flex tw-items-center tw-justify-between tw-space-x-4 tw-w-full tw-p-3 tw-bg-green-50 tw-rounded-xl">
         <div class="tw-text-lg tw-font-bold">{{ model.name }}</div>
@@ -24,7 +42,7 @@
             <span v-else>Show Submenu</span>
           </button>
 
-          <button @click="editTitle = true">
+          <button @click="editTitle">
             <v-icon small class="gray--text">mdi-pencil</v-icon>
           </button>
 
@@ -66,8 +84,6 @@
       <menu-products :value="model.products" @input="v => model.products = v"/>
     </div>
 
-
-
   </div>
 
 </template>
@@ -82,23 +98,22 @@ export default class MenuOptionEditor extends Vue {
   @VModel({type: Object}) model!: any
   Api = Api;
 
-  editTitle: boolean = false;
+  enableEdit: boolean = false;
 
-  optionTitleField = {
-    label: '',
+  editingItem: any = {id: -1, title: '', value: ''};
 
-    placeholder: 'Option Title',
-    rules: [],
-    colAttrs: {cols: 4},
+  editTitle(){
+    this.editingItem = {id : 0 , title : this.model.name , value : this.model.url};
+    this.enableEdit = true;
   }
 
-  optionUrlField = {
-    label: "",
-    placeholder: 'Enter page name',
-    'item-text' : 'title',
-    'item-value': 'route',
-    rules: [],
-    colAttrs: {cols: 7},
+  confirmEdit(){
+    this.model.name = this.editingItem.title;
+    this.model.url = this.editingItem.value;
+    this.enableEdit = false;
+  }
+  cancelEdit(){
+    this.enableEdit = false;
   }
 
   addNewColumn() {
