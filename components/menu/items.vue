@@ -72,17 +72,13 @@ export default class MenuItemEditor extends Vue {
   }
 
   confirm() {
-    let index = this.model.findIndex((i: any) => i.id === this.editingItem.id);
-    this.model[index].name = this.editingItem.title;
-    this.model[index].url = this.editingItem.value;
-    // this.editingItem.id = -1;
+    this.model[this.editingIndex].name = this.editingItem.title;
+    this.model[this.editingIndex].url = this.editingItem.value;
     this.editingIndex = -1;
   }
 
   cancel() {
-    // this.editingItem.id = -1;
     this.editingIndex = -1;
-
   }
 
 }
