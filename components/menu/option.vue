@@ -9,7 +9,7 @@
         </v-col>
         <v-col>
           <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-2" style="margin-top:27px">
-            <button class="tw-bg-green-500 tw-bg-opacity-20 tw-text-green-500 tw-rounded-lg tw-px-2 tw-py-3.5 tw-w-full" @click="confirmEdit"> Save
+            <button class="tw-bg-green-500 tw-bg-opacity-20 tw-text-green-500 tw-rounded-lg tw-px-2 tw-py-3.5 tw-w-full" @click="confirmEdit"> Confirm
             </button>
             <button class="tw-bg-red-500 tw-bg-opacity-20 tw-text-red-500 tw-rounded-lg tw-px-2 tw-py-3.5 tw-w-full"  @click="cancelEdit"> Cancel
             </button>
