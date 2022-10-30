@@ -1,7 +1,7 @@
 <template>
   <div class="tw-space-y-2">
     <div v-for="(item , index) in model" :key="index">
-      <v-row v-if="editingItem.id === item.id" align="start">
+      <v-row v-if="editingIndex === index" align="start">
         <v-col cols="11">
           <structure-editor-url :inline="true" v-model="editingItem"/>
         </v-col>
@@ -54,10 +54,12 @@ export default class MenuItemEditor extends Vue {
   pages: Array<any> = [];
 
 
+  editingIndex : number = -1;
   editingItem: any = {id: -1, title: '', value: ''};
 
   edit(index: number) {
     this.editingItem = {id: this.model[index].id, title: this.model[index].name, value: this.model[index].url};
+    this.editingIndex = index;
   }
 
   remove(index: number) {
@@ -73,11 +75,14 @@ export default class MenuItemEditor extends Vue {
     let index = this.model.findIndex((i: any) => i.id === this.editingItem.id);
     this.model[index].name = this.editingItem.title;
     this.model[index].url = this.editingItem.value;
-    this.editingItem.id = -1;
+    // this.editingItem.id = -1;
+    this.editingIndex = -1;
   }
 
   cancel() {
-    this.editingItem.id = -1;
+    // this.editingItem.id = -1;
+    this.editingIndex = -1;
+
   }
 
 }
