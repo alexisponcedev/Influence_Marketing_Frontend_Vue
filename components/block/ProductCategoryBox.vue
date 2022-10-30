@@ -18,7 +18,7 @@ export default class BlockProductCategoryBox extends Vue {
 
   Theme = Theme;
 
-    reset(){
+  reset() {
     this.model = {
       theme: {
         id: 0,
@@ -40,24 +40,24 @@ export default class BlockProductCategoryBox extends Vue {
           {title: 'False', value: false},
         ]
       },
-      support : {
-        id : 1,
-        type : StructureType.Url,
-        title : 'Support Page',
-        value : '/',
+      support: {
+        id: 1,
+        type: StructureType.Url,
+        title: 'Support Page',
+        value: '/',
       },
       tags: {
-        id : 2,
+        id: 2,
         type: StructureType.List,
         title: 'Tags',
         newItem: {
-          title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Item Title'},
-          target : { id : 0 , type : StructureType.idSelector , title : 'ID Selector' , value : ''},
+          title: {id: 0, type: StructureType.String, title: 'Tag Title', value: 'Item Title'},
+          target: {id: 0, type: StructureType.idSelector, title: 'ID Selector', value: ''},
         },
         value: [
           {
-            title  : { id : 0 , type : StructureType.String , title : 'Tag Title' , value : 'Sample Tag Title'},
-            target : { id : 0 , type : StructureType.idSelector , title : 'ID Selector' , value : ''},
+            title: {id: 0, type: StructureType.String, title: 'Tag Title', value: 'Sample Tag Title'},
+            target: {id: 0, type: StructureType.idSelector, title: 'ID Selector', value: ''},
           },
         ]
       },
@@ -67,14 +67,14 @@ export default class BlockProductCategoryBox extends Vue {
   mounted() {
     if (this.isEmpty) this.reset();
   }
+
   get isEmpty(): Boolean {
     return this.model && Object.keys(this.model).length === 0;
   }
 
   @Watch('isEmpty')
-  onValueChanged(){
-
-    if(this.isEmpty) this.reset();
+  onValueChanged() {
+    if (this.isEmpty) this.reset();
   }
 }
 </script>
