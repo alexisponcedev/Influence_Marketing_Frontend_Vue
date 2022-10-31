@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {FormField} from "~/models";
 import {Api} from "~/utils/store-accessor";
 import {Page} from "~/repositories";
@@ -52,5 +52,10 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
   async mounted() {
     if(Api.Page.routes.length === 0) await Api.Page.getRoutes();
   }
+
+  // @Watch('value' , {deep : true})
+  // onValueChanged(value : any){
+  //   this.model = value;
+  // }
 }
 </script>

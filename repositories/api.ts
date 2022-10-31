@@ -547,6 +547,12 @@ export interface DynamicPageResource {
     'route'?: string;
     /**
      *
+     * @type {string}
+     * @memberof DynamicPageResource
+     */
+    'redirect'?: string;
+    /**
+     *
      * @type {number}
      * @memberof DynamicPageResource
      */
@@ -1255,13 +1261,19 @@ export interface Page {
      * @type {string}
      * @memberof Page
      */
+    'redirect'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Page
+     */
     'fetchUrl'?: string;
     /**
      *
      * @type {Array<object>}
      * @memberof Page
      */
-    'meta'?: Array<any>;
+    'meta'?: Array<object>;
     /**
      *
      * @type {Array<number>}
@@ -1428,6 +1440,12 @@ export interface PageListResource {
      * @type {string}
      * @memberof PageListResource
      */
+    'redirect'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageListResource
+     */
     'fetchUrl'?: string;
     /**
      *
@@ -1484,6 +1502,12 @@ export interface PageResource {
      * @memberof PageResource
      */
     'route'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageResource
+     */
+    'redirect'?: string;
     /**
      *
      * @type {string}
@@ -5570,6 +5594,60 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
+        /**
+         *
+         * @param {number} [categoryId] Category ID
+         * @param {string} [string] string
+         * @param {string} [condition] condition: or/and, default: or
+         * @param {Array<string>} [filters] filters array
+         * @param {string} [sort] sort by newest / oldest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchProductByCategoryId: async (categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/husa/searchProduct`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (categoryId !== undefined) {
+                localVarQueryParameter['categoryId'] = categoryId;
+            }
+
+            if (string !== undefined) {
+                localVarQueryParameter['string'] = string;
+            }
+
+            if (condition !== undefined) {
+                localVarQueryParameter['condition'] = condition;
+            }
+
+            if (filters) {
+                localVarQueryParameter['filters[]'] = filters;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -5724,6 +5802,20 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTemplateList(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         *
+         * @param {number} [categoryId] Category ID
+         * @param {string} [string] string
+         * @param {string} [condition] condition: or/and, default: or
+         * @param {Array<string>} [filters] filters array
+         * @param {string} [sort] sort by newest / oldest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchProductByCategoryId(categoryId, string, condition, filters, sort, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -5862,6 +5954,19 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
          */
         getTemplateList(options?: any): AxiosPromise<InlineResponse20017> {
             return localVarFp.getTemplateList(options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {number} [categoryId] Category ID
+         * @param {string} [string] string
+         * @param {string} [condition] condition: or/and, default: or
+         * @param {Array<string>} [filters] filters array
+         * @param {string} [sort] sort by newest / oldest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.searchProductByCategoryId(categoryId, string, condition, filters, sort, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6030,6 +6135,21 @@ export class HUSAAPIsApi extends BaseAPI {
      */
     public getTemplateList(options?: AxiosRequestConfig) {
         return HUSAAPIsApiFp(this.configuration).getTemplateList(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @param {number} [categoryId] Category ID
+     * @param {string} [string] string
+     * @param {string} [condition] condition: or/and, default: or
+     * @param {Array<string>} [filters] filters array
+     * @param {string} [sort] sort by newest / oldest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HUSAAPIsApi
+     */
+    public searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).searchProductByCategoryId(categoryId, string, condition, filters, sort, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

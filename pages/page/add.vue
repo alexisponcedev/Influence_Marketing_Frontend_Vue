@@ -24,13 +24,20 @@
       </v-col>
     </v-row>
 
-   <v-form ref="form" @submit.prevent="submit">
-      <v-tabs-items v-model="tab"  style="background-color: transparent !important;">
+    <v-form ref="form" @submit.prevent="submit">
+      <v-tabs-items v-model="tab" style="background-color: transparent !important;">
         <v-tab-item value="Details">
           <v-card>
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
               <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
+
+              <structure-editor-url
+                :inline="true"
+                v-model="editingItem"/>
+
+<!--              <p>In case you want to redirect the page from this url please set the target url</p>-->
+                <button @click.prevent="resetRedirect" v-if="editingItem.value !== ''" class="tw-ml-2 tw-text-blue-500 tw-bg-gray-50 tw-py-1.5 tw-px-2 tw-rounded-lg">Remove Redirect</button>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -38,7 +45,7 @@
           <form-field-meta :field="formFields[2]" v-model="Page.meta" :route="Page.route"/>
         </v-tab-item>
       </v-tabs-items>
-   </v-form>
+    </v-form>
     <button
       class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
       @click="submit">Save
@@ -71,12 +78,14 @@ export default class PageForm extends Vue {
 
   tab = "";
 
+  editingItem: any = {id: -1, title: 'Redirect To', value: ''};
+
   route: string = '';
 
   meta: Array<{ rel: string, name: string, content: string }> = [];
 
   Page: Page = {
-    id : 0,
+    id: 0,
     title: '',
     route: '',
     meta: [],
@@ -136,7 +145,10 @@ export default class PageForm extends Vue {
   }
 
   async getEntity() {
-    if (this.editMode) this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+    if (this.editMode) {
+      this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+      this.editingItem.value = this.Page.redirect;
+    }
   }
 
   updatePageFormFields() {
@@ -168,6 +180,11 @@ export default class PageForm extends Vue {
 
   async submit() {
     if (this.formValidate()) {
+      if (this.editingItem.value)
+        this.Page.redirect = this.editingItem.value;
+      else
+        this.Page.redirect = '';
+
       if (this.editMode)
         await Api.Page.update({
           id: +this.Page.id!,
@@ -200,6 +217,10 @@ export default class PageForm extends Vue {
       this.openPageBuilder();
   }
 
+  // redirectUrlUpdated(item : any){
+  //   this.Page.redirect = item.value;
+  // }
+
   openPageBuilder() {
     this.$router.push(`/page/edit/${this.Page.id}/PageBuilder`);
   }
@@ -231,7 +252,7 @@ export default class PageForm extends Vue {
   @Watch('pageRoute')
   onPageRouteChanged() {
     if (this.Page.meta)
-      this.Page.meta!.forEach(item => {
+      this.Page.meta!.forEach((item : any) => {
         if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
       })
   }
@@ -248,10 +269,14 @@ export default class PageForm extends Vue {
   @Watch('pageTitle')
   onPageTitleChanged() {
     if (this.Page.meta)
-      this.Page.meta!.forEach(item => {
+      this.Page.meta!.forEach((item : any) => {
         if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
         if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
       })
+  }
+  resetRedirect(){
+    // this.Page.redirect = '';
+    this.editingItem.value = '';
   }
 }
 </script>

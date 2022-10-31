@@ -80,7 +80,10 @@ export default class ProductGrid extends Vue {
   async mounted() {
     this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
     if (this.isEmpty) this.reset();
-    this.model.category.items = this.categories;
+    else{
+      this.model.category.items = this.categories;
+    }
+
     this.updatePreview();
   }
 

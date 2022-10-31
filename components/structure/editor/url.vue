@@ -11,6 +11,7 @@
       <form-field-select :field="typeField" v-model="type"/>
 
       <form-field-select-page-name v-if="type === UrlTypeEnum.Internal" :field="selectField" v-model="route"/>
+
       <form-field-text v-if="type === UrlTypeEnum.Internal" :field="queryField" v-model="query"/>
 
       <form-field-text v-if="type === UrlTypeEnum.External" :field="urlFiled" v-model="model.value"/>
@@ -23,16 +24,16 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
+import {Component, Prop, VModel, Vue, Watch} from "vue-property-decorator";
 import {StructureField} from "~/interfaces/StructureField";
-import Validation from "~/utils/validation";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
-
 
 
 @Component
 export default class StructureUrlEditor extends Vue {
-  @Prop({type : Boolean , default : false}) inline! : Boolean
+
+  @Prop({type: Boolean, default: false}) disableTitle!: Boolean
+  @Prop({type: Boolean, default: false}) inline!: Boolean
   @VModel({type: StructureField}) model!: StructureField
 
   UrlTypeEnum = UrlTypeEnum;
@@ -59,13 +60,14 @@ export default class StructureUrlEditor extends Vue {
     label: "Url Title",
     placeholder: 'Enter Title',
     rules: [],
-    colAttrs: {cols: this.inline ? 3 :  12},
+    disabled: this.disableTitle,
+    colAttrs: {cols: this.inline ? 3 : 12},
   }
   productField = {
     label: "Product Model",
     placeholder: 'Enter Product Model',
     rules: [],
-    colAttrs: {cols: this.inline ? 6 :  12},
+    colAttrs: {cols: this.inline ? 6 : 12},
   }
   selectField = {
     label: "Page URL",
@@ -73,29 +75,38 @@ export default class StructureUrlEditor extends Vue {
     'item-text': 'title',
     'item-value': 'route',
     rules: [],
-    colAttrs: {cols: this.inline ? 3 :  12},
+    colAttrs: {cols: this.inline ? 3 : 12},
   }
   urlFiled = {
     label: "External URL",
     placeholder: 'Enter a valid url',
     rules: [],
-    colAttrs: {cols: this.inline ? 6 :  12},
+    colAttrs: {cols: this.inline ? 6 : 12},
   }
   queryField = {
     label: "Query params (optional)",
     placeholder: 'filter=55&category_id=3...',
     rules: [],
-    colAttrs: {cols: this.inline ? 3 :  12},
+    colAttrs: {cols: this.inline ? 3 : 12},
   }
 
-  mounted() {
+  prepare() {
     this.selectField.label = this.model.title ?? 'field';
+    console.log(this.model, this.model.value);
     if (this.model.value) {
       let arr = this.model.value.split('?');
       this.route = arr[0];
       this.query = arr.length > 1 ? arr[1] : '';
       this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
+    } else {
+      this.route = '';
+      this.query = '';
+      this.type = UrlTypeEnum.Internal;
     }
+  }
+
+  mounted() {
+    this.prepare();
   }
 
   @Watch('route')
@@ -109,7 +120,15 @@ export default class StructureUrlEditor extends Vue {
     this.model.value = 'openChannelAdvisor:' + this.productModel.toUpperCase()
   }
 
+  @Watch('value', {deep: true, immediate: true})
+  onValueChanged(value: any) {
+    this.model = value;
+    this.prepare();
+  }
 
-
+  @Watch('model', {immediate: true, deep: true})
+  onModelUpdated() {
+    this.$emit('update:url', this.model);
+  }
 }
 </script>

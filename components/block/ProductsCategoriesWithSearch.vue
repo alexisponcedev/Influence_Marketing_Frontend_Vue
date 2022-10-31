@@ -14,8 +14,9 @@ import {StructureType} from "~/models/StructureType";
 export default class ProductsCategoriesWithSearch extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop({default: true}) readonly editable: Boolean | undefined
-  @VModel({type: Object}) model!: Object
+  @VModel({type: Object}) model!: any
 
+  categories: Array<any> = [];
 
   reset() {
     this.model = {
@@ -38,7 +39,16 @@ export default class ProductsCategoriesWithSearch extends Vue {
             alt: 'Some note about this image',
           },
           title: {id: 1, type: StructureType.String, title: 'Title', value: 'Televisions'},
-          link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+          link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+          category: {
+            id: 3,
+            type: StructureType.Select,
+            title: 'Select Category',
+            value: this.categories.length > 0 ? this.categories[0].id : 0,
+            itemText: 'name',
+            itemValue: 'id',
+            items: this.categories
+          },
         },
         value: [
           {
@@ -46,55 +56,100 @@ export default class ProductsCategoriesWithSearch extends Vue {
               id: 0,
               type: StructureType.Image,
               title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+              src: 'https://assets.hisense-usa.com/assets/ProductCategorySupportSVGs/8d966a77dd/televisions.svg',
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Televisions'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
               id: 0,
               type: StructureType.Image,
               title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+              src: 'https://assets.hisense-usa.com/assets/ProductCategorySupportSVGs/d8bed23318/refrigerators.svg',
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Soundbars'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
               id: 0,
               type: StructureType.Image,
               title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+              src: 'https://assets.hisense-usa.com/assets/ProductCategorySupportSVGs/15307d4fe8/CONTENT_I-PORTABLE-AC-min.svg',
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Air Products'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
               id: 0,
               type: StructureType.Image,
               title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+              src: 'https://assets.hisense-usa.com/assets/ProductCategorySupportSVGs/8c317bbc8c/dishwasher.svg',
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Refrigeration'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
               id: 0,
               type: StructureType.Image,
               title: 'Upload Image',
-              src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
+              src: 'https://assets.hisense-usa.com/assets/ProductCategorySupportSVGs/f914ea6411/microwave-oven.svg',
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Ranges'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
@@ -105,7 +160,16 @@ export default class ProductsCategoriesWithSearch extends Vue {
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Dishwashers'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
@@ -116,7 +180,16 @@ export default class ProductsCategoriesWithSearch extends Vue {
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Microwave Ovens'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
           {
             image: {
@@ -127,15 +200,35 @@ export default class ProductsCategoriesWithSearch extends Vue {
               alt: 'Some note about this image',
             },
             title: {id: 1, type: StructureType.String, title: 'Title', value: 'Kitchen-Suite'},
-            link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
+            link: {id: 2, type: StructureType.Url, title: 'Shop Now', value: '/products'},
+            category: {
+              id: 3,
+              type: StructureType.Select,
+              title: 'Select Category',
+              value: this.categories.length > 0 ? this.categories[0].id : 0,
+              itemText: 'name',
+              itemValue: 'id',
+              items: this.categories
+            },
           },
         ]
       },
     }
   }
 
-  mounted() {
+  async mounted() {
+    this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
     if (this.isEmpty) this.reset();
+    else{
+      // console.log(this.model);
+
+      this.model.list.value.forEach((item: any) => {
+        if(item.category) item.category.items = this.categories;
+      })
+      if(this.model.list.newItem.category)
+        this.model.list.newItem.category.items = this.categories;
+    }
+
   }
 
   get isEmpty(): Boolean {
@@ -144,7 +237,6 @@ export default class ProductsCategoriesWithSearch extends Vue {
 
   @Watch('isEmpty')
   onValueChanged() {
-
     if (this.isEmpty) this.reset();
   }
 }
