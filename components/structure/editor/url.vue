@@ -25,13 +25,14 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
 import {StructureField} from "~/interfaces/StructureField";
-import Validation from "~/utils/validation";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 
 
 
 @Component
 export default class StructureUrlEditor extends Vue {
+
+  @Prop({type : Boolean , default : true}) disableTitle! : Boolean
   @Prop({type : Boolean , default : false}) inline! : Boolean
   @VModel({type: StructureField}) model!: StructureField
 
@@ -59,6 +60,7 @@ export default class StructureUrlEditor extends Vue {
     label: "Url Title",
     placeholder: 'Enter Title',
     rules: [],
+    disabled : this.disableTitle,
     colAttrs: {cols: this.inline ? 3 :  12},
   }
   productField = {

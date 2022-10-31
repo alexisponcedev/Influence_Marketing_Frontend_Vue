@@ -31,6 +31,9 @@
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
               <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
+
+
+              <structure-editor-url :inline="true" v-model="editingItem"/>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -70,6 +73,8 @@ export default class PageForm extends Vue {
   Api = Api;
 
   tab = "";
+
+  editingItem: any = {id: -1, title: 'Redirect To', value: ''};
 
   route: string = '';
 
