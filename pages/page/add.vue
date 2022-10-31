@@ -35,9 +35,7 @@
               <structure-editor-url
                 :inline="true"
                 v-model="editingItem"/>
-
-<!--              <p>In case you want to redirect the page from this url please set the target url</p>-->
-                <button @click.prevent="resetRedirect" v-if="editingItem.value !== ''" class="tw-ml-2 tw-text-blue-500 tw-bg-gray-50 tw-py-1.5 tw-px-2 tw-rounded-lg">Remove Redirect</button>
+                <button @click.prevent="resetRedirect" v-if="editingItem.value !== ''" class="tw-ml-2 tw-mt-2 tw-text-blue-500 tw-bg-gray-50 tw-py-1.5 tw-px-2 tw-rounded-lg">Remove Redirect</button>
             </v-card-text>
           </v-card>
         </v-tab-item>
