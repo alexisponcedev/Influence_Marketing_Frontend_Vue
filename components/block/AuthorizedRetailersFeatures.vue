@@ -1,0 +1,60 @@
+<template>
+  <div>
+    <img src="/blocks/AuthorizedRetailersFeatures.png" alt=""/>
+  </div>
+</template>
+
+<script lang="ts">
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+
+@Component
+export default class AuthorizedRetailersFeatures extends Vue {
+  @Prop(Number) readonly id: number | undefined
+  @Prop({default: true}) readonly editable: Boolean | undefined
+  @VModel({type: Object}) model!: Object
+
+  reset() {
+    this.model = {
+      list: {
+        id: 0,
+        type: StructureType.List,
+        title: 'List',
+        newItem: {
+          image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+          text: {
+            id: 1,
+            type: StructureType.Text,
+            title: 'Text',
+            value: 'The most up to date Hisense product information, product pricing and individual promotional offers.'
+          }
+        },
+        value: [
+          {
+            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+            text: {
+              id: 1,
+              type: StructureType.Text,
+              title: 'Text',
+              value: 'The most up to date Hisense product information, product pricing and individual promotional offers.'
+            }
+          }
+        ]
+      }
+    }
+  }
+
+  mounted() {
+    if (this.isEmpty) this.reset();
+  }
+
+  get isEmpty(): Boolean {
+    return this.model && Object.keys(this.model).length === 0;
+  }
+
+  @Watch('isEmpty')
+  onValueChanged() {
+    if (this.isEmpty) this.reset();
+  }
+}
+</script>

@@ -39,6 +39,18 @@ export const blocks = () => [
     ],
   },
   {
+    name: "Home Page v3 - new",
+    blocks: [
+      {name: "BlockHero", title: "BlockHero", image: "BlockHero.png",},
+      {name: "BlockFeatured", title: "BlockFeatured", image: "BlockFeatured.png",},
+      {name: "BlockSpotlight", title: "BlockSpotlight", image: "BlockSpotlight.png",},
+      {name: "BlockTVHero", title: "BlockTVHero", image: "BlockTVHero.png",},
+      {name: "BlockCategories", title: "BlockCategories", image: "BlockCategories.png",},
+      {name: "BlockKitchenHero", title: "BlockKitchenHero", image: "BlockKitchenHero.png",},
+      {name: "BlockCards", title: "BlockCards", image: "BlockCards.png",},
+    ],
+  },
+  {
     name: "Products",
     blocks: [
       {name: "ProductsBanner", title: "product banner", image: "Product Banner.png",},
@@ -97,22 +109,7 @@ export const blocks = () => [
     blocks: [
       {name: "ProductSupportNewHead", title: "Product Support Info", image: "ProductSupportNewHead.png",},
       {name: "ProductSupportNavBar", title: "Product Support NavBar", image: "ProductSupportNavBar.png",},
-      // {
-      //   name: "ProductSupportVideoBox",
-      //   title: "Product Support Video Box",
-      //   image: "ProductSupportVideoBox.png",
-      // },
-      // {
-      //   name: "ProductSupportFAQ",
-      //   title: "Product Support FAQ",
-      //   image: "ProductSupportFAQ.png",
-      // },
       {name: "ProductSupportRegister", title: "Product Support Register", image: "ProductSupportRegister.png",},
-      // {
-      //   name: "ProductSupportReplacement",
-      //   title: "Product Support Replacement",
-      //   image: "ProductSupportReplacement.png",
-      // },
       {name: "SupportNeedAssistance", title: "Support Need Assistance", image: "SupportNeedAssistance.png",},
     ],
   },
@@ -370,6 +367,41 @@ export const blocks = () => [
       {name: "SponsorImageAndLogo", title: "SponsorImageAndLogo", image: "SponsorImageAndLogo.png"},
     ],
   },
+
+  {
+    name: "Authorized Retailers",
+    blocks: [
+      {name: "AuthorizedRetailersBadge", title: "AuthorizedRetailersBadge", image: "AuthorizedRetailersBadge.png"},
+      {name: "AuthorizedRetailersFeatures", title: "AuthorizedRetailersFeatures", image: "AuthorizedRetailersFeatures.png"},
+      {name: "AuthorizedRetailersNote", title: "AuthorizedRetailersNote", image: "AuthorizedRetailersNote.png"},
+      {name: "AuthorizedRetailersLogos", title: "AuthorizedRetailersLogos", image: "AuthorizedRetailersLogos.png"},
+    ],
+  },
+  {
+    name: "Unauthorized List",
+    blocks: [
+      {name: "AuthorizedRetailersNote", title: "AuthorizedRetailersNote", image: "AuthorizedRetailersNote.png"},
+      {name: "UnauthorizedList", title: "UnauthorizedList", image: "UnauthorizedList.png"},
+    ],
+  },
+  {
+    name: "Air Products",
+    blocks: [
+      {name: "AirProductTextBox", title: "AirProductTextBox", image: "AirProductTextBox.png"},
+      {name: "AirProductBanner", title: "AirProductBanner", image: "AirProductBanner.png"},
+    ],
+  },
+  {
+    name: "CES",
+    blocks: [
+      {name: "CESHomeNavBar", title: "CESHomeNavBar", image: "CESHomeNavBar.png"},
+      {name: "CESPX1Header", title: "CESPX1Header", image: "CESPX1Header.png"},
+      {name: "CESPX1ImageAndText", title: "CESPX1ImageAndText", image: "CESPX1ImageAndText.png"},
+      {name: "CESPX1ImageAndText1", title: "CESPX1ImageAndText1", image: "CESPX1ImageAndText1.png"},
+      {name: "CESPX1LikeBox", title: "CESPX1LikeBox", image: "CESPX1LikeBox.png"},
+    ],
+  },
+
 
 
 ];

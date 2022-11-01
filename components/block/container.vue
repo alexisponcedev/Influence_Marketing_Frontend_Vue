@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     componentSelected() {
-      console.log('component is selected', this.block);
       this.$emit('component-selected', this.block);
     },
     deleteBlock() {

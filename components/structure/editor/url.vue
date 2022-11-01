@@ -17,8 +17,13 @@
       <form-field-text v-if="type === UrlTypeEnum.External" :field="urlFiled" v-model="model.value"/>
 
       <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor" :field="productField" v-model="productModel"/>
+
+      <structure-editor-id-selector v-if="type === UrlTypeEnum.anchor" :field="anchorField" v-model="model"/>
+
+
     </div>
-    {{ model.value }}
+    <p class="tw-text-blue-500 tw-my-1">{{ model.value }}</p>
+
   </div>
 
 </template>
@@ -41,6 +46,7 @@ export default class StructureUrlEditor extends Vue {
   type = UrlTypeEnum.Internal;
   route = '';
   query = '';
+  anchor = '';
 
   productModel = '';
 
@@ -53,7 +59,8 @@ export default class StructureUrlEditor extends Vue {
     items: [
       {title: 'Internal URL', value: UrlTypeEnum.Internal},
       {title: 'External URL', value: UrlTypeEnum.External},
-      {title: 'Open Channel Advisor', value: UrlTypeEnum.openChannelAdvisor}
+      {title: 'Open Channel Advisor', value: UrlTypeEnum.openChannelAdvisor},
+      {title: 'Section or Anchor', value: UrlTypeEnum.anchor}
     ]
   }
   titleField = {
@@ -62,6 +69,12 @@ export default class StructureUrlEditor extends Vue {
     rules: [],
     disabled: this.disableTitle,
     colAttrs: {cols: this.inline ? 3 : 12},
+  }
+  anchorField = {
+    label: "Select Section",
+    placeholder: 'Select a Section',
+    rules: [],
+    colAttrs: {cols: this.inline ? 6 : 12},
   }
   productField = {
     label: "Product Model",
@@ -94,10 +107,15 @@ export default class StructureUrlEditor extends Vue {
     this.selectField.label = this.model.title ?? 'field';
     console.log(this.model, this.model.value);
     if (this.model.value) {
-      let arr = this.model.value.split('?');
-      this.route = arr[0];
-      this.query = arr.length > 1 ? arr[1] : '';
-      this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
+      if(this.model.value.startsWith('#')){
+        this.type = UrlTypeEnum.anchor;
+      }else{
+        let arr = this.model.value.split('?');
+        this.route = arr[0];
+        this.query = arr.length > 1 ? arr[1] : '';
+        this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
+      }
+
     } else {
       this.route = '';
       this.query = '';
