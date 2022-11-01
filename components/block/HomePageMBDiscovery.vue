@@ -1,6 +1,7 @@
 <template>
   <div>
-    <img src="/blocks/HomePageMBDiscovery.png" alt=""/>
+<!--    <img src="/blocks/HomePageMBDiscovery.png" alt=""/>-->
+    <img src="/blocks/HomePageMBDiscovery2.png" alt=""/>
   </div>
 </template>
 

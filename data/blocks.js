@@ -120,7 +120,7 @@ export const blocks = () => [
       {
         name: "ProductsCategoriesWithSearch",
         title: "Products Categories With Search",
-        image: "ProductsCategoriesWithSearch.png",
+        image: "ProductsCategoriesWithSearch-old.png",
       },
       {name: "ProductsSupportOptions", title: "Products Support Options", image: "ProductsSupportOptions.png",},
       {

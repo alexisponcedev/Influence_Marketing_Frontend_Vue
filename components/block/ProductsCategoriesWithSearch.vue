@@ -1,6 +1,7 @@
 <template>
   <div>
-    <img src="/blocks/ProductsCategoriesWithSearch.png" alt=""/>
+<!--    <img src="/blocks/ProductsCategoriesWithSearch.png" alt=""/>-->
+    <img src="/blocks/ProductsCategoriesWithSearch-old.png" alt=""/>
   </div>
 
 </template>

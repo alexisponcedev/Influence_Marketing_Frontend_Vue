@@ -1,6 +1,7 @@
 <template>
   <div>
-    <img src="/blocks/ProductsSupportOptions.png" alt=""/>
+<!--    <img src="/blocks/ProductsSupportOptions.png" alt=""/>-->
+    <img src="/blocks/ProductsSupportOptions-old.png" alt=""/>
   </div>
 </template>
 
