@@ -17,7 +17,6 @@
                            @move-up="moveUpBlock(i)"
                            @move-down="moveDownBlock(i)"
                            :block="block">
-<!--            <pre>{{block.name}}</pre>-->
             <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure"/>
           </blocks-container>
         </draggable>
