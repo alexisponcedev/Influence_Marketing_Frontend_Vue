@@ -117,12 +117,11 @@ export const blocks = () => [
     name: "Support Landing Page",
     blocks: [
       {name: "ProductsBannerV2", title: "Banner", image: "ProductsBannerV2.png",},
-      {
-        name: "ProductsCategoriesWithSearch",
-        title: "Products Categories With Search",
-        image: "ProductsCategoriesWithSearch-old.png",
-      },
+
+      {name: "ProductsCategoriesWithSearch",title: "Products Categories With Search",image: "ProductsCategoriesWithSearch-old.png",},
+      {name: "SupportNewProducts", title: "SupportNewProducts", image: "ProductsCategoriesWithSearch.png",},
       {name: "ProductsSupportOptions", title: "Products Support Options", image: "ProductsSupportOptions.png",},
+
       {
         name: "SupportNeedMoreWithButton",
         title: "Support Need More With Button",
