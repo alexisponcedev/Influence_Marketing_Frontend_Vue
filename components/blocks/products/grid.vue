@@ -33,7 +33,7 @@
       </div>
       <div v-else class="tw-grid tw-grid-cols-3">
 
-        <block-products-item v-for="(product , i) in products" :key="`product${i}`" :value="product"
+        <blocks-products-item v-for="(product , i) in products" :key="`product${i}`" :value="product"
                              :class="{'gray-box' : i % 2 === 0}"/>
       </div>
     </div>

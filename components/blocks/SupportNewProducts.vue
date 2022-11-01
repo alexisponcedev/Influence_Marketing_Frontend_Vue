@@ -1,5 +1,6 @@
 <template>
   <div>
+<!--    <img src="/blocks/ProductsCategoriesWithSearch.png" alt=""/>-->
     <img src="/blocks/ProductsCategoriesWithSearch.png" alt=""/>
   </div>
 
@@ -11,7 +12,7 @@ import {StructureType} from "~/models/StructureType";
 
 
 @Component
-export default class ProductsCategoriesWithSearch extends Vue {
+export default class SupportNewProducts extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop({default: true}) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: any

@@ -30,9 +30,10 @@
           <v-card>
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
-              <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
+              <form-field-select-page-route  :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
 
               <structure-editor-url
+                :disableTitle="true"
                 :inline="true"
                 v-model="editingItem"/>
                 <button @click.prevent="resetRedirect" v-if="editingItem.value !== ''" class="tw-ml-2 tw-mt-2 tw-text-blue-500 tw-bg-gray-50 tw-py-1.5 tw-px-2 tw-rounded-lg">Remove Redirect</button>

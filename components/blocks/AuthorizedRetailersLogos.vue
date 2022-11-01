@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/AuthorizedRetailersNote.png" alt=""/>
+    <img src="/blocks/AuthorizedRetailersLogos.png" alt=""/>
   </div>
 </template>
 
@@ -22,12 +22,12 @@ export default class AuthorizedRetailersNote extends Vue {
         title: 'List',
         newItem: {
           image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-          link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
+          // link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
         },
         value: [
           {
             image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-            link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
+            // link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
           },
         ]
       }

@@ -23,7 +23,7 @@ export default class StructureTextEditor extends Vue {
       {color: ["#00AAA6", "#00CCCC", "#000000", "#101010", "#252525", "#FFFFFF", "#EAEAEA", "#D9D9D9", "#F6F7FD", "#9747FF", "#1E518A", "#0C4955", "#ffbbf3", "#2b0038",]},
       {background: ["#00AAA6", "#00CCCC", "#000000", "#101010", "#252525", "#FFFFFF", "#EAEAEA", "#D9D9D9", "#F6F7FD", "#9747FF", "#1E518A", "#0C4955", '#ffbbf3', "#2b0038"]}
     ],
-    ["link", "image"],
+    ["link", "image" , 'video'],
     ["clean"]
   ]
 

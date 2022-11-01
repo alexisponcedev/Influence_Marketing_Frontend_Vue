@@ -6,7 +6,7 @@
         class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
         style="max-height: 88vh">
         <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
-          <block-container v-for="(block , i) in blocksList" :key="block.id"
+          <blocks-container v-for="(block , i) in blocksList" :key="block.id"
                            class="tw-mb-2"
                            :selectable="selectable"
                            @component-selected="componentSelected(i)"
@@ -17,13 +17,14 @@
                            @move-up="moveUpBlock(i)"
                            @move-down="moveDownBlock(i)"
                            :block="block">
-            <component :is="`block-${block.name}`" :id="block.id" v-model="block.structure"/>
-          </block-container>
+<!--            <pre>{{block.name}}</pre>-->
+            <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure"/>
+          </blocks-container>
         </draggable>
-        <block-drop/>
+        <blocks-drop/>
       </div>
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
-        <block-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
+        <blocks-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
         <structure-editor v-if="editIndex > -1"
                           :key="blocksList[editIndex].title + blocksList[editIndex].id"
                           v-model="blocksList[editIndex].structure"

@@ -2,7 +2,7 @@
   <div class='' v-if="!isEmpty">
     <h2 class="main-title tw-py-4">{{ model.title.value }}</h2>
     <div class='tw-flex tw-justify-center'>
-      <block-LandingProductItem
+      <blocks-LandingProductItem
         v-for="(item , index) in model.list.value"
         :key="index"
         :value="item"
