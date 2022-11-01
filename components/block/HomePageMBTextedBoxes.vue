@@ -18,119 +18,8 @@ export default class HomePageMBTextedBoxes extends Vue {
 
 
   reset() {
-    // this.model = {
-    //   link: {
-    //     id: 0,
-    //     type: StructureType.Url,
-    //     title: 'Link',
-    //     value: '/'
-    //   },
-    //   littleTitle: {id: 1, type: StructureType.String, Text: 'Little Title', value: ''},
-    //   list: {
-    //     id: 1,
-    //     type: StructureType.List,
-    //     title: 'Items',
-    //     newItem: {
-    //       image: {
-    //         id: 0,
-    //         type: StructureType.Image,
-    //         title: 'Upload Image',
-    //         src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-    //         alt: 'Some note about this image',
-    //       },
-    //       title: {id: 1, type: StructureType.String, title: 'Title', value: 'Televisions'},
-    //       link: {id: 2, type: StructureType.Url, title: 'Shop Now URL', value: '/products'},
-    //     },
-    //     value: [
-    //       {
-    //         backgroundImage: {
-    //           id: 0,
-    //           type: StructureType.Image,
-    //           title: 'Background Image',
-    //           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-    //           alt: 'Some note about this image',
-    //         },
-    //         image: {
-    //           id: 1,
-    //           type: StructureType.Image,
-    //           title: 'Upload Image',
-    //           src: '',
-    //           alt: 'Some note about this image',
-    //         },
-    //         title: {id: 2, type: StructureType.String, title: 'Title', value: 'Win a trip to the World Cup finals.'},
-    //         link: {id: 3, type: StructureType.Url, title: 'Shop Now URL', value: '/'},
-    //       },
-    //       {
-    //         backgroundImage: {
-    //           id: 0,
-    //           type: StructureType.Image,
-    //           title: 'Background Image',
-    //           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-    //           alt: 'Some note about this image',
-    //         },
-    //         image: {
-    //           id: 1,
-    //           type: StructureType.Image,
-    //           title: 'Upload Image',
-    //           src: '',
-    //           alt: 'Some note about this image',
-    //         },
-    //         title: {id: 2, type: StructureType.String, title: 'Title', value: 'Big. Bold. Beautiful.'},
-    //         link: {id: 3, type: StructureType.Url, title: 'Shop Now URL', value: '/'},
-    //       },
-    //       {
-    //         backgroundImage: {
-    //           id: 0,
-    //           type: StructureType.Image,
-    //           title: 'Background Image',
-    //           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-    //           alt: 'Some note about this image',
-    //         },
-    //         image: {
-    //           id: 1,
-    //           type: StructureType.Image,
-    //           title: 'Upload Image',
-    //           src: '',
-    //           alt: 'Some note about this image',
-    //         },
-    //         title: {
-    //           id: 2,
-    //           type: StructureType.String,
-    //           title: 'Title',
-    //           value: 'Immersive sound optimized just for you.'
-    //         },
-    //         link: {id: 3, type: StructureType.Url, title: 'Shop Now URL', value: '/'},
-    //       },
-    //       {
-    //         backgroundImage: {
-    //           id: 0,
-    //           type: StructureType.Image,
-    //           title: 'Background Image',
-    //           src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png',
-    //           alt: 'Some note about this image',
-    //         },
-    //         image: {
-    //           id: 1,
-    //           type: StructureType.Image,
-    //           title: 'Upload Image',
-    //           src: '',
-    //           alt: 'Some note about this image',
-    //         },
-    //         title: {
-    //           id: 2,
-    //           type: StructureType.String,
-    //           title: 'Title',
-    //           value: 'Official Sponsor of Paris Saint-Germain.'
-    //         },
-    //         link: {id: 3, type: StructureType.Url, title: 'Shop Now URL', value: '/'},
-    //       },
-    //     ]
-    //   },
-    // }
-
     this.model = {
-      linkTitle: {id: 0, type: StructureType.String, title: "Link Title", value: "See More Hisense"},
-      link: {id: 1, type: StructureType.Url, title: "Link URL", value: "/"},
+      link: {id: 1, type: StructureType.Url, title: "See More Hisense", value: "/"},
       littleTitle: {id: 2, type: StructureType.String, title: 'Little Title', value: ''},
       list: {
         id: 3,
@@ -138,8 +27,7 @@ export default class HomePageMBTextedBoxes extends Vue {
         title: "Items",
         value: [
           {
-            link: {id: 1, type: StructureType.Url, title: "Link Url", value: "/"},
-            linkTitle: {id: 2, type: StructureType.String, title: "Link Title", value: "Learn More"},
+            link: {id: 1, type: StructureType.Url, title: "Learn More", value: "/"},
             image: {
               id: 3,
               alt: "some note about this asset",
@@ -157,8 +45,7 @@ export default class HomePageMBTextedBoxes extends Vue {
             }
           },
           {
-            link: {id: 1, type: StructureType.Url, title: "Link Url", value: "/"},
-            linkTitle: {id: 2, type: StructureType.String, title: "Link Title", value: "View Our Laser TVs"},
+            link: {id: 1, type: StructureType.Url, title: "View Our Laser TVs", value: "/"},
             image: {
               id: 3,
               alt: "some note about this asset",
@@ -176,8 +63,7 @@ export default class HomePageMBTextedBoxes extends Vue {
             }
           },
           {
-            link: {id: 1, type: StructureType.Url, title: "Link Url", value: "/"},
-            linkTitle: {id: 2, type: StructureType.String, title: "Link Title", value: "Learn More"},
+            link: {id: 1, type: StructureType.Url, title: "Learn More", value: "/"},
             image: {
               id: 3,
               alt: "some note about this asset",
@@ -195,8 +81,7 @@ export default class HomePageMBTextedBoxes extends Vue {
             }
           },
           {
-            link: {id: 1, type: StructureType.Url, title: "Link Url", value: "/"},
-            linkTitle: {id: 2, type: StructureType.String, title: "Link Title", value: "View Our Soundbars"},
+            link: {id: 1, type: StructureType.Url, title: "View Our Soundbars", value: "/"},
             image: {
               id: 3,
               alt: "some note about this asset",
@@ -215,8 +100,7 @@ export default class HomePageMBTextedBoxes extends Vue {
           },
         ],
         newItem: {
-          link: {id: 1, type: StructureType.Url, title: "Link Url", value: "/"},
-          linkTitle: {id: 2, type: StructureType.String, title: "Link Title", value: "Learn More"},
+          link: {id: 1, type: StructureType.Url, title: "Learn More", value: "/"},
           image: {
             id: 3,
             alt: "some note about this asset",
@@ -233,7 +117,7 @@ export default class HomePageMBTextedBoxes extends Vue {
             title: "Background Image"
           }
         },
-      }
+      },
     }
   }
 
