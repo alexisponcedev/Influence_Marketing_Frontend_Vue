@@ -333,6 +333,19 @@ export const blocks = () => [
       // {name: "Resources", title: "Resources", image: "Resources.png"},
     ],
   },
+  {
+    name: "EWP",
+    blocks: [
+      {name: "ExtendedWarrantyBanner", title: "Extended Warranty Banner", image: "ExtendedWarrantyBanner.png"},
+      {name: "ExtendedWarrantyProductsSlider", title: "Extended Warranty Products Slider", image: "ExtendedWarrantyProductsSlider.png"},
+      {name: "ExtendedWarrantyTextBlock", title: "Extended Warranty Text Block", image: "ExtendedWarrantyTextBlock.png"},
+      {name: "ExtendedWarrantyFeatureBlocks", title: "Extended Warranty Feature Blocks", image: "ExtendedWarrantyFeatureBlocks.png"},
+      {name: "ExtendedWarrantyFAQ", title: "Extended Warranty FAQ", image: "ExtendedWarrantyFAQ.png"},
+      {name: "ExtendedWarrantyProductGrid", title: "Extended Warranty Product Grid", image: "ExtendedWarrantyProductGrid.png"},
+      {name: "ExtendedWarrantyWizard", title: "Extended Warranty Wizard", image: "ExtendedWarrantyWizard.png"},
+      {name: "ExtendedWarrantyPaymentStatus", title: "Extended Warranty Payment Status", image: "ExtendedWarrantyPaymentStatus.png"},
+    ],
+  },
 
   {
     name: "Forms",

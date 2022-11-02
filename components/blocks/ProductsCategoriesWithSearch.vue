@@ -221,8 +221,6 @@ export default class ProductsCategoriesWithSearch extends Vue {
     this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
     if (this.isEmpty) this.reset();
     else{
-      // console.log(this.model);
-
       this.model.list.value.forEach((item: any) => {
         if(item.category) item.category.items = this.categories;
       })
