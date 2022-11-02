@@ -16,30 +16,39 @@ export default class BlockFeatured extends Vue {
 
   reset() {
     this.model = {
-      list : {
-        id : 0 ,
-        type : StructureType.List,
-        title : 'List',
-        newItem : {
-          title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'Introducing our CMO, Mr. McHale.'},
-          image : {id : 1 , type : StructureType.Image , title : 'Image' , src : '' , alt : 'Image Alt'},
-          link : {id : 2 , type : StructureType.Url , title : 'Learn More' , value : '/'}
+
+      list: {
+        id: 0,
+        type: StructureType.List,
+        title: 'List',
+        newItem: {
+          title: {id: 0, type: StructureType.String, title: 'Title', value: 'Introducing our CMO, Mr. McHale.'},
+          image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+          video: {id: 2, type: StructureType.Url, title: 'Video', value: ''},
+          text: {id: 3, type: StructureType.String, title: 'Text', value: ''},
+          link: {id: 4, type: StructureType.Url, title: 'Learn More', value: ''}
         },
-        value : [
+        value: [
           {
-            title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'Introducing our CMO, Mr. McHale.'},
-            image : {id : 1 , type : StructureType.Image , title : 'Image' , src : '' , alt : 'Image Alt'},
-            link : {id : 2 , type : StructureType.Url , title : 'Learn More' , value : '/'}
+            title: {id: 0, type: StructureType.String, title: 'Title', value: 'Introducing our CMO, Mr. McHale.'},
+            image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+            video: {id: 2, type: StructureType.Url, title: 'Video', value: ''},
+            text: {id: 3, type: StructureType.String, title: 'Text', value: ''},
+            link: {id: 4, type: StructureType.Url, title: 'Learn More', value: ''}
           },
           {
-            title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'TVs big on specs, low on B.S.'},
-            image : {id : 1 , type : StructureType.Image , title : 'Image' , src : '' , alt : 'Image Alt'},
-            link : {id : 2 , type : StructureType.Url , title : 'Learn More' , value : '/'}
+            title: {id: 0, type: StructureType.String, title: 'Title', value: 'TVs big on specs, low on B.S.'},
+            image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+            video: {id: 2, type: StructureType.Url, title: 'Video', value: ''},
+            text: {id: 3, type: StructureType.String, title: 'Text', value: ''},
+            link: {id: 4, type: StructureType.Url, title: 'Learn More', value: ''}
           },
           {
-            title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'Kitchen-Suite that’s simply sweet.'},
-            image : {id : 1 , type : StructureType.Image , title : 'Image' , src : '' , alt : 'Image Alt'},
-            link : {id : 2 , type : StructureType.Url , title : 'Learn More' , value : '/'}
+            title: {id: 0, type: StructureType.String, title: 'Title', value: 'Kitchen-Suite that’s simply sweet.'},
+            image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+            video: {id: 2, type: StructureType.Url, title: 'Video', value: ''},
+            text: {id: 3, type: StructureType.String, title: 'Text', value: ''},
+            link: {id: 4, type: StructureType.Url, title: 'Learn More', value: ''}
           },
         ]
       }

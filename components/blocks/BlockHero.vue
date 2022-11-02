@@ -16,9 +16,10 @@ export default class BlockHero extends Vue {
 
   reset() {
     this.model = {
-      title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'It all starts with X'},
-      subtitle : {id : 1 , type : StructureType.String , title : 'Subtitle' , value : 'Pre-order the limited edition ULED X today.'},
-      link : {id : 2 , type : StructureType.Url , title : 'Sign Up Now' , value : ''},
+      backgroundImage : {id : 0 , type : StructureType.Image , title : "Image" , src : '' , alt : ''},
+      title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'It all starts with X'},
+      subtitle : {id : 2 , type : StructureType.String , title : 'Subtitle' , value : 'Pre-order the limited edition ULED X today.'},
+      link : {id : 3 , type : StructureType.Url , title : 'Sign Up Now' , value : ''},
     }
   }
 
