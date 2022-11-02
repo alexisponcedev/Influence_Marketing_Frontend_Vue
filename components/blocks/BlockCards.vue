@@ -16,103 +16,84 @@ export default class BlockCards extends Vue {
 
   reset() {
     this.model = {
-      title: {id: 0, type: StructureType.String, title: "Title", value: "With a lot more to love."},
+      title: {id: 0, type: StructureType.Text, title: "Title", value: "With a lot more to love."},
       list: {
         id: 2,
         type: StructureType.List,
         title: "Items",
+        newItem: {
+          title: {id: 0, type: StructureType.String, title: "Title", value: "Win a trip to the World Cup finals."},
+          backgroundImage: {
+            id: 1,
+            alt: "some note about this asset",
+            src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355af8cdb941.webp",
+            type: StructureType.Image,
+            title: "Background Image"
+          },
+          topImage: {
+            id: 2,
+            type: StructureType.Image,
+            title: "Top Image",
+            alt: "some note about this asset",
+            src: "",
+          },
+          bottomImage: {
+            id: 3,
+            type: StructureType.Image,
+            title: "Bottom Image",
+            src: "",
+            alt: "some note about this asset",
+          },
+          fullWidth: {
+            id: 4,
+            type: StructureType.Select,
+            title: 'Full Width',
+            value: false,
+            items: [
+              {title: 'True', value: true},
+              {title: 'False', value: false},
+            ]
+          },
+          link: {id: 5, type: StructureType.Url, title: "Learn More", value: "/"},
+        },
         value: [
           {
-            link: {id: 1, type: StructureType.Url, title: "Learn More", value: "/"},
-            image: {
-              id: 3,
-              alt: "some note about this asset",
-              src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355af9c41352.webp",
-              type: "image",
-              title: "Upload Image"
-            },
-            title: {id: 4, type: StructureType.String, title: "Title", value: "Win a trip to the World Cup finals."},
+            title: {id: 0, type: StructureType.String, title: "Title", value: "Win a trip to the World Cup finals."},
             backgroundImage: {
-              id: 5,
+              id: 1,
               alt: "some note about this asset",
               src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355af8cdb941.webp",
               type: StructureType.Image,
               title: "Background Image"
-            }
-          },
-          {
-            link: {id: 1, type: StructureType.Url, title: "View Our Laser TVs", value: "/"},
-            image: {
-              id: 3,
-              alt: "some note about this asset",
-              src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355af628917b.webp",
-              type: "image",
-              title: "Upload Image"
             },
-            title: {id: 4, type: StructureType.String, title: "Title", value: "Big. Bold. Beautiful."},
-            backgroundImage: {
-              id: 5,
-              alt: "some note about this asset",
-              src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355a61b1b5c2.webp",
+            topImage: {
+              id: 2,
               type: StructureType.Image,
-              title: "Background Image"
-            }
-          },
-          {
-            link: {id: 1, type: StructureType.Url, title: "Learn More", value: "/"},
-            image: {
-              id: 3,
-              alt: "some note about this asset",
-              src: null,
-              type: "image",
-              title: "Upload Image"
-            },
-            title: {id: 4, type: StructureType.String, title: "Title", value: "Big. Bold. Beautiful."},
-            backgroundImage: {
-              id: 5,
-              alt: "some note about this asset",
-              src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355b01fd4758.webp",
-              type: StructureType.Image,
-              title: "Background Image"
-            }
-          },
-          {
-            link: {id: 1, type: StructureType.Url, title: "View Our Soundbars", value: "/"},
-            image: {
-              id: 3,
+              title: "Top Image",
               alt: "some note about this asset",
               src: "",
-              type: "image",
-              title: "Upload Image"
             },
-            title: {id: 4, type: StructureType.String, title: "Title", value: "Big. Bold. Beautiful."},
-            backgroundImage: {
-              id: 5,
-              alt: "some note about this asset",
-              src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355affe35215.webp",
+            bottomImage: {
+              id: 3,
               type: StructureType.Image,
-              title: "Background Image"
-            }
+              title: "Bottom Image",
+              src: "",
+              alt: "some note about this asset",
+            },
+            fullWidth: {
+              id: 4,
+              type: StructureType.Select,
+              title: 'Full Width',
+              value: false,
+              items: [
+                {title: 'True', value: true},
+                {title: 'False', value: false},
+              ]
+            },
+            link: {id: 5, type: StructureType.Url, title: "Learn More", value: "/"},
           },
         ],
-        newItem: {
-          link: {id: 1, type: StructureType.Url, title: "Learn More", value: "/"},
-          image: {
-            id: 3,
-            alt: "some note about this asset",
-            src: null,
-            type: "image",
-            title: "Upload Image"
-          },
-          title: {id: 4, type: StructureType.String, title: "Title", value: "Big. Bold. Beautiful."},
-          backgroundImage: {
-            id: 5,
-            alt: "some note about this asset",
-            src: "http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/66355b01fd4758.webp",
-            type: StructureType.Image,
-            title: "Background Image"
-          }
-        },
+
       },
       link: {id: 2, type: StructureType.Url, title: "See More News", value: "/"},
     }

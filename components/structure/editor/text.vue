@@ -47,4 +47,8 @@ export default class StructureTextEditor extends Vue {
 .ql-editor strong {
   font-weight: bold !important;
 }
+.ql-editor .ql-video{
+  width: 100%;
+  aspect-ratio: 854/480;
+}
 </style>

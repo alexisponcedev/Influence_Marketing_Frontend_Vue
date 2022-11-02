@@ -16,7 +16,7 @@ export default class SponsorshipDescriptionGrayBg extends Vue {
 
   reset() {
     this.model = {
-      text : {id : 0, type : StructureType.String , title : 'Text' , value : 'Hisense sponsorship choices align beautifully with the products we make. Our quest for brand excellence encompasses not just our electronics and appliances we make, but also the partners we choose to be associated with. We take immense pride in being associated with many of the most reputable and esteemed sports properties in the world.'},
+      text : {id : 0, type : StructureType.Text , title : 'Text' , value : 'Hisense sponsorship choices align beautifully with the products we make. Our quest for brand excellence encompasses not just our electronics and appliances we make, but also the partners we choose to be associated with. We take immense pride in being associated with many of the most reputable and esteemed sports properties in the world.'},
     }
   }
 
