@@ -1,12 +1,12 @@
 <template>
   <div class="tw-px-2">
-    <div class="tw-mb-1"> {{ model.title }}</div>
+    <div class="tw-mb-1" v-if="showTitle"> {{ model.title }}</div>
 
     <div class="tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-pt-1"
          :class="{'tw-flex tw-space-x-2' : inline}"
          style="background-color: #fdfdfd">
 
-      <form-field-text :field="titleField" v-model="model.title"/>
+      <form-field-text v-if="showTitle" :field="titleField" v-model="model.title"/>
 
       <form-field-select :field="typeField" v-model="type"/>
 
@@ -37,7 +37,14 @@ import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 @Component
 export default class StructureUrlEditor extends Vue {
 
+  @Prop({type: Array, default: () => [
+      {title: 'Internal URL', value: UrlTypeEnum.Internal},
+      {title: 'External URL', value: UrlTypeEnum.External},
+      {title: 'Open Channel Advisor', value: UrlTypeEnum.openChannelAdvisor},
+      {title: 'Section or Anchor', value: UrlTypeEnum.anchor}
+    ]}) options!: any
   @Prop({type: Boolean, default: false}) disableTitle!: Boolean
+  @Prop({type: Boolean, default: true}) showTitle!: Boolean
   @Prop({type: Boolean, default: false}) inline!: Boolean
   @VModel({type: StructureField}) model!: StructureField
 
@@ -56,12 +63,7 @@ export default class StructureUrlEditor extends Vue {
     'item-text': 'title',
     'item-value': 'value',
     colAttrs: {cols: this.inline ? 2 : 12},
-    items: [
-      {title: 'Internal URL', value: UrlTypeEnum.Internal},
-      {title: 'External URL', value: UrlTypeEnum.External},
-      {title: 'Open Channel Advisor', value: UrlTypeEnum.openChannelAdvisor},
-      {title: 'Section or Anchor', value: UrlTypeEnum.anchor}
-    ]
+    items: this.options
   }
   titleField = {
     label: "Url Title",

@@ -19,7 +19,8 @@
         <v-tabs show-arrows v-model="tab" background-color="transparent">
           <v-tab href="#Details">Page Details</v-tab>
           <v-tab href="#Metas">Page Metas</v-tab>
-          <!--          <v-tab href="#Live">Live Preview</v-tab>-->
+          <v-tab href="#Redirection">Redirection</v-tab>
+<!--          <v-tab href="#Live">Live Preview</v-tab>-->
         </v-tabs>
       </v-col>
     </v-row>
@@ -30,29 +31,94 @@
           <v-card>
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
-              <form-field-select-page-route  :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
+              <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
 
-              <structure-editor-url
-                :disableTitle="true"
-                :inline="true"
-                v-model="editingItem"/>
-                <button @click.prevent="resetRedirect" v-if="editingItem.value !== ''" class="tw-ml-2 tw-mt-2 tw-text-blue-500 tw-bg-gray-50 tw-py-1.5 tw-px-2 tw-rounded-lg">Remove Redirect</button>
+              <v-col>
+                <div v-if="Page.redirect" class="tw-flex tw-w-min tw-whitespace-nowrap tw-items-center tw-space-x-2 tw-bg-gray-50 tw-rounded-lg
+                tw-p-2 tw-cursor-pointer" @click="tab='Redirection'">
+                  <div>This page redirect to <span class="tw-font-bold tw-text-red-500">{{Page.redirect}}</span></div>
+<!--                  <button  class=""><v-icon small>mdi-pencil</v-icon></button>-->
+                </div>
+              </v-col>
+
             </v-card-text>
           </v-card>
+          <button
+            class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+            @click="submit">Save
+          </button>
+          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
         </v-tab-item>
+
         <v-tab-item value="Metas">
           <form-field-meta :field="formFields[2]" v-model="Page.meta" :route="Page.route"/>
+          <button
+            class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+            @click="submit">Save
+          </button>
+
+        </v-tab-item>
+
+        <v-tab-item value="Live">
+          <iframe :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-screen"/>
+        </v-tab-item>
+
+        <v-tab-item value="Redirection">
+          <div v-if="Page.redirect"
+               class="tw-w-full tw-bg-white tw-rounded-xl
+               tw-p-3  tw-flex tw-items-center tw-justify-between">
+            <div v-if="Page.redirect">
+              <div class=" tw-ml-2 tw-mb-1">Redirects To</div>
+              <h6 class="tw-ml-2">{{Page.redirect}}</h6>
+              <div class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
+                <span v-if="Page.redirect.startsWith('Https://')">External URL</span>
+                <span v-else >Internal URL</span>
+              </div>
+            </div>
+
+            <div class="tw-space-x-1">
+              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openRedirectModal"><v-icon>mdi-pencil</v-icon></button>
+              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="resetRedirect"><v-icon>mdi-delete</v-icon></button>
+            </div>
+
+          </div>
+
+          <button v-else
+            class="tw-w-full tw-bg-white tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl tw-text-center
+            tw-py-10 hover:tw-bg-gray-50"
+            @click.prevent="openRedirectModal">
+            Add Redirection
+          </button>
+
         </v-tab-item>
       </v-tabs-items>
     </v-form>
-    <button
-      class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-      @click="submit">Save
-    </button>
-
-    <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
+
+    <v-dialog v-model="showRedirectModal" max-width="500">
+      <v-card>
+        <v-card-title>Page Redirection</v-card-title>
+        <v-card-text>
+          <structure-editor-url
+            :showTitle="false"
+            :options="[
+              {title: 'Internal URL', value: UrlTypeEnum.Internal},
+              {title: 'External URL', value: UrlTypeEnum.External},
+            ]"
+            :inline="false"
+            v-model="redirectionObj"/>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn elevation="0" color="grey darken-4 white--text" block class="btn" @click="saveRedirect">
+            Add
+          </v-btn>
+        </v-card-actions>
+
+      </v-card>
+
+
+    </v-dialog>
 
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>
@@ -65,6 +131,7 @@ import {Page} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
+import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 
 @Component({
   components: {HoverButton},
@@ -73,11 +140,15 @@ import HoverButton from "~/components/base/HoverButton.vue";
 export default class PageForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
+  UrlTypeEnum = UrlTypeEnum;
+
   Api = Api;
 
   tab = "";
 
-  editingItem: any = {id: -1, title: 'Redirect To', value: ''};
+  showRedirectModal: Boolean = false;
+
+  redirectionObj: any = {id: -1, title: 'Redirect To', value: ''};
 
   route: string = '';
 
@@ -146,7 +217,7 @@ export default class PageForm extends Vue {
   async getEntity() {
     if (this.editMode) {
       this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-      this.editingItem.value = this.Page.redirect;
+      this.redirectionObj.value = this.Page.redirect;
     }
   }
 
@@ -179,10 +250,10 @@ export default class PageForm extends Vue {
 
   async submit() {
     if (this.formValidate()) {
-      if (this.editingItem.value)
-        this.Page.redirect = this.editingItem.value;
-      else
-        this.Page.redirect = '';
+      // if (this.redirectionObj.value)
+      //   this.Page.redirect = this.redirectionObj.value;
+      // else
+      //   this.Page.redirect = '';
 
       if (this.editMode)
         await Api.Page.update({
@@ -202,7 +273,7 @@ export default class PageForm extends Vue {
   }
 
   gotoLiveWebsite() {
-    window.open('https://public.stage.hisenseportal.com' + this.Page.route, '_blank');
+    window.open(this.liveWebsite, '_blank');
   }
 
   goToPageBuilder() {
@@ -216,9 +287,11 @@ export default class PageForm extends Vue {
       this.openPageBuilder();
   }
 
-  // redirectUrlUpdated(item : any){
-  //   this.Page.redirect = item.value;
-  // }
+
+
+  get liveWebsite() {
+    return 'https://public.stage.hisenseportal.com' + this.Page.route
+  }
 
   openPageBuilder() {
     this.$router.push(`/page/edit/${this.Page.id}/PageBuilder`);
@@ -251,7 +324,7 @@ export default class PageForm extends Vue {
   @Watch('pageRoute')
   onPageRouteChanged() {
     if (this.Page.meta)
-      this.Page.meta!.forEach((item : any) => {
+      this.Page.meta!.forEach((item: any) => {
         if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
       })
   }
@@ -268,14 +341,26 @@ export default class PageForm extends Vue {
   @Watch('pageTitle')
   onPageTitleChanged() {
     if (this.Page.meta)
-      this.Page.meta!.forEach((item : any) => {
+      this.Page.meta!.forEach((item: any) => {
         if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
         if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
       })
   }
-  resetRedirect(){
-    // this.Page.redirect = '';
-    this.editingItem.value = '';
+
+  resetRedirect() {
+    this.Page.redirect = '';
+    this.submit();
+  }
+
+  openRedirectModal() {
+    this.redirectionObj.value = this.Page.redirect;
+    this.showRedirectModal = true;
+  }
+
+  saveRedirect(){
+    this.Page.redirect = this.redirectionObj.value;
+    this.showRedirectModal = false;
+    this.submit();
   }
 }
 </script>
