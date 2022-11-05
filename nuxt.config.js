@@ -58,6 +58,7 @@ export default {
     '~/plugins/apexChart.client.js',
     '~/plugins/vue-draggable.js',
     '~/plugins/date-picker.js',
+    '~/plugins/qrcode.client.js',
     '~/plugins/vue2Editor.js'
   ],
 

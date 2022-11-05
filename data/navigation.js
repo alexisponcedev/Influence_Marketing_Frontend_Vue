@@ -6,7 +6,7 @@ export const items = () => [
     to: "page/all",
   },
   {
-    title: "PDP",
+    title: "Products",
     icon: "mdi-border-all",
     group: "product",
     to: "product",
