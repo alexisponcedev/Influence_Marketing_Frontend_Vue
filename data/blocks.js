@@ -413,6 +413,13 @@ export const blocks = () => [
       {name: "CESPX1LikeBox", title: "CESPX1LikeBox", image: "CESPX1LikeBox.png"},
     ],
   },
+  {
+    name: "Model Selection",
+    blocks: [
+      {name: "ExtendedWarrantySearchProduct", title: "Extended Warranty Search Product", image: "ExtendedWarrantySearchProduct.png"},
+      {name: "ExtendedWarrantyProductsGrid", title: "Extended Warranty Products Grid", image: "ExtendedWarrantyProductsGrid.png"},
+    ],
+  },
 
 
 
