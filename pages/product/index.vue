@@ -191,7 +191,7 @@ export default class ProductsPage extends Vue {
       .then(res => {
         Api.Page.create({
           title: product.name,
-          route: '/support/models/' + slug,
+          route: '/support/' + slug,
           model_id: product.id,
           model_type: 'support',
         }).then(support => {
