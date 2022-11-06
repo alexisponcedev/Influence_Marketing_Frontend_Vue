@@ -16,9 +16,29 @@ export default class ExtendedWarrantyPaymentStatus extends Vue {
 
   reset() {
     this.model = {
-      image : {id : 0 , type : StructureType.Image , title : 'Image' , src : '' , alt : ''},
-      text : {id : 1 , type : StructureType.Text , title : 'Text' , value : ''},
-      link : {id : 2 , type : StructureType.Url , title : 'Link' , value : ''}
+      list: {
+        id: 0,
+        type: StructureType.List,
+        title: 'List',
+        newItem: {
+          image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+          text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Success'},
+          link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
+        },
+        value: [
+          {
+            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+            text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Success'},
+            link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
+          },
+          {
+            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+            text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Failed'},
+            link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
+          }
+        ]
+      }
+
     }
   }
 

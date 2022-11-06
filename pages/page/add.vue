@@ -19,7 +19,10 @@
         <v-tabs show-arrows v-model="tab" background-color="transparent">
           <v-tab href="#Details">Page Details</v-tab>
           <v-tab href="#Metas">Page Metas</v-tab>
-          <v-tab v-if="Page.id > 0" href="#Redirection"> <v-icon v-if="Page.redirect" class="red--text tw-mr-0.5" small>mdi-arrow-right-bold-circle-outline</v-icon> Redirection</v-tab>
+          <v-tab v-if="Page.id > 0" href="#Redirection">
+            <v-icon v-if="Page.redirect" class="red--text tw-mr-0.5" small>mdi-arrow-right-bold-circle-outline</v-icon>
+            Redirection
+          </v-tab>
           <v-tab v-if="Page.id > 0" href="#qrcode">QR Code</v-tab>
         </v-tabs>
       </v-col>
@@ -33,12 +36,12 @@
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
               <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
 
-<!--              <v-col>-->
-<!--                <div v-if="Page.redirect" class="tw-flex tw-w-min tw-whitespace-nowrap tw-items-center tw-space-x-2 tw-bg-gray-50 tw-rounded-lg-->
-<!--                tw-p-2 tw-cursor-pointer" @click="tab='Redirection'">-->
-<!--                  <div>This page redirect to <span class="tw-font-bold tw-text-red-500">{{ Page.redirect }}</span></div>-->
-<!--                </div>-->
-<!--              </v-col>-->
+              <!--              <v-col>-->
+              <!--                <div v-if="Page.redirect" class="tw-flex tw-w-min tw-whitespace-nowrap tw-items-center tw-space-x-2 tw-bg-gray-50 tw-rounded-lg-->
+              <!--                tw-p-2 tw-cursor-pointer" @click="tab='Redirection'">-->
+              <!--                  <div>This page redirect to <span class="tw-font-bold tw-text-red-500">{{ Page.redirect }}</span></div>-->
+              <!--                </div>-->
+              <!--              </v-col>-->
 
             </v-card-text>
           </v-card>
@@ -49,7 +52,7 @@
           <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
         </v-tab-item>
         <v-tab-item value="Metas">
-<!--          <form-field-meta :field="formFields[2]" v-model="Page.meta" :route="Page.route"/>-->
+          <!--          <form-field-meta :field="formFields[2]" v-model="Page.meta" :route="Page.route"/>-->
           <form-field-meta :field="formFields[2]" v-model="Page"/>
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
@@ -96,19 +99,24 @@
         <v-tab-item value="qrcode">
 
           <div class="tw-flex tw-space-x-4">
-            <div class="tw-w-60 tw-h-60 tw-rounded-xl tw-bg-white tw-p-3 ">
-
-              <qr-code
-                text="https://goo.gl/9eIWP9"
-                size="216"
-                color="#000"
-                bg-color="#fff"
-                error-level="L"/>
-
+            <div class="tw-space-y-2">
+              <div class="tw-w-60 tw-min-h-60 tw-rounded-xl tw-bg-white tw-p-3 " id="qrcodeViewer">
+                <qr-code
+                  :text="qrcodeText"
+                  size="216"
+                  color="#000"
+                  bg-color="#fff"
+                  error-level="L"/>
+              </div>
+              <button href="javascript:" class="tw-w-full tw-rounded-lg tw-text-center tw-py-2 tw-bg-white"
+                      @click.prevent="clickDownload">Download
+              </button>
 
             </div>
 
             <div class="tw-bg-white tw-flex-1 tw-rounded-xl tw-p-3">
+              <input type="text" v-model="qrcodeText"/>
+              <pre>{{ qrcodeText }}</pre>
               here is the links section
             </div>
           </div>
@@ -154,6 +162,9 @@ import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 
+
+import html2canvas from 'html2canvas';
+
 @Component({
   components: {HoverButton},
   layout: "panel"
@@ -185,6 +196,8 @@ export default class PageForm extends Vue {
     model_id: 0,
     model_type: ''
   };
+
+  qrcodeText: string = 'this is a test';
 
   locations: Array<{ title: string; to: string }> = [];
 
@@ -302,7 +315,6 @@ export default class PageForm extends Vue {
       this.openPageBuilder();
   }
 
-
   get liveWebsite() {
     return 'https://public.stage.hisenseportal.com' + this.Page.route
   }
@@ -327,22 +339,6 @@ export default class PageForm extends Vue {
     }
   }
 
-  // get pageTitle() {
-  //   return this.Page.title;
-  // }
-
-  // get pageRoute() {
-  //   return this.Page.route;
-  // }
-
-  // @Watch('pageRoute')
-  // onPageRouteChanged() {
-  //   if (this.Page.meta && Array.isArray(this.Page.meta))
-  //     this.Page.meta!.forEach((item: any) => {
-  //       if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.Page.route;
-  //     })
-  // }
-
   pageTitleChanged() {
     let parentRoute = '/';
     if (this.Page.route && this.Page.route !== '') {
@@ -351,14 +347,6 @@ export default class PageForm extends Vue {
     }
     this.Page.route = parentRoute + this.Page.title
   }
-
-  // @Watch('pageTitle')
-  // onPageTitleChanged() {
-  //   if (this.Page.meta) this.Page.meta!.forEach((item: any) => {
-  //       if (item.rel && item.rel.includes('og:title')) item.content = this.Page.title;
-  //       if (item.rel && item.rel === 'blank' && item.name === 'title') item.content = this.Page.title;
-  //     })
-  // }
 
   resetRedirect() {
     this.Page.redirect = '';
@@ -376,11 +364,25 @@ export default class PageForm extends Vue {
     this.submit();
   }
 
-  onDataUrlChange(dataUrl: string) {
-    console.log(dataUrl);
-    // this.dataUrl = dataUrl
+  clickDownload() {
+    html2canvas(document.querySelector("#qrcodeViewer") as any)
+      .then(canvas => {
+        let a = document.createElement("a");
+        a.href = canvas.toDataURL("image/png");
+        a.download = "Image.png";
+        a.click();
+        a.remove();
+      });
   }
-
-
 }
 </script>
+
+<style scoped>
+a[role='anchor'] {
+  color: #002bff;
+  width: 100%;
+  text-align: center;
+  display: block;
+  padding: 2px 0px 8px;
+}
+</style>

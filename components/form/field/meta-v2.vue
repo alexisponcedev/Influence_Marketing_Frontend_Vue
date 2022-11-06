@@ -245,7 +245,7 @@ export default class TextMetaFormField extends Vue {
   }
 
   get customTags() {
-    return this.model.filter(i => i.rel === 'blank' && i.name !== 'title' && i.name !== 'description')
+    return this.model.filter((i : MetaInterface) => i.rel === 'blank' && i.name !== 'title' && i.name !== 'description')
   }
 }
 </script>
