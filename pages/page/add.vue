@@ -365,7 +365,7 @@ export default class PageForm extends Vue {
   }
 
   clickDownload() {
-    html2canvas(document.querySelector("#qrcodeViewer"))
+    html2canvas(document.querySelector("#qrcodeViewer") as any)
       .then(canvas => {
         let a = document.createElement("a");
         a.href = canvas.toDataURL("image/png");
