@@ -8,8 +8,8 @@
           <v-tab :href="`#${PageType.all}`">All Pages</v-tab>
           <v-tab :href="`#${PageType.landing}`">Landing Pages</v-tab>
           <v-tab :href="`#${PageType.static}`">Static Pages</v-tab>
-          <v-tab :href="`#${PageType.product}`">PDP Pages</v-tab>
-          <v-tab :href="`#${PageType.support}`">Support Pages</v-tab>
+          <v-tab :href="`#${PageType.product}`">PDP</v-tab>
+          <v-tab :href="`#${PageType.support}`">Support</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
