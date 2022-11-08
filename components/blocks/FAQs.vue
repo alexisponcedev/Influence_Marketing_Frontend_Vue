@@ -68,6 +68,7 @@ export default class HomeFAQs extends Vue {
           },
         ]
       },
+      title: { id: 1, type: StructureType.String, title: 'Title', value: 'Frequently Asked Questions' },
     }
   }
 
