@@ -106,7 +106,7 @@ export default class EntityForm extends Vue {
 
   redirectionCodeField = {
     label: 'Redirection Code',
-    rules: [],
+    rules: [Validation.required],
     'item-text': 'title',
     'item-value': 'value',
     colAttrs: {cols: 3},
@@ -154,7 +154,7 @@ export default class EntityForm extends Vue {
         to: "/redirection",
       },
       {
-        title: this.Redirect.redirect_url || "",
+        title: 'Redirect id:' + this.Redirect.id || "",
         to: "/redirection/edit/" + this.Redirect.id!,
       },
     ];
@@ -169,7 +169,7 @@ export default class EntityForm extends Vue {
     if (this.editMode)
     {
       this.Redirect = (await Api.Redirect.get(+this.$route.params.id)) as Redirect;
-      this.redirectionObj.redirection_url;
+      this.redirectionObj.value = this.Redirect.redirect_url;
     }
   }
 
