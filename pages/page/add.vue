@@ -321,7 +321,7 @@ export default class PageForm extends Vue {
   }
 
   get liveWebsite() {
-    return 'https://public-stage.hisenseportal.com' + this.Page.route
+    return 'https://public.stage.hisenseportal.com' + this.Page.route
   }
 
   openPageBuilder() {

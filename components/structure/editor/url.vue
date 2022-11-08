@@ -21,10 +21,8 @@
       <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor" :field="productField" v-model="productModel"/>
 
       <structure-editor-id-selector v-if="type === UrlTypeEnum.anchor" :field="anchorField" v-model="model"/>
-
-
     </div>
-    <p class="tw-text-blue-500 tw-my-1">{{ model.value }}</p>
+    <p class="tw-text-blue-500 tw-my-1 tw-pl-1">{{ model.value }}</p>
 
   </div>
 
@@ -112,7 +110,6 @@ export default class StructureUrlEditor extends Vue {
 
   prepare() {
     this.selectField.label = this.model.title ?? 'field';
-    console.log(this.model, this.model.value);
     if (this.model && this.model.value) {
       if (this.model.value.startsWith('#')) {
         this.type = UrlTypeEnum.anchor;
