@@ -6,17 +6,18 @@
         class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
         style="max-height: 88vh">
         <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
-          <blocks-container v-for="(block , i) in blocksList" :key="block.id"
-                           class="tw-mb-2"
-                           :selectable="selectable"
-                           @component-selected="componentSelected(i)"
-                           @edit="editBlock(i)"
-                           @delete="deleteBlock(i)"
-                           @duplicate="duplicateBlock(i)"
-                           @reset="resetBlock(i)"
-                           @move-up="moveUpBlock(i)"
-                           @move-down="moveDownBlock(i)"
-                           :block="block">
+          <blocks-container
+            v-for="(block , i) in blocksList" :key="block.id"
+            class="tw-mb-2"
+            :selectable="selectable"
+            @component-selected="componentSelected(i)"
+            @edit="editBlock(i)"
+            @delete="deleteBlock(i)"
+            @duplicate="duplicateBlock(i)"
+            @reset="resetBlock(i)"
+            @move-up="moveUpBlock(i)"
+            @move-down="moveDownBlock(i)"
+            :block="block">
             <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure"/>
           </blocks-container>
         </draggable>

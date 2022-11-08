@@ -24,6 +24,12 @@ export const items = () => [
     to: "menu",
   },
   {
+    title: "Redirection",
+    icon: "mdi-undo-variant",
+    group: "redirection",
+    to: "redirection",
+  },
+  {
     title: "Templates",
     icon: "mdi-file-outline",
     group: "template",

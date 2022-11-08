@@ -2,9 +2,7 @@
 
   <div class="tw-flex tw-items-center tw-justify-center tw-py-4 ">
     <div :style="{'width' : width + 'px'}">
-      <editor v-model="model.text"/>
-
-<!--      <structure-editor-text v-if="model.text" v-model="model.text" placeholder="please enter the content ..."/>-->
+      <structure-editor-text v-if="model.text" v-model="model.text" placeholder="please enter the content ..."/>
     </div>
   </div>
 
@@ -44,7 +42,7 @@ export default class BlockCommercialBecomeAPartner extends Vue {
           id: 2,
           type: StructureType.Null,
           title: "",
-          value: "<p>Welcome to the text editor</p> <p>please enter your content ...</p>",
+          value: "",
         },
       }
     }
