@@ -1,6 +1,6 @@
 export  enum UrlTypeEnum {
   Internal = 'internal',
-  External = 'external',
+  Custom = 'custom',
   openChannelAdvisor = 'openChannelAdvisor',
   anchor = 'anchor'
 }

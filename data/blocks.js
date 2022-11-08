@@ -53,8 +53,9 @@ export const BLOCKS = () => [
   {
     name: "Products",
     blocks: [
-      {name: "ProductsBanner", title: "product banner", image: "Product Banner.p , category : 'TextBoxng",},
-      {name: "ProductsGrid", title: "Products Grid", image: "Product Grid.p , category : 'TextBoxng",},
+      // {name: "ProductsBanner", title: "product banner", image: "Product Banner.p , category : 'TextBox",},
+      // {name: "ProductsBannerV2", title: "product banner", image: "Product Banner.p , category : 'TextBox",},
+      {name: "ProductsGrid", title: "Products Grid", image: "Product Grid.p , category : 'TextBox",},
     ],
   },
   {
@@ -94,6 +95,7 @@ export const BLOCKS = () => [
       {name: "ProductNewsBox", title: "Product News Box", image: "ProductNewsBox.png" , category : 'TextBox',},
       {name: "ProductReviewBox", title: "Product Reviews box", image: "ProductReviewBox.png" , category : 'TextBox',},
       {name: "Specs", title: "Specs", image: "Specs.png" , category : 'TextBox',},
+      {name: "CompareProduct", title: "Compare Product", image: "CompareProduct.png" , category : 'Component',},
     ],
   },
   {
@@ -120,7 +122,7 @@ export const BLOCKS = () => [
 
       {name: "ProductsCategoriesWithSearch",title: "Products Categories With Search",image: "ProductsCategoriesWithSearch-old. , category : 'TextBoxpng",},
       {name: "SupportNewProducts", title: "SupportNewProducts", image: "ProductsCategoriesWithSearch.png" , category : 'TextBox',},
-      {name: "ProductsSupportOptions", title: "Products Support Options", image: "ProductsSupportOptions.png" , category : 'TextBox',},
+      {name: "ProductsSupportOptions", title: "Products Support Options", image: "ProductsSupportOptions-old.png" , category : 'TextBox',},
 
       {
         name: "SupportNeedMoreWithButton",

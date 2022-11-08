@@ -1,10 +1,12 @@
 <template>
-  <div class="tw-px-2">
+
+  <div class="tw-w-full" :class="{'tw-px-2' : hasBackground}">
     <div class="tw-mb-1" v-if="showTitle"> {{ model.title }}</div>
 
-    <div class="tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-pt-1"
-         :class="{'tw-flex tw-space-x-2' : inline}"
-         style="background-color: #fdfdfd">
+    <div class=""
+         :class="{ 'tw-flex tw-space-x-2' : inline ,
+         'tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-pt-1' : hasBackground}"
+         :style="{'backgroundColor': hasBackground ?  '#fdfdfd' : 'transparent'}">
 
       <form-field-text v-if="showTitle" :field="titleField" v-model="model.title"/>
 
@@ -14,7 +16,7 @@
 
       <form-field-text v-if="type === UrlTypeEnum.Internal" :field="queryField" v-model="query"/>
 
-      <form-field-text v-if="type === UrlTypeEnum.External" :field="urlFiled" v-model="model.value"/>
+      <form-field-text v-if="type === UrlTypeEnum.Custom" :field="urlFiled" v-model="model.value"/>
 
       <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor" :field="productField" v-model="productModel"/>
 
@@ -37,12 +39,15 @@ import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 @Component
 export default class StructureUrlEditor extends Vue {
 
-  @Prop({type: Array, default: () => [
-      {title: 'Internal URL', value: UrlTypeEnum.Internal},
-      {title: 'External URL', value: UrlTypeEnum.External},
+  @Prop({
+    type: Array, default: () => [
+      {title: 'Page URLs', value: UrlTypeEnum.Internal},
+      {title: 'Custom URL', value: UrlTypeEnum.Custom},
       {title: 'Open Channel Advisor', value: UrlTypeEnum.openChannelAdvisor},
       {title: 'Section or Anchor', value: UrlTypeEnum.anchor}
-    ]}) options!: any
+    ]
+  }) options!: any
+  @Prop({type: Boolean, default: true}) hasBackground!: Boolean
   @Prop({type: Boolean, default: false}) disableTitle!: Boolean
   @Prop({type: Boolean, default: true}) showTitle!: Boolean
   @Prop({type: Boolean, default: false}) inline!: Boolean
@@ -90,10 +95,10 @@ export default class StructureUrlEditor extends Vue {
     'item-text': 'title',
     'item-value': 'route',
     rules: [],
-    colAttrs: {cols: this.inline ? 3 : 12},
+    colAttrs: {cols: this.inline ? 3 + (this.showTitle ? 0 : 3) : 12},
   }
   urlFiled = {
-    label: "External URL",
+    label: "Custom URL",
     placeholder: 'Enter a valid url',
     rules: [],
     colAttrs: {cols: this.inline ? 6 : 12},
@@ -108,25 +113,31 @@ export default class StructureUrlEditor extends Vue {
   prepare() {
     this.selectField.label = this.model.title ?? 'field';
     console.log(this.model, this.model.value);
-    if (this.model.value) {
-      if(this.model.value.startsWith('#')){
+    if (this.model && this.model.value) {
+      if (this.model.value.startsWith('#')) {
         this.type = UrlTypeEnum.anchor;
-      }else{
+      } else {
         let arr = this.model.value.split('?');
         this.route = arr[0];
         this.query = arr.length > 1 ? arr[1] : '';
-        this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
+        // this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
       }
 
     } else {
       this.route = '';
       this.query = '';
-      this.type = UrlTypeEnum.Internal;
+      // this.type = UrlTypeEnum.Internal;
     }
+  }
+
+  updateType() {
+    this.type = this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
+      this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
   }
 
   mounted() {
     this.prepare();
+    this.updateType();
   }
 
   @Watch('route')

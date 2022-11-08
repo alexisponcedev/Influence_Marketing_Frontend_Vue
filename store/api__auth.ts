@@ -35,34 +35,34 @@ export default class api__auth extends VuexModule {
     return {};
   }
 
-  @Action
-  async Logout() {
-    this.setLoading(true);
-    await AuthApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .userLogout()
-      .catch((error) => ResponseHandler.ErrorHandler(error, true))
-      .finally(() => this.setLoading(false));
-    this.setLoading(false);
-  }
+  // @Action
+  // async Logout() {
+  //   this.setLoading(true);
+  //   await AuthApiFactory(
+  //     new Configuration({
+  //       accessToken: localStorage.getItem("access_token") || "",
+  //     })
+  //   )
+  //     .userLogout()
+  //     .catch((error) => ResponseHandler.ErrorHandler(error, true))
+  //     .finally(() => this.setLoading(false));
+  //   this.setLoading(false);
+  // }
 
-  @Action
-  async changePassword(User: User) {
-    this.setLoading(true);
-    const response = await AuthApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .changePassword(User)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
-      .finally(() => this.setLoading(false));
-    this.setLoading(false);
-    if (response && response.data && ResponseHandler.checkResponse(response))
-      return response.data;
-    return {};
-  }
+  // @Action
+  // async changePassword(User: User) {
+  //   this.setLoading(true);
+  //   const response = await AuthApiFactory(
+  //     new Configuration({
+  //       accessToken: localStorage.getItem("access_token") || "",
+  //     })
+  //   )
+  //     .changePassword(User)
+  //     .catch((error : any) => ResponseHandler.ErrorHandler(error))
+  //     .finally(() => this.setLoading(false));
+  //   this.setLoading(false);
+  //   if (response && response.data && ResponseHandler.checkResponse(response))
+  //     return response.data;
+  //   return {};
+  // }
 }
