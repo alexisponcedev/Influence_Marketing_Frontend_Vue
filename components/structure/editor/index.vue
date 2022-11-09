@@ -8,7 +8,7 @@
     </div>
 
     <component :is="`structure-editor-${structure[key].type}`"
-               v-for="(key , index) in structureKeys"
+               v-for="(key , index) in structureKeys.filter(i => i.type !== null)"
                v-model="structure[key]"
                :key="index"/>
 
