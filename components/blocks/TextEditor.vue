@@ -2,8 +2,7 @@
 
   <div class="tw-flex tw-items-center tw-justify-center tw-py-4 ">
     <div :style="{'width' : width + 'px'}">
-      <editor v-model="model.text"/>
-
+      <editor v-if="model.text" v-model="model.text.value"/>
 <!--      <structure-editor-text v-if="model.text" v-model="model.text" placeholder="please enter the content ..."/>-->
     </div>
   </div>
