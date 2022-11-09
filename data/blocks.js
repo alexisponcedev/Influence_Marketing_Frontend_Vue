@@ -346,6 +346,7 @@ export const BLOCKS = () => [
       {name: "ExtendedWarrantyProductGrid", title: "Extended Warranty Product Grid", image: "ExtendedWarrantyProductGrid.png" , category : 'TextBox'},
       {name: "ExtendedWarrantyWizard", title: "Extended Warranty Wizard", image: "ExtendedWarrantyWizard.png" , category : 'TextBox'},
       {name: "ExtendedWarrantyPaymentStatus", title: "Extended Warranty Payment Status", image: "ExtendedWarrantyPaymentStatus.png" , category : 'TextBox'},
+      {name: "ExtendedWarrantyFailureStatus", title: "Extended Warranty Failure Status", image: "ExtendedWarrantyFailureStatus.png" , category : 'TextBox'},
     ],
   },
 

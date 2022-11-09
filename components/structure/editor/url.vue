@@ -68,6 +68,7 @@ export default class StructureUrlEditor extends Vue {
     colAttrs: {cols: this.inline ? 2 : 12},
     items: this.options
   }
+
   titleField = {
     label: "Url Title",
     placeholder: 'Enter Title',
@@ -75,18 +76,21 @@ export default class StructureUrlEditor extends Vue {
     disabled: this.disableTitle,
     colAttrs: {cols: this.inline ? 3 : 12},
   }
+
   anchorField = {
     label: "Select Section",
     placeholder: 'Select a Section',
     rules: [],
     colAttrs: {cols: this.inline ? 6 : 12},
   }
+
   productField = {
     label: "Product Model",
     placeholder: 'Enter Product Model',
     rules: [],
     colAttrs: {cols: this.inline ? 6 : 12},
   }
+
   selectField = {
     label: "Page URL",
     placeholder: 'Enter page name',
@@ -95,12 +99,14 @@ export default class StructureUrlEditor extends Vue {
     rules: [],
     colAttrs: {cols: this.inline ? 3 + (this.showTitle ? 0 : 3) : 12},
   }
+
   urlFiled = {
     label: "Custom URL",
     placeholder: 'Enter a valid url',
     rules: [],
     colAttrs: {cols: this.inline ? 6 : 12},
   }
+
   queryField = {
     label: "Query params (optional)",
     placeholder: 'filter=55&category_id=3...',
@@ -129,7 +135,7 @@ export default class StructureUrlEditor extends Vue {
 
   updateType() {
     this.type = this.model.value && this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
-      this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
+      this.model.value && this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
   }
 
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/blocks/ExtendedWarrantyWizard.png" alt=""/>
+    <img src="/blocks/ExtendedWarrantyFailureStatus.png" alt=""/>
   </div>
 </template>
 
@@ -9,14 +9,16 @@ import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 @Component
-export default class ExtendedWarrantyWizard extends Vue {
+export default class ExtendedWarrantyFailureStatus extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop({default: true}) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
   reset() {
     this.model = {
-      // submitUrl : {id : 0 , type : StructureType.Url , title : 'Form Submit Url' , value : ''}
+      image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+      text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Failed'},
+      link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
     }
   }
 

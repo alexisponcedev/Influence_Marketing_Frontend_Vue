@@ -7,7 +7,6 @@
       placeholder="please enter product name or model ..."
       clearable
     />
-
     <div v-if="search || alwaysShow">
       <div v-if="loading" >
         <slot name="placeholder">
