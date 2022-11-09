@@ -3,7 +3,7 @@
     <div class="tw-flex tw-space-x-4">
       <div class="tw-flex-1">
         <h6>Redirect from this page to</h6>
-        <button @click.prevent="openModal('')" :disabled="redirectToList.length > 0"
+        <button @click.prevent="openModal('' , RedirectType.To)" :disabled="redirectToList.length > 0"
                 class="tw-w-full tw-mb-2 tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl
                 tw-text-center tw-py-6 hover:tw-bg-white tw-transition">
           Add Redirection
@@ -50,7 +50,7 @@
 
         <h6>Redirect to this page from </h6>
 
-        <button @click.prevent="openModal('')"
+        <button @click.prevent="openModal('' , RedirectType.From)"
                 class="tw-w-full tw-mb-2 tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl
                 tw-text-center tw-py-6 hover:tw-bg-white tw-transition">
           Add Redirection
@@ -101,7 +101,7 @@
         </v-card-text>
         <v-card-actions>
           <v-btn elevation="0" color="grey darken-4 white--text" block class="btn"
-                 @click="saveRedirect(RedirectType.From)">
+                 @click="saveRedirect">
             Add
           </v-btn>
         </v-card-actions>
@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop} from "vue-property-decorator";
+import {Component, Prop, Vue} from "vue-property-decorator";
 import {Api} from "@/store";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 import {Redirect, RedirectResource} from "~/repositories";
@@ -163,7 +163,7 @@ export default class PageForm extends Vue {
 
   showModal: Boolean = false;
 
-  redirectionObj: any = {id: -1, title: 'Redirect To', value: '' , redirection_code : 301};
+  redirectionObj: any = {id: -1, title: 'Redirect To', value: '' , redirection_type : RedirectTypeEnum.To ,  redirection_code : 301};
 
   async loadRedirects() {
     await Api.Redirect.getPageRedirects(this.Page.id);
@@ -173,8 +173,9 @@ export default class PageForm extends Vue {
     this.loadRedirects();
   }
 
-  openModal(route : String = '') {
+  openModal(route : String = '' , type : RedirectTypeEnum = RedirectTypeEnum.To) {
     this.redirectionObj.value = route;
+    this.redirectionObj.redirection_type = type
     this.showModal = true;
   }
 
@@ -191,12 +192,12 @@ export default class PageForm extends Vue {
   }
 
 
-  async saveRedirect(type = RedirectTypeEnum.To) {
+  async saveRedirect() {
     if(this.redirectionObj.value){
       await Api.Redirect.create({
         page_id: this.Page.id,
-        redirect_type: type,
-        redirect_code: RedirectCodeEnum.code301,
+        redirect_type: this.redirectionObj.redirection_type,
+        redirect_code: this.redirectionObj.redirection_code,
         redirect_url: this.redirectionObj.value,
         // regex: '',
       });
