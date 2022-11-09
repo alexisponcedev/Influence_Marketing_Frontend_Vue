@@ -111,7 +111,7 @@ export default class StructureUrlEditor extends Vue {
   prepare() {
     this.selectField.label = this.model.title ?? 'field';
     if (this.model && this.model.value) {
-      if (this.model.value.startsWith('#')) {
+      if (this.model.value && this.model.value.startsWith('#')) {
         this.type = UrlTypeEnum.anchor;
       } else {
         let arr = this.model.value.split('?');
@@ -128,7 +128,7 @@ export default class StructureUrlEditor extends Vue {
   }
 
   updateType() {
-    this.type = this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
+    this.type = this.model.value && this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
       this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
   }
 

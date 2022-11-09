@@ -20,7 +20,22 @@ export default class ExtendedWarrantyFAQ extends Vue {
       list: {
         id: 1, type: StructureType.List,
         title: 'List',
-        newValue: {},
+        newItem: {
+          title: {id: 0, type: StructureType.String, title: 'Title', value: ''},
+          questions: {
+            id: 1, type: StructureType.List, title: 'Questions',
+            newItem: {
+              question: {id: 0, type: StructureType.String, title: 'Question', value: ''},
+              answer: {id: 1, type: StructureType.Text, title: 'Answer', value: ''}
+            },
+            value: [
+              {
+                question: {id: 0, type: StructureType.String, title: 'Question', value: ''},
+                answer: {id: 1, type: StructureType.Text, title: 'Answer', value: ''}
+              }
+            ]
+          }
+        },
         value: [
           {
             title: {id: 0, type: StructureType.String, title: 'Title', value: ''},
