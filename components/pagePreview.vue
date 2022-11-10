@@ -5,9 +5,10 @@
     <component
       :editable="false"
       v-for="block in blocksList" :key="block.id"
-      :is="`block-${block.name}`"
+      :is="`blocks-${block.name}`"
       :id="block.id"
       v-model="block.structure"/>
+
   </div>
 </template>
 
@@ -18,17 +19,17 @@ import draggable from "vuedraggable";
 @Component({
   components: {draggable}
 })
-export default class PageBuilder extends Vue {
-  @Prop({type : Boolean , default : true}) showTitle! : boolean
+export default class pagePreview extends Vue {
+  @Prop({type: Boolean, default: true}) showTitle!: boolean
   @VModel({type: Array}) blocksList!: any
 }
 </script>
 
 
 <style lang="scss" scoped>
-  .title{
-    font-weight: bold;
-    font-size: 15px !important;
-    padding: 0px 5px;
-  }
+.title {
+  font-weight: bold;
+  font-size: 15px !important;
+  padding: 0px 5px;
+}
 </style>

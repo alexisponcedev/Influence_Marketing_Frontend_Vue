@@ -10,6 +10,7 @@ export const BLOCKS = () => [
     blocks: [
       {name: "ImageBox", title: "image box", image: "ImageBox.png" , category : 'TextBox',},
       {name: "TextEditor", title: "Text Editor", image: "TextEditor.png" , category : 'TextBox',},
+      {name: "ListVideoPlayer", title: "List video player", image: "ListVideoPlayer.png" , category : 'VideoPlayer',},
     ],
   },
   {
