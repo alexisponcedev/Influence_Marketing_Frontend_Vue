@@ -11,6 +11,7 @@ export const BLOCKS = () => [
       {name: "ImageBox", title: "image box", image: "ImageBox.png" , category : 'TextBox',},
       {name: "TextEditor", title: "Text Editor", image: "TextEditor.png" , category : 'TextBox',},
       {name: "ListVideoPlayer", title: "List video player", image: "ListVideoPlayer.png" , category : 'VideoPlayer',},
+      {name: "ListImageBox", title: "List Image Box", image: "ListImageBox.png" , category : 'VideoPlayer',},
     ],
   },
   {
@@ -356,6 +357,7 @@ export const BLOCKS = () => [
     blocks: [
       {name: "ProductSupportRegister", title: "Product Support Register", image: "ProductSupportRegister.png" , category : 'TextBox'},
       {name: "RegisterForm", title: "Register Form", image: "RegisterForm.png" , category : 'TextBox'},
+      {name: "OfferClaimForm", title: "Offer Claim Form", image: "OfferClaimForm.png" , category : 'TextBox'},
     ],
   },
   {

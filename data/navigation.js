@@ -3,7 +3,7 @@ export const items = () => [
     title: "Pages",
     icon: "mdi-file-document-multiple-outline",
     group: "page",
-    to: "page/all",
+    to: "page",
   },
   {
     title: "Products",
@@ -33,7 +33,7 @@ export const items = () => [
     title: "Templates",
     icon: "mdi-file-outline",
     group: "template",
-    to: "template/all",
+    to: "template",
   },
   {
     title: "Reusable Blocks",
