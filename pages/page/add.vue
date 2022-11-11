@@ -11,7 +11,6 @@
           Go to Page Builder
         </v-btn>
       </div>
-
     </div>
 
     <v-row>
@@ -20,7 +19,7 @@
           <v-tab href="#Details">Page Details</v-tab>
           <v-tab href="#Metas">Page Metas</v-tab>
           <v-tab v-if="Page.id > 0" href="#Redirection">
-<!--            <v-icon v-if="Page.redirect" class="red&#45;&#45;text tw-mr-0.5" small>mdi-arrow-right-bold-circle-outline</v-icon>-->
+            <!--            <v-icon v-if="Page.redirect" class="red&#45;&#45;text tw-mr-0.5" small>mdi-arrow-right-bold-circle-outline</v-icon>-->
             Redirection
           </v-tab>
           <v-tab v-if="Page.id > 0" href="#qrcode">QR Code</v-tab>
@@ -64,37 +63,37 @@
           <iframe :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-screen"/>
         </v-tab-item>
 
-<!--        <v-tab-item value="Redirection">-->
-<!--          <div v-if="Page.redirect"-->
-<!--               class="tw-w-full tw-bg-white tw-rounded-xl-->
-<!--               tw-p-3  tw-flex tw-items-center tw-justify-between">-->
-<!--            <div v-if="Page.redirect">-->
-<!--              <div class=" tw-ml-2 tw-mb-1">Redirects To</div>-->
-<!--              <h6 class="tw-ml-2">{{ Page.redirect }}</h6>-->
-<!--              <div-->
-<!--                class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">-->
-<!--                <span v-if="Page.redirect.startsWith('Https://')">External URL</span>-->
-<!--                <span v-else>Internal URL</span>-->
-<!--              </div>-->
-<!--            </div>-->
+        <!--        <v-tab-item value="Redirection">-->
+        <!--          <div v-if="Page.redirect"-->
+        <!--               class="tw-w-full tw-bg-white tw-rounded-xl-->
+        <!--               tw-p-3  tw-flex tw-items-center tw-justify-between">-->
+        <!--            <div v-if="Page.redirect">-->
+        <!--              <div class=" tw-ml-2 tw-mb-1">Redirects To</div>-->
+        <!--              <h6 class="tw-ml-2">{{ Page.redirect }}</h6>-->
+        <!--              <div-->
+        <!--                class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">-->
+        <!--                <span v-if="Page.redirect.startsWith('Https://')">External URL</span>-->
+        <!--                <span v-else>Internal URL</span>-->
+        <!--              </div>-->
+        <!--            </div>-->
 
-<!--            <div class="tw-space-x-1">-->
-<!--              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openRedirectModal">-->
-<!--                <v-icon>mdi-pencil</v-icon>-->
-<!--              </button>-->
-<!--              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="resetRedirect">-->
-<!--                <v-icon>mdi-delete</v-icon>-->
-<!--              </button>-->
-<!--            </div>-->
+        <!--            <div class="tw-space-x-1">-->
+        <!--              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openRedirectModal">-->
+        <!--                <v-icon>mdi-pencil</v-icon>-->
+        <!--              </button>-->
+        <!--              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="resetRedirect">-->
+        <!--                <v-icon>mdi-delete</v-icon>-->
+        <!--              </button>-->
+        <!--            </div>-->
 
-<!--          </div>-->
-<!--          <button v-else-->
-<!--                  class="tw-w-full tw-bg-white tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl tw-text-center-->
-<!--            tw-py-10 hover:tw-bg-gray-50"-->
-<!--                  @click.prevent="openRedirectModal">-->
-<!--            Add Redirection-->
-<!--          </button>-->
-<!--        </v-tab-item>-->
+        <!--          </div>-->
+        <!--          <button v-else-->
+        <!--                  class="tw-w-full tw-bg-white tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl tw-text-center-->
+        <!--            tw-py-10 hover:tw-bg-gray-50"-->
+        <!--                  @click.prevent="openRedirectModal">-->
+        <!--            Add Redirection-->
+        <!--          </button>-->
+        <!--        </v-tab-item>-->
 
 
         <v-tab-item value="Redirection">
@@ -132,27 +131,27 @@
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
 
-<!--    <v-dialog v-model="showRedirectModal" max-width="500">-->
-<!--      <v-card>-->
-<!--        <v-card-title>Page Redirection</v-card-title>-->
-<!--        <v-card-text>-->
-<!--          <structure-editor-url-->
-<!--            :showTitle="false"-->
-<!--            :options="[-->
-<!--              {title: 'Internal URL', value: UrlTypeEnum.Internal},-->
-<!--              {title: 'External URL', value: UrlTypeEnum.External},-->
-<!--            ]"-->
-<!--            :inline="false"-->
-<!--            v-model="redirectionObj"/>-->
-<!--        </v-card-text>-->
-<!--        <v-card-actions>-->
-<!--          <v-btn elevation="0" color="grey darken-4 white&#45;&#45;text" block class="btn" @click="saveRedirect">-->
-<!--            Add-->
-<!--          </v-btn>-->
-<!--        </v-card-actions>-->
+    <!--    <v-dialog v-model="showRedirectModal" max-width="500">-->
+    <!--      <v-card>-->
+    <!--        <v-card-title>Page Redirection</v-card-title>-->
+    <!--        <v-card-text>-->
+    <!--          <structure-editor-url-->
+    <!--            :showTitle="false"-->
+    <!--            :options="[-->
+    <!--              {title: 'Internal URL', value: UrlTypeEnum.Internal},-->
+    <!--              {title: 'External URL', value: UrlTypeEnum.External},-->
+    <!--            ]"-->
+    <!--            :inline="false"-->
+    <!--            v-model="redirectionObj"/>-->
+    <!--        </v-card-text>-->
+    <!--        <v-card-actions>-->
+    <!--          <v-btn elevation="0" color="grey darken-4 white&#45;&#45;text" block class="btn" @click="saveRedirect">-->
+    <!--            Add-->
+    <!--          </v-btn>-->
+    <!--        </v-card-actions>-->
 
-<!--      </v-card>-->
-<!--    </v-dialog>-->
+    <!--      </v-card>-->
+    <!--    </v-dialog>-->
 
     <loading-overlay :show="Api.Page.loading || Api.Redirect.loading"/>
   </v-container>
@@ -169,6 +168,7 @@ import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 
 
 import html2canvas from 'html2canvas';
+import {SettingEnum} from "~/interfaces/SettingEnum";
 
 @Component({
   components: {HoverButton},
@@ -202,6 +202,8 @@ export default class PageForm extends Vue {
     model_type: ''
   };
 
+  livePreviewUrl = '';
+
   qrcodeText: string = 'this is a test';
 
   locations: Array<{ title: string; to: string }> = [];
@@ -210,6 +212,10 @@ export default class PageForm extends Vue {
 
   mounted() {
     this.init();
+
+    Api.Setting.getValue(SettingEnum.livePreview).then(value => {
+      this.livePreviewUrl = value ? value : '';
+    })
   }
 
   async init() {
@@ -239,7 +245,7 @@ export default class PageForm extends Vue {
     this.locations = [
       {
         title: "Pages",
-        to: "/page/all",
+        to: "/page",
       },
       {
         title: this.Page.title || "",
@@ -321,7 +327,7 @@ export default class PageForm extends Vue {
   }
 
   get liveWebsite() {
-    return "https://public.stage.hisenseportal.com" + this.Page.route
+    return this.livePreviewUrl + this.Page.route
   }
 
   openPageBuilder() {

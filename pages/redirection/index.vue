@@ -18,7 +18,7 @@
             class="row-pointer"
             :items="Api.Redirect.all"
             :loading="Api.Redirect.loading"
-            @click:row="(Redirect) => $router.push('/template/edit/' + Redirect.id)"
+            @click:row="(Redirect) => $router.push('/redirection/edit/' + Redirect.id)"
           />
         </v-card>
       </v-col>

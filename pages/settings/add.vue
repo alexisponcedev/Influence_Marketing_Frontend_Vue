@@ -1,28 +1,26 @@
+
+
 <template>
   <v-container fluid>
 
     <div v-if="editMode" class="d-flex justify-space-between align-center">
       <breadcrumbs :locations="locations"/>
-      <v-btn elevation="0" color="grey darken-4 white--text" class="btn"
-             :to="`/template/edit/${Template.id}/TemplateBuilder`">
-        Go to Template Builder
-      </v-btn>
     </div>
 
     <v-row>
       <v-col>
         <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab href="#Templates">Template Details</v-tab>
+          <v-tab href="#Settings">Setting Details</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
 
     <v-tabs-items v-model="tab">
-      <v-tab-item value="Templates">
+      <v-tab-item value="Settings">
         <v-card-text>
           <form-standard
-            ref="TemplatesForm"
-            :model="Template"
+            ref="SettingsForm"
+            :model="Setting"
             :fields="formFields"
             @submit="submit"
           />
@@ -30,17 +28,14 @@
       </v-tab-item>
     </v-tabs-items>
 
-
-    <page-preview :value="Template.widgets" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
-
-    <loading-overlay :show="Api.Template.loading"/>
+    <loading-overlay :show="Api.Setting.loading"/>
   </v-container>
 </template>
 
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Template} from "@/repositories";
+import {Setting} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
@@ -56,10 +51,11 @@ export default class EntityForm extends Vue {
 
   tab = "";
 
-  Template: Template = {
+  Setting: Setting = {
     id: 0,
-    name: '',
-    widgets: [],
+    title : '',
+    key : '',
+    value : '',
   };
 
   locations: Array<{ title: string; to: string }> = [];
@@ -71,71 +67,94 @@ export default class EntityForm extends Vue {
   }
 
   async init() {
-    await this.initTemplatesTab();
+    await this.initSettingsTab();
     this.updateLocations();
   }
 
   updateLocations() {
     this.locations = [
       {
-        title: "Templates",
-        to: "/template/all",
+        title: "Settings",
+        to: "/settings",
       },
       {
-        title: this.Template.name || "",
-        to: "/template/edit/" + this.Template.id!,
+        title: this.Setting.title || "",
+        to: "/settings/edit/" + this.Setting.id!,
       },
     ];
   }
 
-  async initTemplatesTab() {
+  async initSettingsTab() {
     await this.getEntity();
-    this.updateTemplateFormFields();
+    this.updateSettingFormFields();
   }
 
   async getEntity() {
     if (this.editMode)
-      this.Template = (await Api.Template.get(+this.$route.params.id)) as Template;
+      this.Setting = (await Api.Setting.get(+this.$route.params.id)) as Setting;
   }
 
-  updateTemplateFormFields() {
+  updateSettingFormFields() {
     this.formFields = [
       {
         type: "form-field-text",
-        label: "Name",
-        modelKey: "name",
-        placeholder: 'enter the template name',
+        label: "Title",
+        modelKey: "title",
+        placeholder: 'enter the title for setting',
         rules: [Validation.required],
         colAttrs: {cols: 12},
+      },
+
+      {
+        type: "form-field-text",
+        label: "Key",
+        modelKey: "key",
+        placeholder: 'enter key value',
+        rules: [Validation.required],
+        colAttrs: {cols: 4},
+      },
+      {
+        type: "form-field-text",
+        label: "Value",
+        modelKey: "value",
+        placeholder: 'enter value',
+        rules: [Validation.required],
+        colAttrs: {cols: 8},
       },
     ];
   }
 
   async submit() {
     if (this.formValidate()) {
-      if (this.editMode)
-        await Api.Template.update({
-          id: +this.Template.id!,
-          Template: this.Template,
+      if (this.editMode){
+        await Api.Setting.update({
+          id: +this.Setting.id!,
+          Setting: this.Setting,
         });
-      else await Api.Template.create(this.Template);
-      if (!this.editMode) this.$router.push("/template/all");
+        Api.Setting.getAll();
+      }
+
+      else await Api.Setting.create(this.Setting);
+
+      if (!this.editMode) this.$router.push("/settings");
     }
   }
 
   formValidate() {
-    return (this.$refs.TemplatesForm as any).validate();
+    return (this.$refs.SettingsForm as any).validate();
   }
 
   @Watch("tab")
   tabChanged(newTab: string, _: string) {
     switch (newTab) {
-      case "Templates":
-        this.initTemplatesTab();
+      case "Settings":
+        this.initSettingsTab();
         break;
       default:
         break;
     }
   }
+
+
 }
 </script>
