@@ -70,8 +70,6 @@ export default class ListVideoPlayer extends Vue {
           }
         ]
       }
-
-
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-3">
+  <div class="tw-p-3" v-if="!isEmpty">
 
     <!--    <img src="/blocks/BlockSpotlight.png" alt=""/>-->
 
@@ -24,10 +24,10 @@
           </select>
         </div>
 
-        <div class="tw-flex tw-items-center tw-space-x-2">
+        <div class="tw-flex tw-items-center tw-space-x-2" v-if="tab.items">
           <div class="tw-w-28">Items :</div>
           <div class="tw-flex-1">
-            <div class="tw-h-40 tw-p-2 tw-border tw-border-solid tw-border-gray-500 tw-rounded-lg tw-overflow-y-auto">
+            <div class="tw-h-40 tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-overflow-y-auto">
               <div v-for="item in getList(tab)" :key="id" @click="tab.items.push(item)"
                    class="tw-flex tw-items-center tw-space-x-2 tw-py-0.5 tw-transition hover:tw-bg-gray-50 hover:tw-text-blue-500">
                 <div  class="tw-h-10 tw-w-10 tw-text-center">
@@ -44,10 +44,8 @@
             <div><-</div>
             <div>-></div>
           </div>
-
-
           <div class="tw-flex-1">
-            <div class="tw-h-40 tw-p-2 tw-border tw-border-solid tw-border-gray-500 tw-rounded-lg tw-overflow-y-auto">
+            <div class="tw-h-40 tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-overflow-y-auto">
               <div v-for="(item , index) in tab.items"
                    :key="id" @click="tab.items.splice(index , 1)"
                    class="tw-flex tw-items-center tw-space-x-2 tw-py-0.5 tw-transition hover:tw-bg-gray-50 hover:tw-text-blue-500">
@@ -64,8 +62,6 @@
 
         </div>
 
-
-        <!--        <search-products @addProduct="addNewProduct" class="tw-mt-3"/>-->
 
       </li>
       <li>
@@ -154,9 +150,9 @@ export default class BlockSpotlight extends Vue {
   }
 
   getList(tab: any) {
-    return tab.serverData.filter((i: any) => tab.items.length === 0 ||
+    return tab.serverData ? tab.serverData.filter((i: any) => tab.items.length === 0 ||
       !tab.items.map((j: any) => j.id).includes(i.id)
-    ).sort((a: any, b: any) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+    ).sort((a: any, b: any) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)) : [];
   }
 
   get isEmpty(): Boolean {
@@ -175,7 +171,7 @@ export default class BlockSpotlight extends Vue {
   padding: 8px 0;
 }
 .x-input {
-  border: 1px solid black;
+  border: 1px solid #cdcdcd;
   border-radius: 3px;
   padding: 2px 5px;
 }

@@ -26,20 +26,28 @@ export default class ProductsGridV2 extends Vue {
   filterTypes: Array<any> = [];
 
 
+  reset() {
+    this.model = {
+      title : {id : 0 , type : StructureType.Text , title : 'Title' , value : '<h2>All Televisions</h2>'},
+
+      category: {
+        id: 0,
+        type: StructureType.Select,
+        title: 'Select Category',
+        value: this.categories.length > 0 ? this.categories[0].id : 0,
+        itemText: 'name',
+        itemValue: 'id',
+        items: this.categories
+      },
+    }
+  }
+
   async mounted() {
     this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
-    if (this.isEmpty)
-      this.model = {
-        category: {
-          id: 0,
-          type: StructureType.Select,
-          title: 'Select Category',
-          value: this.categories.length > 0 ? this.categories[0].id : 0,
-          itemText: 'name',
-          itemValue: 'id',
-          items: this.categories
-        },
-      }
+    if (this.isEmpty) this.reset();
+    else {
+      this.model.category.items = this.categories;
+    }
     this.updatePreview();
   }
 
@@ -80,6 +88,11 @@ export default class ProductsGridV2 extends Vue {
   @Watch('categoryId', {immediate: false, deep: true})
   onCategoryIdChanged() {
     this.updatePreview(this.categoryId);
+  }
+
+  @Watch('isEmpty')
+  onValueChanged() {
+    if (this.isEmpty) this.reset();
   }
 
 }

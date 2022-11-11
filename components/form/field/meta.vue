@@ -32,6 +32,19 @@
                   v-model="model.meta[googleDescriptionIndex].content"></textarea>
       </div>
 
+      <div v-if="googleRobotIndex >= 0"
+           class="tw-bg-gray-50 tw-overflow-hidden tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-flex twl-items-center">
+        <div class="tw-px-3 tw-w-40 tw-font-semibold tw-flex tw-items-center tw-justify-start">Meta Robot</div>
+
+        <select v-model="model.meta[googleRobotIndex].content" class="x-input tw-flex-1" >
+          <option value="noindex">No Index</option>
+          <option value="index">Index</option>
+        </select>
+
+
+
+      </div>
+
 
     </div>
 
@@ -163,6 +176,7 @@ export default class TextMetaFormField extends Vue {
     this.model.meta = [
       {rel: 'blank', name: 'title', content: ''},
       {rel: 'blank', name: 'description', content: 'Hisense USA'},
+      {rel: 'blank', name: 'robots', content: 'index'},
 
       {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
       {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
@@ -217,6 +231,11 @@ export default class TextMetaFormField extends Vue {
     return index >= 0 ? index : this.addRow('blank', 'description', '')
   }
 
+  get googleRobotIndex() {
+    let index = this.model.meta.findIndex((i: MetaInterface) => i.rel === 'blank' && i.name === 'robots');
+    return index >= 0 ? index : this.addRow('blank', 'robots', 'index')
+  }
+
   get ogSiteNameIndex() {
     let index = this.model.meta.findIndex((i: MetaInterface) => i.rel && i.rel.includes('og:site_name'));
     return index >= 0 ? index : this.addRow('property="og:site_name"', 'property="og:site_name"', '')
@@ -253,7 +272,8 @@ export default class TextMetaFormField extends Vue {
   }
 
   get customTags() {
-    return this.model.meta.filter((i : MetaInterface) => i.rel === 'blank' && i.name !== 'title' && i.name !== 'description')
+    return this.model.meta
+      .filter((i : MetaInterface) => i.rel === 'blank' && i.name !== 'title' && i.name !== 'description' && i.name !== 'robots')
   }
 
   get pageTitle() {
