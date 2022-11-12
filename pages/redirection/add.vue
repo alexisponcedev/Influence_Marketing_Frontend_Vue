@@ -19,6 +19,12 @@
         <v-card-text>
 
           <v-row>
+
+            <form-field-select :field="redirectionTypeField" v-model="Redirect.redirect_type"/>
+
+
+
+
             <form-field-select-page-name
               :field="selectField"
               v-model="Redirect.page_id"
@@ -26,15 +32,16 @@
               :placeholder="selectField.placeholder"/>
 
 
-            <form-field-select :field="redirectionTypeField" v-model="Redirect.redirect_type"/>
+
+
+<!--            <v-col>-->
+<!--              <hr class="tw-bg-gray-500" />-->
+<!--            </v-col>-->
+
+            <structure-editor-url :showTitle="false" :hasBackground="false" :inline="true" :options="options" v-model="redirectionObj"/>
 
             <form-field-select :field="redirectionCodeField" v-model="Redirect.redirect_code"/>
 
-            <v-col>
-              <hr class="tw-bg-gray-500" />
-            </v-col>
-
-            <structure-editor-url :showTitle="false" :hasBackground="false" :inline="true" :options="options" v-model="redirectionObj"/>
 
           </v-row>
 
@@ -84,12 +91,12 @@ export default class EntityForm extends Vue {
   tab = "";
 
   selectField = {
-    label: "Page",
+    label: "Source URL",
     placeholder: 'Enter page name',
     'item-text': 'title',
     'item-value': 'id',
     rules: [],
-    colAttrs: {cols: 6},
+    colAttrs: {cols: 12},
   }
 
   redirectionTypeField = {
@@ -97,7 +104,7 @@ export default class EntityForm extends Vue {
     rules: [],
     'item-text': 'title',
     'item-value': 'value',
-    colAttrs: {cols: 3},
+    colAttrs: {cols: 12},
     items: [
       {title: RedirectTypeEnum.To, value: RedirectTypeEnum.To},
       {title: RedirectTypeEnum.From, value: RedirectTypeEnum.From},
@@ -109,7 +116,7 @@ export default class EntityForm extends Vue {
     rules: [Validation.required],
     'item-text': 'title',
     'item-value': 'value',
-    colAttrs: {cols: 3},
+    colAttrs: {cols: 12},
     items: [
       {title: '301', value: RedirectCodeEnum.code301},
       {title: '302', value: RedirectCodeEnum.code302},
@@ -119,7 +126,7 @@ export default class EntityForm extends Vue {
     ]
   }
 
-  redirectionObj: any = {id: -1, title: 'Redirect To', value: '' , redirection_code : 301};
+  redirectionObj: any = {id: -1, title: 'Destination URL', value: '' , redirection_code : 301};
 
   options = [
     {title: 'Page URLs', value: UrlTypeEnum.Internal},

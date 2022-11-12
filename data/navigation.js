@@ -41,6 +41,13 @@ export const items = () => [
     group: "block/reusable",
     to: "blocks/reusable",
   },
+
+  {
+    title: "Deploys",
+    icon: "mdi-cloud-sync",
+    group: "deploys",
+    to: "deploys",
+  },
   // {
   //   title: "Content Blocks",
   //   icon: "mdi-border-radius",

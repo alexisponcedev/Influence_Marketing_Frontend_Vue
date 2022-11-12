@@ -52,6 +52,7 @@ export default class StructureListEditor extends Vue {
 
   addNew() {
     this.model.value.push(JSON.parse(JSON.stringify(this.model.newItem)));
+    this.open = this.model.value.length - 1;
   }
 
   removeItem(i: any) {
