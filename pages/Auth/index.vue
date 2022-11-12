@@ -15,7 +15,7 @@ export default class Auth extends Vue {
   async init() {
     if (localStorage.getItem("access_token")) {
       if (!Api.Site.all.length) await Api.Site.getAll();
-      this.$router.push("/page/all");
+      this.$router.push("/page");
     } else this.$router.push("/Auth/Login");
   }
 }

@@ -19,10 +19,8 @@
           <v-tab href="#Details">Page Details</v-tab>
           <v-tab href="#Metas">Page Metas</v-tab>
           <v-tab v-if="Page.id > 0" href="#Redirection">
-            <!--            <v-icon v-if="Page.redirect" class="red&#45;&#45;text tw-mr-0.5" small>mdi-arrow-right-bold-circle-outline</v-icon>-->
             Redirection
           </v-tab>
-          <v-tab v-if="Page.id > 0" href="#qrcode">QR Code</v-tab>
         </v-tabs>
       </v-col>
     </v-row>
@@ -34,24 +32,22 @@
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
               <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
-
-              <!--              <v-col>-->
-              <!--                <div v-if="Page.redirect" class="tw-flex tw-w-min tw-whitespace-nowrap tw-items-center tw-space-x-2 tw-bg-gray-50 tw-rounded-lg-->
-              <!--                tw-p-2 tw-cursor-pointer" @click="tab='Redirection'">-->
-              <!--                  <div>This page redirect to <span class="tw-font-bold tw-text-red-500">{{ Page.redirect }}</span></div>-->
-              <!--                </div>-->
-              <!--              </v-col>-->
-
             </v-card-text>
           </v-card>
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
             @click="submit">Save
           </button>
-          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
+<!--          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
+
+          <div v-if="Page.id > 0">
+            <div class="tw-text-xl tw-mb-4">Live Preview </div>
+
+            <iframe @load="iframeLoaded" ref="iframe" :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-full" height="fitcontent" />
+          </div>
+
         </v-tab-item>
         <v-tab-item value="Metas">
-          <!--          <form-field-meta :field="formFields[2]" v-model="Page.meta" :route="Page.route"/>-->
           <form-field-meta :field="formFields[2]" v-model="Page"/>
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
@@ -60,98 +56,17 @@
 
         </v-tab-item>
         <v-tab-item value="Live">
-          <iframe :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-screen"/>
+          <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-screen"/>
         </v-tab-item>
-
-        <!--        <v-tab-item value="Redirection">-->
-        <!--          <div v-if="Page.redirect"-->
-        <!--               class="tw-w-full tw-bg-white tw-rounded-xl-->
-        <!--               tw-p-3  tw-flex tw-items-center tw-justify-between">-->
-        <!--            <div v-if="Page.redirect">-->
-        <!--              <div class=" tw-ml-2 tw-mb-1">Redirects To</div>-->
-        <!--              <h6 class="tw-ml-2">{{ Page.redirect }}</h6>-->
-        <!--              <div-->
-        <!--                class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">-->
-        <!--                <span v-if="Page.redirect.startsWith('Https://')">External URL</span>-->
-        <!--                <span v-else>Internal URL</span>-->
-        <!--              </div>-->
-        <!--            </div>-->
-
-        <!--            <div class="tw-space-x-1">-->
-        <!--              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openRedirectModal">-->
-        <!--                <v-icon>mdi-pencil</v-icon>-->
-        <!--              </button>-->
-        <!--              <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="resetRedirect">-->
-        <!--                <v-icon>mdi-delete</v-icon>-->
-        <!--              </button>-->
-        <!--            </div>-->
-
-        <!--          </div>-->
-        <!--          <button v-else-->
-        <!--                  class="tw-w-full tw-bg-white tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl tw-text-center-->
-        <!--            tw-py-10 hover:tw-bg-gray-50"-->
-        <!--                  @click.prevent="openRedirectModal">-->
-        <!--            Add Redirection-->
-        <!--          </button>-->
-        <!--        </v-tab-item>-->
-
 
         <v-tab-item value="Redirection">
           <pages-page-redirection :Page="Page"/>
         </v-tab-item>
 
-        <v-tab-item value="qrcode">
-
-          <div class="tw-flex tw-space-x-4">
-            <div class="tw-space-y-2">
-              <div class="tw-w-60 tw-min-h-60 tw-rounded-xl tw-bg-white tw-p-3 " id="qrcodeViewer">
-                <qr-code
-                  :text="qrcodeText"
-                  size="216"
-                  color="#000"
-                  bg-color="#fff"
-                  error-level="L"/>
-              </div>
-              <button href="javascript:" class="tw-w-full tw-rounded-lg tw-text-center tw-py-2 tw-bg-white"
-                      @click.prevent="clickDownload">Download
-              </button>
-
-            </div>
-
-            <div class="tw-bg-white tw-flex-1 tw-rounded-xl tw-p-3">
-              <input type="text" v-model="qrcodeText"/>
-              <pre>{{ qrcodeText }}</pre>
-              here is the links section
-            </div>
-          </div>
-
-        </v-tab-item>
       </v-tabs-items>
     </v-form>
 
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
-
-    <!--    <v-dialog v-model="showRedirectModal" max-width="500">-->
-    <!--      <v-card>-->
-    <!--        <v-card-title>Page Redirection</v-card-title>-->
-    <!--        <v-card-text>-->
-    <!--          <structure-editor-url-->
-    <!--            :showTitle="false"-->
-    <!--            :options="[-->
-    <!--              {title: 'Internal URL', value: UrlTypeEnum.Internal},-->
-    <!--              {title: 'External URL', value: UrlTypeEnum.External},-->
-    <!--            ]"-->
-    <!--            :inline="false"-->
-    <!--            v-model="redirectionObj"/>-->
-    <!--        </v-card-text>-->
-    <!--        <v-card-actions>-->
-    <!--          <v-btn elevation="0" color="grey darken-4 white&#45;&#45;text" block class="btn" @click="saveRedirect">-->
-    <!--            Add-->
-    <!--          </v-btn>-->
-    <!--        </v-card-actions>-->
-
-    <!--      </v-card>-->
-    <!--    </v-dialog>-->
 
     <loading-overlay :show="Api.Page.loading || Api.Redirect.loading"/>
   </v-container>
@@ -204,7 +119,7 @@ export default class PageForm extends Vue {
 
   livePreviewUrl = '';
 
-  qrcodeText: string = 'this is a test';
+  // qrcodeText: string = 'this is a test';
 
   locations: Array<{ title: string; to: string }> = [];
 
@@ -373,6 +288,11 @@ export default class PageForm extends Vue {
     this.Page.redirect = this.redirectionObj.value;
     this.showRedirectModal = false;
     this.submit();
+  }
+
+  iframeLoaded(e : any){
+    console.log(e);
+    console.log(this.$refs.iframe);
   }
 
   clickDownload() {

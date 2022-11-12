@@ -119,7 +119,11 @@ export default class StructureUrlEditor extends Vue {
     if (this.model && this.model.value) {
       if (this.model.value && this.model.value.startsWith('#')) {
         this.type = UrlTypeEnum.anchor;
-      } else {
+      }
+      else if(this.model.value && this.model.value.startsWith('openChannelAdvisor:')){
+        this.productModel = this.model.value.replace('openChannelAdvisor:' , '')
+      }
+      else {
         let arr = this.model.value.split('?');
         this.route = arr[0];
         this.query = arr.length > 1 ? arr[1] : '';
@@ -134,8 +138,17 @@ export default class StructureUrlEditor extends Vue {
   }
 
   updateType() {
-    this.type = this.model.value && this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
-      this.model.value && this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
+    if(this.model.value && this.model.value.startsWith('#'))
+      this.type = UrlTypeEnum.anchor
+    else if(this.model.value && this.model.value.startsWith('openChannelAdvisor:'))
+      this.type = UrlTypeEnum.openChannelAdvisor
+    else if(this.model.value && this.model.value.includes('https://'))
+      this.type = UrlTypeEnum.Custom
+    else
+      this.type = UrlTypeEnum.Internal;
+
+    // this.type = this.model.value && this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
+    //   this.model.value && this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
   }
 
   mounted() {

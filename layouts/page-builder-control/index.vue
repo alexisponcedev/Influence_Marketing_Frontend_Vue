@@ -39,8 +39,8 @@ export default class PageBuilderControl extends Vue {
     }
     .control-btns{
         border-radius:10px !important;
-        width: 150px !important;
-        padding: 22px 0px !important;
+        min-width: 80px !important;
+        padding: 22px 8px !important;
         margin: 2px 0;
     }
 }

@@ -5,21 +5,20 @@
       <v-row align="center">
         <v-col cols="12" md="5">
           <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
-          <span
-            class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
+          <span class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
         </v-col>
         <v-col cols="12" md="7" class="text-right">
           <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
-          <v-btn :to="`/page/edit/${Page.id}/PagePreview`" elevation="0" outlined color="grey darken-4"
-                 class="control-btns">Preview
+          <v-btn @click="gotoLiveWebsite" elevation="0" outlined color="grey darken-4" class="control-btns">
+            Live Preview
           </v-btn>
           <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template
           </v-btn>
-          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white--text" class="control-btns">Save
-            Draft
-          </v-btn>
+<!--          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white&#45;&#45;text" class="control-btns">Save-->
+<!--            Draft-->
+<!--          </v-btn>-->
           <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">
-            Publish
+            Save
           </v-btn>
         </v-col>
       </v-row>
@@ -38,6 +37,7 @@ import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
 import {Page, Widgets} from "~/repositories";
 import {BlockInterface} from "~/interfaces/BlockInterface";
+import {SettingEnum} from "~/interfaces/SettingEnum";
 
 @Component
 export default class PageBuilderSection extends Vue {
@@ -49,12 +49,18 @@ export default class PageBuilderSection extends Vue {
 
   Page: Page = {};
 
+  livePreviewUrl = '';
+
   async mounted() {
     this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
     if (this.Page.draft && this.Page.draft.length > 0)
       this.blocksList = this.Page.draft as Array<BlockInterface>;
     else
       this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
+
+    Api.Setting.getValue(SettingEnum.livePreview).then(value => {
+      this.livePreviewUrl = value ? value : '';
+    })
   }
 
   discard() {
@@ -76,6 +82,14 @@ export default class PageBuilderSection extends Vue {
     setTimeout(() => {
       if (win) win.close();
     }, 3000);
+  }
+
+  get liveWebsite() {
+    return this.livePreviewUrl + this.Page.route
+  }
+
+  gotoLiveWebsite() {
+    window.open(this.liveWebsite, '_blank');
   }
 
   saveTemplate() {
