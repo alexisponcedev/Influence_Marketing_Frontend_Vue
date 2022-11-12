@@ -74,6 +74,7 @@ export default {
     '@nuxt/postcss8',
     // '@nuxt/image',
   ],
+
   image: {
     domains: [
       'https://assets.hisense-usa.com',
@@ -120,6 +121,7 @@ export default {
       }
     }
   },
+
   webfontloader: {
     google: {
       families: ['Archivo:400;500;600;700'],

@@ -210,4 +210,20 @@ export default class api__page extends VuexModule {
       return response.data;
     return {};
   }
+
+  @Action
+  async doDeploy() {
+    this.setLoading(true);
+    const response = await PageApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .doDeploy()
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data;
+    return {};
+  }
 }
