@@ -14,49 +14,48 @@
     </v-row>
 
     <v-form ref="form" @submit.prevent="submit">
+    <v-tabs-items v-model="tab">
+      <v-tab-item value="Redirects">
+        <v-card-text>
 
-      <v-tabs-items v-model="tab">
-        <v-tab-item value="Redirects">
-          <v-card-text>
+          <v-row>
 
-            <v-row>
-
-
-              <form-field-select :field="redirectionTypeField" v-model="Redirect.redirect_type"/>
-
-              <form-field-select-page-name
-                v-if="Redirect.redirect_type === RedirectType.To"
-                :field="selectField"
-                v-model="Redirect.page_id"
-                :rules="selectField.rules"
-                :placeholder="selectField.placeholder"/>
-              <form-field-text v-else :field="redirectUrlField" v-model="Redirect.redirect_url"/>
+            <form-field-select :field="redirectionTypeField" v-model="Redirect.redirect_type"/>
 
 
-              <form-field-select :field="redirectionCodeField" v-model="Redirect.redirect_code"/>
-
-              <form-field-select-page-name
-                v-if="Redirect.redirect_type === RedirectType.From"
-                :field="selectField"
-                v-model="Redirect.page_id"
-                :rules="selectField.rules"
-                :placeholder="selectField.placeholder"/>
-
-              <form-field-text v-else :field="redirectUrlField" v-model="Redirect.redirect_url"/>
 
 
-            </v-row>
-
-            {{ Redirect.redirect_url }}
-
-
-          </v-card-text>
-
-
-        </v-tab-item>
+            <form-field-select-page-name
+              :field="selectField"
+              v-model="Redirect.page_id"
+              :rules="selectField.rules"
+              :placeholder="selectField.placeholder"/>
 
 
-      </v-tabs-items>
+
+
+<!--            <v-col>-->
+<!--              <hr class="tw-bg-gray-500" />-->
+<!--            </v-col>-->
+
+            <structure-editor-url :showTitle="false" :hasBackground="false" :inline="true" :options="options" v-model="redirectionObj"/>
+
+            <form-field-select :field="redirectionCodeField" v-model="Redirect.redirect_code"/>
+
+
+          </v-row>
+
+
+
+
+        </v-card-text>
+
+
+
+      </v-tab-item>
+
+
+    </v-tabs-items>
 
     </v-form>
 
@@ -91,30 +90,17 @@ export default class EntityForm extends Vue {
 
   tab = "";
 
-  RedirectType = RedirectTypeEnum;
-
-  get selectField() {
-    return {
-      label: this.Redirect.redirect_type === RedirectTypeEnum.To ? "From URL" : 'To URL',
-      placeholder: 'Enter page name',
-      'item-text': 'title',
-      'item-value': 'id',
-      rules: [],
-      colAttrs: {cols: 9},
-    }
-  }
-
-  get redirectUrlField() {
-    return {
-      label: this.Redirect.redirect_type === RedirectTypeEnum.From ? "From URL" : 'To URL',
-      placeholder: 'Please enter the route',
-      rules: [],
-      colAttrs: {cols: 9},
-    }
+  selectField = {
+    label: "Source URL",
+    placeholder: 'Enter page name',
+    'item-text': 'title',
+    'item-value': 'id',
+    rules: [],
+    colAttrs: {cols: 9 },
   }
 
   redirectionTypeField = {
-    label: 'Redirect Type',
+    label: 'Redirection Type',
     rules: [],
     'item-text': 'title',
     'item-value': 'value',
@@ -126,11 +112,11 @@ export default class EntityForm extends Vue {
   }
 
   redirectionCodeField = {
-    label: 'Redirect Code',
+    label: 'Redirection Code',
     rules: [Validation.required],
     'item-text': 'title',
     'item-value': 'value',
-    colAttrs: {cols: 3},
+    colAttrs: {cols: 12},
     items: [
       {title: '301', value: RedirectCodeEnum.code301},
       {title: '302', value: RedirectCodeEnum.code302},
@@ -140,7 +126,7 @@ export default class EntityForm extends Vue {
     ]
   }
 
-  redirectionObj: any = {id: -1, title: 'Destination URL', value: '', redirection_code: 301};
+  redirectionObj: any = {id: -1, title: 'Destination URL', value: '' , redirection_code : 301};
 
   options = [
     {title: 'Page URLs', value: UrlTypeEnum.Internal},
@@ -149,10 +135,10 @@ export default class EntityForm extends Vue {
 
   Redirect: Redirect = {
     id: 0,
-    page_id: 0,
-    redirect_code: RedirectCodeEnum.code301,
-    redirect_url: '',
-    redirect_type: RedirectTypeEnum.To
+    page_id : 0,
+    redirect_code : RedirectCodeEnum.code301,
+    redirect_url : '',
+    redirect_type : RedirectTypeEnum.To
   };
 
   locations: Array<{ title: string; to: string }> = [];
@@ -187,7 +173,8 @@ export default class EntityForm extends Vue {
   }
 
   async getEntity() {
-    if (this.editMode) {
+    if (this.editMode)
+    {
       this.Redirect = (await Api.Redirect.get(+this.$route.params.id)) as Redirect;
       this.redirectionObj.value = this.Redirect.redirect_url;
     }
@@ -209,7 +196,7 @@ export default class EntityForm extends Vue {
   async submit() {
     if (this.formValidate()) {
 
-      // this.Redirect.redirect_url = this.redirectionObj.value;
+      this.Redirect.redirect_url = this.redirectionObj.value;
 
       if (this.editMode)
         await Api.Redirect.update({

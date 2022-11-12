@@ -38,17 +38,21 @@
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
             @click="submit">Save
           </button>
-<!--          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
+          <!--          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
 
           <div v-if="Page.id > 0">
-            <div class="tw-text-xl tw-mb-4">Live Preview </div>
+            <div class="tw-text-xl tw-mb-4">Live Preview</div>
 
-            <iframe @load="iframeLoaded" ref="iframe" :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-full" height="fitcontent" />
+            <!--            <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
+
+            <iframe style="min-height: 700px" @load="iframeLoaded" ref="iframe" :src="liveWebsite" frameborder="0"
+                    class="tw-w-full"/>
           </div>
-
         </v-tab-item>
+
         <v-tab-item value="Metas">
           <form-field-meta :field="formFields[2]" v-model="Page"/>
+
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
             @click="submit">Save
@@ -56,7 +60,7 @@
 
         </v-tab-item>
         <v-tab-item value="Live">
-          <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full tw-h-screen"/>
+          <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full"/>
         </v-tab-item>
 
         <v-tab-item value="Redirection">
@@ -290,7 +294,7 @@ export default class PageForm extends Vue {
     this.submit();
   }
 
-  iframeLoaded(e : any){
+  iframeLoaded(e: any) {
     console.log(e);
     console.log(this.$refs.iframe);
   }

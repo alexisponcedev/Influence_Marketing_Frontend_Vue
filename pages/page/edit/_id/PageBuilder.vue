@@ -3,23 +3,42 @@
 
     <v-card color="#FCFCFC" elevation="0" class="mb-4 px-7 page-builder-header">
       <v-row align="center">
+
         <v-col cols="12" md="5">
-          <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
-          <span class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
+          <div class="tw-flex tw-space-x-2 tw-items-center">
+            <button @click="discard"><v-icon color="black" large >mdi-close</v-icon></button>
+            <div>
+              <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
+              <span class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
+            </div>
+          </div>
+
         </v-col>
         <v-col cols="12" md="7" class="text-right">
-          <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">Discard</v-btn>
+          <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">
+            Discard
+          </v-btn>
+
           <v-btn @click="gotoLiveWebsite" elevation="0" outlined color="grey darken-4" class="control-btns">
-            Live Preview
+            <v-icon>mdi-play-circle</v-icon> Preview
           </v-btn>
-          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">Save Template
+
+          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">
+            Save Template
           </v-btn>
+
+
+
 <!--          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white&#45;&#45;text" class="control-btns">Save-->
 <!--            Draft-->
 <!--          </v-btn>-->
+
+
+
           <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">
-            Save
+            Save Page
           </v-btn>
+
         </v-col>
       </v-row>
     </v-card>

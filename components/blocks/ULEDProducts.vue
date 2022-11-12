@@ -56,17 +56,16 @@ export default class BlockULEDProducts extends Vue {
             src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
             alt: "Some note about this image",
           },
-          link: {
+          list: {
             id: 3,
-            type: StructureType.Url,
-            title: "Discover",
-            value: "/products",
-          },
-          btn: {
-            id: 4,
-            type: StructureType.Url,
-            title: "Where To Buy",
-            value: "/",
+            type: StructureType.List,
+            title: 'Links',
+            newItem: {link: {id: 1, type: StructureType.Url, title: 'Discover', value: ''}},
+            value: [
+              {
+                link: {id: 1, type: StructureType.Url, title: 'Discover', value: ''},
+              },
+            ]
           },
         },
         value: [
