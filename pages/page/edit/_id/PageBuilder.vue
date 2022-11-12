@@ -6,7 +6,9 @@
 
         <v-col cols="12" md="5">
           <div class="tw-flex tw-space-x-2 tw-items-center">
-            <button @click="discard"><v-icon color="black" large >mdi-close</v-icon></button>
+            <button @click="discard">
+              <v-icon color="black" large>mdi-close</v-icon>
+            </button>
             <div>
               <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
               <span class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
@@ -15,29 +17,55 @@
 
         </v-col>
         <v-col cols="12" md="7" class="text-right">
-          <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">
-            Discard
-          </v-btn>
+          <!--          <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">-->
+          <!--            Discard-->
+          <!--          </v-btn>-->
 
           <v-btn @click="gotoLiveWebsite" elevation="0" outlined color="grey darken-4" class="control-btns">
-            <v-icon>mdi-play-circle</v-icon> Preview
+            <v-icon>mdi-play-circle</v-icon>
+            Preview
           </v-btn>
 
-          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">
-            Save Template
-          </v-btn>
+          <!--          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">-->
+          <!--            Save Template-->
+          <!--          </v-btn>-->
 
 
-
-<!--          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white&#45;&#45;text" class="control-btns">Save-->
-<!--            Draft-->
-<!--          </v-btn>-->
-
+          <!--          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white&#45;&#45;text" class="control-btns">Save-->
+          <!--            Draft-->
+          <!--          </v-btn>-->
 
 
           <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">
             Save Page
           </v-btn>
+
+
+          <v-menu bottom :offset-x="-10" :offset-y="12">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon elevation="0" v-on="on" v-bind="attrs">
+                <v-icon>mdi-dots-vertical</v-icon>
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-item>
+                <v-list-item-title>
+                  <button class="tw-block tw-p-1.5" @click="saveTemplate">Save as template</button>
+                </v-list-item-title>
+              </v-list-item>
+
+              <v-divider ></v-divider>
+
+              <v-list-item>
+                <v-list-item-title>
+                  <button class="tw-block tw-px-2 tw-py-1.5" @click="discard">Discard</button>
+                </v-list-item-title>
+              </v-list-item>
+
+
+            </v-list>
+          </v-menu>
 
         </v-col>
       </v-row>
