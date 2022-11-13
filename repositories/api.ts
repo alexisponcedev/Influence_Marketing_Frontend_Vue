@@ -1312,6 +1312,7 @@ export interface Page {
      * @memberof Page
      */
     'widgets'?: Array<object>;
+
     'draft'?: Array<object>;
     /**
      *
@@ -1597,6 +1598,12 @@ export interface Post {
     'title'?: string;
     /**
      *
+     * @type {string}
+     * @memberof Post
+     */
+    'route'?: string;
+    /**
+     *
      * @type {number}
      * @memberof Post
      */
@@ -1609,16 +1616,16 @@ export interface Post {
     'widgets'?: Array<object>;
     /**
      *
+     * @type {Array<object>}
+     * @memberof Post
+     */
+    'meta'?: Array<object>;
+    /**
+     *
      * @type {Array<string>}
      * @memberof Post
      */
     'tags'?: Array<string>;
-    /**
-     *
-     * @type {string}
-     * @memberof Post
-     */
-    'url'?: string;
     /**
      *
      * @type {number}
@@ -1646,6 +1653,12 @@ export interface PostResource {
     'title'?: string;
     /**
      *
+     * @type {string}
+     * @memberof PostResource
+     */
+    'route'?: string;
+    /**
+     *
      * @type {number}
      * @memberof PostResource
      */
@@ -1658,16 +1671,16 @@ export interface PostResource {
     'widgets'?: Array<object>;
     /**
      *
+     * @type {Array<object>}
+     * @memberof PostResource
+     */
+    'meta'?: Array<object>;
+    /**
+     *
      * @type {Array<string>}
      * @memberof PostResource
      */
     'tags'?: Array<string>;
-    /**
-     *
-     * @type {string}
-     * @memberof PostResource
-     */
-    'url'?: string;
     /**
      *
      * @type {number}

@@ -24,6 +24,7 @@ export interface FormField {
     | "form-field-date-year"
     | "form-field-download-button"
     | "form-field-meta"
+    | "form-field-tags"
     | "form-field-image";
   onClick?: () => any;
   if?: () => Boolean;

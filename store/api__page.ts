@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
   Page,
@@ -15,7 +15,7 @@ import {
 export default class api__page extends VuexModule {
   loading: Boolean = false;
   all: Array<PageResource> = [];
-  routes : Array<any> = [];
+  routes: Array<any> = [];
 
   @Mutation
   setLoading(status: Boolean) {
@@ -31,20 +31,31 @@ export default class api__page extends VuexModule {
   updateRoutes(routes: Array<any>) {
     this.routes = routes;
 
-    this.routes = routes.map((page : any) => {
-      return {
-        id : page.id,
-        title: page.title,
-        model_id : page.model_id,
-        model_type : page.model_type,
-        route: page.route,
-        domain: 'https://hisense-usa.com' + page.route,
-      }
-    });
+    this.routes = [
+      {
+        id: 0,
+        title: 'Empty',
+        model_id: 0,
+        model_type: '',
+        route: '',
+        domain: 'https://hisense-usa.com',
+      },
+      ...routes.map((page: any) => {
+        return {
+          id: page.id,
+          title: page.title,
+          model_id: page.model_id,
+          model_type: page.model_type,
+          route: page.route,
+          domain: 'https://hisense-usa.com' + page.route,
+        }
+      })
+    ];
+
   }
 
-  @Action({ commit: "updateAll" })
-  @Action({ commit: "updateRoutes" })
+  @Action({commit: "updateAll"})
+  @Action({commit: "updateRoutes"})
   async getAll() {
     this.setLoading(true);
     const response = await PageApiFactory(
@@ -60,7 +71,7 @@ export default class api__page extends VuexModule {
     return [];
   }
 
-  @Action({ commit: "updateAll" })
+  @Action({commit: "updateAll"})
   async getDynamicPages() {
     this.setLoading(true);
     const response = await PageApiFactory(
@@ -77,11 +88,10 @@ export default class api__page extends VuexModule {
   }
 
 
-
-  @Action({ commit: "updateRoutes" })
+  @Action({commit: "updateRoutes"})
   async getRoutes() {
     this.setLoading(true);
-    const response : any = await PageApiFactory(
+    const response: any = await PageApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
@@ -94,7 +104,7 @@ export default class api__page extends VuexModule {
     return [];
   }
 
-  @Action({ commit: "updateRoutes" })
+  @Action({commit: "updateRoutes"})
   clearRoutes() {
     return [];
   }
@@ -132,14 +142,14 @@ export default class api__page extends VuexModule {
   }
 
   @Action
-  async saveDraft(draft : Draft) {
+  async saveDraft(draft: Draft) {
     this.setLoading(true);
     const response = await PageApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .updatePageDraft(Number(draft.page_id) , draft)
+      .updatePageDraft(Number(draft.page_id), draft)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
@@ -148,7 +158,7 @@ export default class api__page extends VuexModule {
   }
 
   @Action
-  async getDraft(id : number) {
+  async getDraft(id: number) {
     this.setLoading(true);
     const response = await PageApiFactory(
       new Configuration({
@@ -164,14 +174,14 @@ export default class api__page extends VuexModule {
   }
 
   @Action
-  async savePageWidgets(widgets : Widgets) {
+  async savePageWidgets(widgets: Widgets) {
     this.setLoading(true);
     const response = await PageApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .updatePageWidgets(Number(widgets.page_id) , widgets)
+      .updatePageWidgets(Number(widgets.page_id), widgets)
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))

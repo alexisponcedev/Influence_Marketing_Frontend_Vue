@@ -39,8 +39,8 @@ export default class StructureFileUploader extends Vue {
   name: string = '';
 
   nameField = {
-    label: 'Asset Title',
-    placeholder: 'asset name or title',
+    label: 'Template name',
+    placeholder: 'Enter Template name',
     rules: [],
     colAttrs: {cols: 12}
   }

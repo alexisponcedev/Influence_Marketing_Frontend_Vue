@@ -36,7 +36,7 @@
           </v-card>
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-            @click="submit">Save
+            @click.prevent="submit">Save
           </button>
           <!--          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
 
@@ -55,7 +55,7 @@
 
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-            @click="submit">Save
+            @click.prevent="submit">Save
           </button>
 
         </v-tab-item>
@@ -131,7 +131,6 @@ export default class PageForm extends Vue {
 
   mounted() {
     this.init();
-
     Api.Setting.getValue(SettingEnum.livePreview).then(value => {
       this.livePreviewUrl = value ? value : '';
     })
@@ -282,11 +281,6 @@ export default class PageForm extends Vue {
     this.Page.redirect = '';
     this.submit();
   }
-
-  // openRedirectModal() {
-  //   this.redirectionObj.value = this.Page.redirect;
-  //   this.showRedirectModal = true;
-  // }
 
   saveRedirect() {
     this.Page.redirect = this.redirectionObj.value;

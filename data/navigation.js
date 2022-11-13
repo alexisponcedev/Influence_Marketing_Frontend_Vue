@@ -14,8 +14,8 @@ export const items = () => [
   {
     title: "Blog Posts",
     icon: "mdi-post",
-    group: "blog",
-    to: "blog",
+    group: "posts",
+    to: "posts",
   },
   {
     title: "Menus",
