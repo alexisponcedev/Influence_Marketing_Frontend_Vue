@@ -32,14 +32,14 @@ export default class api__page extends VuexModule {
     this.routes = routes;
 
     this.routes = [
-      {
-        id: 0,
-        title: 'Empty',
-        model_id: 0,
-        model_type: '',
-        route: '',
-        domain: 'https://hisense-usa.com',
-      },
+      // {
+      //   id: 0,
+      //   title: 'Root',
+      //   model_id: 0,
+      //   model_type: '',
+      //   route: '/',
+      //   domain: 'https://hisense-usa.com',
+      // },
       ...routes.map((page: any) => {
         return {
           id: page.id,
@@ -51,7 +51,6 @@ export default class api__page extends VuexModule {
         }
       })
     ];
-
   }
 
   @Action({commit: "updateAll"})

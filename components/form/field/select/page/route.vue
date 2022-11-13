@@ -72,7 +72,9 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
   }
 
   get getDuplicates() {
-    return Api.Page.routes.filter(page => page.id !== this.pageId && (page.route === this.model || page.route + '/' === this.model )).length
+    return Api.Page.routes.filter(page =>
+      page.id !== this.pageId && (page.route === this.model || page.route + '/' === this.model )
+    ).length
   }
 
   getRoutes() {
