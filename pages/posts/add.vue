@@ -27,12 +27,12 @@
         <v-tab-item value="Details">
           <v-card>
             <v-card-text>
-              <form-field-text :field="formFields[0]" v-model="Post.title" @input="postTitleChanged"/>
-
-              <form-field-select-page-route :field="formFields[1]" v-model="Post.route" :pageId="Post.id"/>
-
-              <form-field-tags :field="formFields[2]" v-model="Post.tags"/>
-
+              <v-row>
+                <form-field-text :field="formFields[0]" v-model="Post.title" @input="postTitleChanged"/>
+                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
+              </v-row>
+              <form-field-select-page-route :field="formFields[2]" v-model="Post.route" :pageId="Post.id"/>
+              <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
             </v-card-text>
           </v-card>
           <button
@@ -42,7 +42,7 @@
         </v-tab-item>
 
         <v-tab-item value="Metas">
-          <form-field-meta :field="formFields[2]" v-model="Post"/>
+          <form-field-meta :field="formFields[4]" v-model="Post"/>
           <button
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
             @click.prevent="submit">Save
@@ -73,8 +73,6 @@ import {SettingEnum} from "~/interfaces/SettingEnum";
 export default class PostForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
-  UrlTypeEnum = UrlTypeEnum;
-
   Api = Api;
 
   tab = "";
@@ -100,16 +98,20 @@ export default class PostForm extends Vue {
 
   mounted() {
     this.init();
-
     Api.Setting.getValue(SettingEnum.livePreview).then(value => {
       this.livePreviewUrl = value ? value : '';
     })
   }
 
   async init() {
+    await this.initCategories();
     await this.initPostsTab();
     this.updateLocations();
     this.initMetaTags();
+  }
+
+  async initCategories() {
+    await Api.Category.getAll();
   }
 
   initMetaTags() {
@@ -161,7 +163,18 @@ export default class PostForm extends Vue {
         modelKey: "title",
         placeholder: 'please enter post title',
         rules: [Validation.required],
-        colAttrs: {cols: 12},
+        colAttrs: {cols: 9},
+      },
+      {
+        type: "form-field-select-autocomplete",
+        label: "Category",
+        modelKey: "category_id",
+        placeholder: 'please select category',
+        'item-text': 'name',
+        'item-value': 'id',
+        items: Api.Category.all,
+        rules: [Validation.required],
+        colAttrs: {cols: 3},
       },
       {
         type: "form-field-select-page-route",
@@ -195,9 +208,8 @@ export default class PostForm extends Vue {
           Post: this.Post,
         });
       else {
-        await Api.Post.create(this.Post).then(post => {
-          this.$router.push("/posts/edit/" + post.id);
-        }).catch(err => {
+        await Api.Post.create(this.Post).then((post : any) => {
+          if(post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
         })
       }
     }
@@ -222,8 +234,6 @@ export default class PostForm extends Vue {
   openPostBuilder() {
     this.$router.push(`/posts/edit/${this.Post.id}/PostBuilder`);
   }
-
-
 
   @Watch("tab")
   tabChanged(newTab: string, _: string) {

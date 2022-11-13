@@ -17,19 +17,10 @@
 
         </v-col>
         <v-col cols="12" md="7" class="text-right">
-          <!--          <v-btn @click="discard" elevation="0" outlined color="grey darken-4" class="control-btns">-->
-          <!--            Discard-->
-          <!--          </v-btn>-->
-
           <v-btn @click="gotoLiveWebsite" elevation="0" outlined color="grey darken-4" class="control-btns">
             <v-icon>mdi-play-circle</v-icon>
             Preview
           </v-btn>
-
-          <!--          <v-btn @click="saveTemplate" elevation="0" outlined color="grey darken-4" class="control-btns">-->
-          <!--            Save Template-->
-          <!--          </v-btn>-->
-
 
           <!--          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white&#45;&#45;text" class="control-btns">Save-->
           <!--            Draft-->
@@ -52,6 +43,12 @@
               <v-list-item>
                 <v-list-item-title>
                   <button class="tw-block tw-p-1.5" @click="saveTemplate">Save as template</button>
+                </v-list-item-title>
+              </v-list-item>
+
+              <v-list-item>
+                <v-list-item-title>
+                  <button class="tw-block tw-p-1.5" @click="saveDraft">Save Draft</button>
                 </v-list-item-title>
               </v-list-item>
 

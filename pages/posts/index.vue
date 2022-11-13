@@ -134,7 +134,7 @@ export default class AllPosts extends Vue {
   }
 
   openCategoryModal(category = null){
-    this.category = category ? category : {id : 0 , name : ''};
+    this.category = category ? JSON.parse(JSON.stringify(category)) : {id : 0 , name : ''};
     this.showCategoryModal = true;
   }
 

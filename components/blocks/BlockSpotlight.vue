@@ -40,9 +40,9 @@
             <div class="tw-font-xs">total items : <strong>{{ tab.serverData.length - tab.items.length }}</strong></div>
           </div>
 
-          <div>
-            <div><-</div>
-            <div>-></div>
+          <div class="tw-space-y-2">
+            <div><v-icon small>mdi-arrow-left</v-icon></div>
+            <div><v-icon small>mdi-arrow-right</v-icon></div>
           </div>
           <div class="tw-flex-1">
             <div class="tw-h-40 tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-overflow-y-auto">
