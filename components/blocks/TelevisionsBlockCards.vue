@@ -34,6 +34,14 @@ export default class TelevisionsBlockCards extends Vue {
             link: {id: 2, type: StructureType.Url, title: 'Link', value: ''},
           }
         ]
+      },
+      supportBox:{
+        id : 4 , type : StructureType.Object , title : 'Support Box',
+        value : {
+          title: {id: 1, type: StructureType.Text, title: 'Title', value: ''},
+          image: {id: 1, type: StructureType.Image, title: 'Image', src : '' , alt : ''},
+          link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
+        }
       }
     }
   }
