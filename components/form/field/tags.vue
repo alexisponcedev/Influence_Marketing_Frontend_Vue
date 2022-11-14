@@ -4,15 +4,15 @@
       {{ field.label }}
     </label>
 
-    <div class="tw-flex tw-space-x-2 tw-items-center">
-      <div class="tw-bg-white tw-px-2 tw-py-0.5 tw-rounded tw-border tw-border-solid tw-border-gray-500 ">
+    <div class="tw-flex tw-flex-warp tw-gap-2 tw-items-center tw-w-full " style="flex-wrap: wrap;">
+      <div class="tw-bg-white tw-px-2 tw-py-0.5 tw-rounded tw-border tw-border-solid tw-border-gray-500 tw-whitespace-nowrap ">
         <input type="text" class="x-input" placeholder="Enter name" v-model='name' @keyup.enter.prevenet="addTag">
         <button @click.prevent="addTag">
           <v-icon>mdi-plus</v-icon>
         </button>
       </div>
       <div v-for="(tag , index) in model" :key="tag"
-           class="tw-space-x-2 tw-px-2 tw-py-3 tw-rounded tw-border tw-border-solid tw-border-gray-500">
+           class="tw-space-x-2 tw-px-2 tw-py-3 tw-rounded tw-border tw-border-solid tw-border-gray-500 tw-whitespace-nowrap">
         <span>{{ tag }}</span>
         <button @click.prevent="removeTag(index)">
           <v-icon small>mdi-close</v-icon>
@@ -56,7 +56,7 @@ export default class TextMetaFormField extends Vue {
   }
 
   addTag() {
-    if (this.name != '') {
+    if (this.name != '' && !this.model.includes(this.name)) {
       // this.tags.push(this.name)
       this.model.push(this.name)
       this.name = '';

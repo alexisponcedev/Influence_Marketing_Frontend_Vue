@@ -1,5 +1,4 @@
 <template>
-
   <div class="tw-w-full" :class="{'tw-px-2' : hasBackground}">
     <div class="tw-mb-1" v-if="showTitle"> {{ model.title }}</div>
 
@@ -32,6 +31,7 @@
 import {Component, Prop, VModel, Vue, Watch} from "vue-property-decorator";
 import {StructureField} from "~/interfaces/StructureField";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
+import {Api} from "~/utils/store-accessor";
 
 
 @Component
@@ -45,6 +45,10 @@ export default class StructureUrlEditor extends Vue {
       {title: 'Section or Anchor', value: UrlTypeEnum.anchor}
     ]
   }) options!: any
+  @Prop({
+    type: Object, default: () => {
+    }
+  }) rebuild!: any
   @Prop({type: Boolean, default: true}) hasBackground!: Boolean
   @Prop({type: Boolean, default: false}) disableTitle!: Boolean
   @Prop({type: Boolean, default: true}) showTitle!: Boolean
@@ -52,6 +56,8 @@ export default class StructureUrlEditor extends Vue {
   @VModel({type: StructureField}) model!: StructureField
 
   UrlTypeEnum = UrlTypeEnum;
+
+  Api = Api;
 
   type = UrlTypeEnum.Internal;
   route = '';
@@ -114,46 +120,44 @@ export default class StructureUrlEditor extends Vue {
     colAttrs: {cols: this.inline ? 3 : 12},
   }
 
-  prepare() {
-    this.selectField.label = this.model.title ?? 'field';
-    if (this.model && this.model.value) {
-      if (this.model.value && this.model.value.startsWith('#')) {
-        this.type = UrlTypeEnum.anchor;
+  async prepare() {
+    console.log('prepare : ', this.model, this.model.value);
+    return new Promise((resolve, reject) => {
+      this.selectField.label = this.model.title ?? 'field';
+      if (this.model && this.model.value) {
+        if (this.model.value && this.model.value.startsWith('#')) {
+          this.type = UrlTypeEnum.anchor;
+        } else if (this.model.value && this.model.value.startsWith('openChannelAdvisor:')) {
+          this.productModel = this.model.value.replace('openChannelAdvisor:', '')
+        } else {
+          let arr = this.model.value.split('?');
+          this.route = arr[0];
+          this.query = arr.length > 1 ? arr[1] : '';
+        }
+      } else {
+        this.route = '';
+        this.query = '';
       }
-      else if(this.model.value && this.model.value.startsWith('openChannelAdvisor:')){
-        this.productModel = this.model.value.replace('openChannelAdvisor:' , '')
-      }
-      else {
-        let arr = this.model.value.split('?');
-        this.route = arr[0];
-        this.query = arr.length > 1 ? arr[1] : '';
-        // this.type = this.model.value.includes('https://') ? UrlTypeEnum.External : UrlTypeEnum.Internal;
-      }
-
-    } else {
-      this.route = '';
-      this.query = '';
-      // this.type = UrlTypeEnum.Internal;
-    }
+      resolve(true);
+    });
   }
 
   updateType() {
-    if(this.model.value && this.model.value.startsWith('#'))
+    console.log('update type : ');
+    if (this.model.value && this.model.value.startsWith('#'))
       this.type = UrlTypeEnum.anchor
-    else if(this.model.value && this.model.value.startsWith('openChannelAdvisor:'))
+    else if (this.model.value && this.model.value.startsWith('openChannelAdvisor:'))
       this.type = UrlTypeEnum.openChannelAdvisor
-    else if(this.model.value && this.model.value.includes('https://'))
+    else if (this.model.value && this.model.value.includes('https://'))
       this.type = UrlTypeEnum.Custom
+    else if (this.model.value && !Api.Page.routes.map(i => i.route).includes(this.model.value))
+      this.type = UrlTypeEnum.Custom;
     else
       this.type = UrlTypeEnum.Internal;
-
-    // this.type = this.model.value && this.model.value.startsWith('#') ? UrlTypeEnum.anchor :
-    //   this.model.value && this.model.value.includes('https://') ? UrlTypeEnum.Custom : UrlTypeEnum.Internal;
   }
 
   mounted() {
-    this.prepare();
-    this.updateType();
+    this.prepare().then(this.updateType);
   }
 
   @Watch('route')
@@ -168,14 +172,23 @@ export default class StructureUrlEditor extends Vue {
   }
 
   @Watch('value', {deep: true, immediate: true})
-  onValueChanged(value: any) {
+  onValueChanged(value: any, oldValue: any) {
     this.model = value;
-    this.prepare();
+    this.prepare()
+    // .then(this.updateType);
   }
 
   @Watch('model', {immediate: true, deep: true})
   onModelUpdated() {
     this.$emit('update:url', this.model);
   }
+
+  @Watch('rebuild', {immediate: true, deep: true})
+  onRebuild() {
+    console.log('on rebuild  fired: ')
+    this.updateType()
+  }
+
+
 }
 </script>

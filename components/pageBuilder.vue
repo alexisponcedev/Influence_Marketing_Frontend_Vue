@@ -5,7 +5,8 @@
       <div
         class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
         style="max-height: 88vh">
-        <draggable v-model="blocksList" group="people" @start="drag=true" @end="drag=false">
+        <draggable v-model="blocksList"  group="people"  @dragstart="dragStarted" @dragend="dragEnd">
+<!--          <pre>{{blocksList}}</pre>-->
           <blocks-container
             v-for="(block , i) in blocksList" :key="block.id"
             class="tw-mb-2"
@@ -20,11 +21,15 @@
             :block="block">
             <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure"/>
           </blocks-container>
+
+          <blocks-drop/>
         </draggable>
-        <blocks-drop/>
+
       </div>
       <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
-        <blocks-selector v-show="editIndex === -1" class="tw-p-4" @add-block="addBlock"/>
+
+        <blocks-selector v-show="editIndex === -1" class="tw-p-4" :blocks-type="blocksType" @add-block="addBlock"/>
+
         <structure-editor v-if="editIndex > -1"
                           :key="blocksList[editIndex].title + blocksList[editIndex].id"
                           v-model="blocksList[editIndex].structure"
@@ -46,11 +51,10 @@ import {EventBus} from "~/plugins/event.client";
   components: {draggable}
 })
 export default class PageBuilder extends Vue {
+  @Prop({type : String , default : 'page'}) blocksType! : string
   @VModel({type: Array}) blocksList!: any
 
   editIndex: Number = -1;
-
-  // selectable: boolean = false;
 
   selectItem: any = {};
 
@@ -88,7 +92,6 @@ export default class PageBuilder extends Vue {
     this.blocksList[index].selected = true;
   }
 
-
   editBlock(i: number) {
     this.selectBlock(i);
     this.editIndex = i;
@@ -121,6 +124,14 @@ export default class PageBuilder extends Vue {
       const block = this.blocksList.splice(i, 1)[0];
       this.blocksList.splice(i + 1, 0, block)
     }
+  }
+
+  dragStarted(e : any){
+    console.log(e);
+  }
+
+  dragEnd(e : any){
+    console.log(e);
   }
 }
 </script>

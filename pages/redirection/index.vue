@@ -39,9 +39,10 @@ export default class AllRedirects extends Vue {
 
   config = {
     headers: [
-      { text: "Page Route", value: "page_route" },
-      { text: "Redirect Type", value: "redirect_type" },
-      { text: "Redirect URL", value: "redirect_url" },
+      { text: "ID", value: "id" },
+      { text: "From URL", value: "source_url" },
+      { text: "To URL", value: "redirect_url" },
+      // { text: "Redirect Type", value: "redirect_type" },
       { text: "Redirect Code", value: "redirect_code" },
       { text: "", value: "actions", sortable: false, width: "0" },
     ],

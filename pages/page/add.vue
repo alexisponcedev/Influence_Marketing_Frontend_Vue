@@ -249,7 +249,7 @@ export default class PageForm extends Vue {
   }
 
   openPageBuilder() {
-    this.$router.push(`/page/edit/${this.Page.id}/PageBuilder`);
+    this.$router.push(`/page/edit/${this.Page.id}/page-builder`);
   }
 
   templateSelected(template: any) {
