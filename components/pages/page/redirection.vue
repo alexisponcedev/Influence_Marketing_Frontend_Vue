@@ -191,7 +191,6 @@ export default class PageForm extends Vue {
       [];
   }
 
-
   async saveRedirect() {
     if(this.redirectionObj.value){
       await Api.Redirect.create({
@@ -199,6 +198,7 @@ export default class PageForm extends Vue {
         redirect_type: this.redirectionObj.redirection_type,
         redirect_code: this.redirectionObj.redirection_code,
         redirect_url: this.redirectionObj.value,
+        source_url : this.Page.route
         // regex: '',
       });
       this.showModal = false;
