@@ -23,14 +23,16 @@ export default class TelevisionsBlockCards extends Vue {
         newItem: {
           title: {id: 1, type: StructureType.Text, title: 'Title', value: ''},
           subtitle: {id: 2, type: StructureType.Text, title: 'Subtitle', value: ''},
-          image: {id: 2, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+          image: { id: 2, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+          backgroundImage: { id: 2, type: StructureType.Image, title: 'Background Image', src: '', alt: '' },
           link: {id: 2, type: StructureType.Url, title: 'Link', value: ''},
         },
         value: [
           {
             title: {id: 1, type: StructureType.Text, title: 'Title', value: ''},
             subtitle: {id: 2, type: StructureType.Text, title: 'Subtitle', value: ''},
-            image: {id: 2, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+            image: { id: 2, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+            backgroundImage: { id: 2, type: StructureType.Image, title: 'Background Image', src: '', alt: '' },
             link: {id: 2, type: StructureType.Url, title: 'Link', value: ''},
           }
         ]

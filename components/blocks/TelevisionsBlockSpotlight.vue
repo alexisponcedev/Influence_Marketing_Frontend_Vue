@@ -16,10 +16,24 @@ export default class TelevisionsBlockSpotlight extends Vue {
 
   reset() {
     this.model = {
-      backgroundImage : {id : 0 , type : StructureType.Image , title : "Image" , src : '' , alt : ''},
-      title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'It all starts with X'},
-      subtitle : {id : 2 , type : StructureType.String , title : 'Subtitle' , value : 'Pre-order the limited edition ULED X today.'},
-      link : {id : 3 , type : StructureType.Url , title : 'Sign Up Now' , value : ''},
+      text: { id: 1, type: StructureType.Text, title: 'Text', value: '' },
+      list: {
+        id: 3, type: StructureType.List, title: "List",
+        newItem: {
+          title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+          text: { id: 1, type: StructureType.Text, title: 'Description', value: '' },
+          image: { id: 2, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+          link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
+        },
+        value: [
+          {
+            title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+            text: { id: 1, type: StructureType.Text, title: 'Description', value: '' },
+            image: { id: 2, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+            link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
+          }
+        ]
+      },
     }
   }
 
