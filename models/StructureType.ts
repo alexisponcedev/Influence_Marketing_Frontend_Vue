@@ -1,6 +1,7 @@
 export enum StructureType {
   String = 'string',
   Text = 'text',
+  SimpleText = 'simpleText',
   File = 'file',
   Image = 'image',
   Video = 'Video',

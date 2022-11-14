@@ -1,7 +1,6 @@
-te
 <template>
   <div>
-    <img src="/blocks/UnauthorizedList.png" alt=""/>
+    <img src="/blocks/BlogSecondDescriptionBox.png" alt=""/>
   </div>
 </template>
 
@@ -10,27 +9,14 @@ import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 @Component
-export default class UnauthorizedList extends Vue {
+export default class BlogSecondDescriptionBox extends Vue {
   @Prop(Number) readonly id: number | undefined
   @Prop({default: true}) readonly editable: Boolean | undefined
   @VModel({type: Object}) model!: Object
 
   reset() {
     this.model = {
-      count : {id : 0 , type : StructureType.String , title : 'Max Per Row' , value : 2},
-      list: {
-        id: 1,
-        type: StructureType.List,
-        title: 'List',
-        newItem: {
-          text: {id: 0, type: StructureType.Text, title: 'Text', value: ''},
-        },
-        value: [
-          {
-            text: {id: 0, type: StructureType.Text, title: 'Text', value: ''},
-          }
-        ]
-      }
+      title: {id: 0, type: StructureType.Text, title: 'Title', value: ''},
     }
   }
 

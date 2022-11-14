@@ -31,8 +31,13 @@
                 <form-field-text :field="formFields[0]" v-model="Post.title" @input="postTitleChanged"/>
                 <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
               </v-row>
-              <form-field-select-page-route :field="formFields[2]" v-model="Post.route" :pageId="Post.id"/>
-              <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
+              <v-row>
+                <form-field-select-page-route :field="formFields[2]" v-model="Post.route" :pageId="Post.id"/>
+              </v-row>
+              <v-row>
+                <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
+              </v-row>
+
             </v-card-text>
           </v-card>
           <button
@@ -88,6 +93,7 @@ export default class PostForm extends Vue {
     tags: [],
     meta: [],
     widgets: [],
+    status:0,
   };
 
   livePreviewUrl = '';
@@ -232,7 +238,7 @@ export default class PostForm extends Vue {
   }
 
   openPostBuilder() {
-    this.$router.push(`/posts/edit/${this.Post.id}/PostBuilder`);
+    this.$router.push(`/posts/edit/${this.Post.id}/page-builder`);
   }
 
   @Watch("tab")

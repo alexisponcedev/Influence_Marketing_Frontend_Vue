@@ -1,39 +1,41 @@
 <template>
   <div>
     <div class="tw-space-y-2">
-      <div v-for="(item , index) in model" :key="index">
-        <v-row v-if="editing === index" align="start">
-          <form-field-text :field="textField" v-model="item.name"/>
-          <form-field-select-page-name
-            :field="urlField"
-            v-model="item.url"
-            :rules="[]"
-            placeholder="p"
-          />
-          <v-col justify="center">
-            <v-btn icon elevation="0" text @click="confirm">
-              <v-icon class="red--text">mdi-check</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-        <div v-else class="tw-flex tw-items-center tw-justify-between tw-bg-gray-50 tw-rounded-xl tw-p-2">
-          <div class="tw-w-56">
-            <img :src="item.image" alt="product image" class="tw-object-cover tw-h-16 tw-rounded-lg">
-          </div>
-          <div class="tw-flex-1">
-            <div class="tw-text-gray-400">{{ item.name }}</div>
-            <div>{{ item.url }}</div>
-          </div>
-          <div class="tw-flex tw-items-center tw-space-x-4">
-            <button @click="edit(index)">
-              <v-icon small class="gray--text">mdi-pencil</v-icon>
-            </button>
-            <button @click="remove(index)">
-              <v-icon small class="red--text">mdi-delete</v-icon>
-            </button>
+      <draggable v-model="model" group="products" @start="drag=true" @end="drag=false" class="tw-space-y-2">
+        <div v-for="(item , index) in model" :key="index">
+          <v-row v-if="editing === index" align="start">
+            <form-field-text :field="textField" v-model="item.name"/>
+            <form-field-select-page-name
+              :field="urlField"
+              v-model="item.url"
+              :rules="[]"
+              placeholder="p"
+            />
+            <v-col justify="center">
+              <v-btn icon elevation="0" text @click="confirm">
+                <v-icon class="red--text">mdi-check</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+          <div v-else class="tw-flex tw-items-center tw-justify-between tw-bg-gray-50 tw-rounded-xl tw-p-2">
+            <div class="tw-w-56">
+              <img :src="item.image" alt="product image" class="tw-object-cover tw-h-16 tw-rounded-lg">
+            </div>
+            <div class="tw-flex-1">
+              <div class="tw-text-gray-400">{{ item.name }}</div>
+              <div>{{ item.url }}</div>
+            </div>
+            <div class="tw-flex tw-items-center tw-space-x-4">
+              <button @click="edit(index)">
+                <v-icon small class="gray--text">mdi-pencil</v-icon>
+              </button>
+              <button @click="remove(index)">
+                <v-icon small class="red--text">mdi-delete</v-icon>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </draggable>
     </div>
     <search-products @addProduct="addNewProduct" class="tw-mt-3"/>
   </div>

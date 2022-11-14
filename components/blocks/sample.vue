@@ -1,5 +1,6 @@
 <template>
   <div class="tw-grid tw-grid-cols-2 " v-if="!isEmpty">
+<!--    <pre>{{model}}</pre>-->
     <img
       :src="model.image.src"
       style="width: 720px; height: 720px"
