@@ -85,13 +85,10 @@
                        style="min-height: 32px">
 
                     <div class="tw-flex-1">
-
-
                       <nuxt-link v-if="product.support" :to="`/page/edit/${product.support.id}`"
                                  class="tw-inline-block tw-w-full tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-1.5 tw-text-center">
-                        Open Support
+                        Support
                       </nuxt-link>
-
                       <div v-else class="tw-rounded tw-w-full">
                         <v-progress-linear v-if="addingSupport === product.id" indeterminate color="cyan"/>
                         <button v-else @click="addNewSupport(product)" class="tw-text-gray-600 tw-w-full tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
@@ -99,18 +96,16 @@
                           Add Support
                         </button>
                       </div>
-
-
                     </div>
 
 
-                    <div class="">
+                    <div class="tw-flex-1">
                       <nuxt-link v-if="product.page" :to="`/page/edit/${product.page.id}`"
                                  class="tw-inline-block tw-w-full tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1.5 tw-py-1.5 tw-text-center">
-                        Open Page
+                        Page
                       </nuxt-link>
                       <div v-else class="tw-rounded tw-w-full">
-                        <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan"/>
+                        <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan" class="tw-w-20"/>
                         <button v-else @click="addNewPage(product)"
                                 class="tw-text-gray-600 tw-w-full tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
                             tw-whitespace-nowrap hover:tw-text-gray-700 hover:tw-bg-gray-100 tw-px-1 tw-py-1">
@@ -352,9 +347,10 @@ export default class ProductsPage extends Vue {
       model_id: product.id,
       model_type: 'product',
     })
-      // .then(page => {
-      //   this.$router.push(`Page/Edit/${page.id}`)
-      // })
+      .then(page => {
+        this.pages.push(page);
+        (this.$refs.searchProducts as any).reRun();
+      })
       .finally(() => {
         this.addingPage = 0;
       });
@@ -373,10 +369,12 @@ export default class ProductsPage extends Vue {
         Api.Page.savePageWidgets({page_id: support.id, widgets: this.getSupportWidgets()})
         return support
       })
-      // .then(support => {
-      //   this.$router.push(`Page/Edit/${support.id}`)
-      // })
+      .then(support => {
+        this.pages.push(support);
+        (this.$refs.searchProducts as any).reRun();
+      })
       .finally(() => {
+
         this.addingSupport = 0;
       });
   }

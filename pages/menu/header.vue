@@ -20,13 +20,15 @@
           <v-card-text>
             <h6>Center Options</h6>
             <div class="tw-space-y-3">
-              <menu-option
-                v-for="(option , index) in Menu.widgets.centerOption"
-                :key="`center_option_${index}`"
-                :value="option"
-                @input="v => option = v"
-                @deleteOption="deleteOption(Menu.widgets.centerOption , index)"
-              />
+              <draggable v-model="Menu.widgets.centerOption" group="options" class="tw-space-y-3">
+                <menu-option
+                  v-for="(option , index) in Menu.widgets.centerOption"
+                  :key="`center_option_${index}`"
+                  :value="option"
+                  @input="v => option = v"
+                  @deleteOption="deleteOption(Menu.widgets.centerOption , index)"
+                />
+              </draggable>
               <button
                 @click="addNewOption(Menu.widgets.centerOption)"
                 class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
@@ -41,13 +43,14 @@
           <v-card-text>
             <h6>Right Options</h6>
             <div class="tw-space-y-3">
-              <menu-option v-for="(option , index) in Menu.widgets.rightOption"
-                           :key="`center_option_${index}`"
-                           :value="option"
-                           @input="v => option = v"
-                           @deleteOption="deleteOption(Menu.widgets.rightOption , index)"
-              />
-
+              <draggable v-model="Menu.widgets.rightOption" group="options" class="tw-space-y-3">
+                <menu-option v-for="(option , index) in Menu.widgets.rightOption"
+                             :key="`center_option_${index}`"
+                             :value="option"
+                             @input="v => option = v"
+                             @deleteOption="deleteOption(Menu.widgets.rightOption , index)"
+                />
+              </draggable>
               <button
                 @click="addNewOption(Menu.widgets.rightOption)"
                 class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">

@@ -30,6 +30,11 @@ export default class SupportNeedAssistance extends Vue {
           {title: 'Dark', value: this.Theme.dark},
         ]
       },
+
+      // image : {id : 1 , type : StructureType.Image , title : 'Image' , src : '' , alt : ''},
+      // title : {id : 2 , type : StructureType.String , title : 'Title' , value : 'Need More Assistance?'},
+      // link : {id : 3 , type : StructureType.Url , title : 'Contact Us' , value : '/'},
+
       title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'Need More Assistance?'},
       linkTitle : {id : 1 , type : StructureType.String , title : 'Link Title' , value : 'Contact Us'},
       linkUrl : {id : 1 , type : StructureType.String , title : 'Link Url' , value : '/'},

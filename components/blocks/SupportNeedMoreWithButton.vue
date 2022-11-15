@@ -37,11 +37,11 @@ export default class SupportNeedMoreWithButton extends Vue {
           id: 1,
           type: StructureType.Image,
           title: 'Image',
-          src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+          src: 'http://assets.dev-api.hisenseportal.com/storage/hisense/asset/images/6636005f876abe.webp',
           alt: 'Some note about this image',
         },
         title : {id : 2 , type : StructureType.String , title : 'Title' , value : 'Need More Assistance?'},
-        link : {id : 3 , type : StructureType.String , title : 'Contact Us Link' , value : '/'}
+        link : {id : 3 , type : StructureType.Url , title : 'Contact Us' , value : '/contact'}
       }
     }
 
