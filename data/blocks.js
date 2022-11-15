@@ -835,6 +835,16 @@ export const BLOCKS = () => {
           },
         ],
       },
+      {
+        name: "Televisions",
+        blocks: [
+          {name: "TelevisionsBlockBanner", title: "TelevisionsBlockBanner", image: "TelevisionsBlockBanner.png", category: 'TextBox' },
+          {name: "TelevisionsBlockCards", title: "TelevisionsBlockCards", image: "TelevisionsBlockCards.png", category: 'TextBox' },
+          {name: "TelevisionsBlockHero", title: "TelevisionsBlockHero", image: "TelevisionsBlockHero.png", category: 'TextBox' },
+          {name: "TelevisionsBlockSpotlight", title: "TelevisionsBlockSpotlight", image: "TelevisionsBlockSpotlight.png", category: 'TextBox' },
+          {name: "TelevisionsTvHero", title: "TelevisionsTvHero", image: "TelevisionsTvHero.png", category: 'TextBox' },
+        ],
+      },
     ],
     blog: [
       {
