@@ -3,19 +3,23 @@
 
 
     <v-row justify="between">
-      <v-col cols="10" class="tw-flex tw-items-center tw-justify-between" >
-          <v-tabs v-model="tab" background-color="transparent" >
-            <v-tab :href="`#`">All Posts</v-tab>
-            <v-tab :href="`#${category.id}`"
-                   v-for="category in Api.Category.all" :key="`${category.id}_${category.name}`">
-              {{ category.name }}
+      <v-col cols="10" class="tw-flex tw-items-center tw-justify-between">
+        <v-tabs v-model="tab" background-color="transparent">
+          <v-tab :href="`#`">All Posts</v-tab>
+          <v-tab :href="`#${category.id}`"
+                 v-for="category in Api.Category.all" :key="`${category.id}_${category.name}`">
+            {{ category.name }}
 
-              <button class="tw-px-1.5" @click.prevent="openCategoryModal(category)"><v-icon small>mdi-pencil</v-icon></button>
-              <button class="tw-px-1.5" @click.prevent="deleteCategory(category)"><v-icon small>mdi-delete</v-icon></button>
-            </v-tab>
-          </v-tabs>
+            <button class="tw-px-1.5" @click.prevent="openCategoryModal(category)">
+              <v-icon small>mdi-pencil</v-icon>
+            </button>
+            <button class="tw-px-1.5" @click.prevent="confirmDeleteCategory(category)">
+              <v-icon small>mdi-delete</v-icon>
+            </button>
+          </v-tab>
+        </v-tabs>
       </v-col>
-      <v-col cols="2" align-self="center" >
+      <v-col cols="2" align-self="center">
         <button @click.prevent="openCategoryModal"
                 class="tw-bg-white tw-px-2 tw-py-1.5 tw-rounded-xl tw-border tw-border-solid tw-border-gray-300 tw-whitespace-nowrap">
           Add Category
@@ -55,6 +59,9 @@
       </v-card>
     </v-dialog>
 
+
+    <loading-overlay :show="Api.Post.loading || Api.Category.loading"/>
+
   </v-container>
 </template>
 
@@ -71,7 +78,7 @@ export default class AllPosts extends Vue {
 
   showCategoryModal = false;
 
-  category : any = { id : 0 , name : ''}
+  category: any = {id: 0, name: ''}
 
   categoryNameField = {
     label: 'Category Name',
@@ -133,22 +140,33 @@ export default class AllPosts extends Vue {
     return Api.Post.all.filter((post: PostResource) => tab === '' || post.category_id?.toString() === tab);
   }
 
-  openCategoryModal(category = null){
-    this.category = category ? JSON.parse(JSON.stringify(category)) : {id : 0 , name : ''};
+  openCategoryModal(category = null) {
+    this.category = category ? JSON.parse(JSON.stringify(category)) : {id: 0, name: ''};
     this.showCategoryModal = true;
   }
 
-  saveCategory(){
-    if(this.category && this.category.id > 0)
-      Api.Category.update({id : +this.category.id! , category : this.category})
+  saveCategory() {
+    if (this.category && this.category.id > 0)
+      Api.Category.update({id: +this.category.id!, category: this.category})
     else
       Api.Category.create(this.category);
-    Api.Category.getAll();
     this.showCategoryModal = false;
   }
 
   deletePost(Post: PostResource) {
     Api.Post.delete(Post.id!).then(this.updatePosts);
+  }
+
+  confirmDeleteCategory(category: any) {
+    AppStore.showDeleteConfirmationModal({
+      deleteItemTitle: category.name || "",
+      deleteItem: category,
+      agreeButton: {callback: this.deleteCategory},
+    })
+  }
+
+  deleteCategory(category: any) {
+    Api.Category.delete(category.id)
   }
 
 }

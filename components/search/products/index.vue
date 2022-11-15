@@ -41,9 +41,12 @@ export default class SearchProductIndex extends Vue {
   @Prop({type : Boolean , default : false}) alwaysShow!:boolean
   @Prop({type : Boolean , default : false}) initLoad!:boolean
   @Prop({type : String , default : ProductSearchStatusEnum.all}) status!: ProductSearchStatusEnum
-  @VModel({type: Array}) model!: any
 
   @Prop(Function) run! : Function
+
+  @VModel({type: Array}) model!: any
+
+
   Api = Api;
 
   loading: boolean = false;
@@ -67,6 +70,7 @@ export default class SearchProductIndex extends Vue {
     }, 700);
   }
 
+
   searchProduct() {
     this.loading = true;
     let query = [`search=${this.search}`];
@@ -83,10 +87,10 @@ export default class SearchProductIndex extends Vue {
       });
   }
 
-  // @Watch('search')
-  // onSearchChanged() {
-  //   this.searchWithDebounceTime();
-  // }
+  reRun(){
+    if(this.run) this.products = this.run(this.products);
+  }
+
 
   get productsList(){
     let products = [];
@@ -113,7 +117,6 @@ export default class SearchProductIndex extends Vue {
   @Watch('category_id')
   onCategoryIdChanged(){
     this.searchProduct()
-    // this.searchWithDebounceTime()
   }
 
   addProduct(product: Object) {

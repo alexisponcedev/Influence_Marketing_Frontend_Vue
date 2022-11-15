@@ -40,7 +40,7 @@
     </div>
 
     <ul class="tw-list-none" v-if="!model.static">
-      <draggable v-model="model.columns" group="options" @start="drag=true" @end="drag=false">
+      <draggable v-model="model.columns" group="options">
       <li class="optionBox" v-for="(column , index) in model.columns" :key="`option_${index}`">
         <div class="tw-flex tw-items-center tw-space-x-3 tw-p-2">
           <div class="tw-text-blue-400">
@@ -51,7 +51,7 @@
             <v-icon small class="red--text">mdi-delete</v-icon>
           </button>
         </div>
-        <menu-items :value="column" @input="v => column = v"/>
+        <menu-items v-model="model.columns[index]"/>
       </li>
       </draggable>
       <li class="tw-mt-2">

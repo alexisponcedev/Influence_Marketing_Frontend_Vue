@@ -24,7 +24,7 @@
                     <v-icon small class="red--text">mdi-delete</v-icon>
                   </button>
                 </div>
-                <menu-items :value="column" @input="v => column = v"/>
+                <menu-items v-model="Menu.widgets.columns[index]"/>
               </li>
               <li class="tw-mt-2">
                 <button

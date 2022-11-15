@@ -9,7 +9,8 @@
       <!--      <div class="tw-text-lg tw-text-white tw-font-semibold"> click to select </div>-->
     </div>
 
-    <div :class="{'selected tw-border tw-border-solid tw-border-black' : block.selected}"
+    <div :class="{'selected tw-border tw-border-solid tw-border-black' : block.selected ,
+      'tw-border tw-border-solid tw-border-gray-200' : !block.selected}"
          style="min-height: 60px"
          @click="edit"
          class="tw-overflow-hidden tw-rounded tw-border-[3px] tw-border-solid tw-border-white hover:tw-border-gray-300 tw-transition tw-duration-300 tw-cursor-pointer tw-relative">
