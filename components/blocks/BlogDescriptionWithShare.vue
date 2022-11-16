@@ -22,10 +22,28 @@ export default class BlogDescriptionWithShare extends Vue {
         id: 2, type: StructureType.List, title: 'List',
         newItem: {
           link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+          socialMedia: {
+            id: 1, type: StructureType.Select, title: 'Social Media', value: "linkedin",
+            items: [
+              { title: "LinkedIn", value: "linkedin" },
+              { title: "Twitter", value: "twitter" },
+              { title: "Facebook", value: "facebook" },
+              { title: "Link", value: "link" },
+            ]
+          },
         },
         value: [
           {
             link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+            socialMedia: {
+              id: 1, type: StructureType.Select, title: 'Social Media', value: "linkedin",
+              items: [
+                { title: "LinkedIn", value: "linkedin" },
+                { title: "Twitter", value: "twitter" },
+                { title: "Facebook", value: "facebook" },
+                { title: "Link", value: "link" },
+              ]
+            },
           }
         ]
       },
