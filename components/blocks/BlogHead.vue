@@ -16,7 +16,8 @@ export default class BlogHead extends Vue {
 
   reset() {
     this.model = {
-      title: {id: 0, type: StructureType.String, title: 'Title', value: ''},
+      tagLink: { id: 0, type: StructureType.Url, title: 'Top Tag Link', value: '' },
+      title: { id: 0, type: StructureType.Text, title: 'Title', value: '' },
       sharingTitle: {id: 1, type: StructureType.String, title: 'Sharing Title', value: ''},
       list: {
         id: 2, type: StructureType.List, title: 'List',
