@@ -1,36 +1,60 @@
 <template>
   <div>
-    <img src="/blocks/BlogMoreStories.png" alt=""/>
+    <img src="/blocks/BlogMoreStories.png" alt="" />
   </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 
 @Component
 export default class BlogMoreStories extends Vue {
   @Prop(Number) readonly id: number | undefined
-  @Prop({default: true}) readonly editable: Boolean | undefined
-  @VModel({type: Object}) model!: Object
+  @Prop({ default: true }) readonly editable: Boolean | undefined
+  @VModel({ type: Object }) model!: Object
 
   reset() {
     this.model = {
-      title: {id: 0, type: StructureType.String, title: 'Title', value: ''},
+      title: { id: 0, type: StructureType.String, title: 'Title', value: '' },
       list: {
         id: 2, type: StructureType.List, title: 'List',
         newItem: {
-          image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-          title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-          tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-          link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+          largePost: {
+            id: 0, type: StructureType.Object, title: 'Large Post', value: {
+              image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+              title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+              tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+              link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+            }
+          },
+          smallPost: {
+            id: 1, type: StructureType.Object, title: 'Small Post', value: {
+              image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+              title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+              tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+              link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+            }
+          }
         },
         value: [
           {
-            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-            title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-            tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-            link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+            largePost: {
+              id: 0, type: StructureType.Object, title: 'Large Post', value: {
+                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+                tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+                link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+              }
+            },
+            smallPost: {
+              id: 1, type: StructureType.Object, title: 'Small Post', value: {
+                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+                tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+                link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+              }
+            }
           }
         ]
       },

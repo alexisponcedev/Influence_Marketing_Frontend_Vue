@@ -22,17 +22,41 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
       list: {
         id: 3, type: StructureType.List, title: 'List',
         newItem: {
-          image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-          title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-          tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-          link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+          largePost: {
+            id: 0, type: StructureType.Object, title: 'Large Post', value: {
+              image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+              title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+              tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+              link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+            }
+          },
+          smallPost: {
+            id: 1, type: StructureType.Object, title: 'Small Post', value: {
+              image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+              title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+              tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+              link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+            }
+          }
         },
         value: [
           {
-            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-            title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-            tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-            link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+            largePost: {
+              id: 0, type: StructureType.Object, title: 'Large Post', value: {
+                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+                tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+                link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+              }
+            },
+            smallPost: {
+              id: 1, type: StructureType.Object, title: 'Small Post', value: {
+                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
+                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+                tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
+                link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+              }
+            }
           }
         ]
       },
