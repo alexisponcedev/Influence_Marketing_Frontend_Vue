@@ -48,7 +48,7 @@ import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureImageEditor extends Vue {
-  @VModel({type: StructureField}) model!: StructureField
+  @VModel({type: StructureField }) model!: StructureField
 
   color : string = '#fff'
 

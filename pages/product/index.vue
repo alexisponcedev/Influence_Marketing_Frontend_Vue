@@ -79,40 +79,22 @@
                     {{ product.name }}
                   </div>
 
-                  <div class="tw-text-center tw-w-full">{{ product.model }}</div>
+                  <div class="tw-flex tw-items-center tw-justify-between tw-space-x-2" style="min-height: 32px">
+                    <div>{{ product.model }}</div>
 
-                  <div class="tw-flex tw-items-center tw-justify-between tw-space-x-2 tw-w-full"
-                       style="min-height: 32px">
-
-                    <div class="tw-flex-1">
-                      <nuxt-link v-if="product.support" :to="`/page/edit/${product.support.id}`"
-                                 class="tw-inline-block tw-w-full tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-1.5 tw-text-center">
-                        Support
+                    <div v-if="product.page">
+                      <nuxt-link :to="`/page/edit/${product.page.id}`"
+                                 class="tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1 tw-py-2">
+                        Open
                       </nuxt-link>
-                      <div v-else class="tw-rounded tw-w-full">
-                        <v-progress-linear v-if="addingSupport === product.id" indeterminate color="cyan"/>
-                        <button v-else @click="addNewSupport(product)" class="tw-text-gray-600 tw-w-full tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
-                            tw-whitespace-nowrap hover:tw-text-gray-700 hover:tw-bg-gray-100 tw-px-1 tw-py-1">
-                          Add Support
-                        </button>
-                      </div>
                     </div>
-
-
-                    <div class="tw-flex-1">
-                      <nuxt-link v-if="product.page" :to="`/page/edit/${product.page.id}`"
-                                 class="tw-inline-block tw-w-full tw-bg-blue-500 tw-text-white white--text tw-rounded-lg hover:tw-bg-blue-600 tw-px-1.5 tw-py-1.5 tw-text-center">
-                        Page
-                      </nuxt-link>
-                      <div v-else class="tw-rounded tw-w-full">
-                        <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan" class="tw-w-20"/>
-                        <button v-else @click="addNewPage(product)"
-                                class="tw-text-gray-600 tw-w-full tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
+                    <div v-else class="tw-rounded" style="min-width: 50px;">
+                      <v-progress-linear v-if="addingPage === product.id" indeterminate color="cyan"/>
+                      <button v-else @click="addNewPage(product)"
+                              class="tw-text-gray-600 tw-border tw-border-solid tw-border-gray-400 tw-rounded-lg
                             tw-whitespace-nowrap hover:tw-text-gray-700 hover:tw-bg-gray-100 tw-px-1 tw-py-1">
-                          Add Page
-                        </button>
-                      </div>
-
+                        Add Page
+                      </button>
 
                     </div>
                   </div>
@@ -145,7 +127,6 @@ export default class ProductsPage extends Vue {
   ProductSearchStatus = ProductSearchStatusEnum;
 
   addingPage: Number = 0;
-  addingSupport: Number = 0;
 
   categories: Array<any> = [];
 
@@ -173,9 +154,6 @@ export default class ProductsPage extends Vue {
           {"id": null, "name": "All Categories", image: null},
           ...res.data.filter((i: any) => i.id < 7)
         ]
-
-        // if (this.categories.length > 0)
-        //   this.selectedCategory = this.categories[0];
       });
   }
 
@@ -325,66 +303,21 @@ export default class ProductsPage extends Vue {
         }
       }
     }]
-    // return [{"id":1,"name":"Header","image":"Header.png","title":"Header Menu","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"dark"}}},{"id":3,"name":"ProductInfoAndSliderBox","image":"ProductInfoAndSliderBox.png","title":"Products Info and Slider Box","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"dark"}}},{"id":4,"name":"ProductSupportInfo","image":"ProductSupportInfo.png","title":"Product Support Info","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"light"},"title":{"id":1,"type":"string","title":"Title","value":"Product Support"},"paragraph":{"id":3,"type":"text","title":"Paragraph Text","value":"MONDAY-FRIDAY\n9AM - 9PM EST\n\n\nSATURDAY-SUNDAY\n9AM - 6PM EST"}}},{"id":5,"name":"ProductSupportLinks","image":"ProductSupportLinks.png","title":"Product Support Links","selected":false,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"light"}}},{"id":6,"name":"NeedHelpBox","image":"NeedHelpBox.png","title":"Need Help","selected":false,"structure":{"list":{"id":1,"type":"list","title":"Items","value":[{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"Register Product"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"FAQ's"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"VIDEOS"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"REPLACEMENT PARTS"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"CONTACT HISENSE"}},{"url":{"id":0,"type":"string","title":"Target URL","value":"/"},"title":{"id":0,"type":"string","title":"Title","value":"TECHNICAL SUPPORT"}}],"newItem":[]}}},{"id":2,"name":"Footer","image":"Footer.png","title":"Footer Menu","selected":true,"structure":{"theme":{"id":0,"type":"select","items":[{"title":"Light","value":"light"},{"title":"Dark","value":"dark"}],"title":"Theme","value":"dark"}}}];
   }
 
-  addNewPage(product: any) {
+  async addNewPage(product: any) {
     this.addingPage = product.id;
-    let slug = `${product.name} ${product.model} ${product.brand!.name}`.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-    let route = '/products/' + slug;
-    Api.Page.create({
-      title: product.name,
-      route: route,
-      meta: [
-        {rel: 'property="og:site_name"', name: 'property="og:title"', content: 'Hisense USA'},
-        {rel: 'property="og:title"', name: 'property="og:title"', content: product.name},
-        {rel: 'property="og:description"', name: 'property="og:description"', content: product.name},
-        {rel: 'property="og:image"', name: 'property="og:image"', content: product.image},
-        {rel: 'property="og:url"', name: 'property="og:url"', content: route},
-        {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
-        {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
-      ],
-      model_id: product.id,
-      model_type: 'product',
-    })
-      .then(page => {
-        this.pages.push(page);
-        (this.$refs.searchProducts as any).reRun();
-      })
-      .finally(() => {
-        this.addingPage = 0;
-      });
-  }
-
-  addNewSupport(product: any) {
-    this.addingSupport = product.id;
-    let slug = `${product.name} ${product.model} ${product.brand!.name}`.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-    Api.Page.create({
-      title: product.name,
-      route: '/support/' + slug,
-      model_id: product.id,
-      model_type: 'support',
-    })
-      .then(support => {
-        Api.Page.savePageWidgets({page_id: support.id, widgets: this.getSupportWidgets()})
-        return support
-      })
-      .then(support => {
-        this.pages.push(support);
-        (this.$refs.searchProducts as any).reRun();
-      })
-      .finally(() => {
-
-        this.addingSupport = 0;
-      });
+    let productPage = await Api.Page.createPDP({product, type: 'product' , route : '/products'}) as PageResource;
+    let supportPage = await Api.Page.createPDP({product, type: 'support' , route : '/support'})
+      .then((support: PageResource) => {
+      Api.Page.savePageWidgets({page_id: support.id, widgets: this.getSupportWidgets()})
+    });
+    this.$router.push(`Page/Edit/${productPage.id}`)
+    this.addingPage = 0;
   }
 
   appendPageData(products: Array<any>) {
-    return products.map((product) => ({
-      ...product,
-      page: this.pages.find(i => i.model_id === product.id && i.model_type === 'product'),
-      support: this.pages.find(i => i.model_id === product.id && i.model_type === 'support'),
-    }));
+    return products.map((product) => ({...product, page: this.pages.find(i => i.model_id === product.id)}));
   }
 
 }

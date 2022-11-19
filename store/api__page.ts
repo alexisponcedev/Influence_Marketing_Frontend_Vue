@@ -12,6 +12,7 @@ import {
   stateFactory: true,
   namespaced: true,
 })
+
 export default class api__page extends VuexModule {
   loading: Boolean = false;
   all: Array<PageResource> = [];
@@ -229,6 +230,46 @@ export default class api__page extends VuexModule {
       })
     )
       .doDeploy()
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data;
+    return {};
+  }
+
+
+  @Action
+  async createPDP(payload: { product: any, type: string, route: string }) {
+    this.setLoading(true);
+    let slug = (`${payload.product.name} ${payload.product.model} ` + (payload.product.hasOwnProperty('brand') ? payload.product.brand!.name : ''))
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+    let route = `${payload.route}/${slug}`;
+    const response = await PageApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .addPage({
+        title: payload.product.name,
+        route,
+        meta: [
+          {rel: 'blank', name: 'title', content: ''},
+          {rel: 'blank', name: 'description', content: 'Hisense USA'},
+          {rel: 'blank', name: 'robots', content: 'index'},
+
+          {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
+          {rel: 'property="og:title"', name: 'property="og:title"', content: payload.product.name},
+          {rel: 'property="og:description"', name: 'property="og:description"', content: payload.product.name},
+          {rel: 'property="og:image"', name: 'property="og:image"', content: payload.product.image},
+          {rel: 'property="og:url"', name: 'property="og:url"', content: route},
+          {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
+          {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
+        ],
+        model_id: payload.product.id,
+        model_type: payload.type,
+      })
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))

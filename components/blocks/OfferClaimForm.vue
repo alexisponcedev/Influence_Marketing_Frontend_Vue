@@ -30,12 +30,13 @@ export default class OfferClaimForm extends Vue {
         ],
       },
       title: {id: 1, type: StructureType.String, title: 'Title', value: 'Offer Claim Form'},
-      submitURL: {
-        id: 3,
-        type: StructureType.Url,
-        title: 'Submit',
-        value: ''
-      },
+      // submitURL: {
+      //   id: 3,
+      //   type: StructureType.Url,
+      //   title: 'Submit',
+      //   value: ''
+      // },
+      modelContent: {id: 3, type: StructureType.Text, title: 'Modal Content', value: 'Modal content goes here ...'}
     };
   }
 
