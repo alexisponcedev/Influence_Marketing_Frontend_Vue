@@ -2,6 +2,7 @@ function logout(redirect) {
   localStorage.removeItem("profile");
   localStorage.removeItem("access_token");
   localStorage.removeItem("active_brand");
+  localStorage.removeItem("active_brand_id");
   goToAuth(redirect);
 }
 
