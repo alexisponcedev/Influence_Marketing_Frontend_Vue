@@ -37,7 +37,7 @@ export default class api__auth extends VuexModule {
     this.setLoading(true);
     const response = await AuthApiFactory(
       new Configuration({
-        apiKey: localStorage.getItem("access_token") || "",
+        accessToken: localStorage.getItem("access_token") || "",
       })
     )
       .getUserInfo()
