@@ -45,7 +45,7 @@ export default class api__auth extends VuexModule {
       .finally(() => this.setLoading(false));
     this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response)) {
-      localStorage.setItem("profile", JSON.stringify(response.data) || "{}");
+      localStorage.setItem("profile", JSON.stringify(response.data.user) || "{}");
       return response.data;
     }
     return {};
