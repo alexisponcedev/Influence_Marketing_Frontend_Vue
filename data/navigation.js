@@ -63,10 +63,10 @@ export const items = () => [
     group: "Settings",
     to: "Settings",
   },
-  {
-    title: "Users",
-    icon: "mdi-account-tie",
-    group: "User",
-    to: "User/All",
-  },
+  // {
+  //   title: "Users",
+  //   icon: "mdi-account-tie",
+  //   group: "User",
+  //   to: "User/All",
+  // },
 ];

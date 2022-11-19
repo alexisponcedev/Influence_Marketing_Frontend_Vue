@@ -5,8 +5,7 @@
       <div
         class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
         style="max-height: 88vh">
-        <draggable v-model="blocksList"  group="people"  @dragstart="dragStarted" @dragend="dragEnd">
-<!--          <pre>{{blocksList}}</pre>-->
+        <draggable v-model="blocksList" group="people">
           <blocks-container
             v-for="(block , i) in blocksList" :key="block.id"
             class="tw-mb-2"
@@ -39,6 +38,9 @@
     </div>
 
     <template-selector ref="templateManager"/>
+
+
+
   </div>
 </template>
 
@@ -51,12 +53,14 @@ import {EventBus} from "~/plugins/event.client";
   components: {draggable}
 })
 export default class PageBuilder extends Vue {
-  @Prop({type : String , default : 'page'}) blocksType! : string
+  @Prop({type: String, default: 'page'}) blocksType!: string
   @VModel({type: Array}) blocksList!: any
 
   editIndex: Number = -1;
 
   selectItem: any = {};
+
+
 
   get selectable() {
     return this.selectItem && Object.keys(this.selectItem).length > 0;
@@ -85,6 +89,7 @@ export default class PageBuilder extends Vue {
     let id = this.blocksList.length + 1;
     this.blocksList.push({id: id, selected: false, structure: {}, ...block,});
     this.selectBlock(this.blocksList.length - 1);
+    this.deploy();
   }
 
   selectBlock(index: number) {
@@ -100,12 +105,14 @@ export default class PageBuilder extends Vue {
   deleteBlock(i: any) {
     this.cancelEditing();
     this.blocksList.splice(i, 1);
+    this.deploy();
   }
 
   duplicateBlock(i: any) {
     let newBlock = JSON.parse(JSON.stringify(this.blocksList[i]));
     newBlock.id = this.blocksList.length + 1;
     this.blocksList.splice(i + 1, 0, newBlock)
+    this.deploy();
   }
 
   resetBlock(i: any) {
@@ -116,22 +123,22 @@ export default class PageBuilder extends Vue {
     if (i > 0 && this.blocksList.length > 1) {
       const block = this.blocksList.splice(i, 1)[0];
       this.blocksList.splice(i - 1, 0, block)
+      this.deploy();
     }
   }
+
 
   moveDownBlock(i: any) {
     if (this.blocksList.length > 1 && i < this.blocksList.length) {
       const block = this.blocksList.splice(i, 1)[0];
       this.blocksList.splice(i + 1, 0, block)
+      this.deploy();
     }
   }
 
-  dragStarted(e : any){
-    console.log(e);
-  }
 
-  dragEnd(e : any){
-    console.log(e);
+  deploy() {
+    this.$emit('needDeploy')
   }
 }
 </script>

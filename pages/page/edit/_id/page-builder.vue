@@ -9,30 +9,38 @@
             <button @click="discard">
               <v-icon color="black" large>mdi-close</v-icon>
             </button>
+
             <div>
               <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
               <span class="text-subtitle-2 grey--text text--darken-2">{{ Page.title }}</span>
             </div>
+
           </div>
 
         </v-col>
         <v-col cols="12" md="7" class="text-right">
+
+          <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
+            History
+          </v-btn>
+
           <v-btn @click="gotoLiveWebsite" elevation="0" outlined color="grey darken-4" class="control-btns">
             <v-icon>mdi-play-circle</v-icon>
             Preview
           </v-btn>
 
-          <!--          <v-btn @click="saveDraft" outlined elevation="0" color="grey darken-4 white&#45;&#45;text" class="control-btns">Save-->
-          <!--            Draft-->
-          <!--          </v-btn>-->
 
+          <v-btn v-if="shouldDeploy" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
+                 class="control-btns">
+            Save and Deploy
+          </v-btn>
 
-          <v-btn @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">
+          <v-btn v-else @click="savePage" elevation="0" color="grey darken-4 white--text" class="control-btns">
             Save Page
           </v-btn>
 
 
-          <v-menu bottom :offset-x="-10" :offset-y="12">
+          <v-menu bottom offset-x="-10" offset-y="12">
             <template v-slot:activator="{ on, attrs }">
               <v-btn icon elevation="0" v-on="on" v-bind="attrs">
                 <v-icon>mdi-dots-vertical</v-icon>
@@ -52,7 +60,7 @@
                 </v-list-item-title>
               </v-list-item>
 
-              <v-divider ></v-divider>
+              <v-divider></v-divider>
 
               <v-list-item>
                 <v-list-item-title>
@@ -68,9 +76,11 @@
       </v-row>
     </v-card>
 
-    <page-builder v-model="blocksList"/>
+    <page-builder v-model="blocksList" @needDeploy="needDeploy"/>
 
     <template-selector ref="templateManager"/>
+
+    <version-history ref="history" :value="Page" @input="blocks => blocksList = blocks"/>
 
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>
@@ -82,8 +92,10 @@ import {Api} from "@/store";
 import {Page, Widgets} from "~/repositories";
 import {BlockInterface} from "~/interfaces/BlockInterface";
 import {SettingEnum} from "~/interfaces/SettingEnum";
-
-@Component
+import VersionHistory from "~/components/version-history.vue";
+@Component({
+  components: {VersionHistory}
+})
 export default class PageBuilderSection extends Vue {
   Api = Api;
 
@@ -93,7 +105,11 @@ export default class PageBuilderSection extends Vue {
 
   Page: Page = {};
 
+  shouldDeploy: Boolean = false;
+
   livePreviewUrl = '';
+
+  // drawer: boolean = true;
 
   async mounted() {
     this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
@@ -111,21 +127,16 @@ export default class PageBuilderSection extends Vue {
     this.$router.push('/page/edit/' + this.Page.id);
   }
 
+
   async savePage() {
     let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
     await Api.Page.savePageWidgets(widgets);
-    // this.triggerDeploy();
-
   }
 
-  triggerDeploy() {
-    console.log('trigger deploy public site');
-
-    let url = "https://forge.laravel.com/servers/600754/sites/1780869/deploy/http?token=RcEhkrL2mu85g03sjg08d6sePRocU71JSagXlUSk";
-    let win = window.open(url, 'triggerForge', "height=100,width=100");
-    setTimeout(() => {
-      if (win) win.close();
-    }, 3000);
+  async saveAndDeploy() {
+    this.savePage().then(Api.Page.doDeploy).then(() => {
+      this.shouldDeploy = false;
+    })
   }
 
   get liveWebsite() {
@@ -142,6 +153,17 @@ export default class PageBuilderSection extends Vue {
 
   async saveDraft() {
     await Api.Page.saveDraft({page_id: +this.$route.params.id, page_draft: this.blocksList})
+  }
+
+  needDeploy() {
+    console.log('needDeploy fired');
+    this.shouldDeploy = true
+  }
+
+  openHistory() {
+    // load history data first
+    (this.$refs.history as any).open();
+    // this.drawer = true;
   }
 }
 </script>

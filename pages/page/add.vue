@@ -32,6 +32,29 @@
             <v-card-text>
               <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
               <form-field-select-page-route :field="formFields[1]" v-model="Page.route" :pageId="Page.id"/>
+
+
+              <div v-if="Page.model_type === 'product'" class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
+                <div>Support URL :</div>
+                <nuxt-link v-if="support && support.id > 0" class="tw-font-bold tw-underline tw-text-orange-600"
+                           :to="`/page/edit/${support.id}`">Open Support Page
+                </nuxt-link>
+                <button v-else @click.prevent="createSupportPage"
+                        class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create Support Page
+                </button>
+              </div>
+
+              <div v-if="Page.model_type === 'support'" class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
+                <div>Product URL :</div>
+                <nuxt-link v-if="product && product.id > 0" class="tw-font-bold tw-underline tw-text-orange-600"
+                           :to="`/page/edit/${product.id}`">Open Product Page
+                </nuxt-link>
+                <button v-else @click.prevent="createProductPage"
+                        class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create Product Page
+                </button>
+              </div>
+
+
             </v-card-text>
           </v-card>
           <button
@@ -40,14 +63,14 @@
           </button>
           <!--          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
 
-          <div v-if="Page.id > 0">
-            <div class="tw-text-xl tw-mb-4">Live Preview</div>
+          <!--          <div v-if="Page.id > 0">-->
+          <!--            <div class="tw-text-xl tw-mb-4">Live Preview</div>-->
 
-            <!--            <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
+          <!--            &lt;!&ndash;            <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>&ndash;&gt;-->
 
-            <iframe style="min-height: 700px" @load="iframeLoaded" ref="iframe" :src="liveWebsite" frameborder="0"
-                    class="tw-w-full"/>
-          </div>
+          <!--            <iframe style="min-height: 700px" @load="iframeLoaded" ref="iframe" :src="liveWebsite" frameborder="0"-->
+          <!--                    class="tw-w-full"/>-->
+          <!--          </div>-->
         </v-tab-item>
 
         <v-tab-item value="Metas">
@@ -73,20 +96,17 @@
     <template-selector @template-selected="templateSelected" ref="templateSelector"/>
 
     <loading-overlay :show="Api.Page.loading || Api.Redirect.loading"/>
+
   </v-container>
 </template>
 
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Page} from "@/repositories";
+import {Page, PageResource} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
-import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
-
-
-import html2canvas from 'html2canvas';
 import {SettingEnum} from "~/interfaces/SettingEnum";
 
 @Component({
@@ -96,15 +116,9 @@ import {SettingEnum} from "~/interfaces/SettingEnum";
 export default class PageForm extends Vue {
   @Prop(Boolean) readonly editMode!: Boolean;
 
-  UrlTypeEnum = UrlTypeEnum;
-
   Api = Api;
 
   tab = "";
-
-  showRedirectModal: Boolean = false;
-
-  redirectionObj: any = {id: -1, title: 'Redirect To', value: ''};
 
   route: string = '';
 
@@ -122,8 +136,6 @@ export default class PageForm extends Vue {
   };
 
   livePreviewUrl = '';
-
-  // qrcodeText: string = 'this is a test';
 
   locations: Array<{ title: string; to: string }> = [];
 
@@ -147,6 +159,7 @@ export default class PageForm extends Vue {
       this.Page.meta = [
         {rel: 'blank', name: 'title', content: ''},
         {rel: 'blank', name: 'description', content: 'Hisense USA'},
+        {rel: 'blank', name: 'robots', content: 'index'},
 
         {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
         {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
@@ -277,31 +290,188 @@ export default class PageForm extends Vue {
     this.Page.route = parentRoute + this.Page.title
   }
 
-  resetRedirect() {
-    this.Page.redirect = '';
-    this.submit();
+  get support(): any {
+    if (this.Page.model_type === 'product')
+      return Api.Page.routes.find(page => page.model_id === this.Page.model_id && page.model_type === 'support')
+    return {};
   }
 
-  saveRedirect() {
-    this.Page.redirect = this.redirectionObj.value;
-    this.showRedirectModal = false;
-    this.submit();
+  get product(): any {
+    if (this.Page.model_type === 'support')
+      return Api.Page.routes.find(page => page.model_id === this.Page.model_id && page.model_type === 'product')
+    return {};
   }
 
-  iframeLoaded(e: any) {
-    console.log(e);
-    console.log(this.$refs.iframe);
+
+  async getProduct() {
+    return this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.Page.model_id)
+      .then(res => {
+        if (res && res.data) return res.data
+        return {};
+      })
   }
 
-  clickDownload() {
-    html2canvas(document.querySelector("#qrcodeViewer") as any)
-      .then(canvas => {
-        let a = document.createElement("a");
-        a.href = canvas.toDataURL("image/png");
-        a.download = "Image.png";
-        a.click();
-        a.remove();
-      });
+  getSupportWidgets() {
+    return [{
+      "id": 1,
+      "name": "Header",
+      "image": "Header.png",
+      "title": "Header Menu",
+      "selected": false,
+      "structure": {
+        "theme": {
+          "id": 0,
+          "type": "select",
+          "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
+          "title": "Theme",
+          "value": "dark"
+        }
+      }
+    }, {
+      "id": 2,
+      "name": "ProductSupportNewHead",
+      "image": "ProductSupportNewHead.png",
+      "title": "Product Support Info",
+      "selected": false,
+      "structure": {
+        "theme": {
+          "id": 0,
+          "type": "select",
+          "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
+          "title": "Theme",
+          "value": "dark"
+        }
+      }
+    }, {
+      "id": 3,
+      "name": "ProductSupportNavBar",
+      "image": "ProductSupportNavBar.png",
+      "title": "Product Support NavBar",
+      "selected": false,
+      "structure": {
+        "tags": {
+          "id": 2,
+          "type": "list",
+          "title": "Tags",
+          "value": [{
+            "title": {"id": 0, "type": "string", "title": "Tag Title", "value": "Sample Tag Title"},
+            "target": {"id": 0, "type": "idSelector", "title": "ID Selector", "value": "#ProductSupportNavBar3"}
+          }],
+          "newItem": {
+            "title": {"id": 0, "type": "string", "title": "Tag Title", "value": "Item Title"},
+            "target": {"id": 0, "type": "idSelector", "title": "ID Selector", "value": null}
+          }
+        },
+        "theme": {
+          "id": 0,
+          "type": "select",
+          "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
+          "title": "Theme",
+          "value": "dark"
+        }
+      }
+    }, {
+      "id": 6,
+      "name": "ProductSupportRegister",
+      "image": "ProductSupportRegister.png",
+      "title": "Product Support Register",
+      "selected": false,
+      "structure": {
+        "theme": {
+          "id": 0,
+          "type": "select",
+          "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
+          "title": "Theme",
+          "value": "dark"
+        },
+        "title": {"id": 1, "type": "string", "title": "Title", "value": "Register Laser TV"},
+        "subtitle": {
+          "id": 1,
+          "type": "string",
+          "title": "Subtitle",
+          "value": "Get started with registering your Hisense product."
+        },
+        "submitURL": {
+          "id": 1,
+          "type": "string",
+          "title": "Submit URL",
+          "value": "https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product"
+        }
+      }
+    }, {
+      "id": 8,
+      "name": "SupportNeedAssistance",
+      "image": "SupportNeedAssistance.png",
+      "title": "Support Need Assistance",
+      "selected": true,
+      "structure": {
+        "theme": {
+          "id": 0,
+          "type": "select",
+          "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
+          "title": "Theme",
+          "value": "dark"
+        },
+        "title": {"id": 1, "type": "string", "title": "Title", "value": "Need More Assistance?"},
+        "linkUrl": {"id": 1, "type": "string", "title": "Link Url", "value": "/"},
+        "linkTitle": {"id": 1, "type": "string", "title": "Link Title", "value": "Contact Us"}
+      }
+    }, {
+      "id": 9,
+      "name": "Subscribe",
+      "image": "subscribe.png",
+      "title": "Subscribe",
+      "selected": false,
+      "structure": {
+        "Url": {
+          "id": 1,
+          "type": "string",
+          "title": "Submit URL",
+          "value": "https://imcrm.dev-api.hisenseportal.com/api/hisense/lead"
+        },
+        "title": {
+          "id": 0,
+          "type": "string",
+          "title": "Title",
+          "value": "Stay up to date with emails\nabout new products & other news"
+        }
+      }
+    }, {
+      "id": 10,
+      "name": "Footer",
+      "image": "Footer.png",
+      "title": "Footer Menu",
+      "selected": false,
+      "structure": {
+        "theme": {
+          "id": 0,
+          "type": "select",
+          "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
+          "title": "Theme",
+          "value": "dark"
+        }
+      }
+    }]
+  }
+
+  createProductPage() {
+    this.createPage('product', '/products')
+      .then((page: PageResource) => this.$router.push(`/page/edit/${page.id}`))
+  }
+
+  createSupportPage() {
+    this.createPage('support', '/support')
+      .then((page: PageResource) => {
+        return Api.Page.savePageWidgets({page_id: page.id, widgets: this.getSupportWidgets()})
+          .then(() => this.$router.push(`/page/edit/${page.id}`))
+      })
+  }
+
+  async createPage(type: string, route: string) {
+    return this.getProduct()
+      .then(product => {
+        return Api.Page.createPDP({product, type, route})
+      })
   }
 }
 </script>
