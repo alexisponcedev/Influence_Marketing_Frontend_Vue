@@ -60,13 +60,13 @@ export default class Login extends Vue {
   passwordShow = false;
 
   login() {
-    if (this.formValidate())
-      Api.Auth.login({
-        email: this.email,
-        password: this.password,
-      }).then((response) => {
-        if (response.access_token) this.$router.push("/Auth");
-      });
+    // if (this.formValidate())
+    //   Api.Auth.login({
+    //     email: this.email,
+    //     password: this.password,
+    //   }).then((response) => {
+    //     if (response.access_token) this.$router.push("/Auth");
+    //   });
   }
 
   formValidate() {

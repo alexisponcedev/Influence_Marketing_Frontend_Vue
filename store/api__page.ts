@@ -4,7 +4,7 @@ import {
   Page,
   PageResource,
   Configuration,
-  PageApiFactory, Draft, Widgets,
+  PageApiFactory, Draft, Widgets, CategoryResource,
 } from "@/repositories";
 
 @Module({
@@ -27,6 +27,25 @@ export default class api__page extends VuexModule {
   updateAll(all: Array<PageResource>) {
     this.all = all;
   }
+
+  @Mutation
+  deleteItem(id: number) {
+    this.all.splice(this.all.findIndex((i: PageResource) => i.id === id), 1);
+  }
+
+  @Mutation
+  addItem(item: PageResource) {
+    this.all.push(item);
+  }
+
+  @Mutation
+  updateItem(item: PageResource) {
+    this.all = this.all.map((i: PageResource) => {
+      return i.id === item.id ? item : i
+    });
+  }
+
+
 
   @Mutation
   updateRoutes(routes: Array<any>) {
@@ -126,6 +145,22 @@ export default class api__page extends VuexModule {
   }
 
   @Action
+  async getPageByModelTypeModelId(payload: { model_id: number, model_type: string }) {
+    this.setLoading(true);
+    const response = await PageApiFactory(
+      new Configuration({
+        accessToken: localStorage.getItem("access_token") || "",
+      })
+    )
+      .getPageByModelTypeModelId(payload.model_type, payload.model_id)
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    if (response && response.data && ResponseHandler.checkResponse(response))
+      return response.data;
+    return {};
+  }
+
+  @Action({commit : 'addItem'})
   async create(Page: Page) {
     this.setLoading(true);
     const response = await PageApiFactory(
@@ -189,7 +224,7 @@ export default class api__page extends VuexModule {
     return {};
   }
 
-  @Action
+  @Action({commit : 'updateItem'})
   async update(payload: { id: number; Page: Page }) {
     this.setLoading(true);
     const response = await PageApiFactory(
@@ -205,7 +240,7 @@ export default class api__page extends VuexModule {
     return {};
   }
 
-  @Action
+  @Action({commit : 'deleteItem'})
   async delete(id: number) {
     this.setLoading(true);
     const response = await PageApiFactory(
@@ -238,7 +273,7 @@ export default class api__page extends VuexModule {
   }
 
 
-  @Action
+  @Action({commit : 'addItem'})
   async createPDP(payload: { product: any, type: string, route: string }) {
     this.setLoading(true);
     let slug = (`${payload.product.name} ${payload.product.model} ` + (payload.product.hasOwnProperty('brand') ? payload.product.brand!.name : ''))

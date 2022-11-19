@@ -5,7 +5,7 @@
       <div
         class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
         style="max-height: 88vh">
-        <draggable v-model="blocksList" group="people">
+        <draggable v-model="blocksList" group="people" @start="deploy">
           <blocks-container
             v-for="(block , i) in blocksList" :key="block.id"
             class="tw-mb-2"

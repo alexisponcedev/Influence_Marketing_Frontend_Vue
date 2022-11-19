@@ -80,7 +80,7 @@
 
     <template-selector ref="templateManager"/>
 
-    <version-history ref="history" :value="Page" @input="blocks => blocksList = blocks"/>
+    <version-history ref="history" type="page"  :value="Page" @input="blocks => blocksList = blocks"/>
 
     <loading-overlay :show="Api.Page.loading"/>
   </v-container>

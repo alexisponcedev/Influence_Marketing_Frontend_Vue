@@ -15,25 +15,25 @@ export default class api__auth extends VuexModule {
     this.loading = status;
   }
 
-  @Action
-  async login(User: User) {
-    this.setLoading(true);
-    const response = await AuthApiFactory()
-      .authLogin(User)
-      .catch((error) => ResponseHandler.ErrorHandler(error, true))
-      .finally(() => this.setLoading(false));
-    this.setLoading(false);
-    if (response && response.data && ResponseHandler.checkResponse(response)) {
-      localStorage.setItem("profile", JSON.stringify(response.data) || "");
-      localStorage.setItem("access_token", response.data.access_token || "");
-      localStorage.setItem(
-        "access_token_expires_at",
-        response.data.expires_at || ""
-      );
-      return response.data;
-    }
-    return {};
-  }
+  // @Action
+  // async login(User: User) {
+  //   this.setLoading(true);
+  //   const response = await AuthApiFactory()
+  //     .authLogin(User)
+  //     .catch((error) => ResponseHandler.ErrorHandler(error, true))
+  //     .finally(() => this.setLoading(false));
+  //   this.setLoading(false);
+  //   if (response && response.data && ResponseHandler.checkResponse(response)) {
+  //     localStorage.setItem("profile", JSON.stringify(response.data) || "");
+  //     localStorage.setItem("access_token", response.data.access_token || "");
+  //     localStorage.setItem(
+  //       "access_token_expires_at",
+  //       response.data.expires_at || ""
+  //     );
+  //     return response.data;
+  //   }
+  //   return {};
+  // }
 
   // @Action
   // async Logout() {
