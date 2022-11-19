@@ -1,5 +1,5 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
-import { AuthApiFactory, User, Configuration } from "@/repositories";
+import { AuthApiFactory, Configuration } from "@/repositories";
 import ResponseHandler from "@/utils/ResponseHandler";
 
 @Module({
@@ -15,54 +15,39 @@ export default class api__auth extends VuexModule {
     this.loading = status;
   }
 
-  // @Action
-  // async login(User: User) {
-  //   this.setLoading(true);
-  //   const response = await AuthApiFactory()
-  //     .authLogin(User)
-  //     .catch((error) => ResponseHandler.ErrorHandler(error, true))
-  //     .finally(() => this.setLoading(false));
-  //   this.setLoading(false);
-  //   if (response && response.data && ResponseHandler.checkResponse(response)) {
-  //     localStorage.setItem("profile", JSON.stringify(response.data) || "");
-  //     localStorage.setItem("access_token", response.data.access_token || "");
-  //     localStorage.setItem(
-  //       "access_token_expires_at",
-  //       response.data.expires_at || ""
-  //     );
-  //     return response.data;
-  //   }
-  //   return {};
-  // }
+  @Action
+  async inquery(publicKey: string) {
+    this.setLoading(true);
+    const response = await AuthApiFactory()
+      .userInquiry(publicKey)
+      .catch((error) => ResponseHandler.ErrorHandler(error, true))
+      .finally(() => this.setLoading(false));
+    this.setLoading(false);
+    if (response && response.data && ResponseHandler.checkResponse(response)) {
+      localStorage.setItem(
+        "access_token",
+        (response.data as any).user_token || ""
+      );
+      return response.data;
+    }
+  }
 
-  // @Action
-  // async Logout() {
-  //   this.setLoading(true);
-  //   await AuthApiFactory(
-  //     new Configuration({
-  //       accessToken: localStorage.getItem("access_token") || "",
-  //     })
-  //   )
-  //     .userLogout()
-  //     .catch((error) => ResponseHandler.ErrorHandler(error, true))
-  //     .finally(() => this.setLoading(false));
-  //   this.setLoading(false);
-  // }
-
-  // @Action
-  // async changePassword(User: User) {
-  //   this.setLoading(true);
-  //   const response = await AuthApiFactory(
-  //     new Configuration({
-  //       accessToken: localStorage.getItem("access_token") || "",
-  //     })
-  //   )
-  //     .changePassword(User)
-  //     .catch((error : any) => ResponseHandler.ErrorHandler(error))
-  //     .finally(() => this.setLoading(false));
-  //   this.setLoading(false);
-  //   if (response && response.data && ResponseHandler.checkResponse(response))
-  //     return response.data;
-  //   return {};
-  // }
+  @Action
+  async getUser() {
+    this.setLoading(true);
+    const response = await AuthApiFactory(
+      new Configuration({
+        apiKey: localStorage.getItem("access_token") || "",
+      })
+    )
+      .getUserInfo()
+      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .finally(() => this.setLoading(false));
+    this.setLoading(false);
+    if (response && response.data && ResponseHandler.checkResponse(response)) {
+      localStorage.setItem("profile", JSON.stringify(response.data.user) || "{}");
+      return response.data;
+    }
+    return {};
+  }
 }

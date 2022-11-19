@@ -1,7 +1,8 @@
 function logout(redirect) {
   localStorage.removeItem("profile");
   localStorage.removeItem("access_token");
-  localStorage.removeItem("access_token_expires_at");
+  localStorage.removeItem("active_brand");
+  localStorage.removeItem("active_brand_id");
   goToAuth(redirect);
 }
 
@@ -9,21 +10,9 @@ function goToAuth(redirect) {
   redirect("/Auth");
 }
 
-export default function authMiddleware({
-  redirect
-}) {
+export default function authMiddleware({ redirect }) {
   const access_token = localStorage.getItem("access_token");
-  const expires_at = localStorage.getItem("access_token_expires_at");
-  if (!access_token)
-    logout(redirect);
-  else if (expires_at) {
-    const now = new Date();
-    const expires = new Date(expires_at);
-    if (now >= expires) logout(redirect)
-  }
+  if (!access_token) logout(redirect);
 }
 
-export {
-  logout,
-  goToAuth
-}
+export { logout, goToAuth };

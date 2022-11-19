@@ -18,7 +18,7 @@ export default class BlogListHead extends Vue {
     this.model = {
       image1 : {id : 0 , type : StructureType.Image , title : 'Image 1' , src : '' , alt : ''},
       image2 : {id : 1 , type : StructureType.Image , title : 'Image 2' , src : '' , alt : ''},
-      title : {id : 2 , type : StructureType.String , title : 'Title' , value : ''},
+      title : {id : 2 , type : StructureType.Text , title : 'Title' , value : ''},
     }
   }
 
