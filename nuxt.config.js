@@ -142,8 +142,8 @@ export default {
 
     env: {
         APP_NAME: process.env.APP_NAME || "imcxm",
-        BASE_API_PATH: process.env.BASE_API_PATH || "https://imcxm.stage-api.hisenseportal.com/api",
-        PORTAL_URL: process.env.PORTAL_URL || "https://secure.stage.hisenseportal.com/",
+        BASE_API_PATH: process.env.BASE_API_PATH || "https://imcxm.dev-api.hisenseportal.com/api",
+        PORTAL_URL: process.env.PORTAL_URL || "https://secure.dev.hisenseportal.com/",
         DAM_API_URL: process.env.DAM_API_URL || 'https://assets.hisenseportal.com/api/v1'
     },
 };
