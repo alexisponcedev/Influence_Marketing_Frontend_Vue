@@ -8,8 +8,6 @@
     >
         <div class="tw-p-3">
             <h6>Version Histories</h6>
-
-
             <div v-if="Api.History.loading" class="tw-grid tw-grid-cols-1 tw-gap-3">
                 <div v-for="i in 5" :key="i"
                      class="tw-text-sm tw-transition tw-duration-300 tw-border tw-border-solid tw-border-white tw-bg-gray-50 tw-p-3 tw-rounded-lg tw-animate-pulse ">
@@ -37,8 +35,10 @@
 
                         <div v-if="history.id === selected.id"
                              class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-space-y-0.5">
-                            <button @click.self="preview(history)" class="hover:tw-text-blue-500">preview</button>
-                            <button @click.self="saving = true" class="hover:tw-text-blue-500">save</button>
+                            <button @click.self="preview(history)" class="hover:tw-text-blue-500" title="preview">mdi-view-day</button>
+<!--                            <button @click.self="preview(history)" class="hover:tw-text-blue-500">preview</button>-->
+<!--                            <button @click.self="editHistory = true" class="hover:tw-text-blue-500">save</button>-->
+                            <button @click.self="editHistory = true" class="hover:tw-text-blue-500" title="save"><v-icon large>mdi-plus</v-icon></button>
                         </div>
                     </div>
                 </li>
@@ -47,7 +47,7 @@
         </div>
 
 
-        <v-dialog v-model="saving">
+        <v-dialog v-model="editHistory" max-width="500">
             <v-card>
                 <v-card-title>
                     History Manager Manager
@@ -85,6 +85,7 @@ export default class VersionHistory extends Vue {
 
     selected: any = {};
 
+    editHistory: boolean = false;
     saving: boolean = false;
 
     loading: boolean = false;
