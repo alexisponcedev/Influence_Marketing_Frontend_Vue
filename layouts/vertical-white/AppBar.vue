@@ -40,7 +40,7 @@
       </v-btn> -->
 
       <v-chip pill class="transparent py-5" @click="showUserDrawer()">
-        Hi, {{ getProfile().name || "Admin" }}
+        Hi, {{ getProfile().first_name || getProfile().user_name || "Admin" }}
         <v-avatar class="ml-2">
           <v-img v-if="getProfile().avatar" :src="getProfile().avatar" />
           <v-icon v-else large> mdi-account-circle-outline </v-icon>
@@ -67,6 +67,15 @@
       </user-drawer>
 
       <template v-slot:append>
+        <div v-if="getProfile().level == 'Admin'" class="my-4 mx-4">
+          <base-hover-button
+            @click.native="goToPortal"
+            text="Portal"
+            block
+            bg-color="lighten-5 primary--text"
+            icon-name="mdi-account-supervisor"
+          />
+        </div>
         <div class="my-4 mx-4">
           <base-hover-button
             @click.native="logoutUser"
@@ -134,9 +143,9 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { AppStore, ThemeConfig } from "@/store";
 import { mapGetters, mapActions } from "vuex";
 import getProfile from "@/utils/getProfile";
-import { ThemeConfig } from "@/store";
 
 @Component({
   components: {
@@ -165,6 +174,15 @@ export default class VerticallAppBar extends Vue {
 
   logoutUser() {
     this.$router.push("/Auth/Logout");
+  }
+
+  goToPortal() {
+    if (process.env.PORTAL_URL) window.location.href = process.env.PORTAL_URL;
+    else
+      AppStore.showSnackBar({
+        message: "Portal URL Not Resolved!",
+        color: "error",
+      });
   }
 
   showUserDrawer() {
