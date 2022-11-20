@@ -1,10 +1,10 @@
 <template>
-  <v-col>
-    <label v-if="field.label && field.label !== ''">
-      {{ field.label }}
-    </label>
-    <vue-editor v-model="model.value" :editor-toolbar="customToolbar"/>
-  </v-col>
+    <v-col>
+        <label v-if="field.label && field.label !== ''">
+            {{ field.label }}
+        </label>
+        <vue-editor v-model="model.value" :editor-toolbar="customToolbar"/>
+    </v-col>
 </template>
 
 <script lang="ts">
@@ -14,35 +14,35 @@ import {StructureField} from "~/interfaces/StructureField";
 
 @Component
 export default class StructureTextEditor extends Vue {
-  @VModel({type: StructureField}) model!: StructureField
+    @VModel({type: StructureField}) model!: StructureField
 
-  customToolbar = [
-    ["bold", "italic", "underline"]
-  ]
+    customToolbar = [
+        ["bold", "italic", "underline"]
+    ]
 
-  field = {
-    label: 'Textarea',
-    rules: [],
-    colAttrs: {cols: 12}
-  }
+    field = {
+        label: 'Textarea',
+        rules: [],
+        colAttrs: {cols: 12}
+    }
 
-  mounted() {
-    this.field.label = this.model.title ?? '';
-  }
+    mounted() {
+        this.field.label = this.model.title ?? '';
+    }
 }
 </script>
 
 <style>
 .ql-editor {
-  min-height: 100px !important;
+    min-height: 100px !important;
 }
 
 .ql-editor strong {
-  font-weight: bold !important;
+    font-weight: bold !important;
 }
 
 .ql-editor .ql-video {
-  width: 100%;
-  aspect-ratio: 854/480;
+    width: 100%;
+    aspect-ratio: 854/480;
 }
 </style>

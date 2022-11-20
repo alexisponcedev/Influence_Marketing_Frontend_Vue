@@ -35,7 +35,8 @@
 
                             <div v-if="history.id === selected.id"
                                  class="tw-flex tw-justify-center tw-items-center tw-space-x-1">
-                                <button @click.prevent="preview(history)" class="hover:tw-text-blue-500" title="preview">
+                                <button @click.prevent="preview(history)" class="hover:tw-text-blue-500"
+                                        title="preview">
                                     <v-icon>mdi-projector</v-icon>
                                 </button>
                                 <button @click.prevent="openModal" class="hover:tw-text-blue-500" title="save">
@@ -45,7 +46,7 @@
                         </div>
                     </li>
                 </ul>
-                <hr class="tw-bg-gray-100" style="" />
+                <hr class="tw-bg-gray-100" style=""/>
 
                 <ul class=" tw-list-none tw-pl-0 tw-space-y-2" style="padding-left : 0;">
 
@@ -64,7 +65,8 @@
 
                             <div v-if="history.id === selected.id"
                                  class="tw-flex tw-justify-center tw-items-center tw-space-x-1">
-                                <button @click.prevent="preview(history)" class="hover:tw-text-blue-500" title="preview">
+                                <button @click.prevent="preview(history)" class="hover:tw-text-blue-500"
+                                        title="preview">
                                     <v-icon>mdi-projector</v-icon>
                                 </button>
                                 <button @click.prevent="openModal" class="hover:tw-text-blue-500" title="save">
@@ -177,11 +179,12 @@ export default class VersionHistory extends Vue {
 </script>
 
 <style scoped>
-hr{
+hr {
     background: #d5d5d5;
     border: transparent;
     height: 1px;
 }
+
 .x-input {
     height: 39px;
     width: 100%;

@@ -1,115 +1,123 @@
 <template>
-  <div>
-    <div class="tw-flex tw-space-x-4">
-      <div class="tw-flex-1">
-        <h6>Redirect from this page to</h6>
-        <button @click.prevent="openModal('' , RedirectType.To)" :disabled="redirectToList.length > 0"
-                class="tw-w-full tw-mb-2 tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl
+    <div>
+        <div class="tw-flex tw-space-x-4">
+            <div class="tw-flex-1">
+                <h6>Redirect from this page to</h6>
+                <button @click.prevent="openModal('' , RedirectType.To)" :disabled="redirectToList.length > 0"
+                        class="tw-w-full tw-mb-2 tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl
                 tw-text-center tw-py-6 hover:tw-bg-white tw-transition">
-          Add Redirection
-        </button>
+                    Add Redirection
+                </button>
 
-        <div class="tw-space-y-2">
-          <div v-for="redirect in redirectToList" :key="redirect.id" class="tw-bg-white tw-p-4 tw-rounded-xl tw-space-y-1.5">
+                <div class="tw-space-y-2">
+                    <div v-for="redirect in redirectToList" :key="redirect.id"
+                         class="tw-bg-white tw-p-4 tw-rounded-xl tw-space-y-1.5">
 
-            <div class="tw-flex tw-items-center tw-justify-between">
-              <div class="tw-space-y-2">
+                        <div class="tw-flex tw-items-center tw-justify-between">
+                            <div class="tw-space-y-2">
 
-                <div class="tw-font-semibold tw-ml-1">{{ redirect.redirect_url }}</div>
+                                <div class="tw-font-semibold tw-ml-1">{{ redirect.redirect_url }}</div>
 
 
-                <div class="tw-flex tw-space-x-2">
-                  <div class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
-                    <span >{{  redirect.redirect_code }}</span>
-                  </div>
-                  <div class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
-                    <span v-if="redirect.redirect_type === RedirectType.To">Redirect To</span>
-                    <span v-else>Redirect From</span>
-                  </div>
+                                <div class="tw-flex tw-space-x-2">
+                                    <div
+                                        class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
+                                        <span>{{ redirect.redirect_code }}</span>
+                                    </div>
+                                    <div
+                                        class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
+                                        <span v-if="redirect.redirect_type === RedirectType.To">Redirect To</span>
+                                        <span v-else>Redirect From</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tw-space-x-1">
+                                <!--                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="updateRedirect(redirect)">-->
+                                <!--                  <v-icon>mdi-pencil</v-icon>-->
+                                <!--                </button>-->
+                                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2"
+                                        @click.prevent="deleteRedirect(redirect)">
+                                    <v-icon>mdi-delete</v-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-              </div>
-              <div class="tw-space-x-1">
-<!--                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="updateRedirect(redirect)">-->
-<!--                  <v-icon>mdi-pencil</v-icon>-->
-<!--                </button>-->
-                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="deleteRedirect(redirect)">
-                  <v-icon>mdi-delete</v-icon>
-                </button>
-              </div>
             </div>
 
-          </div>
-        </div>
+            <div class="tw-bg-gray-300 tw-w-px tw-mt-8"/>
 
-      </div>
+            <div class="tw-flex-1">
 
-      <div class="tw-bg-gray-300 tw-w-px tw-mt-8"/>
+                <h6>Redirect to this page from </h6>
 
-      <div class="tw-flex-1">
-
-        <h6>Redirect to this page from </h6>
-
-        <button @click.prevent="openModal('' , RedirectType.From)"
-                class="tw-w-full tw-mb-2 tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl
+                <button @click.prevent="openModal('' , RedirectType.From)"
+                        class="tw-w-full tw-mb-2 tw-border tw-border-dashed tw-border-gray-700 tw-rounded-xl
                 tw-text-center tw-py-6 hover:tw-bg-white tw-transition">
-          Add Redirection
-        </button>
+                    Add Redirection
+                </button>
 
-        <div class="tw-space-y-2">
-          <div v-for="redirect in redirectFromList" :key="redirect.id" class="tw-bg-white tw-p-4 tw-rounded-xl tw-space-y-1.5">
-            <div class="tw-flex tw-items-center tw-justify-between">
+                <div class="tw-space-y-2">
+                    <div v-for="redirect in redirectFromList" :key="redirect.id"
+                         class="tw-bg-white tw-p-4 tw-rounded-xl tw-space-y-1.5">
+                        <div class="tw-flex tw-items-center tw-justify-between">
 
-              <div class="tw-space-y-2">
-                <div class="tw-font-semibold tw-ml-1">{{ redirect.redirect_url }}</div>
+                            <div class="tw-space-y-2">
+                                <div class="tw-font-semibold tw-ml-1">{{ redirect.redirect_url }}</div>
 
-                <div class="tw-flex tw-space-x-2">
-                  <div class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
-                    <span >{{  redirect.redirect_code }}</span>
-                  </div>
-                  <div class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
-                    <span v-if="redirect.redirect_type === RedirectType.To">Redirect To</span>
-                    <span v-else>Redirect From</span>
-                  </div>
+                                <div class="tw-flex tw-space-x-2">
+                                    <div
+                                        class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
+                                        <span>{{ redirect.redirect_code }}</span>
+                                    </div>
+                                    <div
+                                        class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
+                                        <span v-if="redirect.redirect_type === RedirectType.To">Redirect To</span>
+                                        <span v-else>Redirect From</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tw-space-x-1">
+                                <!--                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openModal(redirect.value)">-->
+                                <!--                  <v-icon>mdi-pencil</v-icon>-->
+                                <!--                </button>-->
+                                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2"
+                                        @click.prevent="deleteRedirect(redirect)">
+                                    <v-icon>mdi-delete</v-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-              </div>
-              <div class="tw-space-x-1">
-<!--                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openModal(redirect.value)">-->
-<!--                  <v-icon>mdi-pencil</v-icon>-->
-<!--                </button>-->
-                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="deleteRedirect(redirect)">
-                  <v-icon>mdi-delete</v-icon>
-                </button>
-              </div>
             </div>
-          </div>
         </div>
 
-      </div>
+        <v-dialog v-model="showModal" max-width="500">
+            <v-card>
+                <v-card-title>Redirect this page to</v-card-title>
+                <v-card-text>
+
+                    <structure-editor-url :showTitle="false" :options="options" v-model="redirectionObj"/>
+
+                    <form-field-select :field="redirectionCodeField" v-model="redirectionObj.redirection_code"/>
+
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn elevation="0" color="grey darken-4 white--text" block class="btn"
+                           @click="saveRedirect">
+                        Add
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+
     </div>
-
-    <v-dialog v-model="showModal" max-width="500">
-      <v-card>
-        <v-card-title>Redirect this page to</v-card-title>
-        <v-card-text>
-
-          <structure-editor-url :showTitle="false" :options="options" v-model="redirectionObj"/>
-
-          <form-field-select :field="redirectionCodeField" v-model="redirectionObj.redirection_code"/>
-
-        </v-card-text>
-        <v-card-actions>
-          <v-btn elevation="0" color="grey darken-4 white--text" block class="btn"
-                 @click="saveRedirect">
-            Add
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-
-  </div>
 </template>
 
 <script lang="ts">
@@ -122,98 +130,104 @@ import {RedirectCodeEnum, RedirectTypeEnum} from "~/interfaces/RedirectTypeEnum"
 
 @Component
 export default class PageForm extends Vue {
-  @Prop(Boolean) readonly editMode!: Boolean;
-  @Prop({
-    type: Object, default: () => {
+    @Prop(Boolean) readonly editMode!: Boolean;
+    @Prop({
+        type: Object, default: () => {
+        }
+    }) Page!: any;
+
+    RedirectType = RedirectTypeEnum;
+    RedirectCode = RedirectCodeEnum;
+
+    redirectionCodeField = {
+        label: 'Redirection Code',
+        rules: [],
+        'item-text': 'title',
+        'item-value': 'value',
+        colAttrs: {cols: 12},
+        items: [
+            {title: '301', value: RedirectCodeEnum.code301},
+            {title: '302', value: RedirectCodeEnum.code302},
+            {title: '303', value: RedirectCodeEnum.code303},
+            {title: '307', value: RedirectCodeEnum.code307},
+            {title: '308', value: RedirectCodeEnum.code308},
+        ]
     }
-  }) Page!: any;
 
-  RedirectType = RedirectTypeEnum;
-  RedirectCode = RedirectCodeEnum;
-
-  redirectionCodeField = {
-    label: 'Redirection Code',
-    rules: [],
-    'item-text': 'title',
-    'item-value': 'value',
-    colAttrs: {cols: 12},
-    items: [
-      {title: '301', value: RedirectCodeEnum.code301},
-      {title: '302', value: RedirectCodeEnum.code302},
-      {title: '303', value: RedirectCodeEnum.code303},
-      {title: '307', value: RedirectCodeEnum.code307},
-      {title: '308', value: RedirectCodeEnum.code308},
+    options = [
+        {title: 'Page URLs', value: UrlTypeEnum.Internal},
+        {title: 'Custom URL', value: UrlTypeEnum.Custom},
     ]
-  }
 
-  options = [
-    {title: 'Page URLs', value: UrlTypeEnum.Internal},
-    {title: 'Custom URL', value: UrlTypeEnum.Custom},
-  ]
-
-  redirect: Redirect = {
-    id : 0 ,
-    page_id : this.Page.id,
-    redirect_url : '',
-    redirect_type : this.RedirectType.To,
-    redirect_code : this.RedirectCode.code301,
-  };
-
-  Api = Api;
-
-  showModal: Boolean = false;
-
-  redirectionObj: any = {id: -1, title: 'Redirect To', value: '' , redirection_type : RedirectTypeEnum.To ,  redirection_code : 301};
-
-  async loadRedirects() {
-    await Api.Redirect.getPageRedirects(this.Page.id);
-  }
-
-  mounted() {
-    this.loadRedirects();
-  }
-
-  openModal(route : String = '' , type : RedirectTypeEnum = RedirectTypeEnum.To) {
-    this.redirectionObj.value = route;
-    this.redirectionObj.redirection_type = type
-    this.showModal = true;
-  }
-
-  get redirectToList() {
-    return Api.Redirect ?
-      Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.To) :
-      [];
-  }
-
-  get redirectFromList() {
-    return Api.Redirect ?
-      Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.From) :
-      [];
-  }
-
-  async saveRedirect() {
-    if(this.redirectionObj.value){
-      await Api.Redirect.create({
+    redirect: Redirect = {
+        id: 0,
         page_id: this.Page.id,
-        redirect_type: this.redirectionObj.redirection_type,
-        redirect_code: this.redirectionObj.redirection_code,
-        redirect_url: this.redirectionObj.value,
-        source_url : this.Page.route
-        // regex: '',
-      });
-      this.showModal = false;
-      await this.loadRedirects();
+        redirect_url: '',
+        redirect_type: this.RedirectType.To,
+        redirect_code: this.RedirectCode.code301,
+    };
+
+    Api = Api;
+
+    showModal: Boolean = false;
+
+    redirectionObj: any = {
+        id: -1,
+        title: 'Redirect To',
+        value: '',
+        redirection_type: RedirectTypeEnum.To,
+        redirection_code: 301
+    };
+
+    async loadRedirects() {
+        await Api.Redirect.getPageRedirects(this.Page.id);
     }
-  }
 
-  async updateRedirect(Redirect: Redirect) {
-    await Api.Redirect.update({id: Redirect.id!, Redirect: Redirect})
-  }
+    mounted() {
+        this.loadRedirects();
+    }
 
-  async deleteRedirect(Redirect: Redirect) {
-    await Api.Redirect.delete(Number(Redirect.id));
-    await this.loadRedirects();
-  }
+    openModal(route: String = '', type: RedirectTypeEnum = RedirectTypeEnum.To) {
+        this.redirectionObj.value = route;
+        this.redirectionObj.redirection_type = type
+        this.showModal = true;
+    }
+
+    get redirectToList() {
+        return Api.Redirect ?
+            Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.To) :
+            [];
+    }
+
+    get redirectFromList() {
+        return Api.Redirect ?
+            Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.From) :
+            [];
+    }
+
+    async saveRedirect() {
+        if (this.redirectionObj.value) {
+            await Api.Redirect.create({
+                page_id: this.Page.id,
+                redirect_type: this.redirectionObj.redirection_type,
+                redirect_code: this.redirectionObj.redirection_code,
+                redirect_url: this.redirectionObj.value,
+                source_url: this.Page.route
+                // regex: '',
+            });
+            this.showModal = false;
+            await this.loadRedirects();
+        }
+    }
+
+    async updateRedirect(Redirect: Redirect) {
+        await Api.Redirect.update({id: Redirect.id!, Redirect: Redirect})
+    }
+
+    async deleteRedirect(Redirect: Redirect) {
+        await Api.Redirect.delete(Number(Redirect.id));
+        await this.loadRedirects();
+    }
 
 }
 </script>
