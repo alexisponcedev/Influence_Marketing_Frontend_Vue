@@ -153,7 +153,7 @@ export default class api__page extends VuexModule {
       })
     )
       .getPageByModelTypeModelId(payload.model_type, payload.model_id)
-      .catch((error) => ResponseHandler.ErrorHandler(error))
+      .catch((error) => {console.log(error)})
       .finally(() => this.setLoading(false));
     if (response && response.data && ResponseHandler.checkResponse(response))
       return response.data;
@@ -274,9 +274,9 @@ export default class api__page extends VuexModule {
 
 
   @Action({commit : 'addItem'})
-  async createPDP(payload: { product: any, type: string, route: string }) {
+  async createPDP(payload: { product: any, type: string, route: string , slug : string }) {
     this.setLoading(true);
-    let slug = (`${payload.product.name} ${payload.product.model} ` + (payload.product.hasOwnProperty('brand') ? payload.product.brand!.name : ''))
+    let slug = payload.slug || (`${payload.product.name} ${payload.product.model} ` + (payload.product.hasOwnProperty('brand') ? payload.product.brand!.name : ''))
       .toLowerCase()
       .replace(/ /g, '-')
       .replace(/[^\w-]+/g, '');
