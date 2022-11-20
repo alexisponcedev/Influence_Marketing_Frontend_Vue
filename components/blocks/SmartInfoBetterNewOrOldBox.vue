@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/SmartInfoBetterNewOrOldBox.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/SmartInfoBetterNewOrOldBox.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -11,76 +11,84 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockSmartInfoBetterNewOrOldBox extends Vue {
-  @Prop(Number) readonly id: number | undefined;
-  @Prop(Number) readonly product_id!: number;
-  @VModel({type: Object}) model!: Object;
+    @Prop(Number) readonly id: number | undefined;
+    @Prop(Number) readonly product_id!: number;
+    @VModel({type: Object}) model!: Object;
 
-  Theme = Theme;
+    Theme = Theme;
 
-  product: Object = {};
-  loadingProduct: boolean = true;
+    product: Object = {};
+    loadingProduct: boolean = true;
 
-  reset() {
-    this.model = {
-      theme: {
-        id: 0,
-        type: StructureType.Select,
-        title: "Theme",
-        value: Theme.dark,
-        items: [
-          {title: "Light", value: this.Theme.light},
-          {title: "Dark", value: this.Theme.dark},
-        ],
-      },
-      title: {
-        id: 1,
-        type: StructureType.String,
-        title: "Title",
-        value: "You want a TV that’s better than your old TV. You want a Hisense smart TV.",
-      },
-      image: {
-        id: 2,
-        type: StructureType.Image,
-        title: "Upload Image",
-        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-        alt: "Some note about this image",
-      },
-      link: {
-        id: 3,
-        type: StructureType.Url,
-        title: "Shop All Tvs",
-        value: "/products",
-      }
-    };
-  }
+    reset(oldValue: any = {}) {
 
-  mounted() {
-    if (this.isEmpty) this.reset();
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: "Theme",
+                    value: Theme.dark,
+                    items: [
+                        {title: "Light", value: this.Theme.light},
+                        {title: "Dark", value: this.Theme.dark},
+                    ],
+                },
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "You want a TV that’s better than your old TV. You want a Hisense smart TV.",
+                },
+                image: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: "Upload Image",
+                    src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+                    alt: "Some note about this image",
+                },
+                link: {
+                    id: 3,
+                    type: StructureType.Url,
+                    title: "Shop All Tvs",
+                    value: "/products",
+                }
+            };
+    }
 
-    // this.loadProduct();
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
 
-  loadProduct() {
-    // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-    this.$axios
-      .$get("https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781")
-      .then((res) => {
-        this.product = res.data;
-      })
-      .finally(() => {
-        this.loadingProduct = false;
-      });
-  }
+        // this.loadProduct();
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    loadProduct() {
+        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
+        this.$axios
+            .$get("https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781")
+            .then((res) => {
+                this.product = res.data;
+            })
+            .finally(() => {
+                this.loadingProduct = false;
+            });
+    }
 
-  @Watch('isEmpty')
-  onValueChanged(){
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-    if(this.isEmpty) this.reset();
-  }
+    @Watch('isEmpty')
+    onValueChanged() {
+
+        if (this.isEmpty) this.reset();
+    }
 }
 </script>
 

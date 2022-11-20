@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/DigitalTrends.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/DigitalTrends.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -11,52 +11,60 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockDigitalTrends extends Vue {
-  @Prop(Number) readonly id: number | undefined;
-  @Prop(Number) readonly product_id!: number;
-  @VModel({type: Object}) model!: Object;
+    @Prop(Number) readonly id: number | undefined;
+    @Prop(Number) readonly product_id!: number;
+    @VModel({type: Object}) model!: Object;
 
-  Theme = Theme;
+    Theme = Theme;
 
-  reset() {
-    this.model = {
-      theme: {
-        id: 0,
-        type: StructureType.Select,
-        title: "Theme",
-        value: Theme.dark,
-        items: [
-          {title: "Light", value: this.Theme.light},
-          {title: "Dark", value: this.Theme.dark},
-        ],
-      },
-      title: {
-        id: 1,
-        type: StructureType.String,
-        title: 'Title',
-        value: '“The Hisense U8H is the sort of TV that makes a mockery of much more expensive TVs that literally pale in comparison”'
-      },
-      image: {
-        id: 2,
-        type: StructureType.Image,
-        title: 'Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/e1ace38e4e/dt_logo__ScaleMaxWidthWzMwNDhd.png-es25z4.png',
-        alt: 'Image Alt'
-      }
-    };
-  }
+    reset(oldValue: any = {}) {
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-  }
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: "Theme",
+                    value: Theme.dark,
+                    items: [
+                        {title: "Light", value: this.Theme.light},
+                        {title: "Dark", value: this.Theme.dark},
+                    ],
+                },
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: 'Title',
+                    value: '“The Hisense U8H is the sort of TV that makes a mockery of much more expensive TVs that literally pale in comparison”'
+                },
+                image: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: 'Image',
+                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/e1ace38e4e/dt_logo__ScaleMaxWidthWzMwNDhd.png-es25z4.png',
+                    alt: 'Image Alt'
+                }
+            };
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-    if (this.isEmpty) this.reset();
-  }
+    @Watch('isEmpty')
+    onValueChanged() {
+
+        if (this.isEmpty) this.reset();
+    }
 }
 </script>

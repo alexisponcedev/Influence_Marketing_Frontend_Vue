@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/ProductsGridV2.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/ProductsGridV2.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -12,166 +12,174 @@ import {CategoryResource} from "~/repositories";
 
 @Component
 export default class ProductsGridV2 extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop({default: true}) readonly editable: Boolean | undefined
-  @VModel({type: Object}) model!: any
+    @Prop(Number) readonly id: number | undefined
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: any
 
-  Api = Api;
+    Api = Api;
 
-  categories: Array<any> = [];
-  loadingFilters: Boolean = false;
-  loadingProducts: Boolean = false;
+    categories: Array<any> = [];
+    loadingFilters: Boolean = false;
+    loadingProducts: Boolean = false;
 
-  products: Array<any> = [];
-  filterTypes: Array<any> = [];
+    products: Array<any> = [];
+    filterTypes: Array<any> = [];
 
 
-  reset() {
-    this.model = {
-      title : {id : 0 , type : StructureType.Text , title : 'Title' , value : '<h2>All Televisions</h2>'},
+    reset(oldValue: any = {}) {
 
-      category: {
-        id: 0,
-        type: StructureType.Select,
-        title: 'Select Category',
-        value: this.categories.length > 0 ? this.categories[0].id : 0,
-        itemText: 'name',
-        itemValue: 'id',
-        items: this.categories
-      },
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                title: {id: 0, type: StructureType.Text, title: 'Title', value: '<h2>All Televisions</h2>'},
+
+                category: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: 'Select Category',
+                    value: this.categories.length > 0 ? this.categories[0].id : 0,
+                    itemText: 'name',
+                    itemValue: 'id',
+                    items: this.categories
+                },
+            }
     }
-  }
 
-  async mounted() {
-    this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
-    if (this.isEmpty) this.reset();
-    else {
-      this.model.category.items = this.categories;
+    async mounted() {
+        this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
+        if (this.isEmpty) this.reset();
+        else {
+            this.model.category.items = this.categories;
+        }
+        this.updatePreview();
     }
-    this.updatePreview();
-  }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
 
-  updatePreview(category_id: number = 0) {
-    if (category_id === 0 && this.model.hasOwnProperty('category') && this.model.category.value > 0)
-      category_id = this.model.category.value;
+    updatePreview(category_id: number = 0) {
+        if (category_id === 0 && this.model.hasOwnProperty('category') && this.model.category.value > 0)
+            category_id = this.model.category.value;
 
-    this.loadingFilters = true;
-    this.loadingProducts = true;
-    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProducts/' + category_id)
-      .then(res => {
-        this.products = res.data;
-        this.loadingProducts = false;
-      }).catch(err => {
-      console.log(err);
-      this.loadingProducts = false;
-    })
+        this.loadingFilters = true;
+        this.loadingProducts = true;
+        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProducts/' + category_id)
+            .then(res => {
+                this.products = res.data;
+                this.loadingProducts = false;
+            }).catch(err => {
+            console.log(err);
+            this.loadingProducts = false;
+        })
 
-    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategoryFilterTypes/' + category_id)
-      .then(res => {
-        this.loadingFilters = false;
-        this.filterTypes = res.filterTypes;
-      }).catch(err => {
-      console.log(err);
-      this.loadingFilters = false
-    });
-  }
+        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategoryFilterTypes/' + category_id)
+            .then(res => {
+                this.loadingFilters = false;
+                this.filterTypes = res.filterTypes;
+            }).catch(err => {
+            console.log(err);
+            this.loadingFilters = false
+        });
+    }
 
-  get categoryId() {
-    return !this.isEmpty ? this.model.category.value : 0;
-  }
+    get categoryId() {
+        return !this.isEmpty ? this.model.category.value : 0;
+    }
 
-  @Watch('categoryId', {immediate: false, deep: true})
-  onCategoryIdChanged() {
-    this.updatePreview(this.categoryId);
-  }
+    @Watch('categoryId', {immediate: false, deep: true})
+    onCategoryIdChanged() {
+        this.updatePreview(this.categoryId);
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
-    if (this.isEmpty) this.reset();
-  }
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    }
 
 }
 </script>
 
 <style scoped lang="scss">
 .filter-box {
-  width: 232px;
-  padding: 28px 16px;
+    width: 232px;
+    padding: 28px 16px;
 
-  .group {
-    .title {
-      font-family: 'hisense', serif;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px !important;
-      line-height: 24px;
-      color: #5A5B75;
-      margin-bottom: 24px;
-    }
-
-    ul {
-      padding-left: 0 !important;
-
-      .filter {
-        margin-bottom: 6px;
-
-        .checkbox {
-          width: 13px;
-          height: 13px;
-          border: 1px solid #5A5B75;
-          border-radius: 2px;
+    .group {
+        .title {
+            font-family: 'hisense', serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px !important;
+            line-height: 24px;
+            color: #5A5B75;
+            margin-bottom: 24px;
         }
 
-        .option {
-          font-style: normal;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 16px;
-          color: #5A5B75;
-        }
-      }
-    }
+        ul {
+            padding-left: 0 !important;
 
-    .separator {
-      margin: 24px 0;
+            .filter {
+                margin-bottom: 6px;
+
+                .checkbox {
+                    width: 13px;
+                    height: 13px;
+                    border: 1px solid #5A5B75;
+                    border-radius: 2px;
+                }
+
+                .option {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: #5A5B75;
+                }
+            }
+        }
+
+        .separator {
+            margin: 24px 0;
+        }
     }
-  }
 }
 
 .gray-box {
-  background-color: #F1F1F2;
+    background-color: #F1F1F2;
 }
 
 .total-result {
-  font-family: 'hisense', serif;
-  background: #DCECF0;
-  border-radius: 16px;
-  padding: 16px;
-  margin: 16px 28px;
-
-
-  &-title {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 27px;
-    color: #565656;
-  }
-
-  &-link {
     font-family: 'hisense', serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 27px;
-    text-decoration-line: underline;
-    color: #00AAA6;
-    margin-left: 8px
-  }
+    background: #DCECF0;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 28px;
+
+
+    &-title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 27px;
+        color: #565656;
+    }
+
+    &-link {
+        font-family: 'hisense', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 27px;
+        text-decoration-line: underline;
+        color: #00AAA6;
+        margin-left: 8px
+    }
 }
 </style>

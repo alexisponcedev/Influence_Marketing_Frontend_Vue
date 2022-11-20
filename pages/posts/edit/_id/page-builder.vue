@@ -81,15 +81,9 @@ export default class PostBuilderSection extends Vue {
 
   Post: Post = {};
 
-  livePreviewUrl = '';
-
   async mounted() {
     this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
     this.blocksList = this.Post.widgets as Array<BlockInterface>;
-
-    Api.Setting.getValue(SettingEnum.livePreview).then(value => {
-      this.livePreviewUrl = value ? value : '';
-    })
   }
 
   discard() {
@@ -101,7 +95,7 @@ export default class PostBuilderSection extends Vue {
   }
 
   get liveWebsite() {
-    return this.livePreviewUrl + this.Post.route
+    return process.env.LiveWebsite + (this.Post.route || '')
   }
 
   gotoLiveWebsite() {

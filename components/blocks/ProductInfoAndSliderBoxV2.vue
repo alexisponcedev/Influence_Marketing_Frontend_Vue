@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/CommercialIntro.png" alt="">
+        <img src="/blocks/ProductInfoAndSliderBoxV2.png" alt="">
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class BlockCommercialIntro extends Vue {
+export default class ProductInfoAndSliderBoxV2 extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
     @VModel({type: Object}) model!: Object
@@ -41,24 +41,17 @@ export default class BlockCommercialIntro extends Vue {
                         {title: 'Dark', value: this.Theme.dark},
                     ]
                 },
-                title: {
+                whereToBuy: {
                     id: 1,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "It's Time to",
+                    type: StructureType.Select,
+                    title: 'Show Where To Buy',
+                    value: true,
+                    items: [
+                        {title: 'True', value: true},
+                        {title: 'False', value: false},
+                    ]
                 },
-                coloredTitle: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: "Colored Title",
-                    value: " Rethink TV",
-                },
-                paragraph: {
-                    id: 2,
-                    type: StructureType.Text,
-                    title: "Paragraph",
-                    value: "Hisense Laser TV is revolution in display technology, delivering a cinema-like picture with ultra wide color gamut at a massive scale. The use of pure color lasers beaming at an ambient light rejecting screen from just inches away gives you a beautifully bright picture with true-to-life color. Add to that built-in Dolby Atmos Sound, 4K Resolution, Smooth Motion, and a Smart TV OS, Laser TV will quite literally change the way you watch TV.",
-                },
+                backgroundColor: {id: 2, type: StructureType.Color, title: 'Background Color', value: ''}
             }
     }
 
@@ -67,7 +60,6 @@ export default class BlockCommercialIntro extends Vue {
     }
 
     loadProduct() {
-        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
         this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
             .then(res => {
                 this.product = res.data;
@@ -80,14 +72,9 @@ export default class BlockCommercialIntro extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('isEmpty')
-    onValueChanged() {
-
-        if (this.isEmpty) this.reset();
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
     }
 }
 </script>
-
-<style type="text/css">
-
-</style>

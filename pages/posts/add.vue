@@ -1,64 +1,65 @@
 <template>
-  <v-container fluid>
+    <v-container fluid>
 
-    <div v-if="editMode" class="d-flex justify-space-between align-center">
-      <breadcrumbs :locations="locations"/>
-      <div class="tw-flex tw-items-center tw-space-x-2">
-        <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
-          Live Website
-        </v-btn>
-        <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPostBuilder">
-          Go to Post Builder
-        </v-btn>
-      </div>
-    </div>
+        <div v-if="editMode" class="d-flex justify-space-between align-center">
+            <breadcrumbs :locations="locations"/>
+            <div class="tw-flex tw-items-center tw-space-x-2">
+                <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
+                    Live Website
+                </v-btn>
+                <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPostBuilder">
+                    Go to Post Builder
+                </v-btn>
+            </div>
+        </div>
 
-    <v-row>
-      <v-col>
-        <v-tabs show-arrows v-model="tab" background-color="transparent">
-          <v-tab href="#Details">Post Details</v-tab>
-          <v-tab href="#Metas">Post Metas</v-tab>
-        </v-tabs>
-      </v-col>
-    </v-row>
+        <v-row>
+            <v-col>
+                <v-tabs show-arrows v-model="tab" background-color="transparent">
+                    <v-tab href="#Details">Post Details</v-tab>
+                    <v-tab href="#Metas">Post Metas</v-tab>
+                </v-tabs>
+            </v-col>
+        </v-row>
 
-    <v-form ref="form" @submit.prevent="submit">
-      <v-tabs-items v-model="tab" style="background-color: transparent !important;">
-        <v-tab-item value="Details">
-          <v-card>
-            <v-card-text>
-              <v-row>
-                <form-field-text :field="formFields[0]" v-model="Post.title" @input="postTitleChanged"/>
-                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
-              </v-row>
-              <v-row>
-                <form-field-select-page-route :field="formFields[2]" v-model="Post.route" :pageId="Post.id"/>
-              </v-row>
-              <v-row>
-                <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
-              </v-row>
+        <v-form ref="form" @submit.prevent="submit">
+            <v-tabs-items v-model="tab" style="background-color: transparent !important;">
+                <v-tab-item value="Details">
+                    <v-card>
+                        <v-card-text>
+                            <v-row>
+                                <form-field-text :field="formFields[0]" v-model="Post.title" @input="postTitleChanged"/>
+                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
+                            </v-row>
+                            <v-row>
+                                <form-field-select-page-route :field="formFields[2]" v-model="Post.route"
+                                                              :pageId="Post.id"/>
+                            </v-row>
+                            <v-row>
+                                <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
+                            </v-row>
 
-            </v-card-text>
-          </v-card>
-          <button
-            class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-            @click.prevent="submit">Save
-          </button>
-        </v-tab-item>
+                        </v-card-text>
+                    </v-card>
+                    <button
+                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+                        @click.prevent="submit">Save
+                    </button>
+                </v-tab-item>
 
-        <v-tab-item value="Metas">
-          <form-field-meta :field="formFields[4]" v-model="Post"/>
-          <button
-            class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-            @click.prevent="submit">Save
-          </button>
-        </v-tab-item>
+                <v-tab-item value="Metas">
+                    <form-field-meta :field="formFields[4]" v-model="Post"/>
+                    <button
+                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+                        @click.prevent="submit">Save
+                    </button>
+                </v-tab-item>
 
-      </v-tabs-items>
-    </v-form>
+            </v-tabs-items>
+        </v-form>
 
-    <loading-overlay :show="Api.Post.loading"/>
-  </v-container>
+        <loading-overlay :show="Api.Post.loading"/>
+    </v-container>
 </template>
 
 <script lang="ts">
@@ -72,203 +73,198 @@ import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 import {SettingEnum} from "~/interfaces/SettingEnum";
 
 @Component({
-  components: {HoverButton},
-  layout: "panel"
+    components: {HoverButton},
+    layout: "panel"
 })
 export default class PostForm extends Vue {
-  @Prop(Boolean) readonly editMode!: Boolean;
+    @Prop(Boolean) readonly editMode!: Boolean;
 
-  Api = Api;
+    Api = Api;
 
-  tab = "";
+    tab = "";
 
-  route: string = '';
+    route: string = '';
 
-  meta: Array<{ rel: string, name: string, content: string }> = [];
+    meta: Array<{ rel: string, name: string, content: string }> = [];
 
-  Post: Post = {
-    id: 0,
-    title: '',
-    route: '',
-    tags: [],
-    meta: [],
-    widgets: [],
-    status:0,
-  };
+    Post: Post = {
+        id: 0,
+        title: '',
+        route: '',
+        tags: [],
+        meta: [],
+        widgets: [],
+        status: 0,
+    };
 
-  livePreviewUrl = '';
+    locations: Array<{ title: string; to: string }> = [];
 
-  locations: Array<{ title: string; to: string }> = [];
+    formFields: Array<FormField> = [];
 
-  formFields: Array<FormField> = [];
-
-  mounted() {
-    this.init();
-    Api.Setting.getValue(SettingEnum.livePreview).then(value => {
-      this.livePreviewUrl = value ? value : '';
-    })
-  }
-
-  async init() {
-    await this.initCategories();
-    await this.initPostsTab();
-    this.updateLocations();
-    this.initMetaTags();
-  }
-
-  async initCategories() {
-    await Api.Category.getAll();
-  }
-
-  initMetaTags() {
-    if (this.Post.meta?.length === 0) {
-      this.Post.meta = [
-        {rel: 'blank', name: 'title', content: ''},
-        {rel: 'blank', name: 'description', content: 'Hisense USA'},
-
-        {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
-        {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
-        {rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA'},
-        {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
-        {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
-        {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
-        {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
-      ];
+    mounted() {
+        this.init();
     }
-  }
 
-  updateLocations() {
-    this.locations = [
-      {
-        title: "Posts",
-        to: "/posts",
-      },
-      {
-        title: this.Post.title || "",
-        to: "/posts/edit/" + this.Post.id!,
-      },
-    ];
-  }
-
-  async initPostsTab() {
-    await this.getEntity();
-    this.updatePostFormFields();
-  }
-
-  async getEntity() {
-    if (this.editMode) {
-      this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
+    async init() {
+        await this.initCategories();
+        await this.initPostsTab();
+        this.updateLocations();
+        this.initMetaTags();
     }
-  }
 
-  updatePostFormFields() {
-    this.formFields = [
-      {
-        type: "form-field-text",
-        label: "Title",
-        modelKey: "title",
-        placeholder: 'please enter post title',
-        rules: [Validation.required],
-        colAttrs: {cols: 9},
-      },
-      {
-        type: "form-field-select-autocomplete",
-        label: "Category",
-        modelKey: "category_id",
-        placeholder: 'please select category',
-        'item-text': 'name',
-        'item-value': 'id',
-        items: Api.Category.all,
-        rules: [Validation.required],
-        colAttrs: {cols: 3},
-      },
-      {
-        type: "form-field-select-page-route",
-        label: "Post URL",
-        modelKey: "route",
-        rules: [],
-        colAttrs: {cols: 12},
-      },
-      {
-        type: "form-field-tags",
-        label: "Tags",
-        modelKey: "tag",
-        rules: [],
-        colAttrs: {cols: 12},
-      },
-      {
-        type: "form-field-meta",
-        label: "Meta",
-        modelKey: "meta",
-        rules: [],
-        colAttrs: {cols: 12},
-      },
-    ];
-  }
-
-  async submit() {
-    if (this.formValidate()) {
-      if (this.editMode)
-        await Api.Post.update({
-          id: +this.Post.id!,
-          Post: this.Post,
-        });
-      else {
-        await Api.Post.create(this.Post).then((post : any) => {
-          if(post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
-        })
-      }
+    async initCategories() {
+        await Api.Category.getAll();
     }
-  }
 
-  formValidate() {
-    return (this.$refs.form as any).validate();
-  }
+    initMetaTags() {
+        if (this.Post.meta?.length === 0) {
+            this.Post.meta = [
+                {rel: 'blank', name: 'title', content: ''},
+                {rel: 'blank', name: 'description', content: 'Hisense USA'},
 
-  gotoLiveWebsite() {
-    window.open(this.liveWebsite, '_blank');
-  }
+                {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
+                {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
+                {rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA'},
+                {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
+                {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
+                {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
+                {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
+            ];
+        }
+    }
 
-  goToPostBuilder() {
-    this.openPostBuilder();
-  }
+    updateLocations() {
+        this.locations = [
+            {
+                title: "Posts",
+                to: "/posts",
+            },
+            {
+                title: this.Post.title || "",
+                to: "/posts/edit/" + this.Post.id!,
+            },
+        ];
+    }
 
-  get liveWebsite() {
-    return this.livePreviewUrl + this.Post.route
-  }
-
-  openPostBuilder() {
-    this.$router.push(`/posts/edit/${this.Post.id}/page-builder`);
-  }
-
-  @Watch("tab")
-  tabChanged(newTab: string, _: string) {
-    switch (newTab) {
-      case "Details":
+    async initPostsTab() {
+        await this.getEntity();
         this.updatePostFormFields();
-        break;
-      default:
-        break;
     }
-  }
 
-  postTitleChanged() {
-    let parentRoute = '/';
-    if (this.Post.route && this.Post.route !== '') {
-      let lastIndexOf = this.Post.route!.lastIndexOf('/') + 1;
-      parentRoute = this.Post.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+    async getEntity() {
+        if (this.editMode) {
+            this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
+        }
     }
-    this.Post.route = parentRoute + this.Post.title
-  }
+
+    updatePostFormFields() {
+        this.formFields = [
+            {
+                type: "form-field-text",
+                label: "Title",
+                modelKey: "title",
+                placeholder: 'please enter post title',
+                rules: [Validation.required],
+                colAttrs: {cols: 9},
+            },
+            {
+                type: "form-field-select-autocomplete",
+                label: "Category",
+                modelKey: "category_id",
+                placeholder: 'please select category',
+                'item-text': 'name',
+                'item-value': 'id',
+                items: Api.Category.all,
+                rules: [Validation.required],
+                colAttrs: {cols: 3},
+            },
+            {
+                type: "form-field-select-page-route",
+                label: "Post URL",
+                modelKey: "route",
+                rules: [],
+                colAttrs: {cols: 12},
+            },
+            {
+                type: "form-field-tags",
+                label: "Tags",
+                modelKey: "tag",
+                rules: [],
+                colAttrs: {cols: 12},
+            },
+            {
+                type: "form-field-meta",
+                label: "Meta",
+                modelKey: "meta",
+                rules: [],
+                colAttrs: {cols: 12},
+            },
+        ];
+    }
+
+    async submit() {
+        if (this.formValidate()) {
+            if (this.editMode)
+                await Api.Post.update({
+                    id: +this.Post.id!,
+                    Post: this.Post,
+                });
+            else {
+                await Api.Post.create(this.Post).then((post: any) => {
+                    if (post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
+                })
+            }
+        }
+    }
+
+    formValidate() {
+        return (this.$refs.form as any).validate();
+    }
+
+    gotoLiveWebsite() {
+        window.open(this.liveWebsite, '_blank');
+    }
+
+    goToPostBuilder() {
+        this.openPostBuilder();
+    }
+
+    get liveWebsite() {
+        return process.env.LiveWebsite + (this.Post.route || '')
+    }
+
+    openPostBuilder() {
+        this.$router.push(`/posts/edit/${this.Post.id}/page-builder`);
+    }
+
+    @Watch("tab")
+    tabChanged(newTab: string, _: string) {
+        switch (newTab) {
+            case "Details":
+                this.updatePostFormFields();
+                break;
+            default:
+                break;
+        }
+    }
+
+    postTitleChanged() {
+        let parentRoute = '/';
+        if (this.Post.route && this.Post.route !== '') {
+            let lastIndexOf = this.Post.route!.lastIndexOf('/') + 1;
+            parentRoute = this.Post.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+        }
+        this.Post.route = parentRoute + this.Post.title
+    }
 }
 </script>
 
 <style scoped>
 a[role='anchor'] {
-  color: #002bff;
-  width: 100%;
-  text-align: center;
-  display: block;
-  padding: 2px 0 8px;
+    color: #002bff;
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 2px 0 8px;
 }
 </style>

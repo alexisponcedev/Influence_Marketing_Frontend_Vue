@@ -1,8 +1,8 @@
 <template>
-  <div>
+    <div>
 
-    <img src="/blocks/CompanyInfo.png" alt="">
-  </div>
+        <img src="/blocks/CompanyInfo.png" alt="">
+    </div>
 </template>
 
 <script lang="ts">
@@ -13,57 +13,70 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockCompanyInfo extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop(Number) readonly product_id!: number
-  @VModel({type: Object}) model!: Object
+    @Prop(Number) readonly id: number | undefined
+    @Prop(Number) readonly product_id!: number
+    @VModel({type: Object}) model!: Object
 
-  Theme = Theme;
+    Theme = Theme;
 
-  product: Object = {};
-  loadingProduct: boolean = true;
+    product: Object = {};
+    loadingProduct: boolean = true;
 
-  reset() {
-    this.model = {
-      theme: {
-        id: 0,
-        type: StructureType.Select,
-        title: 'Theme',
-        value: Theme.dark,
-        items: [
-          {title: 'Light', value: this.Theme.light},
-          {title: 'Dark', value: this.Theme.dark},
-        ]
-      },
-      title : {id : 1 , type : StructureType.String , title : 'Title' , value : 'Mission And Vision'},
-      subtitle : {id : 2 , type : StructureType.String , title : 'Subtitle' , value : "Hisense USA's MISSION AND VISION"},
-      text : {id : 3 , type : StructureType.Text , title : 'Text' , value : ""},
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: 'Theme',
+                    value: Theme.dark,
+                    items: [
+                        {title: 'Light', value: this.Theme.light},
+                        {title: 'Dark', value: this.Theme.dark},
+                    ]
+                },
+                title: {id: 1, type: StructureType.String, title: 'Title', value: 'Mission And Vision'},
+                subtitle: {
+                    id: 2,
+                    type: StructureType.String,
+                    title: 'Subtitle',
+                    value: "Hisense USA's MISSION AND VISION"
+                },
+                text: {id: 3, type: StructureType.Text, title: 'Text', value: ""},
+            }
     }
-  }
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-    // this.loadProduct();
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+        // this.loadProduct();
+    }
 
-  loadProduct() {
-    // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
-      .then(res => {
-        this.product = res.data;
-      }).finally(() => {
-      this.loadingProduct = false;
-    })
-  }
+    loadProduct() {
+        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
+        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
+            .then(res => {
+                this.product = res.data;
+            }).finally(() => {
+            this.loadingProduct = false;
+        })
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
+    @Watch('isEmpty')
+    onValueChanged() {
 
-    if (this.isEmpty) this.reset();
-  }
+        if (this.isEmpty) this.reset();
+    }
 }
 </script>
 

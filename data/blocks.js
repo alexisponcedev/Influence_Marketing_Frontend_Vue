@@ -109,6 +109,12 @@ export const BLOCKS = () => {
             image: "ProductInfoAndSliderBox.png",
             category: 'TextBox',
           },
+          {
+            name: "ProductInfoAndSliderBoxV2",
+            title: "Products Info and Slider Box V2",
+            image: "ProductInfoAndSliderBoxV2.png",
+            category: 'TextBox',
+          },
           {name: "ProductCategoryBox", title: "Product Submenu", image: "ProductCategoryBox.png", category: 'TextBox',},
           {name: "ImageBox", title: "Product Image", image: "ImageBox.png", category: 'TextBox',},
           {name: "ULEDTextBox", title: "TextBox 1", image: "ULEDTextBox.png", category: 'TextBox',},

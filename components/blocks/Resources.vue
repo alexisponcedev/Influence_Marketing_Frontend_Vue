@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/Resources.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/Resources.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -10,25 +10,33 @@ import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class HomeResources extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop({default: true}) readonly editable: Boolean | undefined
-  @VModel({type: Object}) model!: Object
+    @Prop(Number) readonly id: number | undefined
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: Object
 
-  reset() {
-    this.model = {}
-  }
+    reset(oldValue: any = {}) {
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-  }
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {}
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
-    if (this.isEmpty) this.reset();
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
+
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    }
 }
 </script>

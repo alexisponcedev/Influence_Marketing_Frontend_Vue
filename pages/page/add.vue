@@ -68,16 +68,6 @@
                         class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
                         @click.prevent="submit">Save
                     </button>
-                    <!--          <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>-->
-
-                    <!--          <div v-if="Page.id > 0">-->
-                    <!--            <div class="tw-text-xl tw-mb-4">Live Preview</div>-->
-
-                    <!--            &lt;!&ndash;            <page-preview :value="Page.widgets ?? Page.draft" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>&ndash;&gt;-->
-
-                    <!--            <iframe style="min-height: 700px" @load="iframeLoaded" ref="iframe" :src="liveWebsite" frameborder="0"-->
-                    <!--                    class="tw-w-full"/>-->
-                    <!--          </div>-->
                 </v-tab-item>
 
                 <v-tab-item value="Metas">
@@ -142,8 +132,6 @@ export default class PageForm extends Vue {
         model_type: ''
     };
 
-    livePreviewUrl = '';
-
     locations: Array<{ title: string; to: string }> = [];
 
     formFields: Array<FormField> = [];
@@ -153,10 +141,6 @@ export default class PageForm extends Vue {
 
     mounted() {
         this.init();
-        Api.Setting.getValue(SettingEnum.livePreview).then(value => {
-            this.livePreviewUrl = value ? value : '';
-        })
-
     }
 
     async init() {
@@ -272,7 +256,7 @@ export default class PageForm extends Vue {
     }
 
     get liveWebsite() {
-        return this.livePreviewUrl + this.Page.route
+        return process.env.LiveWebsite + (this.Page.route || '')
     }
 
     openPageBuilder() {

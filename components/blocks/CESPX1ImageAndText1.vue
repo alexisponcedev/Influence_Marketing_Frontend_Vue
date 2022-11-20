@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/CESPX1ImageAndText1.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/CESPX1ImageAndText1.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -10,44 +10,52 @@ import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class CESPX1ImageAndText1 extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop({default: true}) readonly editable: Boolean | undefined
-  @VModel({type: Object}) model!: Object
+    @Prop(Number) readonly id: number | undefined
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: Object
 
-  reset() {
-    this.model = {
-      text: {
-        id: 0,
-        type: StructureType.Text,
-        title: 'Text',
-        value: ''
-      },
-      slider: {
-        id: 1, type: StructureType.List, title: 'Slider Images',
-        newItem: {
-          image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
-        },
-        value: [
-          {
-            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
-          }
-        ]
-      }
+    reset(oldValue: any = {}) {
 
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                text: {
+                    id: 0,
+                    type: StructureType.Text,
+                    title: 'Text',
+                    value: ''
+                },
+                slider: {
+                    id: 1, type: StructureType.List, title: 'Slider Images',
+                    newItem: {
+                        image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+                    },
+                    value: [
+                        {
+                            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+                        }
+                    ]
+                }
+
+            }
     }
-  }
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
-    if (this.isEmpty) this.reset();
-  }
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    }
 }
 </script>

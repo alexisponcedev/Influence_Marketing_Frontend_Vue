@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/BlogListWithBigTitleAndLittleItem.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/BlogListWithBigTitleAndLittleItem.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -10,72 +10,80 @@ import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class BlogListWithBigTitleAndLittleItem extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop({default: true}) readonly editable: Boolean | undefined
-  @VModel({type: Object}) model!: Object
+    @Prop(Number) readonly id: number | undefined
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: Object
 
-  reset() {
-    this.model = {
-      title: {id: 0, type: StructureType.Text, title: 'Title', value: ''},
-      link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
-      loadingLink: {id: 0, type: StructureType.Url, title: 'Loading Link', value: ''},
-      list: {
-        id: 3, type: StructureType.List, title: 'List',
-        newItem: {
-          largePost: {
-            id: 0, type: StructureType.Object, title: 'Large Post', value: {
-              image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-              title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-              tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
-              link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
             }
-          },
-          smallPost: {
-            id: 1, type: StructureType.Object, title: 'Small Post', value: {
-              image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-              title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-              tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
-              link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
+        } else
+            this.model = {
+                title: {id: 0, type: StructureType.Text, title: 'Title', value: ''},
+                link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+                loadingLink: {id: 0, type: StructureType.Url, title: 'Loading Link', value: ''},
+                list: {
+                    id: 3, type: StructureType.List, title: 'List',
+                    newItem: {
+                        largePost: {
+                            id: 0, type: StructureType.Object, title: 'Large Post', value: {
+                                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                                tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                                link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+                            }
+                        },
+                        smallPost: {
+                            id: 1, type: StructureType.Object, title: 'Small Post', value: {
+                                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                                tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                                link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+                            }
+                        }
+                    },
+                    value: [
+                        {
+                            largePost: {
+                                id: 0, type: StructureType.Object, title: 'Large Post', value: {
+                                    image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                                    title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                                    tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                                    link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+                                }
+                            },
+                            smallPost: {
+                                id: 1, type: StructureType.Object, title: 'Small Post', value: {
+                                    image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                                    title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                                    tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                                    link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+                                }
+                            }
+                        }
+                    ]
+                },
             }
-          }
-        },
-        value: [
-          {
-            largePost: {
-              id: 0, type: StructureType.Object, title: 'Large Post', value: {
-                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-                tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
-                link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
-              }
-            },
-            smallPost: {
-              id: 1, type: StructureType.Object, title: 'Small Post', value: {
-                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-                tagLink: { id: 2, type: StructureType.Url, title: 'Tag Link', value: '' },
-                link: { id: 3, type: StructureType.Url, title: 'Link', value: '' },
-              }
-            }
-          }
-        ]
-      },
     }
-  }
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+    }
 
-  get isEmpty()
-    :
-    Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty()
+        :
+        Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
-    if (this.isEmpty) this.reset();
-  }
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    }
 }
 </script>

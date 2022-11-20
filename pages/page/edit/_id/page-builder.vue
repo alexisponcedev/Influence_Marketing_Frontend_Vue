@@ -12,7 +12,9 @@
 
                         <div>
                             <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
-                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">{{ Page.title }}</span>
+                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">{{
+                                    Page.title
+                                }}</span>
                         </div>
 
                     </div>
@@ -110,20 +112,12 @@ export default class PageBuilderSection extends Vue {
 
     shouldDeploy: Boolean = false;
 
-    livePreviewUrl = '';
-
-    // drawer: boolean = true;
-
     async mounted() {
         this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
         if (this.Page.draft && this.Page.draft.length > 0)
             this.blocksList = this.Page.draft as Array<BlockInterface>;
         else
             this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
-
-        Api.Setting.getValue(SettingEnum.livePreview).then(value => {
-            this.livePreviewUrl = value ? value : '';
-        })
     }
 
     discard() {
@@ -143,7 +137,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     get liveWebsite() {
-        return this.livePreviewUrl + this.Page.route
+        return process.env.LiveWebsite + (this.Page.route || '')
     }
 
     gotoLiveWebsite() {

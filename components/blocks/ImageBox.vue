@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <img v-if="model.image" :src="model.image.src" :alt="model.image.alt"/>
-    <img v-else src="/blocks/ImageBox.png" alt="">
-  </div>
+    <div>
+        <img v-if="model.image" :src="model.image.src" :alt="model.image.alt"/>
+        <img v-else src="/blocks/ImageBox.png" alt="">
+    </div>
 </template>
 
 <script lang="ts">
@@ -13,61 +13,69 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockImageBox extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop(Number) readonly product_id!: number
-  @VModel({type: Object}) model!: Object
+    @Prop(Number) readonly id: number | undefined
+    @Prop(Number) readonly product_id!: number
+    @VModel({type: Object}) model!: Object
 
-  Theme = Theme;
+    Theme = Theme;
 
-  product: Object = {};
-  loadingProduct: boolean = true;
+    product: Object = {};
+    loadingProduct: boolean = true;
 
-  reset() {
-    this.model = {
-      theme: {
-        id: 0,
-        type: StructureType.Select,
-        title: 'Theme',
-        value: Theme.dark,
-        items: [
-          {title: 'Light', value: this.Theme.light},
-          {title: 'Dark', value: this.Theme.dark},
-        ]
-      },
-      image: {
-        id: 1,
-        type: StructureType.Image,
-        title: 'Image',
-        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-        alt: 'Some note about this image',
-      },
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: 'Theme',
+                    value: Theme.dark,
+                    items: [
+                        {title: 'Light', value: this.Theme.light},
+                        {title: 'Dark', value: this.Theme.dark},
+                    ]
+                },
+                image: {
+                    id: 1,
+                    type: StructureType.Image,
+                    title: 'Image',
+                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
+                    alt: 'Some note about this image',
+                },
+            }
     }
-  }
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-    // this.loadProduct();
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+        // this.loadProduct();
+    }
 
-  loadProduct() {
-    // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
-      .then(res => {
-        this.product = res.data;
-      }).finally(() => {
-      this.loadingProduct = false;
-    })
-  }
+    loadProduct() {
+        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
+        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
+            .then(res => {
+                this.product = res.data;
+            }).finally(() => {
+            this.loadingProduct = false;
+        })
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
+    @Watch('isEmpty')
+    onValueChanged() {
 
-    if (this.isEmpty) this.reset();
-  }
+        if (this.isEmpty) this.reset();
+    }
 }
 </script>
 

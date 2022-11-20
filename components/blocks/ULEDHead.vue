@@ -1,19 +1,19 @@
 <template>
     <div>
-        <img src="/blocks/ULEDHead.png" alt="" />
+        <img src="/blocks/ULEDHead.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
+import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockULEDHead extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({ type: Object }) model!: Object;
+    @VModel({type: Object}) model!: Object;
 
     Theme = Theme;
 
@@ -29,8 +29,8 @@ export default class BlockULEDHead extends Vue {
                     title: "Theme",
                     value: Theme.dark,
                     items: [
-                        { title: "Light", value: this.Theme.light },
-                        { title: "Dark", value: this.Theme.dark },
+                        {title: "Light", value: this.Theme.light},
+                        {title: "Dark", value: this.Theme.dark},
                     ],
                 },
                 image: {

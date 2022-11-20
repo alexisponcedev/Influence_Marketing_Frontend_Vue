@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/MoreTvGrabSlider.png" alt="">
-  </div>
+    <div>
+        <img src="/blocks/MoreTvGrabSlider.png" alt="">
+    </div>
 </template>
 
 <script lang="ts">
@@ -12,157 +12,165 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockMoreTvGrabSlider extends Vue {
-  @Prop(Number) readonly id: number | undefined
-  @Prop(Number) readonly product_id!: number
-  @VModel({type: Object}) model!: Object
+    @Prop(Number) readonly id: number | undefined
+    @Prop(Number) readonly product_id!: number
+    @VModel({type: Object}) model!: Object
 
-  Theme = Theme;
+    Theme = Theme;
 
-  product: Object = {};
-  loadingProduct: boolean = true;
+    product: Object = {};
+    loadingProduct: boolean = true;
 
-  reset() {
-    this.model = {
-      theme: {
-        id: 0,
-        type: StructureType.Select,
-        title: 'Theme',
-        value: Theme.light,
-        items: [
-          {title: 'Light', value: this.Theme.light},
-          {title: 'Dark', value: this.Theme.dark},
-        ]
-      },
-      list: {
-        id: 5,
-        type: StructureType.List,
-        title: "Items",
-        newItem: {
-          model: {
-            id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
-          },
-          title: {
-            id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
-          },
-          grayTitle: {
-            id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
-          },
-          image: {
-            id: 2,
-            type: StructureType.Image,
-            title: "Upload Image sign",
-            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-            alt: "hisense sign",
-          },
-          link: {
-            id: 4,
-            type: StructureType.Url,
-            title: 'where to buy',
-            value: '/'
-          },
-        },
-        value: [
-          {
-            model: {
-              id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
-            },
-            title: {
-              id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
-            },
-            grayTitle: {
-              id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
-            },
-            image: {
-              id: 2,
-              type: StructureType.Image,
-              title: "Upload Image sign",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-              alt: "hisense sign",
-            },
-            link: {
-              id: 4,
-              type: StructureType.Url,
-              title: 'where to buy',
-              value: '/'
-            },
-          },
-          {
-            model: {
-              id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
-            },
-            title: {
-              id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
-            },
-            grayTitle: {
-              id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
-            },
-            image: {
-              id: 2,
-              type: StructureType.Image,
-              title: "Upload Image sign",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-              alt: "hisense sign",
-            },
-            link: {
-              id: 4,
-              type: StructureType.Url,
-              title: 'where to buy',
-              value: '/'
-            },
-          },
-          {
-            model: {
-              id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
-            },
-            title: {
-              id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
-            },
-            grayTitle: {
-              id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
-            },
-            image: {
-              id: 2,
-              type: StructureType.Image,
-              title: "Upload Image sign",
-              src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-              alt: "hisense sign",
-            },
-            link: {
-              id: 4,
-              type: StructureType.Url,
-              title: 'where to buy',
-              value: '/'
-            },
-          },
-        ],
-      },
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: 'Theme',
+                    value: Theme.light,
+                    items: [
+                        {title: 'Light', value: this.Theme.light},
+                        {title: 'Dark', value: this.Theme.dark},
+                    ]
+                },
+                list: {
+                    id: 5,
+                    type: StructureType.List,
+                    title: "Items",
+                    newItem: {
+                        model: {
+                            id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
+                        },
+                        title: {
+                            id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
+                        },
+                        grayTitle: {
+                            id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
+                        },
+                        image: {
+                            id: 2,
+                            type: StructureType.Image,
+                            title: "Upload Image sign",
+                            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+                            alt: "hisense sign",
+                        },
+                        link: {
+                            id: 4,
+                            type: StructureType.Url,
+                            title: 'where to buy',
+                            value: '/'
+                        },
+                    },
+                    value: [
+                        {
+                            model: {
+                                id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
+                            },
+                            title: {
+                                id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
+                            },
+                            grayTitle: {
+                                id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
+                            },
+                            image: {
+                                id: 2,
+                                type: StructureType.Image,
+                                title: "Upload Image sign",
+                                src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+                                alt: "hisense sign",
+                            },
+                            link: {
+                                id: 4,
+                                type: StructureType.Url,
+                                title: 'where to buy',
+                                value: '/'
+                            },
+                        },
+                        {
+                            model: {
+                                id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
+                            },
+                            title: {
+                                id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
+                            },
+                            grayTitle: {
+                                id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
+                            },
+                            image: {
+                                id: 2,
+                                type: StructureType.Image,
+                                title: "Upload Image sign",
+                                src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+                                alt: "hisense sign",
+                            },
+                            link: {
+                                id: 4,
+                                type: StructureType.Url,
+                                title: 'where to buy',
+                                value: '/'
+                            },
+                        },
+                        {
+                            model: {
+                                id: 1, type: StructureType.String, title: 'Title', value: 'U6HF'
+                            },
+                            title: {
+                                id: 2, type: StructureType.String, title: 'Title', value: 'Great for entertainment'
+                            },
+                            grayTitle: {
+                                id: 2, type: StructureType.String, title: 'Gray Title', value: 'Great for entertainment'
+                            },
+                            image: {
+                                id: 2,
+                                type: StructureType.Image,
+                                title: "Upload Image sign",
+                                src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
+                                alt: "hisense sign",
+                            },
+                            link: {
+                                id: 4,
+                                type: StructureType.Url,
+                                title: 'where to buy',
+                                value: '/'
+                            },
+                        },
+                    ],
+                },
+            }
     }
-  }
 
-  mounted() {
-    if (this.isEmpty) this.reset();
-    // this.loadProduct();
-  }
+    mounted() {
+        if (this.isEmpty) this.reset();
+        // this.loadProduct();
+    }
 
-  loadProduct() {
-    // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-    this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
-      .then(res => {
-        this.product = res.data;
-      }).finally(() => {
-      this.loadingProduct = false;
-    })
-  }
+    loadProduct() {
+        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
+        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
+            .then(res => {
+                this.product = res.data;
+            }).finally(() => {
+            this.loadingProduct = false;
+        })
+    }
 
-  get isEmpty(): Boolean {
-    return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 
-  @Watch('isEmpty')
-  onValueChanged() {
+    @Watch('isEmpty')
+    onValueChanged() {
 
-    if (this.isEmpty) this.reset();
-  }
+        if (this.isEmpty) this.reset();
+    }
 }
 </script>
 

@@ -1,56 +1,64 @@
 <template>
     <div>
-        <img src="/blocks/SmartInfoFindHisense.png" alt="" />
+        <img src="/blocks/SmartInfoFindHisense.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockSmartInfoFindHisense extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({ type: Object }) model!: Object;
+    @VModel({type: Object}) model!: Object;
 
     Theme = Theme;
 
     product: Object = {};
     loadingProduct: boolean = true;
 
-    reset(){
-      this.model = {
-        theme: {
-          id: 0,
-          type: StructureType.Select,
-          title: "Theme",
-          value: Theme.dark,
-          items: [
-            { title: "Light", value: this.Theme.light },
-            { title: "Dark", value: this.Theme.dark },
-          ],
-        },
-        title: {
-          id: 1,
-          type: StructureType.String,
-          title: "Title",
-          value: "Find your Hisense smart TV",
-        },
-        description: {
-          id: 2,
-          type: StructureType.String,
-          title: "Description",
-          value: "We make it simple to find the right smart TV for you. Take a look at our options and enjoy more entertainment and apps more easily.",
-        },
-        link: {
-          id: 2,
-          type: StructureType.Url,
-          title: "explore",
-          value: "/",
-        },
-      };
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: "Theme",
+                    value: Theme.dark,
+                    items: [
+                        {title: "Light", value: this.Theme.light},
+                        {title: "Dark", value: this.Theme.dark},
+                    ],
+                },
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "Find your Hisense smart TV",
+                },
+                description: {
+                    id: 2,
+                    type: StructureType.String,
+                    title: "Description",
+                    value: "We make it simple to find the right smart TV for you. Take a look at our options and enjoy more entertainment and apps more easily.",
+                },
+                link: {
+                    id: 2,
+                    type: StructureType.Url,
+                    title: "explore",
+                    value: "/",
+                },
+            };
     }
 
     mounted() {
@@ -74,11 +82,11 @@ export default class BlockSmartInfoFindHisense extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-  @Watch('isEmpty')
-  onValueChanged(){
+    @Watch('isEmpty')
+    onValueChanged() {
 
-    if(this.isEmpty) this.reset();
-  }
+        if (this.isEmpty) this.reset();
+    }
 }
 </script>
 

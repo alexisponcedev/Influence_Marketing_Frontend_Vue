@@ -93,8 +93,8 @@
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn @click="save" text color="green">Save</v-btn>
-                    <v-btn @click="cancel" text color="red"> Cancel</v-btn>
+                    <v-btn :disabled="Api.History.loading" @click="save" text color="green">Save</v-btn>
+                    <v-btn :disabled="Api.History.loading" @click="cancel" text color="red"> Cancel</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -156,8 +156,8 @@ export default class VersionHistory extends Vue {
     }
 
     async save() {
-        await Api.History.updateTitle({title: this.selected.title, id: this.selected.id})
         this.cancel();
+        await Api.History.updateTitle({title: this.selected.title, id: this.selected.id})
     }
 
     cancel() {

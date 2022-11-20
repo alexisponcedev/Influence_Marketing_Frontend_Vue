@@ -7,7 +7,7 @@
     <button @click="show = true" class="tw-text-center tw-w-full tw-mt-1 tw-flex tw-items-center tw-justify-between tw-px-2.5 tw-py-2 tw-bg-white tw-rounded">
 
       <div class="tw-whitespace-nowrap">Color Picker</div>
-      <div :style="{'backgroundColor' : model.value}" class="tw-flex tw-items-center tw-justify-center tw-bg-white tw-py-2 tw-px-2 tw-min-w-40 tw-rounded-lg tw-shadow tw-text-center tw-uppercase">
+      <div :style="{'backgroundColor' : model.value}" class="tw-flex tw-items-center tw-justify-center tw-py-2 tw-px-2 tw-min-w-40 tw-rounded-lg tw-shadow tw-text-center tw-uppercase">
         {{ model.value }}
       </div>
 
