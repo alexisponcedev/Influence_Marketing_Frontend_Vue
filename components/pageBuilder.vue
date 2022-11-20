@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px !important">
+    <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px">
 
       <div
         class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
-        style="max-height: 88vh">
+        style="max-height: 88vh !important;">
         <draggable v-model="blocksList" group="people" @start="deploy">
           <blocks-container
             v-for="(block , i) in blocksList" :key="block.id"
@@ -25,7 +25,7 @@
         </draggable>
 
       </div>
-      <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh">
+      <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto " style="max-height: 88vh !important;">
 
         <blocks-selector v-show="editIndex === -1" class="tw-p-4" :blocks-type="blocksType" @add-block="addBlock"/>
 
