@@ -4,7 +4,7 @@ import {
     History,
     HistoryResource,
     Configuration,
-    HistoryApiFactory, Draft, Widgets, CategoryResource,
+    HistoryApiFactory, Draft, Widgets, CategoryResource, PageApiFactory, HistoryRequest,
 } from "@/repositories";
 
 @Module({
@@ -75,4 +75,24 @@ export default class api__history extends VuexModule {
             return response.data;
         return [];
     }
+
+
+
+    @Action({commit : 'updateItem'})
+    async updateTitle(historyRequest : HistoryRequest) {
+        this.setLoading(true);
+        const response = await HistoryApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .historyTitleUpdate(historyRequest)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (response && response.data && ResponseHandler.checkResponse(response))
+            return response.data;
+        return {};
+    }
+
+
 }

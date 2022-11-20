@@ -8,6 +8,7 @@
     >
         <div class="tw-p-3">
             <h6>Version Histories</h6>
+
             <div v-if="Api.History.loading" class="tw-grid tw-grid-cols-1 tw-gap-3">
                 <div v-for="i in 5" :key="i"
                      class="tw-text-sm tw-transition tw-duration-300 tw-border tw-border-solid tw-border-white tw-bg-gray-50 tw-p-3 tw-rounded-lg tw-animate-pulse ">
@@ -17,50 +18,83 @@
 
             </div>
 
+            <div v-else class="tw-space-y-2">
+                <ul class=" tw-list-none tw-pl-0 tw-space-y-2" style="padding-left : 0;">
+                    <li v-for="history in savedList" :key="history.id"
+                        :class="{'tw-bg-white tw-border-gray-600' : selected.id === history.id}"
+                        class="tw-text-sm tw-transition tw-duration-300 tw-border tw-border-solid tw-border-white tw-bg-gray-50 tw-p-3 tw-rounded-lg tw-cursor-pointer">
+                        <div class="tw-flex tw-items-center tw-space-x-2">
 
-            <ul v-else class=" tw-list-none tw-pl-0 tw-space-y-2" style="padding-left : 0;">
-
-                <li v-for="history in Api.History.all" :key="history.id"
-                    :class="{'tw-bg-white tw-border-gray-600' : selected.id === history.id}"
-                    class="tw-text-sm tw-transition tw-duration-300 tw-border tw-border-solid tw-border-white tw-bg-gray-50 tw-p-3 tw-rounded-lg tw-cursor-pointer">
-                    <div class="tw-flex tw-items-center tw-space-x-2">
-
-                        <div class="tw-flex-1" @click="select(history)">
-                            <div class="tw-w-full tw-text-left">
-                                <span v-if="history.title" class="tw-font-semibold">{{ history.title }}</span>
-                                <span v-else class="tw-text-gray-500">Unnamed</span>
+                            <div class="tw-flex-1" @click.prevent="select(history)">
+                                <div class="tw-w-full tw-text-left">
+                                    <span v-if="history.title" class="tw-font-semibold">{{ history.title }}</span>
+                                    <span v-else class="tw-text-gray-500">Unnamed</span>
+                                </div>
+                                <datetime class="tw-mt-1 tw-text-gray-500" :value="history.created_at"/>
                             </div>
-                            <datetime class="tw-mt-1 tw-text-gray-500" :value="history.created_at"/>
-                        </div>
 
-                        <div v-if="history.id === selected.id"
-                             class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-space-y-0.5">
-                            <button @click.self="preview(history)" class="hover:tw-text-blue-500" title="preview">mdi-view-day</button>
-<!--                            <button @click.self="preview(history)" class="hover:tw-text-blue-500">preview</button>-->
-<!--                            <button @click.self="editHistory = true" class="hover:tw-text-blue-500">save</button>-->
-                            <button @click.self="editHistory = true" class="hover:tw-text-blue-500" title="save"><v-icon large>mdi-plus</v-icon></button>
+                            <div v-if="history.id === selected.id"
+                                 class="tw-flex tw-justify-center tw-items-center tw-space-x-1">
+                                <button @click.prevent="preview(history)" class="hover:tw-text-blue-500" title="preview">
+                                    <v-icon>mdi-projector</v-icon>
+                                </button>
+                                <button @click.prevent="openModal" class="hover:tw-text-blue-500" title="save">
+                                    <v-icon>mdi-plus</v-icon>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                </ul>
+                <hr class="tw-bg-gray-100" style="" />
 
-            </ul>
+                <ul class=" tw-list-none tw-pl-0 tw-space-y-2" style="padding-left : 0;">
+
+                    <li v-for="history in unsavedList" :key="history.id"
+                        :class="{'tw-bg-white tw-border-gray-600' : selected.id === history.id}"
+                        class="tw-text-sm tw-transition tw-duration-300 tw-border tw-border-solid tw-border-white tw-bg-gray-50 tw-p-3 tw-rounded-lg tw-cursor-pointer">
+                        <div class="tw-flex tw-items-center tw-space-x-2">
+
+                            <div class="tw-flex-1" @click.prevent="select(history)">
+                                <div class="tw-w-full tw-text-left">
+                                    <span v-if="history.title" class="tw-font-semibold">{{ history.title }}</span>
+                                    <span v-else class="tw-text-gray-500">Unnamed</span>
+                                </div>
+                                <datetime class="tw-mt-1 tw-text-gray-500" :value="history.created_at"/>
+                            </div>
+
+                            <div v-if="history.id === selected.id"
+                                 class="tw-flex tw-justify-center tw-items-center tw-space-x-1">
+                                <button @click.prevent="preview(history)" class="hover:tw-text-blue-500" title="preview">
+                                    <v-icon>mdi-projector</v-icon>
+                                </button>
+                                <button @click.prevent="openModal" class="hover:tw-text-blue-500" title="save">
+                                    <v-icon>mdi-plus</v-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+
         </div>
 
 
-        <v-dialog v-model="editHistory" max-width="500">
+        <v-dialog v-model="showModal" max-width="500">
             <v-card>
                 <v-card-title>
                     History Manager Manager
                 </v-card-title>
 
                 <v-card-text>
-                    <form-field-text :field="titleField" v-model="selected.name"/>
+                    <form-field-text :field="titleField" v-model="selected.title"/>
                 </v-card-text>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="saving" @click="save" text color="green">Save</v-btn>
-                    <v-btn :disabled="saving" @click="cancel" text color="red"> Cancel</v-btn>
+                    <v-btn @click="save" text color="green">Save</v-btn>
+                    <v-btn @click="cancel" text color="red"> Cancel</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -71,6 +105,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, VModel} from "vue-property-decorator";
 import {Api} from "~/utils/store-accessor";
+import {HistoryResource} from "~/repositories";
 
 @Component({
     components: {}
@@ -83,12 +118,9 @@ export default class VersionHistory extends Vue {
 
     drawer = false;
 
-    selected: any = {};
+    selected: HistoryResource = {id: 0, title: '', widgets: []};
 
-    editHistory: boolean = false;
-    saving: boolean = false;
-
-    loading: boolean = false;
+    showModal: boolean = false;
 
     titleField = {
         label: 'History Name',
@@ -112,25 +144,44 @@ export default class VersionHistory extends Vue {
 
     preview(history: any) {
         this.$emit('input', history.widgets);
-        this.close();
     }
 
     async loadHistory() {
         await Api.History.getHistoryByModelNameModelId({model_id: +this.model.id!, model_name: this.type})
     }
 
-    save(){
-
+    openModal() {
+        console.log('trying to show modal');
+        this.showModal = true;
     }
 
-    cancel(){
-        this.saving = false;
+    async save() {
+        await Api.History.updateTitle({title: this.selected.title, id: this.selected.id})
+        this.cancel();
+    }
+
+    cancel() {
+        this.showModal = false;
+    }
+
+
+    get savedList() {
+        return Api.History.all.filter(i => i.title);
+    }
+
+    get unsavedList() {
+        return Api.History.all.filter(i => !i.title);
     }
 
 }
 </script>
 
 <style scoped>
+hr{
+    background: #d5d5d5;
+    border: transparent;
+    height: 1px;
+}
 .x-input {
     height: 39px;
     width: 100%;
