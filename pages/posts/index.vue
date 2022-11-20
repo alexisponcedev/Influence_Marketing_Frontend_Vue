@@ -41,7 +41,7 @@
     <v-dialog v-model="showCategoryModal" max-width="500">
       <v-card>
         <v-card-title>
-          Template Manager
+          Category Manager
         </v-card-title>
         <v-card-text>
           <form-field-text :field="categoryNameField" v-model="category.name" @keyup.enter="saveCategory"/>
