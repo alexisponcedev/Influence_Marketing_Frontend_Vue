@@ -307,8 +307,8 @@ export default class ProductsPage extends Vue {
 
   async addNewPage(product: any) {
     this.addingPage = product.id;
-    let productPage = await Api.Page.createPDP({product, type: 'product' , route : '/products'}) as PageResource;
-    let supportPage = await Api.Page.createPDP({product, type: 'support' , route : '/support'})
+    let productPage = await Api.Page.createPDP({product, type: 'product' , route : '/products' , slug : ''}) as PageResource;
+    let supportPage = await Api.Page.createPDP({product, type: 'support' , route : '/support' , slug : ''})
       .then((support: PageResource) => {
       Api.Page.savePageWidgets({page_id: support.id, widgets: this.getSupportWidgets()})
     });
