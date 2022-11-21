@@ -30,6 +30,18 @@ export const BLOCKS = () => {
                         image: "ListImageBox.png",
                         category: 'VideoPlayer',
                     },
+                    {
+                        name: "SimpleImageLists",
+                        title: "Simple List Image Box",
+                        image: "ListImageBox.png",
+                        category: 'VideoPlayer',
+                    },
+                    {
+                        name: "PromoBanner",
+                        title: "Promo Banner",
+                        image: "PromoBanner.png",
+                        category: 'ImageBox',
+                    },
                 ],
             },
             {
