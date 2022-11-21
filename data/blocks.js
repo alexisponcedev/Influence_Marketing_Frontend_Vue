@@ -788,7 +788,7 @@ export const BLOCKS = () => {
                         image: "Specs.png",
                         category: "TextBox",
                     },
-                    // {name: "Comments", title: "Comments", image: "Comments.png" , category : 'TextBox},
+                    {name: "Comments", title: "Comments", image: "Comments.png", category: 'TextBox'},
                     {name: "FAQs", title: "FAQs", image: "FAQs.png", category: 'TextBox'},
                     // {name: "Specs", title: "Specs", image: "Specs.png" , category : 'TextBox},
                     {name: "Retailers", title: "Retailers", image: "Retailers.png", category: 'TextBox'},
