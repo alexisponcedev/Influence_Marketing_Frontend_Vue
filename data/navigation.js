@@ -1,34 +1,72 @@
-export const items = () => [{
-    title: "Adventures",
-    icon: "mdi-rv-truck",
-    group: "Region",
-    to: "Region/All"
-  },
+export const items = () => [
   {
-    title: "Rules",
-    icon: "mdi-certificate-outline",
-    group: "Rule",
-    to: "Rule/All"
-  },
-  {
-    title: "Contents",
+    title: "Pages",
     icon: "mdi-file-document-multiple-outline",
-    group: "Contents",
-    to: "Contents"
+    group: "page",
+    to: "page",
+  },
+  {
+    title: "Products",
+    icon: "mdi-border-all",
+    group: "product",
+    to: "product",
+  },
+  {
+    title: "Blog Posts",
+    icon: "mdi-post",
+    group: "posts",
+    to: "posts",
+  },
+  {
+    title: "Menus",
+    icon: "mdi-menu",
+    group: "menu",
+    to: "menu",
+  },
+  {
+    title: "Redirection",
+    icon: "mdi-undo-variant",
+    group: "redirection",
+    to: "redirection",
+  },
+  {
+    title: "Templates",
+    icon: "mdi-file-outline",
+    group: "template",
+    to: "template",
+  },
+  {
+    title: "Reusable Blocks",
+    icon: "mdi-border-none-variant",
+    group: "block/reusable",
+    to: "blocks/reusable",
+  },
+
+  {
+    title: "Deploys",
+    icon: "mdi-cloud-sync",
+    group: "deploys",
+    to: "deploys",
+  },
+  // {
+  //   title: "Content Blocks",
+  //   icon: "mdi-border-radius",
+  //   group: "block",
+  //   to: "block/all",
+  // },
+  {
+    divider: true,
   },
   {
     title: "Settings",
     icon: "mdi-cog-outline",
     group: "Settings",
-    to: "Settings"
+    to: "Settings",
   },
-  {
-    divider: true
-  },
-  {
-    title: "Users",
-    icon: "mdi-account-tie",
-    group: "User",
-    to: "User/All"
-  }
+  // {
+  //   title: "Users",
+  //   icon: "mdi-account-tie",
+  //   group: "User",
+  //   to: "User/All",
+  // },
 ];

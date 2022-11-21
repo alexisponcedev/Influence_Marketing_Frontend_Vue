@@ -1,0 +1,56 @@
+<template>
+    <div>
+        <img src="/blocks/ContactUsForm.png" alt=""/>
+    </div>
+</template>
+
+<script lang="ts">
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+
+@Component
+export default class ContactUsForm extends Vue {
+    @Prop(Number) readonly id: number | undefined
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: Object
+
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                // title : {id : 0 , type : StructureType.String , title : 'Title' , value : 'Email US'},
+                generalInquirySubmitUrl: {
+                    id: 1,
+                    type: StructureType.Url,
+                    title: 'General Inquiry Submit Url',
+                    value: 'https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/inquery'
+                },
+                partAndServiceSupportSubmitUrl: {
+                    id: 2,
+                    type: StructureType.Url,
+                    title: 'General Inquiry Submit Url',
+                    value: 'https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product'
+                },
+            }
+    }
+
+    mounted() {
+        if (this.isEmpty) this.reset();
+    }
+
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
+
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    }
+}
+</script>

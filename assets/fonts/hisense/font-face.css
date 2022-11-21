@@ -1,0 +1,32 @@
+/* hisense */
+@font-face {
+  font-family: "hisense";
+  font-style: normal;
+  font-weight: 700;
+  src: url("Hisense Sans Alfabet Bold.otf")
+  format("opentype"),
+  url("HisenseAlfabet-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "hisense";
+  font-style: normal;
+  font-weight: 500;
+  src: url("Hisense Sans Alfabet Medium.otf")
+  format("opentype"),
+  url("HisenseAlfabet-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "hisense";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Hisense Sans Alfabet.otf") format("opentype"),
+  url("HisenseAlfabet-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "hisense";
+  font-style: normal;
+  font-weight: 300;
+  src: url("Hisense Sans Alfabet Light.otf")
+  format("opentype"),
+  url("HisenseAlfabet-Light.woff2") format("woff2");
+}

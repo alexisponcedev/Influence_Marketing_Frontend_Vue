@@ -1,0 +1,70 @@
+<template>
+    <div>
+        <img src="/blocks/OfferClaimForm.png" alt=""/>
+    </div>
+</template>
+
+<script lang="ts">
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
+
+@Component
+export default class OfferClaimForm extends Vue {
+    @Prop(Number) readonly id: number | undefined;
+    @Prop(Number) readonly product_id!: number;
+    @VModel({type: Object}) model!: Object;
+
+    Theme = Theme;
+
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                theme: {
+                    id: 0,
+                    type: StructureType.Select,
+                    title: "Theme",
+                    value: Theme.dark,
+                    items: [
+                        {title: "Light", value: this.Theme.light},
+                        {title: "Dark", value: this.Theme.dark},
+                    ],
+                },
+                title: {id: 1, type: StructureType.String, title: 'Title', value: 'Offer Claim Form'},
+                // submitURL: {
+                //   id: 3,
+                //   type: StructureType.Url,
+                //   title: 'Submit',
+                //   value: ''
+                // },
+                modelContent: {
+                    id: 3,
+                    type: StructureType.Text,
+                    title: 'Modal Content',
+                    value: 'Modal content goes here ...'
+                }
+            };
+    }
+
+    mounted() {
+        if (this.isEmpty) this.reset();
+    }
+
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
+
+    @Watch('isEmpty')
+    onValueChanged() {
+
+        if (this.isEmpty) this.reset();
+    }
+}
+</script>

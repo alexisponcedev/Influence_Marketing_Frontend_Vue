@@ -1,5 +1,5 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
-import { AuthApiFactory, User, Configuration } from "@/repositories";
+import { AuthApiFactory, Configuration } from "@/repositories";
 import ResponseHandler from "@/utils/ResponseHandler";
 
 @Module({
@@ -16,53 +16,38 @@ export default class api__auth extends VuexModule {
   }
 
   @Action
-  async login(User: User) {
+  async inquery(publicKey: string) {
     this.setLoading(true);
     const response = await AuthApiFactory()
-      .authLogin(User)
+      .userInquiry(publicKey)
       .catch((error) => ResponseHandler.ErrorHandler(error, true))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
     if (response && response.data && ResponseHandler.checkResponse(response)) {
-      localStorage.setItem("profile", JSON.stringify(response.data) || "");
-      localStorage.setItem("access_token", response.data.access_token || "");
       localStorage.setItem(
-        "access_token_expires_at",
-        response.data.expires_at || ""
+        "access_token",
+        (response.data as any).user_token || ""
       );
       return response.data;
     }
-    return {};
   }
 
   @Action
-  async Logout() {
-    this.setLoading(true);
-    await AuthApiFactory(
-      new Configuration({
-        accessToken: localStorage.getItem("access_token") || "",
-      })
-    )
-      .userLogout()
-      .catch((error) => ResponseHandler.ErrorHandler(error, true))
-      .finally(() => this.setLoading(false));
-    this.setLoading(false);
-  }
-
-  @Action
-  async changePassword(User: User) {
+  async getUser() {
     this.setLoading(true);
     const response = await AuthApiFactory(
       new Configuration({
         accessToken: localStorage.getItem("access_token") || "",
       })
     )
-      .changePassword(User)
+      .getUserInfo()
       .catch((error) => ResponseHandler.ErrorHandler(error))
       .finally(() => this.setLoading(false));
     this.setLoading(false);
-    if (response && response.data && ResponseHandler.checkResponse(response))
+    if (response && response.data && ResponseHandler.checkResponse(response)) {
+      localStorage.setItem("profile", JSON.stringify(response.data.user) || "{}");
       return response.data;
+    }
     return {};
   }
 }

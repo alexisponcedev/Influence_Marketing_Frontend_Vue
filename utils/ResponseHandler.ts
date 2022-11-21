@@ -16,7 +16,6 @@ export default {
   ErrorHandler(error: any, noRedirect?: boolean) {
     if (!noRedirect && error.response?.status == 401) {
       localStorage.removeItem("profile");
-      localStorage.removeItem("active_site");
       localStorage.removeItem("access_token");
       localStorage.removeItem("access_token_expires_at");
       window.location.href = "/Auth";
