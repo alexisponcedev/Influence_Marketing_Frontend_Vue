@@ -1,0 +1,26 @@
+.row-pointer tbody tr :hover {
+  cursor: pointer;
+}
+
+.row-grab tbody tr :hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.display-inline-block {
+  display: inline-block !important;
+}
+
+.word-wrap-break-word {
+  word-wrap: break-word;
+}
+
+.btn {
+  border-radius: 10px !important;
+  padding: 22px 16px !important;
+  margin: 2px 0;
+}/*# sourceMappingURL=custom.css.map */
