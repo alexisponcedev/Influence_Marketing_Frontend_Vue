@@ -1035,8 +1035,8 @@ export const BLOCKS = () => [
         category: "TextBox",
       },
       {
-        name: "FeatureBlock",
-        title: "Feature Block",
+        name: "FeatureBlocks",
+        title: "Feature Blocks",
         image: "FeatureBlock.png",
         category: "TextBox",
       },
