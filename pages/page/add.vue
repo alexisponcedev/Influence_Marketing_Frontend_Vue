@@ -256,7 +256,7 @@ export default class PageForm extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LiveWebsite + (this.Page.route || '')
+        return process.env.LIVE_WEBSITE + (this.Page.route || '')
     }
 
     openPageBuilder() {
