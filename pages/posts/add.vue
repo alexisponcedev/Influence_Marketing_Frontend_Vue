@@ -230,7 +230,7 @@ export default class PostForm extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LiveWebsite + (this.Post.route || '')
+        return process.env.LIVE_WEBSITE + (this.Post.route || '')
     }
 
     openPostBuilder() {
