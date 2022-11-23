@@ -20,6 +20,7 @@ import api__template from "@/store/api__template";
 import api__menu from "~/store/api__menu";
 import api__setting from "~/store/api__setting";
 import api__post from "~/store/api__post";
+import api__notification from "~/store/api__notification";
 
 let AppStore: appStore;
 let ThemeConfig = themeConfig;
@@ -34,6 +35,8 @@ class Api {
     static Constant: api__constant;
     static Adventure: api__adventure;
     static Page: api__page;
+    static Notification: api__redirect;
+    // static Notification: api__notification;
     static History: api__history;
     static Post: api__post;
     static Menu: api__menu;
@@ -51,6 +54,8 @@ function initialiseStores(store: Store<any>): void {
     Api.Site = getModule(api__site, store);
     Api.Rule = getModule(api__rule, store);
     Api.Page = getModule(api__page, store);
+    Api.Notification = getModule(api__redirect, store);
+    // Api.Notification = getModule(api__notification, store);
     Api.History = getModule(api__history, store);
     Api.Post = getModule(api__post, store);
     Api.Menu = getModule(api__menu, store);

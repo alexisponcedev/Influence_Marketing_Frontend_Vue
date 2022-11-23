@@ -1057,8 +1057,6 @@ export const BLOCKS = () => {
                     },
                 ],
             },
-
-
         ],
         blog: [
             {

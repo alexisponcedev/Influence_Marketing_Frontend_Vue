@@ -36,6 +36,12 @@ export const items = () => [
     to: "template",
   },
   {
+    title: "Notifications",
+    icon: "mdi-message-alert",
+    group: "notification",
+    to: "notifications",
+  },
+  {
     title: "Reusable Blocks",
     icon: "mdi-border-none-variant",
     group: "block/reusable",
@@ -48,12 +54,6 @@ export const items = () => [
     group: "deploys",
     to: "deploys",
   },
-  // {
-  //   title: "Content Blocks",
-  //   icon: "mdi-border-radius",
-  //   group: "block",
-  //   to: "block/all",
-  // },
   {
     divider: true,
   },
@@ -63,10 +63,4 @@ export const items = () => [
     group: "Settings",
     to: "Settings",
   },
-  // {
-  //   title: "Users",
-  //   icon: "mdi-account-tie",
-  //   group: "User",
-  //   to: "User/All",
-  // },
 ];
