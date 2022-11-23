@@ -1069,6 +1069,14 @@ export const BLOCKS = () => {
                 ],
             },
             {
+                name: "Common",
+                blocks: [
+                    {name: "ImageBox", title: "image box", image: "ImageBox.png", category: 'TextBox',},
+                    {name: "TextEditor", title: "Text Editor", image: "TextEditor.png", category: 'TextBox',},
+                    {name: "Subscribe", title: "Subscribe", image: "subscribe.png", category: 'TextBox',},
+                ],
+            },
+            {
                 name: "Blogs",
                 blocks: [
                     {
