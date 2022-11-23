@@ -1062,6 +1062,13 @@ export const BLOCKS = () => {
         ],
         blog: [
             {
+                name: "Header and Footer",
+                blocks: [
+                    {name: "Header", title: "Header Menu", image: "Header.png", category: 'TextBox',},
+                    {name: "Footer", title: "Footer Menu", image: "Footer.png", category: 'TextBox',},
+                ],
+            },
+            {
                 name: "Blogs",
                 blocks: [
                     {
