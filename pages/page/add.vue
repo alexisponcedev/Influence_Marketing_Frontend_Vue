@@ -191,7 +191,7 @@ export default class PageForm extends Vue {
 
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
-            await Api.Page.lock(+this.Page.id!);
+            await Api.Page.lock(+this.$route.params.id);
         }
     }
 
