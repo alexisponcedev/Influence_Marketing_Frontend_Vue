@@ -311,4 +311,37 @@ export default class api__page extends VuexModule {
       return response.data;
     return {};
   }
+
+
+    @Action({commit : 'updateItem'})
+    async lock(id: number) {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .lockPage(id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (response && response.data && ResponseHandler.checkResponse(response))
+            return response.data;
+        return {};
+    }
+
+    async unlock(id: number) {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .unLockPage(id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (response && response.data && ResponseHandler.checkResponse(response))
+            return response.data;
+        return {};
+    }
+
 }

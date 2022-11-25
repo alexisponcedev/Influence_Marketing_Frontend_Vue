@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img src="/blocks/Awards.png" alt=""/>
-  </div>
+    <div>
+        <img src="/blocks/Awards.png" alt=""/>
+    </div>
 </template>
 
 <script lang="ts">

@@ -1,7 +1,7 @@
 import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-    Page, PageResource, Configuration, PageApiFactory,
+    Notification, NotificationResource, Configuration, NotificationApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -12,7 +12,7 @@ import {
 
 export default class api__notification extends VuexModule {
     loading: Boolean = false;
-    all: Array<PageResource> = [];
+    all: Array<NotificationResource> = [];
 
     @Mutation
     setLoading(status: Boolean) {
@@ -20,23 +20,23 @@ export default class api__notification extends VuexModule {
     }
 
     @Mutation
-    updateAll(all: Array<PageResource>) {
+    updateAll(all: Array<NotificationResource>) {
         this.all = all;
     }
 
     @Mutation
     deleteItem(id: number) {
-        this.all.splice(this.all.findIndex((i: PageResource) => i.id === id), 1);
+        this.all.splice(this.all.findIndex((i: NotificationResource) => i.id === id), 1);
     }
 
     @Mutation
-    addItem(item: PageResource) {
+    addItem(item: NotificationResource) {
         this.all.push(item);
     }
 
     @Mutation
-    updateItem(item: PageResource) {
-        this.all = this.all.map((i: PageResource) => {
+    updateItem(item: NotificationResource) {
+        this.all = this.all.map((i: NotificationResource) => {
             return i.id === item.id ? item : i
         });
     }
@@ -44,12 +44,12 @@ export default class api__notification extends VuexModule {
     @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
-        const response = await PageApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getListAllPages()
+            .notificationList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && response.data && ResponseHandler.checkResponse(response))
@@ -65,28 +65,28 @@ export default class api__notification extends VuexModule {
     @Action
     async get(id: number) {
         this.setLoading(true);
-        const response = await PageApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPage(id)
+            .showNotification(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && response.data && ResponseHandler.checkResponse(response))
-            return response.data;
+            return response.data.data;
         return {};
     }
 
     @Action({commit: 'addItem'})
-    async create(Page: Page) {
+    async create(Notification: Notification) {
         this.setLoading(true);
-        const response = await PageApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addPage(Page)
+            .importNotification(Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && response.data && ResponseHandler.checkResponse(response))
@@ -95,14 +95,14 @@ export default class api__notification extends VuexModule {
     }
 
     @Action({commit: 'updateItem'})
-    async update(payload: { id: number; Page: Page }) {
+    async update(payload: { id: number; Notification: Notification }) {
         this.setLoading(true);
-        const response = await PageApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updatePage(payload.id, payload.Page)
+            .updateNotification(payload.id, payload.Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && response.data && ResponseHandler.checkResponse(response))
@@ -113,12 +113,12 @@ export default class api__notification extends VuexModule {
     @Action({commit: 'deleteItem'})
     async delete(id: number) {
         this.setLoading(true);
-        const response = await PageApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deletePage(id)
+            .deleteNotification(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && response.data && ResponseHandler.checkResponse(response))

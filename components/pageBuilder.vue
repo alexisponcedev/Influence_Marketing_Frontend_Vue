@@ -87,7 +87,7 @@ export default class PageBuilder extends Vue {
 
     addBlock(block: any) {
         let id = this.blocksList.length + 1;
-        this.blocksList.push({id: id, selected: false, structure: {}, ...block,});
+        this.blocksList.push({id: id, selected: false, ...block, structure: {}});
         this.selectBlock(this.blocksList.length - 1);
         this.deploy();
     }

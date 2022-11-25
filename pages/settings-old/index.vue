@@ -1,9 +1,11 @@
 <template>
     <v-container fluid>
+
+
         <v-row>
             <v-col>
                 <v-tabs background-color="transparent">
-                    <v-tab>All Notifications</v-tab>
+                    <v-tab>All Templates</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -14,9 +16,9 @@
                     <table-standard
                         :config="config"
                         class="row-pointer"
-                        :items="Api.Notification.all"
-                        :loading="Api.Notification.loading"
-                        @click:row="(Notification) => $router.push('/notifications/edit/' + Notification.id)"
+                        :items="Api.Setting.all"
+                        :loading="Api.Setting.loading"
+                        @click:row="(Setting) => $router.push('/settings/edit/' + Setting.id)"
                     />
                 </v-card>
             </v-col>
@@ -27,58 +29,60 @@
 
 <script lang="ts">
 import {Vue, Component} from "vue-property-decorator";
-import {PageResource} from "@/repositories";
+import {SettingResource} from "@/repositories";
 import {Api, AppStore} from "@/store";
 
 @Component({layout: "panel"})
-export default class AllNotifications extends Vue {
+export default class AllSettings extends Vue {
     Api = Api;
+
 
     config = {
         headers: [
-            {text: "Text", value: "text"},
-            {text: "Link", value: "link"},
+            {text: "Title", value: "title"},
+            {text: "Key", value: "key"},
+            {text: "Value", value: "value"},
             {text: "", value: "actions", sortable: false, width: "0"},
         ],
         actions: [
             {
                 type: "edit",
                 icon: "mdi-pencil",
-                to: "/notifications/edit/[id]",
+                to: "/settings/edit/[id]",
             },
             {
                 type: "delete",
                 icon: "mdi-delete",
-                onClick: (Notification: PageResource) => {
+                onClick: (Setting: SettingResource) => {
                     AppStore.showDeleteConfirmationModal({
-                        deleteItemTitle: Notification.title || "",
-                        deleteItem: Notification,
-                        agreeButton: {callback: this.deleteNotification},
+                        deleteItemTitle: Setting.title || "",
+                        deleteItem: Setting,
+                        agreeButton: {callback: this.deleteSetting},
                     });
                 },
             },
         ],
         globalActions: [
             {
-                text: "Add Notification",
+                text: "Add Setting",
                 class: 'btn',
                 color: "primary",
                 icon: "mdi-plus",
-                to: "/notifications/add",
+                to: "/settings/add",
             },
         ],
     };
 
     mounted() {
-        this.updateNotifications();
+        this.updateSettings();
     }
 
-    async updateNotifications() {
-        await Api.Notification.getAll();
+    async updateSettings() {
+        await Api.Setting.getAll();
     }
 
-    deleteNotification(Notification: PageResource) {
-        Api.Notification.delete(Notification.id!);
+    deleteSetting(Setting: SettingResource) {
+        Api.Setting.delete(Setting.id!).then(this.updateSettings);
     }
 }
 </script>

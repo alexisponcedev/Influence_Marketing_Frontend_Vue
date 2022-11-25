@@ -6,6 +6,7 @@
         <v-autocomplete
             outlined
             v-model="model"
+            @input="pageSelected"
             :rules="field.rules"
             :item-text="field['item-text']"
             :item-value="field['item-value']"
@@ -42,7 +43,7 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
             label: 'Page Url',
             placeholder: 'Enter page name',
             'item-text': 'title',
-            'item-value': 'domain',
+            'item-value': 'route',
             rules: [],
             colAttrs: {cols: 12},
         }
@@ -52,6 +53,10 @@ export default class AutoCompleteSelectPageNameFormField extends Vue {
 
     async mounted() {
         if (Api.Page.routes.length <= 1) await Api.Page.getRoutes();
+    }
+
+    pageSelected(index: number) {
+        this.$emit('update:selected-page', Api.Page.routes.find(i => i.id === index))
     }
 }
 </script>

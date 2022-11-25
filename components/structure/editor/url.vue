@@ -122,7 +122,6 @@ export default class StructureUrlEditor extends Vue {
     }
 
     async prepare() {
-        console.log('prepare : ', this.model, this.model.value);
         return new Promise((resolve, reject) => {
             this.selectField.label = this.model.title ?? 'field';
             if (this.model && this.model.value) {

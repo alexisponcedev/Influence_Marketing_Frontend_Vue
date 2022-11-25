@@ -186,7 +186,7 @@ export default class BlockSpotlight extends Vue {
     }
 }
 </script>
-<style>
+<style scoped>
 .items-list li.group {
     border-bottom: 1px solid #ededed;
     padding: 8px 0;
