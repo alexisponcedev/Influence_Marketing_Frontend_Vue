@@ -188,10 +188,9 @@ export default class PageForm extends Vue {
     async getEntity() {
         if (this.editMode) {
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
-            await Api.Page.lock(+this.$route.params.id);
+            // await Api.Page.lock(+this.$route.params.id);
         }
     }
 

@@ -15,10 +15,9 @@ export default class AirProductBanner extends Vue {
     @VModel({type: Object}) model!: Object
 
     reset(oldValue: any = {}) {
-
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue, ...{
+                ...oldValue , ...{
                     backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
                 }
             }
