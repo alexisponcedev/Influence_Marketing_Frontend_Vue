@@ -4,7 +4,7 @@
         <v-card color="#FCFCFC" elevation="0" class="mb-4 px-7 page-builder-header">
             <v-row align="center">
 
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="7">
                     <div class="tw-flex tw-space-x-2 tw-items-center">
                         <button @click="discard">
                             <v-icon color="black" large>mdi-close</v-icon>
@@ -18,9 +18,14 @@
                         </div>
 
                     </div>
-
                 </v-col>
-                <v-col cols="12" md="4" class="text-right">
+
+                <v-col cols="12" md="5" class="text-right">
+
+                    <v-btn @click="unlockPage" elevation="0" outlined color="grey darken-4" class="control-btns">
+                        <v-icon>mdi-lock-open</v-icon>
+                        Unlock
+                    </v-btn>
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -32,7 +37,6 @@
                         Preview
                     </v-btn>
 
-
                     <v-btn v-if="shouldDeploy" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
                            class="control-btns">
                         Save and Deploy
@@ -42,7 +46,6 @@
                            class="control-btns">
                         Save Page
                     </v-btn>
-
 
                     <v-menu bottom offset-x="-10" offset-y="12">
                         <template v-slot:activator="{ on, attrs }">
@@ -118,6 +121,12 @@ export default class PageBuilderSection extends Vue {
             this.blocksList = this.Page.draft as Array<BlockInterface>;
         else
             this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
+
+        await Api.Page.lockPage(+this.$route.params.id)
+    }
+
+    beforeDestroy(){
+        this.unlockPage();
     }
 
     discard() {
@@ -125,10 +134,11 @@ export default class PageBuilderSection extends Vue {
     }
 
 
+
+
     async savePage() {
         let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
         await Api.Page.savePageWidgets(widgets)
-            // .then(() => Api.Page.unlock(+this.$route.params.id));
     }
 
     async saveAndDeploy() {
@@ -159,9 +169,17 @@ export default class PageBuilderSection extends Vue {
     }
 
     openHistory() {
-        // load history data first
         (this.$refs.history as any).open();
-        // this.drawer = true;
     }
+
+    async lockPage(){
+        await Api.Page.lockPage(+this.Page.id!)
+    }
+
+    async unlockPage(){
+        await Api.Page.unlockPage(+this.Page.id!)
+    }
+
+
 }
 </script>

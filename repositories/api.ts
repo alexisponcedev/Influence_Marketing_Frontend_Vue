@@ -13,13 +13,24 @@
  */
 
 
-import { Configuration } from './configuration';
-import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import {Configuration} from './configuration';
+import globalAxios, {AxiosPromise, AxiosInstance, AxiosRequestConfig} from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import {
+    DUMMY_BASE_URL,
+    assertParamExists,
+    setApiKeyToObject,
+    setBasicAuthToObject,
+    setBearerAuthToObject,
+    setOAuthToObject,
+    setSearchParams,
+    serializeDataIfNeeded,
+    toPathString,
+    createRequestFunction
+} from './common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
+import {BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError} from './base';
 
 /**
  * Adventure model
@@ -82,6 +93,7 @@ export interface Adventure {
      */
     'map_url'?: string;
 }
+
 /**
  * Adventure Resource model
  * @export
@@ -143,6 +155,7 @@ export interface AdventureResource {
      */
     'map_url'?: string;
 }
+
 /**
  *
  * @export
@@ -162,6 +175,7 @@ export interface AdventureResourceRegion {
      */
     'name'?: string;
 }
+
 /**
  * Asset model
  * @export
@@ -211,6 +225,7 @@ export interface Asset {
      */
     'thumb'?: string;
 }
+
 /**
  * Asset Resource model
  * @export
@@ -260,6 +275,7 @@ export interface AssetResource {
      */
     'thumb'?: string;
 }
+
 /**
  * Block model
  * @export
@@ -297,6 +313,7 @@ export interface Block {
      */
     'structure'?: Array<object>;
 }
+
 /**
  * Block page model
  * @export
@@ -328,6 +345,7 @@ export interface BlockPage {
      */
     'order'?: number;
 }
+
 /**
  * Block page Resource model
  * @export
@@ -377,6 +395,7 @@ export interface BlockPageResource {
      */
     'props'?: object;
 }
+
 /**
  * Block Resource model
  * @export
@@ -414,6 +433,7 @@ export interface BlockResource {
      */
     'structure'?: object;
 }
+
 /**
  * Category model
  * @export
@@ -433,6 +453,7 @@ export interface Category {
      */
     'name'?: string;
 }
+
 /**
  * Category Resource model
  * @export
@@ -452,6 +473,7 @@ export interface CategoryResource {
      */
     'name'?: string;
 }
+
 /**
  * Constant model
  * @export
@@ -477,6 +499,7 @@ export interface Constant {
      */
     'text'?: Array<string>;
 }
+
 /**
  * Constant Resource model
  * @export
@@ -502,6 +525,7 @@ export interface ConstantResource {
      */
     'pages'?: Array<string>;
 }
+
 /**
  * Draft model
  * @export
@@ -521,6 +545,7 @@ export interface Draft {
      */
     'page_draft'?: Array<object>;
 }
+
 /**
  * Dynamic Page Resource model
  * @export
@@ -570,6 +595,7 @@ export interface DynamicPageResource {
      */
     'template_id'?: number;
 }
+
 /**
  * History model
  * @export
@@ -601,6 +627,7 @@ export interface History {
      */
     'widgets'?: Array<object>;
 }
+
 /**
  * HistoryRequest body data
  * @export
@@ -620,6 +647,7 @@ export interface HistoryRequest {
      */
     'title'?: string;
 }
+
 /**
  * History Resource model
  * @export
@@ -663,8 +691,9 @@ export interface HistoryResource {
      */
     'updated_at'?: string;
 
-    'title'? : string
+    'title'?: string;
 }
+
 /**
  *
  * @export
@@ -678,6 +707,7 @@ export interface InlineResponse200 {
      */
     'data'?: Array<AdventureResource>;
 }
+
 /**
  *
  * @export
@@ -691,6 +721,7 @@ export interface InlineResponse2001 {
      */
     'data'?: AdventureResource;
 }
+
 /**
  *
  * @export
@@ -704,6 +735,7 @@ export interface InlineResponse20010 {
      */
     'data'?: Array<RegionResource>;
 }
+
 /**
  *
  * @export
@@ -717,6 +749,7 @@ export interface InlineResponse20011 {
      */
     'data'?: Array<RegionFullResource>;
 }
+
 /**
  *
  * @export
@@ -730,6 +763,7 @@ export interface InlineResponse20012 {
      */
     'data'?: Array<SiteResource>;
 }
+
 /**
  *
  * @export
@@ -743,6 +777,7 @@ export interface InlineResponse20013 {
      */
     'data'?: Array<RuleResource>;
 }
+
 /**
  *
  * @export
@@ -756,6 +791,7 @@ export interface InlineResponse20014 {
      */
     'data'?: PageResource;
 }
+
 /**
  *
  * @export
@@ -769,6 +805,7 @@ export interface InlineResponse20015 {
      */
     'data'?: PageListResource;
 }
+
 /**
  *
  * @export
@@ -782,6 +819,7 @@ export interface InlineResponse20016 {
      */
     'data'?: Array<BlockPageResource>;
 }
+
 /**
  *
  * @export
@@ -795,6 +833,7 @@ export interface InlineResponse20017 {
      */
     'data'?: Array<TemplateResource>;
 }
+
 /**
  *
  * @export
@@ -808,6 +847,7 @@ export interface InlineResponse20018 {
      */
     'data'?: TemplateResource;
 }
+
 /**
  *
  * @export
@@ -821,6 +861,7 @@ export interface InlineResponse20019 {
      */
     'data'?: Array<ProductResource>;
 }
+
 /**
  *
  * @export
@@ -834,6 +875,7 @@ export interface InlineResponse2002 {
      */
     'data'?: Array<AssetResource>;
 }
+
 /**
  *
  * @export
@@ -847,6 +889,7 @@ export interface InlineResponse20020 {
      */
     'data'?: ProductResource;
 }
+
 /**
  *
  * @export
@@ -860,6 +903,7 @@ export interface InlineResponse20021 {
      */
     'data'?: Array<MenuResource>;
 }
+
 /**
  *
  * @export
@@ -873,6 +917,7 @@ export interface InlineResponse20022 {
      */
     'data'?: Array<RedirectResource>;
 }
+
 /**
  *
  * @export
@@ -886,6 +931,7 @@ export interface InlineResponse20023 {
      */
     'data'?: Array<SettingResource>;
 }
+
 /**
  *
  * @export
@@ -899,6 +945,7 @@ export interface InlineResponse20024 {
      */
     'data'?: PostResource;
 }
+
 /**
  *
  * @export
@@ -912,6 +959,7 @@ export interface InlineResponse20025 {
      */
     'data'?: HistoryResource;
 }
+
 /**
  *
  * @export
@@ -925,6 +973,7 @@ export interface InlineResponse20026 {
      */
     'data'?: Array<MediaTypeResource>;
 }
+
 /**
  *
  * @export
@@ -938,6 +987,7 @@ export interface InlineResponse20027 {
      */
     'data'?: MediaTypeResource;
 }
+
 /**
  *
  * @export
@@ -951,6 +1001,7 @@ export interface InlineResponse20028 {
      */
     'data'?: MenuResource;
 }
+
 /**
  *
  * @export
@@ -964,6 +1015,7 @@ export interface InlineResponse20029 {
      */
     'data'?: Array<NotificationResource>;
 }
+
 /**
  *
  * @export
@@ -977,6 +1029,7 @@ export interface InlineResponse2003 {
      */
     'data'?: AssetResource;
 }
+
 /**
  *
  * @export
@@ -990,6 +1043,7 @@ export interface InlineResponse20030 {
      */
     'data'?: NotificationResource;
 }
+
 /**
  *
  * @export
@@ -1003,6 +1057,7 @@ export interface InlineResponse20031 {
      */
     'data'?: Array<PageResource>;
 }
+
 /**
  *
  * @export
@@ -1016,6 +1071,7 @@ export interface InlineResponse20032 {
      */
     'data'?: PageDraftResource;
 }
+
 /**
  *
  * @export
@@ -1029,6 +1085,7 @@ export interface InlineResponse20033 {
      */
     'data'?: DynamicPageResource;
 }
+
 /**
  *
  * @export
@@ -1042,6 +1099,7 @@ export interface InlineResponse20034 {
      */
     'data'?: Array<PostResource>;
 }
+
 /**
  *
  * @export
@@ -1055,6 +1113,7 @@ export interface InlineResponse20035 {
      */
     'data'?: RedirectResource;
 }
+
 /**
  *
  * @export
@@ -1068,6 +1127,7 @@ export interface InlineResponse20036 {
      */
     'data'?: RegionResource;
 }
+
 /**
  *
  * @export
@@ -1081,6 +1141,7 @@ export interface InlineResponse20037 {
      */
     'data'?: Rule;
 }
+
 /**
  *
  * @export
@@ -1094,6 +1155,7 @@ export interface InlineResponse20038 {
      */
     'data'?: Array<SectionResource>;
 }
+
 /**
  *
  * @export
@@ -1107,6 +1169,7 @@ export interface InlineResponse20039 {
      */
     'data'?: SectionResource;
 }
+
 /**
  *
  * @export
@@ -1120,6 +1183,7 @@ export interface InlineResponse2004 {
      */
     'data'?: Array<BlockResource>;
 }
+
 /**
  *
  * @export
@@ -1133,6 +1197,7 @@ export interface InlineResponse20040 {
      */
     'data'?: SettingResource;
 }
+
 /**
  *
  * @export
@@ -1146,6 +1211,7 @@ export interface InlineResponse20041 {
      */
     'data'?: SiteResource;
 }
+
 /**
  *
  * @export
@@ -1159,6 +1225,7 @@ export interface InlineResponse2005 {
      */
     'data'?: BlockResource;
 }
+
 /**
  *
  * @export
@@ -1172,6 +1239,7 @@ export interface InlineResponse2006 {
      */
     'data'?: Array<CategoryResource>;
 }
+
 /**
  *
  * @export
@@ -1185,6 +1253,7 @@ export interface InlineResponse2007 {
      */
     'data'?: CategoryResource;
 }
+
 /**
  *
  * @export
@@ -1198,6 +1267,7 @@ export interface InlineResponse2008 {
      */
     'data'?: Array<ConstantResource>;
 }
+
 /**
  *
  * @export
@@ -1211,6 +1281,7 @@ export interface InlineResponse2009 {
      */
     'data'?: ConstantResource;
 }
+
 /**
  * Inquiry Resource model
  * @export
@@ -1248,6 +1319,7 @@ export interface InquiryResource {
      */
     'brands'?: Array<InquiryResourceBrands>;
 }
+
 /**
  *
  * @export
@@ -1267,6 +1339,7 @@ export interface InquiryResourceBrand {
      */
     'logo'?: string;
 }
+
 /**
  *
  * @export
@@ -1280,6 +1353,7 @@ export interface InquiryResourceBrands {
      */
     'brand'?: InquiryResourceBrand;
 }
+
 /**
  * Login model
  * @export
@@ -1299,6 +1373,7 @@ export interface Login {
      */
     'password'?: string;
 }
+
 /**
  * Login Resource model
  * @export
@@ -1348,6 +1423,7 @@ export interface LoginResource {
      */
     'expires_at'?: string;
 }
+
 /**
  * Media model
  * @export
@@ -1373,6 +1449,7 @@ export interface Media {
      */
     'media_type_id'?: number;
 }
+
 /**
  * MediaType model
  * @export
@@ -1392,6 +1469,7 @@ export interface MediaType {
      */
     'name'?: string;
 }
+
 /**
  * MediaType Resource model
  * @export
@@ -1411,6 +1489,7 @@ export interface MediaTypeResource {
      */
     'name'?: string;
 }
+
 /**
  * Menu model
  * @export
@@ -1436,6 +1515,7 @@ export interface Menu {
      */
     'widgets'?: Array<object>;
 }
+
 /**
  * Menu Resource model
  * @export
@@ -1461,6 +1541,7 @@ export interface MenuResource {
      */
     'widgets'?: Array<object>;
 }
+
 /**
  * Notification model
  * @export
@@ -1504,6 +1585,7 @@ export interface Notification {
      */
     'page_Ids'?: Array<number>;
 }
+
 /**
  * Notification Page model
  * @export
@@ -1523,6 +1605,7 @@ export interface NotificationPage {
      */
     'page_id'?: number;
 }
+
 /**
  * Notification Resource model
  * @export
@@ -1572,6 +1655,7 @@ export interface NotificationResource {
      */
     'pages'?: Array<NotificationResourcePages>;
 }
+
 /**
  *
  * @export
@@ -1591,6 +1675,7 @@ export interface NotificationResourcePages {
      */
     'title'?: number;
 }
+
 /**
  * Page model
  * @export
@@ -1670,6 +1755,7 @@ export interface Page {
      */
     'template_id'?: number;
 }
+
 /**
  * Page Draft Resource model
  * @export
@@ -1689,6 +1775,7 @@ export interface PageDraftResource {
      */
     'page_draft'?: object;
 }
+
 /**
  * Page Full Resource model
  * @export
@@ -1732,6 +1819,7 @@ export interface PageFullResource {
      */
     'blocks'?: Array<PageFullResourceBlocks>;
 }
+
 /**
  *
  * @export
@@ -1775,6 +1863,7 @@ export interface PageFullResourceBlocks {
      */
     'props'?: object;
 }
+
 /**
  * Page List Resource model
  * @export
@@ -1842,6 +1931,7 @@ export interface PageListResource {
      */
     'template_id'?: number;
 }
+
 /**
  * Page Resource model
  * @export
@@ -1921,6 +2011,7 @@ export interface PageResource {
      */
     'notifications'?: Array<PageResourceNotifications>;
 }
+
 /**
  *
  * @export
@@ -1952,6 +2043,7 @@ export interface PageResourceNotifications {
      */
     'background_color'?: string;
 }
+
 /**
  * Post model
  * @export
@@ -2007,6 +2099,7 @@ export interface Post {
      */
     'status'?: number;
 }
+
 /**
  * Post Resource model
  * @export
@@ -2062,6 +2155,7 @@ export interface PostResource {
      */
     'status'?: number;
 }
+
 /**
  * Product model
  * @export
@@ -2093,6 +2187,7 @@ export interface Product {
      */
     'product_content'?: Array<object>;
 }
+
 /**
  * Product Resource model
  * @export
@@ -2124,6 +2219,7 @@ export interface ProductResource {
      */
     'product_content'?: Array<object>;
 }
+
 /**
  * Redirect model
  * @export
@@ -2173,6 +2269,7 @@ export interface Redirect {
      */
     'regex'?: string;
 }
+
 /**
  * Redirect Resource model
  * @export
@@ -2228,6 +2325,7 @@ export interface RedirectResource {
      */
     'regex'?: string;
 }
+
 /**
  * Region model
  * @export
@@ -2265,6 +2363,7 @@ export interface Region {
      */
     'order'?: number;
 }
+
 /**
  * Region Full Resource model
  * @export
@@ -2308,6 +2407,7 @@ export interface RegionFullResource {
      */
     'adventures'?: Array<RegionFullResourceAdventures>;
 }
+
 /**
  *
  * @export
@@ -2357,6 +2457,7 @@ export interface RegionFullResourceAdventures {
      */
     'map_url'?: string;
 }
+
 /**
  * Region Resource model
  * @export
@@ -2394,6 +2495,7 @@ export interface RegionResource {
      */
     'order'?: number;
 }
+
 /**
  * Rule model
  * @export
@@ -2425,6 +2527,7 @@ export interface Rule {
      */
     'site_id'?: number;
 }
+
 /**
  * Rule Resource model
  * @export
@@ -2456,6 +2559,7 @@ export interface RuleResource {
      */
     'site'?: AdventureResourceRegion;
 }
+
 /**
  * Section model
  * @export
@@ -2475,6 +2579,7 @@ export interface Section {
      */
     'name'?: string;
 }
+
 /**
  * Section Resource model
  * @export
@@ -2494,6 +2599,7 @@ export interface SectionResource {
      */
     'name'?: string;
 }
+
 /**
  * Setting model
  * @export
@@ -2525,6 +2631,7 @@ export interface Setting {
      */
     'value'?: string;
 }
+
 /**
  * Setting Resource model
  * @export
@@ -2556,6 +2663,7 @@ export interface SettingResource {
      */
     'value'?: string;
 }
+
 /**
  * Site model
  * @export
@@ -2587,6 +2695,7 @@ export interface Site {
      */
     'enable'?: number;
 }
+
 /**
  * Site Resource model
  * @export
@@ -2618,6 +2727,7 @@ export interface SiteResource {
      */
     'enable'?: number;
 }
+
 /**
  * Slide model
  * @export
@@ -2643,6 +2753,7 @@ export interface Slide {
      */
     'media_type_id'?: number;
 }
+
 /**
  * Subject model
  * @export
@@ -2662,6 +2773,7 @@ export interface Subject {
      */
     'name'?: string;
 }
+
 /**
  * Template model
  * @export
@@ -2687,6 +2799,7 @@ export interface Template {
      */
     'widgets'?: Array<object>;
 }
+
 /**
  * Template Resource model
  * @export
@@ -2712,6 +2825,7 @@ export interface TemplateResource {
      */
     'widgets'?: Array<object>;
 }
+
 /**
  * User model
  * @export
@@ -2749,6 +2863,7 @@ export interface User {
      */
     'level'?: string;
 }
+
 /**
  * Widgets model
  * @export
@@ -2792,14 +2907,13 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -2828,14 +2942,13 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2865,14 +2978,13 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2902,14 +3014,13 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2939,14 +3050,13 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2979,14 +3089,13 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -3008,7 +3117,7 @@ export const AdventureApiAxiosParamCreator = function (configuration?: Configura
  * AdventureApi - functional programming interface
  * @export
  */
-export const AdventureApiFp = function(configuration?: Configuration) {
+export const AdventureApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = AdventureApiAxiosParamCreator(configuration)
     return {
         /**
@@ -3236,14 +3345,13 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -3272,14 +3380,13 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3309,14 +3416,13 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3346,14 +3452,13 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3383,14 +3488,13 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3423,14 +3527,13 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -3452,7 +3555,7 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
  * AssetApi - functional programming interface
  * @export
  */
-export const AssetApiFp = function(configuration?: Configuration) {
+export const AssetApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = AssetApiAxiosParamCreator(configuration)
     return {
         /**
@@ -3677,14 +3780,13 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3714,10 +3816,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3736,7 +3837,7 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
  * AuthApi - functional programming interface
  * @export
  */
-export const AuthApiFp = function(configuration?: Configuration) {
+export const AuthApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = AuthApiAxiosParamCreator(configuration)
     return {
         /**
@@ -3841,14 +3942,13 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -3877,14 +3977,13 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3914,14 +4013,13 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3951,14 +4049,13 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -3991,14 +4088,13 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4030,14 +4126,13 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4059,7 +4154,7 @@ export const BlockApiAxiosParamCreator = function (configuration?: Configuration
  * BlockApi - functional programming interface
  * @export
  */
-export const BlockApiFp = function(configuration?: Configuration) {
+export const BlockApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = BlockApiAxiosParamCreator(configuration)
     return {
         /**
@@ -4284,14 +4379,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4321,14 +4415,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4361,14 +4454,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4400,14 +4492,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4440,14 +4531,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4466,7 +4556,7 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
  * CategoryApi - functional programming interface
  * @export
  */
-export const CategoryApiFp = function(configuration?: Configuration) {
+export const CategoryApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = CategoryApiAxiosParamCreator(configuration)
     return {
         /**
@@ -4664,14 +4754,13 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4700,14 +4789,13 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4737,14 +4825,13 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4774,14 +4861,13 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4811,14 +4897,13 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -4851,14 +4936,13 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4880,7 +4964,7 @@ export const ConstantApiAxiosParamCreator = function (configuration?: Configurat
  * ConstantApi - functional programming interface
  * @export
  */
-export const ConstantApiFp = function(configuration?: Configuration) {
+export const ConstantApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = ConstantApiAxiosParamCreator(configuration)
     return {
         /**
@@ -5109,10 +5193,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5142,10 +5225,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5175,10 +5257,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5204,10 +5285,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5233,10 +5313,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5266,10 +5345,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5299,10 +5377,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5328,10 +5405,9 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5350,7 +5426,7 @@ export const ExodusAPIsApiAxiosParamCreator = function (configuration?: Configur
  * ExodusAPIsApi - functional programming interface
  * @export
  */
-export const ExodusAPIsApiFp = function(configuration?: Configuration) {
+export const ExodusAPIsApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = ExodusAPIsApiAxiosParamCreator(configuration)
     return {
         /**
@@ -5626,10 +5702,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5659,10 +5734,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5688,10 +5762,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5717,10 +5790,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5750,10 +5822,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5783,10 +5854,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5816,10 +5886,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5849,10 +5918,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5878,10 +5946,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5911,10 +5978,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5944,10 +6010,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -5977,10 +6042,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6010,10 +6074,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6039,10 +6102,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6068,10 +6130,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6097,10 +6158,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6126,10 +6186,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6159,10 +6218,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6188,10 +6246,9 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6223,7 +6280,7 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -6252,7 +6309,6 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
             }
 
 
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6269,7 +6325,7 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
  * HUSAAPIsApi - functional programming interface
  * @export
  */
-export const HUSAAPIsApiFp = function(configuration?: Configuration) {
+export const HUSAAPIsApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = HUSAAPIsApiAxiosParamCreator(configuration)
     return {
         /**
@@ -6902,14 +6958,13 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6939,14 +6994,13 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6980,14 +7034,13 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7016,14 +7069,13 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -7056,14 +7108,13 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7082,7 +7133,7 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
  * HistoryApi - functional programming interface
  * @export
  */
-export const HistoryApiFp = function(configuration?: Configuration) {
+export const HistoryApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = HistoryApiAxiosParamCreator(configuration)
     return {
         /**
@@ -7281,14 +7332,13 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7318,14 +7368,13 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7357,7 +7406,7 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
@@ -7372,7 +7421,7 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
             }
 
             if (file !== undefined) {
-                localVarFormParams.append('file', new Blob([JSON.stringify(file)], { type: "application/json", }));
+                localVarFormParams.append('file', new Blob([JSON.stringify(file)], {type: "application/json",}));
             }
 
 
@@ -7395,7 +7444,7 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
  * MediaApi - functional programming interface
  * @export
  */
-export const MediaApiFp = function(configuration?: Configuration) {
+export const MediaApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = MediaApiAxiosParamCreator(configuration)
     return {
         /**
@@ -7533,14 +7582,13 @@ export const MediaTypeApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7573,14 +7621,13 @@ export const MediaTypeApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -7612,14 +7659,13 @@ export const MediaTypeApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -7652,14 +7698,13 @@ export const MediaTypeApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7689,14 +7734,13 @@ export const MediaTypeApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7715,7 +7759,7 @@ export const MediaTypeApiAxiosParamCreator = function (configuration?: Configura
  * MediaTypeApi - functional programming interface
  * @export
  */
-export const MediaTypeApiFp = function(configuration?: Configuration) {
+export const MediaTypeApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = MediaTypeApiAxiosParamCreator(configuration)
     return {
         /**
@@ -7913,14 +7957,13 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -7953,14 +7996,13 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7990,14 +8032,13 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8023,14 +8064,13 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8063,14 +8103,13 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -8092,7 +8131,7 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
  * MenuApi - functional programming interface
  * @export
  */
-export const MenuApiFp = function(configuration?: Configuration) {
+export const MenuApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = MenuApiAxiosParamCreator(configuration)
     return {
         /**
@@ -8291,14 +8330,13 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8327,14 +8365,13 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -8363,14 +8400,13 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8400,14 +8436,13 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8440,14 +8475,13 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -8469,7 +8503,7 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
  * NotificationApi - functional programming interface
  * @export
  */
-export const NotificationApiFp = function(configuration?: Configuration) {
+export const NotificationApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = NotificationApiAxiosParamCreator(configuration)
     return {
         /**
@@ -8667,14 +8701,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -8707,14 +8740,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8740,14 +8772,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8773,14 +8804,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8806,14 +8836,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8843,14 +8872,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8884,14 +8912,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8921,14 +8948,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8958,10 +8984,9 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -8990,14 +9015,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -9030,14 +9054,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9063,14 +9086,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9100,14 +9122,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9137,14 +9158,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9177,14 +9197,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -9220,14 +9239,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -9263,14 +9281,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -9292,7 +9309,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
  * PageApi - functional programming interface
  * @export
  */
-export const PageApiFp = function(configuration?: Configuration) {
+export const PageApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = PageApiAxiosParamCreator(configuration)
     return {
         /**
@@ -9850,14 +9867,13 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -9890,14 +9906,13 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9927,14 +9942,13 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9964,14 +9978,13 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9997,14 +10010,13 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10037,14 +10049,13 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -10066,7 +10077,7 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
  * PostApi - functional programming interface
  * @export
  */
-export const PostApiFp = function(configuration?: Configuration) {
+export const PostApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = PostApiAxiosParamCreator(configuration)
     return {
         /**
@@ -10294,14 +10305,13 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -10334,14 +10344,13 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10371,14 +10380,13 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10404,14 +10412,13 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10444,14 +10451,13 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -10473,7 +10479,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
  * ProductApi - functional programming interface
  * @export
  */
-export const ProductApiFp = function(configuration?: Configuration) {
+export const ProductApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = ProductApiAxiosParamCreator(configuration)
     return {
         /**
@@ -10671,14 +10677,13 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -10711,14 +10716,13 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10748,14 +10752,13 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10785,14 +10788,13 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10818,14 +10820,13 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10858,14 +10859,13 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -10887,7 +10887,7 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
  * RedirectApi - functional programming interface
  * @export
  */
-export const RedirectApiFp = function(configuration?: Configuration) {
+export const RedirectApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = RedirectApiAxiosParamCreator(configuration)
     return {
         /**
@@ -11115,14 +11115,13 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -11155,14 +11154,13 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11192,14 +11190,13 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11229,14 +11226,13 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11262,14 +11258,13 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11302,14 +11297,13 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -11331,7 +11325,7 @@ export const RegionApiAxiosParamCreator = function (configuration?: Configuratio
  * RegionApi - functional programming interface
  * @export
  */
-export const RegionApiFp = function(configuration?: Configuration) {
+export const RegionApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = RegionApiAxiosParamCreator(configuration)
     return {
         /**
@@ -11559,14 +11553,13 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -11599,14 +11592,13 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11636,14 +11628,13 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11673,14 +11664,13 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11706,14 +11696,13 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -11746,14 +11735,13 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -11775,7 +11763,7 @@ export const RuleApiAxiosParamCreator = function (configuration?: Configuration)
  * RuleApi - functional programming interface
  * @export
  */
-export const RuleApiFp = function(configuration?: Configuration) {
+export const RuleApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = RuleApiAxiosParamCreator(configuration)
     return {
         /**
@@ -12003,14 +11991,13 @@ export const SectionApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -12043,14 +12030,13 @@ export const SectionApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12080,14 +12066,13 @@ export const SectionApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12113,14 +12098,13 @@ export const SectionApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12153,14 +12137,13 @@ export const SectionApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -12182,7 +12165,7 @@ export const SectionApiAxiosParamCreator = function (configuration?: Configurati
  * SectionApi - functional programming interface
  * @export
  */
-export const SectionApiFp = function(configuration?: Configuration) {
+export const SectionApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = SectionApiAxiosParamCreator(configuration)
     return {
         /**
@@ -12380,14 +12363,13 @@ export const SettingApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -12420,14 +12402,13 @@ export const SettingApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12457,14 +12438,13 @@ export const SettingApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12490,14 +12470,13 @@ export const SettingApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12530,14 +12509,13 @@ export const SettingApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -12559,7 +12537,7 @@ export const SettingApiAxiosParamCreator = function (configuration?: Configurati
  * SettingApi - functional programming interface
  * @export
  */
-export const SettingApiFp = function(configuration?: Configuration) {
+export const SettingApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = SettingApiAxiosParamCreator(configuration)
     return {
         /**
@@ -12757,14 +12735,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -12797,14 +12774,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12834,14 +12810,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12871,14 +12846,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12912,14 +12886,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12945,14 +12918,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -12985,14 +12957,13 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -13014,7 +12985,7 @@ export const SiteApiAxiosParamCreator = function (configuration?: Configuration)
  * SiteApi - functional programming interface
  * @export
  */
-export const SiteApiFp = function(configuration?: Configuration) {
+export const SiteApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = SiteApiAxiosParamCreator(configuration)
     return {
         /**
@@ -13275,14 +13246,13 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -13315,14 +13285,13 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -13352,14 +13321,13 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -13385,14 +13353,13 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -13425,14 +13392,13 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = {method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
 
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -13454,7 +13420,7 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
  * TemplateApi - functional programming interface
  * @export
  */
-export const TemplateApiFp = function(configuration?: Configuration) {
+export const TemplateApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = TemplateApiAxiosParamCreator(configuration)
     return {
         /**

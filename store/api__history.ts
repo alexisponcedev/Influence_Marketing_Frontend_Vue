@@ -77,9 +77,8 @@ export default class api__history extends VuexModule {
     }
 
 
-
-    @Action({commit : 'updateItem'})
-    async updateTitle(historyRequest : HistoryRequest) {
+    @Action({commit: 'updateItem'})
+    async updateTitle(historyRequest: HistoryRequest) {
         this.setLoading(true);
         const response = await HistoryApiFactory(
             new Configuration({
