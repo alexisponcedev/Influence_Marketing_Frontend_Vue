@@ -15,8 +15,9 @@
 
             <v-icon small :color="page.locked_by === userId ? 'red' : 'black'" :disabled="!isLocked">mdi-lock</v-icon>
             <span :class="{'tw-text-gray-400' : !isLocked}">Lock</span>
-
         </div>
+
+        {{ page.locked_by}}
 
 
     </v-btn>

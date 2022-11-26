@@ -55,8 +55,14 @@ export default class BlockProductNewsBox extends Vue {
                     title: 'Title',
                     value: 'Ultra Short Throw. Ultra Convenient.'
                 },
-                note: {
+                smallTitle: {
                     id: 3,
+                    type: StructureType.String,
+                    title: 'Small Title',
+                    value: ''
+                },
+                note: {
+                    id: 4,
                     type: StructureType.Text,
                     title: 'Note',
                     value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
@@ -77,8 +83,14 @@ export default class BlockProductNewsBox extends Vue {
                         title: 'Title',
                         value: 'Ultra Short Throw. Ultra Convenient.'
                     },
-                    note: {
+                    smallTitle: {
                         id: 3,
+                        type: StructureType.String,
+                        title: 'Small Title',
+                        value: ''
+                    },
+                    note: {
+                        id: 4,
                         type: StructureType.Text,
                         title: 'Note',
                         value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
