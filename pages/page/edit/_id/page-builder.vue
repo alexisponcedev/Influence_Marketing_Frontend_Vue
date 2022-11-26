@@ -22,10 +22,12 @@
 
                 <v-col cols="12" md="5" class="text-right">
 
-                    <v-btn @click="unlockPage" elevation="0" outlined color="grey darken-4" class="control-btns">
-                        <v-icon>mdi-lock-open</v-icon>
-                        Unlock
-                    </v-btn>
+<!--                    <v-btn @click="unlockPage" elevation="0" outlined color="grey darken-4" class="control-btns">-->
+<!--                        <v-icon>mdi-lock-open</v-icon>-->
+<!--                        Unlock-->
+<!--                    </v-btn>-->
+
+<!--                    <page-lock v-model="Page" />-->
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -172,13 +174,7 @@ export default class PageBuilderSection extends Vue {
         (this.$refs.history as any).open();
     }
 
-    async lockPage(){
-        await Api.Page.lockPage(+this.Page.id!)
-    }
 
-    async unlockPage(){
-        await Api.Page.unlockPage(+this.Page.id!)
-    }
 
 
 }

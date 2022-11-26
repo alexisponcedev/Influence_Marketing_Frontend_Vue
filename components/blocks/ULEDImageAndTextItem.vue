@@ -24,7 +24,7 @@ import {StructureType} from "~/models/StructureType";
 export default class BlockTextIntroduction extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: Object
+    @VModel({type: Object}) model!: any
 
     reset(oldValue: any = {}) {
 

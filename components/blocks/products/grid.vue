@@ -142,7 +142,7 @@ export default class ProductGrid extends Vue {
             if (item.type === StructureType.Image) {
                 this.model[name].src = '';
                 this.model[name].alt = 'Image Alt';
-            }else if (item.type === StructureType.Select) {
+            } else if (item.type === StructureType.Select) {
                 this.model[name].src = '';
                 this.model[name].alt = 'Image Alt';
 
