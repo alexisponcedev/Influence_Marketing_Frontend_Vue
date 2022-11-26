@@ -1,6 +1,7 @@
 <template>
     <div class="tw-p-20">
 
+
         <form-field-tags v-model="tags"/>
 
         <pre>{{ tags }}</pre>

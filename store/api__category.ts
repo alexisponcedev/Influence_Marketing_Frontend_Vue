@@ -43,13 +43,15 @@ export default class api__category extends VuexModule {
 
     @Action({commit: "updateAll"})
     async getAll() {
+
         this.setLoading(true);
+        let brand_id = Number(localStorage.getItem("active_brand_id") || 0);
         const response = await CategoryApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            ._062b0e17b0b265231ad33ece1785b1fe()
+            ._062b0e17b0b265231ad33ece1785b1fe(brand_id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && response.data && ResponseHandler.checkResponse(response))

@@ -4,7 +4,7 @@
         <v-card color="#FCFCFC" elevation="0" class="mb-4 px-7 page-builder-header">
             <v-row align="center">
 
-                <v-col cols="12" md="7">
+                <v-col cols="12" md="6">
                     <div class="tw-flex tw-space-x-2 tw-items-center">
                         <button @click="discard">
                             <v-icon color="black" large>mdi-close</v-icon>
@@ -12,22 +12,17 @@
 
                         <div>
                             <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
-                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">{{
-                                    Page.title
-                                }}</span>
+                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">
+                                {{ Page.title }}
+                            </span>
                         </div>
 
                     </div>
                 </v-col>
 
-                <v-col cols="12" md="5" class="text-right">
+                <v-col cols="12" md="6" class="text-right">
 
-<!--                    <v-btn @click="unlockPage" elevation="0" outlined color="grey darken-4" class="control-btns">-->
-<!--                        <v-icon>mdi-lock-open</v-icon>-->
-<!--                        Unlock-->
-<!--                    </v-btn>-->
-
-<!--                    <page-lock v-model="Page" />-->
+                    <page-lock v-model="Page"/>
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -127,15 +122,13 @@ export default class PageBuilderSection extends Vue {
         await Api.Page.lockPage(+this.$route.params.id)
     }
 
-    beforeDestroy(){
-        this.unlockPage();
+    beforeDestroy() {
+        Api.Page.unlockPage(+this.$route.params.id!);
     }
 
     discard() {
         this.$router.push('/page/edit/' + this.Page.id);
     }
-
-
 
 
     async savePage() {
@@ -173,8 +166,6 @@ export default class PageBuilderSection extends Vue {
     openHistory() {
         (this.$refs.history as any).open();
     }
-
-
 
 
 }
