@@ -16,8 +16,8 @@ export default class BlockProductNewsBox extends Vue {
 
     Theme = Theme;
 
-    mounted() {
-        this.addItem('theme', {
+    created() {
+        this.addItem(this.model, 'theme', {
             id: 0,
             type: StructureType.Select,
             title: 'Theme',
@@ -27,7 +27,7 @@ export default class BlockProductNewsBox extends Vue {
                 {title: 'Dark', value: this.Theme.dark},
             ]
         });
-        this.addItem('divider', {
+        this.addItem(this.model, 'divider', {
             id: 1,
             type: StructureType.Select,
             title: 'Line Divider',
@@ -37,7 +37,7 @@ export default class BlockProductNewsBox extends Vue {
                 {title: "Don't show", value: false},
             ]
         })
-        this.addItem('list', {
+        this.addItem(this.model, 'list', {
             id: 2,
             type: StructureType.List,
             title: 'Items',
@@ -104,23 +104,36 @@ export default class BlockProductNewsBox extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
+    addItem(base: any, name: string, item: any) {
+        if (!base.hasOwnProperty(name)) base[name] = item;
+        base[name].id = item.id;
 
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
+        if (base[name].type !== item.type) base[name].type = item.type;
+
         if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
+            base[name].src = '';
+            base[name].alt = 'Image Alt';
         }
+
         if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
+            base[name].newItem = item.newItem;
+            base[name].value.forEach((element: any, index: number) => {
+                Object.keys(item.newItem).forEach((key: string) => {
+                    this.addItem(base[name].value[index], key, item.newItem[key])
+                })
+            })
         }
+
+        if (item.type === StructureType.Object) {
+            Object.keys(item.value).forEach((key: string) => {
+                this.addItem(base[name].value, key, item.value[key])
+            })
+        }
+
         if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
+            base[name].items = item.items;
         }
     }
-
 }
 </script>
 

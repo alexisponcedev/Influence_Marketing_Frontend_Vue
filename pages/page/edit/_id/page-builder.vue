@@ -118,12 +118,6 @@ export default class PageBuilderSection extends Vue {
             this.blocksList = this.Page.draft as Array<BlockInterface>;
         else
             this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
-
-        await Api.Page.lockPage(+this.$route.params.id)
-    }
-
-    beforeDestroy() {
-        Api.Page.unlockPage(+this.$route.params.id!);
     }
 
     discard() {
