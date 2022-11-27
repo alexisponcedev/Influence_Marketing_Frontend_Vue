@@ -83,7 +83,7 @@ export default class PostBuilderSection extends Vue {
 
     async mounted() {
         this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
-        this.blocksList = this.Post.page.widgets as Array<BlockInterface>;
+        this.blocksList = this.Post.page!.widgets as Array<BlockInterface>;
     }
 
     discard() {
