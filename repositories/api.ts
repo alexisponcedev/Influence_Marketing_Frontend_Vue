@@ -3145,7 +3145,7 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -3229,7 +3229,7 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -3275,7 +3275,7 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -5960,7 +5960,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -6073,7 +6073,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -6113,7 +6113,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -6268,7 +6268,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarQueryParameter = {} as any;
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -6345,7 +6345,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
@@ -6466,7 +6466,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['brand_id'] = String(JSON.stringify(brandId));
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 
