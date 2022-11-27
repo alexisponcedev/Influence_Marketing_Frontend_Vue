@@ -1,5 +1,5 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
-import {AuthApiFactory, Configuration} from "@/repositories";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import { AuthApiFactory, Configuration } from "@/repositories";
 import ResponseHandler from "@/utils/ResponseHandler";
 
 @Module({
@@ -23,7 +23,11 @@ export default class api__auth extends VuexModule {
             .catch((error) => ResponseHandler.ErrorHandler(error, true))
             .finally(() => this.setLoading(false));
         this.setLoading(false);
-        if (response && response.data && ResponseHandler.checkResponse(response)) {
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        ) {
             localStorage.setItem(
                 "access_token",
                 (response.data as any).user_token || ""
@@ -44,8 +48,15 @@ export default class api__auth extends VuexModule {
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         this.setLoading(false);
-        if (response && response.data && ResponseHandler.checkResponse(response)) {
-            localStorage.setItem("profile", JSON.stringify(response.data.user) || "{}");
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        ) {
+            localStorage.setItem(
+                "profile",
+                JSON.stringify(response.data.user) || "{}"
+            );
             return response.data;
         }
         return {};

@@ -1,10 +1,10 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
     Menu,
     MenuResource,
     Configuration,
-    MenuApiFactory, Draft, Widgets,
+    MenuApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -26,7 +26,7 @@ export default class api__menu extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await MenuApiFactory(
@@ -37,7 +37,11 @@ export default class api__menu extends VuexModule {
             .menuList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
@@ -52,7 +56,6 @@ export default class api__menu extends VuexModule {
         return await this.get(2);
     }
 
-
     @Action
     async get(id: number) {
         this.setLoading(true);
@@ -64,7 +67,11 @@ export default class api__menu extends VuexModule {
             .getMenu(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -80,11 +87,14 @@ export default class api__menu extends VuexModule {
             .addMenu(Menu)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
-
 
     @Action
     async update(payload: { id: number; Menu: Menu }) {
@@ -97,7 +107,11 @@ export default class api__menu extends VuexModule {
             .updateMenu(payload.id, payload.Menu)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -113,7 +127,11 @@ export default class api__menu extends VuexModule {
             .deleteMenu(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }

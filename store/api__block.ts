@@ -1,8 +1,10 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
+    Block,
+    BlockResource,
     Configuration,
-    Block, BlockResource, BlockApiFactory
+    BlockApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -24,7 +26,7 @@ export default class api__block extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await BlockApiFactory(
@@ -35,7 +37,11 @@ export default class api__block extends VuexModule {
             .blockList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
@@ -51,7 +57,11 @@ export default class api__block extends VuexModule {
             .getBlock(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return {};
     }
@@ -67,7 +77,11 @@ export default class api__block extends VuexModule {
             .addBlock(block)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -83,7 +97,11 @@ export default class api__block extends VuexModule {
             .updateBlock(payload.id, payload.block)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -99,9 +117,12 @@ export default class api__block extends VuexModule {
             .deleteBlock(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
-
 }

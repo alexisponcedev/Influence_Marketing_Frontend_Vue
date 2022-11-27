@@ -1,7 +1,10 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-    Notification, NotificationResource, Configuration, NotificationApiFactory,
+    Notification,
+    Configuration,
+    NotificationResource,
+    NotificationApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -9,7 +12,6 @@ import {
     stateFactory: true,
     namespaced: true,
 })
-
 export default class api__notification extends VuexModule {
     loading: Boolean = false;
     all: Array<NotificationResource> = [];
@@ -26,7 +28,10 @@ export default class api__notification extends VuexModule {
 
     @Mutation
     deleteItem(id: number) {
-        this.all.splice(this.all.findIndex((i: NotificationResource) => i.id === id), 1);
+        this.all.splice(
+            this.all.findIndex((i: NotificationResource) => i.id === id),
+            1
+        );
     }
 
     @Mutation
@@ -37,11 +42,11 @@ export default class api__notification extends VuexModule {
     @Mutation
     updateItem(item: NotificationResource) {
         this.all = this.all.map((i: NotificationResource) => {
-            return i.id === item.id ? item : i
+            return i.id === item.id ? item : i;
         });
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -52,12 +57,16 @@ export default class api__notification extends VuexModule {
             .notificationList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
 
-    @Action({commit: "updateRoutes"})
+    @Action({ commit: "updateRoutes" })
     clearRoutes() {
         return [];
     }
@@ -73,12 +82,16 @@ export default class api__notification extends VuexModule {
             .showNotification(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return {};
     }
 
-    @Action({commit: 'addItem'})
+    @Action({ commit: "addItem" })
     async create(Notification: Notification) {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -89,12 +102,16 @@ export default class api__notification extends VuexModule {
             .importNotification(Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
 
-    @Action({commit: 'updateItem'})
+    @Action({ commit: "updateItem" })
     async update(payload: { id: number; Notification: Notification }) {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -105,12 +122,16 @@ export default class api__notification extends VuexModule {
             .updateNotification(payload.id, payload.Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
 
-    @Action({commit: 'deleteItem'})
+    @Action({ commit: "deleteItem" })
     async delete(id: number) {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -121,7 +142,11 @@ export default class api__notification extends VuexModule {
             .deleteNotification(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }

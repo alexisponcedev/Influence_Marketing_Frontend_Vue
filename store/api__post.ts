@@ -1,10 +1,11 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
     Post,
     PostResource,
+    PageResource,
     Configuration,
-    PostApiFactory, Draft, Widgets, PageResource,
+    PostApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -26,7 +27,7 @@ export default class api__post extends VuexModule {
         this.loading = status;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await PostApiFactory(
@@ -37,7 +38,11 @@ export default class api__post extends VuexModule {
             .postList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
@@ -53,7 +58,11 @@ export default class api__post extends VuexModule {
             .getPost(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -69,7 +78,11 @@ export default class api__post extends VuexModule {
             .addPost(Post)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -85,7 +98,11 @@ export default class api__post extends VuexModule {
             .updatePost(payload.id, payload.Post)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -101,7 +118,11 @@ export default class api__post extends VuexModule {
             .deletePost(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
