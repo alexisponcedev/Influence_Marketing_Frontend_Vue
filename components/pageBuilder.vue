@@ -9,7 +9,6 @@
                 class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
                 style="max-height: 88vh !important;">
 
-                <p>{{ blocksList.map(i => i.id) }}</p>
                 <draggable v-model="blocksList" group="people" @change="addItemByDrag">
                     <blocks-container
                         v-for="(block , i) in blocksList" :key="block.id"
@@ -91,7 +90,7 @@ export default class PageBuilder extends Vue {
 
     addBlock(block: any) {
         let id = this.blocksList.length + 1;
-        this.blocksList.push({...block , id: id, selected: false, structure: {}});
+        this.blocksList.push({...block, id: id, selected: false, structure: {}});
         this.selectBlock(this.blocksList.length - 1);
         this.deploy();
     }
@@ -99,11 +98,7 @@ export default class PageBuilder extends Vue {
     addItemByDrag(e: any) {
         console.log('item is dropped : ', e);
         if (e.hasOwnProperty('added') && this.blocksList.length > 1) {
-            // e.added.element.id = this.blocksList.length + 1;
-            // this.blocksList = this.blocksList.map( (i: any) =>{
-            //     return i;
-            // })
-            // this.blocksList[this.blocksList.findIndex((i: any) => i.id = e.added.element.id)] = JSON.parse(JSON.stringify(e.added.element));
+            e.added.element.id = this.blocksList.length + 1;
         }
         this.deploy();
     }
@@ -143,7 +138,6 @@ export default class PageBuilder extends Vue {
         }
     }
 
-
     moveDownBlock(i: any) {
         if (this.blocksList.length > 1 && i < this.blocksList.length) {
             const block = this.blocksList.splice(i, 1)[0];
@@ -152,24 +146,8 @@ export default class PageBuilder extends Vue {
         }
     }
 
-
     deploy() {
         this.$emit('needDeploy')
     }
-
-    // @Watch('blocksList' , {deep : true})
-    // onListUpdated(newValue : any[] , oldValue : any[]){
-    //     if(oldValue.length !== newValue.length){
-    //         newValue.forEach((value : any , index : number) => {
-    //             value.id = index;
-    //             console.log(value.id , index);
-    //             console.log(value);
-    //
-    //         })
-    //         console.log(newValue.map(i => i.id));
-    //         this.deploy();
-    //     }
-    // }
-
 }
 </script>
