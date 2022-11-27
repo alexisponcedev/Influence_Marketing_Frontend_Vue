@@ -17,7 +17,7 @@
 
                 <v-expansion-panel-content>
 
-                    <draggable v-model="group.blocks" group="people" @start="drag=true" @end="drag=false">
+                    <draggable v-model="group.blocks" group="people" :clone="(original) => JSON.parse(JSON.stringify(original))">
                         <div v-for="(block , j) in group.blocks" :key="`${i}-${j}`" @click="addBlock(block)"
                              class="tw-border-2 tw-border-solid tw-border-gray-200 tw-rounded-lg tw-bg-gray-50 tw-mb-2
                tw-overflow-hidden tw-cursor-pointer transform hover:tw-scale-105 hover:tw-rotate-2 tw-transition tw-duration-300">
