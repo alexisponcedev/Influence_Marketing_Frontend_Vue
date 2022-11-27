@@ -91,7 +91,7 @@ export default class PageBuilder extends Vue {
 
     addBlock(block: any) {
         let id = this.blocksList.length + 1;
-        this.blocksList.push({id: id, selected: false, ...block, structure: {}});
+        this.blocksList.push({...block, id: id, selected: false, structure: {}});
         this.selectBlock(this.blocksList.length - 1);
         this.deploy();
     }
@@ -100,13 +100,8 @@ export default class PageBuilder extends Vue {
         console.log('item is dropped : ', e);
         if (e.hasOwnProperty('added') && this.blocksList.length > 1) {
             e.added.element.id = this.blocksList.length + 1;
-            this.blocksList = this.blocksList.map( (i: any) =>{
-                return i;
-            })
-            // this.blocksList[this.blocksList.findIndex((i: any) => i.id = e.added.element.id)] = JSON.parse(JSON.stringify(e.added.element));
-            this.deploy();
         }
-
+        this.deploy();
     }
 
     selectBlock(index: number) {
