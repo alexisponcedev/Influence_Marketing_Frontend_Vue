@@ -9,7 +9,6 @@
                 class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
                 style="max-height: 88vh !important;">
 
-                <p>{{ blocksList.map(i => i.id) }}</p>
                 <draggable v-model="blocksList" group="people" @change="addItemByDrag">
                     <blocks-container
                         v-for="(block , i) in blocksList" :key="block.id"
