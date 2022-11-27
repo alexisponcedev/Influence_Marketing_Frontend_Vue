@@ -1,11 +1,16 @@
 <template>
     <div>
+
+
         <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px">
+
 
             <div
                 class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
                 style="max-height: 88vh !important;">
-                <draggable v-model="blocksList" group="people" @start="deploy">
+
+                <p>{{ blocksList.map(i => i.id) }}</p>
+                <draggable v-model="blocksList" group="people" @change="addItemByDrag">
                     <blocks-container
                         v-for="(block , i) in blocksList" :key="block.id"
                         class="tw-mb-2"
@@ -61,7 +66,6 @@ export default class PageBuilder extends Vue {
 
     selectItem: any = {};
 
-
     get selectable() {
         return this.selectItem && Object.keys(this.selectItem).length > 0;
     }
@@ -90,6 +94,19 @@ export default class PageBuilder extends Vue {
         this.blocksList.push({id: id, selected: false, ...block, structure: {}});
         this.selectBlock(this.blocksList.length - 1);
         this.deploy();
+    }
+
+    addItemByDrag(e: any) {
+        console.log('item is dropped : ', e);
+        if (e.hasOwnProperty('added') && this.blocksList.length > 1) {
+            e.added.element.id = this.blocksList.length + 1;
+            this.blocksList = this.blocksList.map( (i: any) =>{
+                return i;
+            })
+            // this.blocksList[this.blocksList.findIndex((i: any) => i.id = e.added.element.id)] = JSON.parse(JSON.stringify(e.added.element));
+            this.deploy();
+        }
+
     }
 
     selectBlock(index: number) {
@@ -140,5 +157,20 @@ export default class PageBuilder extends Vue {
     deploy() {
         this.$emit('needDeploy')
     }
+
+    // @Watch('blocksList' , {deep : true})
+    // onListUpdated(newValue : any[] , oldValue : any[]){
+    //     if(oldValue.length !== newValue.length){
+    //         newValue.forEach((value : any , index : number) => {
+    //             value.id = index;
+    //             console.log(value.id , index);
+    //             console.log(value);
+    //
+    //         })
+    //         console.log(newValue.map(i => i.id));
+    //         this.deploy();
+    //     }
+    // }
+
 }
 </script>

@@ -131,9 +131,11 @@ export default class PageBuilderSection extends Vue {
     }
 
     async saveAndDeploy() {
-        this.savePage().then(Api.Page.doDeploy).then(() => {
-            this.shouldDeploy = false;
-        })
+        this.savePage()
+            .then(Api.Page.doDeploy)
+            .finally(() => {
+                this.shouldDeploy = false;
+            })
     }
 
     get liveWebsite() {

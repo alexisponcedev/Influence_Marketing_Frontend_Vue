@@ -2018,6 +2018,8 @@ export interface Post {
      * @memberof Post
      */
     'status'?: number;
+
+    'page'? : Page
 }
 /**
  * Post Resource model
