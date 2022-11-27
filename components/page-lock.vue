@@ -1,6 +1,6 @@
 <template>
     <v-btn @click="toggleLock" :disabled="isLocked && !lockedByMe" elevation="0" outlined color="grey darken-4"
-           class="control-btns">
+           class="control-btns" :title="page.locked_by">
 
         <div v-if="isLocked && !lockedByMe" class="tw-flex tw-items-center tw-space-x-2">
             <v-icon small :color="page.locked_by === userId ? 'red' : 'black'">mdi-lock</v-icon>
@@ -16,9 +16,6 @@
             <v-icon small :color="page.locked_by === userId ? 'red' : 'black'" :disabled="!isLocked">mdi-lock</v-icon>
             <span :class="{'tw-text-gray-400' : !isLocked}">Lock</span>
         </div>
-
-        {{ page.locked_by}}
-
 
     </v-btn>
 </template>
