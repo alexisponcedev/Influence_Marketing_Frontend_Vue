@@ -1,9 +1,9 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
     Redirect,
-    RedirectResource,
     Configuration,
+    RedirectResource,
     RedirectApiFactory,
 } from "@/repositories";
 
@@ -27,7 +27,7 @@ export default class api__redirect extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await RedirectApiFactory(
@@ -38,13 +38,17 @@ export default class api__redirect extends VuexModule {
             .redirectList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response)) {
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        ) {
             return response.data.data;
         }
         return [];
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getPageRedirects(id: number) {
         this.setLoading(true);
         const response = await RedirectApiFactory(
@@ -55,7 +59,11 @@ export default class api__redirect extends VuexModule {
             .getRedirectsByPageId(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
@@ -71,7 +79,11 @@ export default class api__redirect extends VuexModule {
             .getRedirect(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -87,7 +99,11 @@ export default class api__redirect extends VuexModule {
             .addRedirect(Redirect)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -103,7 +119,11 @@ export default class api__redirect extends VuexModule {
             .updateRedirect(payload.id, payload.Redirect)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -119,7 +139,11 @@ export default class api__redirect extends VuexModule {
             .deleteRedirect(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }

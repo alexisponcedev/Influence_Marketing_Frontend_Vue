@@ -1,9 +1,10 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-    SettingResource,
+    Setting,
     Configuration,
-    SettingApiFactory, Setting,
+    SettingResource,
+    SettingApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -25,15 +26,13 @@ export default class api__setting extends VuexModule {
         this.all = all;
     }
 
-
     @Mutation
     async value(key: string) {
         if (this.all.length === 0) await this.getAll();
-        return this.all.find(i => i.key === key)?.value;
+        return this.all.find((i) => i.key === key)?.value;
     }
 
-
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await SettingApiFactory(
@@ -44,7 +43,11 @@ export default class api__setting extends VuexModule {
             .settingList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
@@ -67,9 +70,9 @@ export default class api__setting extends VuexModule {
 
     @Action
     async getValue(key: string) {
-        if (this.all.length === 0) await this.getAll()
-        let obj = this.all.find(i => i.key === key)
-        return obj ? obj.value : '';
+        if (this.all.length === 0) await this.getAll();
+        let obj = this.all.find((i) => i.key === key);
+        return obj ? obj.value : "";
     }
 
     @Action
@@ -83,7 +86,11 @@ export default class api__setting extends VuexModule {
             .addSetting(setting)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -99,7 +106,11 @@ export default class api__setting extends VuexModule {
             .updateSetting(payload.id, payload.Setting)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -115,7 +126,11 @@ export default class api__setting extends VuexModule {
             .deleteSetting(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }

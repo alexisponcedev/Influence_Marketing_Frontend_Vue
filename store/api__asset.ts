@@ -1,9 +1,10 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-    AssetResource,
+    Asset,
     Configuration,
-    AssetApiFactory, Asset,
+    AssetResource,
+    AssetApiFactory,
 } from "@/repositories";
 
 @Module({
@@ -25,7 +26,7 @@ export default class api__asset extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await AssetApiFactory(
@@ -36,12 +37,16 @@ export default class api__asset extends VuexModule {
             .assetList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async searchAssets(search: string) {
         this.setLoading(true);
         const response: any = await AssetApiFactory(
@@ -52,7 +57,11 @@ export default class api__asset extends VuexModule {
             .doSearchAsset(search)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return [];
     }
@@ -68,7 +77,11 @@ export default class api__asset extends VuexModule {
             .getAsset(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data.data;
         return {};
     }
@@ -84,7 +97,11 @@ export default class api__asset extends VuexModule {
             .addAsset(Asset)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -100,7 +117,11 @@ export default class api__asset extends VuexModule {
             .updateAsset(payload.id, payload.Asset)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
@@ -116,7 +137,11 @@ export default class api__asset extends VuexModule {
             .deleteAsset(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && response.data && ResponseHandler.checkResponse(response))
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
             return response.data;
         return {};
     }
