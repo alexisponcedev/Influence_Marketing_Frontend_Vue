@@ -98,21 +98,9 @@ export default class ProductsGridV2 extends Vue {
         this.updatePreview(this.categoryId);
     }
 
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
     }
 
 }

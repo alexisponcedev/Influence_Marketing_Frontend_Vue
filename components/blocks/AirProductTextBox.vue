@@ -12,36 +12,38 @@ import {StructureType} from "~/models/StructureType";
 export default class AirProductTextBox extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
+    @VModel({type: Object}) model!: Object
+
+    reset(oldValue: any = {}) {
+
+        if (oldValue && Object.keys(oldValue).length > 0) {
+            this.model = {
+                ...oldValue, ...{
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
+                }
+            }
+        } else
+            this.model = {
+                image: {id: 0, type: StructureType.Image, title: "Badge Image", src: '', alt: ''},
+                text: {
+                    id: 1, type: StructureType.Text, title: 'Text', value: 'SMART Air\n' +
+                        'COOL, CALM AND CONNECTED.\n' +
+                        'Hisense’s line of air products includes smart portable air conditioners and smart dehumidifiers to integrate seamlessly in your home.'
+                }
+            }
+    }
 
     mounted() {
-        this.addItem('image', {id: 0, type: StructureType.Image, title: "Badge Image", src: '', alt: ''});
-        this.addItem('text', {
-            id: 1, type: StructureType.Text, title: 'Text', value: 'SMART Air\n' +
-                'COOL, CALM AND CONNECTED.\n' +
-                'Hisense’s line of air products includes smart portable air conditioners and smart dehumidifiers to integrate seamlessly in your home.'
-        });
+        if (this.isEmpty) this.reset();
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
+    @Watch('value')
+    onValueChanged(newValue: any, oldValue: any) {
+        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
     }
 }
 </script>

@@ -4,76 +4,25 @@
 
         <v-row>
             <v-col>
-                <v-tabs v-model="tab" background-color="transparent">
-                    <v-tab href="#general">General</v-tab>
-                    <v-tab href="#dam">DAM</v-tab>
-                    <v-tab href="#logs">Logs</v-tab>
+                <v-tabs background-color="transparent">
+                    <v-tab>All Templates</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
 
-        <v-tabs-items v-model="tab" background-color="transparent">
-
-            <v-tab-item value="general">
-                <div class="tw-space-y-2 tw-bg-gray-100">
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-
-
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">Compare Route</span>
-                        </div>
-
-                        <input type="text" class="x-input" placeholder="please enter the value" />
-
-
-                    </div>
-                </div>
-            </v-tab-item>
-
-            <v-tab-item value="dam">
-                <div class="tw-bg-gray-100">
-                    Dam Section will be here
-
-                </div>
-            </v-tab-item>
-
-            <v-tab-item value="logs" background-color="tw-bg-gray-100">
-                <div class="tw-space-y-2 tw-bg-gray-100">
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
-                            <span>Pages</span>
-                        </div>
-                    </div>
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
-                            <span>Blog Posts</span>
-                        </div>
-                    </div>
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
-                            <span>Products</span>
-                        </div>
-                    </div>
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
-                            <span>Menu</span>
-                        </div>
-                    </div>
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
-                            <span>Templates</span>
-                        </div>
-                    </div>
-                </div>
-
-            </v-tab-item>
-
-        </v-tabs-items>
+        <v-row>
+            <v-col>
+                <v-card>
+                    <table-standard
+                        :config="config"
+                        class="row-pointer"
+                        :items="Api.Setting.all"
+                        :loading="Api.Setting.loading"
+                        @click:row="(Setting) => $router.push('/settings/edit/' + Setting.id)"
+                    />
+                </v-card>
+            </v-col>
+        </v-row>
 
     </v-container>
 </template>
@@ -87,7 +36,6 @@ import {Api, AppStore} from "@/store";
 export default class AllSettings extends Vue {
     Api = Api;
 
-    tab = '';
 
     config = {
         headers: [
@@ -136,21 +84,5 @@ export default class AllSettings extends Vue {
     deleteSetting(Setting: SettingResource) {
         Api.Setting.delete(Setting.id!).then(this.updateSettings);
     }
-
-    // get logPagesIndex() {
-    //     return Api.Setting.all.findIndex(i => i.key === 'log-pages')
-    // }
 }
 </script>
-
-<style scoped>
-
-.x-input {
-    border: 1px solid #cdcdcd;
-    border-radius: 3px;
-    padding: 10px 16px;
-    width: 100%;
-    max-width: 792px;
-    background: white;
-}
-</style>

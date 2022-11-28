@@ -15,7 +15,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 export default class BlockProductArticles extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
-    @VModel({type: Object}) model!: any
+    @VModel({type: Object}) model!: Object
 
     Theme = Theme;
 

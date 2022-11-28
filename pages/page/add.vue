@@ -188,9 +188,9 @@ export default class PageForm extends Vue {
     async getEntity() {
         if (this.editMode) {
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
-            // await Api.Page.lock(+this.$route.params.id);
         }
     }
 
@@ -301,6 +301,18 @@ export default class PageForm extends Vue {
                 this.support = support;
             })
     }
+
+    // get support(): any {
+    //   if (this.Page.model_type === 'product')
+    //     return Api.Page.routes.find(page => page.model_id === this.Page.model_id && page.model_type === 'support')
+    //   return {};
+    // }
+    //
+    // get product(): any {
+    //   if (this.Page.model_type === 'support')
+    //     return Api.Page.routes.find(page => page.model_id === this.Page.model_id && page.model_type === 'product')
+    //   return {};
+    // }
 
     async getProductInfo() {
         return this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.Page.model_id)

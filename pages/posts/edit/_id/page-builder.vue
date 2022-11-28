@@ -11,7 +11,7 @@
                         </button>
                         <div>
                             <h1 class="text-h6 font-weight-bold mb-1">Post builder</h1>
-                            <span class="text-subtitle-2 grey--text text--darken-2">{{ Post.page.title }}</span>
+                            <span class="text-subtitle-2 grey--text text--darken-2">{{ Post.title }}</span>
                         </div>
                     </div>
 
@@ -34,11 +34,21 @@
                         </template>
 
                         <v-list>
+                            <!--              <v-list-item>-->
+                            <!--                <v-list-item-title>-->
+                            <!--                  <button class="tw-block tw-p-1.5" @click="saveTemplate">Save as template</button>-->
+                            <!--                </v-list-item-title>-->
+                            <!--              </v-list-item>-->
+
+                            <!--              <v-divider></v-divider>-->
+
                             <v-list-item>
                                 <v-list-item-title>
                                     <button class="tw-block tw-px-2 tw-py-1.5" @click="discard">Discard</button>
                                 </v-list-item-title>
                             </v-list-item>
+
+
                         </v-list>
                     </v-menu>
 
@@ -73,7 +83,7 @@ export default class PostBuilderSection extends Vue {
 
     async mounted() {
         this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
-        this.blocksList = this.Post.page!.widgets as Array<BlockInterface>;
+        this.blocksList = this.Post.widgets as Array<BlockInterface>;
     }
 
     discard() {

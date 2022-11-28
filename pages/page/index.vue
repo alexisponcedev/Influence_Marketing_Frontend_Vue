@@ -10,7 +10,6 @@
                     <v-tab :href="`#${PageType.static}`">Static Pages</v-tab>
                     <v-tab :href="`#${PageType.product}`">PDP</v-tab>
                     <v-tab :href="`#${PageType.support}`">Support</v-tab>
-                    <v-tab :href="`#${PageType.blog}`">Blog</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -107,9 +106,6 @@ export default class AllPages extends Vue {
                 break;
             case PageTypeEnum.support :
                 pages = Api.Page.all.filter(page => page.model_type === 'support');
-                break;
-            case PageTypeEnum.blog :
-                pages = Api.Page.all.filter(page => page.model_type === 'post');
                 break;
         }
         return pages;

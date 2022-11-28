@@ -11,10 +11,10 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class ProductInfoAndSliderBox extends Vue {
+export default class BlockTextIntroduction extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
-    @VModel({type: Object}) model!: any
+    @VModel({type: Object}) model!: Object
 
     Theme = Theme;
 

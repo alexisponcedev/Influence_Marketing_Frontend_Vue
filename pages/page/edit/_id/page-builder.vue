@@ -4,7 +4,7 @@
         <v-card color="#FCFCFC" elevation="0" class="mb-4 px-7 page-builder-header">
             <v-row align="center">
 
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="8">
                     <div class="tw-flex tw-space-x-2 tw-items-center">
                         <button @click="discard">
                             <v-icon color="black" large>mdi-close</v-icon>
@@ -12,17 +12,15 @@
 
                         <div>
                             <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
-                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">
-                                {{ Page.title }}
-                            </span>
+                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">{{
+                                    Page.title
+                                }}</span>
                         </div>
 
                     </div>
+
                 </v-col>
-
-                <v-col cols="12" md="6" class="text-right">
-
-                    <page-lock v-model="Page"/>
+                <v-col cols="12" md="4" class="text-right">
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -34,6 +32,7 @@
                         Preview
                     </v-btn>
 
+
                     <v-btn v-if="shouldDeploy" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
                            class="control-btns">
                         Save and Deploy
@@ -43,6 +42,7 @@
                            class="control-btns">
                         Save Page
                     </v-btn>
+
 
                     <v-menu bottom offset-x="-10" offset-y="12">
                         <template v-slot:activator="{ on, attrs }">
@@ -80,8 +80,7 @@
             </v-row>
         </v-card>
 
-        <page-builder v-model="blocksList" @needDeploy="needDeploy"
-                      :blocks-type="Page.model_type === 'post' ? 'blog' : 'page' "/>
+        <page-builder v-model="blocksList" @needDeploy="needDeploy"/>
 
         <template-selector ref="templateManager"/>
 
@@ -128,15 +127,13 @@ export default class PageBuilderSection extends Vue {
 
     async savePage() {
         let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
-        await Api.Page.savePageWidgets(widgets)
+        await Api.Page.savePageWidgets(widgets);
     }
 
     async saveAndDeploy() {
-        this.savePage()
-            .then(Api.Page.doDeploy)
-            .finally(() => {
-                this.shouldDeploy = false;
-            })
+        this.savePage().then(Api.Page.doDeploy).then(() => {
+            this.shouldDeploy = false;
+        })
     }
 
     get liveWebsite() {
@@ -161,9 +158,9 @@ export default class PageBuilderSection extends Vue {
     }
 
     openHistory() {
+        // load history data first
         (this.$refs.history as any).open();
+        // this.drawer = true;
     }
-
-
 }
 </script>

@@ -14,7 +14,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 export default class BlockSpecs extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
+    @VModel({type: Object}) model!: Object
 
     Theme = Theme;
 

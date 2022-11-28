@@ -1,10 +1,10 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-    Configuration,
-    HistoryRequest,
+    History,
     HistoryResource,
-    HistoryApiFactory,
+    Configuration,
+    HistoryApiFactory, Draft, Widgets, CategoryResource, PageApiFactory, HistoryRequest,
 } from "@/repositories";
 
 @Module({
@@ -12,6 +12,7 @@ import {
     stateFactory: true,
     namespaced: true,
 })
+
 export default class api__history extends VuexModule {
     loading: Boolean = false;
     all: Array<HistoryResource> = [];
@@ -28,10 +29,7 @@ export default class api__history extends VuexModule {
 
     @Mutation
     deleteItem(id: number) {
-        this.all.splice(
-            this.all.findIndex((i: HistoryResource) => i.id === id),
-            1
-        );
+        this.all.splice(this.all.findIndex((i: HistoryResource) => i.id === id), 1);
     }
 
     @Mutation
@@ -42,11 +40,11 @@ export default class api__history extends VuexModule {
     @Mutation
     updateItem(item: HistoryResource) {
         this.all = this.all.map((i: HistoryResource) => {
-            return i.id === item.id ? item : i;
+            return i.id === item.id ? item : i
         });
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await HistoryApiFactory(
@@ -57,20 +55,13 @@ export default class api__history extends VuexModule {
             .getAllHistories()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (
-            response &&
-            response.data &&
-            ResponseHandler.checkResponse(response)
-        )
+        if (response && response.data && ResponseHandler.checkResponse(response))
             return response.data.data;
         return [];
     }
 
-    @Action({ commit: "updateAll" })
-    async getHistoryByModelNameModelId(payload: {
-        model_id: number;
-        model_name: string;
-    }) {
+    @Action({commit: "updateAll"})
+    async getHistoryByModelNameModelId(payload: { model_id: number, model_name: string }) {
         this.setLoading(true);
         const response = await HistoryApiFactory(
             new Configuration({
@@ -80,17 +71,15 @@ export default class api__history extends VuexModule {
             .getHistoryByModelNameModelId(payload.model_name, payload.model_id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (
-            response &&
-            response.data &&
-            ResponseHandler.checkResponse(response)
-        )
+        if (response && response.data && ResponseHandler.checkResponse(response))
             return response.data;
         return [];
     }
 
-    @Action({ commit: "updateItem" })
-    async updateTitle(historyRequest: HistoryRequest) {
+
+
+    @Action({commit : 'updateItem'})
+    async updateTitle(historyRequest : HistoryRequest) {
         this.setLoading(true);
         const response = await HistoryApiFactory(
             new Configuration({
@@ -100,12 +89,10 @@ export default class api__history extends VuexModule {
             .historyTitleUpdate(historyRequest)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (
-            response &&
-            response.data &&
-            ResponseHandler.checkResponse(response)
-        )
+        if (response && response.data && ResponseHandler.checkResponse(response))
             return response.data;
         return {};
     }
+
+
 }

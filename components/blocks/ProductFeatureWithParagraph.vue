@@ -14,7 +14,7 @@ import {Direction} from "~/interfaces/DirectionEnum";
 export default class BlockProductFeatureWithParagraph extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({type: Object}) model!: any;
+    @VModel({type: Object}) model!: Object;
 
     Theme = Theme;
     Direction = Direction;

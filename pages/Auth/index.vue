@@ -41,6 +41,7 @@ export default class Auth extends Vue {
     }
 
     async goToApp() {
+        if (!Api.Site.all.length) await Api.Site.getAll();
         this.$router.push("/page");
     }
 
