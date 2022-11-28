@@ -190,7 +190,6 @@ export default class PageForm extends Vue {
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
-            // await Api.Page.lock(+this.$route.params.id);
         }
     }
 
@@ -303,7 +302,7 @@ export default class PageForm extends Vue {
     }
 
     async getProductInfo() {
-        return this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.Page.model_id)
+        return this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.Page!.model_id)
             .then(res => {
                 if (res && res.data) return res.data
                 return {};
