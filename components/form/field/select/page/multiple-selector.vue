@@ -57,7 +57,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     }
 
     mounted(){
-        this.pages = this.data;
+        this.pages = this.data ?? [];
     }
 
     addPage(page: any) {
