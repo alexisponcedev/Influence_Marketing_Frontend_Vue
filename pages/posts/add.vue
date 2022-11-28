@@ -28,27 +28,33 @@
                     <v-card>
                         <v-card-text>
                             <v-row>
-                                <form-field-text :field="formFields[0]" v-model="Post.title" @input="postTitleChanged"/>
-                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
+                                <form-field-text :field="formFields[0]"
+                                                 v-model="Post.page.title"
+                                                 @input="postTitleChanged"/>
+                                <form-field-select-autocomplete :field="formFields[1]"
+                                                                v-model="Post.category_id"/>
                             </v-row>
                             <v-row>
-                                <form-field-select-page-route :field="formFields[2]" v-model="Post.route"
-                                                              :pageId="Post.id"/>
+                                <form-field-select-page-route :field="formFields[2]"
+                                                              v-model="Post.page.route"
+                                                              :pageId="Post.page.id"/>
                             </v-row>
                             <v-row>
-                                <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
+                                <form-field-tags :field="formFields[3]"
+                                                 v-model="Post.tags"/>
                             </v-row>
 
                         </v-card-text>
                     </v-card>
                     <button
-                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white
+                        tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
                         @click.prevent="submit">Save
                     </button>
                 </v-tab-item>
 
                 <v-tab-item value="Metas">
-                    <form-field-meta :field="formFields[4]" v-model="Post"/>
+                    <form-field-meta :field="formFields[4]" v-model="Post.page"/>
                     <button
                         class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
                         @click.prevent="submit">Save
@@ -65,7 +71,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Post} from "@/repositories";
+import {PageResource, Post} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
@@ -89,11 +95,17 @@ export default class PostForm extends Vue {
 
     Post: Post = {
         id: 0,
-        title: '',
-        route: '',
+        category_id: 0,
         tags: [],
-        meta: [],
-        widgets: [],
+        page: {
+            title: '',
+            route: '',
+            meta: [],
+            widgets: [],
+            draft: [],
+            model_type: 'post',
+            model_id: 0,
+        },
         status: 0,
     };
 
@@ -117,8 +129,8 @@ export default class PostForm extends Vue {
     }
 
     initMetaTags() {
-        if (this.Post.meta?.length === 0) {
-            this.Post.meta = [
+        if (this.Post.page!.meta?.length === 0) {
+            this.Post.page!.meta = [
                 {rel: 'blank', name: 'title', content: ''},
                 {rel: 'blank', name: 'description', content: 'Hisense USA'},
 
@@ -140,7 +152,7 @@ export default class PostForm extends Vue {
                 to: "/posts",
             },
             {
-                title: this.Post.title || "",
+                title: this.Post.page!.title || "",
                 to: "/posts/edit/" + this.Post.id!,
             },
         ];
@@ -153,7 +165,12 @@ export default class PostForm extends Vue {
 
     async getEntity() {
         if (this.editMode) {
-            this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
+            let Post = (await Api.Post.get(+this.$route.params.id)) as Post;
+            Post.page = (await Api.Page.getPageByModelTypeModelId({
+                model_type: 'post',
+                model_id: +this.$route.params.id
+            })) as PageResource;
+            this.Post = Post;
         }
     }
 
@@ -162,7 +179,7 @@ export default class PostForm extends Vue {
             {
                 type: "form-field-text",
                 label: "Title",
-                modelKey: "title",
+                modelKey: "page.title",
                 placeholder: 'please enter post title',
                 rules: [Validation.required],
                 colAttrs: {cols: 9},
@@ -181,7 +198,7 @@ export default class PostForm extends Vue {
             {
                 type: "form-field-select-page-route",
                 label: "Post URL",
-                modelKey: "route",
+                modelKey: "page.route",
                 rules: [],
                 colAttrs: {cols: 12},
             },
@@ -195,7 +212,7 @@ export default class PostForm extends Vue {
             {
                 type: "form-field-meta",
                 label: "Meta",
-                modelKey: "meta",
+                modelKey: "page.meta",
                 rules: [],
                 colAttrs: {cols: 12},
             },
@@ -208,11 +225,20 @@ export default class PostForm extends Vue {
                 await Api.Post.update({
                     id: +this.Post.id!,
                     Post: this.Post,
+                }).then(() => {
+                    Api.Page.update({Page: this.Post.page!, id: +this.Post.page!.id!})
                 });
             else {
-                await Api.Post.create(this.Post).then((post: any) => {
-                    if (post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
-                })
+                await Api.Post.create(this.Post)
+                    .then((post: any) => {
+                        this.Post.page!.model_id = post.id;
+                        this.Post.page!.model_type = 'post';
+                        Api.Page.create(this.Post.page!);
+                        return post;
+                    })
+                    .then((post: any) => {
+                        if (post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
+                    })
             }
         }
     }
@@ -230,11 +256,11 @@ export default class PostForm extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Post.route || '')
+        return process.env.LIVE_WEBSITE + (this.Post.page!.route || '')
     }
 
     openPostBuilder() {
-        this.$router.push(`/posts/edit/${this.Post.id}/page-builder`);
+        this.$router.push(`/page/edit/${this.Post.page!.id}/page-builder`);
     }
 
     @Watch("tab")
@@ -250,11 +276,11 @@ export default class PostForm extends Vue {
 
     postTitleChanged() {
         let parentRoute = '/';
-        if (this.Post.route && this.Post.route !== '') {
-            let lastIndexOf = this.Post.route!.lastIndexOf('/') + 1;
-            parentRoute = this.Post.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
+        if (this.Post.page!.route && this.Post.page!.route !== '') {
+            let lastIndexOf = this.Post.page!.route!.lastIndexOf('/') + 1;
+            parentRoute = this.Post.page!.route!.substring(0, lastIndexOf === 0 ? lastIndexOf + 1 : lastIndexOf);
         }
-        this.Post.route = parentRoute + this.Post.title
+        this.Post.page!.route = parentRoute + this.Post.page!.title
     }
 }
 </script>

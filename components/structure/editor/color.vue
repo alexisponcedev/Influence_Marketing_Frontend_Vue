@@ -4,7 +4,7 @@
             {{ model.title }}
         </label>
 
-        <button @click="show = true"
+        <button @click.prevent="show = true"
                 class="tw-text-center tw-w-full tw-mt-1 tw-flex tw-items-center tw-justify-between tw-px-2.5 tw-py-2 tw-bg-white tw-rounded">
 
             <div class="tw-whitespace-nowrap">Color Picker</div>
@@ -31,8 +31,8 @@
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn @click="select" text color="green">Select</v-btn>
-                    <v-btn @click="close" text> Close</v-btn>
+                    <v-btn @click.prevent="select" text color="green">Select</v-btn>
+                    <v-btn @click.prevent="close" text> Close</v-btn>
                 </v-card-actions>
 
             </v-card>
@@ -45,12 +45,12 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, VModel} from "vue-property-decorator";
+import {Vue, Component, VModel, Watch} from "vue-property-decorator";
 import {StructureField} from "~/interfaces/StructureField";
 
 @Component
-export default class StructureImageEditor extends Vue {
-    @VModel({type: StructureField}) model!: StructureField
+export default class StructureColorEditor extends Vue {
+    @VModel({type: StructureField}) model!: StructureField | any
 
     color: string = '#fff'
 
@@ -64,5 +64,11 @@ export default class StructureImageEditor extends Vue {
     close() {
         this.show = false;
     }
+
+    @Watch('value')
+    onValueChanged(color: string) {
+        this.model.value = color;
+    }
+
 }
 </script>
