@@ -111,15 +111,15 @@ export default class BlockProductNewsBox extends Vue {
         if (base[name].type !== item.type) base[name].type = item.type;
 
         if (item.type === StructureType.Image) {
-            base[name].src = '';
-            base[name].alt = 'Image Alt';
+            base[name].src = base[name].src || item.src;
+            base[name].alt = base[name].src || item.alt;
         }
 
         if (item.type === StructureType.List) {
             base[name].newItem = item.newItem;
             base[name].value.forEach((element: any, index: number) => {
                 Object.keys(item.newItem).forEach((key: string) => {
-                    this.addItem(base[name].value[index], key, item.newItem[key])
+                    this.addItem(base[name].value[index], key, JSON.parse(JSON.stringify(item.newItem[key])) )
                 })
             })
         }
