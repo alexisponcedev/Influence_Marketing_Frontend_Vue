@@ -32,7 +32,8 @@
             <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto "
                  style="max-height: 88vh !important;">
 
-                <blocks-selector v-show="editIndex === -1" class="tw-p-4" :blocks-type="blocksType"
+                <blocks-selector v-show="editIndex === -1" class="tw-p-4"
+                                 :blocks-type="blocksType"
                                  @add-block="addBlock"/>
 
                 <structure-editor v-if="editIndex > -1"

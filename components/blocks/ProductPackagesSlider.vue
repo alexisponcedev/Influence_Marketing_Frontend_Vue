@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/ProductInfoAndSliderBox.png" alt="">
+        <img src="/blocks/ProductPackagesSlider.png" alt="">
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class ProductInfoAndSliderBox extends Vue {
+export default class ProductPackagesSlider extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
     @VModel({type: Object}) model!: any
@@ -23,13 +23,6 @@ export default class ProductInfoAndSliderBox extends Vue {
 
     reset(oldValue: any = {}) {
 
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
             this.model = {
                 theme: {
                     id: 0,
@@ -41,16 +34,7 @@ export default class ProductInfoAndSliderBox extends Vue {
                         {title: 'Dark', value: this.Theme.dark},
                     ]
                 },
-                whereToBuy: {
-                    id: 1,
-                    type: StructureType.Select,
-                    title: 'Show Where To Buy',
-                    value: true,
-                    items: [
-                        {title: 'True', value: true},
-                        {title: 'False', value: false},
-                    ]
-                },
+                title : {id : 1 ,  type : StructureType.String , title : 'Title' , value : 'Kitchen Appliance Packages'}
             }
     }
 
@@ -80,20 +64,3 @@ export default class ProductInfoAndSliderBox extends Vue {
     }
 }
 </script>
-
-<style type="text/css">
-.small-title {
-    font-size: 15px;
-    font-weight: 700;
-}
-
-.large-title {
-    font-size: 42px;
-    font-weight: 700;
-}
-
-.paragraph {
-    font-size: 18px;
-    font-weight: 400;
-}
-</style>

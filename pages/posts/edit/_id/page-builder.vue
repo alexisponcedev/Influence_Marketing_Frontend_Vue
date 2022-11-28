@@ -34,21 +34,11 @@
                         </template>
 
                         <v-list>
-                            <!--              <v-list-item>-->
-                            <!--                <v-list-item-title>-->
-                            <!--                  <button class="tw-block tw-p-1.5" @click="saveTemplate">Save as template</button>-->
-                            <!--                </v-list-item-title>-->
-                            <!--              </v-list-item>-->
-
-                            <!--              <v-divider></v-divider>-->
-
                             <v-list-item>
                                 <v-list-item-title>
                                     <button class="tw-block tw-px-2 tw-py-1.5" @click="discard">Discard</button>
                                 </v-list-item-title>
                             </v-list-item>
-
-
                         </v-list>
                     </v-menu>
 

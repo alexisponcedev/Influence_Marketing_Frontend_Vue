@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/ProductInfoAndSliderBox.png" alt="">
+        <img src="/blocks/ProductPackageHeader.png" alt="">
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
-export default class ProductInfoAndSliderBox extends Vue {
+export default class ProductPackageHeader extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
     @VModel({type: Object}) model!: any

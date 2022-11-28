@@ -80,7 +80,8 @@
             </v-row>
         </v-card>
 
-        <page-builder v-model="blocksList" @needDeploy="needDeploy"/>
+        <page-builder v-model="blocksList" @needDeploy="needDeploy"
+                      :blocks-type="Page.model_type === 'post' ? 'blog' : 'page' "/>
 
         <template-selector ref="templateManager"/>
 
