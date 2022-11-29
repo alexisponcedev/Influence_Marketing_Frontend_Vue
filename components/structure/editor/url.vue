@@ -9,7 +9,7 @@
 
             <form-field-text v-if="showTitle" :field="titleField" v-model="model.title"/>
 
-            <form-field-select :field="typeField" v-model="type"/>
+            <form-field-select :field="typeField" v-model="type" @change="prepare"/>
 
             <form-field-select-page-name v-if="type === UrlTypeEnum.Internal" :field="selectField" v-model="route"/>
 
@@ -153,7 +153,7 @@ export default class StructureUrlEditor extends Vue {
         else if (this.model.value && !Api.Page.routes.map(i => i.route).includes(this.model.value))
             this.type = UrlTypeEnum.Custom;
         else
-            this.type = UrlTypeEnum.Internal;
+            this.type = UrlTypeEnum.Custom;
     }
 
     mounted() {
@@ -185,8 +185,8 @@ export default class StructureUrlEditor extends Vue {
 
     @Watch('rebuild', {immediate: true, deep: true})
     onRebuild() {
-        console.log('on rebuild  fired: ')
-        this.updateType()
+        console.log('on rebuild  fired:')
+        // this.updateType()
     }
 
 

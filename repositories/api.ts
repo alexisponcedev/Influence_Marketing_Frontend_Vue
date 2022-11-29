@@ -1270,6 +1270,8 @@ export interface Page {
      * @memberof Page
      */
     'template_id'?: number;
+
+    'locked_by'? : number;
 }
 /**
  * Page Draft Resource model
