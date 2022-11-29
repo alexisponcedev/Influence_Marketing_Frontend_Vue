@@ -24,7 +24,8 @@ export default class BlogDescriptionBox extends Vue {
             }
         } else
             this.model = {
-                text: {id: 0, type: StructureType.Text, title: 'Text', value: ''},
+                title: {id: 0, type: StructureType.String, title: 'Title', value: ''},
+                text: {id: 1, type: StructureType.Text, title: 'Text', value: ''},
             }
     }
 

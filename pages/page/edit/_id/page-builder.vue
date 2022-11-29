@@ -34,7 +34,7 @@
                         Preview
                     </v-btn>
 
-                    <v-btn v-if="shouldDeploy" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
+                    <v-btn v-if="shouldDeploy || true" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
                         class="control-btns">
                         Save and Deploy
                     </v-btn>
