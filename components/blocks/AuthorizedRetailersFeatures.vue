@@ -12,57 +12,56 @@ import {StructureType} from "~/models/StructureType";
 export default class AuthorizedRetailersFeatures extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: Object
+    @VModel({type: Object}) model!: any
 
-    reset(oldValue: any = {}) {
-
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                list: {
-                    id: 0,
-                    type: StructureType.List,
-                    title: 'List',
-                    newItem: {
-                        image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                        text: {
-                            id: 1,
-                            type: StructureType.Text,
-                            title: 'Text',
-                            value: 'The most up to date Hisense product information, product pricing and individual promotional offers.'
-                        }
-                    },
-                    value: [
-                        {
-                            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                            text: {
-                                id: 1,
-                                type: StructureType.Text,
-                                title: 'Text',
-                                value: 'The most up to date Hisense product information, product pricing and individual promotional offers.'
-                            }
-                        }
-                    ]
-                }
-            }
-    }
 
     mounted() {
-        if (this.isEmpty) this.reset();
+        this.addItem('list', {
+            id: 0,
+            type: StructureType.List,
+            title: 'List',
+            newItem: {
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                text: {
+                    id: 1,
+                    type: StructureType.Text,
+                    title: 'Text',
+                    value: 'The most up to date Hisense product information, product pricing and individual promotional offers.'
+                }
+            },
+            value: [
+                {
+                    image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                    text: {
+                        id: 1,
+                        type: StructureType.Text,
+                        title: 'Text',
+                        value: 'The most up to date Hisense product information, product pricing and individual promotional offers.'
+                    }
+                }
+            ]
+        })
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('value')
-    onValueChanged(newValue: any, oldValue: any) {
-        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    addItem(name: string, item: any) {
+        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
+        this.model[name].id = item.id;
+
+        if (this.model[name].type !== item.type) this.model[name].type = item.type;
+        if (item.type === StructureType.Image) {
+            this.model[name].src = '';
+            this.model[name].alt = 'Image Alt';
+        }
+        if (item.type === StructureType.List) {
+            this.model[name].newItem = item.newItem;
+        }
+        if (item.type === StructureType.Select) {
+            this.model[name].items = item.items;
+        }
     }
 }
 </script>

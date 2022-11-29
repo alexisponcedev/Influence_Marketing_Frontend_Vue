@@ -13,7 +13,7 @@ import {Theme} from "~/interfaces/ThemeEnum";
 export default class BlockMoreTVNewItemsBox extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({type: Object}) model!: Object;
+    @VModel({type: Object}) model!: any;
 
     Theme = Theme;
 

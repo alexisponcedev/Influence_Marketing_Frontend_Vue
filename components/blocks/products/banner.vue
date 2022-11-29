@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 @Component
@@ -25,32 +25,46 @@ export default class ProductBanner extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        if (this.isEmpty)
-            this.model = {
-                title: {
-                    id: 0,
-                    type: StructureType.String,
-                    title: 'Banner Title',
-                    value: 'Introducing <br /> The All New U Series'
-                },
-                subtitle: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: 'Banner Subtitle',
-                    value: 'Featuring Next Gen TV*'
-                },
-                image: {
-                    id: 2,
-                    type: StructureType.Image,
-                    title: 'Banner Image',
-                    src: 'https://assets.hisense-usa.com/assets/ProductCategoryImages/2693e641dd/Hisense-New-TVs-header__ScaleMaxWidthWzEwMjRd.png',
-                    alt: 'banner image',
-                },
-            }
+        this.addItem('title', {
+            id: 1,
+            type: StructureType.String,
+            title: 'Banner Title',
+            value: 'Introducing <br /> The All New U Series'
+        })
+        this.addItem('subtitle', {
+            id: 2,
+            type: StructureType.String,
+            title: 'Featuring Next Gen TV*',
+            value: 'Introducing <br /> The All New U Series'
+        })
+        this.addItem('image', {
+            id: 3,
+            type: StructureType.Image,
+            title: 'Banner Image',
+            src: 'https://assets.hisense-usa.com/assets/ProductCategoryImages/2693e641dd/Hisense-New-TVs-header__ScaleMaxWidthWzEwMjRd.png',
+            alt: 'Image alt'
+        })
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
+    }
+
+    addItem(name: string, item: any) {
+        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
+        this.model[name].id = item.id;
+
+        if (this.model[name].type !== item.type) this.model[name].type = item.type;
+        if (item.type === StructureType.Image) {
+            this.model[name].src = '';
+            this.model[name].alt = 'Image Alt';
+        }
+        if (item.type === StructureType.List) {
+            this.model[name].newItem = item.newItem;
+        }
+        if (item.type === StructureType.Select) {
+            this.model[name].items = item.items;
+        }
     }
 }
 </script>

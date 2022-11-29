@@ -284,6 +284,18 @@ export const BLOCKS = () => {
                         image: "CompareProduct.png",
                         category: 'Component',
                     },
+                    {
+                        name: "ProductPackageHeader",
+                        title: "Product Package Header",
+                        image: "ProductPackageHeader.png",
+                        category: 'Component',
+                    },
+                    {
+                        name: "ProductPackagesSlider",
+                        title: "Product Packages Slider",
+                        image: "ProductPackagesSlider.png",
+                        category: 'Component',
+                    },
                 ],
             },
             {
@@ -805,7 +817,7 @@ export const BLOCKS = () => {
                     // {name: "Specs", title: "Specs", image: "Specs.png" , category : 'TextBox},
                     {name: "Retailers", title: "Retailers", image: "Retailers.png", category: 'TextBox'},
                     {name: "WhereToBuy", title: "WhereToBuy", image: "WhereToBuy.png", category: 'TextBox'},
-                    // {name: "Resources", title: "Resources", image: "Resources.png" , category : 'TextBox},
+                    {name: "UpgradeL9GForm", title: "UpgradeL9GForm", image: "UpgradeL9GForm.png" , category : 'TextBox'},
                 ],
             },
             {
@@ -1057,8 +1069,6 @@ export const BLOCKS = () => {
                     },
                 ],
             },
-
-
         ],
         blog: [
             {

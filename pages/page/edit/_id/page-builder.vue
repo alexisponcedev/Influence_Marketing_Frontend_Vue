@@ -4,7 +4,7 @@
         <v-card color="#FCFCFC" elevation="0" class="mb-4 px-7 page-builder-header">
             <v-row align="center">
 
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="6">
                     <div class="tw-flex tw-space-x-2 tw-items-center">
                         <button @click="discard">
                             <v-icon color="black" large>mdi-close</v-icon>
@@ -12,15 +12,17 @@
 
                         <div>
                             <h1 class="text-h6 font-weight-bold mb-1">Page builder</h1>
-                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">{{
-                                    Page.title
-                                }}</span>
+                            <span class="text-subtitle-2 grey--text text--darken-2 tw-line-clamp-1">
+                                {{ Page.title }}
+                            </span>
                         </div>
 
                     </div>
-
                 </v-col>
-                <v-col cols="12" md="4" class="text-right">
+
+                <v-col cols="12" md="6" class="text-right">
+
+                    <page-lock v-model="Page" />
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -32,17 +34,15 @@
                         Preview
                     </v-btn>
 
-
-                    <v-btn v-if="shouldDeploy" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
-                           class="control-btns">
+                    <v-btn v-if="shouldDeploy || true" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
+                        class="control-btns">
                         Save and Deploy
                     </v-btn>
 
                     <v-btn v-else @click="savePage" elevation="0" color="grey darken-4 white--text"
-                           class="control-btns">
+                        class="control-btns">
                         Save Page
                     </v-btn>
-
 
                     <v-menu bottom offset-x="-10" offset-y="12">
                         <template v-slot:activator="{ on, attrs }">
@@ -80,26 +80,27 @@
             </v-row>
         </v-card>
 
-        <page-builder v-model="blocksList" @needDeploy="needDeploy"/>
+        <page-builder v-model="blocksList" @needDeploy="needDeploy"
+            :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'" />
 
-        <template-selector ref="templateManager"/>
+        <template-selector ref="templateManager" />
 
-        <version-history ref="history" type="page" :value="Page" @input="blocks => blocksList = blocks"/>
+        <version-history ref="history" type="page" :value="Page" @input="blocks => blocksList = blocks" />
 
-        <loading-overlay :show="Api.Page.loading"/>
+        <loading-overlay :show="Api.Page.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
-import {Api} from "@/store";
-import {Page, Widgets} from "~/repositories";
-import {BlockInterface} from "~/interfaces/BlockInterface";
-import {SettingEnum} from "~/interfaces/SettingEnum";
+import { Vue, Component } from "vue-property-decorator";
+import { Api, AppStore } from "@/store";
+import { Page, Widgets } from "~/repositories";
+import { BlockInterface } from "~/interfaces/BlockInterface";
+import { SettingEnum } from "~/interfaces/SettingEnum";
 import VersionHistory from "~/components/version-history.vue";
 
 @Component({
-    components: {VersionHistory}
+    components: { VersionHistory }
 })
 export default class PageBuilderSection extends Vue {
     Api = Api;
@@ -121,19 +122,48 @@ export default class PageBuilderSection extends Vue {
     }
 
     discard() {
+
+        if (this.lockedByMe)
+            AppStore.showConfirmationModal(
+                {
+                    title: 'Page Lock Alert',
+                    text: 'You have locked this page, if you are done editing this page please unlock before leaving the page',
+                    agreeButton: {
+                        title: 'Unlock',
+                        callback: () => {
+                            this.unlock().then(this.goBack)
+                        },
+                    },
+                    disagreeButton: {
+                        title: 'Discard',
+
+                        callback: this.goBack
+                    }
+                })
+        else
+            this.goBack();
+
+    }
+
+    async unlock() {
+        await Api.Page.unlockPage(+this.Page.id!);
+    }
+
+    goBack() {
         this.$router.push('/page/edit/' + this.Page.id);
     }
 
-
     async savePage() {
-        let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
-        await Api.Page.savePageWidgets(widgets);
+        let widgets: Widgets = { page_id: +this.$route.params.id, widgets: this.blocksList }
+        await Api.Page.savePageWidgets(widgets)
     }
 
     async saveAndDeploy() {
-        this.savePage().then(Api.Page.doDeploy).then(() => {
-            this.shouldDeploy = false;
-        })
+        this.savePage()
+            .then(Api.Page.doDeploy)
+            .finally(() => {
+                this.shouldDeploy = false;
+            })
     }
 
     get liveWebsite() {
@@ -149,7 +179,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     async saveDraft() {
-        await Api.Page.saveDraft({page_id: +this.$route.params.id, page_draft: this.blocksList})
+        await Api.Page.saveDraft({ page_id: +this.$route.params.id, page_draft: this.blocksList })
     }
 
     needDeploy() {
@@ -158,9 +188,17 @@ export default class PageBuilderSection extends Vue {
     }
 
     openHistory() {
-        // load history data first
         (this.$refs.history as any).open();
-        // this.drawer = true;
     }
+
+    get userId() {
+        let profile = JSON.parse(localStorage.getItem('profile')!.toString());
+        return profile ? profile.user_id : 0;
+    }
+
+    get lockedByMe() {
+        return this.Page.locked_by! > 0 && this.Page.locked_by === this.userId;
+    }
+
 }
 </script>

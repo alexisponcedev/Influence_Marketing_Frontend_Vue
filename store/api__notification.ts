@@ -1,20 +1,20 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
-    Menu,
-    MenuResource,
+    Notification,
     Configuration,
-    MenuApiFactory,
+    NotificationResource,
+    NotificationApiFactory,
 } from "@/repositories";
 
 @Module({
-    name: "api__menu",
+    name: "api__notification",
     stateFactory: true,
     namespaced: true,
 })
-export default class api__menu extends VuexModule {
+export default class api__notification extends VuexModule {
     loading: Boolean = false;
-    all: Array<MenuResource> = [];
+    all: Array<NotificationResource> = [];
 
     @Mutation
     setLoading(status: Boolean) {
@@ -22,19 +22,39 @@ export default class api__menu extends VuexModule {
     }
 
     @Mutation
-    updateAll(all: Array<MenuResource>) {
+    updateAll(all: Array<NotificationResource>) {
         this.all = all;
+    }
+
+    @Mutation
+    deleteItem(id: number) {
+        this.all.splice(
+            this.all.findIndex((i: NotificationResource) => i.id === id),
+            1
+        );
+    }
+
+    @Mutation
+    addItem(item: NotificationResource) {
+        this.all.push(item);
+    }
+
+    @Mutation
+    updateItem(item: NotificationResource) {
+        this.all = this.all.map((i: NotificationResource) => {
+            return i.id === item.id ? item : i;
+        });
     }
 
     @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
-        const response = await MenuApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .menuList()
+            .notificationList()
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -46,25 +66,20 @@ export default class api__menu extends VuexModule {
         return [];
     }
 
-    @Action
-    async getHeader() {
-        return await this.get(1);
-    }
-
-    @Action
-    async getFooter() {
-        return await this.get(2);
+    @Action({ commit: "updateRoutes" })
+    clearRoutes() {
+        return [];
     }
 
     @Action
     async get(id: number) {
         this.setLoading(true);
-        const response = await MenuApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getMenu(id)
+            .showNotification(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -72,19 +87,19 @@ export default class api__menu extends VuexModule {
             response.data &&
             ResponseHandler.checkResponse(response)
         )
-            return response.data;
+            return response.data.data;
         return {};
     }
 
-    @Action
-    async create(Menu: Menu) {
+    @Action({ commit: "addItem" })
+    async create(Notification: Notification) {
         this.setLoading(true);
-        const response = await MenuApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addMenu(Menu)
+            .importNotification(Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -96,15 +111,15 @@ export default class api__menu extends VuexModule {
         return {};
     }
 
-    @Action
-    async update(payload: { id: number; Menu: Menu }) {
+    @Action({ commit: "updateItem" })
+    async update(payload: { id: number; Notification: Notification }) {
         this.setLoading(true);
-        const response = await MenuApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updateMenu(payload.id, payload.Menu)
+            .updateNotification(payload.id, payload.Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -116,15 +131,15 @@ export default class api__menu extends VuexModule {
         return {};
     }
 
-    @Action
+    @Action({ commit: "deleteItem" })
     async delete(id: number) {
         this.setLoading(true);
-        const response = await MenuApiFactory(
+        const response = await NotificationApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteMenu(id)
+            .deleteNotification(id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

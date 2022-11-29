@@ -180,13 +180,25 @@ export default class BlockSpotlight extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('value')
-    onValueChanged(newValue: any, oldValue: any) {
-        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    addItem(name: string, item: any) {
+        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
+        this.model[name].id = item.id;
+
+        if (this.model[name].type !== item.type) this.model[name].type = item.type;
+        if (item.type === StructureType.Image) {
+            this.model[name].src = '';
+            this.model[name].alt = 'Image Alt';
+        }
+        if (item.type === StructureType.List) {
+            this.model[name].newItem = item.newItem;
+        }
+        if (item.type === StructureType.Select) {
+            this.model[name].items = item.items;
+        }
     }
 }
 </script>
-<style>
+<style scoped>
 .items-list li.group {
     border-bottom: 1px solid #ededed;
     padding: 8px 0;

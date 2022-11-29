@@ -33,9 +33,6 @@
 
                             </div>
                             <div class="tw-space-x-1">
-                                <!--                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="updateRedirect(redirect)">-->
-                                <!--                  <v-icon>mdi-pencil</v-icon>-->
-                                <!--                </button>-->
                                 <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2"
                                         @click.prevent="deleteRedirect(redirect)">
                                     <v-icon>mdi-delete</v-icon>
@@ -82,9 +79,6 @@
 
                             </div>
                             <div class="tw-space-x-1">
-                                <!--                <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2" @click.prevent="openModal(redirect.value)">-->
-                                <!--                  <v-icon>mdi-pencil</v-icon>-->
-                                <!--                </button>-->
                                 <button class="tw-rounded-lg tw-bg-gray-50 tw-p-2"
                                         @click.prevent="deleteRedirect(redirect)">
                                     <v-icon>mdi-delete</v-icon>
@@ -211,9 +205,8 @@ export default class PageForm extends Vue {
                 page_id: this.Page.id,
                 redirect_type: this.redirectionObj.redirection_type,
                 redirect_code: this.redirectionObj.redirection_code,
-                redirect_url: this.redirectionObj.value,
-                source_url: this.Page.route
-                // regex: '',
+                redirect_url : this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.redirectionObj.value : this.Page.route,
+                source_url : this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.Page.route :  this.redirectionObj.value,
             });
             this.showModal = false;
             await this.loadRedirects();

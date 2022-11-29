@@ -3,5 +3,6 @@ export enum PageTypeEnum{
   landing = 'landing',
   static = 'static',
   product = 'product',
-  support = 'support'
+  support = 'support',
+  blog = 'blog'
 }

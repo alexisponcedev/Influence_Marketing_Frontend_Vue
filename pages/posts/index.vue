@@ -91,8 +91,8 @@ export default class AllPosts extends Vue {
 
     config = {
         headers: [
-            {text: "Title", value: "title"},
-            {text: "Route", value: "route"},
+            {text: "Title", value: "page.title"},
+            {text: "Route", value: "page.route"},
             {text: "", value: "actions", sortable: false, width: "0"},
         ],
         actions: [

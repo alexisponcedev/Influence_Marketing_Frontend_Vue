@@ -33,7 +33,7 @@ import {Direction} from "~/interfaces/DirectionEnum";
 export default class BlockProductFeatureWithImage extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({type: Object}) model!: Object;
+    @VModel({type: Object}) model!: any;
 
     Theme = Theme;
     Direction = Direction;
@@ -114,9 +114,21 @@ export default class BlockProductFeatureWithImage extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('value')
-    onValueChanged(newValue: any, oldValue: any) {
-        if (newValue && Object.keys(newValue).length === 0) this.reset(oldValue);
+    addItem(name: string, item: any) {
+        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
+        this.model[name].id = item.id;
+
+        if (this.model[name].type !== item.type) this.model[name].type = item.type;
+        if (item.type === StructureType.Image) {
+            this.model[name].src = '';
+            this.model[name].alt = 'Image Alt';
+        }
+        if (item.type === StructureType.List) {
+            this.model[name].newItem = item.newItem;
+        }
+        if (item.type === StructureType.Select) {
+            this.model[name].items = item.items;
+        }
     }
 }
 </script>

@@ -57,7 +57,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     }
 
     mounted(){
-        this.pages = this.data;
+        this.pages = this.data ?? [];
     }
 
     addPage(page: any) {
@@ -67,6 +67,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
 
     deletePage(page: any) {
         this.model.splice(this.model.findIndex(i => i.id === page.id), 1);
+        this.pages.splice(this.pages.findIndex(i => i.id === page.id) , 1);
     }
 
     @Watch('data')
