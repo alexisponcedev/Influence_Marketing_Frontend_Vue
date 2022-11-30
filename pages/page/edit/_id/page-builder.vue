@@ -34,8 +34,8 @@
                         Preview
                     </v-btn>
 
-                    <v-btn v-if="shouldDeploy || true" @click="saveAndDeploy" elevation="0" color="grey darken-4 white--text"
-                        class="control-btns">
+                    <v-btn v-if="shouldDeploy || true" @click="saveAndDeploy" elevation="0"
+                        color="grey darken-4 white--text" class="control-btns">
                         Save and Deploy
                     </v-btn>
 
@@ -114,39 +114,40 @@ export default class PageBuilderSection extends Vue {
     shouldDeploy: Boolean = false;
 
     async mounted() {
+        this.fetchPage();
+    }
+
+    async fetchPage(){
         this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
         if (this.Page.draft && this.Page.draft.length > 0)
             this.blocksList = this.Page.draft as Array<BlockInterface>;
         else
-            this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
+            this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>; 
+        this.lock();
     }
 
     discard() {
-
         if (this.lockedByMe)
-            AppStore.showConfirmationModal(
-                {
-                    title: 'Page Lock Alert',
-                    text: 'You have locked this page, if you are done editing this page please unlock before leaving the page',
-                    agreeButton: {
-                        title: 'Unlock',
-                        callback: () => {
-                            this.unlock().then(this.goBack)
-                        },
-                    },
-                    disagreeButton: {
-                        title: 'Discard',
+            this.unlock().then(this.goBack);
+        //     AppStore.showConfirmationModal(
+        //         {
+        //             title: 'Page Lock Alert',
+        //             text: 'You have locked this page, if you are done editing this page please unlock before leaving the page',
+        //             agreeButton: {
+        //                 title: 'Unlock',
+        //                 callback: () => {
+        //                     this.unlock().then(this.goBack)
+        //                 },
+        //             },
+        //             disagreeButton: {
+        //                 title: 'Discard',
 
-                        callback: this.goBack
-                    }
-                })
-        else
+        //                 callback: this.goBack
+        //             }
+        //         })
+        // else
             this.goBack();
 
-    }
-
-    async unlock() {
-        await Api.Page.unlockPage(+this.Page.id!);
     }
 
     goBack() {
@@ -198,6 +199,17 @@ export default class PageBuilderSection extends Vue {
 
     get lockedByMe() {
         return this.Page.locked_by! > 0 && this.Page.locked_by === this.userId;
+    }
+
+    async lock() {
+        return Api.Page.lockPage(this.Page.id!).then(() => {
+            this.Page.locked_by = this.userId
+        });
+    }
+    async unlock() {
+        return Api.Page.unlockPage(this.Page.id!).then(() => {
+            this.Page.locked_by = 0;
+        });
     }
 
 }
