@@ -8,6 +8,7 @@
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
+import blockRemoveItem from "~/utils/blockRemoveItem";
 
 @Component
 export default class ContactUsNewForm extends Vue {
@@ -18,15 +19,16 @@ export default class ContactUsNewForm extends Vue {
 
 
     mounted() {
-        blockAddItem(this.model, 'tab1', {
-            id: 0, type: StructureType.Object, title: 'Form Tab', value: {
-                title: { id: 0, type: StructureType.String, title: 'Title', value: 'Sample Title' },
-                subtitle: { id: 1, type: StructureType.String, title: 'Subtitle', value: 'Sample Subtitle' }
-            }
-        })
+        blockAddItem(this.model, 'title', { id: 0, type: StructureType.String, title: 'Title', value: 'Sample Title' }),
+            blockAddItem(this.model, 'form', {
+                id: 1, type: StructureType.Object, title: 'Form Tab', value: {
+                    title: { id: 0, type: StructureType.String, title: 'Title', value: 'Sample Title' },
+                    subtitle: { id: 1, type: StructureType.String, title: 'Subtitle', value: 'Sample Subtitle' }
+                }
+            })
 
-        blockAddItem(this.model, 'tab2', {
-            id: 0, type: StructureType.Object, title: 'Form Call', value: {
+        blockAddItem(this.model, 'connection', {
+            id: 2, type: StructureType.Object, title: 'Form Call', value: {
                 title: { id: 0, type: StructureType.String, title: 'Title', value: 'Sample Title' },
                 subtitle: { id: 1, type: StructureType.String, title: 'Subtitle', value: 'Sample Subtitle' },
                 list: {
@@ -34,11 +36,13 @@ export default class ContactUsNewForm extends Vue {
                     newItem: {
                         title: { id: 0, type: StructureType.String, title: 'Title', value: '' },
                         image: { id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt' },
+                        link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
                     },
                     value: [
                         {
                             title: { id: 0, type: StructureType.String, title: 'Title', value: '' },
                             image: { id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt' },
+                            link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
                         }
                     ]
 
@@ -47,7 +51,9 @@ export default class ContactUsNewForm extends Vue {
         })
 
 
-        
+        blockRemoveItem(this.model, ['generalInquirySubmitUrl', 'partAndServiceSupportSubmitUrl', 'tab1', 'tab2'])
+
+
     }
 
     get isEmpty(): Boolean {
