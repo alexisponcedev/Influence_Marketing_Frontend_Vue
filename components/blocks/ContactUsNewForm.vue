@@ -1,68 +1,56 @@
 <template>
     <div>
-        <img src="/blocks/ContactUsNewForm.png" alt=""/>
+        <img src="/blocks/ContactUsNewForm.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class ContactUsNewForm extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop({ default: true }) readonly editable: Boolean | undefined
+    @VModel({ type: Object }) model!: any
 
-    reset(oldValue: any = {}) {
 
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                title: {id: 0, type: StructureType.String, title: 'Title', value: 'Email US'},
-                generalInquirySubmitUrl: {
-                    id: 1,
-                    type: StructureType.Url,
-                    title: 'General Inquiry Submit Url',
-                    value: 'https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/inquery'
-                },
-                partAndServiceSupportSubmitUrl: {
-                    id: 2,
-                    type: StructureType.Url,
-                    title: 'General Inquiry Submit Url',
-                    value: 'https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product'
-                },
-            }
-    }
 
     mounted() {
-        if (this.isEmpty) this.reset();
+        blockAddItem(this.model, 'tab1', {
+            id: 0, type: StructureType.Object, title: 'Form Tab', value: {
+                title: { id: 0, type: StructureType.String, title: 'Title', value: 'Sample Title' },
+                subtitle: { id: 1, type: StructureType.String, title: 'Subtitle', value: 'Sample Subtitle' }
+            }
+        })
+
+        blockAddItem(this.model, 'tab2', {
+            id: 0, type: StructureType.Object, title: 'Form Call', value: {
+                title: { id: 0, type: StructureType.String, title: 'Title', value: 'Sample Title' },
+                subtitle: { id: 1, type: StructureType.String, title: 'Subtitle', value: 'Sample Subtitle' },
+                list: {
+                    id: 2, type: StructureType.List, title: 'List',
+                    newItem: {
+                        title: { id: 0, type: StructureType.String, title: 'Title', value: '' },
+                        image: { id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt' },
+                    },
+                    value: [
+                        {
+                            title: { id: 0, type: StructureType.String, title: 'Title', value: '' },
+                            image: { id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt' },
+                        }
+                    ]
+
+                }
+            }
+        })
+
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
-    }
 }
 </script>
