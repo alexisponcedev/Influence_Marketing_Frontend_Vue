@@ -75,14 +75,14 @@ export default class LandingSlider extends Vue {
                         {title: 'Dark', value: this.Theme.dark},
                     ]
                 },
-                notification: {
-                    id: 1, type: StructureType.Object,
-                    title: 'Notification',
-                    value: {
-                        title: {id: 0, type: StructureType.String, title: 'Title', value: 'Notification Text Message'},
-                        link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
-                    }
-                }
+                // notification: {
+                //     id: 1, type: StructureType.Object,
+                //     title: 'Notification',
+                //     value: {
+                //         title: {id: 0, type: StructureType.String, title: 'Title', value: 'Notification Text Message'},
+                //         link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
+                //     }
+                // }
             }
     }
 
