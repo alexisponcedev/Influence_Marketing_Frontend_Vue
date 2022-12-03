@@ -16,8 +16,8 @@ export default class UpgradeL9GForm extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
-        blockAddItem(this.model, 'rule', {id: 1, type: StructureType.Text, title: 'Title', value: ''});
+        blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''});
+        blockAddItem(this.model, 'rule', {id: 1, type: StructureType.Text, title: 'Rule', value: ''});
     }
 
     get isEmpty(): Boolean {
