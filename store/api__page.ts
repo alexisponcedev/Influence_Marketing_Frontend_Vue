@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -50,6 +50,20 @@ export default class api__page extends VuexModule {
         });
     }
 
+    // @Mutation
+    // lockItem(userId: number) {
+    //     this.all = this.all.map((i: PageResource) => {
+    //         return {...i, locked_by: userId};
+    //     });
+    // }
+    //
+    // @Mutation
+    // unlockItem(item: number) {
+    //     this.all = this.all.map((i: PageResource) => {
+    //         return {...i, locked_by: 0};
+    //     });
+    // }
+
     @Mutation
     updateRoutes(routes: Array<any>) {
         this.routes = routes;
@@ -76,8 +90,8 @@ export default class api__page extends VuexModule {
         ];
     }
 
-    @Action({ commit: "updateAll" })
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateAll"})
+    @Action({commit: "updateRoutes"})
     async getAll() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -97,7 +111,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getDynamicPages() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -117,7 +131,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateRoutes"})
     async getRoutes() {
         this.setLoading(true);
         const response: any = await PageApiFactory(
@@ -137,7 +151,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateRoutes"})
     clearRoutes() {
         return [];
     }
@@ -187,7 +201,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async create(Page: Page) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -267,7 +281,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "updateItem" })
+    @Action({commit: "updateItem"})
     async update(payload: { id: number; Page: Page }) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -287,7 +301,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "deleteItem" })
+    @Action({commit: "deleteItem"})
     async delete(id: number) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -327,7 +341,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async createPDP(payload: {
         product: any;
         type: string;
@@ -356,13 +370,13 @@ export default class api__page extends VuexModule {
                 title: payload.product.name,
                 route,
                 meta: [
-                    { rel: "blank", name: "title", content: "" },
+                    {rel: "blank", name: "title", content: ""},
                     {
                         rel: "blank",
                         name: "description",
                         content: "Hisense USA",
                     },
-                    { rel: "blank", name: "robots", content: "index" },
+                    {rel: "blank", name: "robots", content: "index"},
 
                     {
                         rel: 'property="og:site_name"',

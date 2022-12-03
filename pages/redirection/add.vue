@@ -2,7 +2,7 @@
     <v-container fluid>
 
         <div v-if="editMode" class="d-flex justify-space-between align-center">
-            <breadcrumbs :locations="locations"/>
+            <breadcrumbs :locations="locations" />
         </div>
 
         <v-row>
@@ -22,11 +22,8 @@
                         <div class="tw-flex tw-items-center tw-justify-between">
                             <div class="tw-text-center tw-flex-1">
                                 <h5>{{ fromObj.title }}</h5>
-                                <structure-editor-url
-                                    :showTitle="false"
-                                    :options="options"
-                                    :rebuild="fromObj"
-                                    v-model="fromObj"/>
+                                <structure-editor-url :showTitle="false" :options="options" :rebuild="fromObj"
+                                    v-model="fromObj" />
                             </div>
 
                             <div class="tw-w-20 tw-flex tw-justify-center">
@@ -35,16 +32,12 @@
 
                             <div class="tw-text-center tw-flex-1">
                                 <h5>{{ toObj.title }}</h5>
-                                <structure-editor-url
-                                    :showTitle="false"
-                                    :hasBackground="true"
-                                    :options="options"
-                                    :rebuild="toObj"
-                                    v-model="toObj"/>
+                                <structure-editor-url :showTitle="false" :hasBackground="true" :options="options"
+                                    :rebuild="toObj" v-model="toObj" />
                             </div>
                         </div>
 
-                        <form-field-select :field="redirectionCodeField" v-model="Redirect.redirect_code"/>
+                        <form-field-select :field="redirectionCodeField" v-model="Redirect.redirect_code" />
 
                     </v-card-text>
 
@@ -59,22 +52,22 @@
             @click="submit">Save
         </button>
 
-        <loading-overlay :show="Api.Redirect.loading"/>
+        <loading-overlay :show="Api.Redirect.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Redirect} from "@/repositories";
-import {FormField} from "@/models";
-import {Api} from "@/store";
+import { Redirect } from "@/repositories";
+import { FormField } from "@/models";
+import { Api } from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
-import {RedirectCodeEnum, RedirectTypeEnum} from "~/interfaces/RedirectTypeEnum";
-import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
+import { RedirectCodeEnum, RedirectTypeEnum } from "~/interfaces/RedirectTypeEnum";
+import { UrlTypeEnum } from "~/interfaces/UrlTypeEnum";
 
 @Component({
-    components: {HoverButton},
+    components: { HoverButton },
     layout: "panel"
 })
 export default class EntityForm extends Vue {
@@ -89,22 +82,22 @@ export default class EntityForm extends Vue {
         rules: [Validation.required],
         'item-text': 'title',
         'item-value': 'value',
-        colAttrs: {cols: 12},
+        colAttrs: { cols: 12 },
         items: [
-            {title: '301', value: RedirectCodeEnum.code301},
-            {title: '302', value: RedirectCodeEnum.code302},
-            {title: '303', value: RedirectCodeEnum.code303},
-            {title: '307', value: RedirectCodeEnum.code307},
-            {title: '308', value: RedirectCodeEnum.code308},
+            { title: '301', value: RedirectCodeEnum.code301 },
+            { title: '302', value: RedirectCodeEnum.code302 },
+            { title: '303', value: RedirectCodeEnum.code303 },
+            { title: '307', value: RedirectCodeEnum.code307 },
+            { title: '308', value: RedirectCodeEnum.code308 },
         ]
     }
 
-    fromObj: any = {id: -1, title: 'Source URL', value: ''};
-    toObj: any = {id: -1, title: 'Destination URL', value: ''};
+    fromObj: any = { id: -1, title: 'Source URL', value: '' };
+    toObj: any = { id: -1, title: 'Destination URL', value: '' };
 
     options = [
-        {title: 'Page URLs', value: UrlTypeEnum.Internal},
-        {title: 'Custom URL', value: UrlTypeEnum.Custom},
+        { title: 'Page URLs', value: UrlTypeEnum.Internal },
+        { title: 'Custom URL', value: UrlTypeEnum.Custom },
     ]
 
     Redirect: Redirect = {
@@ -165,16 +158,27 @@ export default class EntityForm extends Vue {
                 modelKey: "name",
                 placeholder: 'enter the redirect name',
                 rules: [Validation.required],
-                colAttrs: {cols: 12},
+                colAttrs: { cols: 12 },
             },
         ];
     }
 
     async submit() {
         if (this.formValidate()) {
-
             this.Redirect.source_url = this.fromObj.value;
             this.Redirect.redirect_url = this.toObj.value;
+
+            let from = Api.Page.routes.find(i => i.route === this.fromObj.value);
+            let to = Api.Page.routes.find(i => i.route === this.toObj.value);
+
+            if (from) {
+                this.Redirect.page_id = from.id;
+                this.Redirect.redirect_type = RedirectTypeEnum.To;
+            } else if (to) {
+                this.Redirect.page_id = from.id;
+                this.Redirect.redirect_type = RedirectTypeEnum.To;
+            }
+
 
             if (this.editMode)
                 await Api.Redirect.update({

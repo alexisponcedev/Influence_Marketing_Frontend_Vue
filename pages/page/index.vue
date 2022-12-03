@@ -16,25 +16,29 @@
         </v-row>
 
         <v-card>
-            <table-standard
-                :config="config"
-                class="row-pointer"
-                :items="pagesList"
-                :loading="Api.Page.loading"
-                @click:row="(Page) => $router.push('/page/edit/' + Page.id)"
-            />
+            <table-standard :config="config" class="row-pointer" :items="pagesList" :loading="Api.Page.loading"
+                @click:row="(Page) => $router.push('/page/edit/' + Page.id)">
+
+                <template #item.title="{ item }">
+                    {{ item.title }}
+                    <v-icon small :color="item.locked_by === userId ? 'red' : ''" v-if="item.locked_by > 0">
+                        mdi-lock
+                    </v-icon>
+                </template>
+
+            </table-standard>
         </v-card>
 
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
-import {PageResource} from "@/repositories";
-import {Api, AppStore} from "@/store";
-import {PageTypeEnum} from "~/interfaces/PageTypeEnum";
+import { Vue, Component } from "vue-property-decorator";
+import { PageResource } from "@/repositories";
+import { Api, AppStore } from "@/store";
+import { PageTypeEnum } from "~/interfaces/PageTypeEnum";
 
-@Component({layout: "panel"})
+@Component({ layout: "panel" })
 export default class AllPages extends Vue {
     Api = Api;
 
@@ -44,9 +48,9 @@ export default class AllPages extends Vue {
 
     config = {
         headers: [
-            {text: "Title", value: "title"},
-            {text: "Route", value: "route"},
-            {text: "", value: "actions", sortable: false, width: "0"},
+            { text: "Title", value: "title" },
+            { text: "Route", value: "route" },
+            { text: "", value: "actions", sortable: false, width: "0" },
         ],
         actions: [
             {
@@ -61,7 +65,7 @@ export default class AllPages extends Vue {
                     AppStore.showDeleteConfirmationModal({
                         deleteItemTitle: Page.title || "",
                         deleteItem: Page,
-                        agreeButton: {callback: this.deletePage},
+                        agreeButton: { callback: this.deletePage },
                     });
                 },
             },
@@ -93,26 +97,31 @@ export default class AllPages extends Vue {
         let pages: Array<any> = [];
         console.log(this.tab);
         switch (this.tab) {
-            case PageTypeEnum.all :
+            case PageTypeEnum.all:
                 pages = Api.Page.all;
                 break;
-            case PageTypeEnum.landing :
+            case PageTypeEnum.landing:
                 pages = Api.Page.all.filter(page => page.model_type == null && (page.route?.match(/\//g) || []).length === 1);
                 break;
-            case PageTypeEnum.static :
+            case PageTypeEnum.static:
                 pages = Api.Page.all.filter(page => page.model_type == null && (page.route?.match(/\//g) || []).length > 1);
                 break;
-            case PageTypeEnum.product :
+            case PageTypeEnum.product:
                 pages = Api.Page.all.filter(page => page.model_type === 'product');
                 break;
-            case PageTypeEnum.support :
+            case PageTypeEnum.support:
                 pages = Api.Page.all.filter(page => page.model_type === 'support');
                 break;
-            case PageTypeEnum.blog :
+            case PageTypeEnum.blog:
                 pages = Api.Page.all.filter(page => page.model_type === 'post');
                 break;
         }
         return pages;
+    }
+
+    get userId() {
+        let profile = JSON.parse(localStorage.getItem('profile')!.toString());
+        return profile ? profile.user_id : 0;
     }
 }
 </script>

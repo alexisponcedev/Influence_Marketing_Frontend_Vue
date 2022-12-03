@@ -1,23 +1,39 @@
 <template>
-    <v-btn @click="toggleLock" :disabled="isLocked && !lockedByMe" elevation="0" outlined color="grey darken-4"
-           class="control-btns" :title="page.locked_by">
 
-        <div v-if="isLocked && !lockedByMe" class="tw-flex tw-items-center tw-space-x-2">
-            <v-icon small :color="page.locked_by === userId ? 'red' : 'black'">mdi-lock</v-icon>
+    <v-btn v-if="isLocked && !lockedByMe" :disabled="true"
+           @click="() => {}"
+           elevation="0"
+           outlined
+           color="grey darken-4"
+           class="control-btns"
+           :title="page.locked_by">
+        <div class="tw-flex tw-items-center tw-space-x-2">
+            <v-icon small>mdi-lock</v-icon>
             Locked by Admin
         </div>
 
-        <div v-else class="tw-flex tw-items-center tw-space-x-2">
-            <v-icon small :disabled="isLocked">mdi-lock-open</v-icon>
-            <span :class="{'tw-text-gray-400' : isLocked}">Unlock</span>
-
-            <v-switch :value="isLocked"/>
-
-            <v-icon small :color="page.locked_by === userId ? 'red' : 'black'" :disabled="!isLocked">mdi-lock</v-icon>
-            <span :class="{'tw-text-gray-400' : !isLocked}">Lock</span>
-        </div>
-
     </v-btn>
+
+
+    <!--    <v-btn @click="toggleLock" :disabled="isLocked && !lockedByMe" elevation="0" outlined color="grey darken-4"-->
+    <!--           class="control-btns" :title="page.locked_by">-->
+
+    <!--        <div v-if="isLocked && !lockedByMe" class="tw-flex tw-items-center tw-space-x-2">-->
+    <!--            <v-icon small :color="page.locked_by === userId ? 'red' : 'black'">mdi-lock</v-icon>-->
+    <!--            Locked by Admin-->
+    <!--        </div>-->
+
+    <!--        <div v-else class="tw-flex tw-items-center tw-space-x-2">-->
+    <!--            <v-icon small :disabled="isLocked">mdi-lock-open</v-icon>-->
+    <!--            <span :class="{'tw-text-gray-400' : isLocked}">Unlock</span>-->
+
+    <!--            <v-switch :value="isLocked"/>-->
+
+    <!--            <v-icon small :color="page.locked_by === userId ? 'red' : 'black'" :disabled="!isLocked">mdi-lock</v-icon>-->
+    <!--            <span :class="{'tw-text-gray-400' : !isLocked}">Lock</span>-->
+    <!--        </div>-->
+
+    <!--    </v-btn>-->
 </template>
 
 <script lang="ts">
@@ -45,7 +61,7 @@ export default class PageLock extends Vue {
 
     get userId() {
         let profile = JSON.parse(localStorage.getItem('profile')!.toString());
-        return profile ? profile.user_id : 0;
+        return Number(profile ? profile.user_id : 0);
     }
 
     get isLocked() {

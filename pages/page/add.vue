@@ -4,6 +4,9 @@
         <div v-if="editMode" class="d-flex justify-space-between align-center">
             <breadcrumbs :locations="locations"/>
             <div class="tw-flex tw-items-center tw-space-x-2">
+
+                <page-lock class="btn" v-model="Page"/>
+
                 <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
                     Live Website
                 </v-btn>
@@ -143,6 +146,10 @@ export default class PageForm extends Vue {
         this.init();
     }
 
+    beforeDestroy() {
+        this.unlock();
+    }
+
     async init() {
         await this.initPagesTab();
         this.updateLocations();
@@ -190,6 +197,7 @@ export default class PageForm extends Vue {
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
+            this.lock();
         }
     }
 
@@ -481,6 +489,26 @@ export default class PageForm extends Vue {
                         return page;
                     })
             })
+    }
+
+    get userId() {
+        let profile = JSON.parse(localStorage.getItem('profile')!.toString());
+        return profile ? profile.user_id : 0;
+    }
+
+    async lock() {
+        if (this.Page.locked_by === 0)
+            Api.Page.lockPage(this.Page.id!).then(response => {
+                console.log(response);
+                this.Page.locked_by = this.userId
+            });
+    }
+
+    async unlock() {
+        if (this.Page.locked_by == this.userId)
+            Api.Page.unlockPage(this.Page.id!).then(() => {
+                this.Page.locked_by = 0;
+            });
     }
 }
 </script>
