@@ -34,12 +34,13 @@
                         Preview
                     </v-btn>
 
+
                     <v-btn v-if="shouldDeploy && false" @click="saveAndDeploy" elevation="0"
                            color="grey darken-4 white--text" class="control-btns">
                         Save and Deploy
                     </v-btn>
 
-                    <v-btn v-else @click="savePage" elevation="0" color="grey darken-4 white--text"
+                    <v-btn v-else :disabled="isLocked && !lockedByMe" @click="savePage" elevation="0" color="grey darken-4 white--text"
                            class="control-btns">
                         Save Page
                     </v-btn>
@@ -195,6 +196,10 @@ export default class PageBuilderSection extends Vue {
     get userId() {
         let profile = JSON.parse(localStorage.getItem('profile')!.toString());
         return profile ? profile.user_id : 0;
+    }
+
+    get isLocked() {
+        return this.Page.locked_by! > 0;
     }
 
     get lockedByMe() {
