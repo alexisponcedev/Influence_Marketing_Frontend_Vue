@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/AirProductBanner.png" alt=""/>
+        <img src="/blocks/UpgradeL9GForm.png" alt=""/>
     </div>
 </template>
 
@@ -10,14 +10,14 @@ import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
-export default class AirProductBanner extends Vue {
+export default class UpgradeL9GForm extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'image', {id: 0, type: StructureType.Image, title: "Badge Image", src: '', alt: ''});
-        blockAddItem(this.model, 'text', {id: 1, type: StructureType.Text, title: 'Title', value: ''});
+        blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
+        blockAddItem(this.model, 'rule', {id: 1, type: StructureType.Text, title: 'Title', value: ''});
     }
 
     get isEmpty(): Boolean {

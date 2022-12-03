@@ -1,7 +1,9 @@
 import {StructureType} from "~/models/StructureType";
 
 export default function blockAddItem(base: any, name: string, item: any) {
+
     if (!base.hasOwnProperty(name)) base[name] = item;
+
     base[name].id = item.id;
 
     if (base[name].type !== item.type) base[name].type = item.type;

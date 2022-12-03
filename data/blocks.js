@@ -57,6 +57,12 @@ export const BLOCKS = () => {
                         image: "PromoBanner.png",
                         category: "ImageBox",
                     },
+                    {
+                        name: "IFrame",
+                        title: "IFrame component",
+                        image: "IFrame.png",
+                        category: "ImageBox",
+                    },
                 ],
             },
             {
