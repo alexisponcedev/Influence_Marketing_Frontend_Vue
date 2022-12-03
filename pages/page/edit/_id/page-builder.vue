@@ -22,7 +22,7 @@
 
                 <v-col cols="12" md="6" class="text-right">
 
-                    <page-lock v-model="Page" />
+                    <page-lock v-model="Page"/>
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -34,17 +34,17 @@
                         Preview
                     </v-btn>
 
-                    <v-btn v-if="shouldDeploy || true" @click="saveAndDeploy" elevation="0"
-                        color="grey darken-4 white--text" class="control-btns">
+                    <v-btn v-if="shouldDeploy && false" @click="saveAndDeploy" elevation="0"
+                           color="grey darken-4 white--text" class="control-btns">
                         Save and Deploy
                     </v-btn>
 
                     <v-btn v-else @click="savePage" elevation="0" color="grey darken-4 white--text"
-                        class="control-btns">
+                           class="control-btns">
                         Save Page
                     </v-btn>
 
-                    <v-menu bottom offset-x="-10" offset-y="12">
+                    <v-menu bottom :offset-x="-10" :offset-y="12">
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn icon elevation="0" v-on="on" v-bind="attrs">
                                 <v-icon>mdi-dots-vertical</v-icon>
@@ -81,26 +81,26 @@
         </v-card>
 
         <page-builder v-model="blocksList" @needDeploy="needDeploy"
-            :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'" />
+                      :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'"/>
 
-        <template-selector ref="templateManager" />
+        <template-selector ref="templateManager"/>
 
-        <version-history ref="history" type="page" :value="Page" @input="blocks => blocksList = blocks" />
+        <version-history ref="history" type="page" :value="Page" @input="blocks => blocksList = blocks"/>
 
-        <loading-overlay :show="Api.Page.loading" />
+        <loading-overlay :show="Api.Page.loading"/>
     </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { Api, AppStore } from "@/store";
-import { Page, Widgets } from "~/repositories";
-import { BlockInterface } from "~/interfaces/BlockInterface";
-import { SettingEnum } from "~/interfaces/SettingEnum";
+import {Vue, Component} from "vue-property-decorator";
+import {Api, AppStore} from "@/store";
+import {Page, Widgets} from "~/repositories";
+import {BlockInterface} from "~/interfaces/BlockInterface";
+import {SettingEnum} from "~/interfaces/SettingEnum";
 import VersionHistory from "~/components/version-history.vue";
 
 @Component({
-    components: { VersionHistory }
+    components: {VersionHistory}
 })
 export default class PageBuilderSection extends Vue {
     Api = Api;
@@ -155,7 +155,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     async savePage() {
-        let widgets: Widgets = { page_id: +this.$route.params.id, widgets: this.blocksList }
+        let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
         await Api.Page.savePageWidgets(widgets)
     }
 
@@ -180,7 +180,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     async saveDraft() {
-        await Api.Page.saveDraft({ page_id: +this.$route.params.id, page_draft: this.blocksList })
+        await Api.Page.saveDraft({page_id: +this.$route.params.id, page_draft: this.blocksList})
     }
 
     needDeploy() {
@@ -202,15 +202,17 @@ export default class PageBuilderSection extends Vue {
     }
 
     async lock() {
-        if (this.Page.locked_by !== this.userId)
+        if (this.Page.locked_by === 0)
             return Api.Page.lockPage(this.Page.id!).then(() => {
                 this.Page.locked_by = this.userId
             });
     }
+
     async unlock() {
-        return Api.Page.unlockPage(this.Page.id!).then(() => {
-            this.Page.locked_by = 0;
-        });
+        if (this.Page.locked_by == this.userId)
+            return Api.Page.unlockPage(this.Page.id!).then(() => {
+                this.Page.locked_by = 0;
+            });
     }
 
 }
