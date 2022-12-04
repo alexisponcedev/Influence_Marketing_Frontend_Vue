@@ -47,23 +47,31 @@ export default class BlockProductNewsBox extends Vue {
                     id: 1,
                     type: StructureType.Image,
                     title: 'Upload Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/c3e247b4bb/L5G_KeyFeature-01__ScaleMaxWidthWzMwNDhd.jpg-rgx0ux.jpg',
+                    src: '',
+                    alt: 'Some note about this image',
+                },
+
+                littleImage: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: 'Little Image',
+                    src: '',
                     alt: 'Some note about this image',
                 },
                 title: {
-                    id: 2,
+                    id: 3,
                     type: StructureType.String,
                     title: 'Title',
                     value: 'Ultra Short Throw. Ultra Convenient.'
                 },
                 smallTitle: {
-                    id: 3,
+                    id: 4,
                     type: StructureType.String,
                     title: 'Small Title',
                     value: ''
                 },
                 note: {
-                    id: 4,
+                    id: 5,
                     type: StructureType.Text,
                     title: 'Note',
                     value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
@@ -75,23 +83,30 @@ export default class BlockProductNewsBox extends Vue {
                         id: 1,
                         type: StructureType.Image,
                         title: 'Upload Image',
-                        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/c3e247b4bb/L5G_KeyFeature-01__ScaleMaxWidthWzMwNDhd.jpg-rgx0ux.jpg',
+                        src: '',
+                        alt: 'Some note about this image',
+                    },
+                    littleImage: {
+                        id: 2,
+                        type: StructureType.Image,
+                        title: 'Little Image',
+                        src: '',
                         alt: 'Some note about this image',
                     },
                     title: {
-                        id: 2,
+                        id: 3,
                         type: StructureType.String,
                         title: 'Title',
                         value: 'Ultra Short Throw. Ultra Convenient.'
                     },
                     smallTitle: {
-                        id: 3,
+                        id: 4,
                         type: StructureType.String,
                         title: 'Small Title',
                         value: ''
                     },
                     note: {
-                        id: 4,
+                        id: 5,
                         type: StructureType.Text,
                         title: 'Note',
                         value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
