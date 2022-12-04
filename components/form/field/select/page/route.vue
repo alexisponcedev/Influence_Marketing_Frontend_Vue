@@ -93,6 +93,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
             .replace(/ /g, '-')
             .replace('"', '')
             .replace("'", '')
+            .replace("_", '-')
         // .replace(/[^\w-]+/g, '')
     }
 
