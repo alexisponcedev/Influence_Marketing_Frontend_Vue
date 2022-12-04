@@ -50,13 +50,25 @@ export default class BlockProductNewsBox extends Vue {
                     src: '',
                     alt: 'Some note about this image',
                 },
-
                 littleImage: {
                     id: 2,
-                    type: StructureType.Image,
+                    type: StructureType.Object,
                     title: 'Little Image',
-                    src: '',
-                    alt: 'Some note about this image',
+                    value: {
+                        image: {
+                            id: 1,
+                            type: StructureType.Image,
+                            title: 'Image',
+                            src: '',
+                            alt: 'Some note about this image',
+                        },
+                        text: {
+                            id: 2,
+                            type: StructureType.String,
+                            title: 'Text',
+                            value: 'Some note about this image',
+                        },
+                    }
                 },
                 title: {
                     id: 3,
@@ -88,10 +100,23 @@ export default class BlockProductNewsBox extends Vue {
                     },
                     littleImage: {
                         id: 2,
-                        type: StructureType.Image,
+                        type: StructureType.Object,
                         title: 'Little Image',
-                        src: '',
-                        alt: 'Some note about this image',
+                        value: {
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: 'Image',
+                                src: '',
+                                alt: 'Some note about this image',
+                            },
+                            text: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: 'Text',
+                                value: 'Some note about this image',
+                            },
+                        }
                     },
                     title: {
                         id: 3,
@@ -111,7 +136,7 @@ export default class BlockProductNewsBox extends Vue {
                         title: 'Note',
                         value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
                     },
-                },
+                }
             ]
         })
     }
