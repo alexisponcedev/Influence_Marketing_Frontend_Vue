@@ -1224,6 +1224,12 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "ContactUsChat",
+                        title: "ContactUs Chat",
+                        image: "ContactUsChat.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "ContactUsForm",
                         title: "ContactUs Form",
                         image: "ContactUsForm.png",
