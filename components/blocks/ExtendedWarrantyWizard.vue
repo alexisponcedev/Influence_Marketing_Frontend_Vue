@@ -24,7 +24,7 @@ export default class ExtendedWarrantyWizard extends Vue {
             }
         } else
             this.model = {
-                // submitUrl : {id : 0 , type : StructureType.Url , title : 'Form Submit Url' , value : ''}
+                terms : {id : 0 , type : StructureType.Text , title : 'Terms and Conditions' , value : ''}
             }
     }
 
