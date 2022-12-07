@@ -56,15 +56,15 @@ export default class GoogleTvFeatureBlocks extends Vue {
         });
 
         blockAddItem(this.model, 'block4', {
-            id: 6, type: StructureType.Object, title: "Block 3", value: {
+            id: 6, type: StructureType.Object, title: "Block 4", value: {
                 subtitle: {id: 1, type: StructureType.String, title: "Subtitle", value: ''},
                 title: {id: 2, type: StructureType.String, title: "Title", value: ''},
                 image: {id: 3, type: StructureType.Image, title: "Image", src: '', alt: ''},
             }
         });
 
-        blockAddItem(this.model, 'block4', {
-            id: 7, type: StructureType.Object, title: "Block 3", value: {
+        blockAddItem(this.model, 'block5', {
+            id: 7, type: StructureType.Object, title: "Block 5", value: {
                 text: {id: 1, type: StructureType.SimpleText, title: "Text", value: ''},
                 backgroundImage: {id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: ''},
             }
