@@ -139,7 +139,7 @@ export default class BlockSpotlight extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id=' + getActiveBrand())).data
         if (this.isEmpty) this.reset();
     }
 
