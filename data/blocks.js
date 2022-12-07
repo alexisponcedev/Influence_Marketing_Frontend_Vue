@@ -1482,6 +1482,47 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "Google TV",
+                blocks: [
+                    {
+                        name: "GoogleTvBanner",
+                        title: "GoogleTvBanner",
+                        image: "GoogleTvBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvFeatureBlocks",
+                        title: "GoogleTvFeatureBlocks",
+                        image: "GoogleTvFeatureBlocks.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvHero",
+                        title: "GoogleTvHero",
+                        image: "GoogleTvHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvProducts",
+                        title: "GoogleTvProducts",
+                        image: "GoogleTvProducts.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvTextBox",
+                        title: "GoogleTvTextBox",
+                        image: "GoogleTvTextBox.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvTops",
+                        title: "GoogleTvTops",
+                        image: "GoogleTvTops.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
         ],
         blog: [
             {
