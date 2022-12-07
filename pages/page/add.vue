@@ -146,8 +146,8 @@ export default class PageForm extends Vue {
         this.init();
     }
 
-    beforeDestroy() {
-        this.unlock();
+    async beforeDestroy() {
+        await this.unlock();
     }
 
     async init() {
@@ -263,7 +263,7 @@ export default class PageForm extends Vue {
     }
 
     get liveWebsite() {
-        return process.env. LIVE_WEBSITE + (this.Page.route || '')
+        return process.env.LIVE_WEBSITE + (this.Page.route || '')
     }
 
     openPageBuilder() {
@@ -497,18 +497,18 @@ export default class PageForm extends Vue {
     }
 
     async lock() {
-        if (this.Page.locked_by === 0)
-            Api.Page.lockPage(this.Page.id!).then(response => {
-                console.log(response);
-                this.Page.locked_by = this.userId
-            });
+        // if (this.Page.locked_by === 0)
+        Api.Page.lockPage(this.Page.id!).then(response => {
+            console.log(response);
+            this.Page.locked_by = this.userId
+        });
     }
 
     async unlock() {
-        if (this.Page.locked_by == this.userId)
-            Api.Page.unlockPage(this.Page.id!).then(() => {
-                this.Page.locked_by = 0;
-            });
+        // if (this.Page.locked_by == this.userId)
+        Api.Page.unlockPage(this.Page.id!).then(() => {
+            this.Page.locked_by = 0;
+        });
     }
 }
 </script>

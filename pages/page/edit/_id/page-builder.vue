@@ -40,7 +40,8 @@
                         Save and Deploy
                     </v-btn>
 
-                    <v-btn v-else :disabled="isLocked && !lockedByMe" @click="savePage" elevation="0" color="grey darken-4 white--text"
+                    <v-btn v-else :disabled="isLocked && !lockedByMe" @click="savePage" elevation="0"
+                           color="grey darken-4 white--text"
                            class="control-btns">
                         Save Page
                     </v-btn>
@@ -130,23 +131,6 @@ export default class PageBuilderSection extends Vue {
     discard() {
         if (this.lockedByMe)
             this.unlock().then(this.goBack);
-        //     AppStore.showConfirmationModal(
-        //         {
-        //             title: 'Page Lock Alert',
-        //             text: 'You have locked this page, if you are done editing this page please unlock before leaving the page',
-        //             agreeButton: {
-        //                 title: 'Unlock',
-        //                 callback: () => {
-        //                     this.unlock().then(this.goBack)
-        //                 },
-        //             },
-        //             disagreeButton: {
-        //                 title: 'Discard',
-
-        //                 callback: this.goBack
-        //             }
-        //         })
-        // else
         this.goBack();
 
     }
