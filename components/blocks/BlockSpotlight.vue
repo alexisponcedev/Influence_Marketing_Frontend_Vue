@@ -138,7 +138,7 @@ export default class BlockSpotlight extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories')).data
         if (this.isEmpty) this.reset();
     }
 
@@ -151,7 +151,7 @@ export default class BlockSpotlight extends Vue {
     }
 
     async categoryChanged(event: any, index: number) {
-        let res: any = await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/categorySeries/' + event.target.value);
+        let res: any = await this.$axios.$get(process.env.PIM_API_URL + '/cms/categorySeries/' + event.target.value);
 
         if (res.hasOwnProperty('series')) {
             this.model.tabs.value[index].type = ProductCollectionType.Series;

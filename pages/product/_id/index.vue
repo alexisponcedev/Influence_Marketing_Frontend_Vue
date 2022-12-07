@@ -61,13 +61,13 @@ export default class PageBuilderSection extends Vue {
 
     async mounted() {
 
-        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.$route.params.id).then(res => {
+        // this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.$route.params.id).then(res => {
         //   this.Product = res.data;
         //   this.productLoaded = true;
         // })
         //
         //
-        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProductMedia/' + this.$route.params.id).then(res => {
+        // this.$axios.$get(process.env.PIM_API_URL + '/cms/getProductMedia/' + this.$route.params.id).then(res => {
         //   this.mediaLoaded = true;
         //   this.Media = res.data;
         // });
