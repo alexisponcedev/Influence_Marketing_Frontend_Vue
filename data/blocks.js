@@ -316,6 +316,12 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "RelatedProducts",
+                        title: "Related Products v2",
+                        image: "ProductRelatedItemsBox.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "ProductTwinImages",
                         title: "Product twin images",
                         image: "ProductTwinImages.png",

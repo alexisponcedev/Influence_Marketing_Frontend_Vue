@@ -8,6 +8,8 @@
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
+import blockAddItem from "~/utils/blockAddItem";
+import blockRemoveItem from "~/utils/blockRemoveItem";
 
 
 @Component
@@ -18,49 +20,32 @@ export default class SupportNeedAssistance extends Vue {
 
     Theme = Theme;
 
-    reset(oldValue: any = {}) {
-
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                theme: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: 'Theme',
-                    value: Theme.dark,
-                    items: [
-                        {title: 'Light', value: this.Theme.light},
-                        {title: 'Dark', value: this.Theme.dark},
-                    ]
-                },
-
-                // image : {id : 1 , type : StructureType.Image , title : 'Image' , src : '' , alt : ''},
-                // title : {id : 2 , type : StructureType.String , title : 'Title' , value : 'Need More Assistance?'},
-                // link : {id : 3 , type : StructureType.Url , title : 'Contact Us' , value : '/'},
-
-                title: {id: 1, type: StructureType.String, title: 'Title', value: 'Need More Assistance?'},
-                linkTitle: {id: 1, type: StructureType.String, title: 'Link Title', value: 'Contact Us'},
-                linkUrl: {id: 1, type: StructureType.String, title: 'Link Url', value: '/'},
-            }
-    }
-
     mounted() {
-        if (this.isEmpty) this.reset();
+        blockAddItem(this.model, 'theme', {
+            id: 0,
+            type: StructureType.Select,
+            title: 'Theme',
+            value: Theme.dark,
+            items: [
+                {title: 'Light', value: this.Theme.light},
+                {title: 'Dark', value: this.Theme.dark},
+            ]
+        })
+
+        blockAddItem(this.model, 'image', {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: ''});
+        blockAddItem(this.model, 'title', {
+            id: 2,
+            type: StructureType.String,
+            title: 'Title',
+            value: 'Need More Assistance?'
+        });
+        blockAddItem(this.model, 'link', {id: 3, type: StructureType.Url, title: 'Contact Us', value: '/contact'});
+
+        blockRemoveItem(this.model, ['linkTitle']);
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
-    }
-
-    @Watch('isEmpty')
-    onValueChanged() {
-
-        if (this.isEmpty) this.reset();
     }
 }
 </script>
