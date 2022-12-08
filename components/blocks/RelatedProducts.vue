@@ -7,7 +7,7 @@
             <div class="tw-flex-1">
                 <div
                     class="tw-h-40 tw-p-2 tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-overflow-y-auto">
-                    <div v-for="item in getList" :key="id" @click="model.list.value.items.push(item)"
+                    <div v-for="item in getList" :key="id" @click="addItem(item)"
                          class="tw-flex tw-items-center tw-space-x-2 tw-py-0.5 tw-transition hover:tw-bg-gray-50 hover:tw-text-blue-500">
                         <div class="tw-h-10 tw-w-10 tw-text-center">
                             <img v-if="item.image" :src="item.image" class="tw-max-h-full tw-object-cover"
@@ -92,12 +92,15 @@ export default class RelatedProducts extends Vue {
             await this.getItems();
         }
 
+        this.model = {...this.model}; //to enable reactivity;
+
     }
 
-    async getCategoryId(){
-        let product  = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
+    async getCategoryId() {
+        let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
         this.category_id = product ? product.Category.id : 0;
     }
+
     async getItems() {
         let res: any = await this.$axios.$get(process.env.PIM_API_URL + '/cms/categorySeries/' + this.category_id + "?brand_id=" + getActiveBrand());
         if (res.hasOwnProperty('series')) {
@@ -121,6 +124,7 @@ export default class RelatedProducts extends Vue {
         && this.model.list
         && this.model.list.value
         && this.model.list.value.serverData
+        && this.category_id > 0
             ?
             this.model.list.value.serverData.filter((i: any) => this.model.list.value.items.length === 0
                 || !this.model.list.value.items.map((j: any) => j.id).includes(i.id))
@@ -135,6 +139,10 @@ export default class RelatedProducts extends Vue {
 
     get correctPage(): Boolean {
         return this.page && this.page.model_id > 0 && this.page.model_type === 'product';
+    }
+
+    addItem(item: any) {
+        this.model.list.value.items.push(item)
     }
 }
 </script>
