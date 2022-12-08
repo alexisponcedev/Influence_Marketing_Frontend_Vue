@@ -52,7 +52,7 @@ export default class Index extends Vue {
             });
     }
 
-    async delay(time) {
+    async delay(time: number) {
         return new Promise(resolve => setTimeout(resolve, time));
     }
 
@@ -67,10 +67,29 @@ export default class Index extends Vue {
 
             if (Array.isArray(loadedPage.widgets)) {
                 loadedPage.widgets = (loadedPage.widgets as any[]).map(c => {
+
+                    if (c.name === 'ProductSupportRegister')
+                        c.structure = {
+                            theme: c.structure.theme,
+                            title: {id: 1, type: StructureType.String, title: 'Title', value: 'Register'},
+                            subtitle: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: 'Subtitle',
+                                value: 'Get started with registering your Hisense product.'
+                            },
+                            modelText: {id: 4, type: StructureType.Text, title: 'Modal Text', value: ''}
+                        }
                     if (c.name === 'SupportNeedAssistance')
                         c.structure = {
                             theme: c.structure.theme,
-                            image: {id: 1, type: StructureType.Image, title: 'Image', src: 'https://assets.hisenseportal.com/storage/hisense/asset/images/66391b7b0aa3ec.webp', alt: 'Background Image'},
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: 'Image',
+                                src: 'https://assets.hisenseportal.com/storage/hisense/asset/images/66391b7b0aa3ec.webp',
+                                alt: 'Background Image'
+                            },
                             title: {
                                 id: 2,
                                 type: StructureType.String,
@@ -110,10 +129,5 @@ export default class Index extends Vue {
         }
         this.loading = false;
     }
-
-    process(page: any) {
-
-    }
-
 }
 </script>
