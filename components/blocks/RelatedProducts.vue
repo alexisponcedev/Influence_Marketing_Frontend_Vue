@@ -97,25 +97,31 @@ export default class RelatedProducts extends Vue {
     }
 
     async getCategoryId() {
-        let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
-        this.category_id = product ? product.Category.id : 0;
+        try {
+            let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
+            this.category_id = product && product.hasOwnProperty('Category') ? product.Category.id : 0;
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async getItems() {
-        let res: any = await this.$axios.$get(process.env.PIM_API_URL + '/cms/categorySeries/' + this.category_id + "?brand_id=" + getActiveBrand());
-        if (res.hasOwnProperty('series')) {
-            this.model.list.value.type = ProductCollectionType.Series;
-            this.model.list.value.serverData = res.series
-                .map((j: any) => {
-                    return {id: j.id, name: j.name, image: null}
-                });
-        } else {
-            this.model.list.value.type = ProductCollectionType.Products;
-            this.model.list.value.serverData = res.data
-                .map((i: any) => i.products.product)
-                .map((j: any) => {
-                    return {id: j.id, name: j.name, image: j.media ? j.media.url : null}
-                });
+        if (this.category_id > 0) {
+            let res: any = await this.$axios.$get(process.env.PIM_API_URL + '/cms/categorySeries/' + this.category_id + "?brand_id=" + getActiveBrand());
+            if (res.hasOwnProperty('series')) {
+                this.model.list.value.type = ProductCollectionType.Series;
+                this.model.list.value.serverData = res.series
+                    .map((j: any) => {
+                        return {id: j.id, name: j.name, image: null}
+                    });
+            } else {
+                this.model.list.value.type = ProductCollectionType.Products;
+                this.model.list.value.serverData = res.data
+                    .map((i: any) => i.products.product)
+                    .map((j: any) => {
+                        return {id: j.id, name: j.name, image: j.media ? j.media.url : null}
+                    });
+            }
         }
     }
 

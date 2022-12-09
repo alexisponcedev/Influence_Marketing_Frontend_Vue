@@ -244,6 +244,12 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "ProductCategoryBoxV2",
+                        title: "Product Submenu v2",
+                        image: "ProductCategoryBox.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "ImageBox",
                         title: "Product Image",
                         image: "ImageBox.png",
@@ -1147,6 +1153,12 @@ export const BLOCKS = () => {
                         title: "UpgradeL9GForm",
                         image: "UpgradeL9GForm.png",
                         category: "TextBox",
+                    },
+                    {
+                        name: "L9GImageBox",
+                        title: "L9GImageBox",
+                        image: "L9GImageBox.png",
+                        category: "ImageBox",
                     },
                 ],
             },
