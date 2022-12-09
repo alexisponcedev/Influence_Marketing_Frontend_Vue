@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {Vue, Component, VModel} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 import blockAddItem from "~/utils/blockAddItem";
@@ -47,23 +47,43 @@ export default class BlockProductNewsBox extends Vue {
                     id: 1,
                     type: StructureType.Image,
                     title: 'Upload Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/c3e247b4bb/L5G_KeyFeature-01__ScaleMaxWidthWzMwNDhd.jpg-rgx0ux.jpg',
+                    src: '',
                     alt: 'Some note about this image',
                 },
-                title: {
+                littleImage: {
                     id: 2,
+                    type: StructureType.Object,
+                    title: 'Little Image',
+                    value: {
+                        image: {
+                            id: 1,
+                            type: StructureType.Image,
+                            title: 'Image',
+                            src: '',
+                            alt: 'Some note about this image',
+                        },
+                        text: {
+                            id: 2,
+                            type: StructureType.String,
+                            title: 'Text',
+                            value: 'Some note about this image',
+                        },
+                    }
+                },
+                title: {
+                    id: 3,
                     type: StructureType.String,
                     title: 'Title',
                     value: 'Ultra Short Throw. Ultra Convenient.'
                 },
                 smallTitle: {
-                    id: 3,
+                    id: 4,
                     type: StructureType.String,
                     title: 'Small Title',
                     value: ''
                 },
                 note: {
-                    id: 4,
+                    id: 5,
                     type: StructureType.Text,
                     title: 'Note',
                     value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
@@ -75,28 +95,48 @@ export default class BlockProductNewsBox extends Vue {
                         id: 1,
                         type: StructureType.Image,
                         title: 'Upload Image',
-                        src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/c3e247b4bb/L5G_KeyFeature-01__ScaleMaxWidthWzMwNDhd.jpg-rgx0ux.jpg',
+                        src: '',
                         alt: 'Some note about this image',
                     },
-                    title: {
+                    littleImage: {
                         id: 2,
+                        type: StructureType.Object,
+                        title: 'Little Image',
+                        value: {
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: 'Image',
+                                src: '',
+                                alt: 'Some note about this image',
+                            },
+                            text: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: 'Text',
+                                value: 'Some note about this image',
+                            },
+                        }
+                    },
+                    title: {
+                        id: 3,
                         type: StructureType.String,
                         title: 'Title',
                         value: 'Ultra Short Throw. Ultra Convenient.'
                     },
                     smallTitle: {
-                        id: 3,
+                        id: 4,
                         type: StructureType.String,
                         title: 'Small Title',
                         value: ''
                     },
                     note: {
-                        id: 4,
+                        id: 5,
                         type: StructureType.Text,
                         title: 'Note',
                         value: 'Big screen entertainment in a convenient package. No need for ceiling mounts or in-wall cable runs, simply place the L5G on a TV stand just 11 inches from the wall and get a massive 100-inch projection – that’s 3x more screen than a 55-inch TV.'
                     },
-                },
+                }
             ]
         })
     }
