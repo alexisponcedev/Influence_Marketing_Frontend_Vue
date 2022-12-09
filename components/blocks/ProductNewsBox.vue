@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {Vue, Component, VModel} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 import blockAddItem from "~/utils/blockAddItem";
