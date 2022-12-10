@@ -26,7 +26,7 @@
                                     </div>
                                     <div
                                         class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
-                                        <span v-if="redirect.redirect_type === RedirectType.To">Redirect To</span>
+                                        <span v-if="redirect.source_url !== RedirectType.route">Redirect To</span>
                                         <span v-else>Redirect From</span>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                         <div class="tw-flex tw-items-center tw-justify-between">
 
                             <div class="tw-space-y-2">
-                                <div class="tw-font-semibold tw-ml-1">{{ redirect.redirect_url }}</div>
+                                <div class="tw-font-semibold tw-ml-1">{{ redirect.source_url }}</div>
 
                                 <div class="tw-flex tw-space-x-2">
                                     <div
@@ -72,7 +72,7 @@
                                     </div>
                                     <div
                                         class="tw-w-min  tw-whitespace-nowrap tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1 tw-text-gray-500 tw-text-center">
-                                        <span v-if="redirect.redirect_type === RedirectType.To">Redirect To</span>
+                                        <span v-if="redirect.source_url === RedirectType.route">Redirect To</span>
                                         <span v-else>Redirect From</span>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@ import {RedirectCodeEnum, RedirectTypeEnum} from "~/interfaces/RedirectTypeEnum"
 
 
 @Component
-export default class PageForm extends Vue {
+export default class PageRedirection extends Vue {
     @Prop(Boolean) readonly editMode!: Boolean;
     @Prop({
         type: Object, default: () => {
@@ -189,13 +189,15 @@ export default class PageForm extends Vue {
 
     get redirectToList() {
         return Api.Redirect ?
-            Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.To) :
+            // Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.To) :
+            Api.Redirect.all.filter((i: RedirectResource) => i.source_url === this.Page.route) :
             [];
     }
 
     get redirectFromList() {
         return Api.Redirect ?
-            Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.From) :
+            // Api.Redirect.all.filter((i: RedirectResource) => i.redirect_type === RedirectTypeEnum.From) :
+            Api.Redirect.all.filter((i: RedirectResource) => i.redirect_url === this.Page.route) :
             [];
     }
 
@@ -203,10 +205,15 @@ export default class PageForm extends Vue {
         if (this.redirectionObj.value) {
             await Api.Redirect.create({
                 page_id: this.Page.id,
-                redirect_type: this.redirectionObj.redirection_type,
+                // redirect_type: this.redirectionObj.redirection_type,
+                // redirect_code: this.redirectionObj.redirection_code,
+                // redirect_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.redirectionObj.value : this.Page.route,
+                // source_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.Page.route : this.redirectionObj.value,
+
+                redirect_type: RedirectTypeEnum.To,
                 redirect_code: this.redirectionObj.redirection_code,
-                redirect_url : this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.redirectionObj.value : this.Page.route,
-                source_url : this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.Page.route :  this.redirectionObj.value,
+                source_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.Page.route : this.redirectionObj.value,
+                redirect_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.redirectionObj.value : this.Page.route,
             });
             this.showModal = false;
             await this.loadRedirects();
