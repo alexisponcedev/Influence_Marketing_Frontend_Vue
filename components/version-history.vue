@@ -172,7 +172,7 @@ export default class VersionHistory extends Vue {
     }
 
     get unsavedList() {
-        return Api.History.all.filter(i => !i.title);
+        return Api.History.all.filter(( i : any ) => !i.title);
     }
 
 }

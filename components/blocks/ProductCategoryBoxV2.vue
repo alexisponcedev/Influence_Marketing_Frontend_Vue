@@ -21,13 +21,13 @@ export default class ProductCategoryBoxV2 extends Vue {
 
     mounted() {
         blockAddItem(this.model, 'backgroundColor', {
-            id: 7,
+            id: 0,
             type: StructureType.Color,
             title: 'Background color',
             value: '#fff'
         })
         blockAddItem(this.model, 'theme', {
-            id: 0,
+            id: 1,
             type: StructureType.Select,
             title: 'Theme',
             value: Theme.dark,
@@ -37,7 +37,7 @@ export default class ProductCategoryBoxV2 extends Vue {
             ]
         })
         blockAddItem(this.model, 'whereToBuy', {
-            id: 0,
+            id: 2,
             type: StructureType.Select,
             title: 'Show Where To Buy',
             value: true,
@@ -47,13 +47,19 @@ export default class ProductCategoryBoxV2 extends Vue {
             ]
         })
         blockAddItem(this.model, 'support', {
-            id: 1,
+            id: 3,
             type: StructureType.Url,
             title: 'Support Page',
             value: '/',
         })
+        blockAddItem(this.model, 'description', {
+            id: 4,
+            type: StructureType.SimpleText,
+            title: 'Description',
+            value: '',
+        })
         blockAddItem(this.model, 'tags', {
-            id: 2,
+            id: 5,
             type: StructureType.List,
             title: 'Tags',
             newItem: {

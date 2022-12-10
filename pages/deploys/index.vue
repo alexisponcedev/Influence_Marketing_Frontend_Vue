@@ -21,6 +21,15 @@
 
                         </div>
 
+<!--                        <div>-->
+<!--                            Development server : <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F8e0bd62a-3186-4aed-8104-6ca8da255ded%3Fdate%3D1&style=flat" alt="">-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            Stage Server : <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F5edb172d-204d-4922-92d4-731b28050a98%3Fdate%3D1&style=flat" alt="">-->
+<!--                        </div>-->
+
+
+
 
                     </v-card-text>
                 </v-card>

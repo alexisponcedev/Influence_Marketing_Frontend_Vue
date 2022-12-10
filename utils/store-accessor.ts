@@ -11,7 +11,7 @@ import api__block from "@/store/api__block";
 import api__asset from "@/store/api__asset";
 import api__history from "@/store/api__history";
 import api__setting from "@/store/api__setting";
-import api__constant from "@/store/api__constant";
+// import api__constant from "@/store/api__constant";
 import api__redirect from "@/store/api__redirect";
 import api__category from "@/store/api__category";
 import api__template from "@/store/api__template";
@@ -32,7 +32,7 @@ class Api {
     static Template: api__template;
     static Redirect: api__redirect;
     static Category: api__category;
-    static Constant: api__constant;
+    // static Constant: api__constant;
     static Notification: api__notification;
 }
 
@@ -48,7 +48,7 @@ function initialiseStores(store: Store<any>): void {
     Api.Template = getModule(api__template, store);
     Api.Category = getModule(api__category, store);
     Api.Redirect = getModule(api__redirect, store);
-    Api.Constant = getModule(api__constant, store);
+    // Api.Constant = getModule(api__constant, store);
     Api.Notification = getModule(api__notification, store);
 }
 
