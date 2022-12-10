@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
+import getActiveBrand from "@/utils/getActiveBrand";
 import {
     Menu,
     MenuResource,
@@ -34,7 +35,7 @@ export default class api__menu extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .menuList()
+            .menuList(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -84,7 +85,7 @@ export default class api__menu extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addMenu(Menu)
+            .addMenu(getActiveBrand(), Menu)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -104,7 +105,7 @@ export default class api__menu extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updateMenu(payload.id, payload.Menu)
+            .updateMenu(getActiveBrand(), payload.id, payload.Menu)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
