@@ -111,15 +111,15 @@ export default class Index extends Vue {
                 }) as any[]
                 page.status = 'locked';
                 await Api.Page.lockPage(page.id);
-                await this.delay(200);
+                await this.delay(300);
 
                 page.status = 'updating';
                 await Api.Page.savePageWidgets({widgets: loadedPage.widgets, page_id: loadedPage.id})
-                await this.delay(200);
+                await this.delay(300);
 
                 page.status = 'unlocked';
                 await Api.Page.unlockPage(page.id);
-                await this.delay(200);
+                await this.delay(300);
                 page.status = 'done';
             }
         }
