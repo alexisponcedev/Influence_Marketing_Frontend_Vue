@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
+import getActiveBrand from "@/utils/getActiveBrand";
 import {
     Notification,
     Configuration,
@@ -54,7 +55,7 @@ export default class api__notification extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .notificationList()
+            .notificationList(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -99,7 +100,7 @@ export default class api__notification extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .importNotification(Notification)
+            .importNotification(getActiveBrand(), Notification)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -119,7 +120,11 @@ export default class api__notification extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updateNotification(payload.id, payload.Notification)
+            .updateNotification(
+                getActiveBrand(),
+                payload.id,
+                payload.Notification
+            )
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

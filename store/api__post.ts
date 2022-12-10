@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
+import getActiveBrand from "@/utils/getActiveBrand";
 import {
     Post,
     PostResource,
@@ -35,7 +36,7 @@ export default class api__post extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .postList()
+            .postList(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -75,7 +76,7 @@ export default class api__post extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addPost(Post)
+            .addPost(getActiveBrand(), Post)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -95,7 +96,7 @@ export default class api__post extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updatePost(payload.id, payload.Post)
+            .updatePost(getActiveBrand(), payload.id, payload.Post)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

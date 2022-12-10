@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
+import getActiveBrand from "@/utils/getActiveBrand";
 import {
     Asset,
     Configuration,
@@ -34,7 +35,7 @@ export default class api__asset extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .assetList()
+            .assetList(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -94,7 +95,7 @@ export default class api__asset extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addAsset(Asset)
+            .addAsset(getActiveBrand(), Asset)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -114,7 +115,7 @@ export default class api__asset extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updateAsset(payload.id, payload.Asset)
+            .updateAsset(getActiveBrand(), payload.id, payload.Asset)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
