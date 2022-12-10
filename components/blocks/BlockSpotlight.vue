@@ -89,6 +89,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 enum ProductCollectionType {
     Series = 'series',
@@ -138,7 +139,7 @@ export default class BlockSpotlight extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id=' + getActiveBrand())).data
         if (this.isEmpty) this.reset();
     }
 
@@ -151,7 +152,7 @@ export default class BlockSpotlight extends Vue {
     }
 
     async categoryChanged(event: any, index: number) {
-        let res: any = await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/categorySeries/' + event.target.value);
+        let res: any = await this.$axios.$get(process.env.PIM_API_URL + '/cms/categorySeries/' + event.target.value + "?brand_id=" + getActiveBrand());
 
         if (res.hasOwnProperty('series')) {
             this.model.tabs.value[index].type = ProductCollectionType.Series;

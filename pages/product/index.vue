@@ -117,6 +117,7 @@ import {Vue, Component, Watch} from "vue-property-decorator";
 import {Api} from "@/store";
 import {Page, PageResource} from "~/repositories";
 import {ProductSearchStatusEnum} from "~/interfaces/ProductStatusEnum";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component({layout: "panel"})
 export default class ProductsPage extends Vue {
@@ -150,11 +151,12 @@ export default class ProductsPage extends Vue {
     }
 
     loadCategories() {
-        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')
+        this.$axios.$get(process.env.PIM_API_URL + `/cms/getCategories?brand_id=${getActiveBrand()}`)
             .then(res => {
                 this.categories = [
                     {"id": null, "name": "All Categories", image: null},
-                    ...res.data.filter((i: any) => i.id < 7)
+                    // ...res.data.filter((i: any) => i.id < 7)
+                    ...res.data
                 ]
             });
     }

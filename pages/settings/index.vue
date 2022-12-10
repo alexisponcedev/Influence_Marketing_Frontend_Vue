@@ -15,25 +15,36 @@
         <v-tabs-items v-model="tab" background-color="transparent">
 
             <v-tab-item value="general">
+
                 <div class="tw-space-y-2 tw-bg-gray-100">
+
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-
-
                         <div class="tw-flex tw-space-x-2 tw-items-center">
                             <span class="tw-whitespace-normal">Compare Route</span>
                         </div>
-
                         <input type="text" class="x-input" placeholder="please enter the value" />
-
-
                     </div>
+
+                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
+                        <div class="tw-flex tw-space-x-2 tw-items-center">
+                            <span class="tw-whitespace-normal">Google Tag Domain</span>
+                        </div>
+                        <input type="text" class="x-input" placeholder="please enter the value" />
+                    </div>
+
+                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
+                        <div class="tw-flex tw-space-x-2 tw-items-center">
+                            <span class="tw-whitespace-normal">Google Tag Code</span>
+                        </div>
+                        <input type="text" class="x-input" placeholder="please enter the value" />
+                    </div>
+
                 </div>
             </v-tab-item>
 
             <v-tab-item value="dam">
                 <div class="tw-bg-gray-100">
                     Dam Section will be here
-
                 </div>
             </v-tab-item>
 

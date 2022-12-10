@@ -236,6 +236,7 @@ export default class PostForm extends Vue {
                         Api.Page.create(this.Post.page!);
                         return post;
                     })
+                    .then(Api.Page.doDeploy)
                     .then((post: any) => {
                         if (post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
                     })

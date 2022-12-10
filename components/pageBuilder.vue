@@ -22,7 +22,7 @@
                         @move-up="moveUpBlock(i)"
                         @move-down="moveDownBlock(i)"
                         :block="block">
-                        <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure"/>
+                        <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure" :page="page"/>
                     </blocks-container>
 
                     <blocks-drop/>
@@ -59,6 +59,7 @@ import {EventBus} from "~/plugins/event.client";
     components: {draggable}
 })
 export default class PageBuilder extends Vue {
+    @Prop({type: Object, default: () => {}}) page!: any
     @Prop({type: String, default: 'page'}) blocksType!: string
     @VModel({type: Array}) blocksList!: any
 

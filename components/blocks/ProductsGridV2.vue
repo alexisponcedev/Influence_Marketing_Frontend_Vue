@@ -51,7 +51,7 @@ export default class ProductsGridV2 extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories')).data
         if (this.isEmpty) this.reset();
         else {
             this.model.category.items = this.categories;
@@ -70,7 +70,7 @@ export default class ProductsGridV2 extends Vue {
 
         this.loadingFilters = true;
         this.loadingProducts = true;
-        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProducts/' + category_id)
+        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProducts/' + category_id)
             .then(res => {
                 this.products = res.data;
                 this.loadingProducts = false;
@@ -79,7 +79,7 @@ export default class ProductsGridV2 extends Vue {
             this.loadingProducts = false;
         })
 
-        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategoryFilterTypes/' + category_id)
+        this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategoryFilterTypes/' + category_id)
             .then(res => {
                 this.loadingFilters = false;
                 this.filterTypes = res.filterTypes;

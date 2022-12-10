@@ -244,6 +244,12 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "ProductCategoryBoxV2",
+                        title: "Product Submenu v2",
+                        image: "ProductCategoryBox.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "ImageBox",
                         title: "Product Image",
                         image: "ImageBox.png",
@@ -312,6 +318,12 @@ export const BLOCKS = () => {
                     {
                         name: "ProductRelatedItemsBox",
                         title: "Related Products",
+                        image: "ProductRelatedItemsBox.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "RelatedProducts",
+                        title: "Related Products v2",
                         image: "ProductRelatedItemsBox.png",
                         category: "TextBox",
                     },
@@ -1142,6 +1154,12 @@ export const BLOCKS = () => {
                         image: "UpgradeL9GForm.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "L9GImageBox",
+                        title: "L9GImageBox",
+                        image: "L9GImageBox.png",
+                        category: "ImageBox",
+                    },
                 ],
             },
             {
@@ -1221,6 +1239,12 @@ export const BLOCKS = () => {
                         name: "ServiceSupportFormNew",
                         title: "Service Support Form New",
                         image: "ServiceSupportFormNew.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "ContactUsChat",
+                        title: "ContactUs Chat",
+                        image: "ContactUsChat.png",
                         category: "TextBox",
                     },
                     {
@@ -1472,6 +1496,47 @@ export const BLOCKS = () => {
                         name: "BeyondLaserTextBlock",
                         title: "Beyond Laser Text BLock",
                         image: "BeyondLaserTextBlock.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
+            {
+                name: "Google TV",
+                blocks: [
+                    {
+                        name: "GoogleTvBanner",
+                        title: "GoogleTvBanner",
+                        image: "GoogleTvBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvFeatureBlocks",
+                        title: "GoogleTvFeatureBlocks",
+                        image: "GoogleTvFeatureBlocks.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvHero",
+                        title: "GoogleTvHero",
+                        image: "GoogleTvHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvProducts",
+                        title: "GoogleTvProducts",
+                        image: "GoogleTvProducts.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvTextBox",
+                        title: "GoogleTvTextBox",
+                        image: "GoogleTvTextBox.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "GoogleTvTops",
+                        title: "GoogleTvTops",
+                        image: "GoogleTvTops.png",
                         category: "TextBox",
                     },
                 ],

@@ -27,7 +27,8 @@
                             </div>
 
                             <div class="tw-w-20 tw-flex tw-justify-center">
-                                <v-icon>mdi-arrow-right</v-icon>
+                                <v-icon color="red" v-if="Redirect.redirect_type === 'to'">mdi-arrow-right</v-icon>
+                                <v-icon color="red" v-else>mdi-arrow-left</v-icon>
                             </div>
 
                             <div class="tw-text-center tw-flex-1">

@@ -61,8 +61,8 @@ export default class BlockCommercialBecomeAPartner extends Vue {
     }
 
     loadProduct() {
-        // this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/' + this.product_id )
-        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getProduct/781')
+        // this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.product_id )
+        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/781')
             .then(res => {
                 this.product = res.data;
             }).finally(() => {

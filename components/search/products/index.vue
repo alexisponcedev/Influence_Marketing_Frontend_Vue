@@ -32,6 +32,7 @@
 import {Vue, Component, VModel, Watch, Prop} from "vue-property-decorator";
 import {Api} from "~/utils/store-accessor";
 import {ProductSearchStatusEnum} from "~/interfaces/ProductStatusEnum";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 
 @Component
@@ -75,10 +76,10 @@ export default class SearchProductIndex extends Vue {
         this.loading = true;
         let query = [`search=${this.search}`];
         if (this.category_id > 0) query.push(`category_id=${this.category_id}`)
-        this.$axios.$get(`https://impim.dev-api.hisenseportal.com/api/cms/getProductsList?${query.join('&')}`)
+        this.$axios.$get(process.env.PIM_API_URL + `/cms/getProductsList?brand_id=${getActiveBrand()}&${query.join('&')}`)
             .then(res => {
                 let products = this.max > 0 ? res.data.slice(0, this.max) : res.data;
-                products = products.filter((p: any) => p.brand.id === 1)
+                // products = products.filter((p: any) => p.brand.id === 1)
                 if (this.run) products = this.run(products);
                 this.products = products;
             })

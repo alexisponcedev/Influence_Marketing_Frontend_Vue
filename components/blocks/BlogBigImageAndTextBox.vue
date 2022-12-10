@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <img src="/blocks/BlogBigImageAndTextBox.png" alt="" />

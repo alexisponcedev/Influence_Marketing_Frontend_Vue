@@ -226,7 +226,7 @@ export default class SupportNewProducts extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories')).data
         if (this.isEmpty) this.reset();
         else {
             // console.log(this.model);
