@@ -8055,6 +8055,7 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
                 localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
+
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -8147,12 +8148,15 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} id Notification ID
          * @param {Notification} notification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateNotification: async (id: number, notification: Notification, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateNotification: async (brandId: number, id: number, notification: Notification, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('updateNotification', 'brandId', brandId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateNotification', 'id', id)
             // verify required parameter 'notification' is not null or undefined
@@ -8173,6 +8177,10 @@ export const NotificationApiAxiosParamCreator = function (configuration?: Config
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -8241,13 +8249,14 @@ export const NotificationApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} id Notification ID
          * @param {Notification} notification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateNotification(id: number, notification: Notification, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNotification(id, notification, options);
+        async updateNotification(brandId: number, id: number, notification: Notification, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNotification(brandId, id, notification, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -8299,13 +8308,14 @@ export const NotificationApiFactory = function (configuration?: Configuration, b
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} id Notification ID
          * @param {Notification} notification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateNotification(id: number, notification: Notification, options?: any): AxiosPromise<Notification> {
-            return localVarFp.updateNotification(id, notification, options).then((request) => request(axios, basePath));
+        updateNotification(brandId: number, id: number, notification: Notification, options?: any): AxiosPromise<Notification> {
+            return localVarFp.updateNotification(brandId, id, notification, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -8364,14 +8374,15 @@ export class NotificationApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} id Notification ID
      * @param {Notification} notification 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationApi
      */
-    public updateNotification(id: number, notification: Notification, options?: AxiosRequestConfig) {
-        return NotificationApiFp(this.configuration).updateNotification(id, notification, options).then((request) => request(this.axios, this.basePath));
+    public updateNotification(brandId: number, id: number, notification: Notification, options?: AxiosRequestConfig) {
+        return NotificationApiFp(this.configuration).updateNotification(brandId, id, notification, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

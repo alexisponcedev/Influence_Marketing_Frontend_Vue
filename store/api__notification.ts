@@ -120,7 +120,11 @@ export default class api__notification extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updateNotification(payload.id, payload.Notification)
+            .updateNotification(
+                getActiveBrand(),
+                payload.id,
+                payload.Notification
+            )
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
