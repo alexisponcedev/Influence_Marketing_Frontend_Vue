@@ -63,7 +63,7 @@ export default class Index extends Vue {
         for (const page of this.pages) {
             page.status = 'in progress';
             let loadedPage: Page = await Api.Page.get(page.id) as Page;
-            await this.delay(600);
+            await this.delay(1000);
 
             if (Array.isArray(loadedPage.widgets)) {
                 loadedPage.widgets = (loadedPage.widgets as any[]).map(c => {
@@ -110,26 +110,18 @@ export default class Index extends Vue {
                         }
                     return c;
                 }) as any[]
-                // console.log(loadedPage.widgets);
-                // if (loadedPage.id == 1149) {
                 page.status = 'locked';
                 await Api.Page.lockPage(page.id);
-                // await this.delay(100);
+                await this.delay(100);
 
                 page.status = 'updating';
                 await Api.Page.savePageWidgets({widgets: loadedPage.widgets, page_id: loadedPage.id})
-                // await this.delay(100);
+                await this.delay(100);
 
                 page.status = 'unlocked';
                 await Api.Page.unlockPage(page.id);
-                // await this.delay(100);
+                await this.delay(100);
                 page.status = 'done';
-
-                // } else {
-                //     page.status = 'updating';
-                //     // await this.delay(100);
-                //     page.status = 'done';
-                // }
             }
         }
         this.loading = false;
