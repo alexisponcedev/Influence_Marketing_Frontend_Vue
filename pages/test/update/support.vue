@@ -78,7 +78,12 @@ export default class Index extends Vue {
                                 title: 'Subtitle',
                                 value: 'Get started with registering your Hisense product.'
                             },
-                            modelText: {id: 4, type: StructureType.Text, title: 'Modal Text', value: ''}
+                            modelText: {
+                                id: 4,
+                                type: StructureType.Text,
+                                title: 'Modal Text',
+                                value: '<h3><strong>we know those suckers can be hard to find</strong></h3><p>Check this list for the general location of your model number sticker. If you\'re still stumped, contact us and we\'ll sort you out.</p><p><strong>television</strong></p><p>Back of the unit</p><p><strong>wine cooler</strong></p><p>Back of the unit</p><p><strong>compact refrigeration</strong></p><p>Back of the unit</p><p><strong>chest freezer</strong></p><p>Back of the unit</p><p><strong>full size refrigeration</strong></p><p>Back of the unit</p><p><strong>portable AC</strong></p><p>Left side of the unit</p><p><strong>beverage chiller</strong></p><p>Back of the unit</p><p><strong>dehumidifier</strong></p><p>Back of the unit</p>'
+                            }
                         }
                     if (c.name === 'SupportNeedAssistance')
                         c.structure = {
@@ -107,18 +112,18 @@ export default class Index extends Vue {
                 }) as any[]
                 // console.log(loadedPage.widgets);
                 // if (loadedPage.id == 1149) {
-                    page.status = 'locked';
-                    await Api.Page.lockPage(page.id);
-                    // await this.delay(100);
+                page.status = 'locked';
+                await Api.Page.lockPage(page.id);
+                // await this.delay(100);
 
-                    page.status = 'updating';
-                    await Api.Page.savePageWidgets({widgets: loadedPage.widgets, page_id: loadedPage.id})
-                    // await this.delay(100);
+                page.status = 'updating';
+                await Api.Page.savePageWidgets({widgets: loadedPage.widgets, page_id: loadedPage.id})
+                // await this.delay(100);
 
-                    page.status = 'unlocked';
-                    await Api.Page.unlockPage(page.id);
-                    // await this.delay(100);
-                    page.status = 'done';
+                page.status = 'unlocked';
+                await Api.Page.unlockPage(page.id);
+                // await this.delay(100);
+                page.status = 'done';
 
                 // } else {
                 //     page.status = 'updating';

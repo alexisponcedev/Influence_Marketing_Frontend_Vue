@@ -8,6 +8,7 @@
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
+import blockAddItem from "~/utils/blockAddItem";
 
 
 @Component
@@ -21,35 +22,35 @@ export default class ProductPackagesSlider extends Vue {
     product: Object = {};
     loadingProduct: boolean = true;
 
-    reset(oldValue: any = {}) {
-
-            this.model = {
-                theme: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: 'Theme',
-                    value: Theme.dark,
-                    items: [
-                        {title: 'Light', value: this.Theme.light},
-                        {title: 'Dark', value: this.Theme.dark},
-                    ]
-                },
-                title : {id : 1 ,  type : StructureType.String , title : 'Title' , value : 'Kitchen Appliance Packages'}
-            }
-    }
-
     mounted() {
-        if (this.isEmpty) this.reset();
-        // this.loadProduct();
-    }
-
-    loadProduct() {
-        // this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.product_id )
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/781')
-            .then(res => {
-                this.product = res.data;
-            }).finally(() => {
-            this.loadingProduct = false;
+        blockAddItem(this.model, 'theme', {
+            id: 0,
+            type: StructureType.Select,
+            title: 'Theme',
+            value: Theme.dark,
+            items: [
+                {title: 'Light', value: this.Theme.light},
+                {title: 'Dark', value: this.Theme.dark},
+            ]
+        })
+        blockAddItem(this.model, 'title', {
+            id: 1,
+            type: StructureType.String,
+            title: 'Title',
+            value: 'Kitchen Appliance Packages'
+        })
+        blockAddItem(this.model, 'list', {
+            id: 2, type: StructureType.List, title: 'List',
+            newItem: {
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                link: {id: 2, type: StructureType.Url, title: 'Link', value: '/'}
+            },
+            value: [{
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
+                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                link: {id: 2, type: StructureType.Url, title: 'Link', value: '/'}
+            }]
         })
     }
 
@@ -57,10 +58,5 @@ export default class ProductPackagesSlider extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('isEmpty')
-    onValueChanged() {
-
-        if (this.isEmpty) this.reset();
-    }
 }
 </script>

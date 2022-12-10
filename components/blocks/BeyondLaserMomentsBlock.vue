@@ -1,18 +1,18 @@
 <template>
     <div>
-        <img src="/blocks/BeyondLaserMomentsBlock.png" alt="" />
+        <img src="/blocks/BeyondLaserMomentsBlock.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class BeyondLaserMomentsBlock extends Vue {
     @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: Boolean | undefined;
-    @VModel({ type: Object }) model!: any;
+    @Prop({default: true}) readonly editable: Boolean | undefined;
+    @VModel({type: Object}) model!: any;
 
     reset(oldValue: any = {}) {
         if (oldValue && Object.keys(oldValue).length > 0) {

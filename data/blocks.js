@@ -399,6 +399,18 @@ export const BLOCKS = () => {
                         image: "ProductPackagesSlider.png",
                         category: "Component",
                     },
+                    {
+                        name: "ProductPackageItems",
+                        title: "ProductPackageItems",
+                        image: "ProductPackageItems.png",
+                        category: "Component",
+                    },
+                    {
+                        name: "ProductPackageBigScreenTextsBox",
+                        title: "Product Package Big Screen TextsBox",
+                        image: "ProductPackageBigScreenTextsBox.png",
+                        category: "TextBox",
+                    },
                 ],
             },
             {

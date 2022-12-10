@@ -1,33 +1,33 @@
 <template>
     <div>
-        <img src="/blocks/BeyondLaserBanner.png" alt="" />
+        <img src="/blocks/BeyondLaserBanner.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class BeyondLaserBanner extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: Boolean | undefined
-    @VModel({ type: Object }) model!: any
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: any
 
     reset(oldValue: any = {}) {
 
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
                 ...oldValue, ...{
-                    backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
                 }
             }
         } else
             this.model = {
-                link: { id: 0, type: StructureType.Url, title: 'Image', value: ''},
-                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-                tinyTitle: { id: 2, type: StructureType.String, title: 'Title', value: '' },
-                video: { id: 3, type: StructureType.Video, title: 'Title', value: '' },
+                link: {id: 0, type: StructureType.Url, title: 'Image', value: ''},
+                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                tinyTitle: {id: 2, type: StructureType.String, title: 'Title', value: ''},
+                video: {id: 3, type: StructureType.Video, title: 'Title', value: ''},
             }
     }
 

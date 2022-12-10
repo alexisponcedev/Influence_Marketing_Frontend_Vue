@@ -59,7 +59,10 @@ import {EventBus} from "~/plugins/event.client";
     components: {draggable}
 })
 export default class PageBuilder extends Vue {
-    @Prop({type: Object, default: () => {}}) page!: any
+    @Prop({
+        type: Object, default: () => {
+        }
+    }) page!: any
     @Prop({type: String, default: 'page'}) blocksType!: string
     @VModel({type: Array}) blocksList!: any
 

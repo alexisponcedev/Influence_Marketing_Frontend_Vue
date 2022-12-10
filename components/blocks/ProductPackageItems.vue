@@ -8,6 +8,7 @@
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
+import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class EligibleModels extends Vue {
@@ -184,6 +185,33 @@ export default class EligibleModels extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
+
+        blockAddItem(this.model, 'title', {id: 0, type: StructureType.String, title: 'Title', value: ''})
+        blockAddItem(this.model, 'list', {
+            id: 1, type: StructureType.List, title: 'list',
+            newItem: {
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                title: {id: 0, type: StructureType.String, title: 'Title', value: 'Test Title'},
+                specs: {
+                    id: 0,
+                    type: StructureType.Text,
+                    title: 'Specs',
+                    value: '<ul><li>4K Ultra HD</li><li>Google TV</li><li>60Hz Native Refresh</li><li>DTS VirtualX</li><li>Voice Remote</li></ul>'
+                },
+                link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+            },
+            value: [{
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                title: {id: 0, type: StructureType.String, title: 'Title', value: 'Test Title'},
+                specs: {
+                    id: 0,
+                    type: StructureType.Text,
+                    title: 'Specs',
+                    value: '<ul><li>4K Ultra HD</li><li>Google TV</li><li>60Hz Native Refresh</li><li>DTS VirtualX</li><li>Voice Remote</li></ul>'
+                },
+                link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+            }]
+        })
     }
 
     get isEmpty(): Boolean {

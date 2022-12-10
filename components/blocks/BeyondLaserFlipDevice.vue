@@ -1,31 +1,31 @@
 <template>
     <div>
-        <img src="/blocks/BeyondLaserFlipDevice.png" alt="" />
+        <img src="/blocks/BeyondLaserFlipDevice.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class BeyondLaserFlipDevice extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: Boolean | undefined
-    @VModel({ type: Object }) model!: any
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: any
 
     reset(oldValue: any = {}) {
 
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
                 ...oldValue, ...{
-                    backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
                 }
             }
         } else
             this.model = {
-                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-                text: { id: 1, type: StructureType.Text, title: 'Title', value: '' },
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                text: {id: 1, type: StructureType.Text, title: 'Title', value: ''},
                 link: {
                     id: 2,
                     type: StructureType.Url,

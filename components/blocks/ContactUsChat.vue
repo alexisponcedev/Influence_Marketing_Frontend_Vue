@@ -20,7 +20,12 @@ export default class ContactUsChat extends Vue {
     mounted() {
         blockAddItem(this.model, 'link', {id: 0, type: StructureType.Url, title: 'Link', value: ''});
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: 'Title Text'});
-        blockAddItem(this.model, 'subtitle', {id: 2, type: StructureType.String, title: 'Subtitle', value: 'Subtitle Text'});
+        blockAddItem(this.model, 'subtitle', {
+            id: 2,
+            type: StructureType.String,
+            title: 'Subtitle',
+            value: 'Subtitle Text'
+        });
         blockRemoveItem(this.model, ['generalInquirySubmitUrl', 'partAndServiceSupportSubmitUrl', 'tab1', 'tab2'])
     }
 

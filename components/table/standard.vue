@@ -1,29 +1,29 @@
 <template>
     <table-reorderable v-if="reorderMode" :items="items" :config="config" @submit="onReOrder">
         <template v-for="(index, name) in $scopedSlots" v-slot:[name]="item">
-            <slot :name="name" v-bind="item" />
+            <slot :name="name" v-bind="item"/>
         </template>
     </table-reorderable>
     <table-grid v-else-if="gridMode" :items="items" :config="config" :search="search" :loading="loading"
-        :gridOnly="gridOnly" @click:row="clickRow" :gridCenter="gridCenter" @showListView="gridMode = false"
-        v-on="$listeners" />
+                :gridOnly="gridOnly" @click:row="clickRow" :gridCenter="gridCenter" @showListView="gridMode = false"
+                v-on="$listeners"/>
     <div v-else>
         <v-card-title>
             <v-text-field v-if="search" single-line hide-details label="Search" v-model="searchQuery"
-                append-icon="mdi-magnify" />
-            <v-spacer />
-            <v-spacer />
+                          append-icon="mdi-magnify"/>
+            <v-spacer/>
+            <v-spacer/>
             <v-btn v-if="grid" small outlined class="mx-1" color="secondary" @click="gridMode = true">
-                <v-icon left v-html="'mdi-view-grid'" />
+                <v-icon left v-html="'mdi-view-grid'"/>
                 Grid View
             </v-btn>
             <v-btn v-if="!!config.showedHeaders" small outlined class="mx-1" color="secondary"
-                @click="showCustomizeViewModal()">
-                <v-icon left v-html="'mdi-view-column-outline'" />
+                   @click="showCustomizeViewModal()">
+                <v-icon left v-html="'mdi-view-column-outline'"/>
                 Customize View
             </v-btn>
             <v-btn v-if="reorderable" small class="mx-1" outlined @click="reorderMode = true">
-                <v-icon left v-html="'mdi-order-numeric-ascending'" />
+                <v-icon left v-html="'mdi-order-numeric-ascending'"/>
                 Reorder
             </v-btn>
             <v-btn v-if="exportable" small outlined class="mx-1" color="secondary" @click="exportCSV()">
@@ -31,7 +31,7 @@
                 Export CSV
             </v-btn>
             <v-btn small class="mx-1" v-if="config.globalActions && config.globalActions.length === 1"
-                :color="config.globalActions[0].color" :class="config.globalActions[0].class" @click="
+                   :color="config.globalActions[0].color" :class="config.globalActions[0].class" @click="
                     config.globalActions[0].action
                         ? $emit(config.globalActions[0].action)
                         : undefined
@@ -45,7 +45,7 @@
     $emit('submitSelectedRows', selectedRows);
 selectedRows = [];
             ">
-                <v-icon left v-html="selectButtonIcon" />
+                <v-icon left v-html="selectButtonIcon"/>
                 {{ selectButtonText }} {{ selectedRows.length }} item
             </v-btn>
         </v-card-title>
@@ -57,7 +57,7 @@ selectedRows = [];
                         (header) => header.value != 'actions'
                     )" :key="header.value">
                         <v-checkbox v-model="config.showedHeaders" :value="header.value" :label="header.text"
-                            hide-details />
+                                    hide-details/>
                     </div>
                 </v-card-text>
             </v-card>
@@ -65,36 +65,37 @@ selectedRows = [];
 
 
         <v-data-table v-model="selectedRows" item-key="id" :loading="loading" :items="items" :search="searchQuery"
-            :headers="headers" :show-select="showSelect" :single-select="singleSelect" :options.sync="optionsSync"
-            :server-items-length="total" @click:row="clickRow"
-            :footer-props="{ 'items-per-page-options': itemsPerPageOptions }">
+                      :headers="headers" :show-select="showSelect" :single-select="singleSelect"
+                      :options.sync="optionsSync"
+                      :server-items-length="total" @click:row="clickRow"
+                      :footer-props="{ 'items-per-page-options': itemsPerPageOptions }">
             <template v-slot:[`item.thumbnail`]="{ item }">
-                <v-img :src="item.thumbnail" max-height="64" max-width="64" />
+                <v-img :src="item.thumbnail" max-height="64" max-width="64"/>
             </template>
             <template v-slot:[`item.image`]="{ item }">
-                <v-img :src="item.image" max-height="64" max-width="64" />
+                <v-img :src="item.image" max-height="64" max-width="64"/>
             </template>
             <template v-slot:[`item.logo`]="{ item }">
-                <v-img :src="item.logo" max-height="64" max-width="64" />
+                <v-img :src="item.logo" max-height="64" max-width="64"/>
             </template>
 
             <template v-for="header in config.headers.filter((header) => !!header.valueFunc)"
-                v-slot:[getSlotName(header.value)]="{ item }">
+                      v-slot:[getSlotName(header.value)]="{ item }">
                 {{ header.valueFunc(item) }}
             </template>
             <template v-if="config.actions" v-slot:[`item.actions`]="{ item, itemIndex }">
                 <div style="display: flex" @click.stop.prevent="() => { }">
                     <template v-for="(action, actionIndex) in config.actions" @click="null">
                         <v-btn v-if="action.to" small :icon="!action.text" :text="!!action.text"
-                            :outlined="!!action.text" :to="getActionTo(action.to, item)"
-                            :key="'1-' + itemIndex + '-' + actionIndex">
+                               :outlined="!!action.text" :to="getActionTo(action.to, item)"
+                               :key="'1-' + itemIndex + '-' + actionIndex">
                             <v-icon :left="!!action.text" small>
                                 {{ action.icon }}
                             </v-icon>
                             {{ action.text }}
                         </v-btn>
                         <v-btn v-else small :icon="!action.text" :text="!!action.text" :outlined="!!action.text"
-                            @click.stop="action.onClick(item)" :key="'2-' + itemIndex + '-' + actionIndex">
+                               @click.stop="action.onClick(item)" :key="'2-' + itemIndex + '-' + actionIndex">
                             <v-icon :left="!!action.text" small>
                                 {{ action.icon }}
                             </v-icon>
@@ -104,20 +105,20 @@ selectedRows = [];
                 </div>
             </template>
             <template v-for="(index, name) in $scopedSlots" v-slot:[name]="item">
-                <slot :name="name" v-bind="item" />
+                <slot :name="name" v-bind="item"/>
             </template>
         </v-data-table>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, PropSync, Emit } from "vue-property-decorator";
+import {Vue, Component, Prop, PropSync, Emit} from "vue-property-decorator";
 import exportCSVFile from "@/utils/exportCSVFile";
-import { IIndexable } from "@/utils/IIndexable";
+import {IIndexable} from "@/utils/IIndexable";
 
 @Component
 export default class StandardTable extends Vue {
-    @Prop({ default: true }) readonly search!: Boolean;
+    @Prop({default: true}) readonly search!: Boolean;
     @Prop(Boolean) readonly singleSelect!: Boolean;
     @Prop(Boolean) readonly showSelect!: Boolean;
     @Prop(Boolean) readonly reorderable!: Boolean;
@@ -128,11 +129,11 @@ export default class StandardTable extends Vue {
     @Prop(Boolean) readonly grid!: Boolean;
     @Prop(Array) readonly items!: Array<Object>;
     @Prop(Number) readonly total!: Number;
-    @Prop({ default: "mdi-delete", type: String })
+    @Prop({default: "mdi-delete", type: String})
     readonly selectButtonIcon!: String;
-    @Prop({ default: "Remove", type: String }) readonly selectButtonText!: String;
-    @PropSync("options", { type: Object }) readonly optionsSync!: Object;
-    @Prop({ default: () => [5, 10, 15, -1] })
+    @Prop({default: "Remove", type: String}) readonly selectButtonText!: String;
+    @PropSync("options", {type: Object}) readonly optionsSync!: Object;
+    @Prop({default: () => [5, 10, 15, -1]})
     readonly itemsPerPageOptions!: Array<number>;
     @Prop(Object) readonly config!: {
         globalActions?: Array<{
@@ -218,7 +219,7 @@ export default class StandardTable extends Vue {
     exportCSV() {
         exportCSVFile(
             this.config.headers?.reduce((accumulator, header) => {
-                return { ...accumulator, [header.value]: header.text };
+                return {...accumulator, [header.value]: header.text};
             }, {}),
             this.items.map((item) => {
                 const result = {};

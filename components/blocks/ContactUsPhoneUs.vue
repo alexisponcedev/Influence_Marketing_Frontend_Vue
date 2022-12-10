@@ -93,7 +93,7 @@ export default class ContactUsPhoneUs extends Vue {
                 phoneNumber: {id: 0, type: StructureType.String, title: 'Phone Number', value: ''},
             }
         })
-        blockRemoveItem(this.model , ['list']);
+        blockRemoveItem(this.model, ['list']);
     }
 
     get isEmpty(): Boolean {

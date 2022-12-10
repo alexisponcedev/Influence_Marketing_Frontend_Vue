@@ -17,7 +17,7 @@
 
         <v-card>
             <table-standard :config="config" class="row-pointer" :items="pagesList" :loading="Api.Page.loading"
-                @click:row="(Page) => $router.push('/page/edit/' + Page.id)">
+                            @click:row="(Page) => $router.push('/page/edit/' + Page.id)">
 
                 <template #item.title="{ item }">
                     {{ item.title }}
@@ -33,12 +33,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { PageResource } from "@/repositories";
-import { Api, AppStore } from "@/store";
-import { PageTypeEnum } from "~/interfaces/PageTypeEnum";
+import {Vue, Component} from "vue-property-decorator";
+import {PageResource} from "@/repositories";
+import {Api, AppStore} from "@/store";
+import {PageTypeEnum} from "~/interfaces/PageTypeEnum";
 
-@Component({ layout: "panel" })
+@Component({layout: "panel"})
 export default class AllPages extends Vue {
     Api = Api;
 
@@ -48,9 +48,9 @@ export default class AllPages extends Vue {
 
     config = {
         headers: [
-            { text: "Title", value: "title" },
-            { text: "Route", value: "route" },
-            { text: "", value: "actions", sortable: false, width: "0" },
+            {text: "Title", value: "title"},
+            {text: "Route", value: "route"},
+            {text: "", value: "actions", sortable: false, width: "0"},
         ],
         actions: [
             {
@@ -65,7 +65,7 @@ export default class AllPages extends Vue {
                     AppStore.showDeleteConfirmationModal({
                         deleteItemTitle: Page.title || "",
                         deleteItem: Page,
-                        agreeButton: { callback: this.deletePage },
+                        agreeButton: {callback: this.deletePage},
                     });
                 },
             },

@@ -2,7 +2,8 @@
 
     <div class="tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center" v-if="!isEmpty">
         <div v-if="editable"
-             class="tw-p-2 tw-my-1.5 tw-text-gray-500 tw-text-sm tw-bg-gray-50 tw-rounded-lg tw-inline-block tw-self-start">In order
+             class="tw-p-2 tw-my-1.5 tw-text-gray-500 tw-text-sm tw-bg-gray-50 tw-rounded-lg tw-inline-block tw-self-start">
+            In order
             to
             choose video player component please click here ..
         </div>

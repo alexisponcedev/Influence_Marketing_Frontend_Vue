@@ -1,31 +1,31 @@
 <template>
     <div>
-        <img src="/blocks/BeyondLaserIframeBlock.png" alt="" />
+        <img src="/blocks/BeyondLaserIframeBlock.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 
 @Component
 export default class BeyondLaserIframeBlock extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: Boolean | undefined
-    @VModel({ type: Object }) model!: any
+    @Prop({default: true}) readonly editable: Boolean | undefined
+    @VModel({type: Object}) model!: any
 
     reset(oldValue: any = {}) {
 
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
                 ...oldValue, ...{
-                    backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
                 }
             }
         } else
             this.model = {
-                iframe: { id: 0, type: StructureType.Video, title: 'iframe Link', value: '' },
-                title: { id: 1, type: StructureType.Text, title: 'Title', value: '' },
+                iframe: {id: 0, type: StructureType.Video, title: 'iframe Link', value: ''},
+                title: {id: 1, type: StructureType.Text, title: 'Title', value: ''},
             }
     }
 

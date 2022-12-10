@@ -17,7 +17,7 @@ export default class GoogleTvProducts extends Vue {
 
     mounted() {
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
-        blockAddItem(this.model, 'link', {id: 2, type: StructureType.Url, title: "Link", value : ''});
+        blockAddItem(this.model, 'link', {id: 2, type: StructureType.Url, title: "Link", value: ''});
     }
 
     get isEmpty(): Boolean {
