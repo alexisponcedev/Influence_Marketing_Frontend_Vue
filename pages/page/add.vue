@@ -197,7 +197,7 @@ export default class PageForm extends Vue {
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
-            this.lock();
+            await this.lock();
         }
     }
 
@@ -237,7 +237,7 @@ export default class PageForm extends Vue {
                 });
             else {
                 let page = await Api.Page.create(this.Page)
-                    .then(Api.Page.doDeploy);
+                await Api.Page.doDeploy();
                 this.$router.push("/page/edit/" + page.id);
             }
             Api.Page.clearRoutes();
@@ -498,16 +498,14 @@ export default class PageForm extends Vue {
     }
 
     async lock() {
-        // if (this.Page.locked_by === 0)
-        Api.Page.lockPage(this.Page.id!).then(response => {
+        Api.Page.lockPage(+this.$route.params.id!).then(response => {
             console.log(response);
             this.Page.locked_by = this.userId
         });
     }
 
     async unlock() {
-        // if (this.Page.locked_by == this.userId)
-        Api.Page.unlockPage(this.Page.id!).then(() => {
+        Api.Page.unlockPage(+this.$route.params.id!).then(() => {
             this.Page.locked_by = 0;
         });
     }
