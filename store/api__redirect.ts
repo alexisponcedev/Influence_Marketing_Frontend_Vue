@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
+import getActiveBrand from "@/utils/getActiveBrand";
 import {
     Redirect,
     Configuration,
@@ -23,7 +24,6 @@ export default class api__redirect extends VuexModule {
 
     @Mutation
     updateAll(all: Array<RedirectResource>) {
-        console.log(all);
         this.all = all;
     }
 
@@ -35,7 +35,7 @@ export default class api__redirect extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .redirectList()
+            .redirectList(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -96,7 +96,7 @@ export default class api__redirect extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addRedirect(Redirect)
+            .addRedirect(getActiveBrand(), Redirect)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
