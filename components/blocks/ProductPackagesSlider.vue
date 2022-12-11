@@ -52,6 +52,7 @@ export default class ProductPackagesSlider extends Vue {
                 link: {id: 2, type: StructureType.Url, title: 'Link', value: '/'}
             }]
         })
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

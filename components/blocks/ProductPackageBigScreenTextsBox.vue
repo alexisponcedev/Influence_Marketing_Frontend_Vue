@@ -44,10 +44,10 @@ export default class ProductPackageBigScreenTextsBox extends Vue {
             ]
         })
         blockAddItem(this.model, 'coloredTitle', {
-            id: 1, type: StructureType.String, title: 'Title', value: 'More clear,'
+            id: 1, type: StructureType.String, title: 'Colored Title', value: 'More clear,'
         })
         blockAddItem(this.model, 'blackTitle', {
-            id: 1, type: StructureType.String, title: 'Title', value: 'more defined'
+            id: 1, type: StructureType.String, title: 'Black Title', value: 'more defined'
         })
         blockAddItem(this.model, 'paragraph', {
             id: 2,
@@ -55,6 +55,7 @@ export default class ProductPackageBigScreenTextsBox extends Vue {
             title: 'Paragraph',
             value: 'The A6 Series 4K UHD Smart TV is an entertainment must‐ have that features tons of built‐in apps via the Smart Platform - VIDAA, making it easier than ever to personalize your entertainment experience. Other details include DTS® Virtual:X™ for crisp audio, and Motion Rate 120 keeps up with the fastest sports, movies and gaming. The screen size also makes it ideal for smaller rooms and budgets.'
         })
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

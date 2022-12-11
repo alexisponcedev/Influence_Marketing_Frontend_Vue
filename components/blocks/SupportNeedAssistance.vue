@@ -42,6 +42,7 @@ export default class SupportNeedAssistance extends Vue {
         blockAddItem(this.model, 'link', {id: 3, type: StructureType.Url, title: 'Contact Us', value: '/contact'});
 
         blockRemoveItem(this.model, ['linkTitle']);
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

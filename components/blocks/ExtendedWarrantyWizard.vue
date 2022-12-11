@@ -15,23 +15,9 @@ export default class ExtendedWarrantyWizard extends Vue {
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any
 
-    // reset(oldValue: any = {}) {
-    //
-    //     if (oldValue && Object.keys(oldValue).length > 0) {
-    //         this.model = {
-    //             ...oldValue, ...{
-    //                 backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-    //             }
-    //         }
-    //     } else
-    //         this.model = {
-    //             terms: {id: 0, type: StructureType.Text, title: 'Terms and Conditions', value: ''}
-    //         }
-    // }
-
     mounted() {
-        // if (this.isEmpty) this.reset();
         blockAddItem(this.model, 'terms', {id: 0, type: StructureType.Text, title: 'Terms and Conditions', value: ''})
+        this.model = {... this.model};
     }
 
     get isEmpty(): Boolean {

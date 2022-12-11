@@ -309,7 +309,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deletePage(id)
+            .deletePage(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

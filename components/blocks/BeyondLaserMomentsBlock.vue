@@ -7,6 +7,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
+import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class BeyondLaserMomentsBlock extends Vue {
@@ -14,102 +15,68 @@ export default class BeyondLaserMomentsBlock extends Vue {
     @Prop({default: true}) readonly editable: Boolean | undefined;
     @VModel({type: Object}) model!: any;
 
-    reset(oldValue: any = {}) {
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue,
-                ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
-                    },
+
+    mounted() {
+        blockAddItem(this.model, 'text', {
+            id: 1,
+            type: StructureType.Text,
+            title: "Title",
+            value: "",
+        });
+        blockAddItem(this.model, 'list', {
+            id: 2,
+            type: StructureType.List,
+            newItem: {
+                image: {
+                    id: 0,
+                    type: StructureType.Image,
+                    title: "Image",
+                    src: "",
+                    alt: "",
                 },
-            };
-        } else
-            this.model = {
-                text: {
-                    id: 2,
-                    type: StructureType.Text,
+                title: {
+                    id: 1,
+                    type: StructureType.String,
                     title: "Title",
                     value: "",
                 },
-                list: {
-                    id: 0,
-                    type: StructureType.List,
-                    newItem: {
-                        image: {
-                            id: 0,
-                            type: StructureType.Image,
-                            title: "Image",
-                            src: "",
-                            alt: "",
-                        },
-                        title: {
-                            id: 1,
-                            type: StructureType.String,
-                            title: "Title",
-                            value: "",
-                        },
-                        link: {
-                            id: 2,
-                            type: StructureType.Url,
-                            title: "",
-                            value: "",
-                        },
-                    },
-                    value: [
-                        {
-                            image: {
-                                id: 0,
-                                type: StructureType.Image,
-                                title: "Image",
-                                src: "",
-                                alt: "",
-                            },
-                            title: {
-                                id: 1,
-                                type: StructureType.String,
-                                title: "Title",
-                                value: "",
-                            },
-                            link: {
-                                id: 2,
-                                type: StructureType.Url,
-                                title: "",
-                                value: "",
-                            },
-                        },
-                    ],
+                link: {
+                    id: 2,
+                    type: StructureType.Url,
+                    title: "",
+                    value: "",
                 },
-            };
-    }
-
-    mounted() {
-        if (this.isEmpty) this.reset();
+            },
+            value: [
+                {
+                    image: {
+                        id: 0,
+                        type: StructureType.Image,
+                        title: "Image",
+                        src: "",
+                        alt: "",
+                    },
+                    title: {
+                        id: 1,
+                        type: StructureType.String,
+                        title: "Title",
+                        value: "",
+                    },
+                    link: {
+                        id: 2,
+                        type: StructureType.Url,
+                        title: "",
+                        value: "",
+                    },
+                },
+            ],
+        });
+        blockAddItem(this.model, 'image', {id: 3, type: StructureType.Image, title: 'Image', src: '', alt: ''});
+        this.model = {...this.model}
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
-    }
-
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type)
-            this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = "";
-            this.model[name].alt = "Image Alt";
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
     }
 }
 </script>

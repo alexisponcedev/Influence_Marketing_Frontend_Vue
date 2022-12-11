@@ -139,6 +139,7 @@ export default class BlockProductNewsBox extends Vue {
                 }
             ]
         })
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {
