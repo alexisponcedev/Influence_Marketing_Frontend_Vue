@@ -45,6 +45,7 @@ export default class BlockProductSupportRegister extends Vue {
         });
         blockAddItem(this.model, 'modelText', {id: 4, type: StructureType.Text, title: 'Modal Text', value: ''});
         blockRemoveItem(this.model, ['submitURL']);
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

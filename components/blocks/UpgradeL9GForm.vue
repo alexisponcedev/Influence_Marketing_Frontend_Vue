@@ -18,6 +18,7 @@ export default class UpgradeL9GForm extends Vue {
     mounted() {
         blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''});
         blockAddItem(this.model, 'rule', {id: 2, type: StructureType.SimpleText, title: 'Rule', value: ''});
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

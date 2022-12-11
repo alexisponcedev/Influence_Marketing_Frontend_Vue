@@ -498,16 +498,16 @@ export default class PageForm extends Vue {
     }
 
     async lock() {
-        Api.Page.lockPage(+this.$route.params.id!).then(response => {
-            console.log(response);
+        await Api.Page.lockPage(this.Page.id!).then(() => {
             this.Page.locked_by = this.userId
         });
     }
 
     async unlock() {
-        Api.Page.unlockPage(this.Page.id!).then(() => {
-            this.Page.locked_by = 0;
-        });
+        if (this.Page.id! > 0)
+            Api.Page.unlockPage(this.Page.id!).then(() => {
+                this.Page.locked_by = 0;
+            });
     }
 }
 </script>
