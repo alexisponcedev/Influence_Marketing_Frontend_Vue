@@ -571,7 +571,7 @@ export const BLOCKS = () => {
                     },
                     {
                         name: "UHDAbilityBox",
-                        title: "UHD News box",
+                        title: "UHD Ability Box",
                         image: "UHDAbilityBox.png",
                         category: "TextBox",
                     },
