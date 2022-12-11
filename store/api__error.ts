@@ -2,20 +2,19 @@ import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
-    Template,
     Configuration,
-    TemplateResource,
-    TemplateApiFactory,
+    ErrorResource,
+    ErrorApiFactory, PageResource,
 } from "@/repositories";
 
 @Module({
-    name: "api__template",
+    name: "api__error",
     stateFactory: true,
     namespaced: true,
 })
-export default class api__template extends VuexModule {
+export default class api__error extends VuexModule {
     loading: Boolean = false;
-    all: Array<TemplateResource> = [];
+    all: Array<ErrorResource> = [];
 
     @Mutation
     setLoading(status: Boolean) {
@@ -23,19 +22,26 @@ export default class api__template extends VuexModule {
     }
 
     @Mutation
-    updateAll(all: Array<TemplateResource>) {
+    updateAll(all: Array<ErrorResource>) {
         this.all = all;
+    }
+
+    @Mutation
+    updateItem(item: ErrorResource) {
+        this.all = this.all.map((i: PageResource) => {
+            return i.id === item.id ? item : i;
+        });
     }
 
     @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
-        const response = await TemplateApiFactory(
+        const response = await ErrorApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .templateList(getActiveBrand())
+            .errorList(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -50,28 +56,32 @@ export default class api__template extends VuexModule {
     @Action
     async get(id: number) {
         this.setLoading(true);
-        const response = await TemplateApiFactory(
+        const response = await ErrorApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getTemplate(getActiveBrand(), id)
+            .getError(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
-        if (response && ResponseHandler.checkResponse(response))
-            return response.data;
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data.data;
         return {};
     }
 
-    @Action
-    async create(template: Template) {
+    @Action({commit: "updateItem"})
+    async setAsDone(id: number) {
         this.setLoading(true);
-        const response = await TemplateApiFactory(
+        const response = await ErrorApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addTemplate(getActiveBrand(), template)
+            .setAsDone(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -83,43 +93,4 @@ export default class api__template extends VuexModule {
         return {};
     }
 
-    @Action
-    async update(payload: { id: number; Template: Template }) {
-        this.setLoading(true);
-        const response = await TemplateApiFactory(
-            new Configuration({
-                accessToken: localStorage.getItem("access_token") || "",
-            })
-        )
-            .updateTemplate(getActiveBrand(), payload.id, payload.Template)
-            .catch((error) => ResponseHandler.ErrorHandler(error))
-            .finally(() => this.setLoading(false));
-        if (
-            response &&
-            response.data &&
-            ResponseHandler.checkResponse(response)
-        )
-            return response.data;
-        return {};
-    }
-
-    @Action
-    async delete(id: number) {
-        this.setLoading(true);
-        const response = await TemplateApiFactory(
-            new Configuration({
-                accessToken: localStorage.getItem("access_token") || "",
-            })
-        )
-            .deleteTemplate(getActiveBrand(), id)
-            .catch((error) => ResponseHandler.ErrorHandler(error))
-            .finally(() => this.setLoading(false));
-        if (
-            response &&
-            response.data &&
-            ResponseHandler.checkResponse(response)
-        )
-            return response.data;
-        return {};
-    }
 }

@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -47,7 +47,7 @@ export default class api__category extends VuexModule {
         });
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await CategoryApiFactory(
@@ -75,7 +75,7 @@ export default class api__category extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            ._0fd985657bea3b2f3a919bdc16fec5b9(id)
+            ._0fd985657bea3b2f3a919bdc16fec5b9(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -87,7 +87,7 @@ export default class api__category extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async create(category: Category) {
         this.setLoading(true);
         const response = await CategoryApiFactory(
@@ -107,7 +107,7 @@ export default class api__category extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "updateItem" })
+    @Action({commit: "updateItem"})
     async update(payload: { id: number; category: Category }) {
         this.setLoading(true);
         const response = await CategoryApiFactory(
@@ -131,7 +131,7 @@ export default class api__category extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "deleteItem" })
+    @Action({commit: "deleteItem"})
     async delete(id: number) {
         this.setLoading(true);
         const response = await CategoryApiFactory(
@@ -139,7 +139,7 @@ export default class api__category extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .c22ffb01fe96cd5baf6a4174466b2672(id)
+            .c22ffb01fe96cd5baf6a4174466b2672(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         // if (response && response.data && ResponseHandler.checkResponse(response))

@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -33,7 +33,7 @@ export default class api__setting extends VuexModule {
         return this.all.find((i) => i.key === key)?.value;
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await SettingApiFactory(

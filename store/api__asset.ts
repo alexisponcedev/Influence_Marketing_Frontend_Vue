@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -27,7 +27,7 @@ export default class api__asset extends VuexModule {
         this.all = all;
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await AssetApiFactory(
@@ -47,7 +47,7 @@ export default class api__asset extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async searchAssets(search: string) {
         this.setLoading(true);
         const response: any = await AssetApiFactory(
@@ -55,7 +55,7 @@ export default class api__asset extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .doSearchAsset(search)
+            .doSearchAsset(getActiveBrand(), search)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -75,7 +75,7 @@ export default class api__asset extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getAsset(id)
+            .getAsset(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -135,7 +135,7 @@ export default class api__asset extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteAsset(id)
+            .deleteAsset(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

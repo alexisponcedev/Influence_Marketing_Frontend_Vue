@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -27,7 +27,7 @@ export default class api__menu extends VuexModule {
         this.all = all;
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await MenuApiFactory(
@@ -65,7 +65,7 @@ export default class api__menu extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getMenu(id)
+            .getMenu(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -125,7 +125,7 @@ export default class api__menu extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteMenu(id)
+            .deleteMenu(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
