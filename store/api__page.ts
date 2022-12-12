@@ -1,4 +1,4 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -90,8 +90,8 @@ export default class api__page extends VuexModule {
         ];
     }
 
-    @Action({commit: "updateAll"})
-    @Action({commit: "updateRoutes"})
+    @Action({ commit: "updateAll" })
+    @Action({ commit: "updateRoutes" })
     async getAll() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -111,7 +111,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getDynamicPages() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -131,7 +131,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({commit: "updateRoutes"})
+    @Action({ commit: "updateRoutes" })
     async getRoutes() {
         this.setLoading(true);
         const response: any = await PageApiFactory(
@@ -151,7 +151,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({commit: "updateRoutes"})
+    @Action({ commit: "updateRoutes" })
     clearRoutes() {
         return [];
     }
@@ -164,7 +164,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPage(getActiveBrand() , id)
+            .getPage(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -187,7 +187,11 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPageByModelTypeModelId(getActiveBrand() , payload.model_type, payload.model_id)
+            .getPageByModelTypeModelId(
+                getActiveBrand(),
+                payload.model_type,
+                payload.model_id
+            )
             .catch((error) => {
                 console.log(error);
             })
@@ -201,7 +205,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({commit: "addItem"})
+    @Action({ commit: "addItem" })
     async create(Page: Page) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -229,7 +233,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updatePageDraft(getActiveBrand() , Number(draft.page_id), draft)
+            .updatePageDraft(getActiveBrand(), Number(draft.page_id), draft)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -249,7 +253,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPageDraft(getActiveBrand() , id)
+            .getPageDraft(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -269,7 +273,11 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updatePageWidgets(getActiveBrand() , Number(widgets.page_id), widgets)
+            .updatePageWidgets(
+                getActiveBrand(),
+                Number(widgets.page_id),
+                widgets
+            )
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -281,7 +289,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({commit: "updateItem"})
+    @Action({ commit: "updateItem" })
     async update(payload: { id: number; Page: Page }) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -301,7 +309,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({commit: "deleteItem"})
+    @Action({ commit: "deleteItem" })
     async delete(id: number) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -329,7 +337,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .doDeploy()
+            .doDeploy(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -341,7 +349,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({commit: "addItem"})
+    @Action({ commit: "addItem" })
     async createPDP(payload: {
         product: any;
         type: string;
@@ -370,13 +378,13 @@ export default class api__page extends VuexModule {
                 title: payload.product.name,
                 route,
                 meta: [
-                    {rel: "blank", name: "title", content: ""},
+                    { rel: "blank", name: "title", content: "" },
                     {
                         rel: "blank",
                         name: "description",
                         content: "Hisense USA",
                     },
-                    {rel: "blank", name: "robots", content: "index"},
+                    { rel: "blank", name: "robots", content: "index" },
 
                     {
                         rel: 'property="og:site_name"',
@@ -436,7 +444,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .lockPage(getActiveBrand() , id)
+            .lockPage(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -456,7 +464,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .unLockPage(getActiveBrand() , id)
+            .unLockPage(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

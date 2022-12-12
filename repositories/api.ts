@@ -2206,7 +2206,7 @@ export interface Post {
      */
     'status'?: number;
 
-    'page'? : PageResource;
+    'page' ? : PageResource;
 }
 /**
  * Post List Resource model
@@ -7813,11 +7813,14 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelName Model Name
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHistoriesByModelName: async (modelName: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getHistoriesByModelName: async (brandId: number, modelName: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getHistoriesByModelName', 'brandId', brandId)
             // verify required parameter 'modelName' is not null or undefined
             assertParamExists('getHistoriesByModelName', 'modelName', modelName)
             const localVarPath = `/history/getHistories/{modelName}`
@@ -7837,6 +7840,10 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7850,12 +7857,15 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelName Model Name
          * @param {number} modelId Model Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHistoryByModelNameModelId: async (modelName: string, modelId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getHistoryByModelNameModelId: async (brandId: number, modelName: string, modelId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getHistoryByModelNameModelId', 'brandId', brandId)
             // verify required parameter 'modelName' is not null or undefined
             assertParamExists('getHistoryByModelNameModelId', 'modelName', modelName)
             // verify required parameter 'modelId' is not null or undefined
@@ -7878,6 +7888,10 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7891,11 +7905,14 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {HistoryRequest} historyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        historyTitleUpdate: async (historyRequest: HistoryRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        historyTitleUpdate: async (brandId: number, historyRequest: HistoryRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('historyTitleUpdate', 'brandId', brandId)
             // verify required parameter 'historyRequest' is not null or undefined
             assertParamExists('historyTitleUpdate', 'historyRequest', historyRequest)
             const localVarPath = `/history/titleUpdate`;
@@ -7914,6 +7931,10 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -7930,11 +7951,14 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} id History ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        showHistory: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        showHistory: async (brandId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('showHistory', 'brandId', brandId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('showHistory', 'id', id)
             const localVarPath = `/history/{id}`
@@ -7953,6 +7977,10 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -7987,43 +8015,47 @@ export const HistoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelName Model Name
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getHistoriesByModelName(modelName: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getHistoriesByModelName(modelName, options);
+        async getHistoriesByModelName(brandId: number, modelName: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getHistoriesByModelName(brandId, modelName, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelName Model Name
          * @param {number} modelId Model Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getHistoryByModelNameModelId(modelName: string, modelId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getHistoryByModelNameModelId(modelName, modelId, options);
+        async getHistoryByModelNameModelId(brandId: number, modelName: string, modelId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getHistoryByModelNameModelId(brandId, modelName, modelId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {HistoryRequest} historyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async historyTitleUpdate(historyRequest: HistoryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.historyTitleUpdate(historyRequest, options);
+        async historyTitleUpdate(brandId: number, historyRequest: HistoryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.historyTitleUpdate(brandId, historyRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} id History ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async showHistory(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.showHistory(id, options);
+        async showHistory(brandId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.showHistory(brandId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -8047,40 +8079,44 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelName Model Name
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHistoriesByModelName(modelName: string, options?: any): AxiosPromise<InlineResponse20030> {
-            return localVarFp.getHistoriesByModelName(modelName, options).then((request) => request(axios, basePath));
+        getHistoriesByModelName(brandId: number, modelName: string, options?: any): AxiosPromise<InlineResponse20030> {
+            return localVarFp.getHistoriesByModelName(brandId, modelName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelName Model Name
          * @param {number} modelId Model Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHistoryByModelNameModelId(modelName: string, modelId: number, options?: any): AxiosPromise<InlineResponse20030> {
-            return localVarFp.getHistoryByModelNameModelId(modelName, modelId, options).then((request) => request(axios, basePath));
+        getHistoryByModelNameModelId(brandId: number, modelName: string, modelId: number, options?: any): AxiosPromise<InlineResponse20030> {
+            return localVarFp.getHistoryByModelNameModelId(brandId, modelName, modelId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {HistoryRequest} historyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        historyTitleUpdate(historyRequest: HistoryRequest, options?: any): AxiosPromise<any> {
-            return localVarFp.historyTitleUpdate(historyRequest, options).then((request) => request(axios, basePath));
+        historyTitleUpdate(brandId: number, historyRequest: HistoryRequest, options?: any): AxiosPromise<any> {
+            return localVarFp.historyTitleUpdate(brandId, historyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} id History ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        showHistory(id: number, options?: any): AxiosPromise<InlineResponse20030> {
-            return localVarFp.showHistory(id, options).then((request) => request(axios, basePath));
+        showHistory(brandId: number, id: number, options?: any): AxiosPromise<InlineResponse20030> {
+            return localVarFp.showHistory(brandId, id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -8105,47 +8141,51 @@ export class HistoryApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {string} modelName Model Name
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public getHistoriesByModelName(modelName: string, options?: AxiosRequestConfig) {
-        return HistoryApiFp(this.configuration).getHistoriesByModelName(modelName, options).then((request) => request(this.axios, this.basePath));
+    public getHistoriesByModelName(brandId: number, modelName: string, options?: AxiosRequestConfig) {
+        return HistoryApiFp(this.configuration).getHistoriesByModelName(brandId, modelName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {string} modelName Model Name
      * @param {number} modelId Model Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public getHistoryByModelNameModelId(modelName: string, modelId: number, options?: AxiosRequestConfig) {
-        return HistoryApiFp(this.configuration).getHistoryByModelNameModelId(modelName, modelId, options).then((request) => request(this.axios, this.basePath));
+    public getHistoryByModelNameModelId(brandId: number, modelName: string, modelId: number, options?: AxiosRequestConfig) {
+        return HistoryApiFp(this.configuration).getHistoryByModelNameModelId(brandId, modelName, modelId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {HistoryRequest} historyRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public historyTitleUpdate(historyRequest: HistoryRequest, options?: AxiosRequestConfig) {
-        return HistoryApiFp(this.configuration).historyTitleUpdate(historyRequest, options).then((request) => request(this.axios, this.basePath));
+    public historyTitleUpdate(brandId: number, historyRequest: HistoryRequest, options?: AxiosRequestConfig) {
+        return HistoryApiFp(this.configuration).historyTitleUpdate(brandId, historyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} id History ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public showHistory(id: number, options?: AxiosRequestConfig) {
-        return HistoryApiFp(this.configuration).showHistory(id, options).then((request) => request(this.axios, this.basePath));
+    public showHistory(brandId: number, id: number, options?: AxiosRequestConfig) {
+        return HistoryApiFp(this.configuration).showHistory(brandId, id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -9102,10 +9142,13 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        doDeploy: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        doDeploy: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('doDeploy', 'brandId', brandId)
             const localVarPath = `/page/doDeploy`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9121,6 +9164,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -9745,11 +9792,12 @@ export const PageApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async doDeploy(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.doDeploy(options);
+        async doDeploy(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.doDeploy(brandId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9928,11 +9976,12 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        doDeploy(options?: any): AxiosPromise<any> {
-            return localVarFp.doDeploy(options).then((request) => request(axios, basePath));
+        doDeploy(brandId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.doDeploy(brandId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10101,12 +10150,13 @@ export class PageApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public doDeploy(options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).doDeploy(options).then((request) => request(this.axios, this.basePath));
+    public doDeploy(brandId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).doDeploy(brandId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11291,11 +11341,14 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRedirectsByPageId: async (pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRedirectsByPageId: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getRedirectsByPageId', 'brandId', brandId)
             // verify required parameter 'pageId' is not null or undefined
             assertParamExists('getRedirectsByPageId', 'pageId', pageId)
             const localVarPath = `/redirect/getRedirects/{pageId}`
@@ -11314,6 +11367,10 @@ export const RedirectApiAxiosParamCreator = function (configuration?: Configurat
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -11461,12 +11518,13 @@ export const RedirectApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRedirectsByPageId(pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20038>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getRedirectsByPageId(pageId, options);
+        async getRedirectsByPageId(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20038>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRedirectsByPageId(brandId, pageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11533,12 +11591,13 @@ export const RedirectApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRedirectsByPageId(pageId: number, options?: any): AxiosPromise<InlineResponse20038> {
-            return localVarFp.getRedirectsByPageId(pageId, options).then((request) => request(axios, basePath));
+        getRedirectsByPageId(brandId: number, pageId: number, options?: any): AxiosPromise<InlineResponse20038> {
+            return localVarFp.getRedirectsByPageId(brandId, pageId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11608,13 +11667,14 @@ export class RedirectApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} pageId Page ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RedirectApi
      */
-    public getRedirectsByPageId(pageId: number, options?: AxiosRequestConfig) {
-        return RedirectApiFp(this.configuration).getRedirectsByPageId(pageId, options).then((request) => request(this.axios, this.basePath));
+    public getRedirectsByPageId(brandId: number, pageId: number, options?: AxiosRequestConfig) {
+        return RedirectApiFp(this.configuration).getRedirectsByPageId(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

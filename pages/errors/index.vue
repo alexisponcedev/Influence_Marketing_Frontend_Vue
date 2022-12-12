@@ -46,7 +46,7 @@ export default class AllErrors extends Vue {
             { text: "", value: "actions", sortable: false, width: "0" },
         ],
         actions: [
-            // {
+            // {    
             //     type: "update",
             //     icon: "mdi-check-circle-outline",
             //     onClick: (Error: ErrorResource) => {
