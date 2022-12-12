@@ -14,7 +14,7 @@
             <v-col>
                 <v-card>
                     <table-standard :config="config" class="row-pointer" :items="Api.Error.all"
-                        :loading="Api.Error.loading" @click:row="(Error) => $router.push('/template/edit/' + Error.id)">
+                        :loading="Api.Error.loading">
                         <template #item.status="{ item }">
                             {{ item.title }}
                             <span v-if="item.status" class="tw-text-green-500">Yes</span>
