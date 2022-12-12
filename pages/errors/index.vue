@@ -47,6 +47,7 @@ export default class AllErrors extends Vue {
         headers: [
             {text: "Route", value: "route"},
             {text: "Message", value: "message"},
+            {text: "Created At", value: "created_at"},
             {text: "Fixed", value: "status"},
             {text: "", value: "actions", sortable: false, width: "0"},
         ],

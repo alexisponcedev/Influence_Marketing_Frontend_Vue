@@ -164,7 +164,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPage(id)
+            .getPage(getActiveBrand() , id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -249,7 +249,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPageDraft(id)
+            .getPageDraft(getActiveBrand() , id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
