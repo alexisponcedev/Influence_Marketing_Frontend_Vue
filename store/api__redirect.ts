@@ -56,7 +56,7 @@ export default class api__redirect extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getRedirectsByPageId(id)
+            .getRedirectsByPageId(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

@@ -1,4 +1,4 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
     Configuration,
@@ -47,7 +47,7 @@ export default class api__history extends VuexModule {
         });
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await HistoryApiFactory(
@@ -67,7 +67,7 @@ export default class api__history extends VuexModule {
         return [];
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getHistoryByModelNameModelId(payload: {
         model_id: number;
         model_name: string;
@@ -78,7 +78,11 @@ export default class api__history extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getHistoryByModelNameModelId(payload.model_name, payload.model_id)
+            .getHistoryByModelNameModelId(
+                getActiveBrand(),
+                payload.model_name,
+                payload.model_id
+            )
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -90,7 +94,7 @@ export default class api__history extends VuexModule {
         return [];
     }
 
-    @Action({commit: "updateItem"})
+    @Action({ commit: "updateItem" })
     async updateTitle(historyRequest: HistoryRequest) {
         this.setLoading(true);
         const response = await HistoryApiFactory(
@@ -98,7 +102,7 @@ export default class api__history extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .historyTitleUpdate(historyRequest)
+            .historyTitleUpdate(getActiveBrand(), historyRequest)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
