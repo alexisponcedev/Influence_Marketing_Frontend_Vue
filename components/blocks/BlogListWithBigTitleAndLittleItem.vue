@@ -19,7 +19,6 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
 
         blockAddItem(this.model, 'title', {id: 0, type: StructureType.Text, title: 'Title', value: ''});
         blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: 'Link', value: ''});
-        // blockAddItem(this.model, 'loadingLink', {id: 2, type: StructureType.Url, title: 'Loading Link', value: ''});
         blockAddItem(this.model, 'list', {
             id: 3, type: StructureType.List, title: 'List',
             newItem: {
@@ -38,7 +37,7 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
                         tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
                         link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
                     }
-                }
+                },
             },
             value: [
                 {

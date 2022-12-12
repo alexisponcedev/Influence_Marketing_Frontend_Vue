@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import {
     Configuration,
@@ -6,6 +6,7 @@ import {
     HistoryResource,
     HistoryApiFactory,
 } from "@/repositories";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 @Module({
     name: "api__history",
@@ -46,7 +47,7 @@ export default class api__history extends VuexModule {
         });
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await HistoryApiFactory(
@@ -54,7 +55,7 @@ export default class api__history extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getAllHistories()
+            .getAllHistories(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -66,7 +67,7 @@ export default class api__history extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getHistoryByModelNameModelId(payload: {
         model_id: number;
         model_name: string;
@@ -89,7 +90,7 @@ export default class api__history extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateItem" })
+    @Action({commit: "updateItem"})
     async updateTitle(historyRequest: HistoryRequest) {
         this.setLoading(true);
         const response = await HistoryApiFactory(

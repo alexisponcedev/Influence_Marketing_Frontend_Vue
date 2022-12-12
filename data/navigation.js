@@ -23,6 +23,12 @@ export const items = () => [
     group: "menu",
     to: "menu",
   },
+    {
+    title: "Errors",
+    icon: "mdi-bug",
+    group: "errors",
+    to: "errors",
+  },
   {
     title: "Redirection",
     icon: "mdi-undo-variant",

@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -47,7 +47,7 @@ export default class api__notification extends VuexModule {
         });
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -67,7 +67,7 @@ export default class api__notification extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateRoutes"})
     clearRoutes() {
         return [];
     }
@@ -80,7 +80,7 @@ export default class api__notification extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .showNotification(id)
+            .showNotification(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -92,7 +92,7 @@ export default class api__notification extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async create(Notification: Notification) {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -112,7 +112,7 @@ export default class api__notification extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "updateItem" })
+    @Action({commit: "updateItem"})
     async update(payload: { id: number; Notification: Notification }) {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -136,7 +136,7 @@ export default class api__notification extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "deleteItem" })
+    @Action({commit: "deleteItem"})
     async delete(id: number) {
         this.setLoading(true);
         const response = await NotificationApiFactory(
@@ -144,7 +144,7 @@ export default class api__notification extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteNotification(id)
+            .deleteNotification(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

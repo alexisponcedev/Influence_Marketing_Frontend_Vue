@@ -1,5 +1,5 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
-import { AuthApiFactory, Configuration } from "@/repositories";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import {AuthApiFactory, Configuration} from "@/repositories";
 import ResponseHandler from "@/utils/ResponseHandler";
 
 @Module({

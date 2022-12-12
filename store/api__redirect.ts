@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -27,7 +27,7 @@ export default class api__redirect extends VuexModule {
         this.all = all;
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await RedirectApiFactory(
@@ -48,7 +48,7 @@ export default class api__redirect extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getPageRedirects(id: number) {
         this.setLoading(true);
         const response = await RedirectApiFactory(
@@ -76,7 +76,7 @@ export default class api__redirect extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getRedirect(id)
+            .getRedirect(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -116,7 +116,7 @@ export default class api__redirect extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updateRedirect(payload.id, payload.Redirect)
+            .updateRedirect(getActiveBrand(), payload.id, payload.Redirect)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -136,7 +136,7 @@ export default class api__redirect extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteRedirect(id)
+            .deleteRedirect(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

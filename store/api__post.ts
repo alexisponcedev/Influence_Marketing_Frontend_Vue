@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -28,7 +28,7 @@ export default class api__post extends VuexModule {
         this.loading = status;
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getAll() {
         this.setLoading(true);
         const response = await PostApiFactory(
@@ -56,7 +56,7 @@ export default class api__post extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPost(id)
+            .getPost(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -116,7 +116,7 @@ export default class api__post extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deletePost(id)
+            .deletePost(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
