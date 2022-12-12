@@ -42,24 +42,24 @@ export default class AllErrors extends Vue {
             { text: "Route", value: "route" },
             { text: "Message", value: "message" },
             { text: "Created At", value: "created_at" },
-            // {text: "Fixed", value: "status"},
+            {text: "Fixed", value: "status"},
             { text: "", value: "actions", sortable: false, width: "0" },
         ],
         actions: [
-            // {    
-            //     type: "update",
-            //     icon: "mdi-check-circle-outline",
-            //     onClick: (Error: ErrorResource) => {
+            {    
+                type: "update",
+                icon: "mdi-check-circle-outline",
+                onClick: (Error: ErrorResource) => {
 
-            //         Api.Error.setAsDone(Error.id!);
-            //     },
-            // },
+                    Api.Error.setAsDone(Error.id!);
+                },
+            },
             {
                 type: "update",
                 icon: "mdi-content-copy",
                 onClick: (Error: ErrorResource) => {
                     try {
-                        let text = `Page : ${Error.route} \nmessage : ${Error.message}\ntime : ${Error.created_at}`;
+                        let text = `id : ${Error.id}\nPage : ${Error.route} \nmessage : ${Error.message}\ntime : ${Error.created_at}`;
                         navigator.clipboard.writeText(text)
                         AppStore.showSnackBar({
                             message: 'Item copied to Clipboard!'
