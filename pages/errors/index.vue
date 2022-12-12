@@ -42,7 +42,6 @@ import {Api, AppStore} from "@/store";
 export default class AllErrors extends Vue {
     Api = Api;
 
-
     config = {
         headers: [
             {text: "Route", value: "route"},
