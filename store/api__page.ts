@@ -187,7 +187,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getPageByModelTypeModelId(payload.model_type, payload.model_id)
+            .getPageByModelTypeModelId(getActiveBrand() , payload.model_type, payload.model_id)
             .catch((error) => {
                 console.log(error);
             })
@@ -229,7 +229,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updatePageDraft(Number(draft.page_id), draft)
+            .updatePageDraft(getActiveBrand() , Number(draft.page_id), draft)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -269,7 +269,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .updatePageWidgets(Number(widgets.page_id), widgets)
+            .updatePageWidgets(getActiveBrand() , Number(widgets.page_id), widgets)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -436,7 +436,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .lockPage(id)
+            .lockPage(getActiveBrand() , id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -456,7 +456,7 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .unLockPage(id)
+            .unLockPage(getActiveBrand() , id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

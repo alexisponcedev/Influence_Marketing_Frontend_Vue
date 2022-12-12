@@ -9259,12 +9259,15 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelType Model Type
          * @param {number} modelId Model Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPageByModelTypeModelId: async (modelType: string, modelId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPageByModelTypeModelId: async (brandId: number, modelType: string, modelId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getPageByModelTypeModelId', 'brandId', brandId)
             // verify required parameter 'modelType' is not null or undefined
             assertParamExists('getPageByModelTypeModelId', 'modelType', modelType)
             // verify required parameter 'modelId' is not null or undefined
@@ -9286,6 +9289,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -9384,11 +9391,14 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lockPage: async (pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        lockPage: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('lockPage', 'brandId', brandId)
             // verify required parameter 'pageId' is not null or undefined
             assertParamExists('lockPage', 'pageId', pageId)
             const localVarPath = `/page/lock/{pageId}`
@@ -9407,6 +9417,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -9505,11 +9519,14 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unLockPage: async (pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        unLockPage: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('unLockPage', 'brandId', brandId)
             // verify required parameter 'pageId' is not null or undefined
             assertParamExists('unLockPage', 'pageId', pageId)
             const localVarPath = `/page/unLock/{pageId}`
@@ -9528,6 +9545,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -9592,12 +9613,15 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {Draft} draft 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePageDraft: async (pageId: number, draft: Draft, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updatePageDraft: async (brandId: number, pageId: number, draft: Draft, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('updatePageDraft', 'brandId', brandId)
             // verify required parameter 'pageId' is not null or undefined
             assertParamExists('updatePageDraft', 'pageId', pageId)
             // verify required parameter 'draft' is not null or undefined
@@ -9619,6 +9643,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -9635,12 +9663,15 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {Widgets} widgets 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePageWidgets: async (pageId: number, widgets: Widgets, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updatePageWidgets: async (brandId: number, pageId: number, widgets: Widgets, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('updatePageWidgets', 'brandId', brandId)
             // verify required parameter 'pageId' is not null or undefined
             assertParamExists('updatePageWidgets', 'pageId', pageId)
             // verify required parameter 'widgets' is not null or undefined
@@ -9661,6 +9692,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
 
 
     
@@ -9750,13 +9785,14 @@ export const PageApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelType Model Type
          * @param {number} modelId Model Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPageByModelTypeModelId(modelType: string, modelId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20016>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPageByModelTypeModelId(modelType, modelId, options);
+        async getPageByModelTypeModelId(brandId: number, modelType: string, modelId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20016>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPageByModelTypeModelId(brandId, modelType, modelId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9783,12 +9819,13 @@ export const PageApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async lockPage(pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.lockPage(pageId, options);
+        async lockPage(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.lockPage(brandId, pageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9814,12 +9851,13 @@ export const PageApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unLockPage(pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.unLockPage(pageId, options);
+        async unLockPage(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unLockPage(brandId, pageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9836,24 +9874,26 @@ export const PageApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {Draft} draft 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePageDraft(pageId: number, draft: Draft, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePageDraft(pageId, draft, options);
+        async updatePageDraft(brandId: number, pageId: number, draft: Draft, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePageDraft(brandId, pageId, draft, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {Widgets} widgets 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePageWidgets(pageId: number, widgets: Widgets, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePageWidgets(pageId, widgets, options);
+        async updatePageWidgets(brandId: number, pageId: number, widgets: Widgets, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePageWidgets(brandId, pageId, widgets, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -9924,13 +9964,14 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {string} modelType Model Type
          * @param {number} modelId Model Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPageByModelTypeModelId(modelType: string, modelId: number, options?: any): AxiosPromise<InlineResponse20016> {
-            return localVarFp.getPageByModelTypeModelId(modelType, modelId, options).then((request) => request(axios, basePath));
+        getPageByModelTypeModelId(brandId: number, modelType: string, modelId: number, options?: any): AxiosPromise<InlineResponse20016> {
+            return localVarFp.getPageByModelTypeModelId(brandId, modelType, modelId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9954,12 +9995,13 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lockPage(pageId: number, options?: any): AxiosPromise<any> {
-            return localVarFp.lockPage(pageId, options).then((request) => request(axios, basePath));
+        lockPage(brandId: number, pageId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.lockPage(brandId, pageId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9982,12 +10024,13 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unLockPage(pageId: number, options?: any): AxiosPromise<any> {
-            return localVarFp.unLockPage(pageId, options).then((request) => request(axios, basePath));
+        unLockPage(brandId: number, pageId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.unLockPage(brandId, pageId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10002,23 +10045,25 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {Draft} draft 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePageDraft(pageId: number, draft: Draft, options?: any): AxiosPromise<any> {
-            return localVarFp.updatePageDraft(pageId, draft, options).then((request) => request(axios, basePath));
+        updatePageDraft(brandId: number, pageId: number, draft: Draft, options?: any): AxiosPromise<any> {
+            return localVarFp.updatePageDraft(brandId, pageId, draft, options).then((request) => request(axios, basePath));
         },
         /**
          * 
+         * @param {number} brandId Brand ID
          * @param {number} pageId Page ID
          * @param {Widgets} widgets 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePageWidgets(pageId: number, widgets: Widgets, options?: any): AxiosPromise<any> {
-            return localVarFp.updatePageWidgets(pageId, widgets, options).then((request) => request(axios, basePath));
+        updatePageWidgets(brandId: number, pageId: number, widgets: Widgets, options?: any): AxiosPromise<any> {
+            return localVarFp.updatePageWidgets(brandId, pageId, widgets, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10100,14 +10145,15 @@ export class PageApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {string} modelType Model Type
      * @param {number} modelId Model Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public getPageByModelTypeModelId(modelType: string, modelId: number, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).getPageByModelTypeModelId(modelType, modelId, options).then((request) => request(this.axios, this.basePath));
+    public getPageByModelTypeModelId(brandId: number, modelType: string, modelId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).getPageByModelTypeModelId(brandId, modelType, modelId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10136,13 +10182,14 @@ export class PageApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} pageId Page ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public lockPage(pageId: number, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).lockPage(pageId, options).then((request) => request(this.axios, this.basePath));
+    public lockPage(brandId: number, pageId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).lockPage(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10170,13 +10217,14 @@ export class PageApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} pageId Page ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public unLockPage(pageId: number, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).unLockPage(pageId, options).then((request) => request(this.axios, this.basePath));
+    public unLockPage(brandId: number, pageId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).unLockPage(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10194,26 +10242,28 @@ export class PageApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} pageId Page ID
      * @param {Draft} draft 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public updatePageDraft(pageId: number, draft: Draft, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).updatePageDraft(pageId, draft, options).then((request) => request(this.axios, this.basePath));
+    public updatePageDraft(brandId: number, pageId: number, draft: Draft, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).updatePageDraft(brandId, pageId, draft, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
+     * @param {number} brandId Brand ID
      * @param {number} pageId Page ID
      * @param {Widgets} widgets 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public updatePageWidgets(pageId: number, widgets: Widgets, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).updatePageWidgets(pageId, widgets, options).then((request) => request(this.axios, this.basePath));
+    public updatePageWidgets(brandId: number, pageId: number, widgets: Widgets, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).updatePageWidgets(brandId, pageId, widgets, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
