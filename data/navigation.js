@@ -24,7 +24,7 @@ export const items = () => [
     to: "menu",
   },
     {
-    title: "Errors",
+    title: "Error Logs",
     icon: "mdi-bug",
     group: "errors",
     to: "errors",
