@@ -9,6 +9,7 @@ import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Api} from "~/utils/store-accessor";
 import {CategoryResource} from "~/repositories";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component
 export default class ProductsGridV2 extends Vue {
@@ -51,7 +52,7 @@ export default class ProductsGridV2 extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id='+getActiveBrand())).data
         if (this.isEmpty) this.reset();
         else {
             this.model.category.items = this.categories;
@@ -70,7 +71,7 @@ export default class ProductsGridV2 extends Vue {
 
         this.loadingFilters = true;
         this.loadingProducts = true;
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProducts/' + category_id)
+        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProducts/' + category_id + '?brand_id=' + getActiveBrand() )
             .then(res => {
                 this.products = res.data;
                 this.loadingProducts = false;
@@ -79,7 +80,7 @@ export default class ProductsGridV2 extends Vue {
             this.loadingProducts = false;
         })
 
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategoryFilterTypes/' + category_id)
+        this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategoryFilterTypes/' + category_id + '?brand_id=' + getActiveBrand())
             .then(res => {
                 this.loadingFilters = false;
                 this.filterTypes = res.filterTypes;

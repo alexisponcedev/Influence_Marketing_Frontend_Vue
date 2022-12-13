@@ -108,6 +108,7 @@ import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 import {SettingEnum} from "~/interfaces/SettingEnum";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component({
     components: {HoverButton},
@@ -311,7 +312,7 @@ export default class PageForm extends Vue {
     }
 
     async getProductInfo() {
-        return this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.Page!.model_id)
+        return this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.Page!.model_id + '?brand_id=' + getActiveBrand())
             .then(res => {
                 if (res && res.data) return res.data
                 return {};

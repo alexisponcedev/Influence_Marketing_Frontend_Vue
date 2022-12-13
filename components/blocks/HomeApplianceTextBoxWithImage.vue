@@ -74,16 +74,6 @@ export default class BlockHomeApplianceTextBoxWithImage extends Vue {
         // this.loadProduct();
     }
 
-    loadProduct() {
-        // this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.product_id )
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/781')
-            .then(res => {
-                this.product = res.data;
-            }).finally(() => {
-            this.loadingProduct = false;
-        })
-    }
-
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
