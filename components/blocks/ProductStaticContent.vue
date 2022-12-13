@@ -55,7 +55,7 @@ export default class BlockProductStaticContent extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
     get isEmpty(): Boolean {

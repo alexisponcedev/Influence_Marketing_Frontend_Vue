@@ -64,7 +64,7 @@ export default class BlockSmartInfoHead extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
     get isEmpty(): Boolean {

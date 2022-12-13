@@ -115,7 +115,7 @@ export default class BlockLaserImageAndTextBox extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
     get isEmpty(): Boolean {

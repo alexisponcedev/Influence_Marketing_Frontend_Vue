@@ -56,17 +56,6 @@ export default class ProductInfoAndSliderBoxV2 extends Vue {
             value: "The Tv that's great for everyone"
         })
         this.model = {...this.model};
-
-
-    }
-
-    loadProduct() {
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/781')
-            .then(res => {
-                this.product = res.data;
-            }).finally(() => {
-            this.loadingProduct = false;
-        })
     }
 
     get isEmpty(): Boolean {

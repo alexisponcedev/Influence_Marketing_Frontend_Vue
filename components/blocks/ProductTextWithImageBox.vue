@@ -58,7 +58,7 @@ export default class BlockProductTextWithImageBox extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
 

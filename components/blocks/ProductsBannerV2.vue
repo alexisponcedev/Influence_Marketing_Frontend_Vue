@@ -54,7 +54,7 @@ export default class ProductsBannerV2 extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
 

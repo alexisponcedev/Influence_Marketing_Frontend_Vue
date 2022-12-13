@@ -56,7 +56,7 @@ export default class ProductInfoAndSliderBox extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
     get isEmpty(): Boolean {

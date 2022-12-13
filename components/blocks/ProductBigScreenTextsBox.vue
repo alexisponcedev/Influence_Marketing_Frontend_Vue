@@ -68,7 +68,7 @@ export default class BlockProductBigScreenTextsBox extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
 

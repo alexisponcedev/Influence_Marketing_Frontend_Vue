@@ -77,7 +77,7 @@ export default class BlockMoreTvLessTalkForm extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-        // this.loadProduct();
+
     }
 
     get isEmpty(): Boolean {
