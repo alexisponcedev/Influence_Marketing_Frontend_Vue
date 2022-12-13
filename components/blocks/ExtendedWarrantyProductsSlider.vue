@@ -7,6 +7,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 
 @Component
@@ -65,7 +66,7 @@ export default class ExtendedWarrantyProductsSlider extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories')).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id=' + getActiveBrand())).data
         if (this.isEmpty) this.reset();
         else {
             this.model.list.value.forEach((item: any) => {
