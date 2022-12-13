@@ -17,15 +17,18 @@ export default class GoogleTvTops extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
+        blockAddItem(this.model, 'title', {id: 0, type: StructureType.String, title: 'Title', value: ''})
         blockAddItem(this.model, 'list', {
             id: 1, type: StructureType.List, title: 'List', newItem: {
                 image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                text: {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''},
+                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                text: {id: 2, type: StructureType.SimpleText, title: 'Text', value: ''},
             },
             value: [
                 {
                     image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                    text: {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''},
+                    title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                    text: {id: 2, type: StructureType.SimpleText, title: 'Text', value: ''},
                 }
             ]
         });

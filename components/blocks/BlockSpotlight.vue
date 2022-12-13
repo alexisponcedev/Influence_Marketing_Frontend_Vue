@@ -90,6 +90,7 @@
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import getActiveBrand from "~/utils/getActiveBrand";
+import blockAddItem from "~/utils/blockAddItem";
 
 enum ProductCollectionType {
     Series = 'series',
@@ -139,6 +140,34 @@ export default class BlockSpotlight extends Vue {
     }
 
     async mounted() {
+
+        blockAddItem(this.model, 'title', {
+            id: 0,
+            type: StructureType.String,
+            title: 'Title',
+            value: 'Spotlight Releases'
+        })
+        blockAddItem(this.model, 'tabs', {
+            type: StructureType.Null,
+            newItem: {
+                title: 'Televisions',
+                category: '',
+                type: ProductCollectionType.Series,
+                serverData: [],
+                items: []
+            },
+            value: [
+                {
+                    title: 'Televisions',
+                    category: '',
+                    type: ProductCollectionType.Series,
+                    serverData: [],
+                    items: []
+                }],
+        });
+
+        this.model = {...this.model};
+
         this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id=' + getActiveBrand())).data
         if (this.isEmpty) this.reset();
     }
