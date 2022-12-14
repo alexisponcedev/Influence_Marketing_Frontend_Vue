@@ -66,7 +66,7 @@ export const items = () => [
   {
     title: "Settings",
     icon: "mdi-cog-outline",
-    group: "Settings",
-    to: "Settings",
+    group: "settings",
+    to: "settings",
   },
 ];
