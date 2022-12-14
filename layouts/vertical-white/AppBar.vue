@@ -173,7 +173,7 @@ export default class VerticallAppBar extends Vue {
   userDrawerForceUpdateIndex = 0;
 
   logoutUser() {
-    this.$router.push("/Auth/Logout");
+    this.$router.push("/auth/logout");
   }
 
   goToPortal() {

@@ -11,7 +11,7 @@ export default class Index extends Vue {
         if (this.$route.query.brand)
             localStorage.setItem("active_brand", "" + this.$route.query.brand);
         this.$router.push(
-            "/Auth" +
+            "/auth" +
             (!this.$route.query.token ? "" : "?token=" + this.$route.query.token)
         );
     }

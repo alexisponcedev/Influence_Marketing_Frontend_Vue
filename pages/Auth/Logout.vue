@@ -14,7 +14,7 @@ export default class Logout extends Vue {
         localStorage.removeItem("active_brand_id");
         if (process.env.PORTAL_URL)
             window.location.href = process.env.PORTAL_URL + "?logout";
-        else this.$router.push("/Auth");
+        else this.$router.push("/auth");
     }
 }
 </script>
