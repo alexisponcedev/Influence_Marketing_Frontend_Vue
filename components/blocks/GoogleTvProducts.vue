@@ -72,13 +72,12 @@ export default class ProductPackagesSlider extends Vue {
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any
 
-    category_id: number = 0;
+    category_id: number = 3;
 
 
     async mounted() {
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
         blockAddItem(this.model, 'link', {id: 2, type: StructureType.Url, title: "Link", value: ''});
-
         blockAddItem(this.model, 'list', {
             id: 0, title: 'Related Items List',
             type: StructureType.Null,
@@ -89,7 +88,7 @@ export default class ProductPackagesSlider extends Vue {
             },
         })
         if (this.page.model_type === 'product') {
-            await this.getCategoryId();
+            // await this.getCategoryId();
             await this.getItems();
         }
 
@@ -98,12 +97,12 @@ export default class ProductPackagesSlider extends Vue {
     }
 
     async getCategoryId() {
-        try {
-            let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
-            this.category_id = product && product.hasOwnProperty('Category') ? product.Category.id : 0;
-        } catch (e) {
-            console.log(e);
-        }
+        // try {
+        //     let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
+        //     this.category_id = product && product.hasOwnProperty('Category') ? product.Category.id : 0;
+        // } catch (e) {
+        //     console.log(e);
+        // }
     }
 
     async getItems() {
