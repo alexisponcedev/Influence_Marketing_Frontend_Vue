@@ -1,7 +1,7 @@
 <template>
     <div class="tw-p-3" v-if="!isEmpty">
         <h6>Google Tv Products</h6>
-        <div class="tw-mt-1 tw-flex tw-items-center tw-space-x-2" v-if="correctPage">
+        <div class="tw-mt-1 tw-flex tw-items-center tw-space-x-2" v-if="correctPage || true">
             <div class="tw-w-28">Items :</div>
             <div class="tw-flex-1">
                 <div
@@ -87,23 +87,23 @@ export default class ProductPackagesSlider extends Vue {
                 items: []
             },
         })
-        if (this.page.model_type === 'product') {
+        // if (this.page.model_type === 'product') {
             // await this.getCategoryId();
             await this.getItems();
-        }
+        // }
 
         this.model = {...this.model}; //to enable reactivity;
 
     }
 
-    async getCategoryId() {
+    // async getCategoryId() {
         // try {
         //     let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
         //     this.category_id = product && product.hasOwnProperty('Category') ? product.Category.id : 0;
         // } catch (e) {
         //     console.log(e);
         // }
-    }
+    // }
 
     async getItems() {
         if (this.category_id > 0) {
