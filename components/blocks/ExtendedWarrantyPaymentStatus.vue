@@ -37,7 +37,9 @@ export default class ExtendedWarrantyPaymentStatus extends Vue {
                         {
                             image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
                             text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Success'},
-                            link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
+                            link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
+                            termsLink: { id: 3, type: StructureType.Url, title: '', value: '' },
+                            
                         },
                         {
                             image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
