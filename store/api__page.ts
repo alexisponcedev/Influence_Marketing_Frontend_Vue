@@ -475,4 +475,66 @@ export default class api__page extends VuexModule {
             return response.data;
         return {};
     }
+
+    @Action({ commit: "updateAll" })
+    async getDeletedPages() {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .getTrashedPages(getActiveBrand())
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data.data;
+        return [];
+    }
+
+    @Action({ commit: "deleteItem" })
+    async restorePage(id: number) {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .restorePage(getActiveBrand(), id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
+
+    @Action({ commit: "deleteItem" })
+    async forceDelete(id: number) {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .forceDeletePage(getActiveBrand(), id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
+
+
 }

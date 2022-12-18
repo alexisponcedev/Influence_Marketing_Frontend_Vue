@@ -33,7 +33,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Setting} from "@/repositories";
+import {InlineObject, Setting} from "@/repositories";
 import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
@@ -130,7 +130,7 @@ export default class EntityForm extends Vue {
                     Setting: this.Setting,
                 });
                 Api.Setting.getAll();
-            } else await Api.Setting.create(this.Setting);
+            } else await Api.Setting.create([this.Setting] as InlineObject);
 
             if (!this.editMode) this.$router.push("/settings");
         }

@@ -1,3 +1,4 @@
+import { InlineObject } from './../repositories/api';
 import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
@@ -61,7 +62,7 @@ export default class api__setting extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getSetting(id)
+            .getSetting(getActiveBrand() ,id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && ResponseHandler.checkResponse(response))
@@ -77,7 +78,7 @@ export default class api__setting extends VuexModule {
     }
 
     @Action
-    async create(setting: Setting) {
+    async create(setting: InlineObject) {
         this.setLoading(true);
         const response = await SettingApiFactory(
             new Configuration({
@@ -124,7 +125,7 @@ export default class api__setting extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteSetting(id)
+            .deleteSetting(getActiveBrand() , id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
