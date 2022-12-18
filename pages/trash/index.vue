@@ -11,9 +11,7 @@
         </v-row>
 
         <v-card>
-            <table-standard :config="config" class="row-pointer" :items="Api.Page.all" :loading="Api.Page.loading"
-                @click:row="(Page) => $router.push('/page/edit/' + Page.id)">
-
+            <table-standard :config="config" class="row-pointer" :items="Api.Page.all" :loading="Api.Page.loading">
                 <template #item.title="{ item }">
                     {{ item.title }}
                     <v-icon small :color="item.locked_by === userId ? 'red' : ''" v-if="item.locked_by > 0">
@@ -52,20 +50,20 @@ export default class AllPages extends Vue {
                 type: "delete",
                 icon: "mdi-backup-restore",
                 onClick: (Page: PageResource) => {
-                    AppStore.showDeleteConfirmationModal({
-                        deleteItemTitle: Page.title || "",
-                        deleteItem: Page,
-                        agreeButton: { callback: this.restorePage },
+                    AppStore.showConfirmationModal({
+                        title: 'Alert',
+                        text: `Are you sure you want to restore ${Page.title} ?`,
+                        agreeButton: { callback: () => this.restorePage(Page) },
                     });
                 },
             }, {
                 type: "delete",
                 icon: "mdi-delete-forever",
                 onClick: (Page: PageResource) => {
-                    AppStore.showDeleteConfirmationModal({
-                        deleteItemTitle: Page.title || "",
-                        deleteItem: Page,
-                        agreeButton: { callback: this.deletePage },
+                    AppStore.showConfirmationModal({
+                        title: 'Alert',
+                        text: `Are you sure you want to delete ${Page.title} page permanently ?`,
+                        agreeButton: { callback: () => this.deletePage(Page) },
                     });
                 },
             },
