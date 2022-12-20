@@ -923,6 +923,18 @@ export const BLOCKS = () => {
                         image: "HomeApplianceQA.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "HomeAppliancePromoBanner",
+                        title: "Home Appliance Promo Banner",
+                        image: "ImageBox.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HomeAppliancePromoProducts",
+                        title: "Home Appliance Promo Products",
+                        image: "HomeAppliancePromoProducts.png",
+                        category: "TextBox",
+                    },
                 ],
             },
             {
