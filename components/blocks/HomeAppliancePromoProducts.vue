@@ -17,7 +17,7 @@ export default class HomeAppliancePromoProducts extends Vue {
     @VModel({ type: Object }) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'title', { id: 0, type: StructureType.Text, title: 'Title', value: '' })
+        blockAddItem(this.model, 'title', { id: 0, type: StructureType.SimpleText, title: 'Title', value: '' })
         blockAddItem(this.model, 'list', {
             id: 1, type: StructureType.List, title: 'List', newItem: {
                 image: { id: 0, type: StructureType.Image, title: 'Product Image', src: '', alt: '' },
@@ -36,7 +36,7 @@ export default class HomeAppliancePromoProducts extends Vue {
                 }
             ]
         });
-        blockAddItem(this.model, 'text', { id: 2, type: StructureType.Text, title: 'Bottom Text', value: '' })
+        blockAddItem(this.model, 'text', { id: 2, type: StructureType.SimpleText, title: 'Bottom Text', value: '' })
 
 
     }
