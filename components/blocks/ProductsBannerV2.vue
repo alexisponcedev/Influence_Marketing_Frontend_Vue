@@ -41,6 +41,7 @@ export default class ProductsBannerV2 extends Vue {
             alt: 'Some note about this image',
         })
         blockAddItem(this.model, 'title', { id: 2, type: StructureType.Text, title: 'Title', value: 'Televisions' })
+        blockAddItem(this.model, 'subtitle', { id: 2, type: StructureType.SimpleText, title: 'Subtitle', value: '' })
 
         this.model = { ... this.model }
     }
