@@ -13,13 +13,9 @@
         <v-row>
             <v-col>
                 <v-card>
-                    <table-standard
-                        :config="config"
-                        class="row-pointer"
-                        :items="Api.Redirect.all"
+                    <table-standard :config="config" class="row-pointer" :items="Api.Redirect.all"
                         :loading="Api.Redirect.loading"
-                        @click:row="(Redirect) => $router.push('/redirection/edit/' + Redirect.id)"
-                    />
+                        @click:row="(Redirect) => $router.push('/redirection/edit/' + Redirect.id)" />
                 </v-card>
             </v-col>
         </v-row>
@@ -28,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
-import {RedirectResource} from "@/repositories";
-import {Api, AppStore} from "@/store";
+import { Vue, Component } from "vue-property-decorator";
+import { RedirectResource } from "@/repositories";
+import { Api, AppStore } from "@/store";
 
-@Component({layout: "panel"})
+@Component({ layout: "panel" })
 export default class AllRedirects extends Vue {
     Api = Api;
 
@@ -40,11 +36,11 @@ export default class AllRedirects extends Vue {
     config = {
         headers: [
             // { text: "ID", value: "id" },
-            {text: "From URL", value: "source_url"},
-            {text: "To URL", value: "redirect_url"},
+            { text: "From URL", value: "source_url" },
+            { text: "To URL", value: "redirect_url" },
             // { text: "Redirect Type", value: "redirect_type" },
-            {text: "Redirect Code", value: "redirect_code"},
-            {text: "", value: "actions", sortable: false, width: "0"},
+            { text: "Redirect Code", value: "redirect_code" },
+            { text: "", value: "actions", sortable: false, width: "0" },
         ],
         actions: [
             {
@@ -59,7 +55,7 @@ export default class AllRedirects extends Vue {
                     AppStore.showDeleteConfirmationModal({
                         deleteItemTitle: Redirect.redirect_url || "",
                         deleteItem: Redirect,
-                        agreeButton: {callback: this.deleteRedirect},
+                        agreeButton: { callback: this.deleteRedirect },
                     });
                 },
             },
@@ -84,7 +80,9 @@ export default class AllRedirects extends Vue {
     }
 
     deleteRedirect(Redirect: RedirectResource) {
-        Api.Redirect.delete(Redirect.id!).then(this.updateRedirects);
+        Api.Redirect.delete(Redirect.id!)
+            .then(this.updateRedirects)
+            .then(Api.Page.doDeploy);
     }
 }
 </script>

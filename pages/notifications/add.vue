@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
         <div v-if="editMode" class="d-flex justify-space-between align-center">
-            <breadcrumbs :locations="locations"/>
+            <breadcrumbs :locations="locations" />
         </div>
         <v-row>
             <v-col>
@@ -17,7 +17,7 @@
                     <v-card-text>
                         <h6>Preview</h6>
                         <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-py-1.5 tw-rounded"
-                             :style="{'background-color' : Notification.background_color , 'color' : Notification.text_color}">
+                            :style="{ 'background-color': Notification.background_color, 'color': Notification.text_color }">
                             <div>{{ Notification.text }}</div>
                             <div class="tw-flex tw-space-x-2 tw-items-center tw-text-white">
                                 <span>Dismiss</span>
@@ -29,30 +29,24 @@
                     </v-card-text>
                     <v-card-text>
 
-                        <form-field-text :field="textField" v-model="Notification.text"/>
+                        <form-field-text :field="textField" v-model="Notification.text" />
 
-                        <structure-editor-url
-                            :has-background="false"
-                            :inline="true"
-                            :showTitle="false"
-                            :options="options"
-                            :rebuild="routeObj"
-                            v-model="routeObj"/>
+                        <structure-editor-url :has-background="false" :inline="true" :showTitle="false"
+                            :options="options" :rebuild="routeObj" v-model="routeObj" />
 
                         <v-row>
                             <v-col>
-                                <structure-editor-color v-model="backgroundColor"/>
+                                <structure-editor-color v-model="backgroundColor" />
                             </v-col>
 
                             <v-col>
-                                <structure-editor-color v-model="textColor"/>
+                                <structure-editor-color v-model="textColor" />
                             </v-col>
                         </v-row>
 
 
-                        <form-field-select-page-multiple-selector
-                            :data="Notification.pages"
-                            v-model="Notification.page_Ids"/>
+                        <form-field-select-page-multiple-selector :data="Notification.pages"
+                            v-model="Notification.page_Ids" />
 
                     </v-card-text>
 
@@ -65,21 +59,21 @@
             class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
             @click="submit">Save
         </button>
-        <loading-overlay :show="Api.Notification.loading"/>
+        <loading-overlay :show="Api.Notification.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {FormField} from "@/models";
-import {Api} from "@/store";
+import { FormField } from "@/models";
+import { Api } from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
-import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
-import {Notification, NotificationResource} from "~/repositories";
+import { UrlTypeEnum } from "~/interfaces/UrlTypeEnum";
+import { Notification, NotificationResource } from "~/repositories";
 
 @Component({
-    components: {HoverButton},
+    components: { HoverButton },
     layout: "panel"
 })
 export default class EntityForm extends Vue {
@@ -98,13 +92,13 @@ export default class EntityForm extends Vue {
         page_Ids: [],
     };
 
-    routeObj: any = {id: -1, title: 'Link', value: ''};
-    backgroundColor = {id: -1, title: 'Background Title', value: '#383838'}
-    textColor = {id: -1, title: 'Text Title', value: '#8C8F8F'}
+    routeObj: any = { id: -1, title: 'Link', value: '' };
+    backgroundColor = { id: -1, title: 'Background Title', value: '#383838' }
+    textColor = { id: -1, title: 'Text Title', value: '#8C8F8F' }
 
     options = [
-        {title: 'Page URLs', value: UrlTypeEnum.Internal},
-        {title: 'Custom URL', value: UrlTypeEnum.Custom},
+        { title: 'Page URLs', value: UrlTypeEnum.Internal },
+        { title: 'Custom URL', value: UrlTypeEnum.Custom },
     ]
 
     locations: Array<{ title: string; to: string }> = [];
@@ -117,7 +111,7 @@ export default class EntityForm extends Vue {
         modelKey: "text",
         placeholder: 'Enter the text',
         rules: [Validation.required],
-        colAttrs: {cols: 12},
+        colAttrs: { cols: 12 },
     };
 
     mounted() {
@@ -172,7 +166,7 @@ export default class EntityForm extends Vue {
                     id: +this.Notification.id!,
                     Notification: this.Notification,
                 });
-            else await Api.Notification.create(this.Notification);
+            else await Api.Notification.create(this.Notification)
             if (!this.editMode) this.$router.push("/notifications");
         }
     }

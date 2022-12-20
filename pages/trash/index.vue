@@ -80,6 +80,7 @@ export default class AllPages extends Vue {
 
     restorePage(Page: PageResource) {
         Api.Page.restorePage(Page.id!)
+            .then(Api.Page.doDeploy)
             .then(this.updatePages);
     }
 
