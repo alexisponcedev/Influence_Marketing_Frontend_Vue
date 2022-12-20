@@ -136,4 +136,24 @@ export default class api__setting extends VuexModule {
             return response.data;
         return {};
     }
+
+    @Action
+    async addSetting(settings : any[]) {
+        this.setLoading(true);
+        const response = await SettingApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .addSetting(getActiveBrand(), {settings})
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
 }

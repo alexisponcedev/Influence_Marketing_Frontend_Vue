@@ -20,23 +20,34 @@
 
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">Compare Route</span>
+                            <span class="tw-whitespace-normal">{{ compareRoute.title }}</span>
                         </div>
-                        <input type="text" class="x-input" placeholder="please enter the value"/>
+                        <input type="text" class="x-input" placeholder="please enter the value"
+                            v-model="compareRoute.value" />
                     </div>
 
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">Google Tag Domain</span>
+                            <span class="tw-whitespace-normal">{{ googleTagDomain.title }}</span>
                         </div>
-                        <input type="text" class="x-input" placeholder="please enter the value"/>
+                        <input type="text" class="x-input" placeholder="please enter the value"
+                            v-model="googleTagDomain.value" />
                     </div>
 
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">Google Tag Code</span>
+                            <span class="tw-whitespace-normal">{{ googleTagCode.title }}</span>
                         </div>
-                        <input type="text" class="x-input" placeholder="please enter the value"/>
+                        <input type="text" class="x-input" placeholder="please enter the value"
+                            v-model="googleTagCode.value" />
+                    </div>
+
+                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
+                        <div class="tw-flex tw-space-x-2 tw-items-center">
+                            <span class="tw-whitespace-normal">{{ siteName.title }}</span>
+                        </div>
+                        <input type="text" class="x-input" placeholder="please enter the value"
+                            v-model="siteName.value" />
                     </div>
 
                 </div>
@@ -52,31 +63,31 @@
                 <div class="tw-space-y-2 tw-bg-gray-100">
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
+                            <v-switch :value="true" />
                             <span>Pages</span>
                         </div>
                     </div>
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
+                            <v-switch :value="true" />
                             <span>Blog Posts</span>
                         </div>
                     </div>
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
+                            <v-switch :value="true" />
                             <span>Products</span>
                         </div>
                     </div>
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
+                            <v-switch :value="true" />
                             <span>Menu</span>
                         </div>
                     </div>
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <v-switch :value="true"/>
+                            <v-switch :value="true" />
                             <span>Templates</span>
                         </div>
                     </div>
@@ -86,76 +97,103 @@
 
         </v-tabs-items>
 
+
+        <button
+            class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+            @click.prevent="submitSettings">Save Settings
+        </button>
+
+        <loading-overlay :show="Api.Setting.loading" />
+
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
-import {SettingResource} from "@/repositories";
-import {Api, AppStore} from "@/store";
+import { Vue, Component } from "vue-property-decorator";
+import { SettingResource } from "@/repositories";
+import { Api, AppStore } from "@/store";
+import getActiveBrand from "~/utils/getActiveBrand";
 
-@Component({layout: "panel"})
+@Component({ layout: "panel" })
 export default class AllSettings extends Vue {
     Api = Api;
 
     tab = '';
 
-    config = {
-        headers: [
-            {text: "Title", value: "title"},
-            {text: "Key", value: "key"},
-            {text: "Value", value: "value"},
-            {text: "", value: "actions", sortable: false, width: "0"},
-        ],
-        actions: [
-            {
-                type: "edit",
-                icon: "mdi-pencil",
-                to: "/settings/edit/[id]",
-            },
-            {
-                type: "delete",
-                icon: "mdi-delete",
-                onClick: (Setting: SettingResource) => {
-                    AppStore.showDeleteConfirmationModal({
-                        deleteItemTitle: Setting.title || "",
-                        deleteItem: Setting,
-                        agreeButton: {callback: this.deleteSetting},
-                    });
-                },
-            },
-        ],
-        globalActions: [
-            {
-                text: "Add Setting",
-                class: 'btn',
-                color: "primary",
-                icon: "mdi-plus",
-                to: "/settings/add",
-            },
-        ],
-    };
+    settings: any[] = [];
+
+    // config = {
+    //     headers: [
+    //         { text: "Title", value: "title" },
+    //         { text: "Key", value: "key" },
+    //         { text: "Value", value: "value" },
+    //         { text: "", value: "actions", sortable: false, width: "0" },
+    //     ],
+    //     actions: [
+    //         {
+    //             type: "edit",
+    //             icon: "mdi-pencil",
+    //             to: "/settings/edit/[id]",
+    //         },
+    //         // {
+    //         //     type: "delete",
+    //         //     icon: "mdi-delete",
+    //         //     onClick: (Setting: SettingResource) => {
+    //         //         AppStore.showDeleteConfirmationModal({
+    //         //             deleteItemTitle: Setting.title || "",
+    //         //             deleteItem: Setting,
+    //         //             agreeButton: { callback: this.deleteSetting },
+    //         //         });
+    //         //     },
+    //         // },
+    //     ],
+    //     globalActions: [
+    //         {
+    //             text: "Add Setting",
+    //             class: 'btn',
+    //             color: "primary",
+    //             icon: "mdi-plus",
+    //             to: "/settings/add",
+    //         },
+    //     ],
+    // };
 
     mounted() {
-        this.updateSettings();
+        this.getSettings();
     }
 
-    async updateSettings() {
-        await Api.Setting.getAll();
+    async getSettings() {
+        this.settings = await Api.Setting.getAll() as any[];
     }
 
-    deleteSetting(Setting: SettingResource) {
-        Api.Setting.delete(Setting.id!).then(this.updateSettings);
+    async submitSettings() {
+        await Api.Setting.addSetting(this.settings);
     }
 
-    // get logPagesIndex() {
-    //     return Api.Setting.all.findIndex(i => i.key === 'log-pages')
-    // }
+    get compareRoute() {
+        let item = this.settings.find((k: any) => k.key === 'compareRoute')
+        return (!item) ? this.settings[this.settings.push({ title: 'Compare Route', key: 'compareRoute', value: '/compare', brand_id: getActiveBrand() }) - 1] : item;
+    }
+
+    get googleTagDomain() {
+        let item = this.settings.find((k: any) => k.key === 'googleTagDomain')
+        return (!item) ? this.settings[this.settings.push({ title: 'Google Tag Domain', key: 'googleTagDomain', value: 'https://public.dev.hisenseportal.com', brand_id: getActiveBrand() }) - 1] : item;
+    }
+
+    get googleTagCode() {
+        let item = this.settings.find((k: any) => k.key === 'googleTagCode')
+        return (!item) ? this.settings[this.settings.push({ title: 'Google Tag Code', key: 'googleTagCode', value: 'https://public.dev.hisenseportal.com', brand_id: getActiveBrand() }) - 1] : item;
+    }
+
+    get siteName() {
+        let item = this.settings.find((k: any) => k.key === 'siteName')
+        return (!item) ? this.settings[this.settings.push({ title: 'Site Name', key: 'siteName', value: '', brand_id: getActiveBrand() }) - 1] : item;
+    }
+
 }
 </script>
 
 <style scoped>
-
 .x-input {
     border: 1px solid #cdcdcd;
     border-radius: 3px;
