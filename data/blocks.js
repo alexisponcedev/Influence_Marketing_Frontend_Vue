@@ -63,6 +63,12 @@ export const BLOCKS = () => {
                         image: "IFrame.png",
                         category: "ImageBox",
                     },
+                    {
+                        name: "VelaroChatBox",
+                        title: "Velaro Chat Box",
+                        image: "VelaroChatBox.png",
+                        category: "ChatBox",
+                    },
                 ],
             },
             {
