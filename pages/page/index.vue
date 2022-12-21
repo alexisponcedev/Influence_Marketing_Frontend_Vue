@@ -50,6 +50,7 @@ export default class AllPages extends Vue {
         headers: [
             { text: "Title", value: "title" },
             { text: "Route", value: "route" },
+            { text: "Status", value: "status" },
             { text: "", value: "actions", sortable: false, width: "0" },
         ],
         actions: [

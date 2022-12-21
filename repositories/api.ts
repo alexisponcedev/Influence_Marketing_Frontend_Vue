@@ -1315,6 +1315,32 @@ export interface InlineResponse20044 {
 /**
  * 
  * @export
+ * @interface InlineResponse20045
+ */
+export interface InlineResponse20045 {
+    /**
+     * 
+     * @type {Array<StatusResource>}
+     * @memberof InlineResponse20045
+     */
+    'data'?: Array<StatusResource>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse20046
+ */
+export interface InlineResponse20046 {
+    /**
+     * 
+     * @type {StatusResource}
+     * @memberof InlineResponse20046
+     */
+    'data'?: StatusResource;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse2005
  */
 export interface InlineResponse2005 {
@@ -1852,6 +1878,12 @@ export interface Page {
      * @memberof Page
      */
     'locked_by'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Page
+     */
+    'status_id'?: number;
 }
 /**
  * Page Draft Resource model
@@ -2955,6 +2987,44 @@ export interface Slide {
      * @memberof Slide
      */
     'media_type_id'?: number;
+}
+/**
+ * Status model
+ * @export
+ * @interface Status
+ */
+export interface Status {
+    /**
+     * 
+     * @type {number}
+     * @memberof Status
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Status
+     */
+    'name'?: string;
+}
+/**
+ * Status Resource model
+ * @export
+ * @interface StatusResource
+ */
+export interface StatusResource {
+    /**
+     * 
+     * @type {number}
+     * @memberof StatusResource
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StatusResource
+     */
+    'name'?: string;
 }
 /**
  * Template model
@@ -9096,6 +9166,114 @@ export class NotificationApi extends BaseAPI {
 
 
 /**
+ * PIMApi - axios parameter creator
+ * @export
+ */
+export const PIMApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} productId Product Id
+         * @param {number} status Status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changePageStatus: async (productId: number, status: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productId' is not null or undefined
+            assertParamExists('changePageStatus', 'productId', productId)
+            // verify required parameter 'status' is not null or undefined
+            assertParamExists('changePageStatus', 'status', status)
+            const localVarPath = `/pim/changeStatus/{productId}/{status}`
+                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)))
+                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PIMApi - functional programming interface
+ * @export
+ */
+export const PIMApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PIMApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {number} productId Product Id
+         * @param {number} status Status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async changePageStatus(productId: number, status: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.changePageStatus(productId, status, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * PIMApi - factory interface
+ * @export
+ */
+export const PIMApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PIMApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {number} productId Product Id
+         * @param {number} status Status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changePageStatus(productId: number, status: number, options?: any): AxiosPromise<any> {
+            return localVarFp.changePageStatus(productId, status, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * PIMApi - object-oriented interface
+ * @export
+ * @class PIMApi
+ * @extends {BaseAPI}
+ */
+export class PIMApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} productId Product Id
+     * @param {number} status Status
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PIMApi
+     */
+    public changePageStatus(productId: number, status: number, options?: AxiosRequestConfig) {
+        return PIMApiFp(this.configuration).changePageStatus(productId, status, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * PageApi - axios parameter creator
  * @export
  */
@@ -14261,6 +14439,191 @@ export class SiteApi extends BaseAPI {
      */
     public updateSite(id: number, site: Site, options?: AxiosRequestConfig) {
         return SiteApiFp(this.configuration).updateSite(id, site, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * StatusApi - axios parameter creator
+ * @export
+ */
+export const StatusApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Status ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        _828944b026e392e8a9d24e0e25d6ffed: async (brandId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('_828944b026e392e8a9d24e0e25d6ffed', 'brandId', brandId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('_828944b026e392e8a9d24e0e25d6ffed', 'id', id)
+            const localVarPath = `/status/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cf600ec9f1950b8dd71b7f1dc100d49d: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('cf600ec9f1950b8dd71b7f1dc100d49d', 'brandId', brandId)
+            const localVarPath = `/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * StatusApi - functional programming interface
+ * @export
+ */
+export const StatusApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = StatusApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Status ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async _828944b026e392e8a9d24e0e25d6ffed(brandId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20046>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator._828944b026e392e8a9d24e0e25d6ffed(brandId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cf600ec9f1950b8dd71b7f1dc100d49d(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20045>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cf600ec9f1950b8dd71b7f1dc100d49d(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * StatusApi - factory interface
+ * @export
+ */
+export const StatusApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = StatusApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Status ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        _828944b026e392e8a9d24e0e25d6ffed(brandId: number, id: number, options?: any): AxiosPromise<InlineResponse20046> {
+            return localVarFp._828944b026e392e8a9d24e0e25d6ffed(brandId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cf600ec9f1950b8dd71b7f1dc100d49d(brandId: number, options?: any): AxiosPromise<InlineResponse20045> {
+            return localVarFp.cf600ec9f1950b8dd71b7f1dc100d49d(brandId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * StatusApi - object-oriented interface
+ * @export
+ * @class StatusApi
+ * @extends {BaseAPI}
+ */
+export class StatusApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} id Status ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StatusApi
+     */
+    public _828944b026e392e8a9d24e0e25d6ffed(brandId: number, id: number, options?: AxiosRequestConfig) {
+        return StatusApiFp(this.configuration)._828944b026e392e8a9d24e0e25d6ffed(brandId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StatusApi
+     */
+    public cf600ec9f1950b8dd71b7f1dc100d49d(brandId: number, options?: AxiosRequestConfig) {
+        return StatusApiFp(this.configuration).cf600ec9f1950b8dd71b7f1dc100d49d(brandId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
