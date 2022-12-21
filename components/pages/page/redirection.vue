@@ -205,27 +205,22 @@ export default class PageRedirection extends Vue {
         if (this.redirectionObj.value) {
             await Api.Redirect.create({
                 page_id: this.Page.id,
-                // redirect_type: this.redirectionObj.redirection_type,
-                // redirect_code: this.redirectionObj.redirection_code,
-                // redirect_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.redirectionObj.value : this.Page.route,
-                // source_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.Page.route : this.redirectionObj.value,
-
                 redirect_type: RedirectTypeEnum.To,
                 redirect_code: this.redirectionObj.redirection_code,
                 source_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.Page.route : this.redirectionObj.value,
                 redirect_url: this.redirectionObj.redirection_type === RedirectTypeEnum.To ? this.redirectionObj.value : this.Page.route,
-            });
+            }).then(Api.Page.doDeploy);
             this.showModal = false;
             await this.loadRedirects();
         }
     }
 
     async updateRedirect(Redirect: Redirect) {
-        await Api.Redirect.update({id: Redirect.id!, Redirect: Redirect})
+        await Api.Redirect.update({id: Redirect.id!, Redirect: Redirect}).then(Api.Page.doDeploy);
     }
 
     async deleteRedirect(Redirect: Redirect) {
-        await Api.Redirect.delete(Number(Redirect.id));
+        await Api.Redirect.delete(Number(Redirect.id)).then(Api.Page.doDeploy);
         await this.loadRedirects();
     }
 
