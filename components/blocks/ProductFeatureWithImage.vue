@@ -39,73 +39,7 @@ export default class BlockProductFeatureWithImage extends Vue {
     product: Object = {};
     loadingProduct: boolean = true;
 
-    reset(oldValue: any = {}) {
-
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
-                }
-            }
-        } else
-            this.model = {
-                theme: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: "Theme",
-                    value: Theme.dark,
-                    items: [
-                        { title: "Light", value: this.Theme.light },
-                        { title: "Dark", value: this.Theme.dark },
-                    ],
-                },
-                direction: {
-                    id: 1,
-                    type: StructureType.Select,
-                    title: "Direction",
-                    value: Direction.ltr,
-                    items: [
-                        { title: "Left To Right", value: this.Direction.ltr },
-                        { title: "Right To Left", value: this.Direction.rtl },
-                    ],
-                },
-                littleTitle: {
-                    id: 2,
-                    type: StructureType.String,
-                    title: 'Little Title',
-                    value: "4K ULED ™"
-                },
-                title: {
-                    id: 3,
-                    type: StructureType.String,
-                    title: 'Title',
-                    value: "Sharper, smoother pictures"
-                },
-                description: {
-                    id: 4,
-                    type: StructureType.String,
-                    title: 'Description',
-                    value: "4K greatness, but better. The U8G has our exclusive ULED technologies. They boost color, contrast, brightness, motion… we could go on. It’s the TV your old TV wants to be."
-                },
-                image: {
-                    id: 5,
-                    type: StructureType.Image,
-                    title: 'Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/26632e121d/pdp-3_6-u9-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-t34p4p.jpg',
-                    alt: 'featured image'
-                },
-                link: {
-                    id: 6,
-                    type: StructureType.Url,
-                    title: 'Shop TV',
-                    value: "/"
-                },
-                backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
-            };
-    }
-
     mounted() {
-
         blockAddItem(this.model, 'theme', {
             id: 0,
             type: StructureType.Select,
@@ -164,23 +98,6 @@ export default class BlockProductFeatureWithImage extends Vue {
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
-    }
-
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
     }
 }
 </script>
