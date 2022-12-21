@@ -199,6 +199,12 @@ export const BLOCKS = () => {
                     // {name: "ProductsBanner", title: "product banner", image: "Product Banner.p , category : 'TextBox",},
                     // {name: "ProductsBannerV2", title: "product banner", image: "Product Banner.p , category : 'TextBox",},
                     {
+                        name: "ProductsHeading",
+                        title: "products heading",
+                        image: "ProductsHeading.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "ProductsGrid",
                         title: "Products Grid",
                         image: "Product Grid.p , category : 'TextBox",
