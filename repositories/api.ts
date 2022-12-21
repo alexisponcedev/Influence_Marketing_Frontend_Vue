@@ -605,6 +605,12 @@ export interface DynamicPageResource {
      * @memberof DynamicPageResource
      */
     'locked_by'?: number;
+    /**
+     * 
+     * @type {AdventureResourceRegion}
+     * @memberof DynamicPageResource
+     */
+    'status'?: AdventureResourceRegion;
 }
 /**
  * Error Resource model
@@ -2070,6 +2076,12 @@ export interface PageListResource {
     'locked_by'?: number;
     /**
      * 
+     * @type {AdventureResourceRegion}
+     * @memberof PageListResource
+     */
+    'status'?: AdventureResourceRegion;
+    /**
+     * 
      * @type {Array<PageListResourceNotifications>}
      * @memberof PageListResource
      */
@@ -2198,6 +2210,12 @@ export interface PageResource {
     'locked_by'?: number;
     /**
      * 
+     * @type {AdventureResourceRegion}
+     * @memberof PageResource
+     */
+    'status'?: AdventureResourceRegion;
+    /**
+     * 
      * @type {Array<PageListResourceNotifications>}
      * @memberof PageResource
      */
@@ -2264,7 +2282,7 @@ export interface Post {
      */
     'status'?: number;
 
-    'page' ? : PageResource;
+    'page'? : PageResource;
 }
 /**
  * Post List Resource model

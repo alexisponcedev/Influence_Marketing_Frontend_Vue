@@ -28,7 +28,7 @@ export default class api__error extends VuexModule {
 
     @Mutation
     updateItem(item: ErrorResource) {
-        this.all = this.all.map((i: PageResource) => {
+        this.all = this.all.map((i: ErrorResource) => {
             return i.id === item.id ? item : i;
         });
     }
