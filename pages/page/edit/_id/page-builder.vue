@@ -22,7 +22,7 @@
 
                 <v-col cols="12" md="6" class="text-right">
 
-                    <page-lock v-model="Page"/>
+                    <page-lock v-model="Page" />
 
                     <v-btn @click="openHistory" elevation="0" outlined color="grey darken-4" class="control-btns">
                         <v-icon>mdi-history</v-icon>
@@ -36,13 +36,12 @@
 
 
                     <v-btn v-if="shouldDeploy && false" @click="saveAndDeploy" elevation="0"
-                           color="grey darken-4 white--text" class="control-btns">
+                        color="grey darken-4 white--text" class="control-btns">
                         Save and Deploy
                     </v-btn>
 
                     <v-btn v-else :disabled="isLocked && !lockedByMe" @click="savePage" elevation="0"
-                           color="grey darken-4 white--text"
-                           class="control-btns">
+                        color="grey darken-4 white--text" class="control-btns">
                         Save Page
                     </v-btn>
 
@@ -83,26 +82,26 @@
         </v-card>
 
         <page-builder v-model="blocksList" @needDeploy="needDeploy" :page="Page"
-                      :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'"/>
+            :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'" />
 
-        <template-selector ref="templateManager"/>
+        <template-selector ref="templateManager" />
 
-        <version-history ref="history" type="page" :value="Page" @input="blocks => blocksList = blocks"/>
+        <version-history ref="history" type="page" :value="Page" @input="setHistory" />
 
-        <loading-overlay :show="Api.Page.loading"/>
+        <loading-overlay :show="Api.Page.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
-import {Api, AppStore} from "@/store";
-import {Page, Widgets} from "~/repositories";
-import {BlockInterface} from "~/interfaces/BlockInterface";
-import {SettingEnum} from "~/interfaces/SettingEnum";
+import { Vue, Component } from "vue-property-decorator";
+import { Api, AppStore } from "@/store";
+import { Page, Widgets } from "~/repositories";
+import { BlockInterface } from "~/interfaces/BlockInterface";
+import { SettingEnum } from "~/interfaces/SettingEnum";
 import VersionHistory from "~/components/version-history.vue";
 
 @Component({
-    components: {VersionHistory}
+    components: { VersionHistory }
 })
 export default class PageBuilderSection extends Vue {
     Api = Api;
@@ -140,7 +139,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     async savePage() {
-        let widgets: Widgets = {page_id: +this.$route.params.id, widgets: this.blocksList}
+        let widgets: Widgets = { page_id: +this.$route.params.id, widgets: this.blocksList }
         await Api.Page.savePageWidgets(widgets)
     }
 
@@ -165,7 +164,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     async saveDraft() {
-        await Api.Page.saveDraft({page_id: +this.$route.params.id, page_draft: this.blocksList})
+        await Api.Page.saveDraft({ page_id: +this.$route.params.id, page_draft: this.blocksList })
     }
 
     needDeploy() {
@@ -202,6 +201,10 @@ export default class PageBuilderSection extends Vue {
             return Api.Page.unlockPage(this.Page.id!).then(() => {
                 this.Page.locked_by = 0;
             });
+    }
+
+    setHistory(history: any[]) {
+        this.blocksList = history
     }
 
 }

@@ -28,7 +28,7 @@ import { Direction } from "~/interfaces/DirectionEnum";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
-export default class BlockProductFeatureWithImage extends Vue {
+export default class ProductFeatureWithImage extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
     @VModel({ type: Object }) model!: any;
