@@ -125,6 +125,8 @@ export default class PageForm extends Vue {
 
     meta: Array<{ rel: string, name: string, content: string }> = [];
 
+    oldRoute = '';
+
     Page: Page = {
         id: 0,
         title: '',
@@ -196,6 +198,7 @@ export default class PageForm extends Vue {
     async getEntity() {
         if (this.editMode) {
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
+            this.oldRoute = this.Page.route!;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
             await this.lock();
@@ -231,14 +234,17 @@ export default class PageForm extends Vue {
 
     async submit() {
         if (this.formValidate()) {
-            if (this.editMode)
+            if (this.editMode) {
                 await Api.Page.update({
                     id: +this.Page.id!,
                     Page: this.Page,
                 });
+                if (this.Page.route !== this.oldRoute)
+                    Api.Page.doDeploy();
+            }
             else {
                 let page = await Api.Page.create(this.Page)
-                    .then(Api.Page.doDeploy);
+                await Api.Page.doDeploy();
                 this.$router.push("/page/edit/" + page.id);
             }
             Api.Page.clearRoutes();
