@@ -87,6 +87,7 @@ export default class PostForm extends Vue {
     route: string = '';
 
     meta: Array<{ rel: string, name: string, content: string }> = [];
+    oldRoute = '';
 
     Post: Post = {
         id: 0,
@@ -165,6 +166,7 @@ export default class PostForm extends Vue {
                 model_type: 'post',
                 model_id: +this.$route.params.id
             })) as PageResource;
+            this.oldRoute = Post.page?.route!;
             this.Post = Post;
         }
     }
@@ -222,6 +224,10 @@ export default class PostForm extends Vue {
                     Post: this.Post,
                 }).then(() => {
                     Api.Page.update({ Page: this.Post.page!, id: +this.Post.page!.id! })
+                        .then(page => {
+                            if (this.Post.page?.route !== this.oldRoute)
+                                Api.Page.doDeploy();
+                        })
                 });
             else {
                 await Api.Post.create(this.Post)
@@ -233,9 +239,9 @@ export default class PostForm extends Vue {
                         return post;
                     })
                     .then((post: any) => {
-                        if (post.hasOwnProperty('id') && post.id > 0) this.$router.push("/posts/edit/" + post.id);
+                        if (post.hasOwnProperty('id') && post.id > 0)
+                            this.$router.push("/posts/edit/" + post.id);
                     })
-                // .then(Api.Page.doDeploy)
             }
         }
     }
