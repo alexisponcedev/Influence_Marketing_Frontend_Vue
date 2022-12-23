@@ -2282,7 +2282,7 @@ export interface Post {
      */
     'status'?: number;
 
-    'page'? : PageResource;
+    'page'? : Page;
 }
 /**
  * Post List Resource model
