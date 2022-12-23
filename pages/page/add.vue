@@ -33,8 +33,14 @@
                 <v-tab-item value="Details">
                     <v-card>
                         <v-card-text>
-                            <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged" />
-                            <form-field-select-page-route :field="formFields[1]" v-model="Page.route"
+                            <v-row>
+                                <form-field-text :field="formFields[0]" v-model="Page.title"
+                                    @input="pageTitleChanged" />
+                                <form-field-select-autocomplete :field="formFields[1]" v-model="Page.status_id"  />
+                            </v-row>
+
+
+                            <form-field-select-page-route :field="formFields[2]" v-model="Page.route"
                                 :pageId="Page.id" />
 
 
@@ -74,7 +80,7 @@
                 </v-tab-item>
 
                 <v-tab-item value="Metas">
-                    <form-field-meta :field="formFields[2]" v-model="Page" />
+                    <form-field-meta :field="formFields[3]" v-model="Page" />
 
                     <button
                         class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
@@ -107,7 +113,6 @@ import { Page, PageResource } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
-import { SettingEnum } from "~/interfaces/SettingEnum";
 import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component({
@@ -127,6 +132,12 @@ export default class PageForm extends Vue {
 
     oldRoute = '';
 
+    statusList = [
+        { id: 1, title: 'Published' },
+        { id: 2, title: 'Hidden' },
+        // { id: 3, title: 'SupportOnly' },
+    ]
+
     Page: Page = {
         id: 0,
         title: '',
@@ -135,7 +146,8 @@ export default class PageForm extends Vue {
         widgets: [],
         draft: [],
         model_id: 0,
-        model_type: ''
+        model_type: '',
+        status_id : 1,
     };
 
     locations: Array<{ title: string; to: string }> = [];
@@ -213,7 +225,19 @@ export default class PageForm extends Vue {
                 modelKey: "title",
                 placeholder: 'please enter page title',
                 rules: [Validation.required],
-                colAttrs: { cols: 12 },
+                colAttrs: { cols: 8 },
+            },
+            {
+                type: "form-field-select-autocomplete",
+                label: "Status",
+                modelKey: "status_id",
+                placeholder: 'please select Status',
+                'item-text': 'title',
+                'item-value': 'id',
+                items: this.statusList,
+                rules: [Validation.required],
+                colAttrs: { cols: 4 },
+                disabled : () =>  this.isPDP
             },
             {
                 type: "form-field-select-page-route",
@@ -515,6 +539,9 @@ export default class PageForm extends Vue {
             Api.Page.unlockPage(this.Page.id!).then(() => {
                 this.Page.locked_by = 0;
             });
+    }
+    get isPDP(){
+        return this.Page.model_type === 'product' || this.Page.model_type === 'support';
     }
 }
 </script>

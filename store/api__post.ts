@@ -19,7 +19,7 @@ export default class api__post extends VuexModule {
     all: Array<PostResource> = [];
 
     @Mutation
-    updateAll(all: Array<PageResource>) {
+    updateAll(all: Array<PostResource>) {
         this.all = all;
     }
 

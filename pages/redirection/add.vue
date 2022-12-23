@@ -185,7 +185,8 @@ export default class EntityForm extends Vue {
                 await Api.Redirect.update({
                     id: +this.Redirect.id!,
                     Redirect: this.Redirect,
-                });
+                })
+                    .then(Api.Page.doDeploy);
             else await Api.Redirect.create(this.Redirect)
                 .then(Api.Page.doDeploy);
             if (!this.editMode) this.$router.push("/redirection");

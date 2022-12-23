@@ -101,6 +101,7 @@ export default class PostForm extends Vue {
             draft: [],
             model_type: 'post',
             model_id: 0,
+            status_id : 1
         },
         status: 0,
     };
@@ -226,6 +227,7 @@ export default class PostForm extends Vue {
                     Api.Page.update({ Page: this.Post.page!, id: +this.Post.page!.id! })
                         .then(page => {
                             if (this.Post.page?.route !== this.oldRoute)
+
                                 Api.Page.doDeploy();
                         })
                 });
