@@ -13,6 +13,17 @@ export const BLOCKS = () => {
                 ],
             },
             {
+                name: "Page Status",
+                blocks: [
+                    {
+                        name: "notFound",
+                        title: "Page Not Found",
+                        image: "notFound.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
+            {
                 name: "Common",
                 blocks: [
                     {
