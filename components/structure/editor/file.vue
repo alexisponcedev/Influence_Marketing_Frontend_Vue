@@ -1,24 +1,13 @@
 <template>
-    <form-field-file :field="field" v-model="model.value"/>
+    <structure-editor-image v-model="model" type="file" />
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
-import Validation from "~/utils/validation";
-import {StructureField} from "~/interfaces/StructureField";
+import { Vue, Component, Prop, Watch, VModel } from "vue-property-decorator";
+import { StructureField } from "~/interfaces/StructureField";
 
 @Component
 export default class StructureFileEditor extends Vue {
-    @VModel({type: StructureField}) model!: StructureField
-
-    field = {
-        label: 'Filed',
-        rules: [],
-        colAttrs: {cols: 12}
-    }
-
-    mounted() {
-        this.field.label = this.model.title ?? 'field';
-    }
+    @VModel({ type: StructureField }) model!: StructureField
 }
 </script>
