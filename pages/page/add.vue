@@ -529,16 +529,16 @@ export default class PageForm extends Vue {
     }
 
     async lock() {
-        await Api.Page.lockPage(this.Page.id!).then(() => {
-            this.Page.locked_by = this.userId
-        });
+        // await Api.Page.lockPage(this.Page.id!).then(() => {
+        //     this.Page.locked_by = this.userId
+        // });
     }
 
     async unlock() {
-        if (this.Page.id! > 0)
-            Api.Page.unlockPage(this.Page.id!).then(() => {
-                this.Page.locked_by = 0;
-            });
+        // if (this.Page.id! > 0)
+        //     Api.Page.unlockPage(this.Page.id!).then(() => {
+        //         this.Page.locked_by = 0;
+        //     });
     }
     get isPDP(){
         return this.Page.model_type === 'product' || this.Page.model_type === 'support';

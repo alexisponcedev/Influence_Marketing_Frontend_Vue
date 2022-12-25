@@ -226,7 +226,7 @@ export default class PostForm extends Vue {
                 }).then(() => {
                     Api.Page.update({ Page: this.Post.page!, id: +this.Post.page!.id! })
                         .then(page => {
-                            if (this.Post.page.route !== this.oldRoute)
+                            if (this.Post.page?.route !== this.oldRoute)
                                 Api.Page.doDeploy();
                         })
                 });
