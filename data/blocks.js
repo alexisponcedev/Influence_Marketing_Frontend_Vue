@@ -969,6 +969,36 @@ export const BLOCKS = () => {
                         image: "CESHomeIntro.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "CesBanner",
+                        title: "CES Banner",
+                        image: "CesBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CesAwards",
+                        title: "Ces Awards Block",
+                        image: "CesAwards.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CesCards",
+                        title: "CES Cards Block",
+                        image: "CesCards.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CesHero",
+                        title: "CES Hero Block",
+                        image: "CesHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CesTextBox",
+                        title: "CES Text Box",
+                        image: "CesTextBox.png",
+                        category: "TextBox",
+                    },
                 ],
             },
             {
