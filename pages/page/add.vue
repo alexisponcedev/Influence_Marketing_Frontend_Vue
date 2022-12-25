@@ -36,7 +36,7 @@
                             <v-row>
                                 <form-field-text :field="formFields[0]" v-model="Page.title"
                                     @input="pageTitleChanged" />
-                                <form-field-select-autocomplete :field="formFields[1]" v-model="Page.status_id"  />
+                                <form-field-select-autocomplete :field="formFields[1]" v-model="Page.status_id" />
                             </v-row>
 
 
@@ -147,7 +147,7 @@ export default class PageForm extends Vue {
         draft: [],
         model_id: 0,
         model_type: '',
-        status_id : 1,
+        status_id: 1,
     };
 
     locations: Array<{ title: string; to: string }> = [];
@@ -209,11 +209,11 @@ export default class PageForm extends Vue {
 
     async getEntity() {
         if (this.editMode) {
+            await this.lock();
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             this.oldRoute = this.Page.route!;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
-            await this.lock();
         }
     }
 
@@ -237,7 +237,7 @@ export default class PageForm extends Vue {
                 items: this.statusList,
                 rules: [Validation.required],
                 colAttrs: { cols: 4 },
-                disabled : () =>  this.isPDP
+                disabled: () => this.isPDP
             },
             {
                 type: "form-field-select-page-route",
@@ -529,18 +529,18 @@ export default class PageForm extends Vue {
     }
 
     async lock() {
-        // await Api.Page.lockPage(this.Page.id!).then(() => {
-        //     this.Page.locked_by = this.userId
-        // });
+        await Api.Page.lockPage(this.Page.id!).then(() => {
+            this.Page.locked_by = this.userId
+        });
     }
 
     async unlock() {
-        // if (this.Page.id! > 0)
-        //     Api.Page.unlockPage(this.Page.id!).then(() => {
-        //         this.Page.locked_by = 0;
-        //     });
+        if (this.Page.id! > 0)
+            Api.Page.unlockPage(this.Page.id!).then(() => {
+                this.Page.locked_by = 0;
+            });
     }
-    get isPDP(){
+    get isPDP() {
         return this.Page.model_type === 'product' || this.Page.model_type === 'support';
     }
 }

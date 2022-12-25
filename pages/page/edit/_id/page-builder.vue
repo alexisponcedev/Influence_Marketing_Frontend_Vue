@@ -119,12 +119,13 @@ export default class PageBuilderSection extends Vue {
     }
 
     async fetchPage() {
+        await this.lock();
         this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
         if (this.Page.draft && this.Page.draft.length > 0)
             this.blocksList = this.Page.draft as Array<BlockInterface>;
         else
             this.blocksList = (this.Page.widgets ? this.Page.widgets : []) as Array<BlockInterface>;
-        this.lock();
+
     }
 
     discard() {
@@ -190,17 +191,17 @@ export default class PageBuilderSection extends Vue {
     }
 
     async lock() {
-        // if (this.Page.locked_by === 0)
-        //     return Api.Page.lockPage(this.Page.id!).then(() => {
-        //         this.Page.locked_by = this.userId
-        //     });
+        if (this.Page.locked_by === 0)
+            return Api.Page.lockPage(this.Page.id!).then(() => {
+                this.Page.locked_by = this.userId
+            });
     }
 
     async unlock() {
-        // if (this.Page.locked_by == this.userId)
-        //     return Api.Page.unlockPage(this.Page.id!).then(() => {
-        //         this.Page.locked_by = 0;
-        //     });
+        if (this.Page.locked_by == this.userId)
+            return Api.Page.unlockPage(this.Page.id!).then(() => {
+                this.Page.locked_by = 0;
+            });
     }
 
     setHistory(history: any[]) {
