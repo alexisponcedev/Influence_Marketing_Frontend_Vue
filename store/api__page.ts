@@ -424,6 +424,7 @@ export default class api__page extends VuexModule {
                 ],
                 model_id: payload.product.id,
                 model_type: payload.type,
+                status_id : 1
             })
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
