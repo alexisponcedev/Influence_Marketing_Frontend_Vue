@@ -1773,6 +1773,29 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "ULEDX",
+                blocks: [
+                    {
+                        name: "ULEDXHome",
+                        title: "ULEDX Home",
+                        image: "BlockHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "ULEDXWaitlist",
+                        title: "ULEDX Waitlist",
+                        image: "ULEDXWaitlist.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "ULEDXGetNotified",
+                        title: "ULEDX Get Notified",
+                        image: "ULEDXGetNotified.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
         ],
     };
 };
