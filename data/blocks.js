@@ -1624,7 +1624,31 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "ULEDX",
+                blocks: [
+                    {
+                        name: "ULEDXHome",
+                        title: "ULEDX Home",
+                        image: "BlockHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "ULEDXWaitlist",
+                        title: "ULEDX Waitlist",
+                        image: "ULEDXWaitlist.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "ULEDXGetNotified",
+                        title: "ULEDX Get Notified",
+                        image: "ULEDXGetNotified.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
         ],
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         blog: [
             {
                 name: "Header and Footer",
@@ -1769,29 +1793,6 @@ export const BLOCKS = () => {
                         name: "BlogListWithBigTitleAndLittleItem",
                         title: "Blog List With Big Title And Little Item",
                         image: "BlogListWithBigTitleAndLittleItem.png",
-                        category: "TextBox",
-                    },
-                ],
-            },
-            {
-                name: "ULEDX",
-                blocks: [
-                    {
-                        name: "ULEDXHome",
-                        title: "ULEDX Home",
-                        image: "BlockHero.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "ULEDXWaitlist",
-                        title: "ULEDX Waitlist",
-                        image: "ULEDXWaitlist.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "ULEDXGetNotified",
-                        title: "ULEDX Get Notified",
-                        image: "ULEDXGetNotified.png",
                         category: "TextBox",
                     },
                 ],
