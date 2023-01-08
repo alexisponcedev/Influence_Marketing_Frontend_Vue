@@ -349,6 +349,46 @@ export default class api__page extends VuexModule {
         return {};
     }
 
+    @Action
+    async deployStageDbToProd() {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .deployStageDbToProd(getActiveBrand())
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
+
+    @Action
+    async deployProdDbToStage() {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .deployProdDbToStage(getActiveBrand())
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
+
     @Action({ commit: "addItem" })
     async createPDP(payload: {
         product: any;

@@ -6445,10 +6445,11 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} string string
+         * @param {number} [brandId] Brand Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        doSearchPage: async (string: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        doSearchPage: async (string: string, brandId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'string' is not null or undefined
             assertParamExists('doSearchPage', 'string', string)
             const localVarPath = `/husa/searchPage/{string}`
@@ -6463,6 +6464,10 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined) {
+                localVarQueryParameter['brand_id'] = brandId;
+            }
 
 
     
@@ -7113,10 +7118,11 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {Array<string>} [filters] filters array
          * @param {string} [sort] sort by newest / oldest
          * @param {string} [type] page type: product or support
+         * @param {number} [brandId] Brand Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchProductByCategoryId: async (categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchProductByCategoryId: async (categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/husa/searchProduct`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7151,6 +7157,10 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
+            }
+
+            if (brandId !== undefined) {
+                localVarQueryParameter['brand_id'] = brandId;
             }
 
 
@@ -7196,11 +7206,12 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} string string
+         * @param {number} [brandId] Brand Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async doSearchPage(string: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.doSearchPage(string, options);
+        async doSearchPage(string: string, brandId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.doSearchPage(string, brandId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7403,11 +7414,12 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
          * @param {Array<string>} [filters] filters array
          * @param {string} [sort] sort by newest / oldest
          * @param {string} [type] page type: product or support
+         * @param {number} [brandId] Brand Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchProductByCategoryId(categoryId, string, condition, filters, sort, type, options);
+        async searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchProductByCategoryId(categoryId, string, condition, filters, sort, type, brandId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -7440,11 +7452,12 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {string} string string
+         * @param {number} [brandId] Brand Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        doSearchPage(string: string, options?: any): AxiosPromise<void> {
-            return localVarFp.doSearchPage(string, options).then((request) => request(axios, basePath));
+        doSearchPage(string: string, brandId?: number, options?: any): AxiosPromise<void> {
+            return localVarFp.doSearchPage(string, brandId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7626,11 +7639,12 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
          * @param {Array<string>} [filters] filters array
          * @param {string} [sort] sort by newest / oldest
          * @param {string} [type] page type: product or support
+         * @param {number} [brandId] Brand Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, options?: any): AxiosPromise<InlineResponse2004> {
-            return localVarFp.searchProductByCategoryId(categoryId, string, condition, filters, sort, type, options).then((request) => request(axios, basePath));
+        searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.searchProductByCategoryId(categoryId, string, condition, filters, sort, type, brandId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -7666,12 +7680,13 @@ export class HUSAAPIsApi extends BaseAPI {
     /**
      * 
      * @param {string} string string
+     * @param {number} [brandId] Brand Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HUSAAPIsApi
      */
-    public doSearchPage(string: string, options?: AxiosRequestConfig) {
-        return HUSAAPIsApiFp(this.configuration).doSearchPage(string, options).then((request) => request(this.axios, this.basePath));
+    public doSearchPage(string: string, brandId?: number, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).doSearchPage(string, brandId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7894,12 +7909,13 @@ export class HUSAAPIsApi extends BaseAPI {
      * @param {Array<string>} [filters] filters array
      * @param {string} [sort] sort by newest / oldest
      * @param {string} [type] page type: product or support
+     * @param {number} [brandId] Brand Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HUSAAPIsApi
      */
-    public searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, options?: AxiosRequestConfig) {
-        return HUSAAPIsApiFp(this.configuration).searchProductByCategoryId(categoryId, string, condition, filters, sort, type, options).then((request) => request(this.axios, this.basePath));
+    public searchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).searchProductByCategoryId(categoryId, string, condition, filters, sort, type, brandId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -9393,6 +9409,86 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        deployProdDbToStage: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('deployProdDbToStage', 'brandId', brandId)
+            const localVarPath = `/page/deployProductionDbToStage`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deployStageDbToProd: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('deployStageDbToProd', 'brandId', brandId)
+            const localVarPath = `/page/deployStageDbToProduction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         doDeploy: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
             assertParamExists('doDeploy', 'brandId', brandId)
@@ -10215,6 +10311,26 @@ export const PageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async deployProdDbToStage(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deployProdDbToStage(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deployStageDbToProd(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deployStageDbToProd(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async doDeploy(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.doDeploy(brandId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -10442,6 +10558,24 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        deployProdDbToStage(brandId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.deployProdDbToStage(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deployStageDbToProd(brandId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.deployStageDbToProd(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         doDeploy(brandId: number, options?: any): AxiosPromise<any> {
             return localVarFp.doDeploy(brandId, options).then((request) => request(axios, basePath));
         },
@@ -10647,6 +10781,28 @@ export class PageApi extends BaseAPI {
      */
     public deletePage(brandId: number, id: number, options?: AxiosRequestConfig) {
         return PageApiFp(this.configuration).deletePage(brandId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public deployProdDbToStage(brandId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).deployProdDbToStage(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public deployStageDbToProd(brandId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).deployStageDbToProd(brandId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
