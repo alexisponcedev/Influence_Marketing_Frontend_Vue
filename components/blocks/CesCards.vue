@@ -17,7 +17,7 @@ export default class CesCards extends Vue {
     @VModel({ type: Object }) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'text', { id: 1, type: StructureType.SimpleText, title: 'Text', value: '' });
+        blockAddItem(this.model, 'title', { id: 1, type: StructureType.SimpleText, title: 'Text', value: '' });
         blockAddItem(this.model, 'block1', {
             id: 3, type: StructureType.Object, title: "Block 1", value: {
                 title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
