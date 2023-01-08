@@ -17,17 +17,9 @@
                             <button class="tw-bg-green-500 tw-text-white tw-px-8 tw-py-4 tw-rounded-lg"
                                     @click="startDeploy">Deploy Changes
                             </button>
-                            <p>In order to start deploy please press the button</p>
+                            <p>deploy database from stage to production</p>
 
                         </div>
-
-                        <!--                        <div>-->
-                        <!--                            Development server : <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F8e0bd62a-3186-4aed-8104-6ca8da255ded%3Fdate%3D1&style=flat" alt="">-->
-                        <!--                        </div>-->
-                        <!--                        <div>-->
-                        <!--                            Stage Server : <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F5edb172d-204d-4922-92d4-731b28050a98%3Fdate%3D1&style=flat" alt="">-->
-                        <!--                        </div>-->
-
 
                     </v-card-text>
                 </v-card>
@@ -48,7 +40,7 @@ export default class Deploys extends Vue {
     tab = "";
 
     async startDeploy() {
-        await Api.Page.doDeploy()
+        await Api.Page.deployStageDbToProd();
     }
 }
 </script>
