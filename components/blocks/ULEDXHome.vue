@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/CesBanner.png" alt="" />
+        <img src="/blocks/BlockHero.png" alt="" />
     </div>
 </template>
 
@@ -10,18 +10,15 @@ import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
-export default class CesBanner extends Vue {
+export default class ULEDXHome extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({ default: true }) readonly editable: Boolean | undefined
     @VModel({ type: Object }) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'image1', { id: 0, type: StructureType.Image, title: "Image 1", src: '', alt: '' });
-        blockAddItem(this.model, 'imageLink1', { id: 1, type: StructureType.Url, title: 'Image Link 1', value: '' });
-        blockAddItem(this.model, 'image2', { id: 0, type: StructureType.Image, title: "Image 2", src: '', alt: '' });
-        blockAddItem(this.model, 'imageLink2', { id: 1, type: StructureType.Url, title: 'Image Link 2', value: '' });
+        blockAddItem(this.model, 'backgroundImage', { id: 0, type: StructureType.Image, title: "Background Image", src: '', alt: '' });
         blockAddItem(this.model, 'title', { id: 1, type: StructureType.String, title: 'Title', value: '' });
-        blockAddItem(this.model, 'text', { id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: '' });
+        blockAddItem(this.model, 'subtitle', { id: 1, type: StructureType.String, title: 'Subtitle', value: '' });
         blockAddItem(this.model, 'link', { id: 1, type: StructureType.Url, title: 'Link', value: '' });
     }
 

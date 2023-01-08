@@ -21,11 +21,13 @@ export default class CesAwards extends Vue {
             id: 1, type: StructureType.List, title: 'List', newItem: {
                 image: { id: 0, type: StructureType.Image, title: 'Product Image', src: '', alt: '' },
                 title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+                link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
             },
             value: [
                 {
                     image: { id: 0, type: StructureType.Image, title: 'Product Image', src: '', alt: '' },
                     title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
+                    link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
                 }
             ]
         });
