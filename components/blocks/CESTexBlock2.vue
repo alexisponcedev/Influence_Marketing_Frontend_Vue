@@ -30,7 +30,7 @@ export default class CESTexBlock2 extends Vue {
         blockAddItem(this.model, 'title', { id: 1, type: StructureType.SimpleText, title: 'Main Title', value: '' });
         blockAddItem(this.model, 'description', { id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: '' });
         blockAddItem(this.model, 'subtitle', { id: 1, type: StructureType.String, title: 'Subtitle', value: '' });
-        blockAddItem(this.model, 'specs', { id: 1, type: StructureType.Url, title: 'Specs Titlte', value: '' });
+        blockAddItem(this.model, 'specs', { id: 1, type: StructureType.String, title: 'Specs Title', value: '' });
         blockAddItem(this.model, 'list', {
             id: 1, type: StructureType.List, title: 'List', newItem: {
                 title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
