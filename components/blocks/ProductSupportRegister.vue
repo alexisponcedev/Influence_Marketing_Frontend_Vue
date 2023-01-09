@@ -43,7 +43,19 @@ export default class BlockProductSupportRegister extends Vue {
             title: 'Subtitle',
             value: 'Get started with registering your Hisense product.'
         });
-        blockAddItem(this.model, 'modelText', {id: 4, type: StructureType.Text, title: 'Modal Text', value: ''});
+        blockAddItem(this.model, 'secondTitle', {
+            id: 3,
+            type: StructureType.String,
+            title: 'Second Title',
+            value: 'Register Laser TV'
+        });
+        blockAddItem(this.model, 'secondSubtitle', {
+            id: 4,
+            type: StructureType.String,
+            title: 'Second Subtitle',
+            value: 'Get started with registering your Hisense product.'
+        });
+        blockAddItem(this.model, 'modelText', {id: 5, type: StructureType.Text, title: 'Modal Text', value: ''});
         blockRemoveItem(this.model, ['submitURL']);
         this.model = {...this.model};
     }
