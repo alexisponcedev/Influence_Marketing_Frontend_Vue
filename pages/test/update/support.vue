@@ -1,7 +1,8 @@
 <template>
     <v-container>
+
         <div class="tw-mb-2 tw-flex tw-items-center tw-space-x-2">
-            <div>Updating support pages</div>
+            <div>Updating support pages v1.0</div>
             <button @click="start" :disabled="loading" class="tw-bg-green-400 tw-px-2 tw-py-1 tw-rounded-lg">start
             </button>
         </div>
