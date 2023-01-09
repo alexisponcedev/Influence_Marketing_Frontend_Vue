@@ -10,7 +10,7 @@ import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
 
 @Component
-export default class CESHomeNavBar extends Vue {
+export default class CesHomeNavBar extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any

@@ -10,7 +10,7 @@ import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
-export default class CESBanner2 extends Vue {
+export default class CesBanner2 extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({ default: true }) readonly editable: boolean | undefined
     @VModel({ type: Object }) model!: any
