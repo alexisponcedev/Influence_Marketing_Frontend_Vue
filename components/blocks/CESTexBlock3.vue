@@ -17,7 +17,7 @@ export default class CESTexBlock3 extends Vue {
     @VModel({ type: Object }) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'theme', {
+        blockAddItem(this.model, 'theme',{
             id: 0,
             type: StructureType.Select,
             title: "Theme",
