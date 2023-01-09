@@ -12,7 +12,7 @@ import blockAddItem from "~/utils/blockAddItem";
 @Component
 export default class CesAwards3 extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: Boolean | undefined
+    @Prop({ default: true }) readonly editable: boolean | undefined
     @VModel({ type: Object }) model!: any
 
     mounted() {
@@ -34,8 +34,6 @@ export default class CesAwards3 extends Vue {
             ]
         });
         blockAddItem(this.model, 'text', { id: 2, type: StructureType.SimpleText, title: 'Bottom Text', value: '' })
-
-
     }
 
     get isEmpty(): Boolean {

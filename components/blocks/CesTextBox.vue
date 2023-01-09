@@ -13,7 +13,7 @@ import { Theme } from "~/interfaces/ThemeEnum";
 @Component
 export default class CesTextBox extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: Boolean | undefined
+    @Prop({ default: true }) readonly editable: boolean | undefined
     @VModel({ type: Object }) model!: any
 
     mounted() {

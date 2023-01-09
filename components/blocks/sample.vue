@@ -20,7 +20,7 @@ import blockAddItem from "~/utils/blockAddItem";
 @Component
 export default class BlockTextIntroduction extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: Boolean | undefined
+    @Prop({ default: true }) readonly editable: boolean | undefined
     @VModel({ type: Object }) model!: any
 
     reset(oldValue: any = {}) {

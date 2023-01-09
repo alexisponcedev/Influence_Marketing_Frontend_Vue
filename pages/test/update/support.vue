@@ -7,7 +7,7 @@
         </div>
 
         <ul class="list-unstyled tw-pl-0 tw-space-y-2 tw-grid tw-grid-cols-2 tw-gap-2">
-            <li v-for="(page, index ) in pages"
+            <li v-for="(page, index ) in pages" 
                 class="tw-flex tw-items-center tw-space-x-2 tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1">
                 <div class="tw-w-10 tw-text-center">{{ index + 1 }}</div>
                 <div class="tw-flex-1">
@@ -16,7 +16,7 @@
                     </nuxt-link>
                     <div class="tw-text-xs tw-text-gray-500 tw-line-clamp-1">{{ page.route }}</div>
                 </div>
-                <div class="tw-w-20 tw-text-right" :class="{
+                <div class="tw-w-20 tw-text-right" @click="updatePage(page)" :class="{
                     'tw-text-red-500': page.status === 'queued',
                     'tw-text-orange-500': page.status === 'in progress',
                     'tw-text-blue-500': page.status === 'updating',
@@ -56,51 +56,56 @@ export default class Index extends Vue {
         return new Promise(resolve => setTimeout(resolve, time));
     }
 
+    async updatePage(page: any) {
+        page.status = 'in progress';
+        let loadedPage: Page = await Api.Page.get(page.id) as Page;
+        await this.delay(1000);
+        if (Array.isArray(loadedPage.widgets)) {
+            loadedPage.widgets = (loadedPage.widgets as any[]).map(c => {
+
+                if (c.name === 'ProductSupportRegister')
+                    c.structure = {
+                        theme: c.structure.theme,
+                        title: c.structure.title,
+                        subtitle: c.structure.subtitle,
+                        secondTitle: {
+                            id: 3,
+                            type: StructureType.String,
+                            title: 'Second Title',
+                            value: 'PARTS & SERVICE SUPPORT'
+                        },
+                        secondSubtitle: {
+                            id: 4,
+                            type: StructureType.String,
+                            title: 'Second Subtitle',
+                            value: ''
+                        },
+                        modelText: c.structure.modelText
+                    }
+                return c;
+            })
+            page.status = 'locked';
+            await Api.Page.lockPage(page.id);
+            await this.delay(300);
+
+            page.status = 'updating';
+            await Api.Page.savePageWidgets({ widgets: loadedPage.widgets, page_id: loadedPage.id })
+            await this.delay(300);
+
+            page.status = 'unlocked';
+            await Api.Page.unlockPage(page.id);
+            await this.delay(300);
+            page.status = 'done';
+        }
+
+    }
+
 
     async start() {
         this.loading = true;
 
         for (const page of this.pages) {
-            page.status = 'in progress';
-            let loadedPage: Page = await Api.Page.get(page.id) as Page;
-            await this.delay(1000);
-            if (Array.isArray(loadedPage.widgets)) {
-                loadedPage.widgets = (loadedPage.widgets as any[]).map(c => {
-
-                    if (c.name === 'ProductSupportRegister')
-                        c.structure = {
-                            theme: c.structure.theme,
-                            title: c.structure.title,
-                            subtitle: c.structure.subtitle,
-                            secondTitle: {
-                                id: 3,
-                                type: StructureType.String,
-                                title: 'Second Title',
-                                value: 'PARTS & SERVICE SUPPORT'
-                            },
-                            secondSubtitle: {
-                                id: 4,
-                                type: StructureType.String,
-                                title: 'Second Subtitle',
-                                value: 'PARTS & SERVICE SUPPORT'
-                            },
-                            modelText: c.structure.modelText
-                        }
-                    return c;
-                })
-                page.status = 'locked';
-                await Api.Page.lockPage(page.id);
-                await this.delay(300);
-
-                page.status = 'updating';
-                await Api.Page.savePageWidgets({ widgets: loadedPage.widgets, page_id: loadedPage.id })
-                await this.delay(300);
-
-                page.status = 'unlocked';
-                await Api.Page.unlockPage(page.id);
-                await this.delay(300);
-                page.status = 'done';
-            }
+            await this.updatePage(page)
         }
         this.loading = false;
     }
