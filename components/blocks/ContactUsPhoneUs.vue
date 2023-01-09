@@ -59,7 +59,7 @@ export default class ContactUsPhoneUs extends Vue {
             }
         })
         blockRemoveItem(this.model, ['list']);
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

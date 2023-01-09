@@ -1,9 +1,9 @@
 <template>
     <div class="tw-flex tw-items-center " :class="{ 'tw-flex-row-reverse': model.direction.value === Direction.rtl }"
-        v-if="!isEmpty">
+         v-if="!isEmpty">
         <div class="tw-flex-1">
             <img :src="model.image.src" style="width: 720px; height: 720px" class="tw-bg-grey-50 tw-object-cover"
-                :alt="model.image.alt" />
+                 :alt="model.image.alt"/>
         </div>
 
         <div class="tw-flex-1 tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9">
@@ -21,17 +21,17 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
-import { Direction } from "~/interfaces/DirectionEnum";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
+import {Direction} from "~/interfaces/DirectionEnum";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class ProductFeatureWithImage extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({ type: Object }) model!: any;
+    @VModel({type: Object}) model!: any;
 
     Theme = Theme;
     Direction = Direction;
@@ -46,8 +46,8 @@ export default class ProductFeatureWithImage extends Vue {
             title: "Theme",
             value: Theme.dark,
             items: [
-                { title: "Light", value: this.Theme.light },
-                { title: "Dark", value: this.Theme.dark },
+                {title: "Light", value: this.Theme.light},
+                {title: "Dark", value: this.Theme.dark},
             ],
         });
         blockAddItem(this.model, 'direction', {
@@ -56,8 +56,8 @@ export default class ProductFeatureWithImage extends Vue {
             title: "Direction",
             value: Direction.ltr,
             items: [
-                { title: "Left To Right", value: this.Direction.ltr },
-                { title: "Right To Left", value: this.Direction.rtl },
+                {title: "Left To Right", value: this.Direction.ltr},
+                {title: "Right To Left", value: this.Direction.rtl},
             ],
         });
         blockAddItem(this.model, 'littleTitle', {
@@ -91,9 +91,14 @@ export default class ProductFeatureWithImage extends Vue {
             title: 'Shop TV',
             value: "/"
         });
-        blockAddItem(this.model, 'backgroundColor', { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' });
-        blockAddItem(this.model, 'textColor', { id: 7, type: StructureType.Color, title: 'Text color', value: '#fff' });
-        this.model = { ... this.model };
+        blockAddItem(this.model, 'backgroundColor', {
+            id: 7,
+            type: StructureType.Color,
+            title: 'Background color',
+            value: '#fff'
+        });
+        blockAddItem(this.model, 'textColor', {id: 7, type: StructureType.Color, title: 'Text color', value: '#fff'});
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

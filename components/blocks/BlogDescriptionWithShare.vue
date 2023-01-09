@@ -55,7 +55,7 @@ export default class BlogDescriptionWithShare extends Vue {
                 }
             ]
         });
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

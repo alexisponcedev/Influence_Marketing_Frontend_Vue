@@ -1,20 +1,20 @@
 <template>
     <div>
-        <img src="/blocks/ProductWhereToBuy.png" alt="" />
+        <img src="/blocks/ProductWhereToBuy.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class BlockProductWhereToBuy extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({ type: Object }) model!: any;
+    @VModel({type: Object}) model!: any;
 
     Theme = Theme;
 
@@ -28,8 +28,8 @@ export default class BlockProductWhereToBuy extends Vue {
             title: "Theme",
             value: Theme.dark,
             items: [
-                { title: "Light", value: this.Theme.light },
-                { title: "Dark", value: this.Theme.dark },
+                {title: "Light", value: this.Theme.light},
+                {title: "Dark", value: this.Theme.dark},
             ],
         });
         blockAddItem(this.model, 'title', {
@@ -50,12 +50,12 @@ export default class BlockProductWhereToBuy extends Vue {
             title: 'Where To Buy',
             value: true,
             items: [
-                { title: 'True', value: true },
-                { title: 'False', value: false },
+                {title: 'True', value: true},
+                {title: 'False', value: false},
             ]
         });
 
-        this.model = { ... this.model };
+        this.model = {...this.model};
 
     }
 

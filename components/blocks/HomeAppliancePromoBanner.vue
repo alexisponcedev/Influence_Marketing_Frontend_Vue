@@ -1,21 +1,21 @@
 <template>
     <div>
-        <img v-if="model.image" :src="model.image.src" :alt="model.image.alt" />
+        <img v-if="model.image" :src="model.image.src" :alt="model.image.alt"/>
         <img v-else src="/blocks/ImageBox.png" alt="">
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
 export default class HomeAppliancePromoBanner extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
-    @VModel({ type: Object }) model!: any
+    @VModel({type: Object}) model!: any
 
     Theme = Theme;
 
@@ -27,7 +27,7 @@ export default class HomeAppliancePromoBanner extends Vue {
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
                 ...oldValue, ...{
-                    backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
                 }
             }
         } else
@@ -38,8 +38,8 @@ export default class HomeAppliancePromoBanner extends Vue {
                     title: 'Theme',
                     value: Theme.dark,
                     items: [
-                        { title: 'Light', value: this.Theme.light },
-                        { title: 'Dark', value: this.Theme.dark },
+                        {title: 'Light', value: this.Theme.light},
+                        {title: 'Dark', value: this.Theme.dark},
                     ]
                 },
                 image: {

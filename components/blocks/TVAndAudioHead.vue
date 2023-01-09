@@ -57,7 +57,6 @@ export default class BlockTvAndAudioHead extends Vue {
     }
 
 
-
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }

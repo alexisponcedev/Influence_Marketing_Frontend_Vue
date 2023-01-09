@@ -52,7 +52,7 @@ export default class ProductsGridV2 extends Vue {
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id='+getActiveBrand())).data
+        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id=' + getActiveBrand())).data
         if (this.isEmpty) this.reset();
         else {
             this.model.category.items = this.categories;
@@ -71,7 +71,7 @@ export default class ProductsGridV2 extends Vue {
 
         this.loadingFilters = true;
         this.loadingProducts = true;
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProducts/' + category_id + '?brand_id=' + getActiveBrand() )
+        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProducts/' + category_id + '?brand_id=' + getActiveBrand())
             .then(res => {
                 this.products = res.data;
                 this.loadingProducts = false;

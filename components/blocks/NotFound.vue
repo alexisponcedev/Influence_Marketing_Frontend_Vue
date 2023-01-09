@@ -1,19 +1,19 @@
 <template>
     <div>
-        <img src="/blocks/NotFound.jpg" alt="" />
+        <img src="/blocks/NotFound.jpg" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class NotFound extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: boolean | undefined
-    @VModel({ type: Object }) model!: any
+    @Prop({default: true}) readonly editable: boolean | undefined
+    @VModel({type: Object}) model!: any
 
     mounted() {
         blockAddItem(this.model, 'text', {
@@ -48,7 +48,7 @@ export default class NotFound extends Vue {
             title: 'Link 2',
             value: ''
         });
-        this.model = { ... this.model }
+        this.model = {...this.model}
 
     }
 

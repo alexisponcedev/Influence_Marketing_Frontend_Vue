@@ -35,7 +35,7 @@ export default class BlogCubeSlider extends Vue {
                 }
             ]
         });
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

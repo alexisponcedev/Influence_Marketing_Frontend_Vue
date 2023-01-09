@@ -1,19 +1,19 @@
 <template>
     <div>
-        <img src="/blocks/ExtendedWarrantyPaymentStatus.png" alt="" />
+        <img src="/blocks/ExtendedWarrantyPaymentStatus.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class ExtendedWarrantyPaymentStatus extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({ default: true }) readonly editable: boolean | undefined
-    @VModel({ type: Object }) model!: any
+    @Prop({default: true}) readonly editable: boolean | undefined
+    @VModel({type: Object}) model!: any
 
     mounted() {
         blockAddItem(this.model, 'PDF', {
@@ -29,26 +29,26 @@ export default class ExtendedWarrantyPaymentStatus extends Vue {
             type: StructureType.List,
             title: 'List',
             newItem: {
-                image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-                text: { id: 1, type: StructureType.Text, title: 'Text', value: 'Success' },
-                link: { id: 2, type: StructureType.Url, title: 'Link', value: '' }
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Success'},
+                link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
             },
             value: [
                 {
-                    image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-                    text: { id: 1, type: StructureType.Text, title: 'Text', value: 'Success' },
-                    link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
-                    termsLink: { id: 3, type: StructureType.Url, title: '', value: '' },
+                    image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                    text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Success'},
+                    link: {id: 2, type: StructureType.Url, title: 'Link', value: ''},
+                    termsLink: {id: 3, type: StructureType.Url, title: '', value: ''},
 
                 },
                 {
-                    image: { id: 0, type: StructureType.Image, title: 'Image', src: '', alt: '' },
-                    text: { id: 1, type: StructureType.Text, title: 'Text', value: 'Failed' },
-                    link: { id: 2, type: StructureType.Url, title: 'Link', value: '' }
+                    image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                    text: {id: 1, type: StructureType.Text, title: 'Text', value: 'Failed'},
+                    link: {id: 2, type: StructureType.Url, title: 'Link', value: ''}
                 }
             ]
         })
-        this.model = { ... this.model }
+        this.model = {...this.model}
     }
 
     get isEmpty(): Boolean {

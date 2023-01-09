@@ -17,7 +17,7 @@ export default class ExtendedWarrantyWizard extends Vue {
 
     mounted() {
         blockAddItem(this.model, 'terms', {id: 0, type: StructureType.Text, title: 'Terms and Conditions', value: ''})
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

@@ -88,8 +88,8 @@ export default class ProductPackagesSlider extends Vue {
             },
         })
         // if (this.page.model_type === 'product') {
-            // await this.getCategoryId();
-            await this.getItems();
+        // await this.getCategoryId();
+        await this.getItems();
         // }
 
         this.model = {...this.model}; //to enable reactivity;
@@ -97,12 +97,12 @@ export default class ProductPackagesSlider extends Vue {
     }
 
     // async getCategoryId() {
-        // try {
-        //     let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
-        //     this.category_id = product && product.hasOwnProperty('Category') ? product.Category.id : 0;
-        // } catch (e) {
-        //     console.log(e);
-        // }
+    // try {
+    //     let product = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.page.model_id)).data
+    //     this.category_id = product && product.hasOwnProperty('Category') ? product.Category.id : 0;
+    // } catch (e) {
+    //     console.log(e);
+    // }
     // }
 
     async getItems() {

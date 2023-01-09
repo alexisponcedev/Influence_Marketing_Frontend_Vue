@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
+import {Theme} from "~/interfaces/ThemeEnum";
 
 
 @Component
 export default class ProductPackageCategoryBox extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop(Number) readonly product_id!: number
-    @VModel({ type: Object }) model!: any
+    @VModel({type: Object}) model!: any
 
     Theme = Theme;
 
@@ -23,7 +23,7 @@ export default class ProductPackageCategoryBox extends Vue {
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
                 ...oldValue, ...{
-                    backgroundColor: { id: 7, type: StructureType.Color, title: 'Background color', value: '#fff' }
+                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
                 }
             }
         } else
@@ -34,8 +34,8 @@ export default class ProductPackageCategoryBox extends Vue {
                     title: 'Theme',
                     value: Theme.dark,
                     items: [
-                        { title: 'Light', value: this.Theme.light },
-                        { title: 'Dark', value: this.Theme.dark },
+                        {title: 'Light', value: this.Theme.light},
+                        {title: 'Dark', value: this.Theme.dark},
                     ]
                 },
                 whereToBuy: {
@@ -44,8 +44,8 @@ export default class ProductPackageCategoryBox extends Vue {
                     title: 'Show Where To Buy',
                     value: true,
                     items: [
-                        { title: 'True', value: true },
-                        { title: 'False', value: false },
+                        {title: 'True', value: true},
+                        {title: 'False', value: false},
                     ]
                 },
                 support: {
@@ -59,13 +59,13 @@ export default class ProductPackageCategoryBox extends Vue {
                     type: StructureType.List,
                     title: 'Tags',
                     newItem: {
-                        title: { id: 0, type: StructureType.String, title: 'Tag Title', value: 'Item Title' },
-                        target: { id: 0, type: StructureType.idSelector, title: 'ID Selector', value: '' },
+                        title: {id: 0, type: StructureType.String, title: 'Tag Title', value: 'Item Title'},
+                        target: {id: 0, type: StructureType.idSelector, title: 'ID Selector', value: ''},
                     },
                     value: [
                         {
-                            title: { id: 0, type: StructureType.String, title: 'Tag Title', value: 'Sample Tag Title' },
-                            target: { id: 0, type: StructureType.idSelector, title: 'ID Selector', value: '' },
+                            title: {id: 0, type: StructureType.String, title: 'Tag Title', value: 'Sample Tag Title'},
+                            target: {id: 0, type: StructureType.idSelector, title: 'ID Selector', value: ''},
                         },
                     ]
                 },

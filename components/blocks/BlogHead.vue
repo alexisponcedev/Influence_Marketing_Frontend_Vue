@@ -54,7 +54,7 @@ export default class BlogHead extends Vue {
                 }
             ]
         });
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

@@ -19,7 +19,7 @@ export default class BlogBigImageAndTextBox extends Vue {
         blockAddItem(this.model, 'image', {id: 0, type: StructureType.Image, title: "Badge Image", src: '', alt: ''});
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: 'Sample Title'});
         blockAddItem(this.model, 'text', {id: 2, type: StructureType.Text, title: 'Text', value: 'Sample text'});
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

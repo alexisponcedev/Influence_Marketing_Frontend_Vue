@@ -50,7 +50,7 @@ export default class ContactUsNewForm extends Vue {
             }
         })
         blockRemoveItem(this.model, ['generalInquirySubmitUrl', 'partAndServiceSupportSubmitUrl', 'tab1', 'tab2'])
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

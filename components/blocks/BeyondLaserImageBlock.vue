@@ -16,10 +16,10 @@ export default class BeyondLaserImageBlock extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model , 'image' , {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''});
-        blockAddItem(this.model , 'coloredTitle' , {id : 1 , type : StructureType.String , title : 'Colored Title' , value : ''})
-        blockAddItem(this.model , 'text' , {id : 2 , type : StructureType.Text , title : 'Text' , value : ''});
-        this.model = {... this.model};
+        blockAddItem(this.model, 'image', {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''});
+        blockAddItem(this.model, 'coloredTitle', {id: 1, type: StructureType.String, title: 'Colored Title', value: ''})
+        blockAddItem(this.model, 'text', {id: 2, type: StructureType.Text, title: 'Text', value: ''});
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

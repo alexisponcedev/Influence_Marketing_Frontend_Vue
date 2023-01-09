@@ -81,7 +81,6 @@ export default class BlockTvAndAudioFindProduct extends Vue {
     }
 
 
-
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }

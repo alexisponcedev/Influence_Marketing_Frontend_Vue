@@ -18,7 +18,7 @@ export default class AirProductBanner extends Vue {
     mounted() {
         blockAddItem(this.model, 'image', {id: 0, type: StructureType.Image, title: "Badge Image", src: '', alt: ''});
         blockAddItem(this.model, 'text', {id: 1, type: StructureType.Text, title: 'Title', value: ''});
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {

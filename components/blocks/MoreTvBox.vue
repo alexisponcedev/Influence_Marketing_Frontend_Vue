@@ -360,7 +360,7 @@ export default class BlockMoreTvBox extends Vue {
             value: "/products",
         });
 
-        this.model = {... this.model};
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {
