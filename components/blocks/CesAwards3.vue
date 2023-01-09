@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/CesAwards3.png" alt="" />
+        <img src="/blocks/CESAwards3.png" alt="" />
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
-export default class CesAwards3 extends Vue {
+export default class CESAwards3 extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({ default: true }) readonly editable: Boolean | undefined
     @VModel({ type: Object }) model!: any
