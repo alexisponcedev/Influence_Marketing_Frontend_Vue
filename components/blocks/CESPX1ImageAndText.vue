@@ -9,7 +9,7 @@ import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 
 @Component
-export default class CESPX1ImageAndText extends Vue {
+export default class CesPX1ImageAndText extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any

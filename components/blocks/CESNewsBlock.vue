@@ -11,7 +11,7 @@ import blockAddItem from "~/utils/blockAddItem";
 import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
-export default class CESNewsBlock extends Vue {
+export default class CesNewsBlock extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({ default: true }) readonly editable: boolean | undefined
     @VModel({ type: Object }) model!: any
