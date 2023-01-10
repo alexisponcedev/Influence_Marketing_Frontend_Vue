@@ -27,12 +27,13 @@ export default class CesTexBlock2 extends Vue {
                 {title: "Dark", value: Theme.dark},
             ],
         });
-        blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Main Title', value: ''});
-        blockAddItem(this.model, 'description', {id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: ''});
+        blockAddItem(this.model, 'title', {id: 0, type: StructureType.SimpleText, title: 'Main Title', value: ''});
         blockAddItem(this.model, 'subtitle', {id: 1, type: StructureType.String, title: 'Subtitle', value: ''});
-        blockAddItem(this.model, 'specs', {id: 1, type: StructureType.String, title: 'Specs Title', value: ''});
+        blockAddItem(this.model, 'description', {id: 2, type: StructureType.SimpleText, title: 'Subtitle', value: ''});
+        blockAddItem(this.model, 'link1', { id: 3, type: StructureType.Url, title: 'Link 1', value: '' });
+        blockAddItem(this.model, 'specs', {id: 4, type: StructureType.String, title: 'Specs Title', value: ''});
         blockAddItem(this.model, 'list', {
-            id: 1, type: StructureType.List, title: 'List', newItem: {
+            id: 5, type: StructureType.List, title: 'List', newItem: {
                 title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
             },
             value: [
@@ -41,6 +42,8 @@ export default class CesTexBlock2 extends Vue {
                 }
             ]
         });
+        blockAddItem(this.model, 'link2', { id: 6, type: StructureType.Url, title: 'Link 2', value: '' });
+
 
     }
 
