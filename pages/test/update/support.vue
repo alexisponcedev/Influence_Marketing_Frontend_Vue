@@ -7,7 +7,7 @@
         </div>
 
         <ul class="list-unstyled tw-pl-0 tw-space-y-2 tw-grid tw-grid-cols-2 tw-gap-2">
-            <li v-for="(page, index ) in pages" 
+            <li v-for="(page, index ) in pages"
                 class="tw-flex tw-items-center tw-space-x-2 tw-bg-gray-50 tw-rounded-lg tw-px-2 tw-py-1">
                 <div class="tw-w-10 tw-text-center">{{ index + 1 }}</div>
                 <div class="tw-flex-1">
@@ -22,7 +22,7 @@
                     'tw-text-blue-500': page.status === 'updating',
                     'tw-text-red-500': page.status === 'error',
                     'tw-text-green-500': page.status === 'done',
-                
+
                 }">
                     {{ page.status }}
                 </div>
@@ -86,15 +86,15 @@ export default class Index extends Vue {
             })
             page.status = 'locked';
             await Api.Page.lockPage(page.id);
-            await this.delay(300);
+            await this.delay(500);
 
             page.status = 'updating';
             await Api.Page.savePageWidgets({ widgets: loadedPage.widgets, page_id: loadedPage.id })
-            await this.delay(300);
+            await this.delay(500);
 
             page.status = 'unlocked';
             await Api.Page.unlockPage(page.id);
-            await this.delay(300);
+            await this.delay(500);
             page.status = 'done';
         }
 
