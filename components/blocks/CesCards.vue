@@ -19,7 +19,7 @@ export default class CesCards extends Vue {
     mounted() {
         blockAddItem(this.model, 'title', {id: 0, type: StructureType.SimpleText, title: 'Text', value: ''});
         blockAddItem(this.model, 'block1', {
-            id: 1, type: StructureType.Object, title: "Block 2", value: {
+            id: 1, type: StructureType.Object, title: "Block 1", value: {
                 status: {
                     id: 0,
                     type: StructureType.Select,
