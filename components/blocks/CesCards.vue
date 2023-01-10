@@ -17,9 +17,9 @@ export default class CesCards extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''});
+        blockAddItem(this.model, 'title', {id: 0, type: StructureType.SimpleText, title: 'Text', value: ''});
         blockAddItem(this.model, 'block1', {
-            id: 4, type: StructureType.Object, title: "Block 2", value: {
+            id: 1, type: StructureType.Object, title: "Block 2", value: {
                 status: {
                     id: 0,
                     type: StructureType.Select,
@@ -48,7 +48,7 @@ export default class CesCards extends Vue {
             }
         });
         blockAddItem(this.model, 'block2', {
-            id: 3, type: StructureType.Object, title: "Block 2", value: {
+            id: 2, type: StructureType.Object, title: "Block 2", value: {
                 status: {
                     id: 0,
                     type: StructureType.Select,
@@ -75,7 +75,7 @@ export default class CesCards extends Vue {
             }
         });
         blockAddItem(this.model, 'list', {
-            id: 1, type: StructureType.List, title: 'List', newItem: {
+            id: 3, type: StructureType.List, title: 'List', newItem: {
                 title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
                 backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
                 link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
@@ -137,7 +137,7 @@ export default class CesCards extends Vue {
                 },
             }
         });
-        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: 'Link', value: ''});
+        blockAddItem(this.model, 'link', {id: 5, type: StructureType.Url, title: 'Link', value: ''});
 
     }
 
