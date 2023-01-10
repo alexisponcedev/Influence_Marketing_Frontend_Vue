@@ -27,7 +27,7 @@ export default class CesHero extends Vue {
                 {title: "Dark", value: Theme.dark},
             ],
         });
-        blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: ''});
+        blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
         blockAddItem(this.model, 'backgroundImage', {
             id: 1,
             type: StructureType.Image,
@@ -35,8 +35,9 @@ export default class CesHero extends Vue {
             src: '',
             alt: ''
         });
-        blockAddItem(this.model, 'text', {id: 1, type: StructureType.String, title: 'Subtitle', value: ''});
-        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: 'link', value: ''});
+        // blockAddItem(this.model, 'text', {id: 1, type: StructureType.String, title: 'Subtitle', value: ''});
+        blockAddItem(this.model, 'link1', { id: 1, type: StructureType.Url, title: 'link 1', value: '' });
+        blockAddItem(this.model, 'link2', { id: 1, type: StructureType.Url, title: 'link 2', value: '' });
 
     }
 
