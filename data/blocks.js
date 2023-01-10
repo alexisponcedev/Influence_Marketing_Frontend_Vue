@@ -965,7 +965,7 @@ export const BLOCKS = () => {
                 blocks: [
                     {
                         name: "CesHomeIntro",
-                        title: "4K UHD Introduction",
+                        title: "CesHomeIntro",
                         image: "CESHomeIntro.png",
                         category: "TextBox",
                     },
