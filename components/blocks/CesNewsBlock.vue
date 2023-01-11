@@ -29,7 +29,7 @@ export default class CesNewsBlock extends Vue {
         });
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Main Title', value: ''});
         blockAddItem(this.model, 'subtitle', {id: 1, type: StructureType.String, title: 'Subtitle', value: ''});
-        blockAddItem(this.model, 'secondLink', {id: 1, type: StructureType.Url, title: 'Second Link', value: ''});
+        blockAddItem(this.model, 'secondLink', {id: 1, type: StructureType.Url, title: '', value: ''});
         blockAddItem(this.model, 'contact', {id: 1, type: StructureType.String, title: 'Contact', value: ''});
         blockAddItem(this.model, 'text', {id: 1, type: StructureType.String, title: 'Contact Extra Text', value: ''});
         blockAddItem(this.model, 'email', {id: 1, type: StructureType.String, title: 'Email', value: ''});
@@ -42,11 +42,11 @@ export default class CesNewsBlock extends Vue {
         blockAddItem(this.model, 'address', {id: 1, type: StructureType.String, title: 'Address', value: ''});
         blockAddItem(this.model, 'list', {
             id: 1, type: StructureType.List, title: 'List', newItem: {
-                link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
+                link: {id: 1, type: StructureType.Url, title: '', value: ''},
             },
             value: [
                 {
-                    link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
+                    link: {id: 1, type: StructureType.Url, title: '', value: ''},
                 }
             ]
         });

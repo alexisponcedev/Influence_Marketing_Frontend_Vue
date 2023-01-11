@@ -31,7 +31,7 @@ export default class CesCards extends Vue {
                     ],
                 },
                 title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
-                link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
+                link: { id: 1, type: StructureType.Url, title: '', value: '' },
                 backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
                 image1: { id: 4, type: StructureType.Image, title: "Image 1", src: '', alt: '' },
                 image2: { id: 5, type: StructureType.Image, title: "Image 2", src: '', alt: '' },
@@ -60,7 +60,7 @@ export default class CesCards extends Vue {
                     ],
                 },
                 title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
-                link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
+                link: { id: 1, type: StructureType.Url, title: '', value: '' },
                 backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
                 theme: {
                     id: 0,
@@ -78,7 +78,7 @@ export default class CesCards extends Vue {
             id: 3, type: StructureType.List, title: 'List', newItem: {
                 title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
                 backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
-                link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
+                link: { id: 1, type: StructureType.Url, title: '', value: '' },
                 theme: {
                     id: 0,
                     type: StructureType.Select,
@@ -94,7 +94,7 @@ export default class CesCards extends Vue {
                 {
                     title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
                     backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
-                    link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
+                    link: { id: 1, type: StructureType.Url, title: '', value: '' },
                     theme: {
                         id: 0,
                         type: StructureType.Select,
@@ -121,7 +121,7 @@ export default class CesCards extends Vue {
                     ],
                 },
                 title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
-                link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
+                link: { id: 1, type: StructureType.Url, title: '', value: '' },
                 backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
                 image1: { id: 4, type: StructureType.Image, title: "Image 1", src: '', alt: '' },
                 image2: { id: 5, type: StructureType.Image, title: "Image 2", src: '', alt: '' },
