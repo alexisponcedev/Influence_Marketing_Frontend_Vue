@@ -30,7 +30,7 @@ export default class CesEventsBlock extends Vue {
         blockAddItem(this.model, 'image', {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: ''});
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
         blockAddItem(this.model, 'description', {id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: ''});
-        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: 'link', value: ''});
+        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: '', value: ''});
 
     }
 
