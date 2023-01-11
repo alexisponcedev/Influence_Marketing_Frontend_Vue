@@ -91,6 +91,8 @@ export default class api__redirect extends VuexModule {
     @Action
     async create(Redirect: Redirect) {
         this.setLoading(true);
+        Redirect.source_url = Redirect.source_url?.replace("https://public.stage.hisenseportal.com" , "")
+        Redirect.redirect_url = Redirect.redirect_url?.replace("https://public.stage.hisenseportal.com" , "")
         const response = await RedirectApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -111,6 +113,8 @@ export default class api__redirect extends VuexModule {
     @Action
     async update(payload: { id: number; Redirect: Redirect }) {
         this.setLoading(true);
+        payload.Redirect.source_url = payload.Redirect.source_url?.replace("https://public.stage.hisenseportal.com" , "")
+        payload.Redirect.redirect_url = payload.Redirect.redirect_url?.replace("https://public.stage.hisenseportal.com" , "")
         const response = await RedirectApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
