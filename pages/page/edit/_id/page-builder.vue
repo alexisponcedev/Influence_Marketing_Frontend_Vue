@@ -101,7 +101,17 @@ import { SettingEnum } from "~/interfaces/SettingEnum";
 import VersionHistory from "~/components/version-history.vue";
 
 @Component({
-    components: { VersionHistory }
+    components: { VersionHistory },
+    // async asyncData({ params }) {
+    //     let Page = (await Api.Page.get(+params.id)) as Page;
+    //     let blocksList : BlockInterface[] = [];
+    //     if (Page.draft && Page.draft.length > 0)
+    //         blocksList = Page.draft as Array<BlockInterface>;
+    //     else
+    //         blocksList = (Page.widgets ? Page.widgets : []) as Array<BlockInterface>;
+    //     return { Page , blocksList  }
+    // }
+
 })
 export default class PageBuilderSection extends Vue {
     Api = Api;
@@ -115,7 +125,7 @@ export default class PageBuilderSection extends Vue {
     shouldDeploy: Boolean = false;
 
     async mounted() {
-        this.fetchPage();
+        await this.fetchPage();
     }
 
     async fetchPage() {
