@@ -48,8 +48,6 @@ export default class BlogMoreStories extends Vue {
 
         await Api.Post.getAll();
         this.addPosts();
-
-
         this.model = {...this.model}
     }
 

@@ -25,7 +25,11 @@ export default class BlogListReadArticleBox extends Vue {
         blockAddItem(this.model, 'link', {id: 3, type: StructureType.Url, title: 'READ ARTICLE', value: ''});
 
         await Api.Post.getAll();
-        let post : any = Api.Post.all[Api.Post.all.length - 1]
+        let posts = Api.Post.all
+            .filter((p: any) => p.hasOwnProperty('page') && p.page)
+            .sort((a: any, b: any) => (a.id < b.id ? 1 : -1))
+
+        let post : any = posts[0]
         this.updatePost(post);
         this.model = {... this.model};
     }
