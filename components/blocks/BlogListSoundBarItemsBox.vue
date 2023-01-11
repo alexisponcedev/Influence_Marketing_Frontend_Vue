@@ -67,7 +67,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
             title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
             tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-            link: {id: 3, type: StructureType.Url, title: 'Read Article', value: ''},
+            link: {id: 3, type: StructureType.Url, title: 'READ ARTICLE', value: ''},
         }
         if (post) {
             let imageMeta = post.page.meta.find((i: any) => i.name.includes('og:image') && i.content != null)

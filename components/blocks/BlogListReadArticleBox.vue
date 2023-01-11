@@ -22,7 +22,7 @@ export default class BlogListReadArticleBox extends Vue {
         blockAddItem(this.model, 'image', {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''});
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: ''});
         blockAddItem(this.model, 'tagLink', {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''});
-        blockAddItem(this.model, 'link', {id: 3, type: StructureType.Url, title: 'Read Article', value: ''});
+        blockAddItem(this.model, 'link', {id: 3, type: StructureType.Url, title: 'READ ARTICLE', value: ''});
 
         await Api.Post.getAll();
         let post : any = Api.Post.all[Api.Post.all.length - 1]
