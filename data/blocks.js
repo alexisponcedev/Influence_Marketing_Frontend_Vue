@@ -1012,6 +1012,12 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "CesHero2",
+                        title: "CES Hero Block 2",
+                        image: "CesHero2.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "CesEventsBlock",
                         title: "CES Events  Block",
                         image: "CESEventsBlock.png",
