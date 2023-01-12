@@ -27,7 +27,7 @@ export default class CesNavigationButton extends Vue {
                 {title: "Dark", value: Theme.dark},
             ],
         });
-        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: 'link', value: ''});
+        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: '', value: ''});
     }
 
     get isEmpty(): Boolean {

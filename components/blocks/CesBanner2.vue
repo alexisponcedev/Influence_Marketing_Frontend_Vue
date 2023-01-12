@@ -17,9 +17,9 @@ export default class CesBanner2 extends Vue {
 
     mounted() {
         blockAddItem(this.model, 'image1', {id: 0, type: StructureType.Image, title: "Image 1", src: '', alt: ''});
-        blockAddItem(this.model, 'imageLink1', {id: 1, type: StructureType.Url, title: 'Image Link 1', value: ''});
+        blockAddItem(this.model, 'imageLink1', {id: 1, type: StructureType.Url, title: '', value: ''});
         blockAddItem(this.model, 'image2', {id: 0, type: StructureType.Image, title: "Image 2", src: '', alt: ''});
-        blockAddItem(this.model, 'imageLink2', {id: 1, type: StructureType.Url, title: 'Image Link 2', value: ''});
+        blockAddItem(this.model, 'imageLink2', {id: 1, type: StructureType.Url, title: '', value: ''});
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: ''});
         blockAddItem(this.model, 'rightText', {id: 1, type: StructureType.String, title: 'Right Text', value: ''});
         blockAddItem(this.model, 'leftText', {id: 1, type: StructureType.String, title: 'Left Text', value: ''});

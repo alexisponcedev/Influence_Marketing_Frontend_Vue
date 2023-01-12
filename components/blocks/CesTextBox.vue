@@ -29,7 +29,7 @@ export default class CesTextBox extends Vue {
         });
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: ''});
         blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: ''});
-        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: 'link', value: ''});
+        blockAddItem(this.model, 'link', {id: 1, type: StructureType.Url, title: '', value: ''});
 
     }
 

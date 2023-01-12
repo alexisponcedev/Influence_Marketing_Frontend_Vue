@@ -7,6 +7,8 @@
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
+import blockAddItem from "~/utils/blockAddItem";
+import {Api} from "@/store";
 
 @Component
 export default class BlogListReadArticleBox extends Vue {
@@ -14,46 +16,33 @@ export default class BlogListReadArticleBox extends Vue {
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any
 
-    reset(oldValue: any = {}) {
+    Api = Api;
+    async mounted() {
 
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-                tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-                link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
-            }
+        blockAddItem(this.model, 'image', {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''});
+        blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: ''});
+        blockAddItem(this.model, 'tagLink', {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''});
+        blockAddItem(this.model, 'link', {id: 3, type: StructureType.Url, title: 'READ ARTICLE', value: ''});
+
+        await Api.Post.getAll();
+        let posts = Api.Post.all
+            .filter((p: any) => p.hasOwnProperty('page') && p.page)
+            .sort((a: any, b: any) => (a.id < b.id ? 1 : -1))
+
+        let post : any = posts[0]
+        this.updatePost(post);
+        this.model = {... this.model};
     }
 
-    mounted() {
-        if (this.isEmpty) this.reset();
+    updatePost(post : any){
+        let imageMeta  = post.page.meta.find((i : any) => i.name.includes('og:image') && i.content != null)
+        if(imageMeta) this.model.image.src = imageMeta.content;
+        this.model.title.value = post.page.title;
+        this.model.link.value = post.page.route;
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
-    }
-
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
     }
 }
 </script>

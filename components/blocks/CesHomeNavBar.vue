@@ -42,11 +42,11 @@ export default class CesHomeNavBar extends Vue {
                     type: StructureType.List,
                     title: 'Tags',
                     newItem: {
-                        link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+                        link: {id: 0, type: StructureType.Url, title: '', value: ''},
                     },
                     value: [
                         {
-                            link: {id: 0, type: StructureType.Url, title: 'Link', value: ''},
+                            link: {id: 0, type: StructureType.Url, title: '', value: ''},
                         },
                     ]
                 },

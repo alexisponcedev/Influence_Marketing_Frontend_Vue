@@ -30,8 +30,8 @@ export default class CesImagesBlock1 extends Vue {
         blockAddItem(this.model, 'blockTitle', {id: 1, type: StructureType.SimpleText, title: 'Main Title', value: ''});
         blockAddItem(this.model, 'image1', {id: 1, type: StructureType.Image, title: 'Image 1', src: '', alt: ''});
         blockAddItem(this.model, 'image2', {id: 1, type: StructureType.Image, title: 'Image 2', src: '', alt: ''});
-        blockAddItem(this.model, 'link1', {id: 1, type: StructureType.Url, title: 'link 1', value: ''});
-        blockAddItem(this.model, 'link2', {id: 1, type: StructureType.Url, title: 'link 2', value: ''});
+        blockAddItem(this.model, 'link1', {id: 1, type: StructureType.Url, title: '', value: ''});
+        blockAddItem(this.model, 'link2', {id: 1, type: StructureType.Url, title: '', value: ''});
         blockAddItem(this.model, 'title1', {id: 1, type: StructureType.String, title: 'Title 1', value: ''});
         blockAddItem(this.model, 'title2', {id: 1, type: StructureType.String, title: 'Title 2', value: ''});
 

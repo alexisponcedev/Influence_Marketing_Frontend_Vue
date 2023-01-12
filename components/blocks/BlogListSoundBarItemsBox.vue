@@ -7,6 +7,9 @@
 <script lang="ts">
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
+import {Api} from "@/store";
+import blockAddItem from "~/utils/blockAddItem";
+
 
 @Component
 export default class BlogListSoundBarItemsBox extends Vue {
@@ -14,59 +17,70 @@ export default class BlogListSoundBarItemsBox extends Vue {
     @Prop({default: true}) readonly editable: Boolean | undefined
     @VModel({type: Object}) model!: any
 
-    reset(oldValue: any = {}) {
+    Api = Api;
 
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                list: {
-                    id: 2, type: StructureType.List, title: 'List',
-                    newItem: {
-                        image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                        title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-                        tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-                        link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
-                    },
-                    value: [
-                        {
-                            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
-                            title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-                            tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
-                            link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
-                        }
-                    ]
-                },
-            }
+    async mounted() {
+        blockAddItem(this.model , 'count' , {
+            id : 0 , type : StructureType.String , title : 'Count' , value : 4
+        })
+        blockAddItem(this.model, 'list', {
+            id: 2, type: StructureType.List, title: 'List',
+            newItem: {
+                image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+                title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+                tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
+            },
+            value: []
+        })
+
+
+        await Api.Post.getAll();
+
+        this.addPosts();
+
+        this.model = {...this.model}
     }
 
-    mounted() {
-        if (this.isEmpty) this.reset();
+    addPosts(){
+        this.model.list.value = [];
+        let posts = Api.Post.all
+            .filter((p: any) => p.hasOwnProperty('page') && p.page)
+            .sort((a: any, b: any) => (a.id < b.id ? 1 : -1))
+
+        for (let i = 0; i < this.model.count.value; i++) {
+            this.model.list.value.push(this.addPost(posts[i]))
+        }
+    }
+
+    get count(){
+        return this.model.hasOwnProperty('count') ?  this.model.count.value : 0
+    }
+
+    @Watch('count')
+    onCountChanged(){
+        this.addPosts();
+    }
+
+    addPost(post: any, title: string = 'Small Title'): any {
+        let newItem: any = {
+            image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
+            title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
+            tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+            link: {id: 3, type: StructureType.Url, title: 'READ ARTICLE', value: ''},
+        }
+        if (post) {
+            let imageMeta = post.page.meta.find((i: any) => i.name.includes('og:image') && i.content != null)
+            if (imageMeta) newItem.image.src = imageMeta.content;
+            newItem.title.value = post.page.title;
+            newItem.link.value = post.page.route;
+        }
+        return newItem;
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    addItem(name: string, item: any) {
-        if (!this.model.hasOwnProperty(name)) this.model[name] = item;
-        this.model[name].id = item.id;
-
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
-        if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
-        }
-        if (item.type === StructureType.List) {
-            this.model[name].newItem = item.newItem;
-        }
-        if (item.type === StructureType.Select) {
-            this.model[name].items = item.items;
-        }
-    }
 }
 </script>
