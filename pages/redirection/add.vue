@@ -176,7 +176,7 @@ export default class EntityForm extends Vue {
                 this.Redirect.page_id = from.id;
                 this.Redirect.redirect_type = RedirectTypeEnum.To;
             } else if (to) {
-                this.Redirect.page_id = from.id;
+                this.Redirect.page_id = to.id;
                 this.Redirect.redirect_type = RedirectTypeEnum.To;
             }
 
