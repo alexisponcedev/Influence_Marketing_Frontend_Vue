@@ -25,7 +25,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <loading-overlay :show="Api.Page.loading"/>
+        <loading-overlay :show="Api.Page.loading || loading"/>
     </v-container>
 </template>
 
@@ -38,9 +38,16 @@ export default class Deploys extends Vue {
     Api = Api;
 
     tab = "";
+    loading : boolean = false;
 
     async startDeploy() {
-        await Api.Page.deployStageDbToProd();
+        this.loading = true;
+        await Api.Page.deployStageDbToProd().then(() => {
+            setTimeout(() => {
+                this.loading = false;
+            }, 15000)
+        });
+
     }
 }
 </script>
