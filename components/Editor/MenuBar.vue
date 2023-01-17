@@ -389,7 +389,7 @@ export default {
                 .chain()
                 .focus()
                 .extendMarkRange('link')
-                .setLink({href: url})
+                .setLink({href: url , target : "_self"})
                 .run()
         },
         enableTable() {
