@@ -45,7 +45,7 @@ export default class Deploys extends Vue {
         await Api.Page.deployStageDbToProd().then(() => {
             setTimeout(() => {
                 this.loading = false;
-            }, 15000)
+            }, 1000)
         });
 
     }
