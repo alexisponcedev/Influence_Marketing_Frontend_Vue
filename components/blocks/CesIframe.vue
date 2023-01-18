@@ -16,8 +16,8 @@ export default class CesIframe extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'iframe', { id: 0, type: StructureType.Video, title: 'iframe Link', value: '' });
-        blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: ''});
+        blockAddItem(this.model, 'iframeLink', { id: 0 ,  type: StructureType.Video, title: 'iframe Link', value: '' });
+        blockAddItem(this.model, 'text', {id:  1 , type: StructureType.SimpleText, title: 'Subtitle', value: ''});
     }
 
     get isEmpty(): Boolean {

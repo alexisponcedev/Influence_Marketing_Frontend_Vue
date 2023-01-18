@@ -1077,6 +1077,7 @@ export const BLOCKS = () => {
                         image: "CesIframe.png",
                         category: "TextBox",
                     },
+
                     {
                         name: "CesPeople",
                         title: "CES People",
