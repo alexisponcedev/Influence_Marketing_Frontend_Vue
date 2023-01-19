@@ -16,10 +16,10 @@ export default class CesPeople extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'image1', {id: 0, type: StructureType.Image, title: "Image 1", src: '', alt: ''});
-        blockAddItem(this.model, 'image2', {id: 0, type: StructureType.Image, title: "Image 2", src: '', alt: ''});
-        blockAddItem(this.model, 'text1', { id: 1, type: StructureType.SimpleText, title: 'Text 1', value: '' });
-        blockAddItem(this.model, 'text2', { id: 1, type: StructureType.SimpleText, title: 'Text 2', value: '' });
+        blockAddItem(this.model, 'image1', { id: 1, type: StructureType.Image, title: "Image 1", src: '', alt: '' });
+        blockAddItem(this.model, 'image2', { id: 2, type: StructureType.Image, title: "Image 2", src: '', alt: '' });
+        blockAddItem(this.model, 'text1', { id: 5, type: StructureType.SimpleText, title: 'Text 1', value: '' });
+        blockAddItem(this.model, 'text2', { id: 6, type: StructureType.SimpleText, title: 'Text 2', value: '' });
     }
 
     get isEmpty(): Boolean {
