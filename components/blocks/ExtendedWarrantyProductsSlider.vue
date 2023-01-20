@@ -28,13 +28,13 @@ export default class ExtendedWarrantyProductsSlider extends Vue {
             }
         } else
             this.model = {
+                link: { id: 1, type: StructureType.Url, title: 'Link', value: '' },
                 list: {
                     id: 0,
                     type: StructureType.List,
                     title: "List",
                     newItem: {
                         image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
-                        link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
                         category: {
                             id: 3,
                             type: StructureType.Select,
@@ -48,7 +48,6 @@ export default class ExtendedWarrantyProductsSlider extends Vue {
                     value: [
                         {
                             image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
-                            link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
                             category: {
                                 id: 3,
                                 type: StructureType.Select,

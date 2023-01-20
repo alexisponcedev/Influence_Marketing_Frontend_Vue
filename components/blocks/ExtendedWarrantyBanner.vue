@@ -26,8 +26,9 @@ export default class ExtendedWarrantyBanner extends Vue {
             this.model = {
                 image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
                 title: {id: 1, type: StructureType.Text, title: 'Title', value: ''},
+                link: { id: 2, type: StructureType.Url, title: 'Link', value: '' },
                 showSearch: {
-                    id: 2,
+                    id: 3,
                     type: StructureType.Select,
                     title: 'Show Search',
                     value: true,
