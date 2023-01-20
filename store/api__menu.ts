@@ -7,6 +7,7 @@ import {
     Configuration,
     MenuApiFactory,
 } from "@/repositories";
+import safeString from "~/utils/safeString";
 
 @Module({
     name: "api__menu",
@@ -80,6 +81,7 @@ export default class api__menu extends VuexModule {
     @Action
     async create(Menu: Menu) {
         this.setLoading(true);
+        Menu.widgets = JSON.parse(safeString(JSON.stringify(Menu.widgets)));
         const response = await MenuApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -100,6 +102,7 @@ export default class api__menu extends VuexModule {
     @Action
     async update(payload: { id: number; Menu: Menu }) {
         this.setLoading(true);
+        payload.Menu.widgets = JSON.parse(safeString(JSON.stringify(payload.Menu.widgets)));
         const response = await MenuApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",

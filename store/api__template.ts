@@ -7,6 +7,7 @@ import {
     TemplateResource,
     TemplateApiFactory,
 } from "@/repositories";
+import safeString from "~/utils/safeString";
 
 @Module({
     name: "api__template",
@@ -66,6 +67,7 @@ export default class api__template extends VuexModule {
     @Action
     async create(template: Template) {
         this.setLoading(true);
+        template.widgets = JSON.parse(safeString(JSON.stringify(template.widgets)));
         const response = await TemplateApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -86,6 +88,7 @@ export default class api__template extends VuexModule {
     @Action
     async update(payload: { id: number; Template: Template }) {
         this.setLoading(true);
+        payload.Template.widgets = JSON.parse(safeString(JSON.stringify(payload.Template.widgets)));
         const response = await TemplateApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
