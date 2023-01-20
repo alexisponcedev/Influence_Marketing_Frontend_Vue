@@ -138,6 +138,8 @@ export default class PageForm extends Vue {
         // { id: 3, title: 'SupportOnly' },
     ]
 
+
+
     Page: Page = {
         id: 0,
         title: '',
@@ -263,6 +265,9 @@ export default class PageForm extends Vue {
                     id: +this.Page.id!,
                     Page: this.Page,
                 });
+
+                if(this.Page.id === 1565) this.Page.route = this.oldRoute;
+
                 if (this.Page.route !== this.oldRoute)
                     Api.Page.doDeploy();
             }
