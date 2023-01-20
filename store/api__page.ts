@@ -301,6 +301,7 @@ export default class api__page extends VuexModule {
         this.setLoading(true);
         payload.Page.widgets = JSON.parse(safeString(JSON.stringify(payload.Page.widgets)));
         payload.Page.meta = JSON.parse(safeString(JSON.stringify(payload.Page.meta)));
+        console.log(payload.Page.route);
         const response = await PageApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
