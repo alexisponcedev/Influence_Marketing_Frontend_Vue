@@ -261,12 +261,12 @@ export default class PageForm extends Vue {
     async submit() {
         if (this.formValidate()) {
             if (this.editMode) {
+                if(this.Page.id === 1565) this.Page.route = this.oldRoute;
+
                 await Api.Page.update({
                     id: +this.Page.id!,
                     Page: this.Page,
                 });
-
-                if(this.Page.id === 1565) this.Page.route = this.oldRoute;
 
                 if (this.Page.route !== this.oldRoute)
                     Api.Page.doDeploy();
