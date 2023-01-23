@@ -130,7 +130,8 @@ export default class PageForm extends Vue {
 
     meta: Array<{ rel: string, name: string, content: string }> = [];
 
-    oldRoute = '';
+    oldRoute : string = '';
+    oldStatus : number = 0;
 
     statusList = [
         { id: 1, title: 'Published' },
@@ -214,6 +215,7 @@ export default class PageForm extends Vue {
             await this.lock();
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             this.oldRoute = this.Page.route!;
+            this.oldStatus = this.Page.status_id!;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
         }
@@ -269,7 +271,7 @@ export default class PageForm extends Vue {
                     Page: this.Page,
                 });
 
-                if (this.Page.route !== this.oldRoute)
+                if (this.Page.route !== this.oldRoute || this.Page.status_id !== this.oldStatus)
                     Api.Page.doDeploy();
             }
             else {
