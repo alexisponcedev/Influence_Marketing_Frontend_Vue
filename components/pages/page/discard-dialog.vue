@@ -8,11 +8,11 @@
         >
             <v-card class="ma-0 pa-5">
                 <v-container>
-                    <v-row justify="space-between" align="center" class="mx-0 tw-mb-7">
+                    <v-row justify="space-between" align="center" class="mx-0 tw-mb-7 tw-flex-nowrap">
                         <p
                             class="tw-font-semibold tw-text-xl tw-text-[#212121]"
                         >
-                            Want to save changes to “page name”?
+                            Want to save changes to {{ pageTitle }}?
                         </p>
                         <button @click="dialog = false">
                             <v-icon color="black" large>mdi-close</v-icon>
@@ -48,7 +48,8 @@ import { Component, Prop, VModel, Vue } from "vue-property-decorator";
 
 @Component
 export default class PageDiscardDialog extends Vue {
-    @Prop(Function) readonly dialogSave!: ()=>{};
+    @Prop(String) readonly pageTitle!: string;
+    @Prop(Function) readonly dialogSave!: () => {};
     @Prop(Function) readonly checkLockAndExit!: ()=>{};
     @VModel({type: Boolean}) dialog!: boolean;
 }

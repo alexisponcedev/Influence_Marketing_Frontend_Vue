@@ -3,6 +3,7 @@
         <v-card-title> Asset Manager </v-card-title>
 
         <v-card-text>
+
             <form-field-text :field="titleField" v-model="Asset.title" />
             <form-field-text
                 :field="descriptionFiled"
@@ -12,6 +13,10 @@
             <div class="tw-my-2 tw-text-center tw-w-full">OR</div>
             <form-field-text :field="urlField" v-model="Asset.url" />
 
+            <div class="px-3">
+                <div>Asset</div>
+                <img :src="thumbnail.src" alt="thumbnail" class="tw-w-full"/>
+            </div>
             <v-progress-linear v-if="saving" indeterminate color="cyan" />
         </v-card-text>
 
@@ -57,11 +62,16 @@ export default class StructureFileUploader extends Vue {
         url: "",
     };
 
+    
     file: any = null;
 
     saving: Boolean = false;
-
+    
     editMode : Boolean = false
+    
+    thumbnail = {
+        src: "",
+    }
 
     titleField = {
         label: "Asset Title",
@@ -73,6 +83,7 @@ export default class StructureFileUploader extends Vue {
     urlField = {
         label: "Asset URL",
         placeholder: "enter asset url",
+        disabled: this.editMode ,
         rules: [],
         colAttrs: { cols: 12 },
     };
@@ -105,6 +116,23 @@ export default class StructureFileUploader extends Vue {
 
         if(this.item.src && this.item.alt) {
             this.editMode = true;
+            this.urlField = {
+                label: "Asset URL",
+                placeholder: "enter asset url",
+                disabled: this.editMode,
+                rules: [],
+                colAttrs: { cols: 12 },
+            };
+            this.thumbnail = {
+                src: this.item.src,
+            }
+        }
+    }
+
+    @Watch("file")
+    onFileInput(){
+        this.thumbnail = {
+            src: URL.createObjectURL(this.file),
         }
     }
 

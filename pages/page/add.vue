@@ -1,103 +1,103 @@
 <template>
     <v-container fluid>
-
-        <div v-if="editMode" class="d-flex justify-space-between align-center">
-            <breadcrumbs :locations="locations" />
-            <div class="tw-flex tw-items-center tw-space-x-2">
-
-                <page-lock class="btn" v-model="Page" />
-
-                <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
-                    Live Website
-                </v-btn>
-                <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPageBuilder">
-                    Go to Page Builder
-                </v-btn>
+        <div class="tw-grid tw-grid-cols-11 tw-gap-3" style="grid-template-columns: 230px 1fr;">
+            <pages-page-sidenav />
+            <div class="tw-col-span-7">
+                <div v-if="editMode" class="d-flex justify-space-between align-center">
+                    <breadcrumbs :locations="locations" />
+                    <div class="tw-flex tw-items-center tw-space-x-2">
+            
+                        <page-lock class="btn" v-model="Page" />
+            
+                        <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
+                            Live Website
+                        </v-btn>
+                        <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPageBuilder">
+                            Go to Page Builder
+                        </v-btn>
+                    </div>
+                </div>
+            
+                <v-row>
+                    <v-col>
+                        <v-tabs show-arrows v-model="tab" background-color="transparent">
+                            <v-tab href="#Details">Page Details</v-tab>
+                            <v-tab href="#Metas">Page Metas</v-tab>
+                            <v-tab v-if="Page.id > 0" href="#Redirection">
+                                Redirection
+                            </v-tab>
+                        </v-tabs>
+                    </v-col>
+                </v-row>
+            
+                <v-form ref="form" @submit.prevent="submit">
+                    <v-tabs-items v-model="tab" style="background-color: transparent !important;">
+                        <v-tab-item value="Details">
+                            <v-card>
+                                <v-card-text>
+                                    <v-row>
+                                        <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged" />
+                                        <form-field-select-autocomplete :field="formFields[1]" v-model="Page.status_id" />
+                                    </v-row>
+            
+            
+                                    <form-field-select-page-route :field="formFields[2]" v-model="Page.route" :pageId="Page.id" />
+            
+            
+                                    <div v-if="Page.model_type === 'product'" class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
+                                        <div>Support URL :</div>
+                                        <nuxt-link v-if="support && support.id > 0"
+                                            class="tw-font-bold tw-underline tw-text-orange-600"
+                                            :to="`/page/edit/${support.id}`">Open Support Page
+                                        </nuxt-link>
+                                        <button v-else @click.prevent="createSupportPage"
+                                            class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create
+                                            Support Page
+                                        </button>
+                                    </div>
+            
+                                    <div v-if="Page.model_type === 'support'" class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
+                                        <div>Product URL :</div>
+                                        <nuxt-link v-if="product && product.id > 0"
+                                            class="tw-font-bold tw-underline tw-text-orange-600"
+                                            :to="`/page/edit/${product.id}`">Open Product Page
+                                        </nuxt-link>
+                                        <button v-else @click.prevent="createProductPage"
+                                            class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create
+                                            Product Page
+                                        </button>
+                                    </div>
+            
+            
+                                </v-card-text>
+                            </v-card>
+                            <button
+                                class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+                                @click.prevent="submit">Save
+                            </button>
+                        </v-tab-item>
+            
+                        <v-tab-item value="Metas">
+                            <form-field-meta :field="formFields[3]" v-model="Page" />
+            
+                            <button
+                                class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+                                @click.prevent="submit">Save
+                            </button>
+            
+                        </v-tab-item>
+                        <v-tab-item value="Live">
+                            <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full" />
+                        </v-tab-item>
+            
+                        <v-tab-item value="Redirection">
+                            <pages-page-redirection :Page="Page" />
+                        </v-tab-item>
+            
+                    </v-tabs-items>
+                </v-form>
             </div>
         </div>
-
-        <v-row>
-            <v-col>
-                <v-tabs show-arrows v-model="tab" background-color="transparent">
-                    <v-tab href="#Details">Page Details</v-tab>
-                    <v-tab href="#Metas">Page Metas</v-tab>
-                    <v-tab v-if="Page.id > 0" href="#Redirection">
-                        Redirection
-                    </v-tab>
-                </v-tabs>
-            </v-col>
-        </v-row>
-
-        <v-form ref="form" @submit.prevent="submit">
-            <v-tabs-items v-model="tab" style="background-color: transparent !important;">
-                <v-tab-item value="Details">
-                    <v-card>
-                        <v-card-text>
-                            <v-row>
-                                <form-field-text :field="formFields[0]" v-model="Page.title"
-                                    @input="pageTitleChanged" />
-                                <form-field-select-autocomplete :field="formFields[1]" v-model="Page.status_id" />
-                            </v-row>
-
-
-                            <form-field-select-page-route :field="formFields[2]" v-model="Page.route"
-                                :pageId="Page.id" />
-
-
-                            <div v-if="Page.model_type === 'product'"
-                                class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
-                                <div>Support URL :</div>
-                                <nuxt-link v-if="support && support.id > 0"
-                                    class="tw-font-bold tw-underline tw-text-orange-600"
-                                    :to="`/page/edit/${support.id}`">Open Support Page
-                                </nuxt-link>
-                                <button v-else @click.prevent="createSupportPage"
-                                    class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create
-                                    Support Page
-                                </button>
-                            </div>
-
-                            <div v-if="Page.model_type === 'support'"
-                                class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
-                                <div>Product URL :</div>
-                                <nuxt-link v-if="product && product.id > 0"
-                                    class="tw-font-bold tw-underline tw-text-orange-600"
-                                    :to="`/page/edit/${product.id}`">Open Product Page
-                                </nuxt-link>
-                                <button v-else @click.prevent="createProductPage"
-                                    class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create
-                                    Product Page
-                                </button>
-                            </div>
-
-
-                        </v-card-text>
-                    </v-card>
-                    <button
-                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-                        @click.prevent="submit">Save
-                    </button>
-                </v-tab-item>
-
-                <v-tab-item value="Metas">
-                    <form-field-meta :field="formFields[3]" v-model="Page" />
-
-                    <button
-                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-                        @click.prevent="submit">Save
-                    </button>
-
-                </v-tab-item>
-                <v-tab-item value="Live">
-                    <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full" />
-                </v-tab-item>
-
-                <v-tab-item value="Redirection">
-                    <pages-page-redirection :Page="Page" />
-                </v-tab-item>
-
-            </v-tabs-items>
-        </v-form>
 
         <template-selector @template-selected="templateSelected" ref="templateSelector" />
 

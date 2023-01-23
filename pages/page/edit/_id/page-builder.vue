@@ -136,6 +136,7 @@
         />
         <pages-page-discard-dialog
             v-model="dialog"
+            :pageTitle="Page.title"
             :dialogSave="dialogSave"
             :checkLockAndExit="checkLockAndExit"
         />
