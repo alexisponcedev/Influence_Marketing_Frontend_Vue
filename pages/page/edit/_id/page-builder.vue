@@ -184,8 +184,8 @@ export default class PageBuilderSection extends Vue {
     }
 
     async dialogSave() {
+        this.dialog = false;
         this.savePage().then(() => {
-            this.dialog = false;
             this.checkLockAndExit();
         });
     }
