@@ -2,8 +2,8 @@
     <v-container fluid>
         <div class="tw-grid tw-grid-cols-11 tw-gap-3" style="grid-template-columns: 230px 1fr;">
             <pages-page-sidenav />
-            <div class="tw-col-span-7">
-                <div v-if="editMode" class="d-flex justify-space-between align-center">
+            <div class="tw-col-span-8">
+                <div v-if="editMode" class="tw-flex tw-justify-between tw-items-center tw-flex-wrap lg:tw-flex-nowrap">
                     <breadcrumbs :locations="locations" />
                     <div class="tw-flex tw-items-center tw-space-x-2">
             
