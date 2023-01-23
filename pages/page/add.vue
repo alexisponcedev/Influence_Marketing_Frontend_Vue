@@ -130,13 +130,16 @@ export default class PageForm extends Vue {
 
     meta: Array<{ rel: string, name: string, content: string }> = [];
 
-    oldRoute = '';
+    oldRoute : string = '';
+    oldStatus : number = 0;
 
     statusList = [
         { id: 1, title: 'Published' },
         { id: 2, title: 'Hidden' },
         // { id: 3, title: 'SupportOnly' },
     ]
+
+
 
     Page: Page = {
         id: 0,
@@ -212,6 +215,7 @@ export default class PageForm extends Vue {
             await this.lock();
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             this.oldRoute = this.Page.route!;
+            this.oldStatus = this.Page.status_id!;
             if (this.Page.model_id && this.Page.model_type === 'product') this.findSupport();
             else if (this.Page.model_id && this.Page.model_type === 'support') this.findProduct();
         }
@@ -259,11 +263,15 @@ export default class PageForm extends Vue {
     async submit() {
         if (this.formValidate()) {
             if (this.editMode) {
+                if(this.Page.id === 1565) this.Page.route = this.oldRoute;
+                console.log(this.Page.route);
+
                 await Api.Page.update({
                     id: +this.Page.id!,
                     Page: this.Page,
                 });
-                if (this.Page.route !== this.oldRoute)
+
+                if (this.Page.route !== this.oldRoute || this.Page.status_id !== this.oldStatus)
                     Api.Page.doDeploy();
             }
             else {

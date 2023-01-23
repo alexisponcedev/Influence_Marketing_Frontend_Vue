@@ -7,6 +7,7 @@ import {
     RedirectResource,
     RedirectApiFactory,
 } from "@/repositories";
+import safeString from "~/utils/safeString";
 
 @Module({
     name: "api__redirect",
@@ -99,6 +100,9 @@ export default class api__redirect extends VuexModule {
         if (Redirect.redirect_url?.includes(domain))
             Redirect.redirect_url = Redirect.redirect_url?.substring(Redirect.redirect_url?.indexOf("hisense-usa.com") + 15)
 
+        Redirect.source_url = safeString(Redirect.source_url!);
+        Redirect.redirect_url = safeString(Redirect.redirect_url!);
+
         const response = await RedirectApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -124,6 +128,8 @@ export default class api__redirect extends VuexModule {
             payload.Redirect.source_url = payload.Redirect.source_url?.substring(payload.Redirect.source_url?.indexOf("hisense-usa.com") + 15)
         if (payload.Redirect.redirect_url?.includes(domain))
             payload.Redirect.redirect_url = payload.Redirect.redirect_url?.substring(payload.Redirect.redirect_url?.indexOf("hisense-usa.com") + 15)
+        payload.Redirect.source_url = safeString(payload.Redirect.source_url!);
+        payload.Redirect.redirect_url = safeString(payload.Redirect.redirect_url!);
         const response = await RedirectApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
