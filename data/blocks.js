@@ -1086,6 +1086,41 @@ export const BLOCKS = () => {
                 ],
             },
             {
+                name: "BlackFriday",
+                blocks: [
+                    {
+                        name: "BlackFridayHeader",
+                        title: "Black Friday Header",
+                        image: "BlackFridayHeader.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "BlackFridayHeroImage",
+                        title: "Black Friday Hero Image",
+                        image: "BlackFridayHeroImage.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "BlackFridayNavigation",
+                        title: "Black Friday Navigation",
+                        image: "BlackFridayNavigation.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "BlackFridayProductsBlock",
+                        title: "Black Friday Products Block",
+                        image: "BlackFridayProductsBlock.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "BlackFridayFooter",
+                        title: "Black Friday Footer",
+                        image: "BlackFridayFooter.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
+            {
                 name: "Company",
                 blocks: [
                     {
