@@ -60,7 +60,7 @@ export default class BlackFridayProductsBlock extends Vue {
     mounted() {
         blockAddItem(this.model, 'title', {id: 0, type: StructureType.SimpleText, title: 'Title', value: ''})
         blockAddItem(this.model, 'list', {
-            id: 1, type: StructureType.List, title: 'List', newItem: {},
+            id: 1, type: StructureType.Null, title: 'List', newItem: {},
             value: [
             ]
         });
