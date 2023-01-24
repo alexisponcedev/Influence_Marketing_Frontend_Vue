@@ -16,7 +16,7 @@ export const BLOCKS = () => {
                 name: "Page Status",
                 blocks: [
                     {
-                        name: "notFound",
+                        name: "NotFound",
                         title: "Page Not Found",
                         image: "notFound.png",
                         category: "TextBox",

@@ -16,40 +16,13 @@ export default class NotFound extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'text', {
-            id: 0,
-            type: StructureType.Text,
-            title: 'Text',
-            value: ''
-        });
-
-        blockAddItem(this.model, 'image', {
-            id: 0,
-            type: StructureType.Image,
-            title: 'Image',
-            src: '',
-            alt: ''
-        });
-        blockAddItem(this.model, 'title', {
-            id: 0,
-            type: StructureType.String,
-            title: 'Title',
-            value: ''
-        });
-        blockAddItem(this.model, 'link1', {
-            id: 0,
-            type: StructureType.Url,
-            title: 'Link 1',
-            value: ''
-        });
-        blockAddItem(this.model, 'link2', {
-            id: 0,
-            type: StructureType.Url,
-            title: 'Link 2',
-            value: ''
-        });
+        console.log(this.model);
+        blockAddItem(this.model, 'text', {id: 0, type: StructureType.Text, title: 'Text', value: ''});
+        blockAddItem(this.model, 'image', {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: ''});
+        blockAddItem(this.model, 'title', {id: 2, type: StructureType.String, title: 'Title', value: ''});
+        blockAddItem(this.model, 'link1', {id: 3, type: StructureType.Url, title: 'Link 1', value: ''});
+        blockAddItem(this.model, 'link2', {id: 4, type: StructureType.Url, title: 'Link 2', value: ''});
         this.model = {...this.model}
-
     }
 
     get isEmpty(): Boolean {

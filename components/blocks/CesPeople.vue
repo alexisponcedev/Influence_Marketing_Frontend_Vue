@@ -1,19 +1,19 @@
 <template>
     <div>
-        <img src="/blocks/CesPeople.png" alt=""/>
+        <img src="/blocks/CesPeople.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class CesPeople extends Vue {
     @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop({ default: true }) readonly editable: boolean | undefined
+    @VModel({ type: Object }) model!: any
 
     mounted() {
         blockAddItem(this.model, 'title', { id: 0, type: StructureType.String, title: 'Title', value: '' });
