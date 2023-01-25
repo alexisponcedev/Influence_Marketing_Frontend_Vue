@@ -37,16 +37,16 @@
                                 Replace Image
                             </v-btn>
                         </v-list-item>
-                        <v-divider></v-divider>
-                        <v-list-item class="pa-0">
-                            <v-btn
-                                color="#fff"
-                                elevation="0"
-                                class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="editAsset">
-                                Edit Image
-                            </v-btn>
-                        </v-list-item>
+<!--                        <v-divider></v-divider>-->
+<!--                        <v-list-item class="pa-0">-->
+<!--                            <v-btn-->
+<!--                                color="#fff"-->
+<!--                                elevation="0"-->
+<!--                                class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"-->
+<!--                                @click="editAsset">-->
+<!--                                Edit Image-->
+<!--                            </v-btn>-->
+<!--                        </v-list-item>-->
                         <v-divider></v-divider>
                         <v-list-item class="pa-0">
                             <v-btn
