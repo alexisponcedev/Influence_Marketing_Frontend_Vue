@@ -6,14 +6,12 @@
 
         <div v-if="model.src" class="tw-text-center tw-w-full">
             <div
-                class="tw-flex tw-items-center tw-justify-start tw-space-x-2 tw-bg-white tw-py-3.5 tw-px-2 tw-rounded-lg"
-            >
+                class="tw-flex tw-items-center tw-justify-start tw-space-x-2 tw-bg-white tw-py-3.5 tw-px-2 tw-rounded-lg">
                 <img
                     v-if="type === 'image'"
                     class="tw-max-h-10 tw-max-w-[100px] tw-object-cover tw-rounded"
                     :src="model.src"
-                    alt="alt about image"
-                />
+                    alt="alt about image"/>
                 <img
                     v-else
                     class="tw-max-h-8 tw-max-w-[100px] tw-object-cover tw-rounded"
@@ -35,8 +33,7 @@
                                 color="#fff"
                                 elevation="0"
                                 class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="show = true"
-                            >
+                                @click="replaceAsset">
                                 Replace Image
                             </v-btn>
                         </v-list-item>
@@ -46,14 +43,7 @@
                                 color="#fff"
                                 elevation="0"
                                 class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="
-                                    () =>
-                                        editAsset({
-                                            url: model.src,
-                                            description: model.alt,
-                                        })
-                                "
-                            >
+                                @click="editAsset">
                                 Edit Image
                             </v-btn>
                         </v-list-item>
@@ -63,10 +53,7 @@
                                 color="#fff"
                                 elevation="0"
                                 class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="
-                                    () => selected({ url: '', description: '' })
-                                "
-                            >
+                                @click="deleteAsset">
                                 Delete Image
                             </v-btn>
                         </v-list-item>
@@ -75,7 +62,7 @@
             </div>
         </div>
 
-        <button v-else @click="show = true" class="tw-text-center tw-w-full">
+        <button v-else @click="showDialog = true" class="tw-text-center tw-w-full">
             <div
                 class="tw-flex tw-items-center tw-justify-center tw-space-x-2 tw-bg-white tw-py-3.5 tw-rounded-lg tw-text-center tw-w-full hover:tw-bg-blue-200"
             >
@@ -84,10 +71,11 @@
             </div>
         </button>
 
-        <v-dialog v-model="show" max-width="500">
+        <v-dialog v-model="showDialog" max-width="500">
             <structure-editor-asset-upload
                 v-if="showUploadBox"
-                v-model="model"
+                :item="model"
+                :mode="mode"
                 :type="type"
                 @uploaded="selected"
                 @cancel="showUploadBox = false"
@@ -97,7 +85,7 @@
                 v-else
                 @selected="selected"
                 @cancel="close"
-                @addNewAsset="showUploadBox = true"
+                @addNewAsset="addNewAsset"
             />
         </v-dialog>
     </div>
@@ -114,29 +102,41 @@ import { AssetTokens } from "~/models/AssetTokens";
 export default class StructureImageEditor extends Vue {
     @Prop({ type: String, default: "image" }) readonly type!: string;
     @VModel({ type: StructureField }) model!: StructureField;
-
     Api = Api;
-
     showUploadBox: Boolean = false;
-
-    show: Boolean = false;
+    showDialog: Boolean = false;
+    mode : string = 'add'
 
     selected(asset: Asset) {
-        console.log("you have selected asset : ", asset);
         this.model.src = asset.url!;
         this.model.alt = asset.description!;
         this.close();
     }
 
-    editAsset(asset: Asset) {
-        this.show = true;
+    deleteAsset(){
+        this.selected({ url: '', description: '' })
+    }
+
+    editAsset() {
+        this.mode = 'edit';
+        this.showDialog = true;
         this.showUploadBox = true;
-        this.model.src = asset.url!;
-        this.model.alt = asset.description!;
+    }
+
+    replaceAsset(){
+        this.mode = 'replace';
+        this.showDialog = true;
+        this.showUploadBox = true;
+    }
+
+    addNewAsset(){
+        this.mode === 'add';
+        this.showDialog = true;
+        this.showUploadBox = true;
     }
 
     close() {
-        this.show = false;
+        this.showDialog = false;
         this.showUploadBox = false;
     }
 }
