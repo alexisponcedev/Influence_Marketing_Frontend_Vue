@@ -1,23 +1,23 @@
 <template>
     <v-container fluid>
         <div class="tw-grid tw-grid-cols-11 tw-gap-3" style="grid-template-columns: 230px 1fr;">
-            <pages-page-sidenav />
+            <pages-page-sidenav/>
             <div class="tw-col-span-8">
                 <div v-if="editMode" class="tw-flex tw-justify-between tw-items-center tw-flex-wrap lg:tw-flex-nowrap">
-                    <breadcrumbs :locations="locations" />
+                    <breadcrumbs :locations="locations"/>
                     <div class="tw-flex tw-items-center tw-space-x-2">
-            
-                        <page-lock class="btn" v-model="Page" />
-            
+
+                        <page-lock class="btn" v-model="Page"/>
+
                         <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
-                            Live Website
+                            <span>Live Preivew</span>
                         </v-btn>
                         <v-btn elevation="0" color="grey darken-4 white--text" class="btn" @click="goToPageBuilder">
                             Go to Page Builder
                         </v-btn>
                     </div>
                 </div>
-            
+
                 <v-row>
                     <v-col>
                         <v-tabs show-arrows v-model="tab" background-color="transparent">
@@ -29,46 +29,53 @@
                         </v-tabs>
                     </v-col>
                 </v-row>
-            
+
                 <v-form ref="form" @submit.prevent="submit">
                     <v-tabs-items v-model="tab" style="background-color: transparent !important;">
                         <v-tab-item value="Details">
                             <v-card>
                                 <v-card-text>
                                     <v-row>
-                                        <form-field-text :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged" />
-                                        <form-field-select-autocomplete :field="formFields[1]" v-model="Page.status_id" />
+                                        <form-field-text :field="formFields[0]" v-model="Page.title"
+                                                         @input="pageTitleChanged"/>
+                                        <form-field-select-autocomplete :field="formFields[1]"
+                                                                        v-model="Page.status_id"/>
                                     </v-row>
-            
-            
-                                    <form-field-select-page-route :field="formFields[2]" v-model="Page.route" :pageId="Page.id" />
-            
-            
-                                    <div v-if="Page.model_type === 'product'" class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
+
+
+                                    <form-field-select-page-route :field="formFields[2]" v-model="Page.route"
+                                                                  :pageId="Page.id"/>
+
+
+                                    <div v-if="Page.model_type === 'product'"
+                                         class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
                                         <div>Support URL :</div>
                                         <nuxt-link v-if="support && support.id > 0"
-                                            class="tw-font-bold tw-underline tw-text-orange-600"
-                                            :to="`/page/edit/${support.id}`">Open Support Page
+                                                   class="tw-font-bold tw-underline tw-text-orange-600"
+                                                   :to="`/page/edit/${support.id}`">Open Support Page
                                         </nuxt-link>
                                         <button v-else @click.prevent="createSupportPage"
-                                            class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create
+                                                class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">
+                                            Create
                                             Support Page
                                         </button>
                                     </div>
-            
-                                    <div v-if="Page.model_type === 'support'" class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
+
+                                    <div v-if="Page.model_type === 'support'"
+                                         class="tw-flex tw-space-x-2 tw-items-center tw-px-3">
                                         <div>Product URL :</div>
                                         <nuxt-link v-if="product && product.id > 0"
-                                            class="tw-font-bold tw-underline tw-text-orange-600"
-                                            :to="`/page/edit/${product.id}`">Open Product Page
+                                                   class="tw-font-bold tw-underline tw-text-orange-600"
+                                                   :to="`/page/edit/${product.id}`">Open Product Page
                                         </nuxt-link>
                                         <button v-else @click.prevent="createProductPage"
-                                            class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">Create
+                                                class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">
+                                            Create
                                             Product Page
                                         </button>
                                     </div>
-            
-            
+
+
                                 </v-card-text>
                             </v-card>
                             <button
@@ -76,47 +83,47 @@
                                 @click.prevent="submit">Save
                             </button>
                         </v-tab-item>
-            
+
                         <v-tab-item value="Metas">
-                            <form-field-meta :field="formFields[3]" v-model="Page" />
-            
+                            <form-field-meta :field="formFields[3]" v-model="Page"/>
+
                             <button
                                 class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
                                 @click.prevent="submit">Save
                             </button>
-            
+
                         </v-tab-item>
                         <v-tab-item value="Live">
-                            <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full" />
+                            <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full"/>
                         </v-tab-item>
-            
+
                         <v-tab-item value="Redirection">
-                            <pages-page-redirection :Page="Page" />
+                            <pages-page-redirection :Page="Page"/>
                         </v-tab-item>
-            
+
                     </v-tabs-items>
                 </v-form>
             </div>
         </div>
 
-        <template-selector @template-selected="templateSelected" ref="templateSelector" />
+        <template-selector @template-selected="templateSelected" ref="templateSelector"/>
 
-        <loading-overlay :show="Api.Page.loading || Api.Redirect.loading" />
+        <loading-overlay :show="Api.Page.loading || Api.Redirect.loading"/>
 
     </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import { Page, PageResource } from "@/repositories";
-import { FormField } from "@/models";
-import { Api } from "@/store";
+import {Page, PageResource} from "@/repositories";
+import {FormField} from "@/models";
+import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component({
-    components: { HoverButton },
+    components: {HoverButton},
     layout: "panel"
 })
 export default class PageForm extends Vue {
@@ -130,15 +137,14 @@ export default class PageForm extends Vue {
 
     meta: Array<{ rel: string, name: string, content: string }> = [];
 
-    oldRoute : string = '';
-    oldStatus : number = 0;
+    oldRoute: string = '';
+    oldStatus: number = 0;
 
     statusList = [
-        { id: 1, title: 'Published' },
-        { id: 2, title: 'Hidden' },
+        {id: 1, title: 'Published'},
+        {id: 2, title: 'Hidden'},
         // { id: 3, title: 'SupportOnly' },
     ]
-
 
 
     Page: Page = {
@@ -177,17 +183,17 @@ export default class PageForm extends Vue {
     initMetaTags() {
         if (this.Page.meta?.length === 0) {
             this.Page.meta = [
-                { rel: 'blank', name: 'title', content: '' },
-                { rel: 'blank', name: 'description', content: 'Hisense USA' },
-                { rel: 'blank', name: 'robots', content: 'index' },
+                {rel: 'blank', name: 'title', content: ''},
+                {rel: 'blank', name: 'description', content: 'Hisense USA'},
+                {rel: 'blank', name: 'robots', content: 'index'},
 
-                { rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA' },
-                { rel: 'property="og:title"', name: 'property="og:title"', content: '' },
-                { rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA' },
-                { rel: 'property="og:image"', name: 'property="og:image"', content: '' },
-                { rel: 'property="og:url"', name: 'property="og:url"', content: '' },
-                { rel: 'property="og:type"', name: 'property="og:type"', content: 'website' },
-                { rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US' },
+                {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
+                {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
+                {rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA'},
+                {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
+                {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
+                {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
+                {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
             ];
         }
     }
@@ -229,7 +235,7 @@ export default class PageForm extends Vue {
                 modelKey: "title",
                 placeholder: 'please enter page title',
                 rules: [Validation.required],
-                colAttrs: { cols: 8 },
+                colAttrs: {cols: 8},
             },
             {
                 type: "form-field-select-autocomplete",
@@ -240,7 +246,7 @@ export default class PageForm extends Vue {
                 'item-value': 'id',
                 items: this.statusList,
                 rules: [Validation.required],
-                colAttrs: { cols: 4 },
+                colAttrs: {cols: 4},
                 disabled: () => this.isPDP
             },
             {
@@ -248,14 +254,14 @@ export default class PageForm extends Vue {
                 label: "Page URL",
                 modelKey: "route",
                 rules: [],
-                colAttrs: { cols: 12 },
+                colAttrs: {cols: 12},
             },
             {
                 type: "form-field-meta",
                 label: "Meta",
                 modelKey: "meta",
                 rules: [],
-                colAttrs: { cols: 12 },
+                colAttrs: {cols: 12},
             },
         ];
     }
@@ -263,7 +269,7 @@ export default class PageForm extends Vue {
     async submit() {
         if (this.formValidate()) {
             if (this.editMode) {
-                if(this.Page.id === 1565) this.Page.route = this.oldRoute;
+                if (this.Page.id === 1565) this.Page.route = this.oldRoute;
                 console.log(this.Page.route);
 
                 await Api.Page.update({
@@ -273,8 +279,7 @@ export default class PageForm extends Vue {
 
                 if (this.Page.route !== this.oldRoute || this.Page.status_id !== this.oldStatus)
                     Api.Page.doDeploy();
-            }
-            else {
+            } else {
                 let page = await Api.Page.create(this.Page)
                 await Api.Page.doDeploy();
                 this.$router.push("/page/edit/" + page.id);
@@ -288,7 +293,10 @@ export default class PageForm extends Vue {
     }
 
     gotoLiveWebsite() {
-        window.open(this.liveWebsite, '_blank');
+        if (this.Page.status_id === 2)
+            window.open(process.env.LIVE_WEBSITE + "/preview/" + this.Page.id, '_blank');
+        else
+            window.open(this.liveWebsite, '_blank');
     }
 
     goToPageBuilder() {
@@ -311,7 +319,7 @@ export default class PageForm extends Vue {
     }
 
     templateSelected(template: any) {
-        Api.Page.saveDraft({ page_id: this.Page.id, page_draft: template.widgets })
+        Api.Page.saveDraft({page_id: this.Page.id, page_draft: template.widgets})
             .then(this.openPageBuilder);
     }
 
@@ -336,14 +344,14 @@ export default class PageForm extends Vue {
     }
 
     findProduct() {
-        Api.Page.getPageByModelTypeModelId({ model_id: +this.Page.model_id!, model_type: 'product' })
+        Api.Page.getPageByModelTypeModelId({model_id: +this.Page.model_id!, model_type: 'product'})
             .then(product => {
                 this.product = product;
             })
     }
 
     findSupport() {
-        Api.Page.getPageByModelTypeModelId({ model_id: +this.Page.model_id!, model_type: 'support' })
+        Api.Page.getPageByModelTypeModelId({model_id: +this.Page.model_id!, model_type: 'support'})
             .then(support => {
                 this.support = support;
             })
@@ -368,7 +376,7 @@ export default class PageForm extends Vue {
                 "theme": {
                     "id": 0,
                     "type": "select",
-                    "items": [{ "title": "Light", "value": "light" }, { "title": "Dark", "value": "dark" }],
+                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
                     "title": "Theme",
                     "value": "dark"
                 }
@@ -383,7 +391,7 @@ export default class PageForm extends Vue {
                 "theme": {
                     "id": 0,
                     "type": "select",
-                    "items": [{ "title": "Light", "value": "light" }, { "title": "Dark", "value": "dark" }],
+                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
                     "title": "Theme",
                     "value": "dark"
                 }
@@ -400,7 +408,7 @@ export default class PageForm extends Vue {
                     "type": "list",
                     "title": "Tags",
                     "value": [{
-                        "title": { "id": 0, "type": "string", "title": "Tag Title", "value": "Sample Tag Title" },
+                        "title": {"id": 0, "type": "string", "title": "Tag Title", "value": "Sample Tag Title"},
                         "target": {
                             "id": 0,
                             "type": "idSelector",
@@ -409,14 +417,14 @@ export default class PageForm extends Vue {
                         }
                     }],
                     "newItem": {
-                        "title": { "id": 0, "type": "string", "title": "Tag Title", "value": "Item Title" },
-                        "target": { "id": 0, "type": "idSelector", "title": "ID Selector", "value": null }
+                        "title": {"id": 0, "type": "string", "title": "Tag Title", "value": "Item Title"},
+                        "target": {"id": 0, "type": "idSelector", "title": "ID Selector", "value": null}
                     }
                 },
                 "theme": {
                     "id": 0,
                     "type": "select",
-                    "items": [{ "title": "Light", "value": "light" }, { "title": "Dark", "value": "dark" }],
+                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
                     "title": "Theme",
                     "value": "dark"
                 }
@@ -431,11 +439,11 @@ export default class PageForm extends Vue {
                 "theme": {
                     "id": 0,
                     "type": "select",
-                    "items": [{ "title": "Light", "value": "light" }, { "title": "Dark", "value": "dark" }],
+                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
                     "title": "Theme",
                     "value": "dark"
                 },
-                "title": { "id": 1, "type": "string", "title": "Title", "value": "Register Laser TV" },
+                "title": {"id": 1, "type": "string", "title": "Title", "value": "Register Laser TV"},
                 "subtitle": {
                     "id": 1,
                     "type": "string",
@@ -459,13 +467,13 @@ export default class PageForm extends Vue {
                 "theme": {
                     "id": 0,
                     "type": "select",
-                    "items": [{ "title": "Light", "value": "light" }, { "title": "Dark", "value": "dark" }],
+                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
                     "title": "Theme",
                     "value": "dark"
                 },
-                "title": { "id": 1, "type": "string", "title": "Title", "value": "Need More Assistance?" },
-                "linkUrl": { "id": 1, "type": "string", "title": "Link Url", "value": "/" },
-                "linkTitle": { "id": 1, "type": "string", "title": "Link Title", "value": "Contact Us" }
+                "title": {"id": 1, "type": "string", "title": "Title", "value": "Need More Assistance?"},
+                "linkUrl": {"id": 1, "type": "string", "title": "Link Url", "value": "/"},
+                "linkTitle": {"id": 1, "type": "string", "title": "Link Title", "value": "Contact Us"}
             }
         }, {
             "id": 9,
@@ -497,7 +505,7 @@ export default class PageForm extends Vue {
                 "theme": {
                     "id": 0,
                     "type": "select",
-                    "items": [{ "title": "Light", "value": "light" }, { "title": "Dark", "value": "dark" }],
+                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
                     "title": "Theme",
                     "value": "dark"
                 }
@@ -513,7 +521,7 @@ export default class PageForm extends Vue {
     createSupportPage() {
         this.createPage('support', '/support')
             .then((page: PageResource) => {
-                return Api.Page.savePageWidgets({ page_id: page.id, widgets: this.getSupportWidgets() })
+                return Api.Page.savePageWidgets({page_id: page.id, widgets: this.getSupportWidgets()})
                     .then(() => this.$router.push(`/page/edit/${page.id}`))
             })
     }
@@ -522,7 +530,7 @@ export default class PageForm extends Vue {
         return this.getProductInfo()
             .then(product => {
                 let slug = this.Page.route?.substring(this.Page.route.lastIndexOf('/') + 1) || '';
-                return Api.Page.createPDP({ product, type, route, slug })
+                return Api.Page.createPDP({product, type, route, slug})
                     .then(page => {
                         if (type === 'support') this.findSupport();
                         else this.findProduct();
@@ -548,6 +556,7 @@ export default class PageForm extends Vue {
                 this.Page.locked_by = 0;
             });
     }
+
     get isPDP() {
         return this.Page.model_type === 'product' || this.Page.model_type === 'support';
     }

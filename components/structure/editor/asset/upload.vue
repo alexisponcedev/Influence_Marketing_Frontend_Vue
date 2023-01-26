@@ -16,7 +16,10 @@
 
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn :disabled="saving" @click="save" text color="green">Upload</v-btn>
+            <v-btn :disabled="saving" @click="save" text color="green">
+                <span v-if="mode === 'edit'">Update</span>
+                <span v-else>Upload</span>
+            </v-btn>
             <v-btn :disabled="saving" @click="cancel" text color="red"> Cancel</v-btn>
         </v-card-actions>
     </v-card>
@@ -124,7 +127,7 @@ export default class StructureFileUploader extends Vue {
     async save() {
         this.saving = true;
         if (this.mode === 'edit') {
-            await this.saveAsset();
+            this.$emit('uploaded', this.Asset);
         } else {
             if ((this.Asset.url === "" || this.file !== null)) {
                 let res = await this.upload();
@@ -169,6 +172,7 @@ export default class StructureFileUploader extends Vue {
             });
     }
 
+
     async updateAsset() {
         return await Api.Asset.update({id: +this.Asset.id!, Asset: this.Asset})
             .then((asset) => {
@@ -176,9 +180,9 @@ export default class StructureFileUploader extends Vue {
             });
     }
 
-    prepareAsset(){
+    prepareAsset() {
         this.Asset = {title: "", description: "", location: "asset/image", extension: "ext", thumb: "", url: "",};
-        console.log('mode has change' , this.mode , this.Asset);
+        console.log('mode has change', this.mode, this.Asset);
         if (this.mode === 'edit') {
             this.Asset.title = this.item.title ? this.item.title : "";
             this.Asset.description = this.item.alt ? this.item.alt : "";
