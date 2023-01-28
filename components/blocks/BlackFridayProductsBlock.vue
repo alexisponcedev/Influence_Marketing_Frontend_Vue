@@ -65,7 +65,7 @@ export default class BlackFridayProductsBlock extends Vue {
             id: product.id,
             model: product.model,
             image: product.image,
-            title: product.name,
+            title: '', //product.name,
             series: product.productSeries.length > 0 ?
                 product.productSeries[0].values.map((i: any) => {
                     return {title: i.title, id: i.products[0], price: 0, discount: 0, final_price: 0}
