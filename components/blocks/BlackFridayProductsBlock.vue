@@ -9,21 +9,27 @@
                     </div>
                     <div class="tw-w-64">
                         <form-field-text class="tw-w-full"
-                            :field="{ label: 'Title', placeholder: 'enter title', rules: [], colAttrs: {cols: 12}}"
-                            v-model="product.title"/>
+                                         :field="{ label: 'Title', placeholder: 'enter title', rules: [], colAttrs: {cols: 12}}"
+                                         v-model="product.title"/>
                     </div>
                     <div class="tw-flex-1">
                         <div class="tw-flex tw-items-center" v-for="serie in product.series">
                             <div class="tw-text-gray-600 tw-w-52 tw-text-right">{{ serie.title }}</div>
                             <form-field-text class=""
-                                :field="{ label: 'Price', placeholder: 'enter price', rules: [], colAttrs: {cols: 2}}"
-                                v-model="serie.price"/>
+                                             :field="{ label: 'Price $', placeholder: 'enter price', rules: [], colAttrs: {cols: 2}}"
+                                             v-model="serie.price"/>
                             <form-field-text
-                                :field="{ label: 'Discount', placeholder: 'enter discount', rules: [], colAttrs: {cols: 2}}"
+                                @input="serie.final_price = (serie.price - (serie.price * serie.discount / 100))"
+                                :field="{ label: 'Discount %', placeholder: 'enter discount', rules: [], colAttrs: {cols: 2}}"
                                 v-model="serie.discount"/>
-                            <div class="tw-font-bold tw-text-md">$
-                                {{ (serie.price - (serie.price * serie.discount / 100)) }}
-                            </div>
+
+                            <form-field-text
+                                :field="{ label: 'Final Price $', placeholder: 'enter FinalPrice', rules: [], colAttrs: {cols: 2}}"
+                                v-model="serie.final_price"/>
+
+<!--                            <div class="tw-font-bold tw-text-md">$-->
+<!--                                {{ (serie.price - (serie.price * serie.discount / 100)) }}-->
+<!--                            </div>-->
                         </div>
                     </div>
                     <div class="tw-flex tw-items-center tw-space-x-4">
@@ -62,9 +68,9 @@ export default class BlackFridayProductsBlock extends Vue {
             title: product.name,
             series: product.productSeries.length > 0 ?
                 product.productSeries[0].values.map((i: any) => {
-                    return {title: i.title, id: i.products[0], price: 0, discount: 0}
+                    return {title: i.title, id: i.products[0], price: 0, discount: 0, final_price: 0}
                 }) :
-                [{title: product.name, id: product.id, price: 0, discount: 0}]
+                [{title: product.name, id: product.id, price: 0, discount: 0, final_price: 0}]
             ,
             price: 0,
             discount: 0,
@@ -82,7 +88,7 @@ export default class BlackFridayProductsBlock extends Vue {
         });
         blockAddItem(this.model, 'text', {id: 2, type: StructureType.SimpleText, title: 'Bottom Text', value: ''})
 
-        blockRemoveItem(this.model , ['title'])
+        blockRemoveItem(this.model, ['title'])
 
         this.model = {...this.model}
     }
