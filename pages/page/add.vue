@@ -537,7 +537,7 @@ export default class PageForm extends Vue {
                     type,
                     route,
                     slug,
-                    status_id: type === 'support' ? 1 : product.status.id
+                    status_id: product.status.id
                 })
                     .then(page => {
                         if (type === 'support') this.findSupport();
