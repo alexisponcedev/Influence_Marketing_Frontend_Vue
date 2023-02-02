@@ -56,8 +56,7 @@
                                         </nuxt-link>
                                         <button v-else @click.prevent="createSupportPage"
                                                 class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">
-                                            Create
-                                            Support Page
+                                            Create Support Page
                                         </button>
                                     </div>
 
@@ -70,8 +69,7 @@
                                         </nuxt-link>
                                         <button v-else @click.prevent="createProductPage"
                                                 class="tw-bg-gray-50 tw-px-3 tw-py-2 tw-rounded-lg  tw-text-blue-500">
-                                            Create
-                                            Product Page
+                                            Create Product Page
                                         </button>
                                     </div>
 
@@ -358,7 +356,7 @@ export default class PageForm extends Vue {
     }
 
     async getProductInfo() {
-        return this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.Page!.model_id + '?brand_id=' + getActiveBrand())
+        return this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.Page!.model_id + '?brand_id=' + getActiveBrand() + '&status[]=1&status[]=2&status[]=3')
             .then(res => {
                 if (res && res.data) return res.data
                 return {};
@@ -515,22 +513,32 @@ export default class PageForm extends Vue {
 
     createProductPage() {
         this.createPage('product', '/products')
-            .then((page: PageResource) => this.$router.push(`/page/edit/${page.id}`))
+            .then((page: any) => this.$router.push(`/page/edit/${page.id}`))
     }
 
     createSupportPage() {
         this.createPage('support', '/support')
-            .then((page: PageResource) => {
-                return Api.Page.savePageWidgets({page_id: page.id, widgets: this.getSupportWidgets()})
-                    .then(() => this.$router.push(`/page/edit/${page.id}`))
-            })
+            .then((page: any) => {
+                if (page) {
+                    return Api.Page.savePageWidgets({page_id: page.id, widgets: this.getSupportWidgets()})
+                        .then(() => this.$router.push(`/page/edit/${page.id}`))
+                }
+            }).catch(err => {
+            console.log(err);
+        })
     }
 
     async createPage(type: string, route: string) {
         return this.getProductInfo()
             .then(product => {
                 let slug = this.Page.route?.substring(this.Page.route.lastIndexOf('/') + 1) || '';
-                return Api.Page.createPDP({product, type, route, slug})
+                return Api.Page.createPDP({
+                    product,
+                    type,
+                    route,
+                    slug,
+                    status_id: type === 'support' ? 1 : product.status.id
+                })
                     .then(page => {
                         if (type === 'support') this.findSupport();
                         else this.findProduct();

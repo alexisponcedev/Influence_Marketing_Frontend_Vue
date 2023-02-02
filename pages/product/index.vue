@@ -320,10 +320,11 @@ export default class ProductsPage extends Vue {
             product,
             type: 'product',
             route: '/products',
-            slug: ''
+            slug: '',
+            status_id : product.status.id
         }) as PageResource;
-        let supportPage = await Api.Page.createPDP({product, type: 'support', route: '/support', slug: ''})
-            .then((support: PageResource) => {
+        let supportPage = await Api.Page.createPDP({product, type: 'support', route: '/support', slug: '' , status_id : 1})
+            .then((support: any) => {
                 Api.Page.savePageWidgets({page_id: support.id, widgets: this.getSupportWidgets()})
             });
         this.$router.push(`Page/Edit/${productPage.id}`)
