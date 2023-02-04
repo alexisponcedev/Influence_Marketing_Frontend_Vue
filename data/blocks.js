@@ -1766,6 +1766,41 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "HVAC",
+                blocks: [
+                    {
+                        name: "HVACBanner",
+                        title: "HVAC Banner",
+                        image: "HVACBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HVACImageBox",
+                        title: "HVAC Image Box",
+                        image: "HVACImageBox.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HVACFeatures",
+                        title: "HVAC Features",
+                        image: "HVACFeatures.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HVACSalesCycle",
+                        title: "HVAC Sales Cycle",
+                        image: "HVACSalesCycle.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HVACContactUs",
+                        title: "HVAC Contact Us",
+                        image: "HVACContactUs.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
         ],
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         blog: [
