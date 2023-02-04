@@ -41,7 +41,7 @@ export default class api__page extends VuexModule {
 
     @Mutation
     addItem(item: PageResource) {
-        this.all.push(item);
+        if(item) this.all.push(item);
     }
 
     @Mutation
@@ -205,7 +205,6 @@ export default class api__page extends VuexModule {
             return response.data;
         return {};
     }
-
 
 
     @Action({commit: "addItem"})
@@ -400,12 +399,7 @@ export default class api__page extends VuexModule {
     }
 
     @Action({commit: "addItem"})
-    async createPDP(payload: {
-        product: any;
-        type: string;
-        route: string;
-        slug: string;
-    }) {
+    async createPDP(payload: { product: any, type: string, route: string, slug: string, status_id: number }) {
         this.setLoading(true);
         let slug =
             payload.slug ||
@@ -474,7 +468,7 @@ export default class api__page extends VuexModule {
                 ],
                 model_id: payload.product.id,
                 model_type: payload.type,
-                status_id: 1
+                status_id: payload.status_id
             })
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
@@ -484,7 +478,7 @@ export default class api__page extends VuexModule {
             ResponseHandler.checkResponse(response)
         )
             return response.data;
-        return {};
+        return null;
     }
 
     @Action
