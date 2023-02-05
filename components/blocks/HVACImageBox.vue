@@ -17,7 +17,7 @@ export default class HVACImageBox extends Vue {
 
     mounted() {
         blockAddItem(this.model, 'backgroundImage', {id: 0, type: StructureType.Image, title: "Background Image", src: '', alt: ''});
-        blockAddItem(this.model, 'title', {id: 1, type: StructureType.String, title: 'Title', value: ''});
+        blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''});
     }
 
     get isEmpty(): Boolean {
