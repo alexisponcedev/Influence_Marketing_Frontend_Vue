@@ -519,13 +519,8 @@ export default class PageForm extends Vue {
     createSupportPage() {
         this.createPage('support', '/support')
             .then((page: any) => {
-                if (page) {
-                    return Api.Page.savePageWidgets({page_id: page.id, widgets: this.getSupportWidgets()})
-                        .then(() => this.$router.push(`/page/edit/${page.id}`))
-                }
-            }).catch(err => {
-            console.log(err);
-        })
+                if (page) this.$router.push(`/page/edit/${page.id}`)
+            })
     }
 
     async createPage(type: string, route: string) {

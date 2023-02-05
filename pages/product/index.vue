@@ -166,154 +166,6 @@ export default class ProductsPage extends Vue {
         this.tab = this.ProductSearchStatus.all;
     }
 
-    getSupportWidgets() {
-        return [{
-            "id": 1,
-            "name": "Header",
-            "image": "Header.png",
-            "title": "Header Menu",
-            "selected": false,
-            "structure": {
-                "theme": {
-                    "id": 0,
-                    "type": "select",
-                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
-                    "title": "Theme",
-                    "value": "dark"
-                }
-            }
-        }, {
-            "id": 2,
-            "name": "ProductSupportNewHead",
-            "image": "ProductSupportNewHead.png",
-            "title": "Product Support Info",
-            "selected": false,
-            "structure": {
-                "theme": {
-                    "id": 0,
-                    "type": "select",
-                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
-                    "title": "Theme",
-                    "value": "dark"
-                }
-            }
-        }, {
-            "id": 3,
-            "name": "ProductSupportNavBar",
-            "image": "ProductSupportNavBar.png",
-            "title": "Product Support NavBar",
-            "selected": false,
-            "structure": {
-                "tags": {
-                    "id": 2,
-                    "type": "list",
-                    "title": "Tags",
-                    "value": [{
-                        "title": {"id": 0, "type": "string", "title": "Tag Title", "value": "Sample Tag Title"},
-                        "target": {
-                            "id": 0,
-                            "type": "idSelector",
-                            "title": "ID Selector",
-                            "value": "#ProductSupportNavBar3"
-                        }
-                    }],
-                    "newItem": {
-                        "title": {"id": 0, "type": "string", "title": "Tag Title", "value": "Item Title"},
-                        "target": {"id": 0, "type": "idSelector", "title": "ID Selector", "value": null}
-                    }
-                },
-                "theme": {
-                    "id": 0,
-                    "type": "select",
-                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
-                    "title": "Theme",
-                    "value": "dark"
-                }
-            }
-        }, {
-            "id": 6,
-            "name": "ProductSupportRegister",
-            "image": "ProductSupportRegister.png",
-            "title": "Product Support Register",
-            "selected": false,
-            "structure": {
-                "theme": {
-                    "id": 0,
-                    "type": "select",
-                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
-                    "title": "Theme",
-                    "value": "dark"
-                },
-                "title": {"id": 1, "type": "string", "title": "Title", "value": "Register Laser TV"},
-                "subtitle": {
-                    "id": 1,
-                    "type": "string",
-                    "title": "Subtitle",
-                    "value": "Get started with registering your Hisense product."
-                },
-                "submitURL": {
-                    "id": 1,
-                    "type": "string",
-                    "title": "Submit URL",
-                    "value": "https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product"
-                }
-            }
-        }, {
-            "id": 8,
-            "name": "SupportNeedAssistance",
-            "image": "SupportNeedAssistance.png",
-            "title": "Support Need Assistance",
-            "selected": true,
-            "structure": {
-                "theme": {
-                    "id": 0,
-                    "type": "select",
-                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
-                    "title": "Theme",
-                    "value": "dark"
-                },
-                "title": {"id": 1, "type": "string", "title": "Title", "value": "Need More Assistance?"},
-                "linkUrl": {"id": 1, "type": "string", "title": "Link Url", "value": "/"},
-                "linkTitle": {"id": 1, "type": "string", "title": "Link Title", "value": "Contact Us"}
-            }
-        }, {
-            "id": 9,
-            "name": "Subscribe",
-            "image": "subscribe.png",
-            "title": "Subscribe",
-            "selected": false,
-            "structure": {
-                "Url": {
-                    "id": 1,
-                    "type": "string",
-                    "title": "Submit URL",
-                    "value": "https://imcrm.dev-api.hisenseportal.com/api/hisense/lead"
-                },
-                "title": {
-                    "id": 0,
-                    "type": "string",
-                    "title": "Title",
-                    "value": "Stay up to date with emails\nabout new products & other news"
-                }
-            }
-        }, {
-            "id": 10,
-            "name": "Footer",
-            "image": "Footer.png",
-            "title": "Footer Menu",
-            "selected": false,
-            "structure": {
-                "theme": {
-                    "id": 0,
-                    "type": "select",
-                    "items": [{"title": "Light", "value": "light"}, {"title": "Dark", "value": "dark"}],
-                    "title": "Theme",
-                    "value": "dark"
-                }
-            }
-        }]
-    }
-
     async addNewPage(product: any) {
         this.addingPage = product.id;
         let productPage = await Api.Page.createPDP({
@@ -321,14 +173,19 @@ export default class ProductsPage extends Vue {
             type: 'product',
             route: '/products',
             slug: '',
-            status_id : product.status.id
+            status_id: product.status.id
         }) as PageResource;
-        let supportPage = await Api.Page.createPDP({product, type: 'support', route: '/support', slug: '' , status_id : product.status.id})
-            .then((support: any) => {
-                Api.Page.savePageWidgets({page_id: support.id, widgets: this.getSupportWidgets()})
-            });
-        this.$router.push(`Page/Edit/${productPage.id}`)
-        this.addingPage = 0;
+        if (productPage) {
+            await Api.Page.createPDP({
+                product,
+                type: 'support',
+                route: '/support',
+                slug: '',
+                status_id: product.status.id
+            })
+            this.$router.push(`Page/Edit/${productPage.id}`)
+        } else
+            this.addingPage = 0;
     }
 
     appendPageData(products: Array<any>) {
