@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/HVACImageBox.png" alt=""/>
+        <img src="/blocks/ImageWithBackgroundAndScrollEffect.png" alt=""/>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
-export default class HVACImageBox extends Vue {
+export default class ImageWithBackgroundAndScrollEffect extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({default: true}) readonly editable: boolean | undefined
     @VModel({type: Object}) model!: any

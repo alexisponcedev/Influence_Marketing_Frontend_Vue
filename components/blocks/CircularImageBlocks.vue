@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/HVACSalesCycle.png" alt="" />
+        <img src="/blocks/CircularImageBlocks.png" alt="" />
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import blockAddItem from "~/utils/blockAddItem";
 import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
-export default class HVACSalesCycle extends Vue {
+export default class CircularImageBlocks extends Vue {
     @Prop(Number) readonly id: number | undefined
     @Prop({ default: true }) readonly editable: boolean | undefined
     @VModel({ type: Object }) model!: any
