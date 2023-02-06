@@ -17,7 +17,7 @@ export default class SimpleContactUs extends Vue {
     @VModel({ type: Object }) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'title', { id: 0, type: StructureType.SimpleText, title: 'Title', value: '' });
+        blockAddItem(this.model, 'title', { id: 0, type: StructureType.String, title: 'Title', value: '' });
         blockAddItem(this.model, 'subtitle', { id: 2, type: StructureType.SimpleText, title: 'Subtitle', value: '' });
     }
 
