@@ -61,6 +61,7 @@ export default {
         "~/plugins/date-picker.js",
         "~/plugins/qrcode.client.js",
         "~/plugins/vue2Editor.js",
+        "~/plugins/vue-draggable-resizable.js",
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -142,10 +143,18 @@ export default {
 
     env: {
         APP_NAME: process.env.APP_NAME || "imcxm",
-        BASE_API_PATH: process.env.BASE_API_PATH || "https://imcxm.dev-api.hisenseportal.com/api",
-        PORTAL_URL: process.env.PORTAL_URL || "https://secure.dev.hisenseportal.com/",
-        PIM_API_URL: process.env.PIM_API_URL || 'https://impim.dev-api.hisenseportal.com/api',
-        DAM_API_URL: process.env.DAM_API_URL || 'https://assets.hisenseportal.com/api/v1',
-        LIVE_WEBSITE: process.env.LIVE_WEBSITE || 'https://public.dev.hisenseportal.com'
+        BASE_API_PATH:
+            process.env.BASE_API_PATH ||
+            "https://imcxm.dev-api.hisenseportal.com/api",
+        PORTAL_URL:
+            process.env.PORTAL_URL || "https://secure.dev.hisenseportal.com/",
+        PIM_API_URL:
+            process.env.PIM_API_URL ||
+            "https://impim.dev-api.hisenseportal.com/api",
+        DAM_API_URL:
+            process.env.DAM_API_URL ||
+            "https://assets.hisenseportal.com/api/v1",
+        LIVE_WEBSITE:
+            process.env.LIVE_WEBSITE || "https://public.dev.hisenseportal.com",
     },
 };
