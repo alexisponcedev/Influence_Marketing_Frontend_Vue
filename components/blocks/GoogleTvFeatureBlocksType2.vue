@@ -22,16 +22,7 @@ export default class GoogleTvFeatureBlocksType2 extends Vue {
                 icon: {id: 2, type: StructureType.Image, title: "Icon", src: '', alt: ''},
                 subtitle: {id: 3, type: StructureType.SimpleText, title: "Subtitle", value: ''},
                 title: {id: 4, type: StructureType.String, title: "Title", value: ''},
-                list: {
-                    id: 5, type: StructureType.List, title: 'List', newItem: {
-                        image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
-                    },
-                    value: [
-                        {
-                            image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
-                        }
-                    ]
-                }
+                image: {id: 5, type: StructureType.Image, title: 'Image', src: '', alt: 'Image Alt'},
             }
         });
     }
