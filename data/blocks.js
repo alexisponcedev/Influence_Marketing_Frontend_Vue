@@ -1718,6 +1718,12 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "GoogleTvFeaturesIntro",
+                        title: "Google Tv Features Intro",
+                        image: "GoogleTvFeaturesIntro.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "GoogleTvFeatureBlocksType1",
                         title: "Google Tv Feature Blocks Type 1",
                         image: "GoogleTvFeatureBlocksType1.png",
