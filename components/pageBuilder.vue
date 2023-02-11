@@ -5,66 +5,54 @@
         <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top : 88px">
 
 
-            <div
-                class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
+            <div class="bg-white tw-col-span-8 tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-max-h-full tw-space-y-2 tw-p-2"
                 style="max-height: 88vh !important;">
 
                 <draggable v-model="blocksList" group="people" @change="addItemByDrag">
-                    <blocks-container
-                        v-for="(block , i) in blocksList" :key="block.id"
-                        class="tw-mb-2"
-                        :selectable="selectable"
-                        @component-selected="componentSelected(i)"
-                        @edit="editBlock(i)"
-                        @delete="deleteBlock(i)"
-                        @duplicate="duplicateBlock(i)"
-                        @reset="resetBlock(i)"
-                        @move-up="moveUpBlock(i)"
-                        @move-down="moveDownBlock(i)"
-                        :block="block">
-                        <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure" :page="page"/>
+                    <blocks-container v-for="(block, i) in blocksList" :key="block.id" class="tw-mb-2"
+                        :selectable="selectable" @component-selected="componentSelected(i)" @edit="editBlock(i)"
+                        @delete="deleteBlock(i)" @duplicate="duplicateBlock(i)" @reset="resetBlock(i)"
+                        @move-up="moveUpBlock(i)" @move-down="moveDownBlock(i)" :block="block">
+                        <component :is="`blocks-${block.name}`" :id="block.id" v-model="block.structure" :page="page" />
                     </blocks-container>
 
-                    <blocks-drop/>
+                    <blocks-drop />
                 </draggable>
 
             </div>
             <div class="bg-white tw-rounded-lg tw-col-span-2 tw-overflow-hidden tw-overflow-y-auto "
-                 style="max-height: 88vh !important;">
+                style="max-height: 88vh !important;">
 
-                <blocks-selector v-show="editIndex === -1" class="tw-p-4"
-                                 :blocks-type="blocksType"
-                                 @add-block="addBlock"/>
+                <blocks-selector v-show="editIndex === -1" class="tw-p-4" :blocks-type="blocksType"
+                    @add-block="addBlock" />
 
-                <structure-editor v-if="editIndex > -1"
-                                  :key="blocksList[editIndex].title + blocksList[editIndex].id"
-                                  v-model="blocksList[editIndex].structure"
-                                  :title="blocksList[editIndex].title"
-                                  @close="cancelEditing"/>
+                <structure-editor v-if="editIndex > -1" :key="blocksList[editIndex].title + blocksList[editIndex].id"
+                    v-model="blocksList[editIndex].structure" :title="blocksList[editIndex].title"
+                    @close="cancelEditing" />
             </div>
         </div>
 
-        <template-selector ref="templateManager"/>
+        <template-selector ref="templateManager" />
 
 
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, VModel } from "vue-property-decorator";
 import draggable from "vuedraggable";
-import {EventBus} from "~/plugins/event.client";
+import { EventBus } from "~/plugins/event.client";
 
 @Component({
-    components: {draggable}
+    components: { draggable }
 })
 export default class PageBuilder extends Vue {
     @Prop({
         type: Object, default: () => {
         }
     }) page!: any
-    @Prop({type: String, default: 'page'}) blocksType!: string
-    @VModel({type: Array}) blocksList!: any
+    @Prop({ type: String, default: 'page' }) blocksType!: string
+    @VModel({ type: Array }) blocksList!: any
 
     editIndex: Number = -1;
 
@@ -95,7 +83,7 @@ export default class PageBuilder extends Vue {
 
     addBlock(block: any) {
         let id = this.blocksList.length + 1;
-        this.blocksList.push({...block, id: id, selected: false, structure: {}});
+        this.blocksList.push({ ...block, id: id, selected: false, structure: {} });
         this.selectBlock(this.blocksList.length - 1);
         this.deploy();
     }
