@@ -37,9 +37,9 @@ export default class TelevisionsTvHero extends Vue {
                     value: "Pre-order the limited edition ULED X today.",
                 },
                 fullSizeCard: {
-                    id: 4,
+                    id: 3,
                     type: StructureType.Object,
-                    title: "Full Size Box",
+                    title: "Full Size Card 1 (Top)",
                     value: {
                         backgroundImage: {
                             id: 0,
@@ -76,8 +76,48 @@ export default class TelevisionsTvHero extends Vue {
                         link: {id: 1, type: StructureType.Url, title: "Link", value: ""},
                     },
                 },
-                simpleCard: {
+                bottomCard: {
                     id: 4,
+                    type: StructureType.Object,
+                    title: "Full Size Card 2 (Bottom)",
+                    value: {
+                        backgroundImage: {
+                            id: 0,
+                            type: StructureType.Image,
+                            title: "Image",
+                            src: "",
+                            alt: "",
+                        },
+                        badgeImage: {
+                            id: 1,
+                            type: StructureType.Image,
+                            title: "Badge Image",
+                            src: "",
+                            alt: "",
+                        },
+                        titleImage: {
+                            id: 1,
+                            type: StructureType.Image,
+                            title: "Title Image",
+                            src: "",
+                            alt: "",
+                        },
+                        theme: {
+                            id: 0,
+                            type: StructureType.Select,
+                            title: "Theme (Texts)",
+                            value: "light",
+                            items: [
+                                { title: "Light", value: "light" },
+                                { title: "Dark", value: "dark" },
+                            ],
+                        },
+                        title: { id: 1, type: StructureType.Text, title: "Title", value: "" },
+                        link: { id: 1, type: StructureType.Url, title: "Link", value: "" },
+                    },
+                },
+                simpleCard: {
+                    id: 5,
                     type: StructureType.Object,
                     title: "Simple Box",
                     value: {
@@ -91,7 +131,7 @@ export default class TelevisionsTvHero extends Vue {
                     },
                 },
                 noBgCard: {
-                    id: 4,
+                    id: 6,
                     type: StructureType.Object,
                     title: "Background Transparent Box",
                     value: {
@@ -114,7 +154,7 @@ export default class TelevisionsTvHero extends Vue {
                     },
                 },
                 coloredCardsList: {
-                    id: 4,
+                    id: 7,
                     type: StructureType.List,
                     title: "Colored Cards List",
                     value: [
