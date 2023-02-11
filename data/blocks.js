@@ -1226,6 +1226,41 @@ export const BLOCKS = () => {
                 ],
             },
             {
+                name: "Television",
+                blocks: [
+                    {
+                        name: "TelevisionsBlockBanner",
+                        title: "Televisions Block Banner",
+                        image: "TelevisionsBlockBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "TelevisionsBlockCards",
+                        title: "Televisions Block Cards",
+                        image: "TelevisionsBlockCards.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "TelevisionsBlockHero",
+                        title: "Televisions Block Hero",
+                        image: "TelevisionsBlockHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "TelevisionsBlockSpotlight",
+                        title: "Televisions Block Spotlight",
+                        image: "TelevisionsBlockSpotlight.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "TelevisionsTvHero",
+                        title: "Televisions Tv Hero",
+                        image: "TelevisionsTvHero.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
+            {
                 name: "Lets Get Real",
                 blocks: [
                     {
