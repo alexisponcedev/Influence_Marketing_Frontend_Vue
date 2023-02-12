@@ -16,9 +16,9 @@ export default class LaserTvInstallationDescription extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'title', { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' })
+        blockAddItem(this.model, 'title', { id: 0, type: StructureType.SimpleText, title: 'Title', value: '' })
         blockAddItem(this.model, 'list', {
-            id: 0, type: StructureType.List, title: 'List', newItem: {
+            id: 1, type: StructureType.List, title: 'List', newItem: {
                 image: {id: 1, type: StructureType.Image, title: 'Image', src: '', alt :''},
             },
             value: [
@@ -27,7 +27,7 @@ export default class LaserTvInstallationDescription extends Vue {
                 }
             ]
         });
-        blockAddItem(this.model, 'text', { id: 1, type: StructureType.String, title: 'title', value: '' })
+        blockAddItem(this.model, 'text', { id: 1, type: StructureType.SimpleText, title: 'text', value: '' })
 
 
     }
