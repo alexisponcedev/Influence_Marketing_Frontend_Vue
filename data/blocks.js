@@ -1272,6 +1272,35 @@ export const BLOCKS = () => {
                 ],
             },
             {
+                name: "Laser Tv Installation",
+                blocks: [
+                    {
+                        name: "LaserTvInstallationIntro",
+                        title: "Laser Tv Installation Intro",
+                        image: "LaserTvInstallationIntro.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "LaserTvInstallationHero",
+                        title: "Laser Tv Installation Hero",
+                        image: "LaserTvInstallationHero.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "LaserTvInstallationDescription",
+                        title: "Laser Tv Installation Description",
+                        image: "LaserTvInstallationDescription.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "LaserTvInstallationForm",
+                        title: "Laser Tv Installation Form",
+                        image: "LaserTvInstallationForm.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
+            {
                 name: "L9G",
                 blocks: [
                     // {name: "LetsGetRealTextBox", title: "Lets Get Real TextBox", image: "LetsGetRealTextBox.png" , category : 'TextBox,},
