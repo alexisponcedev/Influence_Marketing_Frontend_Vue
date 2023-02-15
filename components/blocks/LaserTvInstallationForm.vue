@@ -18,7 +18,8 @@ export default class LaserTvInstallationForm extends Vue {
 
     mounted() {
         blockAddItem(this.model, 'title', { id: 0, type: StructureType.String, title: 'Title', value: '' });
-        blockAddItem(this.model, 'text', {id: 1, type: StructureType.SimpleText, title: 'Text', value: ''});
+        blockAddItem(this.model, 'text', { id: 1, type: StructureType.SimpleText, title: 'Text', value: '' });
+        blockAddItem(this.model, 'link', { id: 1, type: StructureType.Url, title: 'Confirmation Page Link', value: '' });
 
     }
 
