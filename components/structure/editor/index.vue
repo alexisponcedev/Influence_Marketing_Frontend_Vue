@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="tw-pl-6">
         <div class="tw-flex tw-items-center tw-w-full tw-justify-between tw-p-3" v-if="!simple">
             <h6>{{ title }}</h6>
             <button @click="close">

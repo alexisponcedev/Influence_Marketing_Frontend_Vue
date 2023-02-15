@@ -6,20 +6,23 @@
 
         <div v-if="model.src" class="tw-text-center tw-w-full">
             <div
-                class="tw-flex tw-items-center tw-justify-start tw-space-x-2 tw-bg-white tw-py-3.5 tw-px-2 tw-rounded-lg">
-                <img
-                    v-if="type === 'image'"
-                    class="tw-max-h-10 tw-max-w-[100px] tw-object-cover tw-rounded"
-                    :src="model.src"
-                    alt="alt about image"/>
-                <img
-                    v-else
-                    class="tw-max-h-8 tw-max-w-[100px] tw-object-cover tw-rounded"
-                    src="/file.png"
-                    alt="alt about image"
-                />
-
-                <div class="tw-line-clamp-1">{{ model.alt }}</div>
+                class="tw-flex tw-items-center tw-justify-between tw-space-x-2 tw-bg-white tw-py-3.5 tw-px-2 tw-rounded-lg"
+            >
+                <div class="tw-flex tw-items-center tw-justify-start">
+                    <img
+                        v-if="type === 'image'"
+                        class="tw-max-h-10 tw-max-w-[100px] tw-object-cover tw-rounded"
+                        :src="model.src"
+                        alt="alt about image"
+                    />
+                    <img
+                        v-else
+                        class="tw-max-h-8 tw-max-w-[100px] tw-object-cover tw-rounded"
+                        src="/file.png"
+                        alt="alt about image"
+                    />
+                    <div class="tw-line-clamp-1 tw-pl-2">{{ model.alt }}</div>
+                </div>
                 <v-menu bottom :offset-x="-10" :offset-y="12">
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn icon elevation="0" v-on="on" v-bind="attrs">
@@ -33,7 +36,8 @@
                                 color="#fff"
                                 elevation="0"
                                 class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="replaceAsset">
+                                @click="replaceAsset"
+                            >
                                 Replace Image
                             </v-btn>
                         </v-list-item>
@@ -43,7 +47,8 @@
                                 color="#fff"
                                 elevation="0"
                                 class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="editAsset">
+                                @click="editAsset"
+                            >
                                 Edit Image
                             </v-btn>
                         </v-list-item>
@@ -53,7 +58,8 @@
                                 color="#fff"
                                 elevation="0"
                                 class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
-                                @click="deleteAsset">
+                                @click="deleteAsset"
+                            >
                                 Delete Image
                             </v-btn>
                         </v-list-item>
@@ -62,7 +68,11 @@
             </div>
         </div>
 
-        <button v-else @click="showDialog = true" class="tw-text-center tw-w-full">
+        <button
+            v-else
+            @click="showDialog = true"
+            class="tw-text-center tw-w-full"
+        >
             <div
                 class="tw-flex tw-items-center tw-justify-center tw-space-x-2 tw-bg-white tw-py-3.5 tw-rounded-lg tw-text-center tw-w-full hover:tw-bg-blue-200"
             >
@@ -105,7 +115,7 @@ export default class StructureImageEditor extends Vue {
     Api = Api;
     showUploadBox: Boolean = false;
     showDialog: Boolean = false;
-    mode : string = 'add'
+    mode: string = "add";
 
     selected(asset: Asset) {
         this.model.src = asset.url!;
@@ -113,24 +123,24 @@ export default class StructureImageEditor extends Vue {
         this.close();
     }
 
-    deleteAsset(){
-        this.selected({ url: '', description: '' })
+    deleteAsset() {
+        this.selected({ url: "", description: "" });
     }
 
     editAsset() {
-        this.mode = 'edit';
+        this.mode = "edit";
         this.showDialog = true;
         this.showUploadBox = true;
     }
 
-    replaceAsset(){
-        this.mode = 'replace';
+    replaceAsset() {
+        this.mode = "replace";
         this.showDialog = true;
         this.showUploadBox = true;
     }
 
-    addNewAsset(){
-        this.mode === 'add';
+    addNewAsset() {
+        this.mode === "add";
         this.showDialog = true;
         this.showUploadBox = true;
     }

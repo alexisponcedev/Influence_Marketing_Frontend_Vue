@@ -21,8 +21,10 @@
                         <div v-for="(block , j) in group.blocks" :key="`${i}-${j}`" @click="addBlock(block)"
                              class="tw-border-2 tw-border-solid tw-border-gray-200 tw-rounded-lg tw-bg-gray-50 tw-mb-2
                tw-overflow-hidden tw-cursor-pointer transform hover:tw-scale-105 hover:tw-rotate-2 tw-transition tw-duration-300">
-                            <img :src="`/blocks/${block.image}`" alt="component thumbnail" style="min-height: 16px"
-                                 class="tw-rounded tw-bg-gray-50 tw-max-h-28 tw-w-full tw-object-cover ">
+                            <div class="tw-relative tw-h-[0] tw-pt-[48%] tw-overflow-hidden tw-rounded tw-bg-gray-50 tw-w-full">
+                                <img :src="`/blocks/${block.image}`" alt="component thumbnail" style="min-height: 16px"
+                                    class="tw-absolute tw-left-0 tw-top-0 tw-w-full tw-h-full tw-object-cover ">
+                            </div>
                             <div class="tw-flex tw-items-start tw-justify-between tw-space-x-2 tw-p-2">
                                 <div class="tw-font-italic" style="margin-bottom: 0 !important;">{{ block.title }}</div>
                                 <div class="tw-text-xs tw-text-orange-700">{{ block.category }}</div>
