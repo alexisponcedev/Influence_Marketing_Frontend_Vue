@@ -23,6 +23,12 @@ export default class LaserTvInstallationConfirmation extends Vue {
             src: '',
             alt: ''
         })
+        blockAddItem(this.model, 'title', {
+            id: 0,
+            type: StructureType.String,
+            title: 'Title',
+            value: '',
+        })
         blockAddItem(this.model, 'text', {
             id: 0,
             type: StructureType.SimpleText,
