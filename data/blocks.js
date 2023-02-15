@@ -1298,6 +1298,12 @@ export const BLOCKS = () => {
                         image: "LaserTvInstallationForm.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "LaserTvInstallationConfirmation",
+                        title: "Laser Tv Installation Confirmation",
+                        image: "LaserTvInstallationConfirmation.png",
+                        category: "TextBox",
+                    },
                 ],
             },
             {
