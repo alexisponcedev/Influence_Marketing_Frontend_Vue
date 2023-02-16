@@ -124,19 +124,13 @@ export default class PageBuilder extends Vue {
         return this.selectItem && Object.keys(this.selectItem).length > 0;
     }
 
-    onResize(x, y, width, height) {
-        console.log(x);
-        console.log(y);
-        console.log(width);
-        console.log(height);
+    onResize(x:any, y:any, width: any, height: any) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
-    onDrag(x, y) {
-        console.log(x);
-        console.log(y);
+    onDrag(x: any, y: any) {
         this.x = x;
         this.y = y;
     }
