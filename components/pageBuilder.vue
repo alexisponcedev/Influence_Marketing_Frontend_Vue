@@ -45,6 +45,7 @@
                 v-on:resizing="onResize"
                 class="bg-white tw-rounded-lg tw-h-full tw-max-h-[88vh] resizable tw-right-[12px]"
             >
+            
                 <div
                     class="bg-white th-h-full tw-overflow-hidden tw-overflow-y-auto tw-max-h-[88vh]"
                 >
