@@ -8,11 +8,9 @@
 
             <div class="tw-p-2 tw-rounded-lg tw-bg-white tw-space-y-2">
                 <div>Preview</div>
-
                 <div>
-                    <div v-if="googleTitleIndex >= 0" class="tw-text-blue-600">{{
-                            model.meta[googleTitleIndex].content
-                        }}
+                    <div v-if="googleTitleIndex >= 0" class="tw-text-blue-600">
+                        {{ model.meta[googleTitleIndex].content }}
                     </div>
                     <div class="tw-text-green-800 tw-font-sm"> {{ `https://hisese-usa.com${model.route}` }}</div>
                     <div v-if="googleDescriptionIndex >= 0" class="tw-text-gray-500 tw-font-sm">
@@ -188,12 +186,12 @@ export default class TextMetaFormField extends Vue {
 
     reset() {
         this.model.meta = [
-            {rel: 'blank', name: 'title', content: ''},
+            {rel: 'blank', name: 'title', content: this.model.title},
             {rel: 'blank', name: 'description', content: 'Hisense USA'},
             {rel: 'blank', name: 'robots', content: 'index'},
 
             {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
-            {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
+            {rel: 'property="og:title"', name: 'property="og:title"', content: this.model.title},
             {rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA'},
             {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
             {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
@@ -203,29 +201,21 @@ export default class TextMetaFormField extends Vue {
     }
 
     mounted() {
-        if (this.model && (!this.model.meta
-            || !Array.isArray(this.model.meta)
-            // || this.model.meta.length < 8
-        ))
+        if (this.model && (!this.model.meta || !Array.isArray(this.model.meta)))
             this.reset();
 
+        if (!this.model.meta[this.googleTitleIndex].content)
+            this.model.meta[this.googleTitleIndex].content = this.model.title;
+        if (!this.model.meta[this.ogTitleIndex].content)
+            this.model.meta[this.ogTitleIndex].content = this.model.title;
+        console.log(this.model.meta[this.googleTitleIndex].content);
         this.getProductImage();
     }
-
-    // updateName(index: number) {
-    //   if (this.model.meta[index] && this.model.meta[index].rel.includes('og:')) {
-    //     this.model.meta[index].name = this.model.meta[index].rel;
-    //   }
-    // }
 
     addRow(rel = 'blank', name = '', content = '') {
         this.model.meta.push({rel, name, content});
         return this.model.meta.length - 1;
     }
-
-    // removeTag(index: number) {
-    //   this.model.meta.splice(index, 1);
-    // }
 
     removeCustomTag(item: any) {
         this.model.meta.splice(this.model.meta.findIndex((i: MetaInterface) =>

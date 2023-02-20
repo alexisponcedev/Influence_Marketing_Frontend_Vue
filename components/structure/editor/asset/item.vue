@@ -1,17 +1,18 @@
 <template>
     <div v-if="asset"
          class="tw-flex tw-items-center tw-space-x-2 tw-cursor-pointer hover:tw-bg-green-50 tw-transition tw-duration-200 tw-p-1.5 tw-rounded-lg">
-        
-            <div class="tw-flex tw-items-center tw-justify-center tw-w-16 tw-h-12">
-                <img :src="image" @click="selected" class="tw-object-cover tw-max-h-full  tw-rounded tw-bg-gray-100"
-                    alt="asset file" />
-            </div>
-            <div class="tw-flex-1 tw-flex tw-flex-col tw-justify-center" @click="selected">
-                <div class="tw-mb-1 tw-text-gray-600 tw-font-bold">{{ asset.title }}</div>
-                <div>{{ asset.description }}</div>
-            </div>
+
+        <div class="tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-w-16 tw-h-12">
+            <img :src="image" @click="selected" class="tw-object-cover tw-max-h-full  tw-rounded tw-bg-gray-100"
+                 alt="asset file"/>
+        </div>
+        <div class="tw-flex-1 tw-flex tw-flex-col tw-justify-center" @click.self="selected">
+            <div class="tw-mb-1 tw-text-gray-600 tw-font-bold">{{ asset.title }}</div>
+            <div>{{ asset.description }}</div>
+            <a class="tw-w-72 tw-line-clamp-1" :title="asset.url" :href="asset.url" target="_blank">{{ asset.url }}</a>
+        </div>
         <div>
-            <button @click="deleteAsset">
+            <button @click.prevent="deleteAsset">
                 <v-icon light class="danger--text">mdi-delete</v-icon>
             </button>
         </div>

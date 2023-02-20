@@ -419,7 +419,7 @@ export default class api__page extends VuexModule {
             })
         )
             .addPage(getActiveBrand(), {
-                title: payload.product.name,
+                title: payload.product.model + ' - new',
                 route,
                 meta: [
                     {rel: "blank", name: "title", content: ""},
@@ -570,6 +570,26 @@ export default class api__page extends VuexModule {
             })
         )
             .forceDeletePage(getActiveBrand(), id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
+
+    @Action({commit: "addItem"})
+    async duplicatePage(id: number) {
+        this.setLoading(true);
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            ._1cc701607b8f73bf672ddb3f864e95e9(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

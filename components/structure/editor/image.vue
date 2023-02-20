@@ -21,7 +21,7 @@
                         src="/file.png"
                         alt="alt about image"
                     />
-                    <div class="tw-line-clamp-1 tw-pl-2">{{ model.alt }}</div>
+                    <div class="tw-line-clamp-1 tw-pl-2 tw-w-40">{{ model.alt }}</div>
                 </div>
                 <v-menu bottom :offset-x="-10" :offset-y="12">
                     <template v-slot:activator="{ on, attrs }">
@@ -50,6 +50,17 @@
                                 @click="editAsset"
                             >
                                 Edit Image
+                            </v-btn>
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item class="pa-0">
+                            <v-btn
+                                color="#fff"
+                                elevation="0"
+                                class="tw-w-full tw-h-[48px] tw-block tw-p-3 tw-rounded-none"
+                                @click="copyURL"
+                            >
+                                Copy URL
                             </v-btn>
                         </v-list-item>
                         <v-divider></v-divider>
@@ -102,16 +113,16 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch, VModel } from "vue-property-decorator";
-import { StructureField } from "~/interfaces/StructureField";
-import { Api } from "~/utils/store-accessor";
-import { Asset } from "~/repositories";
-import { AssetTokens } from "~/models/AssetTokens";
+import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
+import {StructureField} from "~/interfaces/StructureField";
+import {Api, AppStore} from "~/utils/store-accessor";
+import {Asset} from "~/repositories";
+import {AssetTokens} from "~/models/AssetTokens";
 
 @Component
 export default class StructureImageEditor extends Vue {
-    @Prop({ type: String, default: "image" }) readonly type!: string;
-    @VModel({ type: StructureField }) model!: StructureField;
+    @Prop({type: String, default: "image"}) readonly type!: string;
+    @VModel({type: StructureField}) model!: StructureField;
     Api = Api;
     showUploadBox: Boolean = false;
     showDialog: Boolean = false;
@@ -124,13 +135,21 @@ export default class StructureImageEditor extends Vue {
     }
 
     deleteAsset() {
-        this.selected({ url: "", description: "" });
+        this.selected({url: "", description: ""});
     }
 
     editAsset() {
         this.mode = "edit";
         this.showDialog = true;
         this.showUploadBox = true;
+    }
+
+    copyURL() {
+        if ('clipboard' in navigator) {
+            navigator.clipboard.writeText(this.model.src);
+            AppStore.showSnackBar({message: 'Copied to clipboard!', color: "success"})
+        }
+
     }
 
     replaceAsset() {

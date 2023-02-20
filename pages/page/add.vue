@@ -36,8 +36,7 @@
                             <v-card>
                                 <v-card-text>
                                     <v-row>
-                                        <form-field-text :field="formFields[0]" v-model="Page.title"
-                                                         @input="pageTitleChanged"/>
+                                        <form-field-text :max="60" :field="formFields[0]" v-model="Page.title" @input="pageTitleChanged"/>
                                         <form-field-select-autocomplete :field="formFields[1]"
                                                                         v-model="Page.status_id"/>
                                     </v-row>

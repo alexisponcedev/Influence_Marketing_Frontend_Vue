@@ -26,21 +26,21 @@
                             v-model="compareRoute.value" />
                     </div>
 
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">{{ googleTagDomain.title }}</span>
-                        </div>
-                        <input type="text" class="x-input" placeholder="please enter the value"
-                            v-model="googleTagDomain.value" />
-                    </div>
+<!--                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">-->
+<!--                        <div class="tw-flex tw-space-x-2 tw-items-center">-->
+<!--                            <span class="tw-whitespace-normal">{{ googleTagDomain.title }}</span>-->
+<!--                        </div>-->
+<!--                        <input type="text" class="x-input" placeholder="please enter the value"-->
+<!--                            v-model="googleTagDomain.value" />-->
+<!--                    </div>-->
 
-                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">{{ googleTagCode.title }}</span>
-                        </div>
-                        <input type="text" class="x-input" placeholder="please enter the value"
-                            v-model="googleTagCode.value" />
-                    </div>
+<!--                    <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">-->
+<!--                        <div class="tw-flex tw-space-x-2 tw-items-center">-->
+<!--                            <span class="tw-whitespace-normal">{{ googleTagCode.title }}</span>-->
+<!--                        </div>-->
+<!--                        <input type="text" class="x-input" placeholder="please enter the value"-->
+<!--                            v-model="googleTagCode.value" />-->
+<!--                    </div>-->
 
                     <div class="tw-bg-gray-50 tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between">
                         <div class="tw-flex tw-space-x-2 tw-items-center">
@@ -122,42 +122,6 @@ export default class AllSettings extends Vue {
 
     settings: any[] = [];
 
-    // config = {
-    //     headers: [
-    //         { text: "Title", value: "title" },
-    //         { text: "Key", value: "key" },
-    //         { text: "Value", value: "value" },
-    //         { text: "", value: "actions", sortable: false, width: "0" },
-    //     ],
-    //     actions: [
-    //         {
-    //             type: "edit",
-    //             icon: "mdi-pencil",
-    //             to: "/settings/edit/[id]",
-    //         },
-    //         // {
-    //         //     type: "delete",
-    //         //     icon: "mdi-delete",
-    //         //     onClick: (Setting: SettingResource) => {
-    //         //         AppStore.showDeleteConfirmationModal({
-    //         //             deleteItemTitle: Setting.title || "",
-    //         //             deleteItem: Setting,
-    //         //             agreeButton: { callback: this.deleteSetting },
-    //         //         });
-    //         //     },
-    //         // },
-    //     ],
-    //     globalActions: [
-    //         {
-    //             text: "Add Setting",
-    //             class: 'btn',
-    //             color: "primary",
-    //             icon: "mdi-plus",
-    //             to: "/settings/add",
-    //         },
-    //     ],
-    // };
-
     mounted() {
         this.getSettings();
     }
@@ -175,15 +139,15 @@ export default class AllSettings extends Vue {
         return (!item) ? this.settings[this.settings.push({ title: 'Compare Route', key: 'compareRoute', value: '/compare', brand_id: getActiveBrand() }) - 1] : item;
     }
 
-    get googleTagDomain() {
-        let item = this.settings.find((k: any) => k.key === 'googleTagDomain')
-        return (!item) ? this.settings[this.settings.push({ title: 'Google Tag Domain', key: 'googleTagDomain', value: 'https://public.dev.hisenseportal.com', brand_id: getActiveBrand() }) - 1] : item;
-    }
-
-    get googleTagCode() {
-        let item = this.settings.find((k: any) => k.key === 'googleTagCode')
-        return (!item) ? this.settings[this.settings.push({ title: 'Google Tag Code', key: 'googleTagCode', value: 'https://public.dev.hisenseportal.com', brand_id: getActiveBrand() }) - 1] : item;
-    }
+    // get googleTagDomain() {
+    //     let item = this.settings.find((k: any) => k.key === 'googleTagDomain')
+    //     return (!item) ? this.settings[this.settings.push({ title: 'Google Tag Domain', key: 'googleTagDomain', value: 'https://public.dev.hisenseportal.com', brand_id: getActiveBrand() }) - 1] : item;
+    // }
+    //
+    // get googleTagCode() {
+    //     let item = this.settings.find((k: any) => k.key === 'googleTagCode')
+    //     return (!item) ? this.settings[this.settings.push({ title: 'Google Tag Code', key: 'googleTagCode', value: 'https://public.dev.hisenseportal.com', brand_id: getActiveBrand() }) - 1] : item;
+    // }
 
     get siteName() {
         let item = this.settings.find((k: any) => k.key === 'siteName')
