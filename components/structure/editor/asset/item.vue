@@ -9,7 +9,7 @@
         <div class="tw-flex-1 tw-flex tw-flex-col tw-justify-center" @click.self="selected">
             <div class="tw-mb-1 tw-text-gray-600 tw-font-bold">{{ asset.title }}</div>
             <div>{{ asset.description }}</div>
-            <a class="tw-w-72 tw-line-clamp-1" :title="asset.url" :href="asset.url" target="_blank">{{ asset.url }}</a>
+            <div class="tw-w-72 tw-line-clamp-1" :title="asset.url">{{ asset.url }}</div>
         </div>
         <div>
             <button @click.prevent="deleteAsset">
