@@ -126,6 +126,15 @@ export const BLOCKS = () => {
                         image: "subscribe.png",
                         category: "TextBox",
                     },
+
+                    {
+                        name: "LandingStaticBanner",
+                        title: "Landing Static Banner",
+                        image: "LandingStaticBanner.png",
+                        category: "TextBox",
+                    },
+
+                    
                 ],
             },
             {
@@ -1629,6 +1638,12 @@ export const BLOCKS = () => {
                         name: "AuthorizedRetailersLogos",
                         title: "Authorized Retailers Logos",
                         image: "AuthorizedRetailersLogos.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "AuthorizedRetailersBanner",
+                        title: "Authorized Retailers Banner",
+                        image: "AuthorizedRetailersBanner.png",
                         category: "TextBox",
                     },
                 ],
