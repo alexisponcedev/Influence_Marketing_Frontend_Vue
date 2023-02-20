@@ -29,6 +29,8 @@
             </table-standard>
         </v-card>
 
+       <page-duplicate ref="pageDuplicate" @created="updatePages" />
+
     </v-container>
 </template>
 
@@ -59,15 +61,7 @@ export default class AllPages extends Vue {
                 type: "duplicate",
                 icon: "mdi-content-duplicate",
                 onClick: (Page: PageResource) => {
-                    AppStore.showConfirmationModal({
-                        title: 'Duplicate Page',
-                        text: `Are you sure, you want to duplicate page ${Page.title || ""} ?`,
-                        agreeButton: {
-                            callback: () => {
-                                this.duplicatePage(Page)
-                            }
-                        },
-                    });
+                    this.showDuplicateDialog(Page);
                 },
             },
             {
@@ -110,11 +104,12 @@ export default class AllPages extends Vue {
         Api.Page.delete(Page.id!).then(this.updatePages).then(Api.Page.doDeploy);
     }
 
-    duplicatePage(Page: PageResource) {
-        Api.Page.duplicatePage(Page.id!)
-            .then(this.updatePages)
-            .then(Api.Page.doDeploy);
+    showDuplicateDialog(Page : PageResource){
+        (this.$refs.pageDuplicate as any).open(Page);
     }
+
+
+    
 
 
     get pagesList() {

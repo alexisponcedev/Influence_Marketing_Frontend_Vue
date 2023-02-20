@@ -42,8 +42,7 @@
                                     </v-row>
 
 
-                                    <form-field-select-page-route :field="formFields[2]" v-model="Page.route"
-                                                                  :pageId="Page.id"/>
+                                    <form-field-select-page-route :field="formFields[2]" v-model="Page.route" :pageId="Page.id"/>
 
 
                                     <div v-if="Page.model_type === 'product'"
@@ -90,6 +89,7 @@
                             </button>
 
                         </v-tab-item>
+
                         <v-tab-item value="Live">
                             <iframe style="min-height: 700px" :src="liveWebsite" frameborder="0" class="tw-w-full"/>
                         </v-tab-item>
