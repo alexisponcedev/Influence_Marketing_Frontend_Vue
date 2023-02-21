@@ -89,7 +89,7 @@ export default class PostForm extends Vue {
     meta: Array<{ rel: string, name: string, content: string }> = [];
     oldRoute = '';
 
-    Post: Post = {
+    Post: any = {
         id: 0,
         category_id: 0,
         tags: [],

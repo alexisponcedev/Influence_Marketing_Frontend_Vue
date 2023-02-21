@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -91,8 +91,8 @@ export default class api__page extends VuexModule {
         ];
     }
 
-    @Action({ commit: "updateAll" })
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateAll"})
+    @Action({commit: "updateRoutes"})
     async getAll() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -112,7 +112,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getDynamicPages() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -132,7 +132,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateRoutes"})
     async getRoutes() {
         this.setLoading(true);
         const response: any = await PageApiFactory(
@@ -152,7 +152,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateRoutes" })
+    @Action({commit: "updateRoutes"})
     clearRoutes() {
         return [];
     }
@@ -206,7 +206,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async create(Page: Page) {
         this.setLoading(true);
         Page.widgets = JSON.parse(safeString(JSON.stringify(Page.widgets)));
@@ -296,7 +296,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "updateItem" })
+    @Action({commit: "updateItem"})
     async update(payload: { id: number; Page: Page }) {
         this.setLoading(true);
         payload.Page.widgets = JSON.parse(
@@ -323,7 +323,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "deleteItem" })
+    @Action({commit: "deleteItem"})
     async delete(id: number) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -403,7 +403,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async createPDP(payload: {
         product: any;
         type: string;
@@ -433,13 +433,13 @@ export default class api__page extends VuexModule {
                 title: payload.product.model + " - new",
                 route,
                 meta: [
-                    { rel: "blank", name: "title", content: "" },
+                    {rel: "blank", name: "title", content: ""},
                     {
                         rel: "blank",
                         name: "description",
                         content: "Hisense USA",
                     },
-                    { rel: "blank", name: "robots", content: "index" },
+                    {rel: "blank", name: "robots", content: "index"},
 
                     {
                         rel: 'property="og:site_name"',
@@ -532,7 +532,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({commit: "updateAll"})
     async getDeletedPages() {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -552,7 +552,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "deleteItem" })
+    @Action({commit: "deleteItem"})
     async restorePage(id: number) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -572,7 +572,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "deleteItem" })
+    @Action({commit: "deleteItem"})
     async forceDelete(id: number) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -592,7 +592,7 @@ export default class api__page extends VuexModule {
         return {};
     }
 
-    @Action({ commit: "addItem" })
+    @Action({commit: "addItem"})
     async duplicatePage(payload: { page_id: number; route: string; title: string }) {
         this.setLoading(true);
         const response = await PageApiFactory(
@@ -600,7 +600,11 @@ export default class api__page extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            ._1cc701607b8f73bf672ddb3f864e95e9(getActiveBrand(), payload.page_id)
+            ._0f917f275a0d5168341cc92753f96732(getActiveBrand(), {
+                page_id: payload.page_id,
+                title: payload.title,
+                route: payload.route
+            })
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

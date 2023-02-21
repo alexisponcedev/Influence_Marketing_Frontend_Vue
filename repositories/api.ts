@@ -565,6 +565,31 @@ export interface Draft {
     'page_draft'?: Array<object>;
 }
 /**
+ * Duplicate model
+ * @export
+ * @interface Duplicate
+ */
+export interface Duplicate {
+    /**
+     * 
+     * @type {number}
+     * @memberof Duplicate
+     */
+    'page_id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Duplicate
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Duplicate
+     */
+    'route'?: string;
+}
+/**
  * Dynamic Page Resource model
  * @export
  * @interface DynamicPageResource
@@ -2584,8 +2609,6 @@ export interface Post {
      * @memberof Post
      */
     'status'?: number;
-
-    'page'? : Page;
 }
 /**
  * Post List Resource model
@@ -9690,17 +9713,16 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {number} brandId Brand Id
-         * @param {number} pageId Page ID
+         * @param {Duplicate} duplicate 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        _1cc701607b8f73bf672ddb3f864e95e9: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        _0f917f275a0d5168341cc92753f96732: async (brandId: number, duplicate: Duplicate, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
-            assertParamExists('_1cc701607b8f73bf672ddb3f864e95e9', 'brandId', brandId)
-            // verify required parameter 'pageId' is not null or undefined
-            assertParamExists('_1cc701607b8f73bf672ddb3f864e95e9', 'pageId', pageId)
-            const localVarPath = `/page/duplicate/{pageId}`
-                .replace(`{${"pageId"}}`, encodeURIComponent(String(pageId)));
+            assertParamExists('_0f917f275a0d5168341cc92753f96732', 'brandId', brandId)
+            // verify required parameter 'duplicate' is not null or undefined
+            assertParamExists('_0f917f275a0d5168341cc92753f96732', 'duplicate', duplicate)
+            const localVarPath = `/page/duplicate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9708,7 +9730,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -9722,9 +9744,12 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(duplicate, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10704,12 +10729,12 @@ export const PageApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} brandId Brand Id
-         * @param {number} pageId Page ID
+         * @param {Duplicate} duplicate 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async _1cc701607b8f73bf672ddb3f864e95e9(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Page>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator._1cc701607b8f73bf672ddb3f864e95e9(brandId, pageId, options);
+        async _0f917f275a0d5168341cc92753f96732(brandId: number, duplicate: Duplicate, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Page>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator._0f917f275a0d5168341cc92753f96732(brandId, duplicate, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10964,12 +10989,12 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @param {number} brandId Brand Id
-         * @param {number} pageId Page ID
+         * @param {Duplicate} duplicate 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        _1cc701607b8f73bf672ddb3f864e95e9(brandId: number, pageId: number, options?: any): AxiosPromise<Page> {
-            return localVarFp._1cc701607b8f73bf672ddb3f864e95e9(brandId, pageId, options).then((request) => request(axios, basePath));
+        _0f917f275a0d5168341cc92753f96732(brandId: number, duplicate: Duplicate, options?: any): AxiosPromise<Page> {
+            return localVarFp._0f917f275a0d5168341cc92753f96732(brandId, duplicate, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11201,13 +11226,13 @@ export class PageApi extends BaseAPI {
     /**
      * 
      * @param {number} brandId Brand Id
-     * @param {number} pageId Page ID
+     * @param {Duplicate} duplicate 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public _1cc701607b8f73bf672ddb3f864e95e9(brandId: number, pageId: number, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration)._1cc701607b8f73bf672ddb3f864e95e9(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
+    public _0f917f275a0d5168341cc92753f96732(brandId: number, duplicate: Duplicate, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration)._0f917f275a0d5168341cc92753f96732(brandId, duplicate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
