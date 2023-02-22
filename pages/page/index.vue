@@ -105,11 +105,12 @@ export default class AllPages extends Vue {
     }
 
     showDuplicateDialog(Page : PageResource){
-        (this.$refs.pageDuplicate as any).open(Page);
+        if(!Page.model_id)
+            (this.$refs.pageDuplicate as any).open(Page);
     }
 
 
-    
+
 
 
     get pagesList() {

@@ -24,7 +24,7 @@ export default class BlockTVHero extends Vue {
             }
         } else
             this.model = {
-                title: {id: 0, type: StructureType.SimpleText, title: 'Title', value: 'We make award winning TVs.'},
+                title: {id: 0, type: StructureType.Text, title: 'Title', value: 'We make award winning TVs.'},
                 text: {
                     id: 1, type: StructureType.Text, title: 'Text', value: 'LESS TALK, MORE TV' +
                         'Find one (or two) \n' +

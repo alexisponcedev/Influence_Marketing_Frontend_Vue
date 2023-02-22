@@ -17,23 +17,23 @@ export default class AuthorizedRetailersBanner extends Vue {
 
     mounted() {
         blockAddItem(this.model , 'image' ,{
-            id : 0 , 
-            title : 'Image', 
+            id : 0 ,
+            title : 'Image',
             type : StructureType.Image,
             src : '',
             alt : '',
         })
 
         blockAddItem(this.model , 'title' ,{
-            id : 1 , 
-            title : 'Title', 
+            id : 1 ,
+            title : 'Title',
             type : StructureType.String,
             value : 'Sample Text',
         })
 
-        blockAddItem(this.model , 'title' ,{
-            id : 2 , 
-            title : 'Subtitle', 
+        blockAddItem(this.model , 'subtitle' ,{
+            id : 2 ,
+            title : 'Subtitle',
             type : StructureType.String,
             value : 'Sample Text',
         })

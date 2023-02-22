@@ -2,7 +2,7 @@
     <v-container fluid>
 
         <div v-if="editMode" class="d-flex justify-space-between align-center">
-            <breadcrumbs :locations="locations" />
+            <breadcrumbs :locations="locations"/>
             <div class="tw-flex tw-items-center tw-space-x-2">
                 <v-btn elevation="0" outlined class="btn" @click="gotoLiveWebsite">
                     Live Website
@@ -29,27 +29,27 @@
                         <v-card-text>
                             <v-row>
                                 <form-field-text :field="formFields[0]" v-model="Post.page.title"
-                                    @input="postTitleChanged" />
-                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id" />
+                                                 @input="postTitleChanged"/>
+                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
                             </v-row>
                             <v-row>
                                 <form-field-select-page-route :field="formFields[2]" v-model="Post.page.route"
-                                    :pageId="Post.page.id" />
+                                                              :pageId="Post.page.id"/>
                             </v-row>
                             <v-row>
-                                <form-field-tags :field="formFields[3]" v-model="Post.tags" />
+                                <form-field-tags :field="formFields[3]" v-model="Post.tags"/>
                             </v-row>
 
                         </v-card-text>
                     </v-card>
                     <button class="tw-my-3 tw-w-full tw-py-3 tw-bg-white
                         tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
-                        @click.prevent="submit">Save
+                            @click.prevent="submit">Save
                     </button>
                 </v-tab-item>
 
                 <v-tab-item value="Metas">
-                    <form-field-meta :field="formFields[4]" v-model="Post.page" />
+                    <form-field-meta :field="formFields[4]" v-model="Post.page"/>
                     <button
                         class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
                         @click.prevent="submit">Save
@@ -59,22 +59,22 @@
             </v-tabs-items>
         </v-form>
 
-        <loading-overlay :show="Api.Post.loading" />
+        <loading-overlay :show="Api.Post.loading"/>
     </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import { PageResource, Post } from "@/repositories";
-import { FormField } from "@/models";
-import { Api } from "@/store";
+import {PageResource, Post} from "@/repositories";
+import {FormField} from "@/models";
+import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
-import { UrlTypeEnum } from "~/interfaces/UrlTypeEnum";
-import { SettingEnum } from "~/interfaces/SettingEnum";
+import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
+import {SettingEnum} from "~/interfaces/SettingEnum";
 
 @Component({
-    components: { HoverButton },
+    components: {HoverButton},
     layout: "panel"
 })
 export default class PostForm extends Vue {
@@ -101,7 +101,7 @@ export default class PostForm extends Vue {
             draft: [],
             model_type: 'post',
             model_id: 0,
-            status_id : 1
+            status_id: 1
         },
         status: 0,
     };
@@ -128,16 +128,16 @@ export default class PostForm extends Vue {
     initMetaTags() {
         if (this.Post.page!.meta?.length === 0) {
             this.Post.page!.meta = [
-                { rel: 'blank', name: 'title', content: '' },
-                { rel: 'blank', name: 'description', content: 'Hisense USA' },
+                {rel: 'blank', name: 'title', content: ''},
+                {rel: 'blank', name: 'description', content: 'Hisense USA'},
 
-                { rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA' },
-                { rel: 'property="og:title"', name: 'property="og:title"', content: '' },
-                { rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA' },
-                { rel: 'property="og:image"', name: 'property="og:image"', content: '' },
-                { rel: 'property="og:url"', name: 'property="og:url"', content: '' },
-                { rel: 'property="og:type"', name: 'property="og:type"', content: 'website' },
-                { rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US' },
+                {rel: 'property="og:site_name"', name: 'property="og:site_name"', content: 'Hisense USA'},
+                {rel: 'property="og:title"', name: 'property="og:title"', content: ''},
+                {rel: 'property="og:description"', name: 'property="og:description"', content: 'Hisense USA'},
+                {rel: 'property="og:image"', name: 'property="og:image"', content: ''},
+                {rel: 'property="og:url"', name: 'property="og:url"', content: ''},
+                {rel: 'property="og:type"', name: 'property="og:type"', content: 'website'},
+                {rel: 'property="og:locale"', name: 'property="og:locale"', content: 'en_US'},
             ];
         }
     }
@@ -162,7 +162,7 @@ export default class PostForm extends Vue {
 
     async getEntity() {
         if (this.editMode) {
-            let Post = (await Api.Post.get(+this.$route.params.id)) as Post;
+            let Post = (await Api.Post.get(+this.$route.params.id)) as any;
             Post.page = (await Api.Page.getPageByModelTypeModelId({
                 model_type: 'post',
                 model_id: +this.$route.params.id
@@ -180,7 +180,7 @@ export default class PostForm extends Vue {
                 modelKey: "page.title",
                 placeholder: 'please enter post title',
                 rules: [Validation.required],
-                colAttrs: { cols: 9 },
+                colAttrs: {cols: 9},
             },
             {
                 type: "form-field-select-autocomplete",
@@ -191,28 +191,28 @@ export default class PostForm extends Vue {
                 'item-value': 'id',
                 items: Api.Category.all,
                 rules: [Validation.required],
-                colAttrs: { cols: 3 },
+                colAttrs: {cols: 3},
             },
             {
                 type: "form-field-select-page-route",
                 label: "Post URL",
                 modelKey: "page.route",
                 rules: [],
-                colAttrs: { cols: 12 },
+                colAttrs: {cols: 12},
             },
             {
                 type: "form-field-tags",
                 label: "Tags",
                 modelKey: "tag",
                 rules: [],
-                colAttrs: { cols: 12 },
+                colAttrs: {cols: 12},
             },
             {
                 type: "form-field-meta",
                 label: "Meta",
                 modelKey: "page.meta",
                 rules: [],
-                colAttrs: { cols: 12 },
+                colAttrs: {cols: 12},
             },
         ];
     }
@@ -224,11 +224,15 @@ export default class PostForm extends Vue {
                     id: +this.Post.id!,
                     Post: this.Post,
                 }).then(() => {
-                    Api.Page.update({ Page: this.Post.page!, id: +this.Post.page!.id! })
-                        .then(page => {
-                            if (this.Post.page?.route !== this.oldRoute)
-                                Api.Page.doDeploy();
+                    Api.Page.get(this.Post.page!.id)
+                        .then(() => {
+                            Api.Page.update({Page: this.Post.page!, id: +this.Post.page!.id!})
+                                .then(page => {
+                                    if (this.Post.page?.route !== this.oldRoute)
+                                        Api.Page.doDeploy();
+                                })
                         })
+
                 });
             else {
                 await Api.Post.create(this.Post)

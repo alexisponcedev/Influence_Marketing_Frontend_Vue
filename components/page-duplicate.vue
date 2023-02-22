@@ -6,9 +6,9 @@
                     Want to duplicate current page <span class="tw-font-semibold">{{ page.title }} </span>?
                 </p>
 
-                <form-field-text :max="60" :field="formFields[0]" v-model="title" />
+                <form-field-text :max="60" :field="formFields[0]" v-model="title"/>
 
-                <form-field-select-page-route :field="formFields[1]" v-model="route" />
+                <form-field-select-page-route :field="formFields[1]" v-model="route"/>
 
                 <v-btn
                     class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { PageResource } from "~/repositories";
-import { Api } from "~/store";
+import {Component, Prop, Vue} from "vue-property-decorator";
+import {PageResource} from "~/repositories";
+import {Api} from "~/store";
 
 @Component
 export default class PageDiscardDialog extends Vue {
@@ -43,14 +43,14 @@ export default class PageDiscardDialog extends Vue {
             modelKey: "title",
             placeholder: 'please enter page title',
             rules: [],
-            colAttrs: { cols: 12 },
+            colAttrs: {cols: 12},
         },
         {
             type: "form-field-select-page-route",
             label: "Page URL",
             modelKey: "route",
             rules: [],
-            colAttrs: { cols: 12 },
+            colAttrs: {cols: 12},
         },
     ]
 
@@ -66,12 +66,11 @@ export default class PageDiscardDialog extends Vue {
     }
 
     async duplicatePage(Page: PageResource) {
-        let page = await Api.Page.duplicatePage({page_id : +this.page.id! , title : this.title , route : this.route})
+        let page = await Api.Page.duplicatePage({page_id: +this.page.id!, title: this.title, route: this.route})
         await Api.Page.doDeploy();
-            this.$emit('created')
-            this.close();
-            this.$router.push('/page/edit/' + page.id)
-
+        this.$emit('created')
+        this.close();
+        this.$router.push('/page/edit/' + page.id)
     }
 }
 </script>
