@@ -38,6 +38,13 @@ export default class AuthorizedRetailersBanner extends Vue {
             value : 'Sample Text',
         })
 
+        blockAddItem(this.model , 'width' ,{
+            id : 3 ,
+            title : 'Width',
+            type : StructureType.String,
+            value : '1000',
+        })
+
 
 
     }
