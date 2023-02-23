@@ -112,7 +112,7 @@ export default class PageDuplicateDialog extends Vue {
             page_id: +this.page.id!,
             title: this.title,
             route: this.route,
-            product_id: +this.product?.id!
+            model_id: this.product ? this.product.id : 0
         })
         await Api.Page.doDeploy();
         this.$emit('created')
