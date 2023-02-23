@@ -6,8 +6,8 @@
             <v-col>
                 <v-tabs show-arrows v-model="tab" background-color="transparent">
                     <!--          <v-tab :href="`#${ProductSearchStatus.all}`">All Products</v-tab>-->
-                    <v-tab :href="`#${ProductSearchStatus.active}`" class="tw-w-full">Active Products</v-tab>
-                    <v-tab :href="`#${ProductSearchStatus.inactive}`" class="tw-w-full">Inactive Products</v-tab>
+                    <v-tab :href="`#${ProductSearchStatus.hasPage}`" class="tw-w-full">Active Products</v-tab>
+                    <v-tab :href="`#${ProductSearchStatus.hasNoPage}`" class="tw-w-full">Inactive Products</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -43,7 +43,6 @@
                         :max="-1"
                         :status="tab"
                         :initLoad="true"
-                        :run="appendPageData"
                         :always-show="true"
                         :category_id="selectedCategory.id"
                         v-model="search">
@@ -187,11 +186,6 @@ export default class ProductsPage extends Vue {
         } else
             this.addingPage = 0;
     }
-
-    appendPageData(products: Array<any>) {
-        return products.map((product) => ({...product, page: this.pages.find(i => i.model_id === product.id)}));
-    }
-
 }
 </script>
 <style scoped>

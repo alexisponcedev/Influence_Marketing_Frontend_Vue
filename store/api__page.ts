@@ -593,7 +593,7 @@ export default class api__page extends VuexModule {
     }
 
     @Action({commit: "addItem"})
-    async duplicatePage(payload: { page_id: number; route: string; title: string }) {
+    async duplicatePage(payload: { page_id: number; route: string; title: string , product_id : number }) {
         this.setLoading(true);
         const response = await PageApiFactory(
             new Configuration({
@@ -603,7 +603,8 @@ export default class api__page extends VuexModule {
             ._0f917f275a0d5168341cc92753f96732(getActiveBrand(), {
                 page_id: payload.page_id,
                 title: payload.title,
-                route: payload.route
+                route: payload.route,
+                // product_id : payload.product_id
             })
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));

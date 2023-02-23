@@ -1,7 +1,6 @@
 <template>
     <v-container fluid>
 
-
         <v-row>
             <v-col>
                 <v-tabs v-model="tab" background-color="transparent">
@@ -105,13 +104,9 @@ export default class AllPages extends Vue {
     }
 
     showDuplicateDialog(Page : PageResource){
-        if(!Page.model_id)
+        // if(!Page.model_id)
             (this.$refs.pageDuplicate as any).open(Page);
     }
-
-
-
-
 
     get pagesList() {
         let pages: Array<any> = [];

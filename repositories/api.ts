@@ -588,6 +588,12 @@ export interface Duplicate {
      * @memberof Duplicate
      */
     'route'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Duplicate
+     */
+    'model_id'?: number;
 }
 /**
  * Dynamic Page Resource model
