@@ -8,6 +8,7 @@
 import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import {Theme} from "~/interfaces/ThemeEnum";
+import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class BlockFAQhead extends Vue {
@@ -21,46 +22,31 @@ export default class BlockFAQhead extends Vue {
     loadingProduct: boolean = true;
 
 
-    reset(oldValue: any = {}) {
-
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                theme: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: "Theme",
-                    value: Theme.dark,
-                    items: [
-                        {title: "Light", value: this.Theme.light},
-                        {title: "Dark", value: this.Theme.dark},
-                    ],
-                },
-
-                width: {id: 1, type: StructureType.String, title: 'Width', value: '1000'},
-                height: {id: 1, type: StructureType.String, title: 'Height', value: '972'},
-                color: {id: 2, type: StructureType.Color, title: 'Background Color', value: '#000'},
-                title: {id: 1, type: StructureType.Text, title: 'Title', value: 'FREQUENTLY ASKED QUESTIONS'},
-            };
-    }
-
     mounted() {
-        if (this.isEmpty) this.reset();
+        blockAddItem(this.model, 'theme', {
+            id: 0,
+            type: StructureType.Select,
+            title: "Theme",
+            value: Theme.dark,
+            items: [
+                {title: "Light", value: this.Theme.light},
+                {title: "Dark", value: this.Theme.dark},
+            ],
+        })
+        blockAddItem(this.model, 'width', {id: 1, type: StructureType.String, title: 'Width', value: '1000'})
+        blockAddItem(this.model, 'height', {id: 2, type: StructureType.String, title: 'Height', value: '972'})
+        blockAddItem(this.model, 'color', {id: 3, type: StructureType.Color, title: 'Background Color', value: '#000'})
+        blockAddItem(this.model, 'title', {
+            id: 4,
+            type: StructureType.Text,
+            title: 'Title',
+            value: 'FREQUENTLY ASKED QUESTIONS'
+        })
+        this.model = {...this.model}
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
-    }
-
-    @Watch('isEmpty')
-    onValueChanged() {
-
-        if (this.isEmpty) this.reset();
     }
 }
 </script>
