@@ -16,7 +16,7 @@ export default class CesAwards3 extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'title', {id: 0, type: StructureType.SimpleText, title: 'Title', value: ''})
+        blockAddItem(this.model, 'title', {id: 0, type: StructureType.Text, title: 'Title', value: ''})
         blockAddItem(this.model, 'list', {
             id: 1, type: StructureType.List, title: 'List', newItem: {
                 image: {id: 0, type: StructureType.Image, title: 'Product Image', src: '', alt: ''},
