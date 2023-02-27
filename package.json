@@ -46,6 +46,7 @@
     "vue-persian-datetime-picker": "^2.10.4",
     "vue-property-decorator": "^9.1.2",
     "vue-qrcode-component": "^2.1.1",
+    "vue-resizable": "^2.1.7",
     "vue2-editor": "^2.10.3",
     "vuedraggable": "^2.24.3",
     "vuetify": "^2.6.6",

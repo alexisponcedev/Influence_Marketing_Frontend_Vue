@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div class="tw-grid tw-grid-cols-10 tw-gap-6" style="margin-top: 88px">
+        <div class="tw-flex tw-items-start tw-gap-4" style="margin-top: 88px">
             <div
-                :class="`bg-white tw-rounded-lg tw-overflow-hidden tw-overflow-y-auto tw-space-y-2 tw-p-2 tw-max-h-[88vh]`"
-                :style="`width:${window.innerWidth - width - 50}px`"
-            >
+                :class="`bg-white tw-rounded-lg tw-flex-1 tw-overflow-hidden tw-overflow-y-auto tw-space-y-2 tw-p-2 tw-max-h-[86vh]`">
                 <draggable
                     v-model="blocksList"
                     group="people"
@@ -12,7 +10,7 @@
                 >
                     <blocks-container
                         v-for="(block, i) in blocksList"
-                        :key="block.id"
+                        :key="block.id + '_' + i"
                         class="tw-mb-2"
                         :selectable="selectable"
                         @component-selected="componentSelected(i)"
@@ -32,83 +30,50 @@
                         />
                     </blocks-container>
 
-                    <blocks-drop />
+                    <blocks-drop/>
                 </draggable>
             </div>
-            <vue-draggable-resizable
-                :handles="['ml']"
-                :draggable="false"
-                :maxWidth="window.innerWidth / 2 - 80"
-                axis="x"
-                :w="width"
-                @dragging="onDrag"
-                @resizing="onResize"
-                class="bg-white tw-rounded-lg tw-h-full tw-max-h-[88vh] resizable tw-right-[12px]"
-            >
-
+            <resizable v-model="width">
                 <div
-                    class="bg-white th-h-full tw-overflow-hidden tw-overflow-y-auto tw-max-h-[88vh]"
-                >
+                    class="tw-h-[86vh] tw-overflow-hidden tw-overflow-y-auto no-scrollbar tw-bg-white tw-w-full">
                     <blocks-selector
                         v-show="editIndex === -1"
-                        class="tw-p-4 tw-pl-6"
+                        class="tw-p-4"
                         :blocks-type="blocksType"
                         @add-block="addBlock"
                     />
-
                     <structure-editor
+                        class="tw-h-full"
                         v-if="editIndex > -1"
-                        :key="
-                            blocksList[editIndex].title +
-                            blocksList[editIndex].id
-                        "
+                        :key=" blocksList[editIndex].title + blocksList[editIndex].id "
                         v-model="blocksList[editIndex].structure"
                         :title="blocksList[editIndex].title"
                         @close="cancelEditing"
                     />
                 </div>
-            </vue-draggable-resizable>
+            </resizable>
         </div>
-
-        <template-selector ref="templateManager" />
+        <template-selector ref="templateManager"/>
     </div>
 </template>
 
-<style lang="scss">
-.resizable {
-    transform: translate(0, 0) !important;
-    border: none !important;
-    .handle-ml {
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-right: 10px solid rgb(175, 175, 175);
-        border-left: none !important;
-        background : transparent;
-        width: 0;
-        height: 0;
-        left: 4px !important;
-    }
-}
-</style>
-
 <script lang="ts">
-import { Vue, Component, Prop, Watch, VModel } from "vue-property-decorator";
+import {Vue, Component, Prop, VModel} from "vue-property-decorator";
 import draggable from "vuedraggable";
-import { EventBus } from "~/plugins/event.client";
-
-import "vue-draggable-resizable/dist/VueDraggableResizable.css";
+import {EventBus} from "~/plugins/event.client";
 
 @Component({
-    components: { draggable },
+    components: {draggable},
 })
 export default class PageBuilder extends Vue {
     @Prop({
         type: Object,
-        default: () => {},
+        default: () => {
+        },
     })
     page!: any;
-    @Prop({ type: String, default: "page" }) blocksType!: string;
-    @VModel({ type: Array }) blocksList!: any;
+    @Prop({type: String, default: "page"}) blocksType!: string;
+    @VModel({type: Array}) blocksList!: any;
 
     editIndex: Number = -1;
 
@@ -117,22 +82,11 @@ export default class PageBuilder extends Vue {
     window = window;
     x = 0;
     y = 0;
-    width = 320;
+    width = localStorage.width || 372;
     height = 0;
 
     get selectable() {
         return this.selectItem && Object.keys(this.selectItem).length > 0;
-    }
-
-    onResize(x:any, y:any, width: any, height: any) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
-    onDrag(x: any, y: any) {
-        this.x = x;
-        this.y = y;
     }
 
     mounted() {
