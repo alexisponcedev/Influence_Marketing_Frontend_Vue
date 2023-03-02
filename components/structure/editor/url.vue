@@ -22,7 +22,7 @@
             <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor" :field="productField"
                              v-model="productModel"/>
 
-            <structure-editor-id-selector v-if="type === UrlTypeEnum.anchor" :field="anchorField" v-model="model"/>
+            <structure-editor-id-selector v-if="type === UrlTypeEnum.anchor" :field="anchorField" :key="render" v-model="model"/>
         </div>
         <p class="tw-text-blue-500 tw-my-1 tw-pl-1">{{ model.value }}</p>
 
@@ -35,6 +35,7 @@ import {Component, Prop, VModel, Vue, Watch} from "vue-property-decorator";
 import {StructureField} from "~/interfaces/StructureField";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 import {Api} from "~/utils/store-accessor";
+import {EventBus} from "~/plugins/event.client";
 
 
 @Component
@@ -127,9 +128,11 @@ export default class StructureUrlEditor extends Vue {
         return new Promise((resolve, reject) => {
             this.selectField.label = this.model.title ?? 'field';
             if (this.model && this.model.value) {
-                // if (this.model.value && this.model.value.startsWith('#')) {
-                //     this.type = UrlTypeEnum.anchor;
-                // } else
+                console.log(this.model);
+                if (this.model.value && this.model.value.startsWith('#')) {
+                    // this.type = UrlTypeEnum.anchor;
+                    // this.anchor = this.model.value;
+                } else
                 if (this.model.value && this.model.value.startsWith('openChannelAdvisor:')) {
                     this.productModel = this.model.value.replace('openChannelAdvisor:', '')
                 } else {
@@ -158,8 +161,12 @@ export default class StructureUrlEditor extends Vue {
             this.type = UrlTypeEnum.Custom;
     }
 
+    render : number = 0;
     mounted() {
         this.prepare().then(this.updateType);
+        EventBus.listen('id-selector-changed', () =>  {
+            this.render ++
+        })
     }
 
     @Watch('route')
@@ -173,8 +180,14 @@ export default class StructureUrlEditor extends Vue {
         this.model.value = 'openChannelAdvisor:' + this.productModel.toUpperCase()
     }
 
+    @Watch('productModel')
+    onAnchorChanged() {
+        this.model.value = this.anchor
+    }
+
     @Watch('value', {deep: true, immediate: true})
     onValueChanged(value: any, oldValue: any) {
+        console.log('==================== onValueChanged ====================' , value);
         this.model = value;
         this.prepare()
         // .then(this.updateType);
@@ -187,9 +200,9 @@ export default class StructureUrlEditor extends Vue {
 
     @Watch('rebuild', {immediate: true, deep: true})
     onRebuild() {
-        console.log('on rebuild  fired:')
         // this.updateType()
     }
+
 
 
 }

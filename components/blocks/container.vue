@@ -66,6 +66,7 @@ export default {
     },
     methods: {
         componentSelected() {
+            // console.log('blocks/container.vue -> componentSelected : ' , this.block)
             this.$emit('component-selected', this.block);
         },
         deleteBlock() {

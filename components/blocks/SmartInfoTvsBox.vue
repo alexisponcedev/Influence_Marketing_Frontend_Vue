@@ -37,31 +37,22 @@ export default class BlockSmartInfoTvsBox extends Vue {
             type: StructureType.List,
             title: "Items",
             newItem: {
-                title: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "Google tv",
-                },
+                color: {id: 0, type: StructureType.Color, title: 'Background Color', value: '#fff'},
+                title: {id: 1, type: StructureType.String, title: "Title", value: "Android TV"},
                 image: {
                     id: 1,
                     type: StructureType.Image,
-                    title: "Upload Image",
+                    title: "Image",
                     src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/ca24e975cc/U8H-Infill-Front-Review__ScaleMaxWidthWzMwNDhd.png-xdmsfe.png",
-                    alt: "Some note about this image",
+                    alt: "Some note about this image"
                 },
                 description: {
                     id: 2,
                     type: StructureType.String,
                     title: "Description",
-                    value: "Thousands of streaming channels at your fingertips",
+                    value: "Thousands of streaming channels at your fingertips"
                 },
-                link: {
-                    id: 3,
-                    type: StructureType.Url,
-                    title: "Discover",
-                    value: "",
-                },
+                link: {id: 3, type: StructureType.Url, title: "Discover", value: ""},
             },
             value: [
                 {

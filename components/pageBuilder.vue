@@ -13,7 +13,7 @@
                         :key="block.id + '_' + i"
                         class="tw-mb-2"
                         :selectable="selectable"
-                        @component-selected="componentSelected(i)"
+                        @component-selected="componentSelected"
                         @edit="editBlock(i)"
                         @delete="deleteBlock(i)"
                         @duplicate="duplicateBlock(i)"
@@ -91,6 +91,7 @@ export default class PageBuilder extends Vue {
 
     mounted() {
         EventBus.listen("enable-select-mode", (target: any) => {
+            console.log('enable-select-mode', target);
             this.selectItem = target;
         });
     }
@@ -99,9 +100,12 @@ export default class PageBuilder extends Vue {
         EventBus.remove("enable-select-mode");
     }
 
-    componentSelected(i: number) {
-        this.selectItem.value = `#${this.blocksList[i].name}${this.blocksList[i].id}`;
-        this.selectItem = {};
+    componentSelected(block: any) {
+        console.log('pageBuilder.vue ->  componentSelected', block, this.selectItem);
+        // this.selectItem.value = `#${this.blocksList[i].name}${this.blocksList[i].id}`;
+        this.selectItem.value = `#${block.name}${block.id}`;
+        this.selectItem = {}; // unlink selectItem
+        EventBus.fire('id-selector-changed')
     }
 
     cancelEditing() {

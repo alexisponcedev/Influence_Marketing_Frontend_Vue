@@ -1,6 +1,5 @@
 <template>
-    <!--  <form-field-textarea :field = "field" v-model="model.value" />-->
-    <div class="tw-p-2">
+    <div class="tw-p-2" >
         <button
             class="tw-bg-white tw-w-full tw-h-14 tw-border tw-border-solid tw-border-gray-400 tw-rounded hover:tw-bg-green-300 hover:tw-bg-opacity-30 "
             @click="enableSelectMode">
@@ -18,7 +17,7 @@ import {StructureField} from "~/interfaces/StructureField";
 import {EventBus} from "~/plugins/event.client";
 
 @Component
-export default class StructureTextEditor extends Vue {
+export default class StructureIdSelector extends Vue {
     @VModel({type: Object}) model!: any
 
     field = {
