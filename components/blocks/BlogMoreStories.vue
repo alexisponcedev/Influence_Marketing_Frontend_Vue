@@ -30,7 +30,7 @@ export default class BlogMoreStories extends Vue {
                     id: 0, type: StructureType.Object, title: 'Large Post', value: {
                         image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
                         title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-                        tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                        tag: {id: 2, type: StructureType.String, title: 'Tag', value: ''},
                         link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
                     }
                 },
@@ -38,7 +38,7 @@ export default class BlogMoreStories extends Vue {
                     id: 1, type: StructureType.Object, title: 'Small Post', value: {
                         image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
                         title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-                        tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                        tag: {id: 2, type: StructureType.String, title: 'Tag', value: ''},
                         link: {id: 3, type: StructureType.Url, title: 'Link', value: ''},
                     }
                 }
@@ -88,7 +88,7 @@ export default class BlogMoreStories extends Vue {
             value: {
                 image: {id: 0, type: StructureType.Image, title: 'Image', src: '', alt: ''},
                 title: {id: 1, type: StructureType.String, title: 'Title', value: ''},
-                tagLink: {id: 2, type: StructureType.Url, title: 'Tag Link', value: ''},
+                tag: {id: 2, type: StructureType.String, title: 'Tag', value: ''},
                 link: {id: 3, type: StructureType.Url, title: 'READ ARTICLE', value: ''},
             }
         }
@@ -97,6 +97,7 @@ export default class BlogMoreStories extends Vue {
             if (imageMeta) newItem.value.image.src = imageMeta.content;
             newItem.value.title.value = post.page.title;
             newItem.value.link.value = post.page.route;
+            // newItem.value.tag.value = post.tags;
         }
         return newItem;
     }

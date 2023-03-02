@@ -10021,11 +10021,6 @@ vue-drag-drop@^1.1.4:
   dependencies:
     core-js "^2.5.3"
 
-vue-draggable-resizable@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.npmjs.org/vue-draggable-resizable/-/vue-draggable-resizable-2.3.0.tgz"
-  integrity sha512-77CLRj1TPwB30pwsjOf3pkd1UzYanCdKXbqhILJ0Oo5QQl50lvBfyQCXxMFzwWwTc3sbBbQH3FfWSV+BkoSElA==
-
 vue-form-wizard@^0.8.4:
   version "0.8.4"
   resolved "https://registry.npmjs.org/vue-form-wizard/-/vue-form-wizard-0.8.4.tgz"
@@ -10092,11 +10087,6 @@ vue-qrcode-component@^2.1.1:
   dependencies:
     qrcode-js-package "^1.0.4"
     vue "^2.0.1"
-
-vue-resizable@^2.1.7:
-  version "2.1.7"
-  resolved "https://registry.npmjs.org/vue-resizable/-/vue-resizable-2.1.7.tgz"
-  integrity sha512-zEbWhRR8iXT8+nt3u8rkfrNpkPNsPkf7HteBh+AlPIsJ7rf9fyNwMqr0Q4FRzIpNIpZD5Zrr4+3+YELU0vc1Iw==
 
 vue-router@^3.5.1:
   version "3.5.4"

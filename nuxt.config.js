@@ -61,7 +61,6 @@ export default {
         "~/plugins/date-picker.js",
         "~/plugins/qrcode.client.js",
         "~/plugins/vue2Editor.js",
-        "~/plugins/vue-draggable-resizable.js",
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
