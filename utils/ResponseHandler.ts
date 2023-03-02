@@ -18,7 +18,7 @@ export default {
       localStorage.removeItem("profile");
       localStorage.removeItem("access_token");
       localStorage.removeItem("access_token_expires_at");
-      window.location.href = "/Auth";
+      // window.location.href = "/Auth";
     }
     AppStore.showSnackBar({
       message: error.response?.data?.message || error.message,

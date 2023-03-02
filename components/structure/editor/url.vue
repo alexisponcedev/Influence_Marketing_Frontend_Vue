@@ -127,9 +127,10 @@ export default class StructureUrlEditor extends Vue {
         return new Promise((resolve, reject) => {
             this.selectField.label = this.model.title ?? 'field';
             if (this.model && this.model.value) {
-                if (this.model.value && this.model.value.startsWith('#')) {
-                    this.type = UrlTypeEnum.anchor;
-                } else if (this.model.value && this.model.value.startsWith('openChannelAdvisor:')) {
+                // if (this.model.value && this.model.value.startsWith('#')) {
+                //     this.type = UrlTypeEnum.anchor;
+                // } else
+                if (this.model.value && this.model.value.startsWith('openChannelAdvisor:')) {
                     this.productModel = this.model.value.replace('openChannelAdvisor:', '')
                 } else {
                     let arr = this.model.value.split('?');
@@ -145,7 +146,6 @@ export default class StructureUrlEditor extends Vue {
     }
 
     updateType() {
-        console.log('update type : ');
         if (this.model.value && this.model.value.startsWith('#'))
             this.type = UrlTypeEnum.anchor
         else if (this.model.value && this.model.value.startsWith('openChannelAdvisor:'))
