@@ -1916,6 +1916,59 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "Flight Night",
+                blocks: [
+                    {
+                        name: "FlightNightHeader",
+                        title: "Flight Night Header",
+                        image: "FlightNightHeader.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightBanner",
+                        title: "Flight Night Banner",
+                        image: "FlightNightBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightCarousel",
+                        title: "Flight Night Carousel",
+                        image: "FlightNightCarousel.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightForm",
+                        title: "Flight Night Form",
+                        image: "FlightNightForm.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightFooter",
+                        title: "Flight Night Footer",
+                        image: "FlightNightFooter.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightConfirmationSocialMedia",
+                        title: "Flight Night Confirmation Social Media",
+                        image: "FlightNightConfirmationSocialMedia.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightConfirmationDiscovery",
+                        title: "Flight Night Confirmation Discovery",
+                        image: "FlightNightConfirmationDiscovery.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "FlightNightConfirmationLaser",
+                        title: "Flight Night Confirmation Laser",
+                        image: "FlightNightConfirmationLaser.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
         ],
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         blog: [
@@ -2067,59 +2120,7 @@ export const BLOCKS = () => {
                 ],
             },
 
-            {
-                name: "Flight Night",
-                blocks: [
-                    {
-                        name: "FlightNightHeader",
-                        title: "Flight Night Header",
-                        image: "FlightNightHeader.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightBanner",
-                        title: "Flight Night Banner",
-                        image: "FlightNightBanner.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightCarousel",
-                        title: "Flight Night Carousel",
-                        image: "FlightNightCarousel.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightForm",
-                        title: "Flight Night Form",
-                        image: "FlightNightForm.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightFooter",
-                        title: "Flight Night Footer",
-                        image: "FlightNightFooter.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightConfirmationSocialMedia",
-                        title: "Flight Night Confirmation Social Media",
-                        image: "FlightNightConfirmationSocialMedia.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightConfirmationDiscovery",
-                        title: "Flight Night Confirmation Discovery",
-                        image: "FlightNightConfirmationDiscovery.png",
-                        category: "TextBox",
-                    },
-                    {
-                        name: "FlightNightConfirmationLaser",
-                        title: "Flight Night Confirmation Laser",
-                        image: "FlightNightConfirmationLaser.png",
-                        category: "TextBox",
-                    },
-                ],
-            },
+
         ],
     };
 };
