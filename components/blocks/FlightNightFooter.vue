@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/AirProductTextBox.png" alt=""/>
+        <img src="/blocks/FlightNightFooter.png" alt=""/>
     </div>
 </template>
 
