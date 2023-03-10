@@ -28,8 +28,9 @@ export default class FlightNightBanner extends Vue {
             id: 1,
             type: StructureType.SimpleText,
             title: "Title",
-            value : ''
+            value: ''
         });
+        this.model = {...this.model}
     }
 
     get isEmpty(): Boolean {

@@ -23,6 +23,7 @@ export default class FlightNightFooter extends Vue {
             src: '',
             alt: ''
         });
+        this.model = {... this.model}
     }
 
     get isEmpty(): Boolean {

@@ -74,6 +74,8 @@ export default class FlightNightConfirmationSocialMedia extends Vue {
             value : ''
         });
 
+        this.model = {... this.model}
+
     }
 
     get isEmpty(): Boolean {
