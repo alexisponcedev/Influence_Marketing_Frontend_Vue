@@ -40,10 +40,9 @@ export default class FlightNightConfirmationSocialMedia extends Vue {
 
         blockAddItem(this.model, 'caption1', {
             id: 4,
-            type: StructureType.Image,
+            type: StructureType.SimpleText,
             title: "Caption1",
-            src: '',
-            alt: ''
+            value: '',
         });
 
         blockAddItem(this.model, 'image2', {
@@ -56,10 +55,9 @@ export default class FlightNightConfirmationSocialMedia extends Vue {
 
         blockAddItem(this.model, 'caption2', {
             id: 6,
-            type: StructureType.Image,
+            type: StructureType.SimpleText,
             title: "Caption2",
-            src: '',
-            alt: ''
+            value : '',
         });
 
         blockAddItem(this.model, 'text', {
