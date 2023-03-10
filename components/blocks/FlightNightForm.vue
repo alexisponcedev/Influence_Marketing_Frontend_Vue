@@ -38,9 +38,9 @@ export default class FlightNightForm extends Vue {
         });
         blockAddItem(this.model, 'submitText', {
             id: 3,
-            type: StructureType.String,
-            title: "Submit Button Text",
-            value: 'Submit',
+            type: StructureType.Url,
+            title: "Submit",
+            value: '',
         });
 
         this.model = { ... this.model}
