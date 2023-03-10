@@ -69,6 +69,13 @@ export default class FlightNightConfirmationSocialMedia extends Vue {
             value : ''
         });
 
+        blockAddItem(this.model, 'link', {
+            id: 8,
+            type: StructureType.Url,
+            title: "Link",
+            value : ''
+        });
+
     }
 
     get isEmpty(): Boolean {
