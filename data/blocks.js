@@ -2010,6 +2010,12 @@ export const BLOCKS = () => {
                         image: "subscribe.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "BannerWithImageOrVideo",
+                        title: "Banner With Image Or Video",
+                        image: "BannerWithImageOrVideo.png",
+                        category: "ImageBox",
+                    },
                 ],
             },
             {

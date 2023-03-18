@@ -34,6 +34,7 @@ export default class FlightNightConfirmationDiscovery extends Vue {
             },
             value: []
         });
+
         this.model = {... this.model}
     }
 
