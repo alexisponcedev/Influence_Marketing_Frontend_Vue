@@ -19,7 +19,7 @@ export default class BannerWithImageOrVideo extends Vue {
     mounted() {
         blockAddItem(this.model, 'title', {
             id: 0,
-            type: StructureType.String,
+            type: StructureType.SimpleText,
             title: 'Title',
             value: ''
         })
