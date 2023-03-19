@@ -80,6 +80,12 @@ export const BLOCKS = () => {
                         image: "VelaroChatBox.png",
                         category: "ChatBox",
                     },
+                    {
+                        name: "BannerWithImageOrVideo",
+                        title: "Banner With Image Or Video",
+                        image: "BannerWithImageOrVideo.png",
+                        category: "ImageBox",
+                    },
                 ],
             },
             {
@@ -133,8 +139,6 @@ export const BLOCKS = () => {
                         image: "LandingStaticBanner.png",
                         category: "TextBox",
                     },
-
-
                 ],
             },
             {
@@ -2010,12 +2014,6 @@ export const BLOCKS = () => {
                         image: "subscribe.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "BannerWithImageOrVideo",
-                        title: "Banner With Image Or Video",
-                        image: "BannerWithImageOrVideo.png",
-                        category: "ImageBox",
-                    },
                 ],
             },
             {
@@ -2125,8 +2123,6 @@ export const BLOCKS = () => {
                     },
                 ],
             },
-
-
         ],
     };
 };
