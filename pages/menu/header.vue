@@ -217,7 +217,7 @@ export default class Menus extends Vue {
 
     getHeader() {
         Api.Menu.getHeader().then((res: any) => {
-            this.Menu.widgets = res
+            this.Menu.widgets = res.widgets
         })
 
     }

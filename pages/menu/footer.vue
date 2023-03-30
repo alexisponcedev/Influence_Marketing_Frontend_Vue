@@ -25,11 +25,11 @@
                                         <v-icon small class="red--text">mdi-delete</v-icon>
                                     </button>
                                 </div>
-                                <menu-items v-model="Menu.widgets.columns[index]" />
+                                <menu-items v-model="Menu.widgets.columns[index]"/>
                             </li>
                             <li class="tw-mt-2">
                                 <button @click="addNewColumn"
-                                    class="tw-border tw-border-dashed tw-bg-blue-50 hover:tw-bg-blue-200 tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3">
+                                        class="tw-border tw-border-dashed tw-bg-blue-50 hover:tw-bg-blue-200 tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3">
                                     Add New Column
                                 </button>
                             </li>
@@ -40,7 +40,7 @@
                 <v-tab-item value="Socials">
                     <v-card-text>
                         <h6>Footer Social Media</h6>
-                        <menu-socials v-model="Menu.widgets.socials" />
+                        <menu-socials v-model="Menu.widgets.socials"/>
 
                     </v-card-text>
                 </v-tab-item>
@@ -48,7 +48,7 @@
                 <v-tab-item value="Links">
                     <v-card-text>
                         <h6>Footer Links</h6>
-                        <menu-items v-model="Menu.widgets.links" />
+                        <menu-items v-model="Menu.widgets.links"/>
                     </v-card-text>
                 </v-tab-item>
             </v-tabs-items>
@@ -61,14 +61,14 @@
             </v-card-text>
         </v-card>
 
-        <loading-overlay :show="Api.Menu.loading" />
+        <loading-overlay :show="Api.Menu.loading"/>
     </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { Api } from "@/store";
-import { Menu } from "~/repositories";
+import {Vue, Component} from "vue-property-decorator";
+import {Api} from "@/store";
+import {Menu} from "~/repositories";
 
 
 @Component({
@@ -84,34 +84,34 @@ export default class Menus extends Vue {
         title: 'footer',
         widgets: {
             links: [
-                { name: 'Legal Disclaimer', url: '/' },
-                { name: 'Privacy Policy', url: '/' },
-                { name: 'Recycling Information', url: '/' },
-                { name: 'Sitemap', url: '/' },
-                { name: 'California Consumer Privacy Act Portal', url: '/' },
+                {name: 'Legal Disclaimer', url: '/'},
+                {name: 'Privacy Policy', url: '/'},
+                {name: 'Recycling Information', url: '/'},
+                {name: 'Sitemap', url: '/'},
+                {name: 'California Consumer Privacy Act Portal', url: '/'},
             ],
             columns: [
                 [
-                    { name: 'COMPANY', url: '/' },
-                    { name: 'SPONSORSHIPS', url: '/' },
-                    { name: 'AUTHORIZED RETAILERS', url: '/' },
-                    { name: 'CAREERS', url: '/' },
-                    { name: 'COMPLIANCE', url: '/' },
-                    { name: 'DO NOT SELL', url: '/' },
+                    {name: 'COMPANY', url: '/'},
+                    {name: 'SPONSORSHIPS', url: '/'},
+                    {name: 'AUTHORIZED RETAILERS', url: '/'},
+                    {name: 'CAREERS', url: '/'},
+                    {name: 'COMPLIANCE', url: '/'},
+                    {name: 'DO NOT SELL', url: '/'},
                 ],
                 [
-                    { name: 'TV + AUDIO', url: '/' },
-                    { name: 'HOME APPLIANCES', url: '/' },
-                    { name: 'AIR PRODUCTS', url: '/' },
-                    { name: 'COMMERCIAL DISPLAYS', url: '/' },
-                    { name: 'COMMERCIAL REFRIGERATORS', url: '/' },
+                    {name: 'TV + AUDIO', url: '/'},
+                    {name: 'HOME APPLIANCES', url: '/'},
+                    {name: 'AIR PRODUCTS', url: '/'},
+                    {name: 'COMMERCIAL DISPLAYS', url: '/'},
+                    {name: 'COMMERCIAL REFRIGERATORS', url: '/'},
                 ],
                 [
-                    { name: 'SUPPORT', url: '/' },
-                    { name: 'FAQ', url: '/' },
-                    { name: 'RECALL INFORMATION', url: '/' },
-                    { name: 'CONTACT', url: '/' },
-                    { name: 'REGISTER', url: '/' },
+                    {name: 'SUPPORT', url: '/'},
+                    {name: 'FAQ', url: '/'},
+                    {name: 'RECALL INFORMATION', url: '/'},
+                    {name: 'CONTACT', url: '/'},
+                    {name: 'REGISTER', url: '/'},
                 ]
             ],
             socials: [
@@ -136,11 +136,18 @@ export default class Menus extends Vue {
     };
 
     async mounted() {
-        this.Menu.widgets = ((await Api.Menu.getFooter()) as Menu).widgets
+        this.getFooter();
+    }
+
+    getFooter() {
+        Api.Menu.getFooter().then((res: any) => {
+            this.Menu.widgets = res.widtets;
+        })
+
     }
 
     addNewColumn() {
-        this.Menu.widgets.columns.push([{ name: 'Sample Item', 'url': '/' },])
+        this.Menu.widgets.columns.push([{name: 'Sample Item', 'url': '/'},])
     }
 
     deleteColumn(index: number) {
@@ -148,7 +155,7 @@ export default class Menus extends Vue {
     }
 
     async submit() {
-        await Api.Menu.update({ id: Number(this.Menu.id), Menu: this.Menu })
+        await Api.Menu.update({id: Number(this.Menu.id), Menu: this.Menu})
     }
 
 }
