@@ -13,7 +13,7 @@
                 <v-tab-item value="hamburger">
                     <v-card-text>
                         <h6>Hamburger Menu Items</h6>
-                        <menu-items v-model="Menu.widgets.hamburger" />
+                        <menu-items v-model="Menu.widgets.hamburger"/>
                     </v-card-text>
                 </v-tab-item>
                 <v-tab-item value="centerOptions">
@@ -22,11 +22,11 @@
                         <div class="tw-space-y-3">
                             <draggable v-model="Menu.widgets.centerOption" group="options" class="tw-space-y-3">
                                 <menu-option v-for="(option, index) in Menu.widgets.centerOption"
-                                    :key="`center_option_${index}`" :value="option" @input="v => option = v"
-                                    @deleteOption="deleteOption(Menu.widgets.centerOption, index)" />
+                                             :key="`center_option_${index}`" :value="option" @input="v => option = v"
+                                             @deleteOption="deleteOption(Menu.widgets.centerOption, index)"/>
                             </draggable>
                             <button @click="addNewOption(Menu.widgets.centerOption)"
-                                class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
+                                    class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
                                 Add New Option
                             </button>
                         </div>
@@ -40,11 +40,11 @@
                         <div class="tw-space-y-3">
                             <draggable v-model="Menu.widgets.rightOption" group="options" class="tw-space-y-3">
                                 <menu-option v-for="(option, index) in Menu.widgets.rightOption"
-                                    :key="`center_option_${index}`" :value="option" @input="v => option = v"
-                                    @deleteOption="deleteOption(Menu.widgets.rightOption, index)" />
+                                             :key="`center_option_${index}`" :value="option" @input="v => option = v"
+                                             @deleteOption="deleteOption(Menu.widgets.rightOption, index)"/>
                             </draggable>
                             <button @click="addNewOption(Menu.widgets.rightOption)"
-                                class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
+                                    class="tw-border tw-border-dashed tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 tw-bg-green-50 hover:tw-bg-green-200 tw-w-full">
                                 Add New Option
                             </button>
                         </div>
@@ -60,14 +60,14 @@
             </v-card-text>
         </v-card>
 
-        <loading-overlay :show="Api.Menu.loading" />
+        <loading-overlay :show="Api.Menu.loading"/>
     </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { Api } from "@/store";
-import { Menu } from "~/repositories";
+import {Vue, Component} from "vue-property-decorator";
+import {Api} from "@/store";
+import {Menu} from "~/repositories";
 
 
 @Component({
@@ -83,11 +83,11 @@ export default class Menus extends Vue {
         title: 'header',
         widgets: {
             hamburger: [
-                { id: 0, name: 'Company', url: '/' },
-                { id: 1, name: 'Commercial', url: '/' },
-                { id: 2, name: 'Support', url: '/' },
-                { id: 3, name: 'Register', url: '/' },
-                { id: 4, name: 'Contact', url: '/' },
+                {id: 0, name: 'Company', url: '/'},
+                {id: 1, name: 'Commercial', url: '/'},
+                {id: 2, name: 'Support', url: '/'},
+                {id: 3, name: 'Register', url: '/'},
+                {id: 4, name: 'Contact', url: '/'},
             ],
             centerOption: [
                 {
@@ -96,19 +96,19 @@ export default class Menus extends Vue {
                     static: false,
                     columns: [
                         [
-                            { name: 'TELEVISIONS', url: '/' },
-                            { name: 'LASER TV', url: '/' },
-                            { name: '4K ULED', url: '/' },
-                            { name: '4K UHD', url: '/' },
-                            { name: 'SMART TV PLATFORMS', url: '/' },
-                            { name: 'ALL TVs', url: '/' },
+                            {name: 'TELEVISIONS', url: '/'},
+                            {name: 'LASER TV', url: '/'},
+                            {name: '4K ULED', url: '/'},
+                            {name: '4K UHD', url: '/'},
+                            {name: 'SMART TV PLATFORMS', url: '/'},
+                            {name: 'ALL TVs', url: '/'},
                         ],
                         [
-                            { name: 'HOME AUDIO', url: '/' },
-                            { name: '2.0 CH SOUNDBARS', url: '/' },
-                            { name: '2.1 CH SOUNDBARS', url: '/' },
-                            { name: '3.1 CH SOUNDBARS', url: '/' },
-                            { name: 'ALL HOME AUDIO', url: '/' },
+                            {name: 'HOME AUDIO', url: '/'},
+                            {name: '2.0 CH SOUNDBARS', url: '/'},
+                            {name: '2.1 CH SOUNDBARS', url: '/'},
+                            {name: '3.1 CH SOUNDBARS', url: '/'},
+                            {name: 'ALL HOME AUDIO', url: '/'},
                         ]
                     ],
                     products: [
@@ -130,10 +130,10 @@ export default class Menus extends Vue {
                     static: false,
                     columns: [
                         [
-                            { name: 'EXPLORE HOME APPLIANCES', url: '/' },
-                            { name: 'DISHWASHERS', url: '/' },
-                            { name: 'BEVERAGE + WINE COOLERS', url: '/' },
-                            { name: 'REFRIGERATORS', url: '/' },
+                            {name: 'EXPLORE HOME APPLIANCES', url: '/'},
+                            {name: 'DISHWASHERS', url: '/'},
+                            {name: 'BEVERAGE + WINE COOLERS', url: '/'},
+                            {name: 'REFRIGERATORS', url: '/'},
                         ],
                     ],
                     products: [
@@ -160,12 +160,12 @@ export default class Menus extends Vue {
                     static: false,
                     columns: [
                         [
-                            { name: 'EXPLORE AIR PRODUCTS', url: '/' },
-                            { name: 'WINDOW AC', url: '/' },
-                            { name: 'PORTABLE AC', url: '/' },
-                            { name: 'DEHUMIDIFIERS', url: '/' },
-                            { name: 'AIR PURIFIER', url: '/' },
-                            { name: 'ALL AIR PRODUCTS', url: '/' },
+                            {name: 'EXPLORE AIR PRODUCTS', url: '/'},
+                            {name: 'WINDOW AC', url: '/'},
+                            {name: 'PORTABLE AC', url: '/'},
+                            {name: 'DEHUMIDIFIERS', url: '/'},
+                            {name: 'AIR PURIFIER', url: '/'},
+                            {name: 'ALL AIR PRODUCTS', url: '/'},
                         ],
                     ],
                     products: [
@@ -194,8 +194,8 @@ export default class Menus extends Vue {
                     static: false,
                     columns: [
                         [
-                            { name: 'Commercial Displays', url: '/' },
-                            { name: 'Commercial Refrigerators', url: '/' },
+                            {name: 'Commercial Displays', url: '/'},
+                            {name: 'Commercial Refrigerators', url: '/'},
                         ],
                     ],
                     products: [
@@ -211,7 +211,15 @@ export default class Menus extends Vue {
     };
 
     async mounted() {
+        this.getHeader();
         // this.Menu.widgets = ((await Api.Menu.getHeader()) as Menu).widgets
+    }
+
+    getHeader() {
+        Api.Menu.getHeader().then((res: any) => {
+            this.Menu.widgets = res
+        })
+
     }
 
     addNewOption(list: any) {
@@ -221,7 +229,7 @@ export default class Menus extends Vue {
             static: false,
             columns: [
                 [
-                    { name: 'Sample Item', url: '/' },
+                    {name: 'Sample Item', url: '/'},
                 ],
             ],
             products: [
@@ -239,7 +247,7 @@ export default class Menus extends Vue {
     }
 
     async submit() {
-        await Api.Menu.update({ id: Number(this.Menu.id), Menu: this.Menu })
+        await Api.Menu.update({id: Number(this.Menu.id), Menu: this.Menu})
     }
 
 }
