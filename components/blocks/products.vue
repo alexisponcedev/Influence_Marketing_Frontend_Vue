@@ -28,6 +28,16 @@ export default class BlockTextIntroduction extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
+        blockAddItem(this.model, 'direction', {
+            id: 0,
+            type: StructureType.Select,
+            title: 'Direction',
+            value: "ltr",
+            items: [
+                { title: "Left to Right", value: "ltr" },
+                { title: "Right to Left", value: "rtl" },
+            ],
+        });
         blockAddItem(this.model, 'smallTitle', {
             id: 0,
             type: StructureType.String,
