@@ -136,7 +136,7 @@ export default class Menus extends Vue {
     };
 
     async mounted() {
-        this.getFooter();
+        // this.getFooter();
     }
 
     getFooter() {
