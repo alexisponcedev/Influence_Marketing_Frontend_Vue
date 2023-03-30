@@ -115,12 +115,12 @@ export default class Menus extends Vue {
                         {
                             name: 'Product Name 1',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
                         },
                         {
                             name: 'Product Name 2',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/448/f5c88a7895/u8h__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/448/f5c88a7895/u8h__ScaleMaxWidthWzY0MF0.png'
                         },
                     ]
                 },
@@ -140,17 +140,17 @@ export default class Menus extends Vue {
                         {
                             name: 'Product Name 1',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png'
                         },
                         {
                             name: 'Product Name 2',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/471/596d3db992/micro-closed_ScaleMaxHeightWzc1MF0__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/471/596d3db992/micro-closed_ScaleMaxHeightWzc1MF0__ScaleMaxWidthWzY0MF0.png'
                         },
                         {
                             name: 'Product Name 3',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/158/7051a421d1/Carousel-5-min__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/158/7051a421d1/Carousel-5-min__ScaleMaxWidthWzY0MF0.png'
                         },
                     ]
                 },
@@ -172,17 +172,17 @@ export default class Menus extends Vue {
                         {
                             name: 'Product Name 1',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/397/761648fb97/AW0822CW1W-front__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/397/761648fb97/AW0822CW1W-front__ScaleMaxWidthWzY0MF0.png'
                         },
                         {
                             name: 'Product Name 2',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/400/386becd4f1/DH5022K1W-front__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/400/386becd4f1/DH5022K1W-front__ScaleMaxWidthWzY0MF0.png'
                         },
                         {
                             name: 'Product Name 3',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/396/2d8dfdfe04/1-front-AP1022TW1GD-1__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/396/2d8dfdfe04/1-front-AP1022TW1GD-1__ScaleMaxWidthWzY0MF0.png'
                         },
                     ]
                 },
@@ -202,7 +202,7 @@ export default class Menus extends Vue {
                         {
                             name: 'Product Name 1',
                             url: '/',
-                            image: 'https://assets.hisense-usa.com/assets/PageMenuImage/169/f982c6d16b/Hisense-Commercial-header-menu_-Recovered__ScaleMaxWidthWzY0MF0.png'
+                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/PageMenuImage/169/f982c6d16b/Hisense-Commercial-header-menu_-Recovered__ScaleMaxWidthWzY0MF0.png'
                         },
                     ]
                 },
@@ -228,7 +228,7 @@ export default class Menus extends Vue {
                 {
                     name: 'Product Name 1',
                     url: '/',
-                    image: 'https://assets.hisense-usa.com/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
+                    image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
                 },
             ]
         },)

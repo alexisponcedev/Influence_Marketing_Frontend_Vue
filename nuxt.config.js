@@ -78,7 +78,7 @@ export default {
 
     image: {
         domains: [
-            "https://assets.hisense-usa.com",
+            "https://imdam.api.stage.imdigital.ca/api/v1",
         ],
     },
 

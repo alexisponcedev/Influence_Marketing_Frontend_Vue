@@ -76,7 +76,7 @@ export default class api__page extends VuexModule {
             //   model_id: 0,
             //   model_type: '',
             //   route: '/',
-            //   domain: 'https://hisense-usa.com',
+            //   domain: 'https://public.stage.imdigital.ca/',
             // },
             ...routes.map((page: any) => {
                 return {
@@ -85,7 +85,7 @@ export default class api__page extends VuexModule {
                     model_id: page.model_id,
                     model_type: page.model_type,
                     route: page.route,
-                    domain: "https://hisense-usa.com" + page.route,
+                    domain: "https://public.stage.imdigital.ca/" + page.route,
                 };
             }),
         ];

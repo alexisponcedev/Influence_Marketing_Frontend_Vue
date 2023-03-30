@@ -1,8 +1,8 @@
 <template>
     <div class="tw-grid tw-grid-cols-2 tw-items-end tw-bg-[#1042f1] tw-py-10" v-if="!isEmpty">
-        <div class="tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9">
+        <div class="tw-flex tw-flex-col tw-items-start tw-justify-center h-full tw-p-9">
             <h4 class="tw-text-[#3df110] tw-font-semibold tw-text-lg tw-m-0 tw-mb-1">{{ model.smallTitle.value }}</h4>
-            <h2 class="tw-text-white tw-font-bold tw-leading-[48px] tw-m-0 tw-mt-0">{{ model.text.value }}</h2>
+            <div class="tw-text-white tw-font-bold tw-text-[40px] tw-leading-[48px] tw-m-0 tw-mt-0" v-html="model.text.value"></div>
         </div>
         <img :src="model.image.src" :alt="model.image.alt">
     </div>
@@ -33,6 +33,7 @@ export default class BlockTextIntroduction extends Vue {
             title: 'Text',
             value: 'IM CXM Content Experience Management'
         });
+
         blockAddItem(this.model, 'image', {
             id: 3,
             type: StructureType.Image,

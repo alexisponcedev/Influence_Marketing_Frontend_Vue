@@ -302,7 +302,7 @@ export default class TextMetaFormField extends Vue {
     onPageRouteChanged() {
         if (this.model.meta && Array.isArray(this.model.meta))
             this.model.meta!.forEach((item: any) => {
-                if (item.rel && item.rel.includes('og:url')) item.content = 'https://hisense-usa.com' + this.model.route;
+                if (item.rel && item.rel.includes('og:url')) item.content = 'https://public.stage.imdigital.ca' + this.model.route;
             })
     }
 

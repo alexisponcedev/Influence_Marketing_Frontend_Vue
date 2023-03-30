@@ -28,7 +28,7 @@
                     <div
                         class="tw-font-semibold tw-text-[10px] tw-text-[#212121] tw-opacity-80 tw-block mt-1 tw-text-ellipsis tw-max-w-[180px] tw-whitespace-nowrap tw-overflow-hidden"
                     >
-                        Hisense-usa.com{{ item.route }}
+                        public.stage.imdigital.ca{{ item.route }}
                     </div>
                 </button>
             </v-list-item>

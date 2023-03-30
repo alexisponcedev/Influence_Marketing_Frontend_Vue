@@ -1,7 +1,7 @@
 <template>
     <div class="tw-flex tw-justify-center tw-items-center" v-if="!isEmpty">
         <span class="tw-flex tw-w-1/3 tw-h-px tw-bg-[#1954ed] tw-absolute tw-left-0 tw-top-[102px]"></span>
-        <h2 class="tw-text-center tw-text-[#030D30] tw-text-[32px] tw-font-bold tw-leading-10 tw-m-0 tw-pb-[75px] tw-pt-[155px]" v-html="model.text.value" />
+        <div class="tw-text-center tw-text-[#030D30] tw-text-[32px] tw-leading-10 tw-m-0 tw-pb-[75px] tw-pt-[155px]" v-html="model.text.value" />
     </div>
 </template>
 

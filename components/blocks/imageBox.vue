@@ -1,10 +1,9 @@
 <template>
-    <div class="tw-pt-[140px] tw-pb-[250px] tw-bg-[#1042f1]" v-if="!isEmpty">
-        <div class="tw-flex tw-flex-col tw-items-start tw-justify-center h-full tw-px-9 tw-max-w-[50%]">
-            <h4 class="tw-text-[#3df110] tw-font-semibold tw-text-lg tw-m-0 tw-mb-2">{{ model.smallTitle.value }}</h4>
-            <div class="tw-text-white tw-font-bold tw-text-[40px] tw-leading-[48px] tw-m-0" v-html="model.text.value"></div>
+    <div class="tw-grid tw-grid-cols-2 tw-gap-20 tw-p-6" v-if="!isEmpty">
+        <img :src="model.image.src" :alt="model.image.alt">
+        <div class="tw-flex tw-flex-col tw-items-start h-full tw-py-9">
+            <div class="tw-text-[#0C2445] tw-font-bold tw-text-lg tw-leading-[26px] tw-m-0" v-html="model.text.value"></div>
         </div>
-        <img :src="model.image.src" :alt="model.image.alt" class="tw-absolute tw-bottom-0 tw-right-0">
     </div>
 </template>
 
@@ -21,24 +20,18 @@ export default class BlockTextIntroduction extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'smallTitle', {
-            id: 0,
-            type: StructureType.String,
-            title: 'Title',
-            value: 'Thank you farzan!'
-        });
         blockAddItem(this.model, 'text', {
-            id: 1,
+            id: 0,
             type: StructureType.SimpleText,
             title: 'Text',
-            value: 'Someone will be in touch soon to schedule your demo.'
+            value: 'Managing digital content with a headless CMS can be a difficult task. Without a visual preview, editors are often lost and need instruction even for simple changes.'
         });
 
         blockAddItem(this.model, 'image', {
-            id: 3,
+            id: 1,
             type: StructureType.Image,
             title: 'Upload Image',
-            src: 'blocks/demo.svg',
+            src: 'blocks/imageBox.png',
             alt: 'Some note about this image',
         });
         // blockAddItem(this.model, 'file', {

@@ -1,11 +1,11 @@
 <template>
-    <div class="tw-grid tw-grid-cols-2 tw-items-center tw-py-[75px]" v-if="!isEmpty">
-        <div class="tw-flex tw-flex-col tw-items-start tw-justify-center h-full tw-p-9">
+    <div class="tw-grid tw-grid-cols-2 tw-items-end tw-py-[75px]" v-if="!isEmpty">
+        <div class="tw-flex tw-flex-col tw-items-start tw-justify-end h-full tw-px-9">
             <h4 class="tw-text-[#030d30] tw-font-semibold tw-text-[32px] tw-m-0">{{ model.smallTitle.value }}</h4>
             <h2 class="tw-text-[#030d30] tw-text-lg tw-font-semibold tw-m-0">{{ model.text.value }}</h2>
             <p class="tw-text-[#030d30] tw-text-lg tw-mt-[10px]" v-html="model.description.value" />
             <div class="tw-flex tw-items-center tw-gap-[32px]">
-                <button class="tw-py-3 tw-px-6 tw-text-[#1042f1] tw-text-lg tw-font-semibold tw-rounded-md tw-flex tw-items-center tw-gap-2">
+                <button class="tw-mt-3 tw-text-[#1042f1] tw-text-lg tw-font-semibold tw-rounded-md tw-flex tw-items-center tw-gap-2">
                     {{ model.more.value }}
                     <img src="@/assets/svgs/arrow-right-blue.svg" alt="icon">
                 </button>
@@ -28,16 +28,6 @@ export default class BlockTextIntroduction extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'direction', {
-            id: 0,
-            type: StructureType.Select,
-            title: 'Direction',
-            value: "ltr",
-            items: [
-                { title: "Left to Right", value: "ltr" },
-                { title: "Right to Left", value: "rtl" },
-            ],
-        });
         blockAddItem(this.model, 'smallTitle', {
             id: 0,
             type: StructureType.String,

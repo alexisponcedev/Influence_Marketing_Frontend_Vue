@@ -5,12 +5,12 @@ export const items = () => [
         group: "page",
         to: "page",
     },
-    // {
-    //     title: "Products",
-    //     icon: "mdi-border-all",
-    //     group: "product",
-    //     to: "product",
-    // },
+    {
+        title: "Products",
+        icon: "mdi-border-all",
+        group: "product",
+        to: "product",
+    },
     {
         title: "Blog Posts",
         icon: "mdi-post",
@@ -47,24 +47,24 @@ export const items = () => [
         group: "notification",
         to: "notifications",
     },
-    // {
-    //     title: "Reusable Blocks",
-    //     icon: "mdi-border-none-variant",
-    //     group: "block/reusable",
-    //     to: "blocks/reusable",
-    // },
+    {
+        title: "Reusable Blocks",
+        icon: "mdi-border-none-variant",
+        group: "block/reusable",
+        to: "blocks/reusable",
+    },
     {
         title: "Trash",
         icon: "mdi-delete-sweep",
         group: "trash",
         to: "trash",
     },
-    // {
-    //     title: "Deploys",
-    //     icon: "mdi-cloud-sync",
-    //     group: "deploys",
-    //     to: "deploys",
-    // },
+    {
+        title: "Deploys",
+        icon: "mdi-cloud-sync",
+        group: "deploys",
+        to: "deploys",
+    },
     {
         divider: true,
     },
