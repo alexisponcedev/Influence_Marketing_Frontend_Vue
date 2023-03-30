@@ -211,7 +211,7 @@ export default class Menus extends Vue {
     };
 
     async mounted() {
-        this.Menu.widgets = ((await Api.Menu.getHeader()) as Menu).widgets
+        // this.Menu.widgets = ((await Api.Menu.getHeader()) as Menu).widgets
     }
 
     addNewOption(list: any) {
