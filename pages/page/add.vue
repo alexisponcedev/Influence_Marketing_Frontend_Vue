@@ -274,11 +274,11 @@ export default class PageForm extends Vue {
                     Page: this.Page,
                 });
 
-                if (this.Page.route !== this.oldRoute || this.Page.status_id !== this.oldStatus)
-                    Api.Page.doDeploy();
+                // if (this.Page.route !== this.oldRoute || this.Page.status_id !== this.oldStatus)
+                    // Api.Page.doDeploy();
             } else {
                 let page = await Api.Page.create(this.Page)
-                await Api.Page.doDeploy();
+                // await Api.Page.doDeploy();
                 this.$router.push("/page/edit/" + page.id);
             }
             Api.Page.clearRoutes();

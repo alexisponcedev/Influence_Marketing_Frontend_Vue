@@ -100,7 +100,8 @@ export default class AllPages extends Vue {
     }
 
     deletePage(Page: PageResource) {
-        Api.Page.delete(Page.id!).then(this.updatePages).then(Api.Page.doDeploy);
+        Api.Page.delete(Page.id!).then(this.updatePages)
+            // .then(Api.Page.doDeploy);
     }
 
     showDuplicateDialog(Page : PageResource){
