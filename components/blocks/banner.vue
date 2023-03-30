@@ -49,13 +49,13 @@ export default class BlockTextIntroduction extends Vue {
 
     prepare() {
         blockAddItem(this.model, 'smallTitle', {
-            id: 0,
+            id: 1,
             type: StructureType.String,
             title: 'Samll Title',
             value: 'IM DIGITAL SUITE'
         });
         blockAddItem(this.model, 'text', {
-            id: 1,
+            id: 2,
             type: StructureType.SimpleText,
             title: 'Text',
             value: 'Simplified digital tools and processes for complex modern businesses'
@@ -70,19 +70,19 @@ export default class BlockTextIntroduction extends Vue {
 
         if (this.model.template.value === 'v1') {
             blockAddItem(this.model, 'description', {
-                id: 2,
+                id: 4,
                 type: StructureType.SimpleText,
                 title: 'Description Text',
                 value: 'Help team to tell their stories, manage their products and clients, and automate their data-driven processes.'
             });
             blockAddItem(this.model, 'demo', {
-                id: 3,
+                id: 5,
                 type: StructureType.Url,
                 title: 'Demo Button',
                 value: 'Get a Demo',
             });
             blockAddItem(this.model, 'contact', {
-                id: 4,
+                id: 6,
                 type: StructureType.Url,
                 title: 'Contact Us Button',
                 value: 'Contact Us',
