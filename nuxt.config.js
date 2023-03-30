@@ -79,8 +79,6 @@ export default {
     image: {
         domains: [
             "https://assets.hisense-usa.com",
-            // 'http://localhost',
-            // 'https://imcxm.dev.hisenseportal.com/'
         ],
     },
 
@@ -142,18 +140,10 @@ export default {
 
     env: {
         APP_NAME: process.env.APP_NAME || "imcxm",
-        BASE_API_PATH:
-            process.env.BASE_API_PATH ||
-            "https://imcxm.dev-api.hisenseportal.com/api",
-        PORTAL_URL:
-            process.env.PORTAL_URL || "https://secure.dev.hisenseportal.com/",
-        PIM_API_URL:
-            process.env.PIM_API_URL ||
-            "https://impim.dev-api.hisenseportal.com/api",
-        DAM_API_URL:
-            process.env.DAM_API_URL ||
-            "https://assets.hisenseportal.com/api/v1",
-        LIVE_WEBSITE:
-            process.env.LIVE_WEBSITE || "https://public.dev.hisenseportal.com",
+        BASE_API_PATH: process.env.BASE_API_PATH || "https://imcxm.api.stage.imdigital.ca",
+        PORTAL_URL: process.env.PORTAL_URL || "https://secure.stage.imdigital.ca/",
+        PIM_API_URL: process.env.PIM_API_URL || "https://impim.api.stage.imdigital.ca/api",
+        DAM_API_URL: process.env.DAM_API_URL || "https://imdam.api.stage.imdigital.ca/api/v1",
+        LIVE_WEBSITE: process.env.LIVE_WEBSITE || "https://public.stage.imdigital.ca",
     },
 };

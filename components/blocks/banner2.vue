@@ -33,7 +33,6 @@ export default class BlockTextIntroduction extends Vue {
             title: 'Text',
             value: 'IM CXM Content Experience Management'
         });
-
         blockAddItem(this.model, 'image', {
             id: 3,
             type: StructureType.Image,
