@@ -88,6 +88,18 @@ export const BLOCKS = () => {
                         image: "thumbnail/Contactus.svg",
                         category: "Base",
                     },
+                    {
+                        name: "DemoForm",
+                        title: "Demo Form Component",
+                        image: "thumbnail/DemoForm.svg",
+                        category: "Base",
+                    },
+                    {
+                        name: "Comments",
+                        title: "Comments Component",
+                        image: "thumbnail/Comments.svg",
+                        category: "Base",
+                    },
                 ],
             },
             {
@@ -98,10 +110,10 @@ export const BLOCKS = () => {
                         title: "Sample Component",
                         image: "sample.png",
                         category: "Sample",
-                    }
+                    },
                 ],
             },
         ],
-        blog: []
+        blog: [],
     };
 };
