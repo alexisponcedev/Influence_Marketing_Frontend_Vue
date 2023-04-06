@@ -13,7 +13,7 @@
                     <v-card-text>
                         <h6>Footer Columns</h6>
 
-                        <ul class="tw-list-none">
+                        <ul v-if="false" class="tw-list-none">
                             <li class="optionBox" v-for="(column, index) in Menu.widgets.columns"
                                 :key="`option_${index}`">
                                 <div class="tw-flex tw-items-center tw-space-x-3 tw-p-2">
@@ -25,22 +25,90 @@
                                         <v-icon small class="red--text">mdi-delete</v-icon>
                                     </button>
                                 </div>
-                                <menu-items v-model="Menu.widgets.columns[index]" />
+
+                                <!--                                <menu-items v-model="Menu.widgets.columns[index]"/>-->
                             </li>
                             <li class="tw-mt-2">
                                 <button @click="addNewColumn"
-                                    class="tw-border tw-border-dashed tw-bg-blue-50 hover:tw-bg-blue-200 tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3">
+                                        class="tw-border tw-border-dashed tw-bg-blue-50 hover:tw-bg-blue-200 tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3">
                                     Add New Column
                                 </button>
                             </li>
                         </ul>
+
+                        <v-row>
+                            <v-col cols="10">
+                                <v-tabs class="tw-flex-1" show-arrows v-model="selectedColumn"
+                                        background-color="transparent">
+                                    <v-tab v-for="(column, index) in Menu.widgets.columns" :key="`column_${index}`"
+                                           :href="`#Column${index + 1}`"> Column {{ index + 1 }}
+                                        <v-btn icon @click="deleteColumn(Menu.widgets.columns , index)">
+                                            <v-icon small class="red--text">mdi-delete</v-icon>
+                                        </v-btn>
+                                    </v-tab>
+
+                                </v-tabs>
+                            </v-col>
+                            <v-col cols="2">
+                                <v-btn color="primary" outlined @click="addNewColumn(Menu.widgets.columns)">Add Column
+                                </v-btn>
+                            </v-col>
+                        </v-row>
+
+
+                        <v-tabs-items v-model="selectedColumn">
+                            <v-tab-item v-for="(column, i) in Menu.widgets.columns" :key="`column_${index}`"
+                                        :value="`Column${i + 1}`">
+                                <ul class="tw-list-none">
+                                    <li class="optionBox" v-for="(row, j) in column"
+                                        :key="`option_${j}`">
+<!--                                        <div class="tw-flex tw-items-center tw-justify-between tw-space-x-3 tw-p-2">-->
+<!--                                            <div class="">-->
+<!--                                                <span>This columns has {{ column.length }} rows</span>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;                                            <v-btn outlined  @click="deleteColumn(column , i)">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <span>Delete Entire Column</span>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <v-icon small class="red&#45;&#45;text">mdi-delete</v-icon>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            </v-btn>&ndash;&gt;-->
+<!--                                        </div>-->
+
+                                        <v-row align="start">
+                                            <v-col cols="3">
+                                                <form-field-text :field="{label: 'Header Title',colAttrs: {cols: 12}}"
+                                                                 v-model="row.header.name"/>
+                                            </v-col>
+                                            <v-col cols="8">
+                                                <structure-editor-url :has-background="false"
+                                                                      :inline="true"
+                                                                      v-model="row.header.url"/>
+                                            </v-col>
+                                            <v-col cols="1" class="pt-10">
+                                                <v-btn outlined @click="deleteColumn(column , j)">
+                                                    <v-icon small class="red--text">mdi-delete</v-icon>
+                                                </v-btn>
+                                            </v-col>
+                                        </v-row>
+
+                                        <menu-items v-model="row.columns"/>
+
+                                    </li>
+                                    <li class="tw-mt-2">
+                                        <button @click="addNewRowColumn(column)"
+                                                class="tw-border tw-border-dashed tw-bg-blue-50 hover:tw-bg-blue-200 tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3">
+                                            Add New Column
+                                        </button>
+                                    </li>
+                                </ul>
+
+                            </v-tab-item>
+                        </v-tabs-items>
 
                     </v-card-text>
                 </v-tab-item>
                 <v-tab-item value="Socials">
                     <v-card-text>
                         <h6>Footer Social Media</h6>
-                        <menu-socials v-model="Menu.widgets.socials" />
+                        <menu-socials v-model="Menu.widgets.socials"/>
 
                     </v-card-text>
                 </v-tab-item>
@@ -48,7 +116,7 @@
                 <v-tab-item value="Links">
                     <v-card-text>
                         <h6>Footer Links</h6>
-                        <menu-items v-model="Menu.widgets.links" />
+                        <menu-items v-model="Menu.widgets.links"/>
                     </v-card-text>
                 </v-tab-item>
             </v-tabs-items>
@@ -61,14 +129,14 @@
             </v-card-text>
         </v-card>
 
-        <loading-overlay :show="Api.Menu.loading" />
+        <loading-overlay :show="Api.Menu.loading"/>
     </v-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { Api } from "@/store";
-import { Menu } from "~/repositories";
+import {Vue, Component} from "vue-property-decorator";
+import {Api} from "@/store";
+import {Menu} from "~/repositories";
 
 
 @Component({
@@ -79,76 +147,57 @@ export default class Menus extends Vue {
 
     tab = "";
 
+    selectedColumn = '';
+
     Menu: any = {
         id: 2,
         title: 'footer',
         widgets: {
-            links: [
-                { name: 'Legal Disclaimer', url: '/' },
-                { name: 'Privacy Policy', url: '/' },
-                { name: 'Recycling Information', url: '/' },
-                { name: 'Sitemap', url: '/' },
-                { name: 'California Consumer Privacy Act Portal', url: '/' },
-            ],
-            columns: [
-                [
-                    { name: 'COMPANY', url: '/' },
-                    { name: 'SPONSORSHIPS', url: '/' },
-                    { name: 'AUTHORIZED RETAILERS', url: '/' },
-                    { name: 'CAREERS', url: '/' },
-                    { name: 'COMPLIANCE', url: '/' },
-                    { name: 'DO NOT SELL', url: '/' },
-                ],
-                [
-                    { name: 'TV + AUDIO', url: '/' },
-                    { name: 'HOME APPLIANCES', url: '/' },
-                    { name: 'AIR PRODUCTS', url: '/' },
-                    { name: 'COMMERCIAL DISPLAYS', url: '/' },
-                    { name: 'COMMERCIAL REFRIGERATORS', url: '/' },
-                ],
-                [
-                    { name: 'SUPPORT', url: '/' },
-                    { name: 'FAQ', url: '/' },
-                    { name: 'RECALL INFORMATION', url: '/' },
-                    { name: 'CONTACT', url: '/' },
-                    { name: 'REGISTER', url: '/' },
-                ]
-            ],
-            socials: [
-                {
-                    name: 'facebook',
-                    url: 'https://www.facebook.com/hisenseusa/',
-                },
-                {
-                    name: 'twitter',
-                    url: 'https://twitter.com/hisense_usa',
-                },
-                {
-                    name: 'instagram',
-                    url: 'https://www.instagram.com/hisense_usa/',
-                },
-                {
-                    name: 'youtube',
-                    url: 'https://www.youtube.com/user/HisenseUSA',
-                },
-            ]
+            links: [],
+            columns: [],
+            socials: []
         }
     };
 
-    async mounted() {
-        this.Menu.widgets = ((await Api.Menu.getFooter()) as Menu).widgets
+    mounted() {
+        this.fetchMenu();
     }
 
-    addNewColumn() {
-        this.Menu.widgets.columns.push([{ name: 'Sample Item', 'url': '/' },])
+    async fetchMenu() {
+        let widgets = ((await Api.Menu.getFooter()) as Menu).widgets as any;
+        widgets.columns = widgets.columns.map((column: any) => {
+            console.log( column , !column.find((i: any) => i.hasOwnProperty('header')));
+            return column.find((i: any) => i.hasOwnProperty('header')) ?
+                column :
+                [{
+                    header: {name: 'Header Title', url: '/'},
+                    columns: column
+                }];
+        });
+        this.Menu.widgets = widgets
     }
 
-    deleteColumn(index: number) {
-        this.Menu.widgets.columns.splice(index, 1);
+    addNewColumn(columns: any = null) {
+        columns.push([{
+            header: {name: 'Header Title', url: '/'},
+            columns: []
+        }])
+    }
+
+    addNewRowColumn(column: any = null) {
+        column.push({
+            header: {name: 'Header Title', url: '/'},
+            columns: []
+        })
+    }
+
+    deleteColumn(column: any, index: number) {
+        column.splice(index, 1);
+        // this.Menu.widgets.columns.splice(index, 1);
     }
 
     async submit() {
-        await Api.Menu.update({ id: Number(this.Menu.id), Menu: this.Menu })
+        await Api.Menu.update({id: Number(this.Menu.id), Menu: this.Menu})
     }
 
 }
