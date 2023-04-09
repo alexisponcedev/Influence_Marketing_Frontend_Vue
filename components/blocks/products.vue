@@ -11,54 +11,63 @@
                 </button>
             </div>
         </div>
-        <img :src="model.image.src" :alt="model.image.alt">
+        <img :src="model.image.src" :alt="model.image.alt" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
-
 
 @Component
 export default class BlockTextIntroduction extends Vue {
-    @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, 'smallTitle', {
+        blockAddItem(this.model, "smallTitle", {
             id: 0,
             type: StructureType.String,
-            title: 'Samll Title',
-            value: 'IM CXM'
+            title: "Samll Title",
+            value: "IM CXM",
         });
-        blockAddItem(this.model, 'text', {
+        blockAddItem(this.model, "text", {
             id: 1,
             type: StructureType.String,
-            title: 'Text',
-            value: 'Content Experience Management'
+            title: "Text",
+            value: "Content Experience Management",
         });
-        blockAddItem(this.model, 'description', {
+        blockAddItem(this.model, "description", {
             id: 2,
             type: StructureType.SimpleText,
-            title: 'Description Text',
-            value: 'CXM is a Headless CMS with a Visual Editor for developers, marketers & content editors'
+            title: "Description Text",
+            value: "CXM is a Headless CMS with a Visual Editor for developers, marketers & content editors",
         });
-        blockAddItem(this.model, 'more', {
+        blockAddItem(this.model, "more", {
             id: 4,
             type: StructureType.Url,
-            title: 'More Button',
-            value: 'More',
+            title: "More Button",
+            value: "More",
         });
 
-        blockAddItem(this.model, 'image', {
+        blockAddItem(this.model, "image", {
             id: 5,
             type: StructureType.Image,
-            title: 'Upload Image',
-            src: 'blocks/products.svg',
-            alt: 'Some note about this image',
+            title: "Upload Image",
+            src: "blocks/products.svg",
+            alt: "Some note about this image",
+        });
+        blockAddItem(this.model, "direction", {
+            id: 5,
+            type: StructureType.Select,
+            title: "Direction",
+            value: "ltr",
+            items: [
+                { title: "Left to Right", value: "ltr" },
+                { title: "Right to Left", value: "rtl" },
+            ],
         });
         // blockAddItem(this.model, 'file', {
         //     id: 4,
@@ -67,7 +76,7 @@ export default class BlockTextIntroduction extends Vue {
         //     src: '',
         //     alt: 'upload file',
         // });
-        this.model = {...this.model}
+        this.model = { ...this.model };
     }
 
     get isEmpty(): Boolean {

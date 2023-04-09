@@ -2,7 +2,7 @@
     <div class="tw-container" v-if="!isEmpty">
         <span class="tw-flex tw-w-1/3 tw-h-px tw-bg-[#1954ed] tw-absolute tw-left-0 tw-top-[102px]"></span>
         <div class="tw-px-9 tw-text-[#030D30] tw-text-[32px] tw-leading-10 tw-m-0 tw-pb-[75px] tw-pt-[155px]" v-html="model.text.value" />
-        
+
         <div class="tw-text-[40px] tw-font-bold tw-[#030D30] tw-px-10 tw-text-center tw-mb-20">“Our website is doing exactly what we wanted. Generating new leads every week!”</div>
         <div class="tw-flex tw-gap-10 tw-justify-between tw-px-9">
             <div class="tw-flex tw-flex-col" v-for="(item, index) in model.list.value" :key="index">
