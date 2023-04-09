@@ -1,11 +1,42 @@
 <template>
-    <div class="tw-grid tw-grid-cols-2 tw-items-center tw-bg-[url(/blocks/contactus.svg)] tw-bg-cover tw-py-12" v-if="!isEmpty">
-        <div class="tw-flex tw-flex-col tw-items-start tw-justify-center h-full tw-px-9">
+    <div class="tw-grid tw-grid-cols-2 tw-gap-5 tw-px-9 tw-items-start tw-bg-[url(/blocks/contactus.svg)] tw-bg-cover tw-py-[100px]" v-if="!isEmpty">
+        <div class="tw-flex tw-flex-col tw-items-start h-full">
             <h4 class="tw-text-white tw-font-bold tw-text-[40px] tw-m-0 tw-mb-2">{{ model.smallTitle.value }}</h4>
             <div class="tw-text-[#CCE2FF] tw-text-lg">{{ model.text.value }}</div>
             <ul>
                 <li class="tw-text-[#CCE2FF] tw-text-lg" v-for="(item, index) in model.list.value" :key="index">{{ item.List.value }}</li>
             </ul>
+        </div>
+        <div class="tw-px-9 tw-grid tw-grid-cols-2 tw-gap-[14px] tw-bg-white tw-rounded-[25px] tw-p-5">
+            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">First Name*</span>
+            </div>
+            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Last Name*</span>
+            </div>
+            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Email*</span>
+            </div>
+            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Phone Number</span>
+            </div>
+            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Company Name*</span>
+            </div>
+            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Topic*</span>
+            </div>
+            <div class="tw-bg-[#f5f6f6] tw-h-[102px] tw-relative tw-rounded-md tw-overflow-hidden tw-col-span-2">
+                <textarea type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Message" />
+            </div>
+
+            <button class="tw-h-[48px] tw-rounded-md tw-col-span-2 tw-border tw-border-solid tw-border-[#3df110] tw-text-[#3df110] tw-mt-[60px]">Send Message</button>
         </div>
     </div>
 </template>

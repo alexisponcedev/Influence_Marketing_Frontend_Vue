@@ -88,6 +88,24 @@ export const BLOCKS = () => {
                         image: "thumbnail/Contactus.svg",
                         category: "Base",
                     },
+                    {
+                        name: "DemoForm",
+                        title: "Demo Form Component",
+                        image: "thumbnail/DemoForm.svg",
+                        category: "Base",
+                    },
+                    {
+                        name: "Comments",
+                        title: "Comments Component",
+                        image: "thumbnail/Comments.svg",
+                        category: "Base",
+                    },
+                    {
+                        name: "Featurelist",
+                        title: "Featurelist Component",
+                        image: "thumbnail/FeatureList.svg",
+                        category: "Base",
+                    },
                 ],
             },
             {
