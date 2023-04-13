@@ -103,7 +103,7 @@ export default class MenuItemEditor extends Vue {
     products = [];
 
     searchProduct(search: string) {
-        this.$axios.$get('https://impim.dev-api.hisenseportal.com/api/cms/searchResult/' + search)
+        this.$axios.$get('https://impim.api.stage.imdigital.ca/api/cms/searchResult/' + search)
             .then(res => {
                 this.products = res.data;
             });

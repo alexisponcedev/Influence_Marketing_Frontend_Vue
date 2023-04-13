@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://imcxm.dev-api.hisenseportal.com/api",
+            "url": "https://imcxm.api.stage.imdigital.ca/api",
             "description": "CXM API Server"
         }
     ],

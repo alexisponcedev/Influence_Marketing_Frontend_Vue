@@ -451,7 +451,7 @@ export default class PageForm extends Vue {
                     "id": 1,
                     "type": "string",
                     "title": "Submit URL",
-                    "value": "https://imcrm.dev-api.hisenseportal.com/api/hisense/contact/register-product"
+                    "value": "https://imcrm.api.stage.imdigital.ca/api/hisense/contact/register-product"
                 }
             }
         }, {
@@ -483,7 +483,7 @@ export default class PageForm extends Vue {
                     "id": 1,
                     "type": "string",
                     "title": "Submit URL",
-                    "value": "https://imcrm.dev-api.hisenseportal.com/api/hisense/lead"
+                    "value": "https://imcrm.api.stage.imdigital.ca/api/hisense/lead"
                 },
                 "title": {
                     "id": 0,
