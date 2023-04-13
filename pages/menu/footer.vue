@@ -62,15 +62,15 @@
                                 <ul class="tw-list-none">
                                     <li class="optionBox" v-for="(row, j) in column"
                                         :key="`option_${j}`">
-<!--                                        <div class="tw-flex tw-items-center tw-justify-between tw-space-x-3 tw-p-2">-->
-<!--                                            <div class="">-->
-<!--                                                <span>This columns has {{ column.length }} rows</span>-->
-<!--                                            </div>-->
-<!--                                            &lt;!&ndash;                                            <v-btn outlined  @click="deleteColumn(column , i)">&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                <span>Delete Entire Column</span>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                <v-icon small class="red&#45;&#45;text">mdi-delete</v-icon>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                            </v-btn>&ndash;&gt;-->
-<!--                                        </div>-->
+                                        <!--                                        <div class="tw-flex tw-items-center tw-justify-between tw-space-x-3 tw-p-2">-->
+                                        <!--                                            <div class="">-->
+                                        <!--                                                <span>This columns has {{ column.length }} rows</span>-->
+                                        <!--                                            </div>-->
+                                        <!--                                            &lt;!&ndash;                                            <v-btn outlined  @click="deleteColumn(column , i)">&ndash;&gt;-->
+                                        <!--                                            &lt;!&ndash;                                                <span>Delete Entire Column</span>&ndash;&gt;-->
+                                        <!--                                            &lt;!&ndash;                                                <v-icon small class="red&#45;&#45;text">mdi-delete</v-icon>&ndash;&gt;-->
+                                        <!--                                            &lt;!&ndash;                                            </v-btn>&ndash;&gt;-->
+                                        <!--                                        </div>-->
 
                                         <v-row align="start">
                                             <v-col cols="3">
@@ -150,13 +150,49 @@ export default class Menus extends Vue {
     selectedColumn = '';
 
     Menu: any = {
-        id: 2,
-        title: 'footer',
-        widgets: {
-            links: [],
-            columns: [],
-            socials: []
-        }
+        "id": 2,
+        "title": "footer",
+        "widgets": {
+            "links": [
+                {
+                    "url": "/legal-disclaimer",
+                    "name": "Legal Disclaimer"
+                },
+                {
+                    "url": "/privacy-policy",
+                    "name": "Privacy Policy"
+                },
+                {
+                    "url": "/recycling-information",
+                    "name": "Recycling Information"
+                },
+                {
+                    "id": 5,
+                    "url": "https://app.cookiepro.com/app/#/webform/b861842b-f225-4fcc-afcc-2b5930c9c2a2",
+                    "name": "California Consumer Privacy Act Portal"
+                }
+            ],
+            "columns": [],
+            "socials": [
+                {
+                    "url": "https://www.facebook.com/hisenseusa/",
+                    "name": "facebook"
+                },
+                {
+                    "url": "https://twitter.com/hisense_usa",
+                    "name": "twitter"
+                },
+                {
+                    "url": "https://www.instagram.com/hisense_usa/",
+                    "name": "instagram"
+                },
+                {
+                    "url": "https://www.youtube.com/user/HisenseUSA",
+                    "name": "youtube"
+                }
+            ]
+        },
+        "brand_id": 3
     };
 
     mounted() {
@@ -166,7 +202,6 @@ export default class Menus extends Vue {
     async fetchMenu() {
         let widgets = ((await Api.Menu.getFooter()) as Menu).widgets as any;
         widgets.columns = widgets.columns.map((column: any) => {
-            console.log( column , !column.find((i: any) => i.hasOwnProperty('header')));
             return column.find((i: any) => i.hasOwnProperty('header')) ?
                 column :
                 [{
