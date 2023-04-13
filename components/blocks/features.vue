@@ -3,7 +3,7 @@
         <div class="tw-flex tw-items-center tw-flex-col tw-justify-center tw-bg-[#E7ECFE] tw-py-6" v-if="model.template.value === 'v1'">
             <div class="tw-flex tw-flex-col tw-items-center tw-justify-center h-full tw-p-9">
                 <h2 class="tw-text-[#030D30] tw-text-[32px] tw-m-0 tw-mb-2">{{ model.smallTitle.value }}</h2>
-                <h4 class="tw-text-[#1042F1] tw-text-lg tw-m-0">{{ model.text.value }}</h4>
+                <h4 class="tw-text-[#1042F1] tw-text-lg tw-m-0">{{ model.text.value }}</h4>            
             </div>
             <div class="tw-flex tw-p-10">
                 <div class="tw-flex tw-flex-col tw-items-center tw-py-[50px] tw-px-[60px] tw-relative tw-bg-white hover:tw-scale-[1.07] hover:tw-bg-[#1954ED] tw-group tw-ransition tw-ease-in-out hover:-tw-translate-y-1 tw-duration-300 hover:tw-z-20">
@@ -23,11 +23,11 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="tw-flex tw-items-center tw-flex-col tw-justify-center tw-bg-[#E7ECFE] tw-py-6" v-else>
             <div class="tw-flex tw-flex-col tw-items-center tw-justify-center h-full tw-p-9">
                 <h2 class="tw-text-[#030D30] tw-text-[32px] tw-m-0 tw-mb-2">{{ model.smallTitle.value }}</h2>
-                <h4 class="tw-text-[#1042F1] tw-text-lg tw-m-0">{{ model.text.value }}</h4>
+                <h4 class="tw-text-[#1042F1] tw-text-lg tw-m-0">{{ model.text.value }}</h4>            
             </div>
             <div class="tw-flex tw-gap-2 tw-p-10">
                 <div class="tw-flex tw-flex-col tw-items-center tw-py-[50px] tw-px-[60px] tw-bg-white">
@@ -87,29 +87,51 @@ export default class BlockTextIntroduction extends Vue {
             value: 'Customer engagement marketing is a marketing strategy that delivers timely, relevant, and personalized messages to consumers.'
         });
         blockAddItem(this.model, 'centerBoxTitle', {
-            id: 4,
+            id: 5,
             type: StructureType.String,
             title: 'Center Box Title',
             value: 'Support'
         });
         blockAddItem(this.model, 'centerBoxValue', {
-            id: 5,
+            id: 6,
             type: StructureType.SimpleText,
             title: 'Center Box Content',
             value: 'Customer engagement marketing is a marketing strategy that delivers timely, relevant, and personalized messages to consumers.'
         });
         blockAddItem(this.model, 'leftBoxTitle', {
-            id: 6,
+            id: 8,
             type: StructureType.String,
             title: 'Left Box Title',
             value: 'Customer Engagement'
         });
         blockAddItem(this.model, 'leftBoxValue', {
-            id: 7,
+            id: 9,
             type: StructureType.SimpleText,
             title: 'Left Box Content',
             value: 'Customer engagement marketing is a marketing strategy that delivers timely, relevant, and personalized messages to consumers.'
         });
+
+        if (this.model.template.value === 'v1') {
+            blockAddItem(this.model, 'rightBoxLink', {
+                id: 4,
+                type: StructureType.Url,
+                title: 'Right Box Link',
+                value: 'link',
+            });
+            blockAddItem(this.model, 'centerBoxLink', {
+                id: 7,
+                type: StructureType.Url,
+                title: 'Center Box Link',
+                value: 'link',
+            });
+            blockAddItem(this.model, 'leftBoxLink', {
+                id: 10,
+                type: StructureType.Url,
+                title: 'Left Box Link',
+                value: 'link',
+            });
+        } else
+            blockRemoveItem(this.model, ['rightBoxLink', 'centerBoxLink', 'leftBoxLink'])
 
         this.model = {...this.model}
     }

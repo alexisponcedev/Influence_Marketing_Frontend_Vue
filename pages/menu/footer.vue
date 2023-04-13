@@ -54,16 +54,15 @@
                 </v-tab-item>
                 <v-tab-item value="Links">
                     <v-card-text>
-                        <h6>Copy Right</h6>
-
+                        <h6>CopyRight</h6>
                         <v-row>
                             <v-col>
-                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copy_right"/>
+                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copyright"/>
                             </v-col>
                         </v-row>
 
-<!--                        <h6>Footer Links</h6>-->
-<!--                        <menu-items v-model="Menu.widgets.links"/>-->
+                        <h6>Footer Links</h6>
+                        <menu-items v-model="Menu.widgets.links"/>
                     </v-card-text>
                 </v-tab-item>
 <!--                <v-tab-item value="Texts">-->
@@ -75,7 +74,7 @@
 <!--                                <form-field-textarea :field="{ label: 'Social Title', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.social_title"/>-->
 <!--                            </v-col>-->
 <!--                            <v-col cols="12">-->
-<!--                                <form-field-textarea :field="{ label: 'Copy Right', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copy_right"/>-->
+<!--                                <form-field-textarea :field="{ label: 'Copy Right', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copyright"/>-->
 <!--                            </v-col>-->
 <!--                        </v-row>-->
 
@@ -132,7 +131,7 @@ export default class Menus extends Vue {
             social_title : 'To follow our latest news, training\n' +
                 'with the community,chat with us \n' +
                 'find us on our networks!',
-            copy_right : 'Copyright © 2022 IMDigital, Inc.\n' +
+            copyright : 'Copyright © 2022 IMDigital, Inc.\n' +
                 'Terms of Service     Privacy Policy'
         }
     }

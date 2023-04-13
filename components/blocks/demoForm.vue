@@ -5,8 +5,8 @@
             <div class="tw-text-[#CCE2FF] tw-text-lg" v-html="model.description.value"></div>
 
             <div class="tw-flex tw-gap-2 tw-mt-10">
-                <img src="blocks/featureIcon.svg" alt="icon">
-                <span class="tw-text-lg tw-font-semibold tw-text-[#3DF110]">Popular Features</span>
+                <img :src="model.popularImage.src" alt="icon">
+                <span class="tw-text-lg tw-font-semibold tw-text-[#3DF110]">{{ model.popularText.value }}</span>
             </div>
             <div class="tw-grid tw-grid-cols-2 tw-gap-x-4 tw-gap-y-5 tw-mt-10">
                 <div class="tw-flex tw-flex-col tw-gap-3 " v-for="(item, index) in model.list.value" :key="index">
@@ -15,46 +15,54 @@
                 </div>
             </div>
         </div>
-        <div class="tw-px-9 tw-grid tw-grid-cols-2 tw-gap-[14px] tw-bg-white tw-rounded-[25px] tw-p-5">
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
-                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">First Name*</span>
+        <div class="">
+            <div class="tw-px-9 tw-grid tw-grid-cols-2 tw-gap-[14px] tw-bg-white tw-rounded-[25px] tw-p-5">
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                    <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">First Name*</span>
+                </div>
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                    <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Last Name*</span>
+                </div>
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                    <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Email*</span>
+                </div>
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                    <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Phone Number</span>
+                </div>
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                    <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Company Name*</span>
+                </div>
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
+                    <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Website URL</span>
+                </div>
+                <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden tw-col-span-2">
+                    <!-- <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="IMDigital"> -->
+                    <select name="cars" id="cars" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="IMDigital">
+                        <option value="volvo">Test</option>
+                    </select>
+                    <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Product of interest*</span>
+                </div>
+                <label class="tw-col-span-2">
+                    <input type="checkbox" checked>
+                    <span class="checkmark"></span>
+                    Subscribe to IMDigital's marketing blog 
+                </label>
+                <div class="tw-col-span-2">
+                    <div class="tw-text-sm" v-html="model.policy.value"></div>
+                    <button
+                        class="tw-inline-flex tw-text-sm tw-text-[#1042F1]">
+                        {{ model.link.value }}
+                    </button>
+                </div>
+                <button class="tw-h-[48px] tw-rounded-md tw-col-span-2 tw-border tw-border-solid tw-border-[#3df110] tw-text-[#3df110] tw-mt-[60px]">Get your free demo</button>
             </div>
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
-                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Last Name*</span>
-            </div>
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
-                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Email*</span>
-            </div>
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
-                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Phone Number</span>
-            </div>
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
-                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Company Name*</span>
-            </div>
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden">
-                <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="Text">
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Website URL</span>
-            </div>
-            <div class="tw-bg-[#f5f6f6] tw-h-[44px] tw-relative tw-rounded-md tw-overflow-hidden tw-col-span-2">
-                <!-- <input type="text" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="IMDigital"> -->
-                <select name="cars" id="cars" class="tw-w-full tw-h-full tw-px-4 tw-bg-[#f5f6f6] tw-pt-4 tw-outline-none" placeholder="IMDigital">
-                    <option value="volvo">Test</option>
-                </select>
-                <span class="tw-absolute tw-top-[5px] tw-left-4 tw-text-[#035282] tw-text-[10px] tw-font-semibold">Product of interest*</span>
-            </div>
-            <label class="tw-col-span-2">
-                <input type="checkbox" checked>
-                <span class="checkmark"></span>
-                Subscribe to IMDigital's marketing blog 
-            </label>
-            <div v-html="model.policy.value" class="tw-text-sm tw-col-span-2" />
-
-            <button class="tw-h-[48px] tw-rounded-md tw-col-span-2 tw-border tw-border-solid tw-border-[#3df110] tw-text-[#3df110] tw-mt-[60px]">Get your free demo</button>
+            <div class="tw-text-white tw-mt-5 tw-text-center tw-text-lg">{{ model.join.value }}</div>
         </div>
     </div>
 </template>
@@ -124,6 +132,31 @@ export default class BlockTextIntroduction extends Vue {
                     }
                 }
             ]
+        });
+        blockAddItem(this.model, 'link', {
+            id: 3,
+            type: StructureType.Url,
+            title: 'Privacy Policy',
+            value: 'Privacy Policy',
+        });
+        blockAddItem(this.model, 'join', {
+            id: 4,
+            type: StructureType.String,
+            title: 'Join Text',
+            value: 'Join over +15,000 happy clients!'
+        });
+        blockAddItem(this.model, 'popularImage', {
+            id: 5,
+            type: StructureType.Image,
+            title: 'Upload Image',
+            src: 'blocks/featureIcon.svg',
+            alt: 'Some note about this image',
+        });
+        blockAddItem(this.model, 'popularText', {
+            id: 6,
+            type: StructureType.String,
+            title: 'Popular Text',
+            value: 'Popular Features'
         });
         this.model = {...this.model}
     }
