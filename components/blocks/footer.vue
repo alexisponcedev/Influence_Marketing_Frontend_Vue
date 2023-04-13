@@ -6,7 +6,7 @@
             <div class="tw-flex tw-justify-between">
                 <div class="tw-flex tw-space-x-12">
                     <div style="width:134px">
-                        <img src="~/assets/images/menu/logo-blue.png" alt="hisense blue logo">
+                        <img src="~/assets/images/menu/logo-light.svg" alt="hisense blue logo">
                     </div>
                     <div v-for="(column , index) in Menu.widgets.columns" :key="`column_${index}`">
                         <ul class="tw-list-none tw-space-y-5">
@@ -101,6 +101,7 @@ export default class LandingSlider extends Vue {
 <style scoped>
 .footerBox {
     padding: 66px 24px 24px;
+    background-color: #1954ED;
 }
 
 .menuOption {

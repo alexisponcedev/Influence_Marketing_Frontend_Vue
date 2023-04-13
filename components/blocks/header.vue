@@ -1,12 +1,11 @@
 <template>
     <div v-if="!isEmpty && Menu.hasOwnProperty('widgets')" :class="model.theme.value" class="">
 
-
         <div class="tw-flex tw-items-center tw-justify-between menuBox">
             <div style="width:134px">
                 <img v-if="model.theme.value === Theme.light" src="~/assets/images/menu/logo-dark.png"
                      alt="Hisense dark logo"/>
-                <img v-else src="~/assets/images/menu/logo-light.png" alt="Hisense light logo"/>
+                <img v-else src="~/assets/images/menu/logo-light.svg" alt="Hisense light logo"/>
             </div>
             <ul class="tw-list-none tw-flex tw-items-center tw-justify-center">
                 <li class="menuOption" v-for="(option , index) in Menu.widgets.centerOption" :key="index">{{
@@ -16,15 +15,16 @@
             </ul>
 
             <ul class="tw-list-none tw-flex tw-items-center tw-justify-center">
-                <li class="menuOption" v-for="(option , index) in Menu.widgets.rightOption" :key="index">{{
+                <li class="menuOption" v-for="(option , index) in Menu.widgets.rightOption" :key="index">
+                    {{
                         option.name
                     }}
                 </li>
-                <li class="menuOption tw-flex tw-items-center">
-                    <img class="icon" v-if="model.theme.value === Theme.light"
-                         src="~/assets/images/menu/search-dark.png" alt="search icon">
-                    <img class="icon" v-else src="~/assets/images/menu/search-light.png" alt="search icon">
-                </li>
+                <!--                <li class="menuOption tw-flex tw-items-center">-->
+                <!--                    <img class="icon" v-if="model.theme.value === Theme.light"-->
+                <!--                         src="~/assets/images/menu/search-dark.png" alt="search icon">-->
+                <!--                    <img class="icon" v-else src="~/assets/images/menu/search-light.png" alt="search icon">-->
+                <!--                </li>-->
                 <li class="menuOption tw-flex tw-items-center">
                     <img class="icon" v-if="model.theme.value === Theme.light"
                          src="~/assets/images/menu/hamburger-dark.png" alt="search icon">
@@ -110,10 +110,11 @@ export default class LandingSlider extends Vue {
 <style scoped>
 .menuBox {
     padding: 12px 24px;
+    background: linear-gradient(0deg, #0C2445, #0C2445), #002357;
 }
 
 .menuOption {
-    padding: 8px 14px;
+    padding: 8px 20px;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 1.3px;
