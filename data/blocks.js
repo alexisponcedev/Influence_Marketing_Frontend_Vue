@@ -100,6 +100,7 @@ export const BLOCKS = () => {
                         image: "thumbnail/Comments.svg",
                         category: "Base",
                     },
+
                     {
                         name: "Featurelist",
                         title: "Featurelist Component",
