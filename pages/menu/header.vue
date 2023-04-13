@@ -208,7 +208,7 @@ export default class Menus extends Vue {
     };
 
     async mounted() {
-        // this.getHeader();
+        this.getHeader();
     }
 
     getHeader() {

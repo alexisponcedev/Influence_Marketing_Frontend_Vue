@@ -68,14 +68,14 @@
             </li>
         </ul>
 
-        <div class="tw-pl-6 tw-mt-4" v-if="!model.static && model.hasOwnProperty('products')">
-            <div class="tw-flex tw-items-center tw-space-x-3 tw-p-2">
-                <div class="tw-text-blue-400">
-                    <span>Products</span>
-                </div>
-            </div>
-            <menu-products :value="model.products" @input="v => model.products = v"/>
-        </div>
+<!--        <div class="tw-pl-6 tw-mt-4" v-if="!model.static && model.hasOwnProperty('products')">-->
+<!--            <div class="tw-flex tw-items-center tw-space-x-3 tw-p-2">-->
+<!--                <div class="tw-text-blue-400">-->
+<!--                    <span>Products</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <menu-products :value="model.products" @input="v => model.products = v"/>-->
+<!--        </div>-->
 
     </div>
 
