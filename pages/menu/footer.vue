@@ -5,6 +5,7 @@
             <v-tab href="#Columns">Footer Columns</v-tab>
             <v-tab href="#Socials">Footer Socials</v-tab>
             <v-tab href="#Links">Footer Links</v-tab>
+<!--            <v-tab href="#Texts">Texts</v-tab>-->
         </v-tabs>
 
         <v-card>
@@ -12,7 +13,6 @@
                 <v-tab-item value="Columns">
                     <v-card-text>
                         <h6>Footer Columns</h6>
-
                         <ul class="tw-list-none">
                             <li class="optionBox" v-for="(column, index) in Menu.widgets.columns"
                                 :key="`option_${index}`">
@@ -34,25 +34,55 @@
                                 </button>
                             </li>
                         </ul>
-
                     </v-card-text>
                 </v-tab-item>
                 <v-tab-item value="Socials">
                     <v-card-text>
+                        <h6>Social Title</h6>
+
+                        <v-row>
+                            <v-col>
+                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.social_title"/>
+                            </v-col>
+                        </v-row>
+
+
                         <h6>Footer Social Media</h6>
                         <menu-socials v-model="Menu.widgets.socials"/>
 
                     </v-card-text>
                 </v-tab-item>
-
                 <v-tab-item value="Links">
                     <v-card-text>
-                        <h6>Footer Links</h6>
-                        <menu-items v-model="Menu.widgets.links"/>
+                        <h6>Copy Right</h6>
+
+                        <v-row>
+                            <v-col>
+                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copy_right"/>
+                            </v-col>
+                        </v-row>
+
+<!--                        <h6>Footer Links</h6>-->
+<!--                        <menu-items v-model="Menu.widgets.links"/>-->
                     </v-card-text>
                 </v-tab-item>
-            </v-tabs-items>
+<!--                <v-tab-item value="Texts">-->
+<!--                    <v-card-text>-->
+<!--                        <h6>Texts</h6>-->
 
+<!--                        <v-row>-->
+<!--                            <v-col cols="12">-->
+<!--                                <form-field-textarea :field="{ label: 'Social Title', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.social_title"/>-->
+<!--                            </v-col>-->
+<!--                            <v-col cols="12">-->
+<!--                                <form-field-textarea :field="{ label: 'Copy Right', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copy_right"/>-->
+<!--                            </v-col>-->
+<!--                        </v-row>-->
+
+
+<!--                    </v-card-text>-->
+<!--                </v-tab-item>-->
+            </v-tabs-items>
         </v-card>
 
         <v-card class="mt-5">
@@ -80,68 +110,40 @@ export default class Menus extends Vue {
     tab = "";
 
     Menu: any = {
-        id: 2,
-        title: 'footer',
-        widgets: {
-            links: [
-                {name: 'Legal Disclaimer', url: '/'},
-                {name: 'Privacy Policy', url: '/'},
-                {name: 'Recycling Information', url: '/'},
-                {name: 'Sitemap', url: '/'},
-                {name: 'California Consumer Privacy Act Portal', url: '/'},
-            ],
-            columns: [
+        "id":2,
+        "title": "footer",
+        "widgets":{
+            "links":[],
+            "columns":[
                 [
-                    {name: 'COMPANY', url: '/'},
-                    {name: 'SPONSORSHIPS', url: '/'},
-                    {name: 'AUTHORIZED RETAILERS', url: '/'},
-                    {name: 'CAREERS', url: '/'},
-                    {name: 'COMPLIANCE', url: '/'},
-                    {name: 'DO NOT SELL', url: '/'},
+                    {"url":null,"name":"Locate Us"},
+                    {"url":null,"name":"3 Birrel Avenue, Sabo. Yaba, Lagos State, Nigeria"}
                 ],
                 [
-                    {name: 'TV + AUDIO', url: '/'},
-                    {name: 'HOME APPLIANCES', url: '/'},
-                    {name: 'AIR PRODUCTS', url: '/'},
-                    {name: 'COMMERCIAL DISPLAYS', url: '/'},
-                    {name: 'COMMERCIAL REFRIGERATORS', url: '/'},
-                ],
-                [
-                    {name: 'SUPPORT', url: '/'},
-                    {name: 'FAQ', url: '/'},
-                    {name: 'RECALL INFORMATION', url: '/'},
-                    {name: 'CONTACT', url: '/'},
-                    {name: 'REGISTER', url: '/'},
+                    {"url":null,"name":"Contact Us"}
                 ]
             ],
-            socials: [
-                {
-                    name: 'facebook',
-                    url: 'https://www.facebook.com/hisenseusa/',
-                },
-                {
-                    name: 'twitter',
-                    url: 'https://twitter.com/hisense_usa',
-                },
-                {
-                    name: 'instagram',
-                    url: 'https://www.instagram.com/hisense_usa/',
-                },
-                {
-                    name: 'youtube',
-                    url: 'https://www.youtube.com/user/HisenseUSA',
-                },
-            ]
+            "socials":[
+                {"url":"https://www.facebook.com/test/","name":"facebook"},
+                {"url":"https://twitter.com/test","name":"twitter"},
+                {"url":"https://www.instagram.com/test/","name":"instagram"},
+                {"url":"https://www.youtube.com/user/test","name":"youtube"}
+            ],
+            social_title : 'To follow our latest news, training\n' +
+                'with the community,chat with us \n' +
+                'find us on our networks!',
+            copy_right : 'Copyright © 2022 IMDigital, Inc.\n' +
+                'Terms of Service     Privacy Policy'
         }
-    };
+    }
 
     async mounted() {
-        // this.getFooter();
+        this.getFooter();
     }
 
     getFooter() {
         Api.Menu.getFooter().then((res: any) => {
-            this.Menu.widgets = res.widtets;
+            this.Menu.widgets = res.widgets;
         })
 
     }
