@@ -311,7 +311,7 @@ export default class TextMetaFormField extends Vue {
             && (this.model.model_type === 'product' || this.model.model_type === 'support')
             && !this.model.meta[this.ogImageIndex].content
         ) {
-            let res = await this.$axios.$get('https://impim.api.stage.imdigital.ca/api/cms/getProduct/' + this.model.model_id)
+            let res = await this.$axios.$get(process.env.PIM_API_URL + '/cms/getProduct/' + this.model.model_id)
             if (res && res.data)
                 this.model.meta[this.ogImageIndex].content = res.data.image
         }

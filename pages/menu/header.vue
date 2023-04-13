@@ -5,7 +5,6 @@
             <v-tab href="#centerOptions">Center Options</v-tab>
             <v-tab href="#rightOptions">Right Options</v-tab>
             <v-tab href="#hamburger">Hamburger Menu</v-tab>
-
         </v-tabs>
 
         <v-card>
@@ -67,6 +66,7 @@
 <script lang="ts">
 import {Vue, Component} from "vue-property-decorator";
 import {Api} from "@/store";
+
 @Component({
     layout: "panel"
 })
@@ -76,136 +76,132 @@ export default class Menus extends Vue {
     tab = "centerOptions";
 
     Menu: any = {
-        id: 1,
-        title: 'header',
-        widgets: {
-            hamburger: [
-                {id: 0, name: 'Company', url: '/'},
-                {id: 1, name: 'Commercial', url: '/'},
-                {id: 2, name: 'Support', url: '/'},
-                {id: 3, name: 'Register', url: '/'},
-                {id: 4, name: 'Contact', url: '/'},
+        "id": 1,
+        "title": "header",
+        "widgets": {
+            "hamburger": [
+                {
+                    "id": 0,
+                    "url": "/",
+                    "name": "Platform"
+                },
+                {
+                    "id": 1,
+                    "url": "/",
+                    "name": "Solution"
+                },
+                {
+                    "id": 2,
+                    "url": "/",
+                    "name": "Services"
+                },
+                {
+                    "id": 3,
+                    "url": "/",
+                    "name": "Resources"
+                },
+                {
+                    "id": 4,
+                    "url": "/",
+                    "name": "Partners"
+                }
             ],
-            centerOption: [
+            "rightOption": [],
+            "centerOption": [
                 {
-                    name: 'TV + Audio',
-                    url: '/',
-                    static: false,
-                    columns: [
-                        [
-                            {name: 'TELEVISIONS', url: '/'},
-                            {name: 'LASER TV', url: '/'},
-                            {name: '4K ULED', url: '/'},
-                            {name: '4K UHD', url: '/'},
-                            {name: 'SMART TV PLATFORMS', url: '/'},
-                            {name: 'ALL TVs', url: '/'},
-                        ],
-                        [
-                            {name: 'HOME AUDIO', url: '/'},
-                            {name: '2.0 CH SOUNDBARS', url: '/'},
-                            {name: '2.1 CH SOUNDBARS', url: '/'},
-                            {name: '3.1 CH SOUNDBARS', url: '/'},
-                            {name: 'ALL HOME AUDIO', url: '/'},
-                        ]
-                    ],
-                    products: [
+                    "url": "/",
+                    "name": "Platform",
+                    "static": false,
+                    "columns": [],
+                    "products": [
                         {
-                            name: 'Product Name 1',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png'
+                            "url": "/",
+                            "name": "Product Name 1",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png"
                         },
                         {
-                            name: 'Product Name 2',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/448/f5c88a7895/u8h__ScaleMaxWidthWzY0MF0.png'
-                        },
+                            "url": "/",
+                            "name": "Product Name 2",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/448/f5c88a7895/u8h__ScaleMaxWidthWzY0MF0.png"
+                        }
                     ]
                 },
                 {
-                    name: 'APPLIANCES',
-                    url: '/',
-                    static: false,
-                    columns: [
-                        [
-                            {name: 'EXPLORE HOME APPLIANCES', url: '/'},
-                            {name: 'DISHWASHERS', url: '/'},
-                            {name: 'BEVERAGE + WINE COOLERS', url: '/'},
-                            {name: 'REFRIGERATORS', url: '/'},
-                        ],
-                    ],
-                    products: [
+                    "url": "/",
+                    "name": "Solution",
+                    "static": false,
+                    "columns": [],
+                    "products": [
                         {
-                            name: 'Product Name 1',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png'
+                            "url": "/",
+                            "name": "Product Name 1",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/274/e4489e1ec0/Front-min__ScaleMaxWidthWzY0MF0.png"
                         },
                         {
-                            name: 'Product Name 2',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/471/596d3db992/micro-closed_ScaleMaxHeightWzc1MF0__ScaleMaxWidthWzY0MF0.png'
+                            "url": "/",
+                            "name": "Product Name 2",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/471/596d3db992/micro-closed_ScaleMaxHeightWzc1MF0__ScaleMaxWidthWzY0MF0.png"
                         },
                         {
-                            name: 'Product Name 3',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/158/7051a421d1/Carousel-5-min__ScaleMaxWidthWzY0MF0.png'
-                        },
+                            "url": "/",
+                            "name": "Product Name 3",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/158/7051a421d1/Carousel-5-min__ScaleMaxWidthWzY0MF0.png"
+                        }
                     ]
                 },
                 {
-                    name: 'AIR PRODUCTS',
-                    url: '/',
-                    static: false,
-                    columns: [
-                        [
-                            {name: 'EXPLORE AIR PRODUCTS', url: '/'},
-                            {name: 'WINDOW AC', url: '/'},
-                            {name: 'PORTABLE AC', url: '/'},
-                            {name: 'DEHUMIDIFIERS', url: '/'},
-                            {name: 'AIR PURIFIER', url: '/'},
-                            {name: 'ALL AIR PRODUCTS', url: '/'},
-                        ],
-                    ],
-                    products: [
+                    "url": "/",
+                    "name": "Services",
+                    "static": false,
+                    "columns": [],
+                    "products": [
                         {
-                            name: 'Product Name 1',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/397/761648fb97/AW0822CW1W-front__ScaleMaxWidthWzY0MF0.png'
+                            "url": "/",
+                            "name": "Product Name 1",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/397/761648fb97/AW0822CW1W-front__ScaleMaxWidthWzY0MF0.png"
                         },
                         {
-                            name: 'Product Name 2',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/400/386becd4f1/DH5022K1W-front__ScaleMaxWidthWzY0MF0.png'
+                            "url": "/",
+                            "name": "Product Name 2",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/400/386becd4f1/DH5022K1W-front__ScaleMaxWidthWzY0MF0.png"
                         },
                         {
-                            name: 'Product Name 3',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/396/2d8dfdfe04/1-front-AP1022TW1GD-1__ScaleMaxWidthWzY0MF0.png'
-                        },
+                            "url": "/",
+                            "name": "Product Name 3",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/396/2d8dfdfe04/1-front-AP1022TW1GD-1__ScaleMaxWidthWzY0MF0.png"
+                        }
                     ]
                 },
-            ],
-            rightOption: [
                 {
-                    name: 'Commercial',
-                    url: '/',
-                    static: false,
-                    columns: [
-                        [
-                            {name: 'Commercial Displays', url: '/'},
-                            {name: 'Commercial Refrigerators', url: '/'},
-                        ],
-                    ],
-                    products: [
+                    "url": "/",
+                    "name": "Resources",
+                    "static": false,
+                    "columns": [],
+                    "products": [
                         {
-                            name: 'Product Name 1',
-                            url: '/',
-                            image: 'https://imdam.api.stage.imdigital.ca/api/v1/assets/PageMenuImage/169/f982c6d16b/Hisense-Commercial-header-menu_-Recovered__ScaleMaxWidthWzY0MF0.png'
-                        },
+                            "url": "/",
+                            "name": "Product Name 1",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png"
+                        }
                     ]
                 },
+                {
+                    "url": "/",
+                    "name": "Partenrs",
+                    "static": false,
+                    "columns": [],
+                    "products": [
+                        {
+                            "url": "/",
+                            "name": "Product Name 1",
+                            "image": "https://imdam.api.stage.imdigital.ca/api/v1/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png"
+                        }
+                    ]
+                }
             ]
-        }
-    };
+        },
+        "brand_id": 3
+    }
 
     async mounted() {
         this.getHeader();
@@ -214,8 +210,8 @@ export default class Menus extends Vue {
     getHeader() {
         Api.Menu.getHeader()
             .then((res: any) => {
-            this.Menu.widgets = res.widgets
-        })
+                this.Menu.widgets = res.widgets
+            })
 
     }
 

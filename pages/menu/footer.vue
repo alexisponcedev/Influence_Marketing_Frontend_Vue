@@ -5,7 +5,7 @@
             <v-tab href="#Columns">Footer Columns</v-tab>
             <v-tab href="#Socials">Footer Socials</v-tab>
             <v-tab href="#Links">Footer Links</v-tab>
-<!--            <v-tab href="#Texts">Texts</v-tab>-->
+            <!--            <v-tab href="#Texts">Texts</v-tab>-->
         </v-tabs>
 
         <v-card>
@@ -42,7 +42,8 @@
 
                         <v-row>
                             <v-col>
-                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.social_title"/>
+                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}"
+                                                     v-model="Menu.widgets.social_title"/>
                             </v-col>
                         </v-row>
 
@@ -57,7 +58,8 @@
                         <h6>CopyRight</h6>
                         <v-row>
                             <v-col>
-                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copyright"/>
+                                <form-field-textarea :field="{ label: '', rules: [], colAttrs: {cols: 12}}"
+                                                     v-model="Menu.widgets.copyright"/>
                             </v-col>
                         </v-row>
 
@@ -65,22 +67,22 @@
                         <menu-items v-model="Menu.widgets.links"/>
                     </v-card-text>
                 </v-tab-item>
-<!--                <v-tab-item value="Texts">-->
-<!--                    <v-card-text>-->
-<!--                        <h6>Texts</h6>-->
+                <!--                <v-tab-item value="Texts">-->
+                <!--                    <v-card-text>-->
+                <!--                        <h6>Texts</h6>-->
 
-<!--                        <v-row>-->
-<!--                            <v-col cols="12">-->
-<!--                                <form-field-textarea :field="{ label: 'Social Title', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.social_title"/>-->
-<!--                            </v-col>-->
-<!--                            <v-col cols="12">-->
-<!--                                <form-field-textarea :field="{ label: 'Copy Right', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copyright"/>-->
-<!--                            </v-col>-->
-<!--                        </v-row>-->
+                <!--                        <v-row>-->
+                <!--                            <v-col cols="12">-->
+                <!--                                <form-field-textarea :field="{ label: 'Social Title', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.social_title"/>-->
+                <!--                            </v-col>-->
+                <!--                            <v-col cols="12">-->
+                <!--                                <form-field-textarea :field="{ label: 'Copy Right', rules: [], colAttrs: {cols: 12}}" v-model="Menu.widgets.copyright"/>-->
+                <!--                            </v-col>-->
+                <!--                        </v-row>-->
 
 
-<!--                    </v-card-text>-->
-<!--                </v-tab-item>-->
+                <!--                    </v-card-text>-->
+                <!--                </v-tab-item>-->
             </v-tabs-items>
         </v-card>
 
@@ -109,31 +111,61 @@ export default class Menus extends Vue {
     tab = "";
 
     Menu: any = {
-        "id":2,
+        "id": 2,
         "title": "footer",
-        "widgets":{
-            "links":[],
-            "columns":[
+        "widgets": {
+            "links": [
+                {
+                    "id": 1,
+                    "url": "/",
+                    "name": "Terms Of Services"
+                },
+                {
+                    "id": 2,
+                    "url": "/",
+                    "name": "Privacy Policy"
+                }
+            ],
+            "columns": [
                 [
-                    {"url":null,"name":"Locate Us"},
-                    {"url":null,"name":"3 Birrel Avenue, Sabo. Yaba, Lagos State, Nigeria"}
+                    {
+                        "url": null,
+                        "name": "Locate Us"
+                    },
+                    {
+                        "url": null,
+                        "name": "3 Birrel Avenue, Sabo. Yaba, Lagos State, Nigeria"
+                    }
                 ],
                 [
-                    {"url":null,"name":"Contact Us"}
+                    {
+                        "url": null,
+                        "name": "Contact Us"
+                    }
                 ]
             ],
-            "socials":[
-                {"url":"https://www.facebook.com/test/","name":"facebook"},
-                {"url":"https://twitter.com/test","name":"twitter"},
-                {"url":"https://www.instagram.com/test/","name":"instagram"},
-                {"url":"https://www.youtube.com/user/test","name":"youtube"}
+            "socials": [
+                {
+                    "url": "https://www.facebook.com/test/",
+                    "name": "facebook"
+                },
+                {
+                    "url": "https://twitter.com/test",
+                    "name": "twitter"
+                },
+                {
+                    "url": "https://www.instagram.com/test/",
+                    "name": "instagram"
+                },
+                {
+                    "url": "https://www.youtube.com/user/test",
+                    "name": "youtube"
+                }
             ],
-            social_title : 'To follow our latest news, training\n' +
-                'with the community,chat with us \n' +
-                'find us on our networks!',
-            copyright : 'Copyright © 2022 IMDigital, Inc.\n' +
-                'Terms of Service     Privacy Policy'
-        }
+            "copyright": "Copyright © 2022 IMDigital, Inc.",
+            "social_title": "To follow our latest news, training\nwith the community,chat with us \nfind us on our networks!"
+        },
+        "brand_id": 3
     }
 
     async mounted() {

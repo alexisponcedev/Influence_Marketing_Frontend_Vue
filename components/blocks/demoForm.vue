@@ -60,7 +60,7 @@
                         {{ model.link.value }}
                     </button>
                 </div>
-                <button class="tw-h-[48px] tw-rounded-md tw-col-span-2 tw-border tw-border-solid tw-border-[#3df110] tw-text-[#3df110] tw-mt-[60px]">Get your free demo</button>
+                <button class="tw-h-[48px] tw-rounded-md tw-col-span-2 tw-border tw-border-solid tw-border-[#3df110] tw-text-[#3df110] tw-mt-[60px]">{{ model.demoBtn.value }}</button>
             </div>
             <div class="tw-text-white tw-mt-5 tw-text-center tw-text-lg">{{ model.join.value }}</div>
         </div>
@@ -157,6 +157,12 @@ export default class BlockTextIntroduction extends Vue {
             type: StructureType.String,
             title: 'Popular Text',
             value: 'Popular Features'
+        });
+        blockAddItem(this.model, 'demoBtn', {
+            id: 7,
+            type: StructureType.Url,
+            title: 'Form Button',
+            value: 'Get your free demo',
         });
         this.model = {...this.model}
     }
