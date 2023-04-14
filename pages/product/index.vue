@@ -1,7 +1,6 @@
 <template>
     <v-container fluid>
 
-
         <v-row>
             <v-col>
                 <v-tabs show-arrows v-model="tab" background-color="transparent">
