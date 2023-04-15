@@ -73,17 +73,15 @@
                                         <!--                                        </div>-->
 
                                         <v-row align="start">
-                                            <v-col cols="3">
-                                                <form-field-text :field="{label: 'Header Title',colAttrs: {cols: 12}}"
-                                                                 v-model="row.header.name"/>
+                                            <!--                                            <v-col cols="3">-->
+                                            <!--                                                <form-field-text :field="{label: 'Header Title',colAttrs: {cols: 12}}"-->
+                                            <!--                                                                 v-model="row.header.name"/>-->
+                                            <!--                                            </v-col>-->
+                                            <v-col cols="11">
+                                                <structure-editor-url :has-background="false" :inline="true" v-model="row.header"/>
                                             </v-col>
-                                            <v-col cols="8">
-                                                <structure-editor-url :has-background="false"
-                                                                      :inline="true"
-                                                                      v-model="row.header.url"/>
-                                            </v-col>
-                                            <v-col cols="1" class="pt-10">
-                                                <v-btn outlined @click="deleteColumn(column , j)">
+                                            <v-col cols="1" class="pt-16">
+                                                <v-btn block outlined @click="deleteColumn(column , j)">
                                                     <v-icon small class="red--text">mdi-delete</v-icon>
                                                 </v-btn>
                                             </v-col>
@@ -202,8 +200,14 @@ export default class Menus extends Vue {
     async fetchMenu() {
         let widgets = ((await Api.Menu.getFooter()) as Menu).widgets as any;
         widgets.columns = widgets.columns.map((column: any) => {
+
             return column.find((i: any) => i.hasOwnProperty('header')) ?
-                column :
+                column.map((item: any) => {
+                    return {
+                        header : item.header.name ?  {title: item.header.name, value: item.header.url} :  item.header,
+                        columns : item.columns
+                    }
+                }) :
                 [{
                     header: {name: 'Header Title', url: '/'},
                     columns: column

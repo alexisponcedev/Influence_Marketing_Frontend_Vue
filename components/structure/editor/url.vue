@@ -10,19 +10,31 @@
 
             <form-field-text v-if="showTitle" :field="titleField" v-model="model.title"/>
 
-            <form-field-select :field="typeField" v-model="type" @change="prepare"/>
+            <form-field-select :field="typeField"
+                               v-model="type"
+                               @change="prepare"/>
 
-            <form-field-select-page-name v-if="type === UrlTypeEnum.Internal" :field="selectField" v-model="route"
+            <form-field-select-page-name v-if="type === UrlTypeEnum.Internal"
+                                         :field="selectField"
+                                         v-model="route"
                                          @update:selected-page="$emit('page-selected' , $event)"/>
 
-            <form-field-text v-if="type === UrlTypeEnum.Internal" :field="queryField" v-model="query"/>
+            <form-field-text v-if="type === UrlTypeEnum.Internal"
+                             :field="queryField"
+                             v-model="query"/>
 
-            <form-field-text v-if="type === UrlTypeEnum.Custom" :field="urlFiled" v-model="model.value"/>
+            <form-field-text v-if="type === UrlTypeEnum.Custom"
+                             :field="urlFiled"
+                             v-model="model.value"/>
 
-            <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor" :field="productField"
+            <form-field-text v-if="type === UrlTypeEnum.openChannelAdvisor"
+                             :field="productField"
                              v-model="productModel"/>
 
-            <structure-editor-id-selector v-if="type === UrlTypeEnum.anchor" :field="anchorField" :key="render" v-model="model"/>
+            <structure-editor-id-selector v-if="type === UrlTypeEnum.anchor"
+                                          :field="anchorField"
+                                          :key="render"
+                                          v-model="model"/>
         </div>
         <p class="tw-text-blue-500 tw-my-1 tw-pl-1">{{ model.value }}</p>
 
@@ -36,6 +48,7 @@ import {StructureField} from "~/interfaces/StructureField";
 import {UrlTypeEnum} from "~/interfaces/UrlTypeEnum";
 import {Api} from "~/utils/store-accessor";
 import {EventBus} from "~/plugins/event.client";
+import {StructureType} from "~/models/StructureType";
 
 
 @Component
@@ -57,7 +70,16 @@ export default class StructureUrlEditor extends Vue {
     @Prop({type: Boolean, default: false}) disableTitle!: Boolean
     @Prop({type: Boolean, default: true}) showTitle!: Boolean
     @Prop({type: Boolean, default: false}) inline!: Boolean
-    @VModel({type: StructureField}) model!: StructureField
+    @VModel({
+        type: StructureField, default: () => {
+            return {
+                id: 0,
+                title: '',
+                type: StructureType.String,
+                value: '',
+            }
+        }
+    }) model!: StructureField
 
     UrlTypeEnum = UrlTypeEnum;
 
@@ -132,8 +154,7 @@ export default class StructureUrlEditor extends Vue {
                 if (this.model.value && this.model.value.startsWith('#')) {
                     // this.type = UrlTypeEnum.anchor;
                     // this.anchor = this.model.value;
-                } else
-                if (this.model.value && this.model.value.startsWith('openChannelAdvisor:')) {
+                } else if (this.model.value && this.model.value.startsWith('openChannelAdvisor:')) {
                     this.productModel = this.model.value.replace('openChannelAdvisor:', '')
                 } else {
                     let arr = this.model.value.split('?');
@@ -161,11 +182,12 @@ export default class StructureUrlEditor extends Vue {
             this.type = UrlTypeEnum.Custom;
     }
 
-    render : number = 0;
+    render: number = 0;
+
     mounted() {
         this.prepare().then(this.updateType);
-        EventBus.listen('id-selector-changed', () =>  {
-            this.render ++
+        EventBus.listen('id-selector-changed', () => {
+            this.render++
         })
     }
 
@@ -187,7 +209,7 @@ export default class StructureUrlEditor extends Vue {
 
     @Watch('value', {deep: true, immediate: true})
     onValueChanged(value: any, oldValue: any) {
-        console.log('==================== onValueChanged ====================' , value);
+        console.log('==================== onValueChanged ====================', value);
         this.model = value;
         this.prepare()
         // .then(this.updateType);
@@ -195,6 +217,7 @@ export default class StructureUrlEditor extends Vue {
 
     @Watch('model', {immediate: true, deep: true})
     onModelUpdated() {
+        console.log('********************** model updated **********************')
         this.$emit('update:url', this.model);
     }
 
@@ -202,7 +225,6 @@ export default class StructureUrlEditor extends Vue {
     onRebuild() {
         // this.updateType()
     }
-
 
 
 }

@@ -33,7 +33,6 @@ export default class TextFormField extends Vue {
         return this.max && this.model.length > this.max
     }
     onKeyDown(e: KeyboardEvent) {
-        console.log(e, this.model, this.model.length, this.max, this.model.length > this.max);
         if (this.tooLong && e.code !== 'Backspace' && e.code !== 'Delete')
             e.preventDefault()
     }
