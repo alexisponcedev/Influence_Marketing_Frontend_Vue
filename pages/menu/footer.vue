@@ -62,21 +62,7 @@
                                 <ul class="tw-list-none">
                                     <li class="optionBox" v-for="(row, j) in column"
                                         :key="`option_${j}`">
-                                        <!--                                        <div class="tw-flex tw-items-center tw-justify-between tw-space-x-3 tw-p-2">-->
-                                        <!--                                            <div class="">-->
-                                        <!--                                                <span>This columns has {{ column.length }} rows</span>-->
-                                        <!--                                            </div>-->
-                                        <!--                                            &lt;!&ndash;                                            <v-btn outlined  @click="deleteColumn(column , i)">&ndash;&gt;-->
-                                        <!--                                            &lt;!&ndash;                                                <span>Delete Entire Column</span>&ndash;&gt;-->
-                                        <!--                                            &lt;!&ndash;                                                <v-icon small class="red&#45;&#45;text">mdi-delete</v-icon>&ndash;&gt;-->
-                                        <!--                                            &lt;!&ndash;                                            </v-btn>&ndash;&gt;-->
-                                        <!--                                        </div>-->
-
                                         <v-row align="start">
-                                            <!--                                            <v-col cols="3">-->
-                                            <!--                                                <form-field-text :field="{label: 'Header Title',colAttrs: {cols: 12}}"-->
-                                            <!--                                                                 v-model="row.header.name"/>-->
-                                            <!--                                            </v-col>-->
                                             <v-col cols="11">
                                                 <structure-editor-url :has-background="false" :inline="true" v-model="row.header"/>
                                             </v-col>
