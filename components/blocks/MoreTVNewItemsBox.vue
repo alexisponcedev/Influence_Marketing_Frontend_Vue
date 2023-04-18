@@ -1,19 +1,19 @@
 <template>
     <div>
-        <img src="/blocks/MoreTVNewItemsBox.png" alt=""/>
+        <img src="/blocks/MoreTVNewItemsBox.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Theme} from "~/interfaces/ThemeEnum";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockMoreTVNewItemsBox extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({type: Object}) model!: any;
+    @VModel({ type: Object }) model!: any;
 
     Theme = Theme;
 
@@ -21,13 +21,18 @@ export default class BlockMoreTVNewItemsBox extends Vue {
     loadingProduct: boolean = true;
 
     reset(oldValue: any = {}) {
-
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
+                ...oldValue,
+                ...{
+                    backgroundColor: {
+                        id: 7,
+                        type: StructureType.Color,
+                        title: "Background color",
+                        value: "#fff",
+                    },
+                },
+            };
         } else
             this.model = {
                 theme: {
@@ -36,11 +41,16 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                     title: "Theme",
                     value: Theme.dark,
                     items: [
-                        {title: "Light", value: this.Theme.light},
-                        {title: "Dark", value: this.Theme.dark},
+                        { title: "Light", value: this.Theme.light },
+                        { title: "Dark", value: this.Theme.dark },
                     ],
                 },
-                title: {id: 1, type: StructureType.String, title: "Top Title", value: "All New U Series"},
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Top Title",
+                    value: "All New U Series",
+                },
                 list: {
                     id: 2,
                     type: StructureType.List,
@@ -69,8 +79,9 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                             id: 3,
                             type: StructureType.Text,
                             title: "Description",
-                            value: "Amazon Fire TV\n" +
-                                "50\"\n" +
+                            value:
+                                "Amazon Fire TV\n" +
+                                '50"\n' +
                                 "Quantum Dot Color\n" +
                                 "Dolby Vision HDR and HDR10\n" +
                                 "Full Array backlight\n" +
@@ -79,11 +90,22 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                 "Game Mode Plus (60Hz)\n" +
                                 "Voice remote",
                         },
-                        helperNote: {id: 4, type: StructureType.String, title: 'Helper Note', value: ''},
-                        redNotice: {id: 5, type: StructureType.String, title: 'Red Notice', value: ''},
+                        helperNote: {
+                            id: 4,
+                            type: StructureType.String,
+                            title: "Helper Note",
+                            value: "",
+                        },
+                        redNotice: {
+                            id: 5,
+                            type: StructureType.String,
+                            title: "Red Notice",
+                            value: "",
+                        },
                         link: {
                             id: 6,
                             type: StructureType.Url,
+                            target: "_self",
                             title: "Learn More",
                             value: "/",
                         },
@@ -119,8 +141,9 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                 id: 3,
                                 type: StructureType.Text,
                                 title: "Description",
-                                value: "Amazon Fire TV\n" +
-                                    "50\"\n" +
+                                value:
+                                    "Amazon Fire TV\n" +
+                                    '50"\n' +
                                     "Quantum Dot Color\n" +
                                     "Dolby Vision HDR and HDR10\n" +
                                     "Full Array backlight\n" +
@@ -129,11 +152,22 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                     "Game Mode Plus (60Hz)\n" +
                                     "Voice remote",
                             },
-                            helperNote: {id: 4, type: StructureType.String, title: 'Helper Note', value: ''},
-                            redNotice: {id: 5, type: StructureType.String, title: 'Red Notice', value: ''},
+                            helperNote: {
+                                id: 4,
+                                type: StructureType.String,
+                                title: "Helper Note",
+                                value: "",
+                            },
+                            redNotice: {
+                                id: 5,
+                                type: StructureType.String,
+                                title: "Red Notice",
+                                value: "",
+                            },
                             link: {
                                 id: 6,
                                 type: StructureType.Url,
+                                target: "_self",
                                 title: "Learn More",
                                 value: "/",
                             },
@@ -168,8 +202,9 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                 id: 3,
                                 type: StructureType.Text,
                                 title: "Description",
-                                value: "Google TV\n" +
-                                    "50\" | 55\" | 65\" | 75\"\n" +
+                                value:
+                                    "Google TV\n" +
+                                    '50" | 55" | 65" | 75"\n' +
                                     "Quantum Dot Color\n" +
                                     "Dolby Vision HDR and HDR10\n" +
                                     "Full Array backlight\n" +
@@ -178,11 +213,22 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                     "Game Mode Plus (60Hz)\n" +
                                     "Voice remote",
                             },
-                            helperNote: {id: 4, type: StructureType.String, title: 'Helper Note', value: ''},
-                            redNotice: {id: 5, type: StructureType.String, title: 'Red Notice', value: ''},
+                            helperNote: {
+                                id: 4,
+                                type: StructureType.String,
+                                title: "Helper Note",
+                                value: "",
+                            },
+                            redNotice: {
+                                id: 5,
+                                type: StructureType.String,
+                                title: "Red Notice",
+                                value: "",
+                            },
                             link: {
                                 id: 6,
                                 type: StructureType.Url,
+                                target: "_self",
                                 title: "Learn More",
                                 value: "/",
                             },
@@ -217,8 +263,9 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                 id: 3,
                                 type: StructureType.Text,
                                 title: "Description",
-                                value: "Google TV\n" +
-                                    "55\" | 65\" | 75\" | 85\"\n" +
+                                value:
+                                    "Google TV\n" +
+                                    '55" | 65" | 75" | 85"\n' +
                                     "Quantum Dot Color\n" +
                                     "Dolby Vision HDR and HDR10\n" +
                                     "Full Array backlight\n" +
@@ -227,16 +274,22 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                     "Game Mode Pro (120Hz)\n" +
                                     "Voice remote",
                             },
-                            helperNote: {id: 4, type: StructureType.String, title: 'Helper Note', value: ''},
+                            helperNote: {
+                                id: 4,
+                                type: StructureType.String,
+                                title: "Helper Note",
+                                value: "",
+                            },
                             redNotice: {
                                 id: 5,
                                 type: StructureType.String,
-                                title: 'Red Notice',
-                                value: 'Coming Late July'
+                                title: "Red Notice",
+                                value: "Coming Late July",
                             },
                             link: {
                                 id: 6,
                                 type: StructureType.Url,
+                                target: "_self",
                                 title: "Learn More",
                                 value: "/",
                             },
@@ -271,8 +324,9 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                 id: 3,
                                 type: StructureType.Text,
                                 title: "Description",
-                                value: "Google TV\n" +
-                                    "55\" | 65\" | 75\"\n" +
+                                value:
+                                    "Google TV\n" +
+                                    '55" | 65" | 75"\n' +
                                     "Quantum Dot Color\n" +
                                     "Dolby Vision HDR and HDR10\n" +
                                     "Mini-LED backlight\n" +
@@ -280,23 +334,24 @@ export default class BlockMoreTVNewItemsBox extends Vue {
                                     "Dolby Atmos Audio\n" +
                                     "Game Mode Pro (120Hz)\n" +
                                     "Voice remote\n" +
-                                    "Wifi 6e* \n"
+                                    "Wifi 6e* \n",
                             },
                             helperNote: {
                                 id: 4,
                                 type: StructureType.String,
-                                title: 'Helper Note',
-                                value: '*WiFi 6e compatible router required'
+                                title: "Helper Note",
+                                value: "*WiFi 6e compatible router required",
                             },
                             redNotice: {
                                 id: 5,
                                 type: StructureType.String,
-                                title: 'Red Notice',
-                                value: 'Coming Late July'
+                                title: "Red Notice",
+                                value: "Coming Late July",
                             },
                             link: {
                                 id: 6,
                                 type: StructureType.Url,
+                                target: "_self",
                                 title: "Learn More",
                                 value: "/",
                             },
@@ -314,21 +369,17 @@ export default class BlockMoreTVNewItemsBox extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('isEmpty')
+    @Watch("isEmpty")
     onValueChanged() {
-
         if (this.isEmpty) this.reset();
     }
 }
 </script>
 
-<style type="text/css">
-
-</style>
+<style type="text/css"></style>

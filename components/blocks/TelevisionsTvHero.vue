@@ -1,27 +1,32 @@
 <template>
     <div>
-        <img src="/blocks/TelevisionsTvHero.png" alt=""/>
+        <img src="/blocks/TelevisionsTvHero.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 
 @Component
 export default class TelevisionsTvHero extends Vue {
     @Prop(Number) readonly id: number | undefined;
-    @Prop({default: true}) readonly editable: Boolean | undefined;
-    @VModel({type: Object}) model!: any;
+    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     reset(oldValue: any = {}) {
-
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
+                ...oldValue,
+                ...{
+                    backgroundColor: {
+                        id: 7,
+                        type: StructureType.Color,
+                        title: "Background color",
+                        value: "#fff",
+                    },
+                },
+            };
         } else
             this.model = {
                 title: {
@@ -68,12 +73,23 @@ export default class TelevisionsTvHero extends Vue {
                             title: "Theme (Texts)",
                             value: "light",
                             items: [
-                                {title: "Light", value: "light"},
-                                {title: "Dark", value: "dark"},
+                                { title: "Light", value: "light" },
+                                { title: "Dark", value: "dark" },
                             ],
                         },
-                        title: {id: 1, type: StructureType.Text, title: "Title", value: ""},
-                        link: {id: 1, type: StructureType.Url, title: "Link", value: ""},
+                        title: {
+                            id: 1,
+                            type: StructureType.Text,
+                            title: "Title",
+                            value: "",
+                        },
+                        link: {
+                            id: 1,
+                            type: StructureType.Url,
+                            target: "_self",
+                            title: "Link",
+                            value: "",
+                        },
                     },
                 },
                 bottomCard: {
@@ -112,8 +128,19 @@ export default class TelevisionsTvHero extends Vue {
                                 { title: "Dark", value: "dark" },
                             ],
                         },
-                        title: { id: 1, type: StructureType.Text, title: "Title", value: "" },
-                        link: { id: 1, type: StructureType.Url, title: "Link", value: "" },
+                        title: {
+                            id: 1,
+                            type: StructureType.Text,
+                            title: "Title",
+                            value: "",
+                        },
+                        link: {
+                            id: 1,
+                            type: StructureType.Url,
+                            target: "_self",
+                            title: "Link",
+                            value: "",
+                        },
                     },
                 },
                 simpleCard: {
@@ -149,8 +176,19 @@ export default class TelevisionsTvHero extends Vue {
                             src: "",
                             alt: "",
                         },
-                        title: {id: 1, type: StructureType.Text, title: "Title", value: ""},
-                        link: {id: 1, type: StructureType.Url, title: "Link", value: ""},
+                        title: {
+                            id: 1,
+                            type: StructureType.Text,
+                            title: "Title",
+                            value: "",
+                        },
+                        link: {
+                            id: 1,
+                            type: StructureType.Url,
+                            target: "_self",
+                            title: "Link",
+                            value: "",
+                        },
                     },
                 },
                 coloredCardsList: {
@@ -165,8 +203,8 @@ export default class TelevisionsTvHero extends Vue {
                                 title: "Theme (Texts)",
                                 value: "light",
                                 items: [
-                                    {title: "Light", value: "light"},
-                                    {title: "Dark", value: "dark"},
+                                    { title: "Light", value: "light" },
+                                    { title: "Dark", value: "dark" },
                                 ],
                             },
                             image: {
@@ -188,7 +226,13 @@ export default class TelevisionsTvHero extends Vue {
                                 title: "Title",
                                 value: "",
                             },
-                            link: {id: 1, type: StructureType.Url, title: "Link", value: ""},
+                            link: {
+                                id: 1,
+                                type: StructureType.Url,
+                                target: "_self",
+                                title: "Link",
+                                value: "",
+                            },
                         },
                         {
                             theme: {
@@ -197,8 +241,8 @@ export default class TelevisionsTvHero extends Vue {
                                 title: "Theme (Texts)",
                                 value: "light",
                                 items: [
-                                    {title: "Light", value: "light"},
-                                    {title: "Dark", value: "dark"},
+                                    { title: "Light", value: "light" },
+                                    { title: "Dark", value: "dark" },
                                 ],
                             },
                             image: {
@@ -220,7 +264,13 @@ export default class TelevisionsTvHero extends Vue {
                                 title: "Title",
                                 value: "",
                             },
-                            link: {id: 1, type: StructureType.Url, title: "Link", value: ""},
+                            link: {
+                                id: 1,
+                                type: StructureType.Url,
+                                target: "_self",
+                                title: "Link",
+                                value: "",
+                            },
                         },
                     ],
                     newItem: {
@@ -230,8 +280,8 @@ export default class TelevisionsTvHero extends Vue {
                             title: "Theme (Texts)",
                             value: "light",
                             items: [
-                                {title: "Light", value: "light"},
-                                {title: "Dark", value: "dark"},
+                                { title: "Light", value: "light" },
+                                { title: "Dark", value: "dark" },
                             ],
                         },
                         image: {
@@ -247,8 +297,19 @@ export default class TelevisionsTvHero extends Vue {
                             title: "Background Color",
                             value: "#000",
                         },
-                        title: {id: 1, type: StructureType.Text, title: "Title", value: ""},
-                        link: {id: 1, type: StructureType.Url, title: "Link", value: ""},
+                        title: {
+                            id: 1,
+                            type: StructureType.Text,
+                            title: "Title",
+                            value: "",
+                        },
+                        link: {
+                            id: 1,
+                            type: StructureType.Url,
+                            target: "_self",
+                            title: "Link",
+                            value: "",
+                        },
                     },
                 },
             };

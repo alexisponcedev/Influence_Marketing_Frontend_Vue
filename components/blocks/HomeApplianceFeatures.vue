@@ -1,34 +1,38 @@
 <template>
     <div>
-        <img src="/blocks/HomeApplianceFeatures.png" alt=""/>
+        <img src="/blocks/HomeApplianceFeatures.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Theme} from "~/interfaces/ThemeEnum";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockHomeApplianceFeatures extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({type: Object}) model!: any;
+    @VModel({ type: Object }) model!: any;
 
     Theme = Theme;
 
     product: Object = {};
     loadingProduct: boolean = true;
 
-
     reset(oldValue: any = {}) {
-
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
+                ...oldValue,
+                ...{
+                    backgroundColor: {
+                        id: 7,
+                        type: StructureType.Color,
+                        title: "Background color",
+                        value: "#fff",
+                    },
+                },
+            };
         } else
             this.model = {
                 theme: {
@@ -37,17 +41,28 @@ export default class BlockHomeApplianceFeatures extends Vue {
                     title: "Theme",
                     value: Theme.dark,
                     items: [
-                        {title: "Light", value: this.Theme.light},
-                        {title: "Dark", value: this.Theme.dark},
+                        { title: "Light", value: this.Theme.light },
+                        { title: "Dark", value: this.Theme.dark },
                     ],
                 },
-                mainTitleBlack: {id: 1, type: StructureType.String, title: 'Main Title Black', value: 'Super Cool'},
-                mainTitleColored: {id: 2, type: StructureType.String, title: 'Main Title Colored', value: 'Features'},
+                mainTitleBlack: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Main Title Black",
+                    value: "Super Cool",
+                },
+                mainTitleColored: {
+                    id: 2,
+                    type: StructureType.String,
+                    title: "Main Title Colored",
+                    value: "Features",
+                },
                 link: {
                     id: 3,
                     type: StructureType.Url,
-                    title: 'Link',
-                    value: '/refrigerators/refrigerators/all-refrigerators'
+                    target: "_self",
+                    title: "Link",
+                    value: "/refrigerators/refrigerators/all-refrigerators",
                 },
                 list: {
                     id: 1,
@@ -71,7 +86,7 @@ export default class BlockHomeApplianceFeatures extends Vue {
                             id: 2,
                             type: StructureType.String,
                             title: "Colored Title",
-                            value: "PRESERVE THE TASTE"
+                            value: "PRESERVE THE TASTE",
                         },
                         paragraph: {
                             id: 3,
@@ -105,7 +120,7 @@ export default class BlockHomeApplianceFeatures extends Vue {
                                 id: 2,
                                 type: StructureType.String,
                                 title: "Colored Title",
-                                value: "ELECTRONIC EXTERIOR TEMPERATURE CONTROL"
+                                value: "ELECTRONIC EXTERIOR TEMPERATURE CONTROL",
                             },
 
                             paragraph: {
@@ -129,12 +144,17 @@ export default class BlockHomeApplianceFeatures extends Vue {
                                 src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/de35508625/content_ci-led-lighting-min-j5kxwo.png",
                                 alt: "featured image",
                             },
-                            grayTitle: {id: 1, type: StructureType.String, title: "Gray Title", value: "LED Lighting",},
+                            grayTitle: {
+                                id: 1,
+                                type: StructureType.String,
+                                title: "Gray Title",
+                                value: "LED Lighting",
+                            },
                             coloredTitle: {
                                 id: 2,
                                 type: StructureType.String,
                                 title: "Colored Title",
-                                value: "MAXIMUM BRIGHTNESS"
+                                value: "MAXIMUM BRIGHTNESS",
                             },
 
                             paragraph: {
@@ -168,7 +188,7 @@ export default class BlockHomeApplianceFeatures extends Vue {
                                 id: 2,
                                 type: StructureType.String,
                                 title: "Colored Title",
-                                value: "FULLY ADJUSTABLE SHELVES"
+                                value: "FULLY ADJUSTABLE SHELVES",
                             },
                             paragraph: {
                                 id: 3,
@@ -201,7 +221,7 @@ export default class BlockHomeApplianceFeatures extends Vue {
                                 id: 2,
                                 type: StructureType.String,
                                 title: "Colored Title",
-                                value: "PRESERVE THE TASTE"
+                                value: "PRESERVE THE TASTE",
                             },
                             paragraph: {
                                 id: 3,
@@ -223,16 +243,14 @@ export default class BlockHomeApplianceFeatures extends Vue {
 
     mounted() {
         if (this.isEmpty) this.reset();
-
     }
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch('isEmpty')
+    @Watch("isEmpty")
     onValueChanged() {
-
         if (this.isEmpty) this.reset();
     }
 }

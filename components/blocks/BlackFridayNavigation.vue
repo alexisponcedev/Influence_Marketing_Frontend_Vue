@@ -21,13 +21,20 @@ export default class BlackFridayNavigation extends Vue {
             type: StructureType.List,
             title: "List",
             newItem: {
-                link: { id: 1, type: StructureType.Url, title: "", value: "" },
+                link: {
+                    id: 1,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "",
+                    value: "",
+                },
             },
             value: [
                 {
                     link: {
                         id: 1,
                         type: StructureType.Url,
+                        target: "_self",
                         title: "",
                         value: "",
                     },

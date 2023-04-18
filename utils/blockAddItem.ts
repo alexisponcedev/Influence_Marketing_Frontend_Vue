@@ -15,6 +15,10 @@ export default function blockAddItem(base: any, name: string, item: any) {
         base[name].alt = base[name].src || item.alt;
     }
 
+    if (item.type === StructureType.Url) {
+        base[name].target = item.target;
+    }
+
     if (item.type === StructureType.List) {
         base[name].newItem = item.newItem;
         base[name].value.forEach((element: any, index: number) => {

@@ -6,6 +6,7 @@ export interface StructureFieldInterface {
   title : string,
   value? : any,
   src? : string,
+  target ?: string;
   alt? : string,
   items? : any,
   itemText? : string,
@@ -18,8 +19,8 @@ export class StructureField implements StructureFieldInterface{
   type: StructureType = StructureType.String;
   items : any = [];
   value :any = null;
-
   alt : string = '';
+  target ?: string;
   src : string = '';
   itemText : string = 'title';
   itemValue : string = 'value';

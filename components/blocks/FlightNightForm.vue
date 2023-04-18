@@ -1,49 +1,50 @@
 <template>
     <div>
-        <img src="/blocks/FlightNightForm.png" alt=""/>
+        <img src="/blocks/FlightNightForm.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class FlightNightForm extends Vue {
-    @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, 'title', {
+        blockAddItem(this.model, "title", {
             id: 0,
             type: StructureType.SimpleText,
             title: "Title",
-            value: '',
+            value: "",
         });
 
-        blockAddItem(this.model, 'secondTitle', {
+        blockAddItem(this.model, "secondTitle", {
             id: 1,
             type: StructureType.SimpleText,
             title: "Second Title",
-            value: '',
+            value: "",
         });
 
-        blockAddItem(this.model, 'terms', {
+        blockAddItem(this.model, "terms", {
             id: 2,
             type: StructureType.Text,
             title: "Terms",
-            value: '',
+            value: "",
         });
-        blockAddItem(this.model, 'submitText', {
+        blockAddItem(this.model, "submitText", {
             id: 3,
             type: StructureType.Url,
+            target: "_self",
             title: "Submit",
-            value: '',
+            value: "",
         });
 
-        this.model = { ... this.model}
+        this.model = { ...this.model };
     }
 
     get isEmpty(): Boolean {
