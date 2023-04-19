@@ -5,7 +5,7 @@
         <div
             class=""
             :class="{
-                'tw-flex tw-space-x-2': inline,
+                'tw-flex tw-flex-wrap tw-space-x-2': inline,
                 'tw-border tw-border-solid tw-border-gray-200 tw-rounded-lg tw-pt-1':
                     hasBackground,
             }"
@@ -33,7 +33,6 @@
                 v-model="target"
                 @change="prepare"
             />
-            {{ target }}
             <form-field-select-page-name
                 v-if="type === UrlTypeEnum.Internal"
                 :field="selectField"
@@ -169,7 +168,7 @@ export default class StructureUrlEditor extends Vue {
         label: "Product Model",
         placeholder: "Enter Product Model",
         rules: [],
-        colAttrs: { cols: this.inline ? 6 : 12 },
+        colAttrs: { cols: this.inline ? 5 : 12 },
     };
 
     selectField = {
@@ -185,14 +184,14 @@ export default class StructureUrlEditor extends Vue {
         label: "Custom URL",
         placeholder: "Enter a valid url",
         rules: [],
-        colAttrs: { cols: this.inline ? 6 : 12 },
+        colAttrs: { cols: this.inline ? 4 : 12 },
     };
 
     queryField = {
         label: "Query params (optional)",
         placeholder: "filter=55&category_id=3...",
         rules: [],
-        colAttrs: { cols: this.inline ? 3 : 12 },
+        colAttrs: { cols: this.inline ? 6 : 12 },
     };
 
     async prepare() {
