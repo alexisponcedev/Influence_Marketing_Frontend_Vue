@@ -115,9 +115,7 @@ export default class MenuOptionEditor extends Vue {
 
     editingItem: any = { id: -1, title: "", value: "", target: "_self" };
 
-    mounted() {
-        console.log(this.model);
-    }
+    mounted() {}
 
     editTitle() {
         this.editingItem = {
@@ -126,16 +124,7 @@ export default class MenuOptionEditor extends Vue {
             target: this.model.target,
             value: this.model.url,
         };
-        console.log(
-            {
-                id: 0,
-                title: this.model.name,
-                target: this.model.target,
-                value: this.model.url,
-            },
-            this.editingItem,
-            this.model
-        );
+        console.log(this.model , this.editingItem)
         this.enableEdit = true;
     }
 

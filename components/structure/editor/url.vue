@@ -30,8 +30,7 @@
                     type === UrlTypeEnum.Custom || type === UrlTypeEnum.Internal
                 "
                 :field="openTypeField"
-                v-model="target"
-                @change="prepare"
+                v-model="model.target"
             />
             <form-field-select-page-name
                 v-if="type === UrlTypeEnum.Internal"
@@ -66,6 +65,8 @@
             />
         </div>
         <p class="tw-text-blue-500 tw-my-1 tw-pl-1">{{ model.value }}</p>
+
+        <pre>{{model}}</pre>
     </div>
 </template>
 
@@ -122,7 +123,6 @@ export default class StructureUrlEditor extends Vue {
     route = "";
     query = "";
     anchor = "";
-    target = "_self";
     productModel = "";
 
     typeField = {
@@ -244,8 +244,7 @@ export default class StructureUrlEditor extends Vue {
     render: number = 0;
 
     mounted() {
-        this.model.target = this.model.target || this.target;
-
+        if(!this.model.target) this.model={... this.model , target : this.model.target || 'self'}
         this.prepare().then(this.updateType);
         EventBus.listen("id-selector-changed", () => {
             this.render++;
@@ -272,10 +271,6 @@ export default class StructureUrlEditor extends Vue {
 
     @Watch("value", { deep: true, immediate: true })
     onValueChanged(value: any, oldValue: any) {
-        console.log(
-            "==================== onValueChanged ====================",
-            value
-        );
         this.model = value;
         this.prepare();
         // .then(this.updateType);
@@ -283,23 +278,11 @@ export default class StructureUrlEditor extends Vue {
 
     @Watch("model", { immediate: true, deep: true })
     onModelUpdated() {
-        console.log(
-            "********************** model updated **********************"
-        );
         this.$emit("update:url", this.model);
-    }
-
-    @Watch("target", { immediate: true, deep: true })
-    onTargetChange() {
-        console.log(
-            "********************** target updated **********************"
-        );
-        this.model.target = this.target;
     }
 
     @Watch("rebuild", { immediate: true, deep: true })
     onRebuild() {
-        // this.updateType()
     }
 }
 </script>
