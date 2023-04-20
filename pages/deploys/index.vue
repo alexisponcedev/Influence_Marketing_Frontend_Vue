@@ -14,11 +14,11 @@
 
 
                         <div class="tw-h-96 tw-flex tw-flex-col tw-space-y-3 tw-items-center tw-justify-center">
-<!--                            <button class="tw-bg-green-500 tw-text-white tw-px-8 tw-py-4 tw-rounded-lg"-->
-<!--                                    @click="startDeploy">Deploy Changes-->
-<!--                            </button>-->
-<!--                            <p>deploy database from stage to production</p>-->
-                            <p>Deploy process is temporarily disabled , please be patient </p>
+                            <button class="tw-bg-green-500 tw-text-white tw-px-8 tw-py-4 tw-rounded-lg"
+                                    @click="startDeploy">Deploy Changes
+                            </button>
+                            <p>deploy database from stage to production</p>
+<!--                            <p>Deploy process is temporarily disabled , please be patient </p>-->
 
                         </div>
 
