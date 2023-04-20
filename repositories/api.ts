@@ -9935,10 +9935,11 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [tables] tables name separated with comma ex : tables&#x3D;pages,menu,...
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        doDeploy: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        doDeploy: async (brandId: number, tables?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
             assertParamExists('doDeploy', 'brandId', brandId)
             const localVarPath = `/page/doDeploy`;
@@ -9959,6 +9960,10 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (brandId !== undefined && brandId !== null) {
                 localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+            if (tables !== undefined && tables !== null) {
+                localVarHeaderParameter['Tables'] = String(tables);
             }
 
 
@@ -10788,11 +10793,12 @@ export const PageApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [tables] tables name separated with comma ex : tables&#x3D;pages,menu,...
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async doDeploy(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.doDeploy(brandId, options);
+        async doDeploy(brandId: number, tables?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.doDeploy(brandId, tables, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11043,11 +11049,12 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [tables] tables name separated with comma ex : tables&#x3D;pages,menu,...
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        doDeploy(brandId: number, options?: any): AxiosPromise<any> {
-            return localVarFp.doDeploy(brandId, options).then((request) => request(axios, basePath));
+        doDeploy(brandId: number, tables?: string, options?: any): AxiosPromise<any> {
+            return localVarFp.doDeploy(brandId, tables, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11290,12 +11297,13 @@ export class PageApi extends BaseAPI {
     /**
      * 
      * @param {number} brandId Brand ID
+     * @param {string} [tables] tables name separated with comma ex : tables&#x3D;pages,menu,...
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public doDeploy(brandId: number, options?: AxiosRequestConfig) {
-        return PageApiFp(this.configuration).doDeploy(brandId, options).then((request) => request(this.axios, this.basePath));
+    public doDeploy(brandId: number, tables?: string, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).doDeploy(brandId, tables, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -15707,6 +15715,190 @@ export class TemplateApi extends BaseAPI {
      */
     public updateTemplate(brandId: number, id: number, template: Template, options?: AxiosRequestConfig) {
         return TemplateApiFp(this.configuration).updateTemplate(brandId, id, template, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * TestApi - axios parameter creator
+ * @export
+ */
+export const TestApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Post ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        _7da359d7c1bf0aabba6769f3caaf5534: async (brandId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('_7da359d7c1bf0aabba6769f3caaf5534', 'brandId', brandId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('_7da359d7c1bf0aabba6769f3caaf5534', 'id', id)
+            const localVarPath = `/test/destroyPost/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        a574b3c3f0299134bca9254b82b513b6: async (brandId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('a574b3c3f0299134bca9254b82b513b6', 'brandId', brandId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('a574b3c3f0299134bca9254b82b513b6', 'id', id)
+            const localVarPath = `/test/destroyPage/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TestApi - functional programming interface
+ * @export
+ */
+export const TestApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TestApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Post ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async _7da359d7c1bf0aabba6769f3caaf5534(brandId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator._7da359d7c1bf0aabba6769f3caaf5534(brandId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async a574b3c3f0299134bca9254b82b513b6(brandId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.a574b3c3f0299134bca9254b82b513b6(brandId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * TestApi - factory interface
+ * @export
+ */
+export const TestApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TestApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Post ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        _7da359d7c1bf0aabba6769f3caaf5534(brandId: number, id: number, options?: any): AxiosPromise<any> {
+            return localVarFp._7da359d7c1bf0aabba6769f3caaf5534(brandId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} id Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        a574b3c3f0299134bca9254b82b513b6(brandId: number, id: number, options?: any): AxiosPromise<any> {
+            return localVarFp.a574b3c3f0299134bca9254b82b513b6(brandId, id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * TestApi - object-oriented interface
+ * @export
+ * @class TestApi
+ * @extends {BaseAPI}
+ */
+export class TestApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} id Post ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TestApi
+     */
+    public _7da359d7c1bf0aabba6769f3caaf5534(brandId: number, id: number, options?: AxiosRequestConfig) {
+        return TestApiFp(this.configuration)._7da359d7c1bf0aabba6769f3caaf5534(brandId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} id Page ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TestApi
+     */
+    public a574b3c3f0299134bca9254b82b513b6(brandId: number, id: number, options?: AxiosRequestConfig) {
+        return TestApiFp(this.configuration).a574b3c3f0299134bca9254b82b513b6(brandId, id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

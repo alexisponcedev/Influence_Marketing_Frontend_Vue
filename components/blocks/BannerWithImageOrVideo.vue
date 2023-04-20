@@ -1,50 +1,50 @@
 <template>
     <div>
-        <img src="/blocks/BannerWithImageOrVideo.png" alt=""/>
+        <img src="/blocks/BannerWithImageOrVideo.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class BannerWithImageOrVideo extends Vue {
-    @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
-
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, 'title', {
+        blockAddItem(this.model, "title", {
             id: 0,
             type: StructureType.SimpleText,
-            title: 'Title',
-            value: ''
-        })
+            title: "Title",
+            value: "",
+        });
 
-        blockAddItem(this.model, 'link', {
+        blockAddItem(this.model, "link", {
             id: 1,
             type: StructureType.Url,
-            title: 'Link',
-            value: ''
-        })
+            target: "_self",
+            title: "Link",
+            value: "",
+        });
 
-        blockAddItem(this.model, 'image', {
+        blockAddItem(this.model, "image", {
             id: 1,
             type: StructureType.Image,
-            title: 'Image',
-            src: '',
-            alt: ''
-        })
+            title: "Image",
+            src: "",
+            alt: "",
+        });
 
-        blockAddItem(this.model, 'video', {
+        blockAddItem(this.model, "video", {
             id: 1,
             type: StructureType.Video,
-            title: 'Video',
-            value: '',
-        })
+            title: "Video",
+            value: "",
+        });
     }
 
     get isEmpty(): Boolean {

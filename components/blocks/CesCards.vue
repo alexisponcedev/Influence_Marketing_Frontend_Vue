@@ -1,25 +1,33 @@
 <template>
     <div>
-        <img src="/blocks/CesCards.png" alt=""/>
+        <img src="/blocks/CesCards.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
-import {Theme} from "~/interfaces/ThemeEnum";
+import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class CesCards extends Vue {
-    @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, 'title', {id: 0, type: StructureType.SimpleText, title: 'Text', value: ''});
-        blockAddItem(this.model, 'block1', {
-            id: 1, type: StructureType.Object, title: "Block 1", value: {
+        blockAddItem(this.model, "title", {
+            id: 0,
+            type: StructureType.SimpleText,
+            title: "Text",
+            value: "",
+        });
+        blockAddItem(this.model, "block1", {
+            id: 1,
+            type: StructureType.Object,
+            title: "Block 1",
+            value: {
                 status: {
                     id: 0,
                     type: StructureType.Select,
@@ -30,11 +38,40 @@ export default class CesCards extends Vue {
                         { title: "Deactive", value: "deactive" },
                     ],
                 },
-                title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
-                link: { id: 1, type: StructureType.Url, title: '', value: '' },
-                backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
-                image1: { id: 4, type: StructureType.Image, title: "Image 1", src: '', alt: '' },
-                image2: { id: 5, type: StructureType.Image, title: "Image 2", src: '', alt: '' },
+                title: {
+                    id: 1,
+                    type: StructureType.SimpleText,
+                    title: "Title",
+                    value: "",
+                },
+                link: {
+                    id: 1,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "",
+                    value: "",
+                },
+                backgroundImage: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: "Background Image",
+                    src: "",
+                    alt: "",
+                },
+                image1: {
+                    id: 4,
+                    type: StructureType.Image,
+                    title: "Image 1",
+                    src: "",
+                    alt: "",
+                },
+                image2: {
+                    id: 5,
+                    type: StructureType.Image,
+                    title: "Image 2",
+                    src: "",
+                    alt: "",
+                },
                 theme: {
                     id: 0,
                     type: StructureType.Select,
@@ -45,10 +82,13 @@ export default class CesCards extends Vue {
                         { title: "Dark", value: Theme.dark },
                     ],
                 },
-            }
+            },
         });
-        blockAddItem(this.model, 'block2', {
-            id: 2, type: StructureType.Object, title: "Block 2", value: {
+        blockAddItem(this.model, "block2", {
+            id: 2,
+            type: StructureType.Object,
+            title: "Block 2",
+            value: {
                 status: {
                     id: 0,
                     type: StructureType.Select,
@@ -59,9 +99,26 @@ export default class CesCards extends Vue {
                         { title: "Deactive", value: "deactive" },
                     ],
                 },
-                title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
-                link: { id: 1, type: StructureType.Url, title: '', value: '' },
-                backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
+                title: {
+                    id: 1,
+                    type: StructureType.SimpleText,
+                    title: "Title",
+                    value: "",
+                },
+                link: {
+                    id: 1,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "",
+                    value: "",
+                },
+                backgroundImage: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: "Background Image",
+                    src: "",
+                    alt: "",
+                },
                 theme: {
                     id: 0,
                     type: StructureType.Select,
@@ -72,13 +129,33 @@ export default class CesCards extends Vue {
                         { title: "Dark", value: Theme.dark },
                     ],
                 },
-            }
+            },
         });
-        blockAddItem(this.model, 'list', {
-            id: 3, type: StructureType.List, title: 'List', newItem: {
-                title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-                backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
-                link: { id: 1, type: StructureType.Url, title: '', value: '' },
+        blockAddItem(this.model, "list", {
+            id: 3,
+            type: StructureType.List,
+            title: "List",
+            newItem: {
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "",
+                },
+                backgroundImage: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: "Background Image",
+                    src: "",
+                    alt: "",
+                },
+                link: {
+                    id: 1,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "",
+                    value: "",
+                },
                 theme: {
                     id: 0,
                     type: StructureType.Select,
@@ -92,9 +169,26 @@ export default class CesCards extends Vue {
             },
             value: [
                 {
-                    title: { id: 1, type: StructureType.String, title: 'Title', value: '' },
-                    backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
-                    link: { id: 1, type: StructureType.Url, title: '', value: '' },
+                    title: {
+                        id: 1,
+                        type: StructureType.String,
+                        title: "Title",
+                        value: "",
+                    },
+                    backgroundImage: {
+                        id: 2,
+                        type: StructureType.Image,
+                        title: "Background Image",
+                        src: "",
+                        alt: "",
+                    },
+                    link: {
+                        id: 1,
+                        type: StructureType.Url,
+                        target: "_self",
+                        title: "",
+                        value: "",
+                    },
                     theme: {
                         id: 0,
                         type: StructureType.Select,
@@ -105,11 +199,14 @@ export default class CesCards extends Vue {
                             { title: "Dark", value: Theme.dark },
                         ],
                     },
-                }
-            ]
+                },
+            ],
         });
-        blockAddItem(this.model, 'block3', {
-            id: 4, type: StructureType.Object, title: "Block 3", value: {
+        blockAddItem(this.model, "block3", {
+            id: 4,
+            type: StructureType.Object,
+            title: "Block 3",
+            value: {
                 status: {
                     id: 0,
                     type: StructureType.Select,
@@ -120,11 +217,40 @@ export default class CesCards extends Vue {
                         { title: "Deactive", value: "deactive" },
                     ],
                 },
-                title: { id: 1, type: StructureType.SimpleText, title: 'Title', value: '' },
-                link: { id: 1, type: StructureType.Url, title: '', value: '' },
-                backgroundImage: { id: 2, type: StructureType.Image, title: "Background Image", src: '', alt: '' },
-                image1: { id: 4, type: StructureType.Image, title: "Image 1", src: '', alt: '' },
-                image2: { id: 5, type: StructureType.Image, title: "Image 2", src: '', alt: '' },
+                title: {
+                    id: 1,
+                    type: StructureType.SimpleText,
+                    title: "Title",
+                    value: "",
+                },
+                link: {
+                    id: 1,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "",
+                    value: "",
+                },
+                backgroundImage: {
+                    id: 2,
+                    type: StructureType.Image,
+                    title: "Background Image",
+                    src: "",
+                    alt: "",
+                },
+                image1: {
+                    id: 4,
+                    type: StructureType.Image,
+                    title: "Image 1",
+                    src: "",
+                    alt: "",
+                },
+                image2: {
+                    id: 5,
+                    type: StructureType.Image,
+                    title: "Image 2",
+                    src: "",
+                    alt: "",
+                },
                 theme: {
                     id: 0,
                     type: StructureType.Select,
@@ -135,10 +261,15 @@ export default class CesCards extends Vue {
                         { title: "Dark", value: Theme.dark },
                     ],
                 },
-            }
+            },
         });
-        blockAddItem(this.model, 'link', {id: 5, type: StructureType.Url, title: 'Link', value: ''});
-
+        blockAddItem(this.model, "link", {
+            id: 5,
+            type: StructureType.Url,
+            target: "_self",
+            title: "Link",
+            value: "",
+        });
     }
 
     get isEmpty(): Boolean {

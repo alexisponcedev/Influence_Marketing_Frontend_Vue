@@ -1,57 +1,58 @@
 <template>
     <div>
-        <img src="/blocks/FlightNightConfirmationLaser.png" alt=""/>
+        <img src="/blocks/FlightNightConfirmationLaser.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class FlightNightConfirmationLaser extends Vue {
-    @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, 'logoImage', {
+        blockAddItem(this.model, "logoImage", {
             id: 1,
             type: StructureType.Image,
             title: "Logo Image",
-            src: '',
-            alt: ''
+            src: "",
+            alt: "",
         });
 
-        blockAddItem(this.model, 'modelImage', {
+        blockAddItem(this.model, "modelImage", {
             id: 2,
             type: StructureType.Image,
             title: "Model Image",
-            src: '',
-            alt: ''
+            src: "",
+            alt: "",
         });
 
-        blockAddItem(this.model, 'text', {
+        blockAddItem(this.model, "text", {
             id: 3,
             type: StructureType.SimpleText,
             title: "Text",
-            value: '',
+            value: "",
         });
 
-        blockAddItem(this.model, 'image', {
+        blockAddItem(this.model, "image", {
             id: 4,
             type: StructureType.Image,
             title: "Image",
-            src: '',
-            alt: ''
+            src: "",
+            alt: "",
         });
 
-        blockAddItem(this.model, 'link', {
+        blockAddItem(this.model, "link", {
             id: 5,
             type: StructureType.Url,
+            target: "_self",
             title: "Link",
-            value: '',
+            value: "",
         });
     }
 

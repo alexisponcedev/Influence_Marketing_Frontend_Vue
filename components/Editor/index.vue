@@ -1,27 +1,27 @@
 <template>
     <div v-if="editor">
-        <Editor-menu-bar :editor="editor" class="tw-mb-1"/>
-        <editor-content :editor="editor"/>
+        <Editor-menu-bar :editor="editor" class="tw-mb-1" />
+        <editor-content :editor="editor" />
     </div>
 </template>
 
 <script>
-import StarterKit from '@tiptap/starter-kit'
-import {Editor, EditorContent} from '@tiptap/vue-2'
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
-import Heading from '@tiptap/extension-heading'
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import Image from '@tiptap/extension-image'
-import Youtube from '@tiptap/extension-youtube'
-import TextAlign from '@tiptap/extension-text-align'
-import Link from '@tiptap/extension-link'
-import {Color} from '@tiptap/extension-color'
-import TextStyle from '@tiptap/extension-text-style'
+import StarterKit from "@tiptap/starter-kit";
+import { Editor, EditorContent } from "@tiptap/vue-2";
+import Document from "@tiptap/extension-document";
+import Paragraph from "@tiptap/extension-paragraph";
+import Text from "@tiptap/extension-text";
+import Heading from "@tiptap/extension-heading";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import Image from "@tiptap/extension-image";
+import Youtube from "@tiptap/extension-youtube";
+import TextAlign from "@tiptap/extension-text-align";
+import Link from "@tiptap/extension-link";
+import { Color } from "@tiptap/extension-color";
+import TextStyle from "@tiptap/extension-text-style";
 
 export default {
     components: {
@@ -31,31 +31,31 @@ export default {
     props: {
         value: {
             type: String,
-            default: '',
+            default: "",
         },
     },
 
-    emits: ['update:value'],
+    emits: ["update:value"],
 
     data() {
         return {
             editor: null,
-        }
+        };
     },
 
     watch: {
         value(value) {
             // HTML
-            const isSame = this.editor.getHTML() === value
+            const isSame = this.editor.getHTML() === value;
 
             // JSON
             // const isSame = JSON.stringify(this.editor.getJSON()) === JSON.stringify(value)
 
             if (isSame) {
-                return
+                return;
             }
 
-            this.editor.commands.setContent(value, false)
+            this.editor.commands.setContent(value, false);
         },
     },
 
@@ -71,12 +71,12 @@ export default {
                 Text,
                 TextStyle,
                 TextAlign.configure({
-                    types: ['heading', 'paragraph'],
+                    types: ["heading", "paragraph"],
                 }),
                 Image,
                 Youtube.configure({
                     inline: true,
-                    width: '100%',
+                    width: "100%",
                 }),
                 Table.configure({
                     resizable: true,
@@ -93,18 +93,18 @@ export default {
             onUpdate: () => {
                 // HTML
                 // this.$emit('update:modelValue', this.editor.getHTML())
-                this.$emit('input', this.editor.getHTML())
+                this.$emit("input", this.editor.getHTML());
 
                 // JSON
                 // this.$emit('update:modelValue', this.editor.getJSON())
             },
-        })
+        });
     },
 
     beforeUnmount() {
-        this.editor.destroy()
+        this.editor.destroy();
     },
-}
+};
 </script>
 
 <style lang="scss">
@@ -181,7 +181,7 @@ export default {
         height: auto;
 
         &.ProseMirror-selectednode {
-            outline: 3px solid #68CEF8;
+            outline: 3px solid #68cef8;
         }
     }
 }

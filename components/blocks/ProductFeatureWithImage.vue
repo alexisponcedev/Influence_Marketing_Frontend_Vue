@@ -1,19 +1,31 @@
 <template>
-    <div class="tw-flex tw-items-center " :class="{ 'tw-flex-row-reverse': model.direction.value === Direction.rtl }"
-         v-if="!isEmpty">
+    <div
+        class="tw-flex tw-items-center"
+        :class="{
+            'tw-flex-row-reverse': model.direction.value === Direction.rtl,
+        }"
+        v-if="!isEmpty"
+    >
         <div class="tw-flex-1">
-            <img :src="model.image.src" style="width: 720px; height: 720px" class="tw-bg-grey-50 tw-object-cover"
-                 :alt="model.image.alt"/>
+            <img
+                :src="model.image.src"
+                style="width: 720px; height: 720px"
+                class="tw-bg-grey-50 tw-object-cover"
+                :alt="model.image.alt"
+            />
         </div>
 
-        <div class="tw-flex-1 tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9">
-            <h4 class="small-title tw-text-black">{{ model.littleTitle.value }}</h4>
+        <div
+            class="tw-flex-1 tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9"
+        >
+            <h4 class="small-title tw-text-black">
+                {{ model.littleTitle.value }}
+            </h4>
             <h2 class="large-title tw-text-black">{{ model.title.value }}</h2>
             <p class="paragraph tw-text-black">
                 {{ model.description.value }}
             </p>
         </div>
-
     </div>
     <!--  <div>-->
     <!--    <img src="/blocks/ProductFeatureWithImage.png" alt=""/>-->
@@ -21,17 +33,17 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Theme} from "~/interfaces/ThemeEnum";
-import {Direction} from "~/interfaces/DirectionEnum";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import { Theme } from "~/interfaces/ThemeEnum";
+import { Direction } from "~/interfaces/DirectionEnum";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class ProductFeatureWithImage extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop(Number) readonly product_id!: number;
-    @VModel({type: Object}) model!: any;
+    @VModel({ type: Object }) model!: any;
 
     Theme = Theme;
     Direction = Direction;
@@ -40,65 +52,71 @@ export default class ProductFeatureWithImage extends Vue {
     loadingProduct: boolean = true;
 
     mounted() {
-        blockAddItem(this.model, 'theme', {
+        blockAddItem(this.model, "theme", {
             id: 0,
             type: StructureType.Select,
             title: "Theme",
             value: Theme.dark,
             items: [
-                {title: "Light", value: this.Theme.light},
-                {title: "Dark", value: this.Theme.dark},
+                { title: "Light", value: this.Theme.light },
+                { title: "Dark", value: this.Theme.dark },
             ],
         });
-        blockAddItem(this.model, 'direction', {
+        blockAddItem(this.model, "direction", {
             id: 1,
             type: StructureType.Select,
             title: "Direction",
             value: Direction.ltr,
             items: [
-                {title: "Left To Right", value: this.Direction.ltr},
-                {title: "Right To Left", value: this.Direction.rtl},
+                { title: "Left To Right", value: this.Direction.ltr },
+                { title: "Right To Left", value: this.Direction.rtl },
             ],
         });
-        blockAddItem(this.model, 'littleTitle', {
+        blockAddItem(this.model, "littleTitle", {
             id: 2,
             type: StructureType.String,
-            title: 'Little Title',
-            value: "4K ULED ™"
+            title: "Little Title",
+            value: "4K ULED ™",
         });
-        blockAddItem(this.model, 'title', {
+        blockAddItem(this.model, "title", {
             id: 3,
             type: StructureType.String,
-            title: 'Title',
-            value: "Sharper, smoother pictures"
+            title: "Title",
+            value: "Sharper, smoother pictures",
         });
-        blockAddItem(this.model, 'description', {
+        blockAddItem(this.model, "description", {
             id: 4,
             type: StructureType.String,
-            title: 'Description',
-            value: "4K greatness, but better. The U8G has our exclusive ULED technologies. They boost color, contrast, brightness, motion… we could go on. It’s the TV your old TV wants to be."
+            title: "Description",
+            value: "4K greatness, but better. The U8G has our exclusive ULED technologies. They boost color, contrast, brightness, motion… we could go on. It’s the TV your old TV wants to be.",
         });
-        blockAddItem(this.model, 'image', {
+        blockAddItem(this.model, "image", {
             id: 5,
             type: StructureType.Image,
-            title: 'Image',
-            src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/26632e121d/pdp-3_6-u9-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-t34p4p.jpg',
-            alt: 'featured image'
+            title: "Image",
+            src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/26632e121d/pdp-3_6-u9-50-50-feat-1__ScaleMaxWidthWzMwNDhd.jpg-t34p4p.jpg",
+            alt: "featured image",
         });
-        blockAddItem(this.model, 'link', {
+        blockAddItem(this.model, "link", {
             id: 6,
             type: StructureType.Url,
-            title: 'Shop TV',
-            value: "/"
+            target: "_self",
+            title: "Shop TV",
+            value: "/",
         });
-        blockAddItem(this.model, 'backgroundColor', {
+        blockAddItem(this.model, "backgroundColor", {
             id: 7,
             type: StructureType.Color,
-            title: 'Background color',
-            value: '#fff'
+            title: "Background color",
+            value: "#fff",
         });
-        blockAddItem(this.model, 'textColor', {id: 7, type: StructureType.Color, title: 'Text color', value: '#fff'});
-        this.model = {...this.model};
+        blockAddItem(this.model, "textColor", {
+            id: 7,
+            type: StructureType.Color,
+            title: "Text color",
+            value: "#fff",
+        });
+        this.model = { ...this.model };
     }
 
     get isEmpty(): Boolean {
