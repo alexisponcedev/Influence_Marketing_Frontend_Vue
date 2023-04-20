@@ -29,8 +29,6 @@
                         </button>
                     </div>
                 </v-col>
-                <pre>{{ editingItem }}</pre>
-                <pre>{{ model }}</pre>
             </v-row>
 
             <div
@@ -124,7 +122,7 @@ export default class MenuOptionEditor extends Vue {
             target: this.model.target,
             value: this.model.url,
         };
-        console.log(this.model , this.editingItem)
+        console.log(this.model, this.editingItem);
         this.enableEdit = true;
     }
 
