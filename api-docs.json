@@ -245,6 +245,17 @@
                     "Asset"
                 ],
                 "operationId": "AssetList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Asset Collection",
@@ -276,6 +287,17 @@
                     "Asset"
                 ],
                 "operationId": "AddAsset",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -313,6 +335,15 @@
                 "operationId": "doSearchAsset",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "string",
                         "in": "path",
                         "description": "string",
@@ -341,6 +372,15 @@
                 ],
                 "operationId": "GetAsset",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -380,6 +420,15 @@
                 ],
                 "operationId": "UpdateAsset",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -425,6 +474,15 @@
                 "operationId": "DeleteAsset",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "Asset ID",
@@ -451,29 +509,30 @@
                 ]
             }
         },
-        "/auth/login": {
-            "post": {
+        "/auth/inquiry/{publicKey}": {
+            "get": {
                 "tags": [
                     "Auth"
                 ],
-                "operationId": "AuthLogin",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Login"
-                            }
+                "operationId": "UserInquiry",
+                "parameters": [
+                    {
+                        "name": "publicKey",
+                        "in": "path",
+                        "description": "public Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
-                        "description": "User login",
+                        "description": "User Inquiry",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/LoginResource"
+                                    "$ref": "#/components/schemas/InquiryResource"
                                 }
                             }
                         }
@@ -481,43 +540,15 @@
                 }
             }
         },
-        "/auth/logout": {
+        "/auth/getUserInfo": {
             "get": {
                 "tags": [
                     "Auth"
                 ],
-                "operationId": "userLogout",
+                "operationId": "getUserInfo",
                 "responses": {
                     "200": {
-                        "description": "User logout"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/auth/changePassword": {
-            "put": {
-                "tags": [
-                    "Auth"
-                ],
-                "operationId": "changePassword",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Login"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Change Password",
+                        "description": "Get User Info",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -754,6 +785,17 @@
                     "Category"
                 ],
                 "operationId": "062b0e17b0b265231ad33ece1785b1fe",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Category Collection",
@@ -785,6 +827,17 @@
                     "Category"
                 ],
                 "operationId": "8a437c9b58cb5726b37615e8a5a9857c",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -821,6 +874,15 @@
                 ],
                 "operationId": "0fd985657bea3b2f3a919bdc16fec5b9",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -860,6 +922,15 @@
                 ],
                 "operationId": "2aeef67a0c5f4a9161985387cab71ccc",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -904,6 +975,15 @@
                 ],
                 "operationId": "c22ffb01fe96cd5baf6a4174466b2672",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -1146,6 +1226,145 @@
                                         }
                                     },
                                     "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/error": {
+            "get": {
+                "tags": [
+                    "Error"
+                ],
+                "operationId": "ErrorList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Error Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ErrorResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/error/{id}": {
+            "get": {
+                "tags": [
+                    "Error"
+                ],
+                "operationId": "GetError",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Error ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show a Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ErrorResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/error/setAsDone/{id}": {
+            "put": {
+                "tags": [
+                    "Error"
+                ],
+                "operationId": "setAsDone",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Error ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Error Update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
                                 }
                             }
                         }
@@ -1434,42 +1653,6 @@
                 }
             }
         },
-        "/husa/test/{pageId}": {
-            "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
-                "operationId": "GetPageForTest",
-                "parameters": [
-                    {
-                        "name": "pageId",
-                        "in": "path",
-                        "description": "Page ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Find a Page",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/components/schemas/PageResource"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/husa/getPages": {
             "get": {
                 "tags": [
@@ -1484,7 +1667,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/PageListResource"
+                                            "$ref": "#/components/schemas/HUSAPageListResource"
                                         }
                                     },
                                     "type": "object"
@@ -1689,7 +1872,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/TemplateResource"
+                                                "$ref": "#/components/schemas/HUSATemplateResource"
                                             }
                                         }
                                     },
@@ -1815,7 +1998,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/PageListResource"
+                                            "$ref": "#/components/schemas/HUSAPageListResource"
                                         }
                                     },
                                     "type": "object"
@@ -1851,7 +2034,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/PageListResource"
+                                            "$ref": "#/components/schemas/HUSAPageListResource"
                                         }
                                     },
                                     "type": "object"
@@ -1862,128 +2045,15 @@
                 }
             }
         },
-        "/media/uploadMedia": {
-            "post": {
-                "tags": [
-                    "Media"
-                ],
-                "operationId": "UploadMedia",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "media_type_id",
-                                    "file"
-                                ],
-                                "properties": {
-                                    "media_type_id": {
-                                        "type": "integer",
-                                        "default": "1"
-                                    },
-                                    "file": {
-                                        "description": "file to upload",
-                                        "type": "file",
-                                        "format": "file"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Upload Media",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Media"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/media/downloadMedia/{id}": {
+        "/husa/getMenus": {
             "get": {
                 "tags": [
-                    "Media"
+                    "HUSA APIs"
                 ],
-                "operationId": "downloadMedia",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Media ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
+                "operationId": "GetMenuList",
                 "responses": {
                     "200": {
-                        "description": "Download a Media."
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/media/deleteMedia/{id}": {
-            "delete": {
-                "tags": [
-                    "Media"
-                ],
-                "operationId": "288ae9e127972bc1367d0af34297f27c",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Media ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Delete a Media.",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/mediatype": {
-            "get": {
-                "tags": [
-                    "Media Type"
-                ],
-                "operationId": "0df5be1eea3e1425a62af192ccf1a514",
-                "responses": {
-                    "200": {
-                        "description": "Media Type Collection",
+                        "description": "Menu Collection",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1991,7 +2061,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/MediaTypeResource"
+                                                "$ref": "#/components/schemas/HUSAMenuResource"
                                             }
                                         }
                                     },
@@ -2000,58 +2070,242 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            },
-            "post": {
+                }
+            }
+        },
+        "/husa/searchPage/{string}": {
+            "get": {
                 "tags": [
-                    "Media Type"
+                    "HUSA APIs"
                 ],
-                "operationId": "cecdbcc2202fc94e01edcf61f8f89119",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/MediaType"
+                "operationId": "doSearchPage",
+                "parameters": [
+                    {
+                        "name": "string",
+                        "in": "path",
+                        "description": "string",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "Brand Id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "search by product title or model."
+                    }
+                }
+            }
+        },
+        "/husa/searchProduct": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "searchProductByCategoryId",
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "Category ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "string",
+                        "in": "query",
+                        "description": "string",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "condition",
+                        "in": "query",
+                        "description": "condition: or/and, default: or",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filters[]",
+                        "in": "query",
+                        "description": "filters array",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "sort by newest / oldest",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "page type: product or support",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "Brand Id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status[]",
+                        "in": "query",
+                        "description": "array of status_id",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
-                    "201": {
-                        "description": "Media Type Create",
+                    "200": {
+                        "description": "search product By Category Id",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/MediaType"
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/BlockResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             }
         },
-        "/mediatype/{id}": {
+        "/husa/getRedirects": {
             "get": {
                 "tags": [
-                    "Media Type"
+                    "HUSA APIs"
                 ],
-                "operationId": "ebb7786f5d04ac4384dd799a77052087",
+                "operationId": "GetRedirectList",
+                "responses": {
+                    "200": {
+                        "description": "Get Redirect List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RedirectResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getSettings": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetSettingList",
+                "responses": {
+                    "200": {
+                        "description": "Get Setting List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/SettingResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getPosts": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetAllPosts",
+                "responses": {
+                    "200": {
+                        "description": "Post Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/HUSAPostResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getPostInfo/{postId}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetPostById",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "postId",
                         "in": "path",
-                        "description": "Media Type ID",
+                        "description": "Post ID",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2060,13 +2314,288 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Find a media type",
+                        "description": "Show a Post By Id",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/MediaTypeResource"
+                                            "$ref": "#/components/schemas/PostResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getNotifications/{pageId}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "getNotifications",
+                "parameters": [
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Notifications",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Notification"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/searchPost": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "searchPost",
+                "parameters": [
+                    {
+                        "name": "string",
+                        "in": "query",
+                        "description": "string",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "search post",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "route": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getPaginatePosts": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "getPaginatePosts",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Number per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get paginate Posts",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/HUSAPostResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/addError": {
+            "post": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "AddError",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Error"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Error Create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getPageByUrl/{url}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetPageByUrl",
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "path",
+                        "description": "Page URL",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Page By url",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/husa/getPageDetail/{value}": {
+            "get": {
+                "tags": [
+                    "HUSA APIs"
+                ],
+                "operationId": "GetPageDetail",
+                "parameters": [
+                    {
+                        "name": "value",
+                        "in": "path",
+                        "description": "Page ID or Page Url",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Page",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/history/{id}": {
+            "get": {
+                "tags": [
+                    "History"
+                ],
+                "operationId": "ShowHistory",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "History ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a History",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/HistoryResource"
                                         }
                                     },
                                     "type": "object"
@@ -2080,17 +2609,169 @@
                         "bearerAuth": []
                     }
                 ]
-            },
-            "put": {
+            }
+        },
+        "/history/getHistories": {
+            "get": {
                 "tags": [
-                    "Media Type"
+                    "History"
                 ],
-                "operationId": "b1a66a80eeeaf7177f395b0f3652e457",
+                "operationId": "GetAllHistories",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/HistoryResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/history/getHistories/{modelName}": {
+            "get": {
+                "tags": [
+                    "History"
+                ],
+                "operationId": "getHistoriesByModelName",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "modelName",
                         "in": "path",
-                        "description": "Media Type ID",
+                        "description": "Model Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History Collection ByModelName",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/HistoryResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/history/getHistory/{modelName}/{modelId}": {
+            "get": {
+                "tags": [
+                    "History"
+                ],
+                "operationId": "GetHistoryByModelNameModelId",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "modelName",
+                        "in": "path",
+                        "description": "Model Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "modelId",
+                        "in": "path",
+                        "description": "Model Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a History By ModelName & ModelId",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/HistoryResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/history/titleUpdate": {
+            "put": {
+                "tags": [
+                    "History"
+                ],
+                "operationId": "HistoryTitleUpdate",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2102,48 +2783,14 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/MediaType"
+                                "$ref": "#/components/schemas/HistoryRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "202": {
-                        "description": "Media Type Update",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/MediaType"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "Media Type"
-                ],
-                "operationId": "e38550531275a28f7911f967a9bdd3f9",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Media Type ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Media Type Delete",
+                        "description": "History Title Update",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -2164,6 +2811,17 @@
                     "Menu"
                 ],
                 "operationId": "MenuList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Menu Collection",
@@ -2195,6 +2853,17 @@
                     "Menu"
                 ],
                 "operationId": "AddMenu",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -2231,6 +2900,15 @@
                 ],
                 "operationId": "GetMenu",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2270,6 +2948,15 @@
                 ],
                 "operationId": "UpdateMenu",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2315,6 +3002,15 @@
                 "operationId": "DeleteMenu",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "Menu ID",
@@ -2341,12 +3037,293 @@
                 ]
             }
         },
+        "/notification": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "NotificationList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/NotificationResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "ImportNotification",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Add Notification",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/notification/{id}": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "ShowNotification",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Notification",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/NotificationResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "UpdateNotification",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Page Update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Notification"
+                ],
+                "operationId": "DeleteNotification",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Notification ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Notification Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/pim/changeStatus/{productId}/{status}": {
+            "put": {
+                "tags": [
+                    "PIM"
+                ],
+                "operationId": "changePageStatus",
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Product Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Status",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Set Page Status",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/page": {
             "get": {
                 "tags": [
                     "Page"
                 ],
                 "operationId": "PageList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Page Collection",
@@ -2378,6 +3355,17 @@
                     "Page"
                 ],
                 "operationId": "AddPage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -2407,6 +3395,51 @@
                 ]
             }
         },
+        "/page/getProductRoutes/{id}": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "getProductRoutes",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Product Routes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/page/{id}": {
             "get": {
                 "tags": [
@@ -2414,6 +3447,15 @@
                 ],
                 "operationId": "ShowPage",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2453,6 +3495,15 @@
                 ],
                 "operationId": "UpdatePage",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2498,6 +3549,15 @@
                 "operationId": "DeletePage",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "Page ID",
@@ -2531,6 +3591,15 @@
                 ],
                 "operationId": "GetPage",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "pageId",
                         "in": "path",
@@ -2573,6 +3642,15 @@
                 "operationId": "UpdatePageDraft",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "pageId",
                         "in": "path",
                         "description": "Page ID",
@@ -2609,13 +3687,22 @@
                 ]
             }
         },
-        "/page/saveContent/{pageId}": {
+        "/page/saveWidgets/{pageId}": {
             "put": {
                 "tags": [
                     "Page"
                 ],
-                "operationId": "updatePageWidgets",
+                "operationId": "UpdatePageWidgets",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "pageId",
                         "in": "path",
@@ -2631,14 +3718,14 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Content"
+                                "$ref": "#/components/schemas/Widgets"
                             }
                         }
                     }
                 },
                 "responses": {
                     "202": {
-                        "description": "Page Update Content",
+                        "description": "Page Update Widgets",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -2660,6 +3747,15 @@
                 ],
                 "operationId": "GetPageDraft",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2694,12 +3790,584 @@
                 ]
             }
         },
+        "/page/getDynamicPages": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "GetListDynamicPage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dynamic Page Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/DynamicPageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/getSummaryPages": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "GetListAllPages",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Summary Page Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/DynamicPageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/doDeploy": {
+            "post": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "doDeploy",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Page deploy",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/getPage/{modelType}/{modelId}": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "GetPageByModelTypeModelId",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "modelType",
+                        "in": "path",
+                        "description": "Model Type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "modelId",
+                        "in": "path",
+                        "description": "Model Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Page By ModelType & ModelId",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/lock/{pageId}": {
+            "put": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "lockPage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Page Lock",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/unLock/{pageId}": {
+            "put": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "unLockPage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Page unLock",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/getTrashedPages": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "GetTrashedPages",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Trashed Page Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/DynamicPageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/getTrashedPage/{pageId}": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "GetTrashedPage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Page",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/restorePage/{pageId}": {
+            "put": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "RestorePage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Page Restore",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/forceDelete/{pageId}": {
+            "delete": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "ForceDeletePage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Page Force Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/deployStageDbToProduction": {
+            "post": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "deployStageDbToProd",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "Tables",
+                        "in": "header",
+                        "description": "tables name separated with comma ex : tables=pages,menu,...",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Page deploy",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/deployProductionDbToStage": {
+            "post": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "deployProdDbToStage",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Page deploy",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/page/duplicate": {
+            "post": {
+                "tags": [
+                    "Page"
+                ],
+                "operationId": "0f917f275a0d5168341cc92753f96732",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Duplicate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Duplicate a Page",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Page"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/post": {
             "get": {
                 "tags": [
                     "Post"
                 ],
                 "operationId": "PostList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Post Collection",
@@ -2710,7 +4378,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/PostResource"
+                                                "$ref": "#/components/schemas/PostListResource"
                                             }
                                         }
                                     },
@@ -2731,6 +4399,17 @@
                     "Post"
                 ],
                 "operationId": "AddPost",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -2767,6 +4446,15 @@
                 ],
                 "operationId": "GetPost",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2806,6 +4494,15 @@
                 ],
                 "operationId": "UpdatePost",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -2851,6 +4548,15 @@
                 "operationId": "DeletePost",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "Post ID",
@@ -2884,6 +4590,15 @@
                 ],
                 "operationId": "getPostsByCategoryId",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "categoryId",
                         "in": "path",
@@ -3093,6 +4808,288 @@
                         "content": {
                             "application/json": {
                                 "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/redirect": {
+            "get": {
+                "tags": [
+                    "Redirect"
+                ],
+                "operationId": "RedirectList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Redirect Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RedirectResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Redirect"
+                ],
+                "operationId": "AddRedirect",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Redirect"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Redirect Create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Redirect"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/redirect/{id}": {
+            "get": {
+                "tags": [
+                    "Redirect"
+                ],
+                "operationId": "GetRedirect",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Redirect ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Redirect",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/RedirectResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Redirect"
+                ],
+                "operationId": "UpdateRedirect",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Redirect ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Redirect"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Redirect Update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Redirect"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Redirect"
+                ],
+                "operationId": "DeleteRedirect",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Redirect ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Redirect Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/redirect/getRedirects/{pageId}": {
+            "get": {
+                "tags": [
+                    "Redirect"
+                ],
+                "operationId": "getRedirectsByPageId",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageId",
+                        "in": "path",
+                        "description": "Page ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Redirects",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/RedirectResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -3747,6 +5744,265 @@
                 ]
             }
         },
+        "/setting": {
+            "get": {
+                "tags": [
+                    "Setting"
+                ],
+                "operationId": "SettingList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Setting Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/SettingResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Setting"
+                ],
+                "operationId": "AddSetting",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "settings": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "value": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Setting Create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "settings": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Setting"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/setting/{id}": {
+            "get": {
+                "tags": [
+                    "Setting"
+                ],
+                "operationId": "GetSetting",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Setting ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Setting",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/SettingResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Setting"
+                ],
+                "operationId": "UpdateSetting",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Setting ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Setting"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Setting Update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Setting"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Setting"
+                ],
+                "operationId": "DeleteSetting",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Setting ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Setting Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/site": {
             "get": {
                 "tags": [
@@ -4014,12 +6270,117 @@
                 ]
             }
         },
+        "/status": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "operationId": "cf600ec9f1950b8dd71b7f1dc100d49d",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status Collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/StatusResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/status/{id}": {
+            "get": {
+                "tags": [
+                    "Status"
+                ],
+                "operationId": "828944b026e392e8a9d24e0e25d6ffed",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Status ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Find a Status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StatusResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/template": {
             "get": {
                 "tags": [
                     "Template"
                 ],
                 "operationId": "TemplateList",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Template Collection",
@@ -4051,6 +6412,17 @@
                     "Template"
                 ],
                 "operationId": "AddTemplate",
+                "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -4087,6 +6459,15 @@
                 ],
                 "operationId": "GetTemplate",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -4126,6 +6507,15 @@
                 ],
                 "operationId": "UpdateTemplate",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -4171,6 +6561,15 @@
                 "operationId": "DeleteTemplate",
                 "parameters": [
                     {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "Template ID",
@@ -4197,168 +6596,26 @@
                 ]
             }
         },
-        "/user": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "operationId": "UserList",
-                "responses": {
-                    "200": {
-                        "description": "User Collection",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/UserResource"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/user/register": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "operationId": "AddUser",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Register",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UserResource"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/user/{id}": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "operationId": "getUser",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "User ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Find a user",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/components/schemas/UserResource"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            },
-            "put": {
-                "tags": [
-                    "User"
-                ],
-                "operationId": "UpdateUser",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "User ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "202": {
-                        "description": "User Update",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UserResource"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            },
+        "/test/destroyPage/{id}": {
             "delete": {
                 "tags": [
-                    "User"
+                    "Test"
                 ],
-                "operationId": "DeleteUser",
+                "operationId": "a574b3c3f0299134bca9254b82b513b6",
                 "parameters": [
+                    {
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "User ID",
+                        "description": "Page ID",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -4367,33 +6624,70 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "User Delete",
+                        "description": "Page Delete",
                         "content": {
                             "application/json": {
                                 "schema": {}
                             }
                         }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
                     }
-                },
-                "security": [
+                }
+            }
+        },
+        "/test/destroyPost/{id}": {
+            "delete": {
+                "tags": [
+                    "Test"
+                ],
+                "operationId": "7da359d7c1bf0aabba6769f3caaf5534",
+                "parameters": [
                     {
-                        "bearerAuth": []
+                        "name": "BrandId",
+                        "in": "header",
+                        "description": "Brand ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
-                ]
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Post Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
             }
         }
     },
     "components": {
         "schemas": {
+            "HistoryRequest": {
+                "title": "History Request",
+                "description": "HistoryRequest body data",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "AdventureResource": {
                 "title": "Adventure Resource",
                 "description": "Adventure Resource model",
@@ -4466,6 +6760,9 @@
                     },
                     "thumb": {
                         "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -4529,6 +6826,9 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -4547,6 +6847,321 @@
                         "type": "array",
                         "items": {
                             "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "DynamicPageResource": {
+                "title": "Dynamic Page Resource",
+                "description": "Dynamic Page Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "route": {
+                        "type": "string"
+                    },
+                    "redirect": {
+                        "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_type": {
+                        "type": "string"
+                    },
+                    "template_id": {
+                        "type": "integer"
+                    },
+                    "locked_by": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ErrorResource": {
+                "title": "Error Resource",
+                "description": "Error Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "route": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "HistoryResource": {
+                "title": "History Resource",
+                "description": "History Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_name": {
+                        "type": "string"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "HUSAMenuResource": {
+                "title": "HUSA Menu Resource",
+                "description": "HUSA Menu Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "HUSAPageListResource": {
+                "title": "Page List Resource",
+                "description": "Page List Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "route": {
+                        "type": "string"
+                    },
+                    "redirect": {
+                        "type": "string"
+                    },
+                    "fetchUrl": {
+                        "type": "string"
+                    },
+                    "meta": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_type": {
+                        "type": "string"
+                    },
+                    "template_id": {
+                        "type": "integer"
+                    },
+                    "locked_by": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "notifications": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "text": {
+                                    "type": "string"
+                                },
+                                "text_color": {
+                                    "type": "string"
+                                },
+                                "background_color": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "post": {
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "HUSAPostResource": {
+                "title": "HUSA Post Resource",
+                "description": "HUSA Post Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "route": {
+                        "type": "string"
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "meta": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "status": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "HUSATemplateResource": {
+                "title": "HUSA Template Resource",
+                "description": "HUSA Template Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "InquiryResource": {
+                "title": "Inquiry Resource",
+                "description": "Inquiry Resource model",
+                "properties": {
+                    "user_name": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "level": {
+                        "type": "string"
+                    },
+                    "application": {
+                        "type": "string"
+                    },
+                    "brands": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "brand": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "logo": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 },
@@ -4580,19 +7195,6 @@
                 },
                 "type": "object"
             },
-            "MediaTypeResource": {
-                "title": "MediaType Resource",
-                "description": "MediaType Resource model",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
             "MenuResource": {
                 "title": "Menu Resource",
                 "description": "Menu Resource model",
@@ -4603,8 +7205,59 @@
                     "title": {
                         "type": "string"
                     },
-                    "url": {
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "NotificationResource": {
+                "title": "Notification Resource",
+                "description": "Notification Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "text": {
                         "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "text_color": {
+                        "type": "string"
+                    },
+                    "background_color": {
+                        "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "page_Ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "pages": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -4683,6 +7336,9 @@
                     "route": {
                         "type": "string"
                     },
+                    "redirect": {
+                        "type": "string"
+                    },
                     "fetchUrl": {
                         "type": "string"
                     },
@@ -4692,17 +7348,60 @@
                             "type": "object"
                         }
                     },
-                    "content": {
+                    "widgets": {
                         "type": "array",
                         "items": {
                             "type": "object"
                         }
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     },
                     "model_id": {
                         "type": "integer"
                     },
                     "model_type": {
                         "type": "string"
+                    },
+                    "template_id": {
+                        "type": "integer"
+                    },
+                    "locked_by": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "notifications": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "text": {
+                                    "type": "string"
+                                },
+                                "text_color": {
+                                    "type": "string"
+                                },
+                                "background_color": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "post": {
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -4720,6 +7419,9 @@
                     "route": {
                         "type": "string"
                     },
+                    "redirect": {
+                        "type": "string"
+                    },
                     "fetchUrl": {
                         "type": "string"
                     },
@@ -4735,17 +7437,82 @@
                             "type": "object"
                         }
                     },
-                    "content": {
+                    "widgets": {
                         "type": "array",
                         "items": {
                             "type": "object"
                         }
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     },
                     "model_id": {
                         "type": "integer"
                     },
                     "model_type": {
                         "type": "string"
+                    },
+                    "template_id": {
+                        "type": "integer"
+                    },
+                    "locked_by": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "notifications": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "text": {
+                                    "type": "string"
+                                },
+                                "text_color": {
+                                    "type": "string"
+                                },
+                                "background_color": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PostListResource": {
+                "title": "Post List Resource",
+                "description": "Post List Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "page": {
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -4760,17 +7527,35 @@
                     "title": {
                         "type": "string"
                     },
+                    "route": {
+                        "type": "string"
+                    },
                     "category_id": {
                         "type": "integer"
                     },
-                    "text": {
-                        "type": "string"
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "meta": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     },
                     "tags": {
-                        "type": "string"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
-                    "url": {
-                        "type": "string"
+                    "status": {
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -4796,6 +7581,37 @@
                         "items": {
                             "type": "object"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "RedirectResource": {
+                "title": "Redirect Resource",
+                "description": "Redirect Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "page_id": {
+                        "type": "integer"
+                    },
+                    "source_url": {
+                        "type": "string"
+                    },
+                    "page_route": {
+                        "type": "string"
+                    },
+                    "redirect_type": {
+                        "type": "string"
+                    },
+                    "redirect_url": {
+                        "type": "string"
+                    },
+                    "redirect_code": {
+                        "type": "integer"
+                    },
+                    "regex": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -4919,6 +7735,28 @@
                 },
                 "type": "object"
             },
+            "SettingResource": {
+                "title": "Setting Resource",
+                "description": "Setting Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
             "SiteResource": {
                 "title": "Site Resource",
                 "description": "Site Resource model",
@@ -4938,6 +7776,19 @@
                 },
                 "type": "object"
             },
+            "StatusResource": {
+                "title": "Status Resource",
+                "description": "Status Resource model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "TemplateResource": {
                 "title": "Template Resource",
                 "description": "Template Resource model",
@@ -4948,30 +7799,14 @@
                     "name": {
                         "type": "string"
                     },
-                    "content": {
+                    "widgets": {
                         "type": "array",
                         "items": {
                             "type": "object"
                         }
-                    }
-                },
-                "type": "object"
-            },
-            "UserResource": {
-                "title": "User Resource",
-                "description": "User Resource model",
-                "properties": {
-                    "id": {
+                    },
+                    "brand_id": {
                         "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "level": {
-                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -5043,6 +7878,9 @@
                     },
                     "thumb": {
                         "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -5109,6 +7947,9 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -5138,23 +7979,20 @@
                     "name": "Constant"
                 }
             },
-            "Content": {
-                "title": "Content",
-                "description": "Content model",
+            "Deploy": {
+                "title": "Deploy",
+                "description": "Deploy model",
                 "properties": {
-                    "page_id": {
+                    "id": {
                         "type": "integer"
                     },
-                    "page_content": {
-                        "type": "array",
-                        "items": {
-                            "type": "object"
-                        }
+                    "actions": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
                 "xml": {
-                    "name": "Content"
+                    "name": "Deploy"
                 }
             },
             "Draft": {
@@ -5176,6 +8014,78 @@
                     "name": "Draft"
                 }
             },
+            "Duplicate": {
+                "title": "Duplicate",
+                "description": "Duplicate model",
+                "properties": {
+                    "page_id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "route": {
+                        "type": "string"
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Duplicate"
+                }
+            },
+            "Error": {
+                "title": "Error",
+                "description": "Error model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "route": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Error"
+                }
+            },
+            "History": {
+                "title": "History",
+                "description": "History model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "model_id": {
+                        "type": "integer"
+                    },
+                    "model_name": {
+                        "type": "string"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "History"
+                }
+            },
             "Login": {
                 "title": "Login",
                 "description": "Login model",
@@ -5192,41 +8102,6 @@
                     "name": "Login"
                 }
             },
-            "Media": {
-                "title": "Media",
-                "description": "Media model",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "filename": {
-                        "type": "string"
-                    },
-                    "media_type_id": {
-                        "type": "integer"
-                    }
-                },
-                "type": "object",
-                "xml": {
-                    "name": "Media"
-                }
-            },
-            "MediaType": {
-                "title": "MediaType",
-                "description": "MediaType model",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "type": "object",
-                "xml": {
-                    "name": "MediaType"
-                }
-            },
             "Menu": {
                 "title": "Menu",
                 "description": "Menu model",
@@ -5237,13 +8112,69 @@
                     "title": {
                         "type": "string"
                     },
-                    "url": {
-                        "type": "string"
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
                 "xml": {
                     "name": "Menu"
+                }
+            },
+            "Notification": {
+                "title": "Notification",
+                "description": "Notification model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "text_color": {
+                        "type": "string"
+                    },
+                    "background_color": {
+                        "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "page_Ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Notification"
+                }
+            },
+            "NotificationPage": {
+                "title": "NotificationPage",
+                "description": "Notification Page model",
+                "properties": {
+                    "notification_id": {
+                        "type": "integer"
+                    },
+                    "page_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "NotificationPage"
                 }
             },
             "Page": {
@@ -5257,6 +8188,9 @@
                         "type": "string"
                     },
                     "route": {
+                        "type": "string"
+                    },
+                    "redirect": {
                         "type": "string"
                     },
                     "fetchUrl": {
@@ -5275,11 +8209,35 @@
                             "type": "integer"
                         }
                     },
+                    "draft": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
                     "model_id": {
                         "type": "integer"
                     },
                     "model_type": {
                         "type": "string"
+                    },
+                    "template_id": {
+                        "type": "integer"
+                    },
+                    "locked_by": {
+                        "type": "integer"
+                    },
+                    "status_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -5297,17 +8255,35 @@
                     "title": {
                         "type": "string"
                     },
+                    "route": {
+                        "type": "string"
+                    },
                     "category_id": {
                         "type": "integer"
                     },
-                    "text": {
-                        "type": "string"
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    },
+                    "meta": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     },
                     "tags": {
-                        "type": "string"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
-                    "url": {
-                        "type": "string"
+                    "status": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -5341,6 +8317,40 @@
                 "type": "object",
                 "xml": {
                     "name": "Product"
+                }
+            },
+            "Redirect": {
+                "title": "Redirect",
+                "description": "Redirect model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "page_id": {
+                        "type": "integer"
+                    },
+                    "source_url": {
+                        "type": "string"
+                    },
+                    "redirect_type": {
+                        "type": "string"
+                    },
+                    "redirect_url": {
+                        "type": "string"
+                    },
+                    "redirect_code": {
+                        "type": "integer"
+                    },
+                    "regex": {
+                        "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Redirect"
                 }
             },
             "Region": {
@@ -5406,6 +8416,31 @@
                     "name": "Section"
                 }
             },
+            "Setting": {
+                "title": "Setting",
+                "description": "Setting model",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "brand_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Setting"
+                }
+            },
             "Site": {
                 "title": "Site",
                 "description": "Site model",
@@ -5447,9 +8482,9 @@
                     "name": "Slide"
                 }
             },
-            "Subject": {
-                "title": "Subject",
-                "description": "Subject model",
+            "Status": {
+                "title": "Status",
+                "description": "Status model",
                 "properties": {
                     "id": {
                         "type": "integer"
@@ -5460,7 +8495,7 @@
                 },
                 "type": "object",
                 "xml": {
-                    "name": "Subject"
+                    "name": "Status"
                 }
             },
             "Template": {
@@ -5478,6 +8513,9 @@
                         "items": {
                             "type": "object"
                         }
+                    },
+                    "brand_id": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -5509,6 +8547,25 @@
                 "xml": {
                     "name": "User"
                 }
+            },
+            "Widgets": {
+                "title": "Widgets",
+                "description": "Widgets model",
+                "properties": {
+                    "page_id": {
+                        "type": "integer"
+                    },
+                    "widgets": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Widgets"
+                }
             }
         },
         "securitySchemes": {
@@ -5525,6 +8582,10 @@
         },
         {
             "name": "HUSA APIs",
+            "description": ""
+        },
+        {
+            "name": "PIM",
             "description": ""
         }
     ]
