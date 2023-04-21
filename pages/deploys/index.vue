@@ -42,12 +42,12 @@ export default class Deploys extends Vue {
     loading : boolean = false;
 
     async startDeploy() {
-        // this.loading = true;
-        // await Api.Page.deployStageDbToProd().then(() => {
-        //     setTimeout(() => {
-        //         this.loading = false;
-        //     }, 1000)
-        // });
+        this.loading = true;
+        await Api.Page.deployStageDbToProd().then(() => {
+            setTimeout(() => {
+                this.loading = false;
+            }, 1000)
+        });
     }
 }
 </script>
