@@ -65,8 +65,6 @@
             />
         </div>
         <p class="tw-text-blue-500 tw-my-1 tw-pl-1">{{ model.value }}</p>
-
-        <pre>{{model}}</pre>
     </div>
 </template>
 
@@ -244,7 +242,7 @@ export default class StructureUrlEditor extends Vue {
     render: number = 0;
 
     mounted() {
-        if(!this.model.target) this.model={... this.model , target : this.model.target || 'self'}
+        if (!this.model.target) this.model = { ...this.model, target: "_self" };
         this.prepare().then(this.updateType);
         EventBus.listen("id-selector-changed", () => {
             this.render++;
@@ -282,7 +280,6 @@ export default class StructureUrlEditor extends Vue {
     }
 
     @Watch("rebuild", { immediate: true, deep: true })
-    onRebuild() {
-    }
+    onRebuild() {}
 }
 </script>
