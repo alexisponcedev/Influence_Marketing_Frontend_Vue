@@ -91,6 +91,16 @@ export const BLOCKS = () => {
                         title: "Firmware Banner",
                         image: "FirmwareBanner.png",
                         category: "ImageBox",
+                    }, {
+                        name: "VideoOverBanner",
+                        title: "Video Over Banner",
+                        image: "VideoOverBanner.png",
+                        category: "ImageBox",
+                    }, {
+                        name: "VideoAndImageBanner",
+                        title: "Video And Image Banner",
+                        image: "VideoAndImageBanner.png",
+                        category: "ImageBox",
                     },
                 ],
             },
