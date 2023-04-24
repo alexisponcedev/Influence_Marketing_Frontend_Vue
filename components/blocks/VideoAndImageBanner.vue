@@ -16,6 +16,14 @@ export default class VideoAndImageBanner extends Vue {
     @VModel({ type: Object }) model!: any;
 
     mounted() {
+        blockAddItem(this.model, "backgroundImage", {
+            id: 1,
+            type: StructureType.Image,
+            title: "Background Image",
+            src: "",
+            alt: "",
+        });
+
         blockAddItem(this.model, "image", {
             id: 2,
             type: StructureType.Image,
