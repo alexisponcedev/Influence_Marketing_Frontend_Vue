@@ -6,12 +6,16 @@
         <v-list v-if="files && files.length" subheader two-line>
             <v-list-item v-for="(file, index) in files" :key="index">
                 <v-list-item-avatar>
-                    <v-icon class="primary" dark> mdi-file-document-outline</v-icon>
+                    <v-icon class="primary" dark>
+                        mdi-file-document-outline</v-icon
+                    >
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-title v-text="file.name"/>
-                    <v-list-item-subtitle v-text="'Size: ' + formatFileSize(file.size)"/>
+                    <v-list-item-title v-text="file.name" />
+                    <v-list-item-subtitle
+                        v-text="'Size: ' + formatFileSize(file.size)"
+                    />
                 </v-list-item-content>
 
                 <v-list-item-action>
@@ -32,9 +36,9 @@
         >
             <v-card-text class="text-center">
                 <v-icon x-large> mdi-cloud-upload-outline</v-icon>
-                <br/>
+                <br />
                 <strong> Upload a file or drag and drop </strong>
-                <br/>
+                <br />
                 <small>
                     {{ field.placeholder }}
                 </small>
@@ -48,19 +52,19 @@
             @change="addFiles"
         />
         <div class="display-none">
-            <v-text-field v-model="files.length" :rules="field.rules"/>
+            <v-text-field v-model="files.length" :rules="field.rules" />
         </div>
     </v-col>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Emit} from "vue-property-decorator";
-import {formatFileSize} from "@/utils/formatHelper";
-import {FormField} from "@/models";
+import { Vue, Component, Prop, VModel, Emit } from "vue-property-decorator";
+import formatFileSize from "@/utils/format/fileSize";
+import { FormField } from "@/models";
 
 @Component
 export default class MultipleFileFormField extends Vue {
-    @Prop({default: true}) readonly multiple!: Boolean;
+    @Prop({ default: true }) readonly multiple!: Boolean;
     @Prop(Object) readonly field!: FormField;
     @VModel() model?: Array<any> | any;
 
@@ -76,7 +80,7 @@ export default class MultipleFileFormField extends Vue {
 
     @Emit("filesAdded")
     addFiles(files: Array<any>) {
-        [...files].forEach(async file => {
+        [...files].forEach(async (file) => {
             this.files.push(file);
         });
         this.updateModel();
@@ -85,7 +89,7 @@ export default class MultipleFileFormField extends Vue {
 
     @Emit("fileRemoved")
     removeFile(file: any) {
-        this.files = this.files.filter(f => f != file);
+        this.files = this.files.filter((f) => f != file);
         this.updateModel();
         return file;
     }
