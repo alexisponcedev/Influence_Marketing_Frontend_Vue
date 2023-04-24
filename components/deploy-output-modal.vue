@@ -9,7 +9,12 @@
                 </v-btn>
             </v-card-title>
             <v-card-text>
+                <v-skeleton-loader
+                    v-if="Api.Forge.loading"
+                    type="list-item-three-line"
+                />
                 <form-standard
+                    v-else
                     preview
                     ref="form"
                     :model="data"
@@ -24,11 +29,14 @@
 import { Vue, Component, PropSync, Prop, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
 import { FormField } from "@/models";
+import { Api } from "@/store";
 
 @Component
 export default class uploadFileModal extends Vue {
     @PropSync("show", { type: Boolean }) showSynced!: Boolean;
     @Prop({ type: String, default: "" }) output!: String;
+
+    Api = Api;
 
     forceUpdateIndex: number = 0;
 
