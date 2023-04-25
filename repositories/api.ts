@@ -10700,12 +10700,12 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (brandId !== undefined && brandId !== null) {
-                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            if (tables !== undefined) {
+                localVarQueryParameter['tables'] = tables;
             }
 
-            if (tables !== undefined && tables !== null) {
-                localVarHeaderParameter['Tables'] = String(tables);
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
 
 

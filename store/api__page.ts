@@ -365,7 +365,6 @@ export default class api__page extends VuexModule {
 
     @Action
     async deployStageDbToProd(tables: string = "") {
-        console.log(tables);
         this.setLoading(true);
         const response = await PageApiFactory(
             new Configuration({
