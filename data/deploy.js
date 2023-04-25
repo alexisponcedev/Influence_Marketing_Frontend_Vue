@@ -1,38 +1,30 @@
 export const deploy = [
     {
         title: "Pages",
-        table: "page",
+        table: "pages",
     },
     {
-        title: "Products",
-        table: "product",
-    },
-    {
-        title: "Blog posts",
+        title: "Blog Posts",
         table: "posts",
     },
     {
         title: "Menus",
-        table: "menu",
+        table: "menus",
     },
     {
         title: "Templates",
-        table: "template",
+        table: "templates",
     },
     {
         title: "Reusable blocks",
         table: "blocks",
     },
     {
-        title: "Content blocks",
-        table: "content",
-    },
-    {
-        title: "production",
-        table: "production",
-    },
-    {
         title: "Settings",
-        table: "setting",
+        table: "settings",
+    },
+    {
+        title: "Redirects",
+        table: "redirects",
     },
 ];

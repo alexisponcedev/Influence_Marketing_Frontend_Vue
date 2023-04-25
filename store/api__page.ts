@@ -364,14 +364,15 @@ export default class api__page extends VuexModule {
     }
 
     @Action
-    async deployStageDbToProd(table: string = "") {
+    async deployStageDbToProd(tables: string = "") {
+        console.log(tables);
         this.setLoading(true);
         const response = await PageApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deployStageDbToProd(getActiveBrand(), table)
+            .deployStageDbToProd(getActiveBrand(), tables)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -384,14 +385,14 @@ export default class api__page extends VuexModule {
     }
 
     @Action
-    async deployProdDbToStage(table: string = "") {
+    async deployProdDbToStage() {
         this.setLoading(true);
         const response = await PageApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deployProdDbToStage(getActiveBrand(), table)
+            .deployProdDbToStage(getActiveBrand())
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
