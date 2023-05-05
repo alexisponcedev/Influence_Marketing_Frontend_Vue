@@ -544,7 +544,7 @@ export default {
 
             // cancelled
             if (this.link.url === null) return;
-            alert("Im not null");
+            // alert("Im not null");
             // empty
             if (this.link.url === "") {
                 this.editor
