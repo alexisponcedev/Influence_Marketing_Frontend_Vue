@@ -2036,6 +2036,18 @@ export const BLOCKS = () => {
                         image: "NewsPressArchive.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "NewsSingleSlider",
+                        title: "News Single Slider",
+                        image: "NewsSingleSlider.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "NewsSingleInfoBox",
+                        title: "News Single Info Box",
+                        image: "NewsSingleInfoBox.png",
+                        category: "TextBox",
+                    },
                 ],
             },
         ],
