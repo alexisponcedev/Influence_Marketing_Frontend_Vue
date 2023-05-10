@@ -38,6 +38,7 @@ import { StructureType } from "~/models/StructureType";
 import { Theme } from "~/interfaces/ThemeEnum";
 import { Direction } from "~/interfaces/DirectionEnum";
 import blockAddItem from "~/utils/blockAddItem";
+import blockRemoveItem from "~/utils/blockRemoveItem";
 
 @Component
 export default class ProductFeatureWithImage extends Vue {
@@ -111,11 +112,14 @@ export default class ProductFeatureWithImage extends Vue {
             value: "#fff",
         });
         blockAddItem(this.model, "textColor", {
-            id: 7,
+            id: 8,
             type: StructureType.Color,
             title: "Text color",
             value: "#fff",
         });
+
+        // blockRemoveItem(this.model , ['textColor']);
+
         this.model = { ...this.model };
     }
 
