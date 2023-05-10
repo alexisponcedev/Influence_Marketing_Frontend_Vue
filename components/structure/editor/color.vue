@@ -4,16 +4,15 @@
             {{ model.title }}
         </label>
 
-        <button @click.prevent="show = true"
-                class="tw-text-center tw-w-full tw-mt-1 tw-flex tw-items-center tw-justify-between tw-px-2.5 tw-py-2 tw-bg-white tw-rounded">
-
+        <div @click.prevent="show = true"
+             class="tw-text-center tw-w-full tw-mt-1 tw-flex tw-items-center tw-justify-between tw-px-2.5 tw-py-2 tw-bg-white tw-rounded">
             <div class="tw-whitespace-nowrap">Color Picker</div>
             <div :style="{'backgroundColor' : model.value}"
                  class="tw-flex tw-items-center tw-justify-center tw-py-2 tw-px-2 tw-min-w-40 tw-rounded-lg tw-shadow tw-text-center tw-uppercase">
                 {{ model.value }}
             </div>
 
-        </button>
+        </div>
 
         <v-dialog v-model="show" max-width="350">
 
@@ -65,10 +64,14 @@ export default class StructureColorEditor extends Vue {
         this.show = false;
     }
 
-    @Watch('value')
-    onValueChanged(color: string) {
-        this.model.value = color;
+    mounted(){
+        this.color = this.model.value;
     }
+
+    // @Watch('value')
+    // onValueChanged(color: string) {
+    //     this.model.value = color;
+    // }
 
 }
 </script>
