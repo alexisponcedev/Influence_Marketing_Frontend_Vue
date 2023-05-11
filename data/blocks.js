@@ -2,6 +2,65 @@ export const BLOCKS = () => {
     return {
         page: [
             {
+                name: "Newsroom",
+                blocks: [
+                    {
+                        name: "NewsRoomSlider",
+                        title: "NewsRoomSlider Component",
+                        image: "NewsRoomSlider.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "NewsHead",
+                        title: "NewsHead Component",
+                        image: "NewsHead.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "NewsDescriptionBox",
+                        title: "NewsDescriptionBox Component",
+                        image: "sample.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "LatestNews",
+                        title: "LatestNews Component",
+                        image: "LatestNews.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "ExtendedWarrantySearchProduct",
+                        title: "ExtendedWarrantySearchProduct Component",
+                        image: "sample.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "PressArchive",
+                        title: "PressArchive Component",
+                        image: "PressArchive.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "PressRelease",
+                        title: "PressRelease Component",
+                        image: "PressRelease.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "PressArticleSlider",
+                        title: "PressArticleSlider Component",
+                        image: "PressArticleSlider.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "Subscribe",
+                        title: "Subscribe Component",
+                        image: "sample.png",
+                        category: "ImageBox",
+                    },
+                ],
+            },
+            {
                 name: "Samples",
                 blocks: [
                     {
