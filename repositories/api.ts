@@ -539,7 +539,7 @@ export interface Deploy {
      */
     'id'?: number;
     /**
-     * 
+     * actions updated
      * @type {number}
      * @memberof Deploy
      */
@@ -930,6 +930,12 @@ export interface HUSAPostResource {
      * @memberof HUSAPostResource
      */
     'tags'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof HUSAPostResource
+     */
+    'type'?: string;
     /**
      * 
      * @type {number}
@@ -2898,6 +2904,12 @@ export interface PostListResource {
     'tags'?: Array<string>;
     /**
      * 
+     * @type {string}
+     * @memberof PostListResource
+     */
+    'type'?: string;
+    /**
+     * 
      * @type {object}
      * @memberof PostListResource
      */
@@ -2957,6 +2969,12 @@ export interface PostResource {
      * @memberof PostResource
      */
     'tags'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostResource
+     */
+    'type'?: string;
     /**
      * 
      * @type {number}
@@ -3589,7 +3607,7 @@ export interface Slide {
     'media_type_id'?: number;
 }
 /**
- * Status model
+ * Status Model
  * @export
  * @interface Status
  */
@@ -7625,10 +7643,11 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllPosts: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAllPosts: async (type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/husa/getPosts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7640,6 +7659,10 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
 
 
     
@@ -7948,10 +7971,11 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {number} [perPage] Number per page
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatePosts: async (perPage?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPaginatePosts: async (perPage?: number, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/husa/getPaginatePosts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7966,6 +7990,10 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
 
@@ -8226,10 +8254,11 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} [string] string
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchPost: async (string?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchPost: async (string?: string, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/husa/searchPost`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8244,6 +8273,10 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
 
             if (string !== undefined) {
                 localVarQueryParameter['string'] = string;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
 
@@ -8377,11 +8410,12 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllPosts(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20029>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllPosts(options);
+        async getAllPosts(type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20029>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllPosts(type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8476,11 +8510,12 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} [perPage] Number per page
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPaginatePosts(perPage?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20033>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatePosts(perPage, options);
+        async getPaginatePosts(perPage?: number, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20033>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatePosts(perPage, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8561,11 +8596,12 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} [string] string
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchPost(string?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20032>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchPost(string, options);
+        async searchPost(string?: string, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20032>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchPost(string, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8632,11 +8668,12 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllPosts(options?: any): AxiosPromise<InlineResponse20029> {
-            return localVarFp.getAllPosts(options).then((request) => request(axios, basePath));
+        getAllPosts(type?: string, options?: any): AxiosPromise<InlineResponse20029> {
+            return localVarFp.getAllPosts(type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8721,11 +8758,12 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {number} [perPage] Number per page
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatePosts(perPage?: number, options?: any): AxiosPromise<InlineResponse20033> {
-            return localVarFp.getPaginatePosts(perPage, options).then((request) => request(axios, basePath));
+        getPaginatePosts(perPage?: number, type?: string, options?: any): AxiosPromise<InlineResponse20033> {
+            return localVarFp.getPaginatePosts(perPage, type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8797,11 +8835,12 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {string} [string] string
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchPost(string?: string, options?: any): AxiosPromise<InlineResponse20032> {
-            return localVarFp.searchPost(string, options).then((request) => request(axios, basePath));
+        searchPost(string?: string, type?: string, options?: any): AxiosPromise<InlineResponse20032> {
+            return localVarFp.searchPost(string, type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8874,12 +8913,13 @@ export class HUSAAPIsApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} [type] Filter by type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HUSAAPIsApi
      */
-    public getAllPosts(options?: AxiosRequestConfig) {
-        return HUSAAPIsApiFp(this.configuration).getAllPosts(options).then((request) => request(this.axios, this.basePath));
+    public getAllPosts(type?: string, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).getAllPosts(type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8983,12 +9023,13 @@ export class HUSAAPIsApi extends BaseAPI {
     /**
      * 
      * @param {number} [perPage] Number per page
+     * @param {string} [type] Filter by type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HUSAAPIsApi
      */
-    public getPaginatePosts(perPage?: number, options?: AxiosRequestConfig) {
-        return HUSAAPIsApiFp(this.configuration).getPaginatePosts(perPage, options).then((request) => request(this.axios, this.basePath));
+    public getPaginatePosts(perPage?: number, type?: string, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).getPaginatePosts(perPage, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9077,12 +9118,13 @@ export class HUSAAPIsApi extends BaseAPI {
     /**
      * 
      * @param {string} [string] string
+     * @param {string} [type] Filter by type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HUSAAPIsApi
      */
-    public searchPost(string?: string, options?: AxiosRequestConfig) {
-        return HUSAAPIsApiFp(this.configuration).searchPost(string, options).then((request) => request(this.axios, this.basePath));
+    public searchPost(string?: string, type?: string, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).searchPost(string, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12438,10 +12480,11 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @param {number} brandId Brand ID
          * @param {number} categoryId Category ID
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPostsByCategoryId: async (brandId: number, categoryId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPostsByCategoryId: async (brandId: number, categoryId: number, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
             assertParamExists('getPostsByCategoryId', 'brandId', brandId)
             // verify required parameter 'categoryId' is not null or undefined
@@ -12463,6 +12506,10 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
             if (brandId !== undefined && brandId !== null) {
                 localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
             }
@@ -12481,10 +12528,11 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postList: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postList: async (brandId: number, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
             assertParamExists('postList', 'brandId', brandId)
             const localVarPath = `/post`;
@@ -12502,6 +12550,10 @@ export const PostApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
 
             if (brandId !== undefined && brandId !== null) {
                 localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
@@ -12615,21 +12667,23 @@ export const PostApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} brandId Brand ID
          * @param {number} categoryId Category ID
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPostsByCategoryId(brandId: number, categoryId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20043>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPostsByCategoryId(brandId, categoryId, options);
+        async getPostsByCategoryId(brandId: number, categoryId: number, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20043>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPostsByCategoryId(brandId, categoryId, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postList(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20042>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postList(brandId, options);
+        async postList(brandId: number, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20042>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postList(brandId, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -12688,20 +12742,22 @@ export const PostApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @param {number} brandId Brand ID
          * @param {number} categoryId Category ID
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPostsByCategoryId(brandId: number, categoryId: number, options?: any): AxiosPromise<InlineResponse20043> {
-            return localVarFp.getPostsByCategoryId(brandId, categoryId, options).then((request) => request(axios, basePath));
+        getPostsByCategoryId(brandId: number, categoryId: number, type?: string, options?: any): AxiosPromise<InlineResponse20043> {
+            return localVarFp.getPostsByCategoryId(brandId, categoryId, type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [type] Filter by type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postList(brandId: number, options?: any): AxiosPromise<InlineResponse20042> {
-            return localVarFp.postList(brandId, options).then((request) => request(axios, basePath));
+        postList(brandId: number, type?: string, options?: any): AxiosPromise<InlineResponse20042> {
+            return localVarFp.postList(brandId, type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -12764,23 +12820,25 @@ export class PostApi extends BaseAPI {
      * 
      * @param {number} brandId Brand ID
      * @param {number} categoryId Category ID
+     * @param {string} [type] Filter by type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PostApi
      */
-    public getPostsByCategoryId(brandId: number, categoryId: number, options?: AxiosRequestConfig) {
-        return PostApiFp(this.configuration).getPostsByCategoryId(brandId, categoryId, options).then((request) => request(this.axios, this.basePath));
+    public getPostsByCategoryId(brandId: number, categoryId: number, type?: string, options?: AxiosRequestConfig) {
+        return PostApiFp(this.configuration).getPostsByCategoryId(brandId, categoryId, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {number} brandId Brand ID
+     * @param {string} [type] Filter by type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PostApi
      */
-    public postList(brandId: number, options?: AxiosRequestConfig) {
-        return PostApiFp(this.configuration).postList(brandId, options).then((request) => request(this.axios, this.basePath));
+    public postList(brandId: number, type?: string, options?: AxiosRequestConfig) {
+        return PostApiFp(this.configuration).postList(brandId, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
