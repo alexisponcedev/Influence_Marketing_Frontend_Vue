@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/LatestNews.png" alt="" />
+        <img src="/blocks/NewsSingleSlider.png" alt="" />
     </div>
 </template>
 
@@ -8,27 +8,18 @@
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
-import { Api } from "@/store";
 
 @Component
-export default class NewsSingleLatestNews extends Vue {
+export default class NewsSingleSlider extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
-    Api = Api;
-
-    async mounted() {
-        blockAddItem(this.model, "title", {
-            id: 0,
-            type: StructureType.Text,
-            title: "Latest News",
-            value: "",
-        });
+    mounted() {
         blockAddItem(this.model, "list", {
             id: 1,
             type: StructureType.List,
-            title: "Press Release",
+            title: "List",
             newItem: {
                 subtitle: {
                     id: 1,
@@ -43,23 +34,30 @@ export default class NewsSingleLatestNews extends Vue {
                     src: "",
                     alt: "Image Alt",
                 },
-                date: {
+                EnlargeBtn: {
                     id: 3,
-                    type: StructureType.String,
-                    title: "Date",
-                    value: ""
+                    type: StructureType.Url,
+                    title: "Enlarge Image",
+                    value: "",
+                },
+                downloadBtn: {
+                    id: 4,
+                    type: StructureType.Url,
+                    title: "Download Image",
+                    value: "",
                 },
                 link: {
                     id: 4,
                     type: StructureType.Url,
                     title: "Link",
-                    value: ""
+                    value: "",
                 },
             },
             value: [],
         });
         this.model = { ...this.model };
     }
+
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
     }
