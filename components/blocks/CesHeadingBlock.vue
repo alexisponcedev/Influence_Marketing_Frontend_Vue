@@ -29,7 +29,6 @@ export default class CesHeadingBlock extends Vue {
         });
         blockAddItem(this.model, 'title', {id: 1, type: StructureType.SimpleText, title: 'Title', value: ''});
         blockAddItem(this.model, 'description', {id: 1, type: StructureType.SimpleText, title: 'Subtitle', value: ''});
-
     }
 
     get isEmpty(): Boolean {

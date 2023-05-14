@@ -1,20 +1,20 @@
 <template>
     <div>
-    <img src="/blocks/newsroom-slider.png" alt="" />
+    <img src="/blocks/NewsRoomSlider.png" alt="" />
     </div>
     </template>
-    
+
 <script lang="ts">
 import { Vue, Component, Prop, VModel } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
-    
+
 @Component
 export default class NewsRoomSlider extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;
-    
+
     mounted() {
     blockAddItem(this.model, 'title', {
         id: 0,
@@ -42,7 +42,7 @@ export default class NewsRoomSlider extends Vue {
             },
             subtitle: {
                 id: 3,
-                type: StructureType.Text,
+                type: StructureType.String,
                 title: "Subtitle",
                 value: "",
             },
@@ -57,7 +57,7 @@ export default class NewsRoomSlider extends Vue {
         });
             this.model = { ...this.model };
         }
-        
+
         get isEmpty(): Boolean {
             return this.model && Object.keys(this.model).length === 0;
         }

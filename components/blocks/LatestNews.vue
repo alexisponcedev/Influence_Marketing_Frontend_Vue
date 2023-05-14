@@ -11,7 +11,7 @@ import blockAddItem from "~/utils/blockAddItem";
 import { Api } from "@/store";
 
 @Component
-export default class LatestNews extends Vue {
+export default class NewsSingleLatestNews extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;

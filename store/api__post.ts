@@ -29,14 +29,14 @@ export default class api__post extends VuexModule {
     }
 
     @Action({commit: "updateAll"})
-    async getAll() {
+    async getAll(type: string = 'blog') {
         this.setLoading(true);
         const response = await PostApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .postList(getActiveBrand())
+            .postList(getActiveBrand(), type)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
