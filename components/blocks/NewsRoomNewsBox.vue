@@ -18,7 +18,7 @@ export default class NewsRoomNewsBox extends Vue {
 
     Api = Api;
 
-    mounted() {
+    async mounted() {
         blockAddItem(this.model, "count", {
             id: 0,
             type: StructureType.String,
