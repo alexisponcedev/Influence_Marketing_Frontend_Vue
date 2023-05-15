@@ -30,7 +30,7 @@
                             <v-row>
                                 <form-field-text :field="formFields[0]" v-model="Post.page.title"
                                                  @input="postTitleChanged"/>
-                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
+<!--                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>-->
                             </v-row>
                             <v-row>
                                 <form-field-select-page-route :field="formFields[2]" v-model="Post.page.route"
@@ -181,7 +181,7 @@ export default class PostForm extends Vue {
                 modelKey: "page.title",
                 placeholder: 'please enter post title',
                 rules: [Validation.required],
-                colAttrs: {cols: 9},
+                colAttrs: {cols: 12},
             },
             {
                 type: "form-field-select-autocomplete",
