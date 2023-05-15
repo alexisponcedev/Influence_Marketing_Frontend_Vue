@@ -71,7 +71,7 @@ export default class BlocksSelector extends Vue {
             });
         })
         return blocks
-            .filter(i => i.blocks.length > 0)
+            .filter((i : any) => i.blocks.length > 0)
     }
 }
 </script>
