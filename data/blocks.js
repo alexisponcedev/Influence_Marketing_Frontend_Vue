@@ -2257,12 +2257,12 @@ export const BLOCKS = () => {
                         image: "NewsPressArchive.png",
                         category: "ImageBox",
                     },
-                    {
-                        name: "NewsRoomNewsBox",
-                        title: "NewsRoomNewsBox Component",
-                        image: "NewsRoomNewsBox.png",
-                        category: "ImageBox",
-                    },
+                    // {
+                    //     name: "NewsRoomNewsBox",
+                    //     title: "NewsRoomNewsBox Component",
+                    //     image: "NewsRoomNewsBox.png",
+                    //     category: "ImageBox",
+                    // },
                     {
                         name: "NewsRoomMedia",
                         title: "NewsRoomMedia Component",
