@@ -17,13 +17,15 @@
 
                 <v-expansion-panel-content>
 
-                    <draggable v-model="group.blocks" group="people" :clone="(original) => JSON.parse(JSON.stringify(original))">
+                    <draggable v-model="group.blocks" group="people"
+                               :clone="(original) => JSON.parse(JSON.stringify(original))">
                         <div v-for="(block , j) in group.blocks" :key="`${i}-${j}`" @click="addBlock(block)"
                              class="tw-border-2 tw-border-solid tw-border-gray-200 tw-rounded-lg tw-bg-gray-50 tw-mb-2
                tw-overflow-hidden tw-cursor-pointer transform hover:tw-scale-105 hover:tw-rotate-2 tw-transition tw-duration-300">
-                            <div class="tw-relative tw-h-[0] tw-pt-[48%] tw-overflow-hidden tw-rounded tw-bg-gray-50 tw-w-full">
+                            <div
+                                class="tw-relative tw-h-[0] tw-pt-[48%] tw-overflow-hidden tw-rounded tw-bg-gray-50 tw-w-full">
                                 <img :src="`/blocks/${block.image}`" alt="component thumbnail" style="min-height: 16px"
-                                    class="tw-absolute tw-left-0 tw-top-0 tw-w-full tw-h-full tw-object-cover ">
+                                     class="tw-absolute tw-left-0 tw-top-0 tw-w-full tw-h-full tw-object-cover ">
                             </div>
                             <div class="tw-flex tw-items-start tw-justify-between tw-space-x-2 tw-p-2">
                                 <div class="tw-font-italic" style="margin-bottom: 0 !important;">{{ block.title }}</div>
@@ -57,10 +59,11 @@ export default class BlocksSelector extends Vue {
 
     get Blocks() {
         let search = this.search ? this.search.toLowerCase() : '';
-        let blocks = this.blocksType === 'page' ? BLOCKS().page : BLOCKS().blog;
-
-        blocks.forEach(i => {
-            i.blocks = i.blocks.filter(j => j.name.toLowerCase().includes(search) ||
+        let blocks = (BLOCKS() as any)[this.blocksType] ?? [];
+        console.log(blocks , this.blocksType);
+        // let blocks = this.blocksType === 'page' ? BLOCKS().page : BLOCKS().blog;
+        blocks.forEach((i: any) => {
+            i.blocks = i.blocks.filter((j: any) => j.name.toLowerCase().includes(search) ||
                 j.title.toLowerCase().includes(search) ||
                 j.category?.toLowerCase().includes(search)
             ).map((item: any) => {

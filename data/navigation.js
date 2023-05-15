@@ -18,6 +18,12 @@ export const items = () => [
         to: "posts",
     },
     {
+        title: "News Room",
+        icon: "mdi-post",
+        group: "news",
+        to: "news",
+    },
+    {
         title: "Menus",
         icon: "mdi-menu",
         group: "menu",
