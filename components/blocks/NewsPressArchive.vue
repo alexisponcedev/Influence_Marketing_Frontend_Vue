@@ -85,16 +85,9 @@ export default class NewsPressArchive extends Vue {
         let posts = Api.Post.all
             .filter((p: any) => p.hasOwnProperty("page") && p.page)
             .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
-        console.log(posts);
 
-        let max = Math.min(this.count, posts.length);
-        max = max / 2 === 0 ? max : max - 1;
-
-        for (let i = 0; i < max; i) {
-            this.model.list.value.push({
-                smallPost: this.addPost(posts[i++], "Small Post"),
-                largePost: this.addPost(posts[i++], "Large Post"),
-            });
+        for (let i = 0; i < this.model.count.value; i++) {
+            this.model.list.value.push(this.addPost(posts[i]));
         }
     }
 
