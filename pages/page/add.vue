@@ -141,6 +141,7 @@ export default class PageForm extends Vue {
         {id: 1, title: 'Published'},
         {id: 2, title: 'Hidden'},
         // { id: 3, title: 'SupportOnly' },
+        { id: 7, title: 'firmwareOnly' },
     ]
 
 
