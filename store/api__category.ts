@@ -48,7 +48,7 @@ export default class api__category extends VuexModule {
     }
 
     @Action({commit: "updateAll"})
-    async getAll() {
+    async getAll(type : string = 'blog') {
         this.setLoading(true);
         const response = await CategoryApiFactory(
             new Configuration({

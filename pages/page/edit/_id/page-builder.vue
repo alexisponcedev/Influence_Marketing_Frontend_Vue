@@ -123,7 +123,6 @@
             v-model="blocksList"
             @needDeploy="needDeploy"
             :page="Page"
-            :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'"
         />
 
         <template-selector ref="templateManager"/>

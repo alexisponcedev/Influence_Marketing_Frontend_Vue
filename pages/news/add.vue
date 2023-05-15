@@ -93,7 +93,7 @@ export default class PostForm extends Vue {
         id: 0,
         category_id: 0,
         tags: [],
-        type : 'blog',
+        type : 'news',
         page: {
             title: '',
             route: '',
@@ -147,11 +147,11 @@ export default class PostForm extends Vue {
         this.locations = [
             {
                 title: "Posts",
-                to: "/posts",
+                to: "/news",
             },
             {
                 title: this.Post.page!.title || "",
-                to: "/posts/edit/" + this.Post.id!,
+                to: "/news/edit/" + this.Post.id!,
             },
         ];
     }
@@ -246,7 +246,7 @@ export default class PostForm extends Vue {
                     })
                     .then((post: any) => {
                         if (post.hasOwnProperty('id') && post.id > 0)
-                            this.$router.push("/posts/edit/" + post.id);
+                            this.$router.push("/news/edit/" + post.id);
                     })
             }
         }
