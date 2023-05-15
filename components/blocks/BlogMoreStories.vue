@@ -34,6 +34,7 @@ export default class BlogMoreStories extends Vue {
         blockAddItem(this.model, "list", {
             id: 2,
             type: StructureType.List,
+            hidden:true,
             title: "List",
             newItem: {
                 largePost: {
