@@ -6,24 +6,24 @@
             <v-col cols="10" class="tw-flex tw-items-center tw-justify-between">
                 <v-tabs v-model="tab" background-color="transparent">
                     <v-tab :href="`#`">All Posts</v-tab>
-                    <v-tab :href="`#${category.id}`" v-for="category in Api.Category.all"
-                        :key="`${category.id}_${category.name}`">
-                        {{ category.name }}
+<!--                    <v-tab :href="`#${category.id}`" v-for="category in Api.Category.all"-->
+<!--                        :key="`${category.id}_${category.name}`">-->
+<!--                        {{ category.name }}-->
 
-                        <button class="tw-px-1.5" @click.prevent="openCategoryModal(category)">
-                            <v-icon small>mdi-pencil</v-icon>
-                        </button>
-                        <button class="tw-px-1.5" @click.prevent="confirmDeleteCategory(category)">
-                            <v-icon small>mdi-delete</v-icon>
-                        </button>
-                    </v-tab>
+<!--                        <button class="tw-px-1.5" @click.prevent="openCategoryModal(category)">-->
+<!--                            <v-icon small>mdi-pencil</v-icon>-->
+<!--                        </button>-->
+<!--                        <button class="tw-px-1.5" @click.prevent="confirmDeleteCategory(category)">-->
+<!--                            <v-icon small>mdi-delete</v-icon>-->
+<!--                        </button>-->
+<!--                    </v-tab>-->
                 </v-tabs>
             </v-col>
             <v-col cols="2" align-self="center">
-                <button @click.prevent="openCategoryModal"
-                    class="tw-bg-white tw-px-2 tw-py-1.5 tw-rounded-xl tw-border tw-border-solid tw-border-gray-300 tw-whitespace-nowrap">
-                    Add Category
-                </button>
+<!--                <button @click.prevent="openCategoryModal"-->
+<!--                    class="tw-bg-white tw-px-2 tw-py-1.5 tw-rounded-xl tw-border tw-border-solid tw-border-gray-300 tw-whitespace-nowrap">-->
+<!--                    Add Category-->
+<!--                </button>-->
             </v-col>
         </v-row>
 

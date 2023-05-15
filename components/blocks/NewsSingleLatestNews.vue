@@ -127,15 +127,21 @@ export default class NewsSingleLatestNews extends Vue {
             .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
         console.log(posts);
 
-        let max = Math.min(this.count, posts.length);
-        max = max / 2 === 0 ? max : max - 1;
+        let max = Math.min(Math.min(this.count, posts.length) , 3);
 
-        for (let i = 0; i < max; i) {
-            this.model.list.value.push({
-                smallPost: this.addPost(posts[i++], "Small Post"),
-                largePost: this.addPost(posts[i++], "Large Post"),
-            });
+        for (let i = 0; i < max; i++) {
+            this.model.list.value.push(this.addPost(posts[i]));
         }
+
+        // for (let i = 0; i < max; i) {
+        //     this.model.list.value.push({
+        //         smallPost: this.addPost(posts[i++], "Small Post"),
+        //         largePost: this.addPost(posts[i++], "Large Post"),
+        //     });
+        // }
+
+        // console.log(max , this.model.list.value , Api.Post.all);
+
     }
 
     get count() {
