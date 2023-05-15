@@ -19,27 +19,27 @@ export default class NewsSingleLatestNews extends Vue {
     Api = Api;
 
     async mounted() {
-        blockAddItem(this.model, "count", {
-            id: 0,
-            type: StructureType.String,
-            title: "Count",
-            value: 4,
-        });
         blockAddItem(this.model, "title", {
-            id: 0,
+            id: 1,
             type: StructureType.Text,
             title: "Title",
             value: "",
         });
         blockAddItem(this.model, "link", {
-            id: 1,
+            id: 2,
             type: StructureType.Url,
             target: "_self",
             title: "Link",
             value: "",
         });
-        blockAddItem(this.model, "list", {
+        blockAddItem(this.model, "count", {
             id: 3,
+            type: StructureType.String,
+            title: "Count",
+            value: 4,
+        });
+        blockAddItem(this.model, "list", {
+            id: 4,
             type: StructureType.List,
             title: "List",
             newItem: {
