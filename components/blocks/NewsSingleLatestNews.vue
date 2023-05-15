@@ -115,7 +115,7 @@ export default class NewsSingleLatestNews extends Vue {
             value: [],
         });
 
-        await Api.Post.getAll();
+        await Api.Post.getAll('news');
         this.addPosts();
         this.model = { ...this.model };
     }
