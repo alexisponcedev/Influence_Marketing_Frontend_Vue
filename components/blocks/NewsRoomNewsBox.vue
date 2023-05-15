@@ -19,23 +19,58 @@ export default class NewsRoomNewsBox extends Vue {
     Api = Api;
 
     async mounted() {
-        blockAddItem(this.model, "count", {
-            id: 0,
-            type: StructureType.String,
-            title: "Count",
-            value: 4,
-        });
         blockAddItem(this.model, 'title', {
-            id: 0,
+            id: 1,
             type: StructureType.String,
             title: 'Title',
             value: 'News Room News Box'
         });
         blockAddItem(this.model, 'link', {
-            id: 0,
+            id: 2,
             type: StructureType.Url,
             title: 'link',
             value: ''
+        });
+        blockAddItem(this.model, "count", {
+            id: 3,
+            type: StructureType.String,
+            title: "Count",
+            value: 4,
+        });
+        blockAddItem(this.model, "list", {
+            id: 4,
+            type: StructureType.List,
+            title: "List",
+            newItem: {
+                image: {
+                    id: 0,
+                    type: StructureType.Image,
+                    title: "Image",
+                    src: "",
+                    alt: "",
+                },
+                title: {
+                    id: 1,
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "",
+                },
+                tagLink: {
+                    id: 2,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "Tag Link",
+                    value: "",
+                },
+                link: {
+                    id: 3,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "Link",
+                    value: "",
+                },
+            },
+            value: [],
         });
         await Api.Post.getAll('news');
         this.addPosts();
