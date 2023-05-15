@@ -104,6 +104,7 @@ export default class BlogMoreStories extends Vue {
                 },
             },
             value: [],
+            hidden: true,
         });
 
         await Api.Post.getAll();

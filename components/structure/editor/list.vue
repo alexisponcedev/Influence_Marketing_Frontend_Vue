@@ -1,5 +1,5 @@
 <template>
-    <div class="tw-p-2 tw-rounded-lg ">
+    <div :class="`tw-p-2 tw-rounded-lg${model.hidden ? ' tw-hidden' : '' }`">
         <h6 style="margin-bottom: 3px">{{ model.title }}</h6>
         <div class="tw-mb-4">
             <draggable v-model="model.value" group="blocks" @start="drag=true" @end="drag=false">

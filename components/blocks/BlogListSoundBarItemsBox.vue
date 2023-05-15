@@ -29,6 +29,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             id: 2,
             type: StructureType.List,
             title: "List",
+            hidden: true,
             newItem: {
                 image: {
                     id: 0,
