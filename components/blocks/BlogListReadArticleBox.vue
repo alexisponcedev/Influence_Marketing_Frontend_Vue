@@ -52,7 +52,7 @@ export default class BlogListReadArticleBox extends Vue {
             .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
 
         let post: any = posts[0];
-        this.updatePost(post);
+        if (!this.model.title.value) this.updatePost(post);
         this.model = { ...this.model };
     }
 
