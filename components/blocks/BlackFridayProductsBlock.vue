@@ -77,13 +77,19 @@
                                     }"
                                     v-model="serie.final_price"
                                 />
-                                <form-field-text
+                                <form-field-select
+                                    :multiple="true"
                                     class=""
                                     :field="{
                                         label: 'Retailers',
                                         placeholder: 'includes retailers',
                                         rules: [],
-                                        colAttrs: { cols: 2 },
+                                        colAttrs: {
+                                            cols: 2,
+                                        },
+                                        items: product.retailers,
+                                        'item-text': 'name',
+                                        'item-value': 'id',
                                     }"
                                     v-model="serie.retailers"
                                 />
@@ -155,7 +161,7 @@ export default class BlackFridayProductsBlock extends Vue {
                       ],
             price: 0,
             discount: 0,
-            retailers: "",
+            retailers: product.retailers,
         });
     }
 
