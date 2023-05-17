@@ -8,6 +8,7 @@
 import {Vue, Component, Prop, VModel} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
+import blockRemoveItem from "~/utils/blockRemoveItem";
 
 const SocialItems = [
     {title: '500px', value: '500px'},
@@ -216,16 +217,18 @@ export default class NewsIntro extends Vue {
             title: "Date",
             value: "",
         });
-        blockAddItem(this.model, 'socials', {
-            id: 4,
-            type: StructureType.List,
-            title: 'Socials',
-            newItem: {
-                social: {id: 0, type: StructureType.Select, title: "Social", value: '', items: SocialItems,},
-                link: {id: 1, type: StructureType.Url, title: 'link', value: ''}
-            },
-            value: []
-        })
+        // blockAddItem(this.model, 'socials', {
+        //     id: 4,
+        //     type: StructureType.List,
+        //     title: 'Socials',
+        //     newItem: {
+        //         social: {id: 0, type: StructureType.Select, title: "Social", value: '', items: SocialItems,},
+        //         link: {id: 1, type: StructureType.Url, title: 'link', value: ''}
+        //     },
+        //     value: []
+        // })
+
+        blockRemoveItem(this.model , ['social']);
 
         this.model = {...this.model};
     }

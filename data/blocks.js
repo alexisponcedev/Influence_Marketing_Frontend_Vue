@@ -2252,9 +2252,9 @@ export const BLOCKS = () => {
                         category: "ImageBox",
                     },
                     {
-                        name: "PressRelease",
-                        title: "Press Release",
-                        image: "PressRelease.png",
+                        name: "NewsRoomNewsBox",
+                        title: "NewsRoom News Box",
+                        image: "NewsRoomNewsBox.png",
                         category: "ImageBox",
                     },
                     {

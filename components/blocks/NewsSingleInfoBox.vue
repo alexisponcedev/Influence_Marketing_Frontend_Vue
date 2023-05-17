@@ -8,6 +8,7 @@
 import {Vue, Component, Prop, VModel} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
+import blockRemoveItem from "~/utils/blockRemoveItem";
 
 const SocialItems = [
     {title: '500px', value: '500px'},
@@ -191,16 +192,16 @@ export default class NewsSingleInfoBox extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, 'socials', {
-            id: 0,
-            type: StructureType.List,
-            title: 'Socials',
-            newItem: {
-                social: {id: 0, type: StructureType.Select, title: "Social", value: '', items: SocialItems,},
-                link: {id: 1, type: StructureType.Url, title: 'link', value: ''}
-            },
-            value: []
-        })
+        // blockAddItem(this.model, 'socials', {
+        //     id: 0,
+        //     type: StructureType.List,
+        //     title: 'Socials',
+        //     newItem: {
+        //         social: {id: 0, type: StructureType.Select, title: "Social", value: '', items: SocialItems,},
+        //         link: {id: 1, type: StructureType.Url, title: 'link', value: ''}
+        //     },
+        //     value: []
+        // })
 
         blockAddItem(this.model, 'downloads', {
             id: 1,
@@ -217,7 +218,7 @@ export default class NewsSingleInfoBox extends Vue {
             type: StructureType.Object,
             title: 'Contact Section',
             value: {
-                title: {id: 0, type: StructureType.String, title: "About title", value: ''},
+                title: {id: 0, type: StructureType.String, title: "title", value: ''},
                 list: {
                     id: 0, type: StructureType.List, title: "Paragraph List",
                     newItem: {
@@ -238,6 +239,8 @@ export default class NewsSingleInfoBox extends Vue {
                 text: {id: 0, type: StructureType.Text, title: "Text", value: 'Paragraph text'},
             }
         })
+
+        blockRemoveItem(this.model , ['socials']);
         this.model = {...this.model}
     }
 
