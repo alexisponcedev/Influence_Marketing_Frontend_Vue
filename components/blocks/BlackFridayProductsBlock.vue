@@ -17,11 +17,6 @@
                                 class="tw-object-cover tw-h-16 tw-rounded-lg"
                             />
                         </div>
-                        <!--                        <div class="tw-w-64">-->
-                        <!--                            <form-field-text class="tw-w-full"-->
-                        <!--                                             :field="{ label: 'Title', placeholder: 'enter title', rules: [], colAttrs: {cols: 12}}"-->
-                        <!--                                             v-model="product.title"/>-->
-                        <!--                        </div>-->
                         <div class="tw-flex-1">
                             <div
                                 class="tw-flex tw-items-center"
@@ -87,11 +82,11 @@
                                         colAttrs: {
                                             cols: 2,
                                         },
-                                        items: product.retailers,
+                                        items: serie.retailers,
                                         'item-text': 'name',
                                         'item-value': 'id',
                                     }"
-                                    v-model="serie.retailers"
+                                    v-model="serie.selected_retailers"
                                 />
                                 <!--                            <div class="tw-font-bold tw-text-md">$-->
                                 <!--                                {{ (serie.price - (serie.price * serie.discount / 100)) }}-->
@@ -101,7 +96,8 @@
                         <div class="tw-flex tw-items-center tw-space-x-4">
                             <button @click="remove(index)">
                                 <v-icon small class="red--text"
-                                    >mdi-delete</v-icon
+                                >mdi-delete
+                                </v-icon
                                 >
                             </button>
                         </div>
@@ -109,13 +105,13 @@
                 </div>
             </draggable>
         </div>
-        <search-products @addProduct="addProduct" class="" />
+        <search-products @addProduct="addProduct" class=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 import getActiveBrand from "~/utils/getActiveBrand";
 import blockRemoveItem from "~/utils/blockRemoveItem";
@@ -123,8 +119,8 @@ import blockRemoveItem from "~/utils/blockRemoveItem";
 @Component
 export default class BlackFridayProductsBlock extends Vue {
     @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: boolean | undefined;
-    @VModel({ type: Object }) model!: any;
+    @Prop({default: true}) readonly editable: boolean | undefined;
+    @VModel({type: Object}) model!: any;
 
     products: Array<any> = [];
 
@@ -133,35 +129,36 @@ export default class BlackFridayProductsBlock extends Vue {
             id: product.id,
             model: product.model,
             image: product.image,
-
             // title: '', //product.name,
             series:
                 product.productSeries.length > 0
                     ? product.productSeries[0].values.map((i: any) => {
-                          return {
-                              header: "",
-                              title: i.title,
-                              id: i.products[0],
-                              price: 0,
-                              discount: 0,
-                              final_price: 0,
-                              retailers: i.retailers,
-                          };
-                      })
+                        return {
+                            header: "",
+                            title: i.title,
+                            id: i.products[0],
+                            price: 0,
+                            discount: 0,
+                            final_price: 0,
+                            selected_retailers: [],
+                            retailers: product.retailers,
+                        };
+                    })
                     : [
-                          {
-                              header: product.name,
-                              title: product.name,
-                              id: product.id,
-                              price: 0,
-                              discount: 0,
-                              final_price: 0,
-                              retailers: "",
-                          },
-                      ],
+                        {
+                            header: product.name,
+                            title: product.name,
+                            id: product.id,
+                            price: 0,
+                            discount: 0,
+                            final_price: 0,
+                            selected_retailers: [],
+                            retailers: product.retailers,
+                        },
+                    ],
             price: 0,
             discount: 0,
-            retailers: product.retailers,
+            // retailers: product.retailers,
         });
     }
 
@@ -183,10 +180,24 @@ export default class BlackFridayProductsBlock extends Vue {
             title: "Bottom Text",
             value: "",
         });
-
         blockRemoveItem(this.model, ["title"]);
+        this.loadRetailers();
 
-        this.model = { ...this.model };
+        this.model = {...this.model};
+    }
+
+    loadRetailers() {
+        this.model.list.value.forEach((item: any) => {
+            item.series.forEach((serie: any) => {
+                this.getProductInfo(serie.id)
+                    .then((res: any) => serie.retailers = res.data.retailers)
+                    .catch(err => console.log(err));
+            })
+        });
+    }
+
+    async getProductInfo(productId: number) {
+        return this.$axios.$get(process.env.PIM_API_URL + `/cms/getProduct/${productId}`);
     }
 
     get isEmpty(): Boolean {
