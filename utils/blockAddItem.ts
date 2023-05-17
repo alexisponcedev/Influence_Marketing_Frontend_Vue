@@ -26,7 +26,11 @@ export default function blockAddItem(base: any, name: string, item: any) {
                 blockAddItem(base[name].value[index], key, JSON.parse(JSON.stringify(item.newItem[key])))
             })
         })
+<<<<<<< HEAD
         base[name].hidden = item.hidden || false 
+=======
+        base[name].hidden = item.hidden || false
+>>>>>>> blog-and-retailer
     }
 
     if (item.type === StructureType.Object) {

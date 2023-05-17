@@ -42,7 +42,11 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
             id: 3,
             type: StructureType.List,
             title: "List",
+<<<<<<< HEAD
             hidden: true,
+=======
+            hidden:true,
+>>>>>>> blog-and-retailer
             newItem: {
                 largePost: {
                     id: 0,
