@@ -8,6 +8,7 @@
 import {Vue, Component, Prop, VModel} from "vue-property-decorator";
 import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
+
 const SocialItems = [
     {title: '500px', value: '500px'},
     {title: '8tracks', value: '8tracks'},
@@ -183,7 +184,6 @@ const SocialItems = [
 ]
 
 
-
 @Component
 export default class NewsIntro extends Vue {
     @Prop(Number) readonly id: number | undefined
@@ -191,38 +191,43 @@ export default class NewsIntro extends Vue {
     @VModel({type: Object}) model!: any
 
     mounted() {
-        blockAddItem(this.model, "subject", {
-            id: 1,
-            type: StructureType.String,
-            title: "Subject",
-            value: "",
-        });
         blockAddItem(this.model, "title", {
             id: 0,
             type: StructureType.String,
             title: "News Description Box",
             value: "",
         });
-        blockAddItem(this.model, "image", {
+        blockAddItem(this.model, "subject", {
             id: 1,
+            type: StructureType.String,
+            title: "Subject",
+            value: "",
+        });
+        blockAddItem(this.model, "image", {
+            id: 2,
             type: StructureType.Image,
             title: "Image",
             src: "",
             alt: "Image Alt",
         });
         blockAddItem(this.model, "date", {
-            id: 1,
+            id: 3,
             type: StructureType.String,
             title: "Date",
             value: "",
         });
-        blockAddItem(this.model, 'social', {
-            id: 0,
-            type: StructureType.Select,
-            title: "Social",
-            value: '',
-            items: SocialItems,
-        });
+        blockAddItem(this.model, 'socials', {
+            id: 4,
+            type: StructureType.List,
+            title: 'Socials',
+            newItem: {
+                social: {id: 0, type: StructureType.Select, title: "Social", value: '', items: SocialItems,},
+                link: {id: 1, type: StructureType.Url, title: 'link', value: ''}
+            },
+            value: []
+        })
+
+        this.model = {...this.model};
     }
 
     get isEmpty(): Boolean {
