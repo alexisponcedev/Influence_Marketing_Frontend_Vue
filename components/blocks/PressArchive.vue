@@ -25,46 +25,52 @@ export default class PressArchive extends Vue {
             title: 'Title',
             value: 'Press Archive'
         });
-        blockAddItem(this.model, "list", {
-            id: 1,
-            type: StructureType.List,
-            title: "List",
-            newItem: {
-                title: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "",
-                },
-                subtitle: {
-                    id: 2,
-                    type: StructureType.String,
-                    title: "Press Release",
-                    value: "",
-                },
-                date: {
-                    id: 3,
-                    type: StructureType.String,
-                    title: "Date",
-                    value: "",
-                },
-                image: {
-                    id: 4,
-                    type: StructureType.Image,
-                    title: "Image",
-                    src: "",
-                    alt: "",
-                },
-                link: {
-                    id: 5,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Link",
-                    value: "",
-                },
-            },
-            value: [],
+        blockAddItem(this.model, "count", {
+            id: 2,
+            type: StructureType.String,
+            title: "Total News to Show",
+            value: 4,
         });
+        // blockAddItem(this.model, "list", {
+        //     id: 1,
+        //     type: StructureType.List,
+        //     title: "List",
+        //     newItem: {
+        //         title: {
+        //             id: 1,
+        //             type: StructureType.String,
+        //             title: "Title",
+        //             value: "",
+        //         },
+        //         subtitle: {
+        //             id: 2,
+        //             type: StructureType.String,
+        //             title: "Press Release",
+        //             value: "",
+        //         },
+        //         date: {
+        //             id: 3,
+        //             type: StructureType.String,
+        //             title: "Date",
+        //             value: "",
+        //         },
+        //         image: {
+        //             id: 4,
+        //             type: StructureType.Image,
+        //             title: "Image",
+        //             src: "",
+        //             alt: "",
+        //         },
+        //         link: {
+        //             id: 5,
+        //             type: StructureType.Url,
+        //             target: "_self",
+        //             title: "Link",
+        //             value: "",
+        //         },
+        //     },
+        //     value: [],
+        // });
 
         this.model = { ...this.model };
     }

@@ -36,9 +36,9 @@ export default class NewsSingleSlider extends Vue {
                 },
                 EnlargeBtn: {
                     id: 3,
-                    type: StructureType.Url,
-                    title: "Enlarge Image",
-                    value: "",
+                    type: StructureType.String,
+                    title: "Enlarge Image Title",
+                    value: "Enlarge Image",
                 },
                 downloadBtn: {
                     id: 4,
