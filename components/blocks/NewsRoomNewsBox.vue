@@ -69,6 +69,12 @@ export default class NewsRoomNewsBox extends Vue {
                     title: "Link",
                     value: "",
                 },
+                date: {
+                    id: 4,
+                    type: StructureType.String,
+                    title: "Date",
+                    value: "",
+                },
             },
             value: [],
         });
