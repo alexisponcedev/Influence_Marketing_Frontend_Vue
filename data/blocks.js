@@ -1991,6 +1991,23 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "NBA Campaign",
+                blocks: [
+                    {
+                        name: "NbaHeaderBanner",
+                        title: "NBA Header",
+                        image: "NbaHeaderBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "NbaForm",
+                        title: "NBA Form",
+                        image: "NbaForm.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
             // {
             //     name: "News Room",
             //     blocks: [
