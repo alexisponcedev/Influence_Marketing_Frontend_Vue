@@ -23,7 +23,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             id: 0,
             type: StructureType.String,
             title: "Count",
-            value: 4,
+            value: 0,
         });
         blockAddItem(this.model, "list", {
             id: 2,
@@ -63,9 +63,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
         });
 
         await Api.Post.getAll();
-
-        this.addPosts();
-
+        if(this.model.list.value.length === 0) this.addPosts();
         this.model = { ...this.model };
     }
 

@@ -73,7 +73,7 @@ export default class NewsRoomNewsBox extends Vue {
             value: [],
         });
         await Api.Post.getAll('news');
-        this.addPosts();
+        if(this.model.list.value.length === 0) this.addPosts();
 
         this.model = {...this.model};
     }

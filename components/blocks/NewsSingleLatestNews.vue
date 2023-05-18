@@ -70,6 +70,12 @@ export default class NewsSingleLatestNews extends Vue {
                     title: "Link",
                     value: "",
                 },
+                date: {
+                    id: 4,
+                    type: StructureType.String,
+                    title: "date",
+                    value: "",
+                },
             },
             value: [],
         });

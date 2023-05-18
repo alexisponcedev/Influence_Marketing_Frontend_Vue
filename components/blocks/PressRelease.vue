@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/PressRelease.png" alt="" />
+        <img src="/blocks/NewsRoomNewsBox.png" alt="" />
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import blockAddItem from "~/utils/blockAddItem";
 import { Api } from "@/store";
 
 @Component
-export default class PressRelease extends Vue {
+export default class NewsRoomNewsBox extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;
@@ -23,7 +23,7 @@ export default class PressRelease extends Vue {
             id: 0,
             type: StructureType.String,
             title: "Title",
-            value: "Press Release",
+            value: "Title",
         });
         blockAddItem(this.model, "list", {
             id: 2,
@@ -32,7 +32,7 @@ export default class PressRelease extends Vue {
             newItem: {
                 subtitle: {
                     id: 1,
-                    type: StructureType.Text,
+                    type: StructureType.String,
                     title: "Press Release",
                     value: "",
                 },
@@ -66,11 +66,11 @@ export default class PressRelease extends Vue {
         });
             this.model = { ...this.model };
         }
-        
+
         get isEmpty(): Boolean {
             return this.model && Object.keys(this.model).length === 0;
         }
     }
 
-  
+
 </script>
