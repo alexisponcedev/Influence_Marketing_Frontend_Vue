@@ -57,9 +57,8 @@ export default class NewsRoomNewsBox extends Vue {
                 },
                 tagLink: {
                     id: 2,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Tag Link",
+                    type: StructureType.String,
+                    title: "Tag",
                     value: "",
                 },
                 link: {
