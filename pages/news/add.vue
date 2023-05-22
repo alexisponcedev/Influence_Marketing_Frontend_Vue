@@ -30,7 +30,7 @@
                             <v-row>
                                 <form-field-text :field="formFields[0]" v-model="Post.page.title"
                                                  @input="postTitleChanged"/>
-                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>
+<!--                                <form-field-select-autocomplete :field="formFields[1]" v-model="Post.category_id"/>-->
                             </v-row>
                             <v-row>
                                 <form-field-select-page-route :field="formFields[2]" v-model="Post.page.route"
@@ -93,7 +93,7 @@ export default class PostForm extends Vue {
         id: 0,
         category_id: 0,
         tags: [],
-        type : 'blog',
+        type : 'news',
         page: {
             title: '',
             route: '',
@@ -147,11 +147,11 @@ export default class PostForm extends Vue {
         this.locations = [
             {
                 title: "Posts",
-                to: "/posts",
+                to: "/news",
             },
             {
                 title: this.Post.page!.title || "",
-                to: "/posts/edit/" + this.Post.id!,
+                to: "/news/edit/" + this.Post.id!,
             },
         ];
     }
@@ -181,7 +181,7 @@ export default class PostForm extends Vue {
                 modelKey: "page.title",
                 placeholder: 'please enter post title',
                 rules: [Validation.required],
-                colAttrs: {cols: 9},
+                colAttrs: {cols: 12},
             },
             {
                 type: "form-field-select-autocomplete",
@@ -246,7 +246,7 @@ export default class PostForm extends Vue {
                     })
                     .then((post: any) => {
                         if (post.hasOwnProperty('id') && post.id > 0)
-                            this.$router.push("/posts/edit/" + post.id);
+                            this.$router.push("/news/edit/" + post.id);
                     })
             }
         }

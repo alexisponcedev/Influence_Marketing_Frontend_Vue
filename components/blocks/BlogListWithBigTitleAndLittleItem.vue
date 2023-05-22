@@ -117,7 +117,7 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
         });
 
         await Api.Post.getAll();
-        this.addPosts();
+        if(this.model.list.value.length === 0 ) this.addPosts();
         this.model = { ...this.model };
     }
 

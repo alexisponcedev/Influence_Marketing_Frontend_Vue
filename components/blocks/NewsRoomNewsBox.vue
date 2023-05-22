@@ -1,35 +1,46 @@
 <template>
     <div>
-        <img src="/blocks/BlogListSoundBarItemsBox.png" alt="" />
+        <img src="/blocks/NewsRoomNewsBox.png" alt=""/>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Api } from "@/store";
+import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
+import {StructureType} from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
+import {Api} from "@/store";
 
 @Component
-export default class BlogListSoundBarItemsBox extends Vue {
+export default class NewsRoomNewsBox extends Vue {
     @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: Boolean | undefined;
-    @VModel({ type: Object }) model!: any;
+    @Prop({default: true}) readonly editable: Boolean | undefined;
+    @VModel({type: Object}) model!: any;
 
     Api = Api;
 
     async mounted() {
+        blockAddItem(this.model, 'title', {
+            id: 1,
+            type: StructureType.String,
+            title: 'Title',
+            value: 'News Room News Box'
+        });
+        blockAddItem(this.model, 'link', {
+            id: 2,
+            type: StructureType.Url,
+            title: 'link',
+            value: ''
+        });
         blockAddItem(this.model, "count", {
-            id: 0,
+            id: 3,
             type: StructureType.String,
             title: "Count",
-            value: 0,
+            value: 4,
         });
         blockAddItem(this.model, "list", {
-            id: 2,
+            id: 4,
             type: StructureType.List,
             title: "List",
-            hidden:true,
             newItem: {
                 image: {
                     id: 0,
@@ -61,10 +72,10 @@ export default class BlogListSoundBarItemsBox extends Vue {
             },
             value: [],
         });
-
-        await Api.Post.getAll();
+        await Api.Post.getAll('news');
         if(this.model.list.value.length === 0) this.addPosts();
-        this.model = { ...this.model };
+
+        this.model = {...this.model};
     }
 
     addPosts() {

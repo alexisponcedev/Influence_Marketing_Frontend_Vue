@@ -154,6 +154,7 @@ export default class BlackFridayProductsBlock extends Vue {
                             final_price: 0,
                             selected_retailers: [],
                             retailers: product.retailers,
+
                         },
                     ],
             price: 0,

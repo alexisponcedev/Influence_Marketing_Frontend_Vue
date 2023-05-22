@@ -43,7 +43,6 @@ export default class SelectFormField extends Vue {
     @VModel() model!: any;
     @Prop(Object) readonly field!: FormField;
     @Prop({ type: Boolean, default: false }) multiple!: boolean;
-
     onChanged() {
         this.$emit("change", this.model);
     }

@@ -72,7 +72,7 @@ export default class PageBuilder extends Vue {
         },
     })
     page!: any;
-    @Prop({type: String, default: "page"}) blocksType!: string;
+
     @VModel({type: Array}) blocksList!: any;
 
     editIndex: Number = -1;
@@ -87,6 +87,10 @@ export default class PageBuilder extends Vue {
 
     get selectable() {
         return this.selectItem && Object.keys(this.selectItem).length > 0;
+    }
+
+    get blocksType() {
+        return this.page.post ? this.page.post.type : 'page'
     }
 
     mounted() {

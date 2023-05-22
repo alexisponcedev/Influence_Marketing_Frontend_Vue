@@ -6,7 +6,7 @@ export default function blockAddItem(base: any, name: string, item: any) {
 
     base[name].id = item.id;
     // base[name].title = item.title;
-    
+
 
     if (base[name].type !== item.type) base[name].type = item.type;
 
