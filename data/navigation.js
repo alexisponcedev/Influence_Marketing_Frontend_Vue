@@ -17,12 +17,12 @@ export const items = () => [
         group: "posts",
         to: "posts",
     },
-    {
-        title: "News Room",
-        icon: "mdi-post",
-        group: "news",
-        to: "news",
-    },
+    // {
+    //     title: "News Room",
+    //     icon: "mdi-post",
+    //     group: "news",
+    //     to: "news",
+    // },
     {
         title: "Menus",
         icon: "mdi-menu",
