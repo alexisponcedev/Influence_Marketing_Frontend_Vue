@@ -92,7 +92,7 @@ export default class SearchProductIndex extends Vue {
 
     searchProduct() {
         this.loading = true;
-        let query = [`search=${this.search}`, 'status[]=1', 'status[]=2', 'status[]=3'];
+        let query = [`search=${this.search}`, 'status[]=1', 'status[]=2', 'status[]=3', 'status[]=7'];
         if (this.category_id > 0) query.push(`category_id=${this.category_id}`)
         this.$axios.$get(process.env.PIM_API_URL + `/cms/getProductsList?brand_id=${getActiveBrand()}&${query.join('&')}`)
             .then(res => {
