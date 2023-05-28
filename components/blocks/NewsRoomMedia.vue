@@ -24,6 +24,7 @@ export default class NewsRoomMedia extends Vue {
     });
     blockAddItem(this.model, "list", {
         id: 1,
+        maxLength:2,
         type: StructureType.List,
         title: "News Room News Box list",
         newItem: {
