@@ -24,7 +24,7 @@ export default class NewsSingleDescription extends Vue {
         });
         blockAddItem(this.model, "description", {
             id: 1,
-            type: StructureType.String,
+            type: StructureType.SimpleText,
             title: "Description",
             value: "",
         });
