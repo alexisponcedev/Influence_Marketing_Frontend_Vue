@@ -144,6 +144,8 @@ export default class NewsRoomNewsBox extends Vue {
             if (imageMeta) newItem.image.src = imageMeta.content;
             newItem.title.value = post.page.title;
             newItem.link.value = post.page.route;
+            newItem.tag.value = post.tags.join(", ");
+            newItem.created_at = post.page.created_at;
         }
         return newItem;
     }
