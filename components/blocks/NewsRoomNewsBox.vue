@@ -65,7 +65,7 @@ export default class NewsRoomNewsBox extends Vue {
                     title: "Title",
                     value: "",
                 },
-                tagLink: {
+                tag: {
                     id: 2,
                     type: StructureType.String,
                     title: "Tag",
@@ -122,11 +122,11 @@ export default class NewsRoomNewsBox extends Vue {
                 title: "Title",
                 value: "",
             },
-            tagLink: {
+            tag: {
                 id: 2,
-                type: StructureType.Url,
+                type: StructureType.String,
                 target: "_self",
-                title: "Tag Link",
+                title: "Tag",
                 value: "",
             },
             link: {
