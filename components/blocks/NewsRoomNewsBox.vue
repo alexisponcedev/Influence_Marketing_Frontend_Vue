@@ -17,7 +17,7 @@ export default class NewsRoomNewsBox extends Vue {
     Api = Api;
 
     mounted() {
-        Api.Post.getAll("news");
+        Api.Post.getAllNews();
 
         blockAddItem(this.model, "title", {
             id: 1,
@@ -37,7 +37,7 @@ export default class NewsRoomNewsBox extends Vue {
             id: 3,
             type: StructureType.AutoCompeleteSelect,
             items: () =>
-                Api.Post.all
+                Api.Post.allNews
                     .filter((p: any) => p.hasOwnProperty("page") && p.page)
                     .sort((a: any, b: any) => (a.id < b.id ? 1 : -1)),
             title: "Add News",
@@ -101,7 +101,7 @@ export default class NewsRoomNewsBox extends Vue {
     onCountChanged(value: any) {
         if (value) {
             this.model.list.value.push(
-                this.addPost(Api.Post.all.find((item) => item.id == value))
+                this.addPost(Api.Post.allNews.find((item) => item.id == value))
             );
             this.model.selectNews.value = "";
         }

@@ -74,7 +74,7 @@ export default class NewsPressArchive extends Vue {
         // });
 
 
-        // await Api.Post.getAll('news');
+        // await Api.Post.getAllNews();
         // this.addPosts();
 
         this.model = {...this.model};
@@ -82,7 +82,7 @@ export default class NewsPressArchive extends Vue {
 
     // addPosts() {
     //     this.model.list.value = [];
-    //     let posts = Api.Post.all
+    //     let posts = Api.Post.allNews
     //         .filter((p: any) => p.hasOwnProperty("page") && p.page)
     //         .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
     //
