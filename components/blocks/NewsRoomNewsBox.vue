@@ -36,15 +36,16 @@ export default class NewsRoomNewsBox extends Vue {
         blockAddItem(this.model, "selectNews", {
             id: 3,
             type: StructureType.AutoCompeleteSelect,
-            items: () =>
-                Api.Post.allNews
-                    .filter((p: any) => p.hasOwnProperty("page") && p.page)
-                    .sort((a: any, b: any) => (a.id < b.id ? 1 : -1)),
             title: "Add News",
             itemText: "page.title",
             itemValue: "id",
             value: "",
         });
+
+        this.model.selectNews.items = () =>
+            Api.Post.allNews
+                .filter((p: any) => p.hasOwnProperty("page") && p.page)
+                .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
 
         blockAddItem(this.model, "list", {
             id: 5,
