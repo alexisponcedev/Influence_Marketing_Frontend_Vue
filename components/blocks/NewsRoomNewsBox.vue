@@ -26,6 +26,25 @@ export default class NewsRoomNewsBox extends Vue {
             value: "News Room News Box",
         });
 
+        blockAddItem(this.model, "year_text", {
+            id: 1,
+            type: StructureType.String,
+            title: "Year",
+            value: "",
+        });
+        blockAddItem(this.model, "product_category", {
+            id: 1,
+            type: StructureType.String,
+            title: "Product Category",
+            value: "",
+        });
+        blockAddItem(this.model, "newsroom_search", {
+            id: 1,
+            type: StructureType.String,
+            title: "Search Newsroom",
+            value: "",
+        });
+
         blockAddItem(this.model, "link", {
             id: 2,
             type: StructureType.Url,
