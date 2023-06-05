@@ -58,62 +58,6 @@
                 </div>
             </div>
         </section>
-        <!-- <div
-            v-if="model.template.value === 'v1'"
-            class="tw-grid tw-grid-cols-2 tw-items-center tw-bg-[#1042f1]"
-        >
-            <div
-                class="tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9"
-            >
-                <h4
-                    class="tw-text-[#3df110] tw-font-semibold tw-text-lg tw-m-0 tw-mb-2"
-                >
-                    {{ model.smallTitle.value }}
-                </h4>
-                <h2
-                    class="tw-text-white tw-font-bold tw-leading-[48px] tw-m-0"
-                    v-html="model.text.value"
-                />
-                <p
-                    class="tw-text-[#cce2ff] tw-text-lg tw-mt-[34px]"
-                    v-html="model.description.value"
-                />
-                <div class="tw-flex tw-items-center tw-gap-[32px]">
-                    <button
-                        class="tw-py-3 tw-px-6 tw-bg-[#3df110] tw-text-[#0c2445] tw-text-lg tw-font-semibold tw-rounded-md tw-flex tw-items-center tw-gap-2"
-                    >
-                        {{ model.demo.value }}
-                        <img src="@/assets/svgs/arrow-right.svg" alt="icon" />
-                    </button>
-                    <button
-                        class="tw-py-3 tw-px-6 tw-border-[#3df110] tw-border tw-rounded-md tw-text-[#3df110]"
-                    >
-                        {{ model.contact.value }}
-                    </button>
-                </div>
-            </div>
-            <img :src="model.image.src" :alt="model.image.alt" />
-        </div>
-
-        <div
-            v-else
-            class="tw-grid tw-grid-cols-2 tw-items-end tw-bg-[#1042f1] tw-py-10"
-        >
-            <div
-                class="tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9"
-            >
-                <h4
-                    class="tw-text-[#3df110] tw-font-semibold tw-text-lg tw-m-0 tw-mb-1"
-                >
-                    {{ model.smallTitle.value }}
-                </h4>
-                <h2
-                    class="tw-text-white tw-font-bold tw-leading-[48px] tw-m-0 tw-mt-0"
-                    v-html="model.text.value"
-                />
-            </div>
-            <img :src="model.image.src" :alt="model.image.alt" />
-        </div> -->
     </div>
 </template>
 
@@ -148,7 +92,7 @@ export default class HomeBanner extends Vue {
             blockAddItem(this.model, "list", {
                 id: 4,
                 type: StructureType.List,
-                title: "Description Text",
+                title: "Block List",
                 newItem: {
                     title: {
                         id: 0,

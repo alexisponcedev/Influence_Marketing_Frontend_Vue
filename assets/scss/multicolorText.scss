@@ -1,10 +1,10 @@
 .multicolor {
     u {
-        @apply tw-no-underline;
+        @apply tw-no-underline #{!important};
     }
     &.skyblue {
         u {
-            @apply tw-text-skyblue;
+            @apply tw-text-skyblue #{!important};
         }
     }
 }

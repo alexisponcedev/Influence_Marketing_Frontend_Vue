@@ -40,3 +40,10 @@
         -moz-osx-font-smoothing: grayscale;
     }
 }
+
+p,
+span {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+}
