@@ -117,10 +117,21 @@ export const BLOCKS = () => {
                         title: "Sample Component",
                         image: "sample.png",
                         category: "Sample",
-                    }
+                    },
+                ],
+            },
+            {
+                name: "IM Website",
+                blocks: [
+                    {
+                        name: "HomeBanner",
+                        title: "HomeBanner",
+                        image: "HomeBanner.png",
+                        category: "banner",
+                    },
                 ],
             },
         ],
-        blog: []
+        blog: [],
     };
 };

@@ -1,9 +1,9 @@
 <template>
-    <loading-overlay show/>
+    <loading-overlay show />
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 
 @Component
 export default class Index extends Vue {
@@ -12,7 +12,9 @@ export default class Index extends Vue {
             localStorage.setItem("active_brand", "" + this.$route.query.brand);
         this.$router.push(
             "/auth" +
-            (!this.$route.query.token ? "" : "?token=" + this.$route.query.token)
+                (!this.$route.query.token
+                    ? ""
+                    : "?token=" + this.$route.query.token)
         );
     }
 }

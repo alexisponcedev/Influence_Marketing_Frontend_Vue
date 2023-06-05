@@ -44,6 +44,8 @@ export default {
         "@/assets/scss/custom.scss",
         "@/assets/scss/octavia-design-system/octavia-design-system.scss",
         "@/assets/css/main.css",
+        "@/assets/scss/button.scss",
+        "@/assets/scss/multicolorText.scss",
 
         // '@/assets/base/_bootstrapStyle.scss',
         // '@/assets/base/_customBootstrap.scss',
@@ -77,9 +79,7 @@ export default {
     ],
 
     image: {
-        domains: [
-            "https://imdam.api.stage.imdigital.ca/api/v1",
-        ],
+        domains: ["https://imdam.api.stage.imdigital.ca/api/v1"],
     },
 
     // Modules: https://go.nuxtjs.dev/config-modules
@@ -140,10 +140,17 @@ export default {
 
     env: {
         APP_NAME: process.env.APP_NAME || "imcxm",
-        BASE_API_PATH: process.env.BASE_API_PATH || "https://imcxm.api.stage.imdigital.ca",
-        PORTAL_URL: process.env.PORTAL_URL || "https://secure.stage.imdigital.ca/",
-        PIM_API_URL: process.env.PIM_API_URL || "https://impim.api.stage.imdigital.ca/api",
-        DAM_API_URL: process.env.DAM_API_URL || "https://imdam.api.stage.imdigital.ca/api/v1",
-        LIVE_WEBSITE: process.env.LIVE_WEBSITE || "https://public.stage.imdigital.ca",
+        BASE_API_PATH:
+            process.env.BASE_API_PATH || "https://imcxm.api.stage.imdigital.ca",
+        PORTAL_URL:
+            process.env.PORTAL_URL || "https://secure.stage.imdigital.ca/",
+        PIM_API_URL:
+            process.env.PIM_API_URL ||
+            "https://impim.api.stage.imdigital.ca/api",
+        DAM_API_URL:
+            process.env.DAM_API_URL ||
+            "https://imdam.api.stage.imdigital.ca/api/v1",
+        LIVE_WEBSITE:
+            process.env.LIVE_WEBSITE || "https://public.stage.imdigital.ca",
     },
 };

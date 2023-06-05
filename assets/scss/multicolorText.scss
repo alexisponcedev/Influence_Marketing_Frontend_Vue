@@ -1,0 +1,10 @@
+.multicolor {
+    u {
+        @apply tw-no-underline;
+    }
+    &.skyblue {
+        u {
+            @apply tw-text-skyblue;
+        }
+    }
+}
