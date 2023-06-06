@@ -50,7 +50,7 @@ export default class api__menu extends VuexModule {
 
     @Action
     async getHeader() {
-        return await this.get(1);
+        return await this.get(3);
     }
 
     @Action
