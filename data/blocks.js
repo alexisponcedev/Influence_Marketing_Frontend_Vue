@@ -1901,6 +1901,12 @@ export const BLOCKS = () => {
                         image: "ULEDXGetNotified.png",
                         category: "TextBox",
                     },
+                    {
+                        name: "ULEDXFullPageComponent",
+                        title: "ULEDX Full Page Component",
+                        image: "ULEDXFullPageComponent.png",
+                        category: "TextBox",
+                    },
                 ],
             },
             {
