@@ -1,4 +1,4 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -17,6 +17,7 @@ import {
 export default class api__post extends VuexModule {
     loading: Boolean = false;
     all: Array<PostResource> = [];
+    allNews: Array<PostResource> = [];
 
     @Mutation
     updateAll(all: Array<PostResource>) {
@@ -24,19 +25,44 @@ export default class api__post extends VuexModule {
     }
 
     @Mutation
+    updateAllNews(all: Array<PostResource>) {
+        this.allNews = all;
+    }
+
+    @Mutation
     setLoading(status: Boolean) {
         this.loading = status;
     }
 
-    @Action({commit: "updateAll"})
-    async getAll(type: string = 'blog') {
+    @Action({ commit: "updateAll" })
+    async getAll() {
         this.setLoading(true);
         const response = await PostApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .postList(getActiveBrand(), type)
+            .postList(getActiveBrand(), "blog")
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data.data;
+        return [];
+    }
+
+    @Action({ commit: "updateAllNews" })
+    async getAllNews() {
+        this.setLoading(true);
+        const response = await PostApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .postList(getActiveBrand(), "news")
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

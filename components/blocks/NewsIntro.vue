@@ -204,13 +204,6 @@ export default class NewsIntro extends Vue {
             title: "Subject",
             value: "",
         });
-        blockAddItem(this.model, "image", {
-            id: 2,
-            type: StructureType.Image,
-            title: "Image",
-            src: "",
-            alt: "Image Alt",
-        });
         blockAddItem(this.model, "date", {
             id: 3,
             type: StructureType.String,

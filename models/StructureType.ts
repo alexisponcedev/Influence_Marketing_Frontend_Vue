@@ -12,4 +12,5 @@ export enum StructureType {
   Object = 'object',
   idSelector = 'idSelector',
   Null = 'null',
+  AutoCompeleteSelect = 'autoCompeleteSelect',
 }

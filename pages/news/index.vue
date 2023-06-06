@@ -125,7 +125,7 @@ export default class AllPosts extends Vue {
     }
 
     async updatePosts() {
-        await Api.Post.getAll('news');
+        await Api.Post.getAllNews();
     }
 
     async getCategories() {
@@ -134,7 +134,7 @@ export default class AllPosts extends Vue {
 
     get blogsList() {
         let tab = this.tab.replace('#', '');
-        return Api.Post.all.filter((post: PostResource) => tab === '' || post.category_id?.toString() === tab);
+        return Api.Post.allNews.filter((post: PostResource) => tab === '' || post.category_id?.toString() === tab);
     }
 
     openCategoryModal(category = null) {

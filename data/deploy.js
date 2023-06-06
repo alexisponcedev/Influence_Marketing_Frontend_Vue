@@ -29,6 +29,6 @@ export const deploy = [
     },
     {
         title: "Notifications",
-        table: "notifications",
+        table: "notifications,notification_page",
     },
 ];

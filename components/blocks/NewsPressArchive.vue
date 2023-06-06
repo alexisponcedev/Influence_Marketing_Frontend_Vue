@@ -1,42 +1,61 @@
 <template>
     <div>
-        <img src="/blocks/NewsPressArchive.png" alt=""/>
+        <img src="/blocks/NewsPressArchive.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Api} from "@/store";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import { Api } from "@/store";
 import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class NewsPressArchive extends Vue {
     @Prop(Number) readonly id: number | undefined;
-    @Prop({default: true}) readonly editable: Boolean | undefined;
-    @VModel({type: Object}) model!: any;
+    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     Api = Api;
 
     async mounted() {
-        blockAddItem(this.model, 'titleOne', {
+        blockAddItem(this.model, "titleOne", {
             id: 1,
             type: StructureType.String,
-            title: 'Title 1',
-            value: 'Press Archive'
+            title: "Title 1",
+            value: "Press Archive",
         });
-        blockAddItem(this.model, 'titleTwo', {
+        blockAddItem(this.model, "titleTwo", {
             id: 2,
             type: StructureType.String,
-            title: 'Title 2',
-            value: 'Press Archive'
+            title: "Title 2",
+            value: "Press Archive",
+        });
+        blockAddItem(this.model, "year_text", {
+            id: 3,
+            type: StructureType.String,
+            title: "Year",
+            value: "",
+        });
+        blockAddItem(this.model, "product_category", {
+            id: 4,
+            type: StructureType.String,
+            title: "Product Category",
+            value: "",
+        });
+        blockAddItem(this.model, "newsroom_search", {
+            id: 5,
+            type: StructureType.String,
+            title: "Search Newsroom",
+            value: "",
         });
         blockAddItem(this.model, "count", {
-            id: 3,
+            id: 6,
             type: StructureType.String,
             title: "Number Of latest news post to get",
             value: 4,
         });
+
         // blockAddItem(this.model, "list", {
         //     id: 4,
         //     type: StructureType.List,
@@ -73,16 +92,15 @@ export default class NewsPressArchive extends Vue {
         //     value: [],
         // });
 
-
-        // await Api.Post.getAll('news');
+        // await Api.Post.getAllNews();
         // this.addPosts();
 
-        this.model = {...this.model};
+        this.model = { ...this.model };
     }
 
     // addPosts() {
     //     this.model.list.value = [];
-    //     let posts = Api.Post.all
+    //     let posts = Api.Post.allNews
     //         .filter((p: any) => p.hasOwnProperty("page") && p.page)
     //         .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
     //

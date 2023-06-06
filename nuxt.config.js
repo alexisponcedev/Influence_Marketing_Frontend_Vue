@@ -157,6 +157,9 @@ export default {
         DAM_API_URL:
             process.env.DAM_API_URL ||
             "https://assets.hisenseportal.com/api/v1",
+        ASSETS_IMAGES_TOKEN: process.env.ASSETS_IMAGES_TOKEN || "",
+        ASSETS_VIDEOS_TOKEN: process.env.ASSETS_VIDEOS_TOKEN || "",
+        ASSETS_FILES_TOKEN: process.env.ASSETS_FILES_TOKEN || "",
         LIVE_WEBSITE:
             process.env.LIVE_WEBSITE || "https://public.dev.hisenseportal.com",
     },

@@ -80,14 +80,14 @@ export default class NewsSingleLatestNews extends Vue {
             value: [],
         });
 
-        // await Api.Post.getAll('news');
+        // await Api.Post.getAllNews();
         // this.addPosts();
         this.model = { ...this.model };
     }
 
     // addPosts() {
     //     this.model.list.value = [];
-    //     let posts = Api.Post.all
+    //     let posts = Api.Post.allNews
     //         .filter((p: any) => p.hasOwnProperty("page") && p.page)
     //         .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
     //     console.log(posts);
@@ -105,7 +105,7 @@ export default class NewsSingleLatestNews extends Vue {
     //     //     });
     //     // }
     //
-    //     // console.log(max , this.model.list.value , Api.Post.all);
+    //     // console.log(max , this.model.list.value , Api.Post.allNews);
     //
     // }
 
