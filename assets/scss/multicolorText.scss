@@ -7,4 +7,9 @@
             @apply tw-text-skyblue #{!important};
         }
     }
+    &.white-text {
+        u {
+            @apply tw-text-white #{!important};
+        }
+    }
 }

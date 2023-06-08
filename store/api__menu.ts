@@ -55,7 +55,7 @@ export default class api__menu extends VuexModule {
 
     @Action
     async getFooter() {
-        return await this.get(2);
+        return await this.get(4);
     }
 
     @Action
