@@ -71,18 +71,18 @@ export default class BlocksSelector extends Vue {
 
     search = "";
 
-    getActiveBrandName = getActiveBrandName;
-
     @Emit()
     addBlock(block: any) {
         return block;
     }
+
     get Blocks() {
         let search = this.search ? this.search.toLowerCase() : "";
+        const all = BLOCKS();
         let blocks: any =
             this.blocksType === "page"
-                ? BLOCKS()[getActiveBrandName()].page
-                : BLOCKS()[getActiveBrandName()].blog;
+                ? all[getActiveBrandName() as keyof typeof all].page
+                : all[getActiveBrandName() as keyof typeof all].blog;
 
         blocks.forEach((i: any) => {
             i.blocks = i.blocks
