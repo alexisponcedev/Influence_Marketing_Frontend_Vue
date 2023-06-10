@@ -107,7 +107,7 @@ import { Menu } from "~/repositories";
 import { Api } from "~/utils/store-accessor";
 
 @Component
-export default class Header extends Vue {
+export default class IMHeader extends Vue {
     @Prop(Number) readonly id: number | undefined;
     @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;

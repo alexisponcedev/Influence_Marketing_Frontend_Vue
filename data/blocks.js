@@ -6,15 +6,15 @@ export const BLOCKS = () => {
                     name: "Common",
                     blocks: [
                         {
-                            name: "Header",
-                            title: "Header",
-                            image: "Header.png",
+                            name: "IMHeader",
+                            title: "IMHeader",
+                            image: "IMHeader.png",
                             category: "banner",
                         },
                         {
-                            name: "Footer",
-                            title: "Footer",
-                            image: "Footer.png",
+                            name: "IMFooter",
+                            title: "IMFooter",
+                            image: "IMFooter.png",
                             category: "banner",
                         },
                     ],
