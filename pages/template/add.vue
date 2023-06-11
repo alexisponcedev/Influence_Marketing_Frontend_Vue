@@ -1,18 +1,26 @@
 <template>
     <v-container fluid>
-
         <div v-if="editMode" class="d-flex justify-space-between align-center">
-            <breadcrumbs :locations="locations"/>
-            <v-btn elevation="0" color="grey darken-4 white--text" class="btn"
-                   :to="`/template/edit/${Template.id}/TemplateBuilder`">
+            <breadcrumbs :locations="locations" />
+            <v-btn
+                elevation="0"
+                color="grey darken-4 white--text"
+                class="btn"
+                :to="`/template/edit/${Template.id}/TemplateBuilder`"
+            >
                 Go to Template Builder
             </v-btn>
         </div>
 
         <v-row>
             <v-col>
-                <v-tabs show-arrows v-model="tab" background-color="transparent">
+                <v-tabs
+                    show-arrows
+                    v-model="tab"
+                    background-color="transparent"
+                >
                     <v-tab href="#Templates">Template Details</v-tab>
+                    <v-tab href="#Status">Template Status</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -29,25 +37,39 @@
                 </v-card-text>
             </v-tab-item>
         </v-tabs-items>
+        <v-tabs-items v-model="tab">
+            <v-tab-item value="Status">
+                <v-card-text>
+                    <form-standard
+                        ref="TemplatesStatus"
+                        :model="templateStatus"
+                        :fields="statusFields"
+                        @submit="statusSubmit"
+                    />
+                </v-card-text>
+            </v-tab-item>
+        </v-tabs-items>
 
+        <page-preview
+            :value="Template.widgets"
+            class="tw-bg-white tw-mt-10 tw-rounded-lg"
+        />
 
-        <page-preview :value="Template.widgets" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
-
-        <loading-overlay :show="Api.Template.loading"/>
+        <loading-overlay :show="Api.Template.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Template} from "@/repositories";
-import {FormField} from "@/models";
-import {Api} from "@/store";
+import { Template } from "@/repositories";
+import { FormField } from "@/models";
+import { Api } from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 
 @Component({
-    components: {HoverButton},
-    layout: "panel"
+    components: { HoverButton },
+    layout: "panel",
 })
 export default class EntityForm extends Vue {
     @Prop(Boolean) readonly editMode!: Boolean;
@@ -56,15 +78,20 @@ export default class EntityForm extends Vue {
 
     tab = "";
 
+    templateStatus = {
+        status: "",
+    };
+
     Template: Template = {
         id: 0,
-        name: '',
+        name: "",
         widgets: [],
     };
 
     locations: Array<{ title: string; to: string }> = [];
 
     formFields: Array<FormField> = [];
+    statusFields: Array<FormField> = [];
 
     mounted() {
         this.init();
@@ -95,7 +122,9 @@ export default class EntityForm extends Vue {
 
     async getEntity() {
         if (this.editMode)
-            this.Template = (await Api.Template.get(+this.$route.params.id)) as Template;
+            this.Template = (await Api.Template.get(
+                +this.$route.params.id
+            )) as Template;
     }
 
     updateTemplateFormFields() {
@@ -104,11 +133,36 @@ export default class EntityForm extends Vue {
                 type: "form-field-text",
                 label: "Name",
                 modelKey: "name",
-                placeholder: 'enter the template name',
+                placeholder: "enter the template name",
                 rules: [Validation.required],
-                colAttrs: {cols: 12},
+                colAttrs: { cols: 12 },
             },
         ];
+        this.statusFields = [
+            {
+                type: "form-field-select",
+                label: "Status",
+                modelKey: "status",
+                placeholder: "Status",
+                rules: [Validation.required],
+                items: () => [{ title: "Hidden", value: "hide" }],
+                "item-value": "value",
+                "item-text": "title",
+                colAttrs: { cols: 12 },
+            },
+        ];
+    }
+
+    async statusSubmit() {
+        // if (this.formValidate()) {
+        //     if (this.editMode)
+        //         await Api.Template.update({
+        //             id: +this.Template.id!,
+        //             Template: this.Template,
+        //         });
+        //     else await Api.Template.create(this.Template);
+        //     if (!this.editMode) this.$router.push("/template/all");
+        // }
     }
 
     async submit() {
