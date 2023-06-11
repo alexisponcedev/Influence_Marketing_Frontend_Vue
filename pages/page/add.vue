@@ -277,6 +277,9 @@ export default class PageForm extends Vue {
 
                 if (this.Page.route !== this.oldRoute || this.Page.status_id !== this.oldStatus)
                     Api.Page.doDeploy();
+                if(this.Page.route !== this.oldRoute){
+                    this.tab = 'Redirection'
+                }
             } else {
                 let page = await Api.Page.create(this.Page)
                 await Api.Page.doDeploy();
