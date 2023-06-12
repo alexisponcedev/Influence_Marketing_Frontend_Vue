@@ -41,7 +41,7 @@ export default class Menus extends Vue {
                     {
                         title: "Hamburger Menu",
                         value: "hamburger",
-                        type: "hamburger",
+                        type: "links",
                     },
                 ];
                 break;

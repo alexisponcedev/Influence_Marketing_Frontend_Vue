@@ -12,7 +12,7 @@
                     <v-row v-if="editing === index" align="start">
                         <form-field-text
                             :field="textField"
-                            v-model="item.name"
+                            v-model="item.title"
                         />
                         <form-field-select-page-name
                             :field="urlField"
@@ -38,7 +38,7 @@
                             />
                         </div>
                         <div class="tw-flex-1">
-                            <div class="tw-text-gray-400">{{ item.name }}</div>
+                            <div class="tw-text-gray-400">{{ item.title }}</div>
                             <div>{{ item.url }}</div>
                         </div>
                         <div class="tw-flex tw-items-center tw-space-x-4">
@@ -99,7 +99,7 @@ export default class MenuItemEditor extends Vue {
 
     addNewProduct(product: any) {
         this.model.push({
-            name: product.name,
+            title: product.title,
             url: "/",
             image: product.media ? product.media.url : "",
         });
