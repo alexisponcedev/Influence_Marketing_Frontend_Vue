@@ -18,8 +18,9 @@ import safeString from "~/utils/safeString";
 })
 export default class api__page extends VuexModule {
     loading: Boolean = false;
-    all: Array<PageResource> = [];
     routes: Array<any> = [];
+    all: Array<PageResource> = [];
+    dynamicPages: Array<PageResource> = [];
 
     @Mutation
     setLoading(status: Boolean) {
@@ -29,6 +30,12 @@ export default class api__page extends VuexModule {
     @Mutation
     updateAll(all: Array<PageResource>) {
         this.all = all;
+    }
+
+
+    @Mutation
+    updateDynamicPages(all: Array<PageResource>) {
+        this.dynamicPages = all;
     }
 
     @Mutation
@@ -112,7 +119,7 @@ export default class api__page extends VuexModule {
         return [];
     }
 
-    @Action({ commit: "updateAll" })
+    @Action({ commit: "updateDynamicPages" })
     async getDynamicPages() {
         this.setLoading(true);
         const response = await PageApiFactory(

@@ -1,6 +1,8 @@
 <template>
     <div class="tw-w-full" :class="{ 'tw-px-2': hasBackground }">
-        <div class="tw-mb-1" v-if="showTitle">{{ model.title }}</div>
+        <!-- <div class="tw-mb-1" v-if="showTitle">
+            {{ model.title }}
+        </div> -->
 
         <div
             class=""
@@ -101,7 +103,6 @@ export default class StructureUrlEditor extends Vue {
     @Prop({ type: Boolean, default: true }) showTitle!: Boolean;
     @Prop({ type: Boolean, default: false }) inline!: Boolean;
     @VModel({
-        type: StructureField,
         default: () => {
             return {
                 id: 0,
@@ -196,7 +197,6 @@ export default class StructureUrlEditor extends Vue {
         return new Promise((resolve, reject) => {
             this.selectField.label = this.model.title ?? "field";
             if (this.model && this.model.value) {
-                console.log(this.model);
                 if (this.model.value && this.model.value.startsWith("#")) {
                     // this.type = UrlTypeEnum.anchor;
                     // this.anchor = this.model.value;
@@ -271,12 +271,14 @@ export default class StructureUrlEditor extends Vue {
     onValueChanged(value: any, oldValue: any) {
         this.model = value;
         this.prepare();
+        this.$forceUpdate();
         // .then(this.updateType);
     }
 
     @Watch("model", { immediate: true, deep: true })
     onModelUpdated() {
         this.$emit("update:url", this.model);
+        this.$forceUpdate();
     }
 
     @Watch("rebuild", { immediate: true, deep: true })
