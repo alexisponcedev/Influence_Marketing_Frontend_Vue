@@ -21,7 +21,7 @@
                         <p class="mb-0">{{ template.name }}</p>
                         <v-checkbox
                             :value="template.status !== null"
-                            @click="submitStatus"
+                            @click="() => submitStatus(template.id)"
                         />
                     </v-row>
                     <v-divider v-if="index !== data.length - 1"></v-divider>
@@ -61,19 +61,32 @@ export default class TemplateStatusModal extends Vue {
     };
 
     mounted() {
-        this.data = Api.Template.all;
+        this.init();
     }
 
-    submitStatus() {}
+    async init() {
+        if (!Api.Template.all.length) this.data = await Api.Template.getAll();
+    }
+
+    submitStatus(_id: number) {
+        Api.Template.updateStatus(_id).then(() => Api.Template.getAll());
+    }
+
+    @Watch("show")
+    getData() {
+        this.init();
+    }
 
     @Watch("searchTerm")
     searchItems() {
-        this.data = Api.Template.all.filter((item) => {
-            if (item.name)
-                return item.name
-                    .toLowerCase()
-                    .includes(this.searchTerm.toLowerCase());
-        });
+        if (this.searchTerm.length) {
+            this.data = Api.Template.all.filter((item) => {
+                if (item.name)
+                    return item.name
+                        .toLowerCase()
+                        .includes(this.searchTerm.toLowerCase());
+            });
+        } else this.data = Api.Template.all;
     }
 }
 </script>
