@@ -219,7 +219,7 @@ export default class PageRedirection extends Vue {
     mounted() {
         this.loadRedirects();
         if (this.openAddRedirectModal) {
-            this.openModal("", this.RedirectType.To);
+            this.openModal("", this.RedirectType.From);
         } else {
             this.showModal = false;
             this.openAddRedirectModal = false;
@@ -288,7 +288,7 @@ export default class PageRedirection extends Vue {
     @Watch("openAddRedirectModal")
     openModalAddRedirect() {
         if (this.openAddRedirectModal) {
-            this.openModal("", this.RedirectType.To);
+            this.openModal("", this.RedirectType.From);
         } else {
             this.openAddRedirectModal = false;
             this.showModal = false;
