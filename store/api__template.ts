@@ -125,4 +125,25 @@ export default class api__template extends VuexModule {
             return response.data;
         return {};
     }
+
+    @Action
+    async updateStatus(id: number) {
+        this.setLoading(true);
+        const response = await TemplateApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .setAsFirmwareOnly(getActiveBrand(), id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
+
 }
