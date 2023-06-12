@@ -20,7 +20,6 @@
                     background-color="transparent"
                 >
                     <v-tab href="#Templates">Template Details</v-tab>
-                    <v-tab href="#Status">Template Status</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -37,19 +36,6 @@
                 </v-card-text>
             </v-tab-item>
         </v-tabs-items>
-        <v-tabs-items v-model="tab">
-            <v-tab-item value="Status">
-                <v-card-text>
-                    <form-standard
-                        ref="TemplatesStatus"
-                        :model="templateStatus"
-                        :fields="statusFields"
-                        @submit="statusSubmit"
-                    />
-                </v-card-text>
-            </v-tab-item>
-        </v-tabs-items>
-
         <page-preview
             :value="Template.widgets"
             class="tw-bg-white tw-mt-10 tw-rounded-lg"
@@ -78,10 +64,6 @@ export default class EntityForm extends Vue {
 
     tab = "";
 
-    templateStatus = {
-        status: "",
-    };
-
     Template: Template = {
         id: 0,
         name: "",
@@ -91,7 +73,6 @@ export default class EntityForm extends Vue {
     locations: Array<{ title: string; to: string }> = [];
 
     formFields: Array<FormField> = [];
-    statusFields: Array<FormField> = [];
 
     mounted() {
         this.init();
@@ -138,31 +119,6 @@ export default class EntityForm extends Vue {
                 colAttrs: { cols: 12 },
             },
         ];
-        this.statusFields = [
-            {
-                type: "form-field-select",
-                label: "Status",
-                modelKey: "status",
-                placeholder: "Status",
-                rules: [Validation.required],
-                items: () => [{ title: "Hidden", value: "hide" }],
-                "item-value": "value",
-                "item-text": "title",
-                colAttrs: { cols: 12 },
-            },
-        ];
-    }
-
-    async statusSubmit() {
-        // if (this.formValidate()) {
-        //     if (this.editMode)
-        //         await Api.Template.update({
-        //             id: +this.Template.id!,
-        //             Template: this.Template,
-        //         });
-        //     else await Api.Template.create(this.Template);
-        //     if (!this.editMode) this.$router.push("/template/all");
-        // }
     }
 
     async submit() {
