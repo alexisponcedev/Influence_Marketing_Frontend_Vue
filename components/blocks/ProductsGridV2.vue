@@ -29,15 +29,44 @@ export default class ProductsGridV2 extends Vue {
     reset(oldValue: any = {}) {
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue,
                 ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
+                    title: {
+                        id: 0,
+                        type: StructureType.Text,
+                        title: "Title",
+                        value: "<h2>All Televisions</h2>",
                     },
+
+                    category: {
+                        id: 0,
+                        type: StructureType.Select,
+                        title: "Select Category",
+                        value:
+                            this.categories.length > 0
+                                ? this.categories[0].id
+                                : 0,
+                        itemText: "name",
+                        itemValue: "id",
+                        items: this.categories,
+                    },
+                    availabilityNumber: {
+                        id: 1,
+                        type: StructureType.Select,
+                        title: "Show availability number",
+                        value: false,
+                        items: [
+                            { title: "Show", value: true },
+                            { title: "Hide", value: false },
+                        ],
+                    },
+                    // backgroundColor: {
+                    //     id: 7,
+                    //     type: StructureType.Color,
+                    //     title: "Background color",
+                    //     value: "#fff",
+                    // },
                 },
+                ...oldValue,
             };
         } else
             this.model = {
@@ -81,6 +110,7 @@ export default class ProductsGridV2 extends Vue {
         ).data;
         if (this.isEmpty) this.reset();
         else {
+            this.reset(this.model);
             this.model.category.items = this.categories;
         }
         this.updatePreview();
