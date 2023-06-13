@@ -87,7 +87,7 @@ export default class EntityForm extends Vue {
         this.locations = [
             {
                 title: "Templates",
-                to: "/template/all",
+                to: "/template",
             },
             {
                 title: this.Template.name || "",
@@ -129,7 +129,7 @@ export default class EntityForm extends Vue {
                     Template: this.Template,
                 });
             else await Api.Template.create(this.Template);
-            if (!this.editMode) this.$router.push("/template/all");
+            if (!this.editMode) this.$router.push("/template");
         }
     }
 
