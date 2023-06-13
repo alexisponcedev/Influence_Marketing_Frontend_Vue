@@ -1,21 +1,21 @@
 <template>
     <div>
-        <img src="/blocks/ProductsGridV2.png" alt=""/>
+        <img src="/blocks/ProductsGridV2.png" alt="" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Api} from "~/utils/store-accessor";
-import {CategoryResource} from "~/repositories";
+import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "~/models/StructureType";
+import { Api } from "~/utils/store-accessor";
+import { CategoryResource } from "~/repositories";
 import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component
 export default class ProductsGridV2 extends Vue {
-    @Prop(Number) readonly id: number | undefined
-    @Prop({default: true}) readonly editable: Boolean | undefined
-    @VModel({type: Object}) model!: any
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     Api = Api;
 
@@ -26,35 +26,91 @@ export default class ProductsGridV2 extends Vue {
     products: Array<any> = [];
     filterTypes: Array<any> = [];
 
-
     reset(oldValue: any = {}) {
-
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
+                ...{
+                    title: {
+                        id: 0,
+                        type: StructureType.Text,
+                        title: "Title",
+                        value: "<h2>All Televisions</h2>",
+                    },
+
+                    category: {
+                        id: 0,
+                        type: StructureType.Select,
+                        title: "Select Category",
+                        value:
+                            this.categories.length > 0
+                                ? this.categories[0].id
+                                : 0,
+                        itemText: "name",
+                        itemValue: "id",
+                        items: this.categories,
+                    },
+                    availabilityNumber: {
+                        id: 1,
+                        type: StructureType.Select,
+                        title: "Show availability number",
+                        value: false,
+                        items: [
+                            { title: "Show", value: true },
+                            { title: "Hide", value: false },
+                        ],
+                    },
+                    // backgroundColor: {
+                    //     id: 7,
+                    //     type: StructureType.Color,
+                    //     title: "Background color",
+                    //     value: "#fff",
+                    // },
+                },
+                ...oldValue,
+            };
         } else
             this.model = {
-                title: {id: 0, type: StructureType.Text, title: 'Title', value: '<h2>All Televisions</h2>'},
+                title: {
+                    id: 0,
+                    type: StructureType.Text,
+                    title: "Title",
+                    value: "<h2>All Televisions</h2>",
+                },
 
                 category: {
                     id: 0,
                     type: StructureType.Select,
-                    title: 'Select Category',
-                    value: this.categories.length > 0 ? this.categories[0].id : 0,
-                    itemText: 'name',
-                    itemValue: 'id',
-                    items: this.categories
+                    title: "Select Category",
+                    value:
+                        this.categories.length > 0 ? this.categories[0].id : 0,
+                    itemText: "name",
+                    itemValue: "id",
+                    items: this.categories,
                 },
-            }
+                availabilityNumber: {
+                    id: 1,
+                    type: StructureType.Select,
+                    title: "Show availability number",
+                    value: false,
+                    items: [
+                        { title: "Show", value: true },
+                        { title: "Hide", value: false },
+                    ],
+                },
+            };
     }
 
     async mounted() {
-        this.categories = (await this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategories?brand_id=' + getActiveBrand())).data
+        this.categories = (
+            await this.$axios.$get(
+                process.env.PIM_API_URL +
+                    "/cms/getCategories?brand_id=" +
+                    getActiveBrand()
+            )
+        ).data;
         if (this.isEmpty) this.reset();
         else {
+            this.reset(this.model);
             this.model.category.items = this.categories;
         }
         this.updatePreview();
@@ -64,37 +120,56 @@ export default class ProductsGridV2 extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-
     updatePreview(category_id: number = 0) {
-        if (category_id === 0 && this.model.hasOwnProperty('category') && this.model.category.value > 0)
+        if (
+            category_id === 0 &&
+            this.model.hasOwnProperty("category") &&
+            this.model.category.value > 0
+        )
             category_id = this.model.category.value;
 
         this.loadingFilters = true;
         this.loadingProducts = true;
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getProducts/' + category_id + '?brand_id=' + getActiveBrand())
-            .then(res => {
+        this.$axios
+            .$get(
+                process.env.PIM_API_URL +
+                    "/cms/getProducts/" +
+                    category_id +
+                    "?brand_id=" +
+                    getActiveBrand()
+            )
+            .then((res) => {
                 this.products = res.data;
                 this.loadingProducts = false;
-            }).catch(err => {
-            console.log(err);
-            this.loadingProducts = false;
-        })
+            })
+            .catch((err) => {
+                console.log(err);
+                this.loadingProducts = false;
+            });
 
-        this.$axios.$get(process.env.PIM_API_URL + '/cms/getCategoryFilterTypes/' + category_id + '?brand_id=' + getActiveBrand())
-            .then(res => {
+        this.$axios
+            .$get(
+                process.env.PIM_API_URL +
+                    "/cms/getCategoryFilterTypes/" +
+                    category_id +
+                    "?brand_id=" +
+                    getActiveBrand()
+            )
+            .then((res) => {
                 this.loadingFilters = false;
                 this.filterTypes = res.filterTypes;
-            }).catch(err => {
-            console.log(err);
-            this.loadingFilters = false
-        });
+            })
+            .catch((err) => {
+                console.log(err);
+                this.loadingFilters = false;
+            });
     }
 
     get categoryId() {
         return !this.isEmpty ? this.model.category.value : 0;
     }
 
-    @Watch('categoryId', {immediate: false, deep: true})
+    @Watch("categoryId", { immediate: false, deep: true })
     onCategoryIdChanged() {
         this.updatePreview(this.categoryId);
     }
@@ -103,10 +178,11 @@ export default class ProductsGridV2 extends Vue {
         if (!this.model.hasOwnProperty(name)) this.model[name] = item;
         this.model[name].id = item.id;
 
-        if (this.model[name].type !== item.type) this.model[name].type = item.type;
+        if (this.model[name].type !== item.type)
+            this.model[name].type = item.type;
         if (item.type === StructureType.Image) {
-            this.model[name].src = '';
-            this.model[name].alt = 'Image Alt';
+            this.model[name].src = "";
+            this.model[name].alt = "Image Alt";
         }
         if (item.type === StructureType.List) {
             this.model[name].newItem = item.newItem;
@@ -115,7 +191,6 @@ export default class ProductsGridV2 extends Vue {
             this.model[name].items = item.items;
         }
     }
-
 }
 </script>
 
@@ -126,12 +201,12 @@ export default class ProductsGridV2 extends Vue {
 
     .group {
         .title {
-            font-family: 'hisense', serif;
+            font-family: "hisense", serif;
             font-style: normal;
             font-weight: bold;
             font-size: 16px !important;
             line-height: 24px;
-            color: #5A5B75;
+            color: #5a5b75;
             margin-bottom: 24px;
         }
 
@@ -144,7 +219,7 @@ export default class ProductsGridV2 extends Vue {
                 .checkbox {
                     width: 13px;
                     height: 13px;
-                    border: 1px solid #5A5B75;
+                    border: 1px solid #5a5b75;
                     border-radius: 2px;
                 }
 
@@ -153,7 +228,7 @@ export default class ProductsGridV2 extends Vue {
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 16px;
-                    color: #5A5B75;
+                    color: #5a5b75;
                 }
             }
         }
@@ -165,16 +240,15 @@ export default class ProductsGridV2 extends Vue {
 }
 
 .gray-box {
-    background-color: #F1F1F2;
+    background-color: #f1f1f2;
 }
 
 .total-result {
-    font-family: 'hisense', serif;
-    background: #DCECF0;
+    font-family: "hisense", serif;
+    background: #dcecf0;
     border-radius: 16px;
     padding: 16px;
     margin: 16px 28px;
-
 
     &-title {
         font-style: normal;
@@ -185,14 +259,14 @@ export default class ProductsGridV2 extends Vue {
     }
 
     &-link {
-        font-family: 'hisense', serif;
+        font-family: "hisense", serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 27px;
         text-decoration-line: underline;
-        color: #00AAA6;
-        margin-left: 8px
+        color: #00aaa6;
+        margin-left: 8px;
     }
 }
 </style>

@@ -31,11 +31,10 @@ export default class BlogListReadArticleBox extends Vue {
             title: "Title",
             value: "",
         });
-        blockAddItem(this.model, "tagLink", {
+        blockAddItem(this.model, "tag", {
             id: 2,
-            type: StructureType.Url,
-            target: "_self",
-            title: "Tag Link",
+            type: StructureType.String,
+            title: "Tag",
             value: "",
         });
         blockAddItem(this.model, "link", {
