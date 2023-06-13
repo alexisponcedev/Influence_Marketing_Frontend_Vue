@@ -62,11 +62,10 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
                             title: "Title",
                             value: "",
                         },
-                        tagLink: {
+                        tag: {
                             id: 2,
-                            type: StructureType.Url,
-                            target: "_self",
-                            title: "Tag Link",
+                            type: StructureType.String,
+                            title: "Tag",
                             value: "",
                         },
                         link: {
@@ -96,11 +95,10 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
                             title: "Title",
                             value: "",
                         },
-                        tagLink: {
+                        tag: {
                             id: 2,
-                            type: StructureType.Url,
-                            target: "_self",
-                            title: "Tag Link",
+                            type: StructureType.String,
+                            title: "Tag",
                             value: "",
                         },
                         link: {
@@ -167,11 +165,10 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
                     title: "Title",
                     value: "",
                 },
-                tagLink: {
+                tag: {
                     id: 2,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Tag Link",
+                    type: StructureType.String,
+                    title: "Tag",
                     value: "",
                 },
                 link: {
@@ -190,6 +187,7 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
             if (imageMeta) newItem.value.image.src = imageMeta.content;
             newItem.value.title.value = post.page.title;
             newItem.value.link.value = post.page.route;
+            newItem.value.tag.value = post.tags;
         }
         return newItem;
     }

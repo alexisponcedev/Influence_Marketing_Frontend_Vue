@@ -117,7 +117,6 @@ export default class BlogMoreStories extends Vue {
         let posts = Api.Post.all
             .filter((p: any) => p.hasOwnProperty("page") && p.page)
             .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
-        console.log(posts);
 
         let max = Math.min(this.count, posts.length);
         max = max / 2 === 0 ? max : max - 1;
@@ -180,7 +179,7 @@ export default class BlogMoreStories extends Vue {
             if (imageMeta) newItem.value.image.src = imageMeta.content;
             newItem.value.title.value = post.page.title;
             newItem.value.link.value = post.page.route;
-            // newItem.value.tag.value = post.tags;
+            newItem.value.tag.value = post.tags;
         }
         return newItem;
     }

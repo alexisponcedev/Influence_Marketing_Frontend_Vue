@@ -44,11 +44,10 @@ export default class BlogListSoundBarItemsBox extends Vue {
                     title: "Title",
                     value: "",
                 },
-                tagLink: {
+                tag: {
                     id: 2,
                     type: StructureType.Url,
-                    target: "_self",
-                    title: "Tag Link",
+                    title: "Tag",
                     value: "",
                 },
                 link: {
@@ -102,11 +101,10 @@ export default class BlogListSoundBarItemsBox extends Vue {
                 title: "Title",
                 value: "",
             },
-            tagLink: {
+            tag: {
                 id: 2,
-                type: StructureType.Url,
-                target: "_self",
-                title: "Tag Link",
+                type: StructureType.String,
+                title: "Tag",
                 value: "",
             },
             link: {
@@ -124,6 +122,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             if (imageMeta) newItem.image.src = imageMeta.content;
             newItem.title.value = post.page.title;
             newItem.link.value = post.page.route;
+            newItem.tag.value = post.tags;
         }
         return newItem;
     }

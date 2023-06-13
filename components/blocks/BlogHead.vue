@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
@@ -18,8 +18,7 @@ export default class BlogHead extends Vue {
     mounted() {
         blockAddItem(this.model, "tagLink", {
             id: 0,
-            type: StructureType.Url,
-            target: "_self",
+            type: StructureType.String,
             title: "Top Tag Link",
             value: "",
         });
