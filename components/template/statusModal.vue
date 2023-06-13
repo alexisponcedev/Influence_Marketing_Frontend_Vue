@@ -1,6 +1,10 @@
 <template>
-    <v-dialog v-model="showSynced" max-width="800px">
-        <v-card>
+    <v-dialog
+        v-model="showSynced"
+        max-width="800px"
+        content-class="custom_height"
+    >
+        <v-card class="h-full">
             <v-card-title>
                 Template Status
                 <v-spacer />
@@ -21,6 +25,13 @@
     </v-dialog>
 </template>
 
+<style lang="scss">
+.custom_height {
+    height: 100% !important;
+    max-height: 500px !important;
+}
+</style>
+
 <script lang="ts">
 import { Vue, Component, PropSync, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
@@ -38,16 +49,14 @@ export default class TemplateStatusModal extends Vue {
     formFields: Array<FormField> = [];
 
     Api = Api;
-    template: Template = {
-        status: {},
-        brand_id: 3,
-        widgets: [],
-        name: "",
+    template: any = {
+        status: "",
     };
 
     mounted() {
         this.init();
         this.updateSettingFormFields();
+        this.updateData();
     }
 
     async init() {
@@ -56,7 +65,9 @@ export default class TemplateStatusModal extends Vue {
 
     updateData() {
         this.template = {
-            status: Api.Template.all.find((item) => item.status !== null)?.id,
+            status: Api.Template.all.find(
+                (item: any) => item.status?.name === "firmwareOnly"
+            )?.id,
         };
     }
 
@@ -78,8 +89,10 @@ export default class TemplateStatusModal extends Vue {
 
     async submit() {
         if (this.formValidate()) {
-            alert();
-            // Api.Template.updateStatus(_id).then(() => Api.Template.getAll());
+            Api.Template.updateStatus(this.template.status).then(() => {
+                this.showSynced = false;
+                Api.Template.getAll();
+            });
         }
     }
 
