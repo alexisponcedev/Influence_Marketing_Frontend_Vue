@@ -23,7 +23,7 @@
                         "
                     >
                         <template v-slot:[`item.status`]="{ item }">
-                            <v-icon v-if="item.status !== null"
+                            <v-icon v-if="item.status?.name === 'firmwareOnly'"
                                 >mdi-check
                             </v-icon>
                         </template>
