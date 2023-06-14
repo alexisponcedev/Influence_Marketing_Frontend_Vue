@@ -90,7 +90,7 @@ export default class PageBuilder extends Vue {
     }
 
     get blocksType() {
-        return this.page.post ? this.page.post.type : 'page'
+        return this.page?.post ? this.page.post.type : 'page'
     }
 
     mounted() {
