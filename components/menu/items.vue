@@ -60,10 +60,9 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component, VModel, Watch } from "vue-property-decorator";
-import { Api } from "~/utils/store-accessor";
-import { Page } from "~/repositories";
-import { UrlTypeEnum } from "~/interfaces/UrlTypeEnum";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { UrlTypeEnum } from "@/interfaces/UrlTypeEnum";
+import { Api } from "@/utils/store-accessor";
 
 @Component
 export default class MenuItemEditor extends Vue {
@@ -73,12 +72,6 @@ export default class MenuItemEditor extends Vue {
     type = UrlTypeEnum.Internal;
 
     pages: Array<any> = [];
-
-    list = [];
-
-    mounted() {
-        this.list = this.model;
-    }
 
     editingIndex: number = -1;
     editingItem: any = { id: -1, title: "", value: "", target: "_self" };
@@ -104,6 +97,7 @@ export default class MenuItemEditor extends Vue {
             url: "/",
         });
         this.edit(this.model.length - 1);
+        this.$emit("addItem");
     }
 
     confirm() {
@@ -115,11 +109,6 @@ export default class MenuItemEditor extends Vue {
 
     cancel() {
         this.editingIndex = -1;
-    }
-
-    @Watch("list", { deep: true, immediate: true })
-    onListChanged() {
-        this.model = this.list;
     }
 }
 </script>

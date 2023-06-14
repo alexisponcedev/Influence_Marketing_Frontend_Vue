@@ -14,6 +14,7 @@
                         <menu-items v-model="Menu.widgets.hamburger" />
                     </v-card-text>
                 </v-tab-item>
+
                 <v-tab-item value="centerOptions">
                     <v-card-text>
                         <h6>Center Options</h6>
@@ -46,6 +47,7 @@
                         </div>
                     </v-card-text>
                 </v-tab-item>
+
                 <v-tab-item value="rightOptions">
                     <v-card-text>
                         <h6>Right Options</h6>

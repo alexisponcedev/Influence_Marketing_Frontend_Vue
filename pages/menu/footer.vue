@@ -166,7 +166,7 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { Api } from "@/store";
-import { Menu } from "~/repositories";
+import { Menu } from "@/repositories";
 
 @Component({
     layout: "panel",

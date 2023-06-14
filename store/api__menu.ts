@@ -1,13 +1,13 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
+import safeString from "@/utils/safeString";
 import {
     Menu,
     MenuResource,
     Configuration,
     MenuApiFactory,
 } from "@/repositories";
-import safeString from "~/utils/safeString";
 
 @Module({
     name: "api__menu",
@@ -28,7 +28,7 @@ export default class api__menu extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await MenuApiFactory(
@@ -48,6 +48,7 @@ export default class api__menu extends VuexModule {
         return [];
     }
 
+    //TODO: remote get and getHeader and footer
     @Action
     async getHeader() {
         return await this.get(1);
@@ -79,6 +80,26 @@ export default class api__menu extends VuexModule {
     }
 
     @Action
+    async getMenu(id: number) {
+        this.setLoading(true);
+        const response = await MenuApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .getMenu(getActiveBrand(), id)
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data.data;
+        return {} as MenuResource;
+    }
+
+    @Action
     async create(Menu: Menu) {
         this.setLoading(true);
         Menu.widgets = JSON.parse(safeString(JSON.stringify(Menu.widgets)));
@@ -102,7 +123,9 @@ export default class api__menu extends VuexModule {
     @Action
     async update(payload: { id: number; Menu: Menu }) {
         this.setLoading(true);
-        payload.Menu.widgets = JSON.parse(safeString(JSON.stringify(payload.Menu.widgets)));
+        payload.Menu.widgets = JSON.parse(
+            safeString(JSON.stringify(payload.Menu.widgets))
+        );
         const response = await MenuApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
