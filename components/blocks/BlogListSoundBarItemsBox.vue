@@ -123,6 +123,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             newItem.title.value = post.page.title;
             newItem.link.value = post.page.route;
             newItem.tag.value = post.tags;
+            newItem.id.value = post.id;
         }
         return newItem;
     }
