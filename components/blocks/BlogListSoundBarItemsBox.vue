@@ -29,7 +29,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             id: 2,
             type: StructureType.List,
             title: "List",
-            hidden:true,
+            hidden: true,
             newItem: {
                 image: {
                     id: 0,
@@ -62,7 +62,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
         });
 
         await Api.Post.getAll();
-        if(this.model.list.value.length === 0) this.addPosts();
+        if (this.model.list.value.length === 0) this.addPosts();
         this.model = { ...this.model };
     }
 
@@ -112,6 +112,11 @@ export default class BlogListSoundBarItemsBox extends Vue {
                 type: StructureType.Url,
                 target: "_self",
                 title: "READ ARTICLE",
+                value: "",
+            },
+            id: {
+                id: 4,
+                type: StructureType.String,
                 value: "",
             },
         };
