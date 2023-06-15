@@ -93,7 +93,7 @@ export default class TelevisionsBlockBanner extends Vue {
     }
 
     mounted() {
-        this.reset();
+        this.reset(this.model);
     }
 
     get isEmpty(): Boolean {
