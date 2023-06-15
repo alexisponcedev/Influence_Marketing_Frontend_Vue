@@ -180,6 +180,7 @@ export default class BlogMoreStories extends Vue {
             newItem.value.title.value = post.page.title;
             newItem.value.link.value = post.page.route;
             newItem.value.tag.value = post.tags;
+            newItem.value.id.value = post.id;
         }
         return newItem;
     }
