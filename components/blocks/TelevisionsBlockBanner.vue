@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
 
 @Component
 export default class TelevisionsBlockBanner extends Vue {
@@ -19,37 +19,71 @@ export default class TelevisionsBlockBanner extends Vue {
             this.model = {
                 ...oldValue,
                 ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
+                    desktop: {
+                        id: 0,
+                        type: StructureType.Image,
+                        title: "Desktop Image",
+                        src: "",
+                        alt: "",
+                    },
+                    mobile: {
+                        id: 1,
+                        type: StructureType.Image,
+                        title: "Mobile Image",
+                        src: "",
+                        alt: "",
+                    },
+                    title: {
+                        id: 2,
+                        type: StructureType.Text,
+                        title: "Title",
+                        value: "",
+                    },
+                    subtitle: {
+                        id: 3,
+                        type: StructureType.Text,
+                        title: "Subtitle",
+                        value: "",
+                    },
+                    link: {
+                        id: 4,
+                        type: StructureType.Url,
+                        target: "_self",
+                        title: "Sign Up Now",
+                        value: "",
                     },
                 },
             };
         } else
             this.model = {
-                image: {
+                desktop: {
                     id: 0,
                     type: StructureType.Image,
-                    title: "Image",
+                    title: "Desktop Image",
+                    src: "",
+                    alt: "",
+                },
+                mobile: {
+                    id: 1,
+                    type: StructureType.Image,
+                    title: "Mobile Image",
                     src: "",
                     alt: "",
                 },
                 title: {
-                    id: 1,
+                    id: 2,
                     type: StructureType.Text,
                     title: "Title",
                     value: "",
                 },
                 subtitle: {
-                    id: 2,
+                    id: 3,
                     type: StructureType.Text,
                     title: "Subtitle",
                     value: "",
                 },
                 link: {
-                    id: 3,
+                    id: 4,
                     type: StructureType.Url,
                     target: "_self",
                     title: "Sign Up Now",
