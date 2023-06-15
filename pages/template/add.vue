@@ -1,17 +1,24 @@
 <template>
     <v-container fluid>
-
         <div v-if="editMode" class="d-flex justify-space-between align-center">
-            <breadcrumbs :locations="locations"/>
-            <v-btn elevation="0" color="grey darken-4 white--text" class="btn"
-                   :to="`/template/edit/${Template.id}/TemplateBuilder`">
+            <breadcrumbs :locations="locations" />
+            <v-btn
+                elevation="0"
+                color="grey darken-4 white--text"
+                class="btn"
+                :to="`/template/edit/${Template.id}/TemplateBuilder`"
+            >
                 Go to Template Builder
             </v-btn>
         </div>
 
         <v-row>
             <v-col>
-                <v-tabs show-arrows v-model="tab" background-color="transparent">
+                <v-tabs
+                    show-arrows
+                    v-model="tab"
+                    background-color="transparent"
+                >
                     <v-tab href="#Templates">Template Details</v-tab>
                 </v-tabs>
             </v-col>
@@ -29,25 +36,26 @@
                 </v-card-text>
             </v-tab-item>
         </v-tabs-items>
+        <page-preview
+            :value="Template.widgets"
+            class="tw-bg-white tw-mt-10 tw-rounded-lg"
+        />
 
-
-        <page-preview :value="Template.widgets" class="tw-bg-white tw-mt-10 tw-rounded-lg"/>
-
-        <loading-overlay :show="Api.Template.loading"/>
+        <loading-overlay :show="Api.Template.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
-import {Template} from "@/repositories";
-import {FormField} from "@/models";
-import {Api} from "@/store";
+import { Template } from "@/repositories";
+import { FormField } from "@/models";
+import { Api } from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 
 @Component({
-    components: {HoverButton},
-    layout: "panel"
+    components: { HoverButton },
+    layout: "panel",
 })
 export default class EntityForm extends Vue {
     @Prop(Boolean) readonly editMode!: Boolean;
@@ -58,7 +66,7 @@ export default class EntityForm extends Vue {
 
     Template: Template = {
         id: 0,
-        name: '',
+        name: "",
         widgets: [],
     };
 
@@ -79,7 +87,7 @@ export default class EntityForm extends Vue {
         this.locations = [
             {
                 title: "Templates",
-                to: "/template/all",
+                to: "/template",
             },
             {
                 title: this.Template.name || "",
@@ -95,7 +103,9 @@ export default class EntityForm extends Vue {
 
     async getEntity() {
         if (this.editMode)
-            this.Template = (await Api.Template.get(+this.$route.params.id)) as Template;
+            this.Template = (await Api.Template.get(
+                +this.$route.params.id
+            )) as Template;
     }
 
     updateTemplateFormFields() {
@@ -104,9 +114,9 @@ export default class EntityForm extends Vue {
                 type: "form-field-text",
                 label: "Name",
                 modelKey: "name",
-                placeholder: 'enter the template name',
+                placeholder: "enter the template name",
                 rules: [Validation.required],
-                colAttrs: {cols: 12},
+                colAttrs: { cols: 12 },
             },
         ];
     }
@@ -119,7 +129,7 @@ export default class EntityForm extends Vue {
                     Template: this.Template,
                 });
             else await Api.Template.create(this.Template);
-            if (!this.editMode) this.$router.push("/template/all");
+            if (!this.editMode) this.$router.push("/template");
         }
     }
 
