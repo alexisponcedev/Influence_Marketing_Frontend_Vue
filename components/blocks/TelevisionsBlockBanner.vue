@@ -19,7 +19,7 @@ export default class TelevisionsBlockBanner extends Vue {
             this.model = {
                 ...oldValue,
                 ...{
-                    desktop: {
+                    image: {
                         id: 0,
                         type: StructureType.Image,
                         title: "Desktop Image",
@@ -56,7 +56,7 @@ export default class TelevisionsBlockBanner extends Vue {
             };
         } else
             this.model = {
-                desktop: {
+                image: {
                     id: 0,
                     type: StructureType.Image,
                     title: "Desktop Image",
