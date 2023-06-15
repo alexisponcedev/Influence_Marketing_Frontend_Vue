@@ -17,7 +17,6 @@ export default class TelevisionsBlockBanner extends Vue {
     reset(oldValue: any = {}) {
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue,
                 ...{
                     image: {
                         id: 0,
@@ -53,6 +52,7 @@ export default class TelevisionsBlockBanner extends Vue {
                         value: "",
                     },
                 },
+                ...oldValue,
             };
         } else
             this.model = {
@@ -93,7 +93,7 @@ export default class TelevisionsBlockBanner extends Vue {
     }
 
     mounted() {
-        if (this.isEmpty) this.reset();
+        this.reset(this.model);
     }
 
     get isEmpty(): Boolean {
