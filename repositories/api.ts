@@ -8141,6 +8141,40 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @param {string} [postIds] id of posts as json array [1,2,3]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPostTags: async (postIds?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/husa/getPostTags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (postIds !== undefined) {
+                localVarQueryParameter['postIds'] = postIds;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} productId Product ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8710,6 +8744,16 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [postIds] id of posts as json array [1,2,3]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPostTags(postIds?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPostTags(postIds, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} productId Product ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8987,6 +9031,15 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
          */
         getPostById(postId: number, options?: any): AxiosPromise<InlineResponse20032> {
             return localVarFp.getPostById(postId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [postIds] id of posts as json array [1,2,3]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPostTags(postIds?: string, options?: any): AxiosPromise<any> {
+            return localVarFp.getPostTags(postIds, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9289,6 +9342,17 @@ export class HUSAAPIsApi extends BaseAPI {
      */
     public getPostById(postId: number, options?: AxiosRequestConfig) {
         return HUSAAPIsApiFp(this.configuration).getPostById(postId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [postIds] id of posts as json array [1,2,3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HUSAAPIsApi
+     */
+    public getPostTags(postIds?: string, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).getPostTags(postIds, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -16563,7 +16627,7 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
