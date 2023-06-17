@@ -126,6 +126,7 @@ export default class SectionCards extends Vue {
                         title: "link",
                         value: "/",
                     },
+
                     image: {
                         id: 3,
                         type: StructureType.Image,
