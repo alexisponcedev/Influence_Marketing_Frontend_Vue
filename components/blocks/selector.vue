@@ -79,6 +79,9 @@ export default class BlocksSelector extends Vue {
     get Blocks() {
         let search = this.search ? this.search.toLowerCase() : "";
         const all = BLOCKS();
+        console.log(all);
+        console.log(getActiveBrandName());
+        console.log(all[getActiveBrandName() as keyof typeof all].page);
         let blocks: any =
             this.blocksType === "page"
                 ? all[getActiveBrandName() as keyof typeof all].page
