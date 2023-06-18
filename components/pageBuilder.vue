@@ -94,7 +94,6 @@ export default class PageBuilder extends Vue {
     }
 
     mounted() {
-        alert("Update");
         EventBus.listen("enable-select-mode", (target: any) => {
             console.log("enable-select-mode", target);
             this.selectItem = target;
