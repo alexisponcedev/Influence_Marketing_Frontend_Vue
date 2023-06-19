@@ -45,6 +45,8 @@ export default {
         "@/assets/scss/octavia-design-system/octavia-design-system.scss",
         "@/assets/css/main.css",
         "@/assets/scss/button.scss",
+        "@/assets/scss/rippleAnimation.scss",
+        "@/assets/scss/global.scss",
         "@/assets/scss/multicolorText.scss",
 
         // '@/assets/base/_bootstrapStyle.scss',

@@ -1,0 +1,40 @@
+.ripple_animation {
+    @apply tw-mx-auto tw-absolute -tw-translate-y-1/2 tw-top-1/2 tw-min-w-[290px] xs:tw-min-w-[380px] sm:tw-min-w-[544px] md:tw-min-w-[560px] tw-origin-left;
+    animation: growAndFade 6s infinite ease-in;
+}
+
+$elements: 15;
+@for $i from 0 to $elements {
+    .ripple_animation:nth-child(#{$i + 1}) {
+        animation-delay: $i * 500ms;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    @for $i from 0 to $elements {
+        .ripple_animation:nth-child(#{$i + 1}) {
+            animation-delay: $i * 1000ms;
+            width: 40%;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    @for $i from 0 to $elements {
+        .ripple_animation:nth-child(#{$i + 1}) {
+            width: 100%;
+        }
+    }
+}
+
+@keyframes growAndFade {
+    0% {
+        left: 0;
+        transform: scale(1) translateY(-50%);
+    }
+    100% {
+        left: 200%;
+        transform: scale(1.4) translateY(-50%);
+    }
+}

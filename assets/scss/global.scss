@@ -1,0 +1,27 @@
+.container_large {
+    @apply tw-max-w-lg sm:tw-max-w-2xl md:tw-max-w-4xl lg:tw-max-w-6xl xl:tw-max-w-[1320px] 2xl:tw-max-w-[1660px] 3xl:tw-max-w-[2300px];
+}
+
+.container_small {
+    @apply tw-max-w-[421px] sm:tw-max-w-xl md:tw-max-w-xl lg:tw-max-w-3xl xl:tw-max-w-[990px] 2xl:tw-max-w-[1200px] 3xl:tw-max-w-[1440px];
+}
+
+.form {
+    @apply tw-grid tw-grid-cols-12 tw-gap-4;
+    .form_control {
+        @apply tw-border-midnight tw-border-solid tw-border-0 tw-border-b tw-p-4 tw-mb-[14px];
+        input,
+        textarea {
+            @apply tw-bg-inherit tw-w-full tw-h-full tw-border-inherit tw-text-midnight tw-text-base tw-font-bold placeholder:tw-font-bold placeholder:tw-text-base placeholder:tw-text-midnight;
+        }
+    }
+}
+
+input,
+textarea {
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+        @apply tw-border-0 tw-outline-none;
+    }
+}
