@@ -2029,6 +2029,12 @@ export const BLOCKS = () => {
                         image: "CareersBanner",
                         category: "TextBox",
                     },
+                    {
+                        name: "CareersTextBox",
+                        title: "Careers Text Box",
+                        image: "CareersTextBox",
+                        category: "TextBox",
+                    },
                 ],
             },
             // {
