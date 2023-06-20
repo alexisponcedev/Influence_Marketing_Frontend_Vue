@@ -27,24 +27,54 @@ export default class CareersAccordion extends Vue {
                     title: "Title of list",
                     value: "",
                 },
-                subtitle: {
+                list: {
                     id: 1,
-                    type: StructureType.String,
-                    title: "Title of sublsit",
-                    value: "",
-                },
-                text: {
-                    id: 2,
-                    type: StructureType.SimpleText,
-                    title: "Description of sublist",
-                    value: "",
-                },
-                link: {
-                    id: 3,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Link of sublist",
-                    value: "",
+                    type: StructureType.List,
+                    title: "sublist of list",
+                    newItem: {
+                        title: {
+                            id: 0,
+                            type: StructureType.String,
+                            title: "Title of sublist",
+                            value: "",
+                        },
+                        subtitle: {
+                            id: 2,
+                            type: StructureType.SimpleText,
+                            title: "Description of sublist",
+                            value: "",
+                        },
+                        link: {
+                            id: 3,
+                            type: StructureType.Url,
+                            target: "_self",
+                            title: "Link of sublist",
+                            value: "",
+                        },
+                    },
+                    value: [
+                        {
+                            title: {
+                                id: 0,
+                                type: StructureType.String,
+                                title: "Title of sublist",
+                                value: "",
+                            },
+                            subtitle: {
+                                id: 2,
+                                type: StructureType.SimpleText,
+                                title: "Description of sublist",
+                                value: "",
+                            },
+                            link: {
+                                id: 3,
+                                type: StructureType.Url,
+                                target: "_self",
+                                title: "Link of sublist",
+                                value: "",
+                            },
+                        },
+                    ],
                 },
             },
             value: [
@@ -55,24 +85,54 @@ export default class CareersAccordion extends Vue {
                         title: "Title of list",
                         value: "",
                     },
-                    subtitle: {
+                    list: {
                         id: 1,
-                        type: StructureType.String,
-                        title: "Title of sublsit",
-                        value: "",
-                    },
-                    text: {
-                        id: 2,
-                        type: StructureType.SimpleText,
-                        title: "Description of sublist",
-                        value: "",
-                    },
-                    link: {
-                        id: 3,
-                        type: StructureType.Url,
-                        target: "_self",
-                        title: "Link of sublist",
-                        value: "",
+                        type: StructureType.List,
+                        title: "sublist of list",
+                        newItem: {
+                            title: {
+                                id: 0,
+                                type: StructureType.String,
+                                title: "Title of sublist",
+                                value: "",
+                            },
+                            subtitle: {
+                                id: 2,
+                                type: StructureType.SimpleText,
+                                title: "Description of sublist",
+                                value: "",
+                            },
+                            link: {
+                                id: 3,
+                                type: StructureType.Url,
+                                target: "_self",
+                                title: "Link of sublist",
+                                value: "",
+                            },
+                        },
+                        value: [
+                            {
+                                title: {
+                                    id: 0,
+                                    type: StructureType.String,
+                                    title: "Title of sublist",
+                                    value: "",
+                                },
+                                subtitle: {
+                                    id: 2,
+                                    type: StructureType.SimpleText,
+                                    title: "Description of sublist",
+                                    value: "",
+                                },
+                                link: {
+                                    id: 3,
+                                    type: StructureType.Url,
+                                    target: "_self",
+                                    title: "Link of sublist",
+                                    value: "",
+                                },
+                            },
+                        ],
                     },
                 },
             ],
