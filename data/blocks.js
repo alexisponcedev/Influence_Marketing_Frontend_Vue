@@ -2014,6 +2014,23 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "Career",
+                blocks: [
+                    {
+                        name: "CareersAccordion",
+                        title: "Careers Accordion",
+                        image: "CareersAccordion.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CareersBanner",
+                        title: "Careers Banner",
+                        image: "CareersBanner",
+                        category: "TextBox",
+                    },
+                ],
+            },
             // {
             //     name: "News Room",
             //     blocks: [
