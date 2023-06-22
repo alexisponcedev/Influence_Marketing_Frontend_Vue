@@ -118,6 +118,7 @@ import {FormField} from "@/models";
 import {Api} from "@/store";
 import HoverButton from "~/components/base/HoverButton.vue";
 import getActiveBrand from "~/utils/getActiveBrand";
+import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component({
     components: {HoverButton},
@@ -308,6 +309,8 @@ export default class PageForm extends Vue {
     }
 
     get liveWebsite() {
+        if(getActiveBrandName() === "influencemarketing")
+            return "https://im.stage.imdigital.ca/" +(this.Page.route || '')
         return process.env.LIVE_WEBSITE + (this.Page.route || '')
     }
 
