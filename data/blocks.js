@@ -2351,6 +2351,12 @@ export const BLOCKS = () => {
                         image: "NewsSingleInfoBox.png",
                         category: "ImageBox",
                     },
+                    {
+                        name: "NewsRoomMainBox",
+                        title: "NewsRoom Main Box",
+                        image: "NewsRoomMainBox.png",
+                        category: "ImageBox",
+                    },
                 ],
             },
         ],
