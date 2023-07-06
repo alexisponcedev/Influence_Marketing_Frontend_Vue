@@ -2014,6 +2014,29 @@ export const BLOCKS = () => {
                     },
                 ],
             },
+            {
+                name: "Career",
+                blocks: [
+                    {
+                        name: "CareersAccordion",
+                        title: "Careers Accordion",
+                        image: "CareersAccordion.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CareersBanner",
+                        title: "Careers Banner",
+                        image: "CareersBanner",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "CareersTextBox",
+                        title: "Careers Text Box",
+                        image: "CareersTextBox",
+                        category: "TextBox",
+                    },
+                ],
+            },
             // {
             //     name: "News Room",
             //     blocks: [
@@ -2326,6 +2349,12 @@ export const BLOCKS = () => {
                         name: "NewsSingleInfoBox",
                         title: "NewsSingleInfoBox Component",
                         image: "NewsSingleInfoBox.png",
+                        category: "ImageBox",
+                    },
+                    {
+                        name: "NewsRoomMainBox",
+                        title: "NewsRoom Main Box",
+                        image: "NewsRoomMainBox.png",
                         category: "ImageBox",
                     },
                 ],
