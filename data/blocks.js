@@ -984,6 +984,53 @@ export const BLOCKS = () => {
                         category: "TextBox",
                     },
                     {
+                        name: "HomeAppliancesSingleCardBanner",
+                        title: "Home Appliances Single Card Banner",
+                        image: "HomeAppliancesSingleCardBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HomeAppliancesTitleAndCardsBox",
+                        title: "Home Appliance Title And Cards Box",
+                        image: "HomeAppliancesTitleAndCardsBox.png",
+                        category: "TextBox",
+                    },
+                ],
+            },
+            {
+                name: "Home Appliances - NEW",
+                blocks: [
+                    {
+                        name: "HomeAppliancesBanner",
+                        title: "Home Appliances Banner",
+                        image: "HomeAppliancesBanner.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HomeAppliancesCardsBox",
+                        title: "Home Appliance Cards Box",
+                        image: "HomeAppliancesCardsBox.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HomeAppliancesCarousel",
+                        title: "Home Appliance Carousel",
+                        image: "HomeAppliancesCarousel.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HomeAppliancesHeaderCategory",
+                        title: "Home Appliance Header Category",
+                        image: "HomeAppliancesHeaderCategory.png",
+                        category: "TextBox",
+                    },
+                    {
+                        name: "HomeAppliancesImageBox",
+                        title: "Home Appliance Image Box",
+                        image: "HomeAppliancesImageBox.png",
+                        category: "TextBox",
+                    },
+                    {
                         name: "HomeAppliancePromoBanner",
                         title: "Home Appliance Promo Banner",
                         image: "ImageBox.png",
