@@ -153,6 +153,6 @@ export default {
             process.env.DAM_API_URL ||
             "https://imdam.api.stage.imdigital.ca/api/v1",
         LIVE_WEBSITE:
-            process.env.LIVE_WEBSITE || "https://public.stage.imdigital.ca",
+            process.env.LIVE_WEBSITE || "https://im.stage.imdigital.ca",
     },
 };
