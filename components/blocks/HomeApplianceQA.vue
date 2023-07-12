@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
+import { StructureType } from "@/models/StructureType";
+import { Theme } from "@/interfaces/ThemeEnum";
 
 @Component
 export default class BlockHomeApplianceQA extends Vue {
@@ -23,15 +23,61 @@ export default class BlockHomeApplianceQA extends Vue {
     reset(oldValue: any = {}) {
         if (oldValue && Object.keys(oldValue).length > 0) {
             this.model = {
-                ...oldValue,
                 ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
+                    theme: {
+                        id: 0,
+                        type: StructureType.Select,
+                        title: "Theme",
+                        value: Theme.light,
+                        items: [
+                            { title: "Light", value: this.Theme.light },
+                            { title: "Dark", value: this.Theme.dark },
+                        ],
+                    },
+                    title: {
+                        id: 1,
+                        type: StructureType.String,
+                        title: "Title",
+                        value: "Stylish, Roomy and Modern",
+                    },
+                    coloredTitle: {
+                        id: 2,
+                        type: StructureType.String,
+                        title: "Colored Title",
+                        value: "DISHWASHER",
+                    },
+                    text: {
+                        id: 3,
+                        type: StructureType.Text,
+                        title: "Text",
+                        value: "If you would like to know more about our products, simply click here to visit our support and FAQ pages.",
+                    },
+                    link: {
+                        id: 4,
+                        type: StructureType.Url,
+                        target: "_self",
+                        title: "Link",
+                        value: "/support/faq/",
+                    },
+                    image: {
+                        id: 5,
+                        type: StructureType.Image,
+                        title: "Image",
+                        src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/0f02c61937/HA-Group__ScaleMaxWidthWzMwNDhd.png-b0v2vg.png",
+                        alt: "Some note about this image",
+                    },
+                    template: {
+                        id: 6,
+                        type: StructureType.Select,
+                        title: "Template",
+                        value: "V1",
+                        items: [
+                            { title: "V1", value: "V1" },
+                            { title: "V2", value: "V2" },
+                        ],
                     },
                 },
+                ...oldValue,
             };
         } else
             this.model = {
@@ -58,7 +104,7 @@ export default class BlockHomeApplianceQA extends Vue {
                     value: "DISHWASHER",
                 },
                 text: {
-                    id: 4,
+                    id: 3,
                     type: StructureType.Text,
                     title: "Text",
                     value: "If you would like to know more about our products, simply click here to visit our support and FAQ pages.",
@@ -71,17 +117,27 @@ export default class BlockHomeApplianceQA extends Vue {
                     value: "/support/faq/",
                 },
                 image: {
-                    id: 1,
+                    id: 5,
                     type: StructureType.Image,
                     title: "Image",
                     src: "https://assets.hisense-usa.com/assets/ContentBuilderImages/0f02c61937/HA-Group__ScaleMaxWidthWzMwNDhd.png-b0v2vg.png",
                     alt: "Some note about this image",
                 },
+                template: {
+                    id: 6,
+                    type: StructureType.Select,
+                    title: "Template",
+                    value: "V1",
+                    items: [
+                        { title: "V1", value: "V1" },
+                        { title: "V2", value: "V2" },
+                    ],
+                },
             };
     }
 
     mounted() {
-        if (this.isEmpty) this.reset();
+        this.reset(this.model);
     }
 
     get isEmpty(): Boolean {
