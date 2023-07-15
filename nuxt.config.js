@@ -154,5 +154,9 @@ export default {
             "https://imdam.api.stage.imdigital.ca/api/v1",
         LIVE_WEBSITE:
             process.env.LIVE_WEBSITE || "https://im.stage.imdigital.ca",
+        IMDIGITAL_LIVE_WEBSITE:
+            IMDIGITAL_LIVE_WEBSITE || "https://public.stage.imdigital.ca",
+        INFLUENCE_LIVE_WEBSITE:
+            INFLUENCE_LIVE_WEBSITE || "https://im.stage.imdigital.ca",
     },
 };

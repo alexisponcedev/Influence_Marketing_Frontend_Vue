@@ -26,7 +26,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6" class="text-right">
-                    <page-lock v-model="Page"/>
+                    <page-lock v-model="Page" />
 
                     <v-btn
                         @click="openHistory"
@@ -126,7 +126,7 @@
             :blocks-type="Page.model_type === 'post' ? 'blog' : 'page'"
         />
 
-        <template-selector ref="templateManager"/>
+        <template-selector ref="templateManager" />
 
         <version-history
             ref="history"
@@ -141,20 +141,21 @@
             :checkLockAndExit="checkLockAndExit"
         />
 
-        <loading-overlay :show="Api.Page.loading"/>
+        <loading-overlay :show="Api.Page.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Watch} from "vue-property-decorator";
-import {Api, AppStore} from "@/store";
-import {Page, Widgets} from "~/repositories";
-import {BlockInterface} from "~/interfaces/BlockInterface";
-import {SettingEnum} from "~/interfaces/SettingEnum";
+import { Vue, Component, Watch } from "vue-property-decorator";
+import { Api, AppStore } from "@/store";
+import { Page, Widgets } from "~/repositories";
+import { BlockInterface } from "~/interfaces/BlockInterface";
+import { SettingEnum } from "~/interfaces/SettingEnum";
 import VersionHistory from "~/components/version-history.vue";
+import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component({
-    components: {VersionHistory},
+    components: { VersionHistory },
 })
 export default class PageBuilderSection extends Vue {
     Api = Api;
@@ -168,6 +169,11 @@ export default class PageBuilderSection extends Vue {
     shouldDeploy: Boolean = false;
 
     dialog = false;
+
+    liveWebsiteUrl =
+        getActiveBrandName() === "imdigital"
+            ? process.env.IMDIGITAL_LIVE_WEBSITE
+            : process.env.INFLUENCE_LIVE_WEBSITE;
 
     async mounted() {
         this.fetchPage();
@@ -222,14 +228,16 @@ export default class PageBuilderSection extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Page.route || "");
+        return this.liveWebsiteUrl + (this.Page.route || "");
     }
 
     gotoLiveWebsite() {
         if (this.Page.status_id === 2)
-            window.open(process.env.LIVE_WEBSITE + "/preview/" + this.Page.id, '_blank');
-        else
-            window.open(this.liveWebsite, '_blank');
+            window.open(
+                this.liveWebsiteUrl + "/preview/" + this.Page.id,
+                "_blank"
+            );
+        else window.open(this.liveWebsite, "_blank");
     }
 
     saveTemplate() {
