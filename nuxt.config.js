@@ -155,8 +155,10 @@ export default {
         LIVE_WEBSITE:
             process.env.LIVE_WEBSITE || "https://im.stage.imdigital.ca",
         IMDIGITAL_LIVE_WEBSITE:
-            IMDIGITAL_LIVE_WEBSITE || "https://public.stage.imdigital.ca",
+            process.env.IMDIGITAL_LIVE_WEBSITE ||
+            "https://public.stage.imdigital.ca",
         INFLUENCE_LIVE_WEBSITE:
-            INFLUENCE_LIVE_WEBSITE || "https://im.stage.imdigital.ca",
+            process.env.INFLUENCE_LIVE_WEBSITE ||
+            "https://im.stage.imdigital.ca",
     },
 };
