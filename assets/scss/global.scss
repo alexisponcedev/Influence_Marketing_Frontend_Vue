@@ -25,3 +25,7 @@ textarea {
         @apply tw-border-0 tw-outline-none;
     }
 }
+
+p {
+    @apply tw-mb-0 #{!important};
+}
