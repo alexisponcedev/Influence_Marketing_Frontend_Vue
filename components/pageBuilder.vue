@@ -2,7 +2,8 @@
     <div>
         <div class="tw-flex tw-items-start tw-gap-4" style="margin-top: 88px">
             <div
-                :class="`bg-white tw-rounded-lg tw-flex-1 tw-overflow-hidden tw-overflow-y-auto tw-space-y-2 tw-p-2 tw-max-h-[86vh]`">
+                :class="`bg-white tw-rounded-lg tw-flex-1 tw-overflow-hidden tw-overflow-y-auto tw-space-y-2 tw-p-2 tw-max-h-[86vh]`"
+            >
                 <draggable
                     v-model="blocksList"
                     group="people"
@@ -23,19 +24,20 @@
                         :block="block"
                     >
                         <component
-                            :is="`blocks-${block.name}`"
+                            :is="`blocks-${getActiveBrandName()}-${block.name}`"
                             :id="block.id"
                             v-model="block.structure"
                             :page="page"
                         />
                     </blocks-container>
 
-                    <blocks-drop/>
+                    <blocks-drop />
                 </draggable>
             </div>
             <resizable v-model="width">
                 <div
-                    class="tw-h-[86vh] tw-overflow-hidden tw-overflow-y-auto no-scrollbar tw-bg-white tw-w-full">
+                    class="tw-h-[86vh] tw-overflow-hidden tw-overflow-y-auto no-scrollbar tw-bg-white tw-w-full"
+                >
                     <blocks-selector
                         v-show="editIndex === -1"
                         class="tw-p-4"
@@ -45,7 +47,10 @@
                     <structure-editor
                         class="tw-h-full"
                         v-if="editIndex > -1"
-                        :key=" blocksList[editIndex].title + blocksList[editIndex].id "
+                        :key="
+                            blocksList[editIndex].title +
+                            blocksList[editIndex].id
+                        "
                         v-model="blocksList[editIndex].structure"
                         :title="blocksList[editIndex].title"
                         @close="cancelEditing"
@@ -53,31 +58,33 @@
                 </div>
             </resizable>
         </div>
-        <template-selector ref="templateManager"/>
+        <template-selector ref="templateManager" />
     </div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel} from "vue-property-decorator";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
 import draggable from "vuedraggable";
-import {EventBus} from "~/plugins/event.client";
+import { EventBus } from "~/plugins/event.client";
+import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component({
-    components: {draggable},
+    components: { draggable },
 })
 export default class PageBuilder extends Vue {
     @Prop({
         type: Object,
-        default: () => {
-        },
+        default: () => {},
     })
     page!: any;
 
-    @VModel({type: Array}) blocksList!: any;
+    @VModel({ type: Array }) blocksList!: any;
 
     editIndex: Number = -1;
 
     selectItem: any = {};
+
+    getActiveBrandName = getActiveBrandName;
 
     window = window;
     x = 0;
@@ -90,12 +97,12 @@ export default class PageBuilder extends Vue {
     }
 
     get blocksType() {
-        return this.page?.post ? this.page.post.type : 'page'
+        return this.page?.post ? this.page.post.type : "page";
     }
 
     mounted() {
         EventBus.listen("enable-select-mode", (target: any) => {
-            console.log('enable-select-mode', target);
+            console.log("enable-select-mode", target);
             this.selectItem = target;
         });
     }
@@ -105,11 +112,15 @@ export default class PageBuilder extends Vue {
     }
 
     componentSelected(block: any) {
-        console.log('pageBuilder.vue ->  componentSelected', block, this.selectItem);
+        console.log(
+            "pageBuilder.vue ->  componentSelected",
+            block,
+            this.selectItem
+        );
         // this.selectItem.value = `#${this.blocksList[i].name}${this.blocksList[i].id}`;
         this.selectItem.value = `#${block.name}${block.id}`;
         this.selectItem = {}; // unlink selectItem
-        EventBus.fire('id-selector-changed')
+        EventBus.fire("id-selector-changed");
     }
 
     cancelEditing() {
