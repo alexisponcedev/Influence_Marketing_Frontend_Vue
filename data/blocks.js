@@ -18,7 +18,7 @@ export const BLOCKS = () => {
                     {
                         name: "NotFound",
                         title: "Page Not Found",
-                        image: "notFound.png",
+                        image: "NotFound.jpg",
                         category: "TextBox",
                     },
                 ],
