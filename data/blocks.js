@@ -105,9 +105,9 @@ export const BLOCKS = () => {
                         category: "ImageBox",
                     },
                     {
-                        name: "KeyFeature",
-                        title: "Key Feature",
-                        image: "ProductNewsBox.png",
+                        name: "ImageDescriptionTiles",
+                        title: "Image Description Tiles",
+                        image: "ImageDescriptionTiles.png",
                         category: "ImageTextBox",
                     },
                 ],
