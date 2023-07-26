@@ -152,9 +152,5 @@ export default class BlockProductBigContent extends Vue {
     mounted() {
         this.reset(this.model);
     }
-
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
-    }
 }
 </script>
