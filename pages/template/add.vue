@@ -2,6 +2,7 @@
     <v-container fluid>
         <div v-if="editMode" class="d-flex justify-space-between align-center">
             <breadcrumbs :locations="locations" />
+            <v-spacer />
             <v-btn
                 elevation="0"
                 color="grey darken-4 white--text"
