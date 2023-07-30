@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/NewsRoomMainBox.png" alt="" />
+        <img src="/blocks/NewsRoomMainBox.jpg" alt="" />
     </div>
 </template>
 
@@ -30,7 +30,7 @@ export default class NewsRoomMainBox extends Vue {
             type: StructureType.Url,
             title: "Title link",
             value: "/",
-            target:"_self"
+            target: "_self",
         });
         blockAddItem(this.model, "slider", {
             id: 1,
@@ -101,8 +101,44 @@ export default class NewsRoomMainBox extends Vue {
             value: "",
         });
 
-        blockAddItem(this.model, "selectNews", {
+        blockAddItem(this.model, "row-1", {
             id: 6,
+            type: StructureType.Select,
+            title: "columns in row 1",
+            value: 1,
+            items: [
+                { title: "1", value: 1 },
+                { title: "2", value: 2 },
+                { title: "3", value: 3 },
+            ],
+        });
+
+        blockAddItem(this.model, "row-2", {
+            id: 7,
+            type: StructureType.Select,
+            title: "columns in row 2",
+            value: 2,
+            items: [
+                { title: "1", value: 1 },
+                { title: "2", value: 2 },
+                { title: "3", value: 3 },
+            ],
+        });
+
+        blockAddItem(this.model, "row-3", {
+            id: 8,
+            type: StructureType.Select,
+            title: "columns in row 3",
+            value: 3,
+            items: [
+                { title: "1", value: 1 },
+                { title: "2", value: 2 },
+                { title: "3", value: 3 },
+            ],
+        });
+
+        blockAddItem(this.model, "selectNews", {
+            id: 9,
             type: StructureType.AutoCompeleteSelect,
             title: "Add News",
             itemText: "page.title",
@@ -116,7 +152,7 @@ export default class NewsRoomMainBox extends Vue {
                 .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
 
         blockAddItem(this.model, "list", {
-            id: 5,
+            id: 10,
             type: StructureType.List,
             title: "List",
             maxLength: 0,
