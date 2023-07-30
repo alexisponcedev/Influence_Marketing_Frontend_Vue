@@ -11,6 +11,7 @@
                     class="tw-flex tw-justify-between tw-items-center tw-flex-wrap lg:tw-flex-nowrap"
                 >
                     <breadcrumbs :locations="locations" />
+                    <v-spacer />
                     <div class="tw-flex tw-items-center tw-space-x-2">
                         <page-lock class="btn" v-model="Page" />
 
