@@ -1,17 +1,19 @@
 import { BlockInterface } from "@/interfaces/BlockInterface";
 
-import { updateNotFoundWidget } from "./functions";
+import { TVAndAudioFindHisenseWidget } from "./functions";
 
 function updateWidget(widget: BlockInterface): BlockInterface {
     switch (widget.name) {
-        case "NotFound":
-            return updateNotFoundWidget(widget);
+        case "TVAndAudioFindHisense":
+            return TVAndAudioFindHisenseWidget(widget);
         default:
             return { ...widget } as BlockInterface;
     }
 }
 
-export function refactorWidgetsHelper(input: Array<any>): Array<BlockInterface> {
+export function refactorWidgetsHelper(
+    input: Array<any>
+): Array<BlockInterface> {
     const old_widgets: Array<BlockInterface> = [...input];
     const new_widgets: Array<BlockInterface> = [];
 

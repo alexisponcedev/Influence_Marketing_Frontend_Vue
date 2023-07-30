@@ -606,12 +606,12 @@ export const BLOCKS = () => {
                         image: "TvAndAudioSmartChoice.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "TVAndAudioFindHisense",
-                        title: "TV and audio find hisense",
-                        image: "TvAndAudioFindHisense.png",
-                        category: "TextBox",
-                    },
+                    // {
+                    //     name: "TVAndAudioFindHisense",
+                    //     title: "TV and audio find hisense",
+                    //     image: "TvAndAudioFindHisense.png",
+                    //     category: "TextBox",
+                    // },
                     {
                         name: "TVAndAudioFindProduct",
                         title: "TV and audio find product",

@@ -40,7 +40,7 @@ export default class BlockProductNewsBox extends Vue {
         });
 
         blockAddItem(this.model, "shadow", {
-            id: 2,
+            id: 3,
             type: StructureType.Select,
             title: "Image shadow on hover",
             value: true,
@@ -51,7 +51,7 @@ export default class BlockProductNewsBox extends Vue {
         });
 
         blockAddItem(this.model, "list", {
-            id: 3,
+            id: 4,
             type: StructureType.List,
             title: "Items",
             maxLength: 4,
@@ -77,7 +77,7 @@ export default class BlockProductNewsBox extends Vue {
                             id: 2,
                             type: StructureType.String,
                             title: "Text",
-                            value: "Some note about this image",
+                            value: "",
                         },
                     },
                 },
@@ -129,7 +129,7 @@ export default class BlockProductNewsBox extends Vue {
                                 id: 2,
                                 type: StructureType.String,
                                 title: "Text",
-                                value: "Some note about this image",
+                                value: "",
                             },
                         },
                     },
