@@ -27,7 +27,10 @@ export default class StructureSelectEditor extends Vue {
     }
 
     changed(event: any) {
-        if (this.model && this.model.onChanged) this.model.onChanged(event);
+        if (this.model && this.model.onChanged) {
+            this.$emit("forceUpdate");
+            this.model.onChanged(event);
+        }
     }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div :key="forceUpdateIndex">
         <div
             class="tw-flex tw-items-center tw-w-full tw-justify-between tw-p-3"
             v-if="!simple"
@@ -15,6 +15,7 @@
             v-for="(key, index) in structureKeys.filter((i) => i.type !== null)"
             v-model="structure[key]"
             :key="index"
+            @forceUpdate="forceUpdateIndex++"
         />
     </div>
 </template>
@@ -30,6 +31,8 @@ export default class StructureEditor extends Vue {
         | boolean
         | undefined;
     @VModel() structure!: StructureField | any;
+
+    forceUpdateIndex: number = 0;
 
     @Emit("close")
     close() {

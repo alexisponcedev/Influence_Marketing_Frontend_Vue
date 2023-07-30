@@ -60,28 +60,20 @@ export default class ProductsGridV2 extends Vue {
     }
 
     getSubCategories() {
-        return (
-            [
-                {
-                    value: 0,
-                    id: 0,
-                    brand_id: 3,
-                    name: "None",
-                    parent_id: 0,
-                    slug: "None",
-                },
-                ...this.selectedCategory?.subcategories,
-            ] || [
-                {
-                    value: 0,
-                    id: 0,
-                    brand_id: 3,
-                    name: "None",
-                    parent_id: 0,
-                    slug: "None",
-                },
-            ]
-        );
+        return !!this.selectedCategory
+            ? [
+                  {
+                      id: 0,
+                      name: "None",
+                  },
+                  ...this.selectedCategory?.subcategories,
+              ]
+            : [
+                  {
+                      id: 0,
+                      name: "None",
+                  },
+              ];
     }
 
     async getCategories() {
@@ -97,7 +89,6 @@ export default class ProductsGridV2 extends Vue {
 
     get selectedCategory() {
         this.forceUpdateIndex;
-        this.model.subcategory?.value;
         const finded = this.categories.filter(
             (category) => category.id == this.model.category.value
         );
@@ -107,20 +98,15 @@ export default class ProductsGridV2 extends Vue {
     forceUpdateIndex: number = 0;
 
     categoryChanged() {
-        alert("be");
         this.forceUpdateIndex++;
         if (
             !this.selectedCategory?.subcategories
                 .map((category: any) => category.id)
                 .includes(this.model.subcategory.value)
-        )
-            this.model.subcategory.value = "";
-        this.model.subcategory.items = this.selectedCategory?.subcategories;
-        this.model.subcategory.forceUpdateIndex++;
-    }
-    @Watch("model.category", { deep: true })
-    resetSubCategories() {
-        this.model.subcategory.value = 0;
+        ) {
+            this.model.subcategory.value = 0;
+        }
+        this.model.subcategory.items = this.getSubCategories();
     }
 }
 </script>
