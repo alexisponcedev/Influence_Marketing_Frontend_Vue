@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, VModel } from "vue-property-decorator";
+import { Vue, Component, VModel, Watch } from "vue-property-decorator";
 import { StructureType } from "@/models/StructureType";
 import getActiveBrand from "@/utils/getActiveBrand";
 import blockAddItem from "@/utils/blockAddItem";
@@ -41,7 +41,7 @@ export default class ProductsGridV2 extends Vue {
             id: 1,
             type: StructureType.Select,
             title: "Select SubCategory",
-            value: this.categories.length > 0 ? this.categories[0].id : 0,
+            value: 0,
             itemText: "name",
             itemValue: "id",
             items: this.getSubCategories,
@@ -60,7 +60,28 @@ export default class ProductsGridV2 extends Vue {
     }
 
     getSubCategories() {
-        return this.selectedCategory?.subcategories || [];
+        return (
+            [
+                {
+                    value: 0,
+                    id: 0,
+                    brand_id: 3,
+                    name: "None",
+                    parent_id: 0,
+                    slug: "None",
+                },
+                ...this.selectedCategory?.subcategories,
+            ] || [
+                {
+                    value: 0,
+                    id: 0,
+                    brand_id: 3,
+                    name: "None",
+                    parent_id: 0,
+                    slug: "None",
+                },
+            ]
+        );
     }
 
     async getCategories() {
@@ -86,16 +107,20 @@ export default class ProductsGridV2 extends Vue {
     forceUpdateIndex: number = 0;
 
     categoryChanged() {
+        alert("be");
         this.forceUpdateIndex++;
         if (
             !this.selectedCategory?.subcategories
                 .map((category: any) => category.id)
                 .includes(this.model.subcategory.value)
         )
-            this.model.subcategory.value = undefined;
+            this.model.subcategory.value = "";
         this.model.subcategory.items = this.selectedCategory?.subcategories;
         this.model.subcategory.forceUpdateIndex++;
     }
+    @Watch("model.category", { deep: true })
+    resetSubCategories() {
+        this.model.subcategory.value = 0;
+    }
 }
 </script>
-\
