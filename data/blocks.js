@@ -429,12 +429,12 @@ export const BLOCKS = () => {
                         image: "ProductImageBox.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "ProductNewsBox",
-                        title: "Product News Box",
-                        image: "ProductNewsBox.png",
-                        category: "TextBox",
-                    },
+                    // {
+                    //     name: "ProductNewsBox",
+                    //     title: "Product News Box",
+                    //     image: "ProductNewsBox.png",
+                    //     category: "TextBox",
+                    // },
                     {
                         name: "ProductReviewBox",
                         title: "Product Reviews box",
