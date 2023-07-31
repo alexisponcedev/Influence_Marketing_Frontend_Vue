@@ -635,12 +635,12 @@ export const BLOCKS = () => {
                         image: "ImageBox.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "UHDNewsBox",
-                        title: "UHD News box",
-                        image: "UHDNewsBox.png",
-                        category: "TextBox",
-                    },
+                    // {
+                    //     name: "UHDNewsBox",
+                    //     title: "UHD News box",
+                    //     image: "UHDNewsBox.png",
+                    //     category: "TextBox",
+                    // },
                     {
                         name: "UHDAbilityBox",
                         title: "UHD Ability Box",

@@ -1,11 +1,13 @@
 import { BlockInterface } from "@/interfaces/BlockInterface";
 
-import { TVAndAudioFindHisenseWidget } from "./functions";
+import { TVAndAudioFindHisenseWidget, UHDNewsBoxWidget } from "./functions";
 
 function updateWidget(widget: BlockInterface): BlockInterface {
     switch (widget.name) {
         case "TVAndAudioFindHisense":
             return TVAndAudioFindHisenseWidget(widget);
+        case "UHDNewsBox":
+            return UHDNewsBoxWidget(widget);
         default:
             return { ...widget } as BlockInterface;
     }
