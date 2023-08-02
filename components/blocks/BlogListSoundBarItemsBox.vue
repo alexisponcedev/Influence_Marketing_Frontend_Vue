@@ -18,7 +18,11 @@ export default class BlogListSoundBarItemsBox extends Vue {
 
     Api = Api;
 
+    page: { [key: string]: any } = {};
+
     async mounted() {
+        if (typeof this.$attrs.page === "object")
+            this.page = this.$attrs.page as unknown as typeof Object;
         blockAddItem(this.model, "count", {
             id: 0,
             type: StructureType.String,
@@ -63,13 +67,34 @@ export default class BlogListSoundBarItemsBox extends Vue {
 
         await Api.Post.getAll();
         if (this.model.list.value.length === 0) this.addPosts();
+
         this.model = { ...this.model };
     }
 
     addPosts() {
         this.model.list.value = [];
+        console.log(
+            Api.Post.all.filter(
+                (p: any) =>
+                    p.hasOwnProperty("page") &&
+                    p.page &&
+                    p.id !== this.page.model_id &&
+                    (Array.isArray(this.page.post.tags)
+                        ? p.tags.some((tag: any) => {
+                              console.log(tag);
+                              console.log(this.page.post.tags);
+                              return this.page.post.tags.includes(tag);
+                          })
+                        : p.tags.includes(this.page.post.tags))
+            )
+        );
         let posts = Api.Post.all
-            .filter((p: any) => p.hasOwnProperty("page") && p.page)
+            .filter(
+                (p: any) =>
+                    p.hasOwnProperty("page") &&
+                    p.page &&
+                    p.id !== this.page.model_id
+            )
             .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
 
         for (let i = 0; i < this.model.count.value; i++) {
