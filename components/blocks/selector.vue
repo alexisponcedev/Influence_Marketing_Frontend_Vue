@@ -60,7 +60,6 @@ export default class BlocksSelector extends Vue {
     get Blocks() {
         let search = this.search ? this.search.toLowerCase() : '';
         let blocks = (BLOCKS() as any)[this.blocksType] ?? [];
-        console.log(blocks , this.blocksType);
         // let blocks = this.blocksType === 'page' ? BLOCKS().page : BLOCKS().blog;
         blocks.forEach((i: any) => {
             i.blocks = i.blocks.filter((j: any) => j.name.toLowerCase().includes(search) ||

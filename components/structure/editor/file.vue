@@ -8,6 +8,6 @@ import { StructureField } from "~/interfaces/StructureField";
 
 @Component
 export default class StructureFileEditor extends Vue {
-    @VModel({ type: StructureField }) model!: StructureField
+    @VModel() model!: StructureField
 }
 </script>

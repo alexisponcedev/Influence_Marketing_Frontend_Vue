@@ -95,7 +95,6 @@ export default class PageBuilder extends Vue {
 
     mounted() {
         EventBus.listen("enable-select-mode", (target: any) => {
-            console.log('enable-select-mode', target);
             this.selectItem = target;
         });
     }
@@ -105,7 +104,6 @@ export default class PageBuilder extends Vue {
     }
 
     componentSelected(block: any) {
-        console.log('pageBuilder.vue ->  componentSelected', block, this.selectItem);
         // this.selectItem.value = `#${this.blocksList[i].name}${this.blocksList[i].id}`;
         this.selectItem.value = `#${block.name}${block.id}`;
         this.selectItem = {}; // unlink selectItem
@@ -129,7 +127,6 @@ export default class PageBuilder extends Vue {
     }
 
     addItemByDrag(e: any) {
-        console.log("item is dropped : ", e);
         if (e.hasOwnProperty("added") && this.blocksList.length > 1) {
             e.added.element.id = this.blocksList.length + 1;
         }

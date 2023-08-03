@@ -26,7 +26,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6" class="text-right">
-                    <page-lock v-model="Page"/>
+                    <page-lock v-model="Page" />
 
                     <v-btn
                         @click="openHistory"
@@ -71,7 +71,7 @@
                         Save Page
                     </v-btn>
 
-                    <v-menu bottom :offset-x="-10" :offset-y="12">
+                    <v-menu bottom offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn icon elevation="0" v-on="on" v-bind="attrs">
                                 <v-icon>mdi-dots-vertical</v-icon>
@@ -125,7 +125,7 @@
             :page="Page"
         />
 
-        <template-selector ref="templateManager"/>
+        <template-selector ref="templateManager" />
 
         <version-history
             ref="history"
@@ -133,6 +133,7 @@
             :value="Page"
             @input="setHistory"
         />
+
         <pages-page-discard-dialog
             v-model="dialog"
             :pageTitle="Page.title"
@@ -140,59 +141,49 @@
             :checkLockAndExit="checkLockAndExit"
         />
 
-        <loading-overlay :show="Api.Page.loading"/>
+        <loading-overlay :show="Api.Page.loading" />
     </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Watch} from "vue-property-decorator";
-import {Api, AppStore} from "@/store";
-import {Page, Widgets} from "~/repositories";
-import {BlockInterface} from "~/interfaces/BlockInterface";
-import {SettingEnum} from "~/interfaces/SettingEnum";
-import VersionHistory from "~/components/version-history.vue";
+import { Vue, Component } from "vue-property-decorator";
+import { refactorWidgetsHelper } from "@/utils/refactorWidgets";
+import { BlockInterface } from "@/interfaces/BlockInterface";
+import { Page, Widgets } from "@/repositories";
+import { Api } from "@/store";
 
-@Component({
-    components: {VersionHistory},
-})
+@Component
 export default class PageBuilderSection extends Vue {
     Api = Api;
 
-    tab = "";
-
+    Page: Page = {};
     blocksList: BlockInterface[] = [];
 
-    Page: Page = {};
-
     shouldDeploy: Boolean = false;
-
-    dialog = false;
+    dialog: Boolean = false;
 
     async mounted() {
         this.fetchPage();
     }
 
     async fetchPage() {
-        await this.lock();
         this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-        if (this.Page.draft && this.Page.draft.length > 0)
-            this.blocksList = this.Page.draft as Array<BlockInterface>;
-        else
-            this.blocksList = (
-                this.Page.widgets ? this.Page.widgets : []
-            ) as Array<BlockInterface>;
+        this.blocksList = refactorWidgetsHelper(
+            this.Page.draft && this.Page.draft.length
+                ? this.Page.draft
+                : this.Page.widgets || []
+        );
     }
 
     async dialogSave() {
         this.dialog = false;
-        this.savePage().then(() => {
-            this.checkLockAndExit();
-        });
+        await this.savePage();
+        this.checkLockAndExit();
     }
 
-    checkLockAndExit() {
+    async checkLockAndExit() {
         this.dialog = false;
-        if (this.lockedByMe) this.unlock().then(this.goBack);
+        if (this.lockedByMe) await this.unlock();
         this.goBack();
     }
 
@@ -226,9 +217,11 @@ export default class PageBuilderSection extends Vue {
 
     gotoLiveWebsite() {
         if (this.Page.status_id === 2)
-            window.open(process.env.LIVE_WEBSITE + "/preview/" + this.Page.id, '_blank');
-        else
-            window.open(this.liveWebsite, '_blank');
+            window.open(
+                process.env.LIVE_WEBSITE + "/preview/" + this.Page.id,
+                "_blank"
+            );
+        else window.open(this.liveWebsite, "_blank");
     }
 
     saveTemplate() {
@@ -243,7 +236,6 @@ export default class PageBuilderSection extends Vue {
     }
 
     needDeploy() {
-        console.log("needDeploy fired");
         this.shouldDeploy = true;
     }
 
@@ -264,13 +256,6 @@ export default class PageBuilderSection extends Vue {
         return this.Page.locked_by! > 0 && this.Page.locked_by === this.userId;
     }
 
-    async lock() {
-        // if (this.Page.locked_by === 0)
-        //     return Api.Page.lockPage(this.Page.id!).then(() => {
-        //         this.Page.locked_by = this.userId
-        //     });
-    }
-
     async unlock() {
         if (this.Page.locked_by == this.userId)
             return Api.Page.unlockPage(this.Page.id!).then(() => {
@@ -279,7 +264,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     setHistory(history: any[]) {
-        this.blocksList = history;
+        this.blocksList = refactorWidgetsHelper(history);
     }
 }
 </script>
