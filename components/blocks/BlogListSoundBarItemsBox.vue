@@ -29,6 +29,16 @@ export default class BlogListSoundBarItemsBox extends Vue {
             title: "Count",
             value: 0,
         });
+        blockAddItem(this.model, "count", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Select By",
+            value: "rel",
+            items: [
+                { value: "rel", title: "Tag Related" },
+                { value: "new", title: "Newest" },
+            ],
+        });
         blockAddItem(this.model, "list", {
             id: 2,
             type: StructureType.List,
@@ -73,21 +83,6 @@ export default class BlogListSoundBarItemsBox extends Vue {
 
     addPosts() {
         this.model.list.value = [];
-        console.log(
-            Api.Post.all.filter(
-                (p: any) =>
-                    p.hasOwnProperty("page") &&
-                    p.page &&
-                    p.id !== this.page.model_id &&
-                    (Array.isArray(this.page.post.tags)
-                        ? p.tags.some((tag: any) => {
-                              console.log(tag);
-                              console.log(this.page.post.tags);
-                              return this.page.post.tags.includes(tag);
-                          })
-                        : p.tags.includes(this.page.post.tags))
-            )
-        );
         let posts = Api.Post.all
             .filter(
                 (p: any) =>
