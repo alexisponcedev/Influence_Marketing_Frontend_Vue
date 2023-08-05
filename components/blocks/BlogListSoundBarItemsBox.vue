@@ -29,7 +29,7 @@ export default class BlogListSoundBarItemsBox extends Vue {
             title: "Count",
             value: 0,
         });
-        blockAddItem(this.model, "count", {
+        blockAddItem(this.model, "selectby", {
             id: 0,
             type: StructureType.Select,
             title: "Select By",
