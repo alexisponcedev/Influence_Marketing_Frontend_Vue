@@ -122,6 +122,12 @@ export const BLOCKS = () => {
                         image: "VideoFeature.png",
                         category: "VideoBox",
                     },
+                    {
+                        name: "FullFeature",
+                        title: "Full feature",
+                        image: "FullFeature.png",
+                        category: "VideoBox",
+                    },
                 ],
             },
             {
