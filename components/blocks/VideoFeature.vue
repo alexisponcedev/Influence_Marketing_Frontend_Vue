@@ -16,16 +16,20 @@ export default class VideoFeature extends Vue {
     @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, "title", {
+        blockAddItem(this.model, "videoType", {
+            id: 1,
+            type: StructureType.Select,
+            title: "Link Type",
+            value: "iframe",
+            items: [
+                { value: "link", title: "Video Link" },
+                { value: "iframe", title: "Iframe Link" },
+            ],
+        });
+        blockAddItem(this.model, "video", {
             id: 1,
             type: StructureType.String,
-            title: "Title",
-            value: "",
-        });
-        blockAddItem(this.model, "text", {
-            id: 1,
-            type: StructureType.SimpleText,
-            title: "Text",
+            title: "Link",
             value: "",
         });
     }
