@@ -110,6 +110,12 @@ export const BLOCKS = () => {
                         image: "ImageDescriptionTiles.png",
                         category: "ImageTextBox",
                     },
+                    {
+                        name: "TextProductDescription",
+                        title: "Text Product Description",
+                        image: "TextProductDescription.png",
+                        category: "ImageTextBox",
+                    },
                 ],
             },
             {
