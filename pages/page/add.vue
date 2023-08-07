@@ -166,17 +166,21 @@
         />
 
         <loading-overlay :show="Api.Page.loading || Api.Redirect.loading" />
+        <unlock-page-modal
+            :show.sync="UnlockPageModalShow"
+            :page-id="Page.id"
+        />
     </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import HoverButton from "@/components/base/HoverButton.vue";
+import getActiveBrand from "@/utils/getActiveBrand";
 import Validation from "@/utils/validation";
-import { Page, PageResource } from "@/repositories";
+import { Page } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
-import HoverButton from "~/components/base/HoverButton.vue";
-import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component({
     components: { HoverButton },
@@ -191,7 +195,8 @@ export default class PageForm extends Vue {
 
     route: string = "";
 
-    openAddRedirectModal = false;
+    openAddRedirectModal: boolean = false;
+    UnlockPageModalShow: boolean = false;
 
     meta: Array<{ rel: string; name: string; content: string }> = [];
 
@@ -228,8 +233,8 @@ export default class PageForm extends Vue {
         this.init();
     }
 
-    async beforeDestroy() {
-        await this.unlock();
+    beforeDestroy() {
+        this.unlock();
     }
 
     async init() {
@@ -304,7 +309,6 @@ export default class PageForm extends Vue {
 
     async getEntity() {
         if (this.editMode) {
-            await this.lock();
             this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
             this.oldRoute = this.Page.route!;
             this.oldStatus = this.Page.status_id!;
@@ -358,7 +362,6 @@ export default class PageForm extends Vue {
         if (this.formValidate()) {
             if (this.editMode) {
                 if (this.Page.id === 1565) this.Page.route = this.oldRoute;
-                console.log(this.Page.route);
 
                 await Api.Page.update({
                     id: +this.Page.id!,
@@ -396,13 +399,18 @@ export default class PageForm extends Vue {
         else window.open(this.liveWebsite, "_blank");
     }
 
-    goToPageBuilder() {
-        if (
-            (!this.Page.widgets || this.Page.widgets?.length === 0) &&
-            (!this.Page.draft || this.Page.draft?.length === 0)
-        )
-            (this.$refs.templateSelector as any).open();
-        else this.openPageBuilder();
+    async goToPageBuilder() {
+        if (this.Page.id) {
+            const { locked_by } = await Api.Page.getLockStatus(this.Page.id);
+            if (locked_by == this.userId)
+                if (
+                    (!this.Page.widgets || this.Page.widgets?.length === 0) &&
+                    (!this.Page.draft || this.Page.draft?.length === 0)
+                )
+                    (this.$refs.templateSelector as any).open();
+                else this.openPageBuilder();
+            else this.UnlockPageModalShow = true;
+        }
     }
 
     get liveWebsite() {
@@ -725,17 +733,12 @@ export default class PageForm extends Vue {
         return profile ? profile.user_id : 0;
     }
 
-    async lock() {
-        // await Api.Page.lockPage(this.Page.id!).then(() => {
-        //     this.Page.locked_by = this.userId
-        // });
-    }
-
-    async unlock() {
-        if (this.Page.id! > 0)
-            Api.Page.unlockPage(this.Page.id!).then(() => {
+    async unlock(force?: boolean) {
+        if (force || this.Page.locked_by == this.userId)
+            if (this.Page.id) {
+                await Api.Page.unlockPage(this.Page.id!);
                 this.Page.locked_by = 0;
-            });
+            }
     }
 
     get isPDP() {
