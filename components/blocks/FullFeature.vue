@@ -8,6 +8,7 @@
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
+import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class FullFeature extends Vue {
@@ -16,6 +17,16 @@ export default class FullFeature extends Vue {
     @VModel({ type: Object }) model!: any;
 
     mounted() {
+        blockAddItem(this.model, "theme", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Theme",
+            value: Theme.dark,
+            items: [
+                { title: "Light", value: Theme.light },
+                { title: "Dark", value: Theme.dark },
+            ],
+        });
         blockAddItem(this.model, "background", {
             id: 0,
             type: StructureType.Image,
@@ -64,7 +75,7 @@ export default class FullFeature extends Vue {
             src: "",
         });
         blockAddItem(this.model, "note", {
-            id: 2,
+            id: 7,
             type: StructureType.String,
             title: "Note",
             value: "",
