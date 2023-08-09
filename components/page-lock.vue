@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, VModel, Watch } from "vue-property-decorator";
+import { Vue, Component, VModel, Watch, Prop } from "vue-property-decorator";
 import { Api } from "@/store";
 
 @Component
@@ -26,6 +26,8 @@ export default class PageLock extends Vue {
         default: () => {},
     })
     page!: any;
+
+    @Prop() readonly returnId!: any;
 
     lockedByName: string = "Admin";
     lockedById: number = 0;
@@ -58,8 +60,15 @@ export default class PageLock extends Vue {
             this.lockedByName = response.locked_by_name || "Admin";
             this.lockedById = response.locked_by || 0;
 
+            const returnId = this.returnId || this.page.id;
+
             if (this.userId !== response.locked_by)
-                this.$router.push("/page/edit/" + this.page.id);
+                if (this.$route.path.includes("page"))
+                    this.$router.push("/page/edit/" + returnId);
+                else if (this.$route.path.includes("posts"))
+                    this.$router.push("/posts/edit/" + returnId);
+                else if (this.$route.path.includes("news"))
+                    this.$router.push("/news/edit/" + returnId);
         }
 
         this._timerId = setTimeout(this.getLockStatus, 30000);

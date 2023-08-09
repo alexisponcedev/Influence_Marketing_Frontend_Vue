@@ -28,7 +28,10 @@
                                 mdi-lock
                             </v-icon>
                         </template>
-                        <span> Locked by {{ item.locked_by_name }} </span>
+                        <span>
+                            Locked by
+                            {{ item.locked_by_name || "another Admin" }}
+                        </span>
                     </v-tooltip>
                 </template>
             </table-standard>
