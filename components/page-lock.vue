@@ -60,15 +60,22 @@ export default class PageLock extends Vue {
             this.lockedByName = response.locked_by_name || "Admin";
             this.lockedById = response.locked_by || 0;
 
-            const returnId = this.returnId || this.page.id;
+            const returnId =
+                this.page?.post?.id || this.returnId || this.page?.id;
 
             if (this.userId !== response.locked_by)
-                if (this.$route.path.includes("page"))
-                    this.$router.push("/page/edit/" + returnId);
-                else if (this.$route.path.includes("posts"))
+                if (
+                    this.$route.path.includes("posts") ||
+                    this.page?.post?.type == "blog"
+                )
                     this.$router.push("/posts/edit/" + returnId);
-                else if (this.$route.path.includes("news"))
+                else if (
+                    this.$route.path.includes("news") ||
+                    this.page?.post?.type == "news"
+                )
                     this.$router.push("/news/edit/" + returnId);
+                else if (this.$route.path.includes("page"))
+                    this.$router.push("/page/edit/" + returnId);
         }
 
         this._timerId = setTimeout(this.getLockStatus, 30000);
