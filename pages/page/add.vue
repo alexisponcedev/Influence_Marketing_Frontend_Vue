@@ -171,12 +171,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import HoverButton from "@/components/base/HoverButton.vue";
+import getActiveBrand from "@/utils/getActiveBrand";
 import Validation from "@/utils/validation";
-import { Page, PageResource } from "@/repositories";
+import { Page } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
-import HoverButton from "~/components/base/HoverButton.vue";
-import getActiveBrand from "~/utils/getActiveBrand";
 
 @Component({
     components: { HoverButton },
@@ -341,7 +341,7 @@ export default class PageForm extends Vue {
                 type: "form-field-select-page-route",
                 label: "Page URL",
                 modelKey: "route",
-                rules: [],
+                rules: [Validation.required, Validation.url_paths],
                 colAttrs: { cols: 12 },
             },
             {
@@ -358,7 +358,6 @@ export default class PageForm extends Vue {
         if (this.formValidate()) {
             if (this.editMode) {
                 if (this.Page.id === 1565) this.Page.route = this.oldRoute;
-                console.log(this.Page.route);
 
                 await Api.Page.update({
                     id: +this.Page.id!,
