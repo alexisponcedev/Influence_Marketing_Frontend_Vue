@@ -345,7 +345,7 @@ export default class PageForm extends Vue {
                 type: "form-field-select-page-route",
                 label: "Page URL",
                 modelKey: "route",
-                rules: [],
+                rules: [Validation.required, Validation.url_paths],
                 colAttrs: { cols: 12 },
             },
             {
