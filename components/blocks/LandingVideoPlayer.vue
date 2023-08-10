@@ -26,42 +26,33 @@
 <script lang="ts">
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
+import blockAddItem from "~/utils/blockAddItem";
 
 @Component
 export default class LandingVideoPlayer extends Vue {
     @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: Boolean | undefined;
+    @Prop({ default: true }) readonly editable: boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
-    reset(oldValue: any = {}) {
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue,
-                ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
-                    },
-                },
-            };
-        } else
-            this.model = {
-                video: {
-                    id: 0,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Video",
-                    value: "https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1",
-                },
-            };
-    }
-
     mounted() {
-        if (this.isEmpty) this.reset();
+        blockAddItem(this.model, "video", {
+            id: 0,
+            type: StructureType.Url,
+            target: "_self",
+            title: "Video",
+            value: "https://player.vimeo.com/video/408847720?autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;background=1",
+        });
+        blockAddItem(this.model, "videoType", {
+            id: 1,
+            type: StructureType.Select,
+            title: "Link Type",
+            value: "iframe",
+            items: [
+                { value: "link", title: "Video Link" },
+                { value: "iframe", title: "Iframe Link" },
+            ],
+        });
     }
-
     clicked() {
         console.log("you have clicked me easily ");
         this.$emit("click");
@@ -69,11 +60,6 @@ export default class LandingVideoPlayer extends Vue {
 
     get isEmpty(): Boolean {
         return this.model && Object.keys(this.model).length === 0;
-    }
-
-    @Watch("isEmpty")
-    onValueChanged() {
-        if (this.isEmpty) this.reset();
     }
 }
 </script>

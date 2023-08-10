@@ -81,6 +81,12 @@ export default class BlockProductBigContent extends Vue {
                         title: "Background color",
                         value: "#fff",
                     },
+                    note: {
+                        id: 2,
+                        type: StructureType.String,
+                        title: "Small Bottom text",
+                        value: "",
+                    },
                 },
                 ...oldValue,
             };
@@ -145,6 +151,12 @@ export default class BlockProductBigContent extends Vue {
                     type: StructureType.Color,
                     title: "Background color",
                     value: "#fff",
+                },
+                note: {
+                    id: 2,
+                    type: StructureType.String,
+                    title: "Small Bottom text",
+                    value: "",
                 },
             };
     }

@@ -116,12 +116,12 @@ export const BLOCKS = () => {
                         image: "TextProductDescription.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "VideoFeature",
-                        title: "Video feature",
-                        image: "VideoFeature.png",
-                        category: "VideoBox",
-                    },
+                    // {
+                    //     name: "VideoFeature",
+                    //     title: "Video feature",
+                    //     image: "VideoFeature.png",
+                    //     category: "VideoBox",
+                    // },
                     // {
                     //     name: "FullFeature",
                     //     title: "Full feature",
