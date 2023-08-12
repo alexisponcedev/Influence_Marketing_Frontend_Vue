@@ -32,6 +32,7 @@
                 >
                     <v-tab href="#Details">Post Details</v-tab>
                     <v-tab href="#Metas">Post Metas</v-tab>
+                    <v-tab href="#MetaImages">Post Images</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -90,6 +91,19 @@
                         Save
                     </button>
                 </v-tab-item>
+
+                <v-tab-item value="MetaImages">
+                    <form-field-meta-images
+                        :field="formFields[4]"
+                        v-model="Post.page"
+                    />
+                    <button
+                        class="tw-my-3 tw-w-full tw-py-3 tw-bg-white tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-ext-center tw-shadow"
+                        @click.prevent="submit"
+                    >
+                        Save
+                    </button>
+                </v-tab-item>
             </v-tabs-items>
         </v-form>
 
@@ -99,13 +113,11 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import HoverButton from "@/components/base/HoverButton.vue";
+import { PageResource } from "@/repositories";
 import Validation from "@/utils/validation";
-import { PageResource, Post } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
-import HoverButton from "~/components/base/HoverButton.vue";
-import { UrlTypeEnum } from "~/interfaces/UrlTypeEnum";
-import { SettingEnum } from "~/interfaces/SettingEnum";
 
 @Component({
     components: { HoverButton },
