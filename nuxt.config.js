@@ -44,6 +44,10 @@ export default {
         "@/assets/scss/custom.scss",
         "@/assets/scss/octavia-design-system/octavia-design-system.scss",
         "@/assets/css/main.css",
+        "@/assets/scss/button.scss",
+        "@/assets/scss/rippleAnimation.scss",
+        "@/assets/scss/global.scss",
+        "@/assets/scss/multicolorText.scss",
 
         // '@/assets/base/_bootstrapStyle.scss',
         // '@/assets/base/_customBootstrap.scss',
@@ -79,8 +83,7 @@ export default {
     image: {
         domains: [
             "https://assets.hisense-usa.com",
-            // 'http://localhost',
-            // 'https://imcxm.dev.hisenseportal.com/'
+            "https://imdam.api.stage.imdigital.ca/api/v1",
         ],
     },
 
@@ -143,6 +146,7 @@ export default {
     env: {
         APP_NAME: process.env.APP_NAME || "imcxm",
         BASE_URL: process.env.BASE_URL || "https://hisense-usa.com",
+        BASE_DOMAIN: process.env.BASE_DOMAIN || "hisense-usa.com",
         BASE_DOMAINS:
             process.env.BASE_DOMAINS ||
             "https://public.stage.hisenseportal.com,https://public.dev.hisenseportal.com,https://www.hisense-usa.com,https://hisense-usa.com",
@@ -162,5 +166,7 @@ export default {
         ASSETS_FILES_TOKEN: process.env.ASSETS_FILES_TOKEN || "",
         LIVE_WEBSITE:
             process.env.LIVE_WEBSITE || "https://public.dev.hisenseportal.com",
+        HEADER_KEY: process.env.HEADER_KEY || 1,
+        FOOTER_KEY: process.env.FOOTER_KEY || 2,
     },
 };

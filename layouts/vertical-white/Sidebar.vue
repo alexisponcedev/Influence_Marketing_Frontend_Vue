@@ -32,11 +32,7 @@
                 <v-list-item class="px-0">
                     <v-list-item-title class="pa-8">
                         <NuxtLink to="/">
-                            <v-img
-                                :src="
-                                    require('~/assets/images/menu/logo-dark.png')
-                                "
-                            />
+                            <v-img :src="logos[getActiveBrandName()]" />
                         </NuxtLink>
                     </v-list-item-title>
 
@@ -75,10 +71,10 @@
             </v-list>
 
             <v-list>
-                <template v-for="(item, i) in computedItems">
+                <template v-for="(item, i) in computedItems" v-if="item.if">
                     <div
                         :key="item.subheader"
-                        v-if="item.subheader && item.if()"
+                        v-if="item.subheader"
                         :class="miniVariant && 'px-1'"
                     >
                         <v-subheader>
@@ -110,6 +106,7 @@
 import { mapGetters, mapActions } from "vuex";
 import getProfile from "@/utils/getProfile";
 import { items } from "@/data/navigation";
+import getActiveBrandName from "~/utils/getActiveBrandName";
 
 export default {
     data() {
@@ -125,6 +122,11 @@ export default {
             items: items,
             opacity: 0.4,
             getProfile: getProfile,
+            getActiveBrandName: getActiveBrandName,
+            logos: {
+                hisenseusa: require("~/assets/images/menu/logo-dark.png"),
+                imdigital: require("~/assets/images/menu/imdigital.png"),
+            },
         };
     },
     computed: {
