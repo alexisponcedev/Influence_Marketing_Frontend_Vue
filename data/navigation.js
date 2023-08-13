@@ -1,3 +1,5 @@
+import getActiveBrandName from "~/utils/getActiveBrandName";
+
 export const items = () => [
     {
         title: "Pages",
@@ -10,6 +12,7 @@ export const items = () => [
         icon: "mdi-border-all",
         group: "product",
         to: "product",
+        if: () => getActiveBrandName() === "hisenseusa",
     },
     {
         title: "Blog Posts",
@@ -58,6 +61,7 @@ export const items = () => [
         icon: "mdi-border-none-variant",
         group: "block/reusable",
         to: "blocks/reusable",
+        if: () => getActiveBrandName() === "hisenseusa",
     },
     {
         title: "Trash",
@@ -70,6 +74,7 @@ export const items = () => [
         icon: "mdi-cloud-sync",
         group: "deploys",
         to: "deploys",
+        if: () => getActiveBrandName() === "hisenseusa",
     },
     {
         divider: true,

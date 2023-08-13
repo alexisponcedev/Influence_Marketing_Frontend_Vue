@@ -6,7 +6,7 @@
             <v-tab href="#hamburger">Hamburger Menu</v-tab>
         </v-tabs>
 
-        <v-card>
+        <v-card v-if="Menu.widgets">
             <v-tabs-items v-model="tab">
                 <v-tab-item value="hamburger">
                     <v-card-text>
@@ -124,6 +124,17 @@ export default class Menus extends Vue {
     async fetchMenu() {
         this.Menu.widgets = ((await Api.Menu.getHeader()) as Menu).widgets;
     }
+    // Menu: any = {};
+
+    // async mounted() {
+    //     this.getHeader();
+    // }
+
+    // getHeader() {
+    //     Api.Menu.getHeader().then((res: any) => {
+    //         this.Menu = res;
+    //     });
+    // }
 
     addNewOption(list: any) {
         list.push({
@@ -135,7 +146,7 @@ export default class Menus extends Vue {
                 {
                     name: "Product Name 1",
                     url: "/",
-                    image: "https://assets.hisense-usa.com/assets/GalleryImages/Product/436/ccc5d70642/u6h__ScaleMaxWidthWzY0MF0.png",
+                    image: "",
                 },
             ],
         });

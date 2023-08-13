@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/BlockCards.png" alt="" />
+        <img src="/blocks/BlockCards.png" alt=" " />
     </div>
 </template>
 

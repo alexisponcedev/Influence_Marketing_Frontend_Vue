@@ -1,8 +1,6 @@
 <template>
     <div class="tw-grid tw-grid-cols-2 " v-if="!isEmpty">
-        <!--    <pre>{{model}}</pre>-->
-        <img :src="model.image.src" style="width: 720px; height: 720px" class="tw-bg-grey-50 tw-object-cover"
-             :alt="model.image.alt">
+        <img :src="model.image.src" style="width: 720px; height: 720px" class="tw-bg-grey-50 tw-object-cover" :alt="model.image.alt">
         <div class="tw-flex tw-flex-col tw-items-start tw-justify-center tw-space-y-6 h-full tw-p-9">
             <h4 class="small-title tw-text-black">{{ model.smallTitle.value }}</h4>
             <h2 class="large-title tw-text-black">{{ model.largeTitle.value }}</h2>
@@ -23,39 +21,7 @@ export default class BlockTextIntroduction extends Vue {
     @Prop({default: true}) readonly editable: boolean | undefined
     @VModel({type: Object}) model!: any
 
-    reset(oldValue: any = {}) {
-
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue, ...{
-                    backgroundColor: {id: 7, type: StructureType.Color, title: 'Background color', value: '#fff'}
-                }
-            }
-        } else
-            this.model = {
-                image: {
-                    id: 0,
-                    type: StructureType.Image,
-                    title: 'Upload Image',
-                    src: 'https://assets.hisense-usa.com/assets/ContentBuilderImages/39f6c6b03f/content_dp-beautiful-screen-min-clikhq.png',
-                    alt: 'Some note about this image',
-                },
-                smallTitle: {id: 1, type: StructureType.String, title: 'Samll Title', value: 'Quantom Dot Color'},
-                largeTitle: {id: 2, type: StructureType.String, title: 'Large Title', value: 'Over One Billion Color'},
-                paragraph: {
-                    id: 3,
-                    type: StructureType.Text,
-                    title: 'Paragraph Text',
-                    value: 'Quantum Dot produces over one billion colors, purer, richer, more brilliant and accurate colors than a regular\n' +
-                        '        LCD TV. We could get into how it works. But it’s a lot easier to say it makes everything you watch look like the\n' +
-                        '        4th of July.'
-                }
-            }
-    }
-
     mounted() {
-
-
         blockAddItem(this.model, 'image', {
             id: 0,
             type: StructureType.Image,
@@ -83,13 +49,13 @@ export default class BlockTextIntroduction extends Vue {
                 '        LCD TV. We could get into how it works. But it’s a lot easier to say it makes everything you watch look like the\n' +
                 '        4th of July.'
         });
-        blockAddItem(this.model, 'file', {
-            id: 0,
-            type: StructureType.File,
-            title: 'Upload File',
-            src: '',
-            alt: 'upload file',
-        });
+        // blockAddItem(this.model, 'file', {
+        //     id: 4,
+        //     type: StructureType.File,
+        //     title: 'Upload File',
+        //     src: '',
+        //     alt: 'upload file',
+        // });
         this.model = {...this.model}
     }
 

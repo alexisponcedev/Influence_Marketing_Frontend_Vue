@@ -1,0 +1,35 @@
+.btn {
+    @apply tw-uppercase  tw-border-midnight tw-border tw-border-solid tw-bg-transparent tw-text-midnight tw-text-sm tw-leading-none tw-font-bold hover:tw-bg-midnight hover:tw-text-white tw-transition-all tw-duration-300 tw-ease-in-out;
+    @apply tw-px-6 tw-py-4 tw-rounded-full #{!important};
+
+    &:disabled {
+        @apply tw-opacity-50;
+    }
+
+    &.white {
+        @apply tw-bg-white tw-text-midnight;
+    }
+
+    &.text {
+        @apply tw-bg-transparent hover:tw-bg-transparent tw-border-0;
+
+        &.midnight_text {
+            @apply tw-text-midnight hover:tw-text-midnight;
+        }
+        &.white_text {
+            @apply tw-text-white hover:tw-text-white;
+        }
+    }
+
+    &.outline_white {
+        @apply tw-bg-transparent tw-border-white tw-text-white hover:tw-bg-white hover:tw-text-midnight;
+    }
+
+    &.icon {
+        @apply tw-border-0 tw-w-10 tw-h-10 tw-p-2 hover:tw-bg-transparent;
+    }
+
+    &.large {
+        @apply tw-text-2xl;
+    }
+}

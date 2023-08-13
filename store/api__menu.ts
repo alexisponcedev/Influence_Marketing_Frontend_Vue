@@ -51,12 +51,12 @@ export default class api__menu extends VuexModule {
     //TODO: remote get and getHeader and footer
     @Action
     async getHeader() {
-        return await this.get(1);
+        return await this.get(parseInt(process.env.HEADER_KEY || "1"));
     }
 
     @Action
     async getFooter() {
-        return await this.get(2);
+        return await this.get(parseInt(process.env.FOOTER_KEY || "2"));
     }
 
     @Action

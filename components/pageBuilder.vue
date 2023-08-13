@@ -77,7 +77,6 @@ export default class PageBuilder extends Vue {
         default: () => {},
     })
     page!: any;
-
     @VModel({ type: Array }) blocksList!: any;
 
     editIndex: Number = -1;

@@ -31,7 +31,6 @@ export default class StructureEditor extends Vue {
     }
 
     get structureKeys() {
-
         return this.structure ?
             // Object.keys(this.structure)
             Object.entries(this.structure)
