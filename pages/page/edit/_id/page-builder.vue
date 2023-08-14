@@ -192,7 +192,17 @@ export default class PageBuilderSection extends Vue {
     }
 
     goBack() {
-        this.$router.push("/page/edit/" + this.Page.id);
+        if ((this.Page as any)?.post?.type == "blog")
+            this.$router.push(
+                "/posts/edit/" + (this.Page as any)?.post?.id ||
+                    "/page/edit/" + this.Page.id
+            );
+        else if ((this.Page as any)?.post?.type == "news")
+            this.$router.push(
+                "/news/edit/" + (this.Page as any)?.post?.id ||
+                    "/page/edit/" + this.Page.id
+            );
+        else this.$router.push("/page/edit/" + this.Page.id);
     }
 
     async savePage() {
