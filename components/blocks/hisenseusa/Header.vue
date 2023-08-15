@@ -129,7 +129,10 @@ export default class LandingSlider extends Vue {
     }
 
     async loadMenu() {
-        this.Menu = (await Api.Menu.getHeader()) as Menu;
+        await Api.Menu.getAll();
+        const finded = Api.Menu.all.filter(
+            (menu) => menu.title == "header-menu"
+        );
     }
 
     get isEmpty(): Boolean {

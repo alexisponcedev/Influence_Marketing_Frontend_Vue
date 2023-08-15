@@ -62,8 +62,8 @@
 
 <script lang="ts">
 import { Vue, Component, Emit, Prop } from "vue-property-decorator";
+import getActiveBrandName from "@/utils/getActiveBrandName";
 import { BLOCKS } from "@/data/blocks";
-import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component
 export default class BlocksSelector extends Vue {
@@ -77,9 +77,9 @@ export default class BlocksSelector extends Vue {
     }
 
     get Blocks() {
-        let search = this.search ? this.search.toLowerCase() : '';
-        let blocks = (BLOCKS() as any)[this.blocksType] ?? [];
-        // let blocks = this.blocksType === 'page' ? BLOCKS().page : BLOCKS().blog;
+        let search = this.search ? this.search.toLowerCase() : "";
+        let blocks =
+            (BLOCKS() as any)[getActiveBrandName()][this.blocksType] ?? [];
         blocks.forEach((i: any) => {
             i.blocks = i.blocks
                 .filter(

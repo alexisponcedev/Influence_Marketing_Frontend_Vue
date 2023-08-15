@@ -3,7 +3,11 @@
         <v-card>
             <div class="tw-p-2 tw-space-y-2">
                 <nuxt-link
-                    to="/menu/header-menu"
+                    :to="
+                        getActiveBrandName() === 'hisenseusa'
+                            ? '/menu/header-menu'
+                            : '/menu/header'
+                    "
                     class="tw-block tw-h-20 tw-bg-gray-50 tw-text-center tw-py-5 tw-rounded-xl tw-flex tw-items-center tw-justify-center hover:tw-bg-gray-100 tw-border tw-border-dashed tw-border-gray-200"
                 >
                     Edit Header Menu
@@ -16,7 +20,11 @@
                 </div>
 
                 <nuxt-link
-                    to="/menu/footer-menu"
+                    :to="
+                        getActiveBrandName() === 'hisenseusa'
+                            ? '/menu/footer-menu'
+                            : '/menu/footer'
+                    "
                     class="tw-block tw-h-20 tw-bg-gray-50 tw-text-center tw-py-20 tw-rounded-xl tw-flex tw-items-center tw-justify-center hover:tw-bg-gray-100 tw-border tw-border-dashed tw-border-gray-200"
                 >
                     Edit Footer Menu
@@ -28,9 +36,12 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import getActiveBrandName from "@/utils/getActiveBrandName";
 
 @Component({
     layout: "panel",
 })
-export default class Menus extends Vue {}
+export default class Menus extends Vue {
+    getActiveBrandName = getActiveBrandName;
+}
 </script>
