@@ -4,6 +4,7 @@ import {
     UHDNewsBoxWidget,
     ProductNewsBoxWidget,
     TVAndAudioFindHisenseWidget,
+    ImageDescriptionTilesWidget,
 } from "./functions";
 
 function updateWidget(widget: BlockInterface): BlockInterface {
@@ -14,6 +15,8 @@ function updateWidget(widget: BlockInterface): BlockInterface {
             return UHDNewsBoxWidget(widget);
         case "ProductNewsBox":
             return ProductNewsBoxWidget(widget);
+        case "ImageDescriptionTiles":
+            return ImageDescriptionTilesWidget(widget);
         default:
             return { ...widget } as BlockInterface;
     }

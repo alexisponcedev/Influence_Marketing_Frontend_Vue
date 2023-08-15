@@ -66,6 +66,12 @@
                                 />
                             </v-row>
                             <v-row>
+                                <form-field-date-standard
+                                    :field="formFields[5]"
+                                    v-model="Post.published_at"
+                                />
+                            </v-row>
+                            <v-row>
                                 <form-field-tags
                                     :field="formFields[3]"
                                     v-model="Post.tags"
@@ -283,6 +289,12 @@ export default class PostForm extends Vue {
                 modelKey: "page.meta",
                 rules: [],
                 colAttrs: { cols: 12 },
+            },
+            {
+                type: "form-field-date-standard",
+                label: "Published Date",
+                modelKey: "published_at",
+                colAttrs: { cols: 4 },
             },
         ];
     }
