@@ -54,7 +54,7 @@ export default class BlockProductNewsBox extends Vue {
             id: 4,
             type: StructureType.List,
             title: "Items",
-            maxLength: 4,
+            maxLength: 5,
             newItem: {
                 image: {
                     id: 1,

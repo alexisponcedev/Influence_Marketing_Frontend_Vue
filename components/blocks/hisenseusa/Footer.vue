@@ -13,16 +13,25 @@
                         />
                     </div>
                     <div
-                        v-for="(column, index) in Menu.widgets.columns"
+                        v-for="(option, index) in Menu.widgets.main.childs"
                         :key="`column_${index}`"
                     >
                         <ul class="tw-list-none tw-space-y-5">
                             <li
                                 class="menuOption"
-                                v-for="(item, j) in column"
+                                v-for="(item, j) in option.childs"
                                 :key="`item_${j}`"
                             >
-                                {{ item.name }}
+                                {{ item.header.title }}
+                                <ul class="tw-list-none tw-space-y-5">
+                                    <li
+                                        class="menuOption"
+                                        v-for="(item, j) in item.childs"
+                                        :key="`item_${j}`"
+                                    >
+                                        {{ item.name }}
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -113,6 +122,8 @@ export default class LandingSlider extends Vue {
             (menu) => menu.title == "footer-menu"
         );
         if (finded && finded.length) this.Menu = finded[0] as Menu;
+
+        console.log(this.Menu);
     }
 
     get isEmpty(): Boolean {

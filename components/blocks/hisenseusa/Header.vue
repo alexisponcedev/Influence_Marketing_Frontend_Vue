@@ -20,20 +20,20 @@
             <ul class="tw-list-none tw-flex tw-items-center tw-justify-center">
                 <li
                     class="menuOption"
-                    v-for="(option, index) in Menu.widgets.centerOption"
+                    v-for="(option, index) in Menu.widgets.center.childs"
                     :key="index"
                 >
-                    {{ option.name }}
+                    {{ option.header.title }}
                 </li>
             </ul>
 
             <ul class="tw-list-none tw-flex tw-items-center tw-justify-center">
                 <li
                     class="menuOption"
-                    v-for="(option, index) in Menu.widgets.rightOption"
+                    v-for="(option, index) in Menu.widgets.right.childs"
                     :key="index"
                 >
-                    {{ option.name }}
+                    {{ option.header.title }}
                 </li>
                 <li class="menuOption tw-flex tw-items-center">
                     <img
@@ -70,10 +70,10 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
-import { Menu } from "~/repositories";
-import { Api } from "~/utils/store-accessor";
+import { StructureType } from "@/models/StructureType";
+import { Theme } from "@/interfaces/ThemeEnum";
+import { Api } from "@/utils/store-accessor";
+import { Menu } from "@/repositories";
 
 @Component
 export default class LandingSlider extends Vue {
@@ -133,6 +133,7 @@ export default class LandingSlider extends Vue {
         const finded = Api.Menu.all.filter(
             (menu) => menu.title == "header-menu"
         );
+        if (finded && finded.length) this.Menu = finded[0] as Menu;
     }
 
     get isEmpty(): Boolean {
