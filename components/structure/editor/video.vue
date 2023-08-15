@@ -9,7 +9,7 @@ import Validation from "~/utils/validation";
 
 @Component
 export default class StructureStringEditor extends Vue {
-    @VModel({type: StructureField}) model!: StructureField
+    @VModel() model!: StructureField
 
     field = {
         label: 'Filed',

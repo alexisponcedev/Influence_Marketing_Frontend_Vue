@@ -71,7 +71,7 @@
                         Save Page
                     </v-btn>
 
-                    <v-menu bottom :offset-x="-10" :offset-y="12">
+                    <v-menu bottom offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn icon elevation="0" v-on="on" v-bind="attrs">
                                 <v-icon>mdi-dots-vertical</v-icon>
@@ -133,6 +133,7 @@
             :value="Page"
             @input="setHistory"
         />
+
         <pages-page-discard-dialog
             v-model="dialog"
             :pageTitle="Page.title"
@@ -145,55 +146,44 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
-import { Api, AppStore } from "@/store";
-import { Page, Widgets } from "~/repositories";
-import { BlockInterface } from "~/interfaces/BlockInterface";
-import { SettingEnum } from "~/interfaces/SettingEnum";
-import VersionHistory from "~/components/version-history.vue";
-import getActiveBrandName from "~/utils/getActiveBrandName";
+import { Vue, Component } from "vue-property-decorator";
+import { refactorWidgetsHelper } from "@/utils/refactorWidgets";
+import { BlockInterface } from "@/interfaces/BlockInterface";
+import { Page, Widgets } from "@/repositories";
+import { Api } from "@/store";
 
-@Component({
-    components: { VersionHistory },
-})
+@Component
 export default class PageBuilderSection extends Vue {
     Api = Api;
 
-    tab = "";
-
+    Page: Page = {};
     blocksList: BlockInterface[] = [];
 
-    Page: Page = {};
-
     shouldDeploy: Boolean = false;
-
-    dialog = false;
+    dialog: Boolean = false;
 
     async mounted() {
         this.fetchPage();
     }
 
     async fetchPage() {
-        await this.lock();
         this.Page = (await Api.Page.get(+this.$route.params.id)) as Page;
-        if (this.Page.draft && this.Page.draft.length > 0)
-            this.blocksList = this.Page.draft as Array<BlockInterface>;
-        else
-            this.blocksList = (
-                this.Page.widgets ? this.Page.widgets : []
-            ) as Array<BlockInterface>;
+        this.blocksList = refactorWidgetsHelper(
+            this.Page.draft && this.Page.draft.length
+                ? this.Page.draft
+                : this.Page.widgets || []
+        );
     }
 
     async dialogSave() {
         this.dialog = false;
-        this.savePage().then(() => {
-            this.checkLockAndExit();
-        });
+        await this.savePage();
+        this.checkLockAndExit();
     }
 
-    checkLockAndExit() {
+    async checkLockAndExit() {
         this.dialog = false;
-        if (this.lockedByMe) this.unlock().then(this.goBack);
+        if (this.lockedByMe) await this.unlock();
         this.goBack();
     }
 
@@ -202,7 +192,17 @@ export default class PageBuilderSection extends Vue {
     }
 
     goBack() {
-        this.$router.push("/page/edit/" + this.Page.id);
+        if ((this.Page as any)?.post?.type == "blog")
+            this.$router.push(
+                "/posts/edit/" + (this.Page as any)?.post?.id ||
+                    "/page/edit/" + this.Page.id
+            );
+        else if ((this.Page as any)?.post?.type == "news")
+            this.$router.push(
+                "/news/edit/" + (this.Page as any)?.post?.id ||
+                    "/page/edit/" + this.Page.id
+            );
+        else this.$router.push("/page/edit/" + this.Page.id);
     }
 
     async savePage() {
@@ -246,7 +246,6 @@ export default class PageBuilderSection extends Vue {
     }
 
     needDeploy() {
-        console.log("needDeploy fired");
         this.shouldDeploy = true;
     }
 
@@ -267,13 +266,6 @@ export default class PageBuilderSection extends Vue {
         return this.Page.locked_by! > 0 && this.Page.locked_by === this.userId;
     }
 
-    async lock() {
-        // if (this.Page.locked_by === 0)
-        //     return Api.Page.lockPage(this.Page.id!).then(() => {
-        //         this.Page.locked_by = this.userId
-        //     });
-    }
-
     async unlock() {
         if (this.Page.locked_by == this.userId)
             return Api.Page.unlockPage(this.Page.id!).then(() => {
@@ -282,7 +274,7 @@ export default class PageBuilderSection extends Vue {
     }
 
     setHistory(history: any[]) {
-        this.blocksList = history;
+        this.blocksList = refactorWidgetsHelper(history);
     }
 }
 </script>

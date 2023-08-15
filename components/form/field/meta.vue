@@ -299,9 +299,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import Validation from "~/utils/validation";
-import { MetaInterface } from "~/models/Meta.model";
+import { Vue, Component, VModel, Watch } from "vue-property-decorator";
+import { MetaInterface } from "@/models/Meta.model";
+import Validation from "@/utils/validation";
 
 @Component
 export default class TextMetaFormField extends Vue {
@@ -373,7 +373,6 @@ export default class TextMetaFormField extends Vue {
             this.model.meta[this.googleTitleIndex].content = this.model.title;
         if (!this.model.meta[this.ogTitleIndex].content)
             this.model.meta[this.ogTitleIndex].content = this.model.title;
-        console.log(this.model.meta[this.googleTitleIndex].content);
         this.getProductImage();
     }
 

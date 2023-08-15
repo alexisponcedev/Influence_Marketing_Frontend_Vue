@@ -20,7 +20,7 @@ import { StructureField } from "@/interfaces/StructureField";
 
 @Component
 export default class StructureAutoCompeleteEditor extends Vue {
-    @VModel({ type: StructureField }) model!: StructureField;
+    @VModel() model!: StructureField;
 
     internalValue: any = "";
 

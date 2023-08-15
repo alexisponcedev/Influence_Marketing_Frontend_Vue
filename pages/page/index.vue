@@ -24,13 +24,22 @@
             >
                 <template #item.title="{ item }">
                     {{ item.title }}
-                    <v-icon
-                        small
-                        :color="item.locked_by === userId ? 'red' : ''"
-                        v-if="item.locked_by > 0"
-                    >
-                        mdi-lock
-                    </v-icon>
+                    <v-tooltip bottom v-if="item.locked_by > 0">
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-icon
+                                small
+                                v-on="on"
+                                v-bind="attrs"
+                                :color="item.locked_by === userId ? 'red' : ''"
+                            >
+                                mdi-lock
+                            </v-icon>
+                        </template>
+                        <span>
+                            Locked by
+                            {{ item.locked_by_name || "another Admin" }}
+                        </span>
+                    </v-tooltip>
                 </template>
             </table-standard>
         </v-card>
@@ -41,10 +50,9 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { PageTypeEnum } from "@/interfaces/PageTypeEnum";
 import { PageResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
-import { PageTypeEnum } from "~/interfaces/PageTypeEnum";
-import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component({ layout: "panel" })
 export default class AllPages extends Vue {
@@ -141,8 +149,9 @@ export default class AllPages extends Vue {
     }
 
     deletePage(Page: PageResource) {
-        Api.Page.delete(Page.id!).then(this.updatePages);
-        // .then(Api.Page.doDeploy);
+        Api.Page.delete(Page.id!)
+            .then(this.updatePages)
+            .then(Api.Page.doDeploy);
     }
 
     showDuplicateDialog(Page: PageResource) {

@@ -42,8 +42,7 @@
                     >
                         Save Post
                     </v-btn>
-
-                    <v-menu bottom :offset-x="-10" :offset-y="12">
+                    <v-menu bottom offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn icon elevation="0" v-on="on" v-bind="attrs">
                                 <v-icon>mdi-dots-vertical</v-icon>
@@ -81,7 +80,6 @@ import { Api } from "@/store";
 import { Post, Widgets } from "~/repositories";
 import { BlockInterface } from "~/interfaces/BlockInterface";
 import { SettingEnum } from "~/interfaces/SettingEnum";
-import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component
 export default class PostBuilderSection extends Vue {
