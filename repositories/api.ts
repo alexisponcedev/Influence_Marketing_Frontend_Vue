@@ -2940,6 +2940,12 @@ export interface Post {
      * @memberof Post
      */
     'status'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Post
+     */
+    'published_at'?: string;
 }
 /**
  * Post List Resource model
