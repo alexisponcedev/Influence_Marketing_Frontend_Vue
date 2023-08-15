@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import getActiveBrandName from "@/utils/getActiveBrandName";
 import { PageTypeEnum } from "@/interfaces/PageTypeEnum";
 import { PageResource } from "@/repositories";
 import { Api, AppStore } from "@/store";
