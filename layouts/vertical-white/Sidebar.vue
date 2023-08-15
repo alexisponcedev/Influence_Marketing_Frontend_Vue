@@ -32,7 +32,12 @@
                 <v-list-item class="px-0">
                     <v-list-item-title class="pa-8">
                         <NuxtLink to="/">
-                            <v-img :src="logos[getActiveBrandName()]" />
+                            <v-img
+                                :src="
+                                    logos[getActiveBrandName()] ||
+                                    require('~/assets/images/menu/imdigital.png')
+                                "
+                            />
                         </NuxtLink>
                     </v-list-item-title>
 
