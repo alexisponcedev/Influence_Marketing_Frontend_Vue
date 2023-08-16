@@ -18,7 +18,7 @@ export const BLOCKS = () => {
                     {
                         name: "NotFound",
                         title: "Page Not Found",
-                        image: "notFound.png",
+                        image: "NotFound.jpg",
                         category: "TextBox",
                     },
                 ],
@@ -103,6 +103,12 @@ export const BLOCKS = () => {
                         title: "Video And Image Banner",
                         image: "VideoAndImageBanner.png",
                         category: "ImageBox",
+                    },
+                    {
+                        name: "ImageDescriptionTiles",
+                        title: "Image Description Tiles",
+                        image: "ImageDescriptionTiles.png",
+                        category: "ImageTextBox",
                     },
                 ],
             },
@@ -423,12 +429,12 @@ export const BLOCKS = () => {
                         image: "ProductImageBox.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "ProductNewsBox",
-                        title: "Product News Box",
-                        image: "ProductNewsBox.png",
-                        category: "TextBox",
-                    },
+                    // {
+                    //     name: "ProductNewsBox",
+                    //     title: "Product News Box",
+                    //     image: "ProductNewsBox.png",
+                    //     category: "TextBox",
+                    // },
                     {
                         name: "ProductReviewBox",
                         title: "Product Reviews box",
@@ -600,12 +606,12 @@ export const BLOCKS = () => {
                         image: "TvAndAudioSmartChoice.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "TVAndAudioFindHisense",
-                        title: "TV and audio find hisense",
-                        image: "TvAndAudioFindHisense.png",
-                        category: "TextBox",
-                    },
+                    // {
+                    //     name: "TVAndAudioFindHisense",
+                    //     title: "TV and audio find hisense",
+                    //     image: "TvAndAudioFindHisense.png",
+                    //     category: "TextBox",
+                    // },
                     {
                         name: "TVAndAudioFindProduct",
                         title: "TV and audio find product",
@@ -629,12 +635,12 @@ export const BLOCKS = () => {
                         image: "ImageBox.png",
                         category: "TextBox",
                     },
-                    {
-                        name: "UHDNewsBox",
-                        title: "UHD News box",
-                        image: "UHDNewsBox.png",
-                        category: "TextBox",
-                    },
+                    // {
+                    //     name: "UHDNewsBox",
+                    //     title: "UHD News box",
+                    //     image: "UHDNewsBox.png",
+                    //     category: "TextBox",
+                    // },
                     {
                         name: "UHDAbilityBox",
                         title: "UHD Ability Box",

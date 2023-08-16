@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
 import { StructureType } from "~/models/StructureType";
 import blockAddItem from "~/utils/blockAddItem";
 
@@ -16,7 +16,6 @@ export default class NotFound extends Vue {
     @VModel({ type: Object }) model!: any;
 
     mounted() {
-        console.log(this.model);
         blockAddItem(this.model, "text", {
             id: 0,
             type: StructureType.Text,

@@ -4,13 +4,19 @@
             <breadcrumbs :locations="locations" />
             <v-spacer />
             <div class="tw-flex tw-items-center tw-space-x-2">
+                <page-lock
+                    class="btn"
+                    v-model="Post.page"
+                    :return-id="Post.id"
+                />
+
                 <v-btn
                     elevation="0"
                     outlined
                     class="btn"
                     @click="gotoLiveWebsite"
                 >
-                    Live Website
+                    <span>Live Preivew</span>
                 </v-btn>
                 <v-btn
                     elevation="0"
@@ -60,6 +66,12 @@
                                 />
                             </v-row>
                             <v-row>
+                                <form-field-date-standard
+                                    :field="formFields[5]"
+                                    v-model="Post.published_at"
+                                />
+                            </v-row>
+                            <v-row>
                                 <form-field-tags
                                     :field="formFields[3]"
                                     v-model="Post.tags"
@@ -91,18 +103,20 @@
         </v-form>
 
         <loading-overlay :show="Api.Post.loading" />
+        <unlock-page-modal
+            :show.sync="UnlockPageModalShow"
+            :page-id="Post.page.id"
+        />
     </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import HoverButton from "@/components/base/HoverButton.vue";
+import { PageResource } from "@/repositories";
 import Validation from "@/utils/validation";
-import { PageResource, Post } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
-import HoverButton from "~/components/base/HoverButton.vue";
-import { UrlTypeEnum } from "~/interfaces/UrlTypeEnum";
-import { SettingEnum } from "~/interfaces/SettingEnum";
 
 @Component({
     components: { HoverButton },
@@ -116,6 +130,8 @@ export default class PostForm extends Vue {
     tab = "";
 
     route: string = "";
+
+    UnlockPageModalShow: boolean = false;
 
     meta: Array<{ rel: string; name: string; content: string }> = [];
     oldRoute = "";
@@ -274,6 +290,12 @@ export default class PostForm extends Vue {
                 rules: [],
                 colAttrs: { cols: 12 },
             },
+            {
+                type: "form-field-date-standard",
+                label: "Published Date",
+                modelKey: "published_at",
+                colAttrs: { cols: 4 },
+            },
         ];
     }
 
@@ -320,16 +342,21 @@ export default class PostForm extends Vue {
         window.open(this.liveWebsite, "_blank");
     }
 
-    goToPostBuilder() {
-        this.openPostBuilder();
+    async goToPostBuilder() {
+        if (this.Post.page.id) {
+            const { locked_by } = await Api.Page.getLockStatus(
+                this.Post.page.id
+            );
+            if (locked_by == this.userId)
+                this.$router.push(
+                    `/page/edit/${this.Post.page!.id}/page-builder`
+                );
+            else this.UnlockPageModalShow = true;
+        }
     }
 
     get liveWebsite() {
         return process.env.LIVE_WEBSITE + (this.Post.page!.route || "");
-    }
-
-    openPostBuilder() {
-        this.$router.push(`/page/edit/${this.Post.page!.id}/page-builder`);
     }
 
     @Watch("tab")
@@ -353,6 +380,11 @@ export default class PostForm extends Vue {
             );
         }
         this.Post.page!.route = parentRoute + this.Post.page!.title;
+    }
+
+    get userId() {
+        let profile = JSON.parse(localStorage.getItem("profile")!.toString());
+        return profile ? profile.user_id : 0;
     }
 }
 </script>

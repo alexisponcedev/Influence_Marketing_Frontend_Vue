@@ -124,7 +124,6 @@ export default class BlogListWithBigTitleAndLittleItem extends Vue {
         let posts = Api.Post.all
             .filter((p: any) => p.hasOwnProperty("page") && p.page)
             .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
-        console.log(posts);
 
         let max = Math.min(this.count, posts.length);
         max = max / 2 === 0 ? max : max - 1;
