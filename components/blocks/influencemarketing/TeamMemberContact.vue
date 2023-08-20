@@ -72,7 +72,7 @@ export default class TeamMemberContact extends Vue {
             title: "title",
             value: "",
         });
-        blockAddItem(this.model, "title", {
+        blockAddItem(this.model, "color", {
             id: 2,
             type: StructureType.Color,
             title: "Background Color",
