@@ -72,6 +72,12 @@ export default class TeamMemberContact extends Vue {
             title: "title",
             value: "",
         });
+        blockAddItem(this.model, "title", {
+            id: 2,
+            type: StructureType.Color,
+            title: "Background Color",
+            value: "#B6DCE4",
+        });
         this.model = { ...this.model };
     }
 
