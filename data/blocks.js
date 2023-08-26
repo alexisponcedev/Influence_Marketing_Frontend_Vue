@@ -111,6 +111,24 @@ export const BLOCKS = () => {
                             image: "ImageDescriptionTiles.png",
                             category: "ImageTextBox",
                         },
+                        {
+                            name: "TextProductDescription",
+                            title: "Text Product Description",
+                            image: "TextProductDescription.png",
+                            category: "TextBox",
+                        },
+                        // {
+                        //     name: "VideoFeature",
+                        //     title: "Video feature",
+                        //     image: "VideoFeature.png",
+                        //     category: "VideoBox",
+                        // },
+                        // {
+                        //     name: "FullFeature",
+                        //     title: "Full feature",
+                        //     image: "FullFeature.png",
+                        //     category: "VideoBox",
+                        // },
                     ],
                 },
                 {
@@ -157,7 +175,6 @@ export const BLOCKS = () => {
                             image: "subscribe.png",
                             category: "TextBox",
                         },
-
                         {
                             name: "LandingStaticBanner",
                             title: "Landing Static Banner",
@@ -2091,65 +2108,6 @@ export const BLOCKS = () => {
                         },
                     ],
                 },
-                // {
-                //     name: "News Room",
-                //     blocks: [
-                //         {
-                //             name: "NewsRoomSlider",
-                //             title: "News Room Slider",
-                //             image: "NewsRoomSlider.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsRoomNewsBox",
-                //             title: "News Room News Box",
-                //             image: "NewsRoomNewsBox.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsRoomMedia",
-                //             title: "News Room Media",
-                //             image: "NewsRoomMedia.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsIntro",
-                //             title: "News Intro",
-                //             image: "NewsIntro.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsSingleDescription",
-                //             title: "News Single Description",
-                //             image: "NewsSingleDescription.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsSingleLatestNews",
-                //             title: "News Single Latest News",
-                //             image: "NewsSingleLatestNews.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsPressArchive",
-                //             title: "News Press Archive",
-                //             image: "NewsPressArchive.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsSingleSlider",
-                //             title: "News Single Slider",
-                //             image: "NewsSingleSlider.png",
-                //             category: "TextBox",
-                //         },
-                //         {
-                //             name: "NewsSingleInfoBox",
-                //             title: "News Single Info Box",
-                //             image: "NewsSingleInfoBox.png",
-                //             category: "TextBox",
-                //         },
-                //     ],
-                // },
             ],
             // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             blog: [
@@ -2415,6 +2373,7 @@ export const BLOCKS = () => {
                 },
             ],
         },
+
         imdigital: {
             page: [
                 {
