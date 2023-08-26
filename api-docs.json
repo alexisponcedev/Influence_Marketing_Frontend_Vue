@@ -7,16 +7,14 @@
     },
     "servers": [
         {
-            "url": "https://imcxm.dev-api.hisenseportal.com/api",
+            "url": "https://imcxm.api.stage.imdigital.ca/api",
             "description": "CXM API Server"
         }
     ],
     "paths": {
         "/adventure": {
             "get": {
-                "tags": [
-                    "Adventure"
-                ],
+                "tags": ["Adventure"],
                 "operationId": "AdventureList",
                 "responses": {
                     "200": {
@@ -45,9 +43,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Adventure"
-                ],
+                "tags": ["Adventure"],
                 "operationId": "AddAdventure",
                 "requestBody": {
                     "required": true,
@@ -80,9 +76,7 @@
         },
         "/adventure/{id}": {
             "get": {
-                "tags": [
-                    "Adventure"
-                ],
+                "tags": ["Adventure"],
                 "operationId": "GetAdventure",
                 "parameters": [
                     {
@@ -119,9 +113,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Adventure"
-                ],
+                "tags": ["Adventure"],
                 "operationId": "UpdateAdventure",
                 "parameters": [
                     {
@@ -163,9 +155,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Adventure"
-                ],
+                "tags": ["Adventure"],
                 "operationId": "DeleteAdventure",
                 "parameters": [
                     {
@@ -197,9 +187,7 @@
         },
         "/adventure/getByRegionId/{regionId}": {
             "get": {
-                "tags": [
-                    "Adventure"
-                ],
+                "tags": ["Adventure"],
                 "operationId": "GetAdventureByRegionId",
                 "parameters": [
                     {
@@ -241,9 +229,7 @@
         },
         "/asset": {
             "get": {
-                "tags": [
-                    "Asset"
-                ],
+                "tags": ["Asset"],
                 "operationId": "AssetList",
                 "parameters": [
                     {
@@ -283,9 +269,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Asset"
-                ],
+                "tags": ["Asset"],
                 "operationId": "AddAsset",
                 "parameters": [
                     {
@@ -329,9 +313,7 @@
         },
         "/asset/searchAsset/{string}": {
             "get": {
-                "tags": [
-                    "Asset"
-                ],
+                "tags": ["Asset"],
                 "operationId": "doSearchAsset",
                 "parameters": [
                     {
@@ -367,9 +349,7 @@
         },
         "/asset/{id}": {
             "get": {
-                "tags": [
-                    "Asset"
-                ],
+                "tags": ["Asset"],
                 "operationId": "GetAsset",
                 "parameters": [
                     {
@@ -415,9 +395,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Asset"
-                ],
+                "tags": ["Asset"],
                 "operationId": "UpdateAsset",
                 "parameters": [
                     {
@@ -468,9 +446,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Asset"
-                ],
+                "tags": ["Asset"],
                 "operationId": "DeleteAsset",
                 "parameters": [
                     {
@@ -511,9 +487,7 @@
         },
         "/auth/inquiry/{publicKey}": {
             "get": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "operationId": "UserInquiry",
                 "parameters": [
                     {
@@ -542,9 +516,7 @@
         },
         "/auth/getUserInfo": {
             "get": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "operationId": "getUserInfo",
                 "responses": {
                     "200": {
@@ -565,9 +537,7 @@
         },
         "/block": {
             "get": {
-                "tags": [
-                    "Block"
-                ],
+                "tags": ["Block"],
                 "operationId": "BlockList",
                 "responses": {
                     "200": {
@@ -596,9 +566,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Block"
-                ],
+                "tags": ["Block"],
                 "operationId": "AddBlock",
                 "requestBody": {
                     "required": true,
@@ -631,9 +599,7 @@
         },
         "/block/{id}": {
             "get": {
-                "tags": [
-                    "Block"
-                ],
+                "tags": ["Block"],
                 "operationId": "GetBlock",
                 "parameters": [
                     {
@@ -670,9 +636,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Block"
-                ],
+                "tags": ["Block"],
                 "operationId": "UpdateBlock",
                 "parameters": [
                     {
@@ -714,9 +678,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Block"
-                ],
+                "tags": ["Block"],
                 "operationId": "DeleteBlock",
                 "parameters": [
                     {
@@ -748,9 +710,7 @@
         },
         "/block/updateProps": {
             "put": {
-                "tags": [
-                    "Block"
-                ],
+                "tags": ["Block"],
                 "operationId": "updateProps",
                 "requestBody": {
                     "required": true,
@@ -781,9 +741,7 @@
         },
         "/category": {
             "get": {
-                "tags": [
-                    "Category"
-                ],
+                "tags": ["Category"],
                 "operationId": "062b0e17b0b265231ad33ece1785b1fe",
                 "parameters": [
                     {
@@ -823,9 +781,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Category"
-                ],
+                "tags": ["Category"],
                 "operationId": "8a437c9b58cb5726b37615e8a5a9857c",
                 "parameters": [
                     {
@@ -869,9 +825,7 @@
         },
         "/category/{id}": {
             "get": {
-                "tags": [
-                    "Category"
-                ],
+                "tags": ["Category"],
                 "operationId": "0fd985657bea3b2f3a919bdc16fec5b9",
                 "parameters": [
                     {
@@ -917,9 +871,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Category"
-                ],
+                "tags": ["Category"],
                 "operationId": "2aeef67a0c5f4a9161985387cab71ccc",
                 "parameters": [
                     {
@@ -970,9 +922,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Category"
-                ],
+                "tags": ["Category"],
                 "operationId": "c22ffb01fe96cd5baf6a4174466b2672",
                 "parameters": [
                     {
@@ -1013,9 +963,7 @@
         },
         "/constant": {
             "get": {
-                "tags": [
-                    "Constant"
-                ],
+                "tags": ["Constant"],
                 "operationId": "ConstantList",
                 "responses": {
                     "200": {
@@ -1044,9 +992,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Constant"
-                ],
+                "tags": ["Constant"],
                 "operationId": "AddConstant",
                 "requestBody": {
                     "required": true,
@@ -1079,9 +1025,7 @@
         },
         "/constant/{id}": {
             "get": {
-                "tags": [
-                    "Constant"
-                ],
+                "tags": ["Constant"],
                 "operationId": "GetConstant",
                 "parameters": [
                     {
@@ -1118,9 +1062,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Constant"
-                ],
+                "tags": ["Constant"],
                 "operationId": "UpdateConstant",
                 "parameters": [
                     {
@@ -1162,9 +1104,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Constant"
-                ],
+                "tags": ["Constant"],
                 "operationId": "DeleteConstant",
                 "parameters": [
                     {
@@ -1196,9 +1136,7 @@
         },
         "/constant/getConstants/{siteName}": {
             "get": {
-                "tags": [
-                    "Constant"
-                ],
+                "tags": ["Constant"],
                 "operationId": "getConstants",
                 "parameters": [
                     {
@@ -1240,9 +1178,7 @@
         },
         "/error": {
             "get": {
-                "tags": [
-                    "Error"
-                ],
+                "tags": ["Error"],
                 "operationId": "ErrorList",
                 "parameters": [
                     {
@@ -1284,9 +1220,7 @@
         },
         "/error/{id}": {
             "get": {
-                "tags": [
-                    "Error"
-                ],
+                "tags": ["Error"],
                 "operationId": "GetError",
                 "parameters": [
                     {
@@ -1334,9 +1268,7 @@
         },
         "/error/setAsDone/{id}": {
             "put": {
-                "tags": [
-                    "Error"
-                ],
+                "tags": ["Error"],
                 "operationId": "setAsDone",
                 "parameters": [
                     {
@@ -1379,9 +1311,7 @@
         },
         "/exodus/getRegionList": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetRegionList",
                 "responses": {
                     "200": {
@@ -1407,9 +1337,7 @@
         },
         "/exodus/getAdventureList/{regionId}": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetAdventureList",
                 "parameters": [
                     {
@@ -1446,9 +1374,7 @@
         },
         "/exodus/getAdventureInfo/{adventureId}": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetAdventureInfo",
                 "parameters": [
                     {
@@ -1482,9 +1408,7 @@
         },
         "/exodus/getRegions": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetRegions",
                 "responses": {
                     "200": {
@@ -1510,9 +1434,7 @@
         },
         "/exodus/getRegionsBySiteId/{siteId}": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetRegionsBysiteId",
                 "parameters": [
                     {
@@ -1549,9 +1471,7 @@
         },
         "/exodus/getSites": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetSiteList",
                 "responses": {
                     "200": {
@@ -1577,9 +1497,7 @@
         },
         "/exodus/getRulesBySiteId/{siteId}": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "GetRulesBySiteId",
                 "parameters": [
                     {
@@ -1616,9 +1534,7 @@
         },
         "/exodus/getBySiteName/{siteName}": {
             "get": {
-                "tags": [
-                    "Exodus APIs"
-                ],
+                "tags": ["Exodus APIs"],
                 "operationId": "getConstantsBySiteName",
                 "parameters": [
                     {
@@ -1655,9 +1571,7 @@
         },
         "/husa/getPages": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetAllPages",
                 "responses": {
                     "200": {
@@ -1680,9 +1594,7 @@
         },
         "/husa/getPageInfo/{pageId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetPageInfo",
                 "parameters": [
                     {
@@ -1716,9 +1628,7 @@
         },
         "/husa/getBlocksByPageId/{pageId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "getBlocksByPageId",
                 "parameters": [
                     {
@@ -1755,9 +1665,7 @@
         },
         "/husa/getBlockInfo/{blockId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetBlockInfo",
                 "parameters": [
                     {
@@ -1791,9 +1699,7 @@
         },
         "/husa/getCategories": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "d0f15b1af046a8e16188381fef27782f",
                 "responses": {
                     "200": {
@@ -1819,9 +1725,7 @@
         },
         "/husa/getBlocksByCategoryId/{categoryId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "getBlocksByCategoryId",
                 "parameters": [
                     {
@@ -1858,9 +1762,7 @@
         },
         "/husa/getTemplates": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetTemplateList",
                 "responses": {
                     "200": {
@@ -1886,9 +1788,7 @@
         },
         "/husa/getTemplateInfo/{tempId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetTemplateInfo",
                 "parameters": [
                     {
@@ -1922,9 +1822,7 @@
         },
         "/husa/getProducts": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetProductList",
                 "responses": {
                     "200": {
@@ -1950,9 +1848,7 @@
         },
         "/husa/getProductInfo/{productId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetProductInfo",
                 "parameters": [
                     {
@@ -1986,9 +1882,7 @@
         },
         "/husa/getStaticPages": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetStaticPages",
                 "responses": {
                     "200": {
@@ -2011,9 +1905,7 @@
         },
         "/husa/getDynamicPages/{modelId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetDynamicPages",
                 "parameters": [
                     {
@@ -2047,9 +1939,7 @@
         },
         "/husa/getMenus": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetMenuList",
                 "responses": {
                     "200": {
@@ -2075,9 +1965,7 @@
         },
         "/husa/searchPage/{string}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "doSearchPage",
                 "parameters": [
                     {
@@ -2108,9 +1996,7 @@
         },
         "/husa/searchProduct": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "searchProductByCategoryId",
                 "parameters": [
                     {
@@ -2216,9 +2102,7 @@
         },
         "/husa/getRedirects": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetRedirectList",
                 "responses": {
                     "200": {
@@ -2244,9 +2128,7 @@
         },
         "/husa/getSettings": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetSettingList",
                 "responses": {
                     "200": {
@@ -2272,9 +2154,7 @@
         },
         "/husa/getPosts": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetAllPosts",
                 "responses": {
                     "200": {
@@ -2297,9 +2177,7 @@
         },
         "/husa/getPostInfo/{postId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetPostById",
                 "parameters": [
                     {
@@ -2333,9 +2211,7 @@
         },
         "/husa/getNotifications/{pageId}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "getNotifications",
                 "parameters": [
                     {
@@ -2372,9 +2248,7 @@
         },
         "/husa/searchPost": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "searchPost",
                 "parameters": [
                     {
@@ -2422,9 +2296,7 @@
         },
         "/husa/getPaginatePosts": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "getPaginatePosts",
                 "parameters": [
                     {
@@ -2461,9 +2333,7 @@
         },
         "/husa/addError": {
             "post": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "AddError",
                 "requestBody": {
                     "required": true,
@@ -2491,9 +2361,7 @@
         },
         "/husa/getPageByUrl/{url}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetPageByUrl",
                 "parameters": [
                     {
@@ -2527,9 +2395,7 @@
         },
         "/husa/getPageDetail/{value}": {
             "get": {
-                "tags": [
-                    "HUSA APIs"
-                ],
+                "tags": ["HUSA APIs"],
                 "operationId": "GetPageDetail",
                 "parameters": [
                     {
@@ -2563,9 +2429,7 @@
         },
         "/history/{id}": {
             "get": {
-                "tags": [
-                    "History"
-                ],
+                "tags": ["History"],
                 "operationId": "ShowHistory",
                 "parameters": [
                     {
@@ -2613,9 +2477,7 @@
         },
         "/history/getHistories": {
             "get": {
-                "tags": [
-                    "History"
-                ],
+                "tags": ["History"],
                 "operationId": "GetAllHistories",
                 "parameters": [
                     {
@@ -2654,9 +2516,7 @@
         },
         "/history/getHistories/{modelName}": {
             "get": {
-                "tags": [
-                    "History"
-                ],
+                "tags": ["History"],
                 "operationId": "getHistoriesByModelName",
                 "parameters": [
                     {
@@ -2704,9 +2564,7 @@
         },
         "/history/getHistory/{modelName}/{modelId}": {
             "get": {
-                "tags": [
-                    "History"
-                ],
+                "tags": ["History"],
                 "operationId": "GetHistoryByModelNameModelId",
                 "parameters": [
                     {
@@ -2763,9 +2621,7 @@
         },
         "/history/titleUpdate": {
             "put": {
-                "tags": [
-                    "History"
-                ],
+                "tags": ["History"],
                 "operationId": "HistoryTitleUpdate",
                 "parameters": [
                     {
@@ -2807,9 +2663,7 @@
         },
         "/menu": {
             "get": {
-                "tags": [
-                    "Menu"
-                ],
+                "tags": ["Menu"],
                 "operationId": "MenuList",
                 "parameters": [
                     {
@@ -2849,9 +2703,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Menu"
-                ],
+                "tags": ["Menu"],
                 "operationId": "AddMenu",
                 "parameters": [
                     {
@@ -2895,9 +2747,7 @@
         },
         "/menu/{id}": {
             "get": {
-                "tags": [
-                    "Menu"
-                ],
+                "tags": ["Menu"],
                 "operationId": "GetMenu",
                 "parameters": [
                     {
@@ -2943,9 +2793,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Menu"
-                ],
+                "tags": ["Menu"],
                 "operationId": "UpdateMenu",
                 "parameters": [
                     {
@@ -2996,9 +2844,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Menu"
-                ],
+                "tags": ["Menu"],
                 "operationId": "DeleteMenu",
                 "parameters": [
                     {
@@ -3039,9 +2885,7 @@
         },
         "/notification": {
             "get": {
-                "tags": [
-                    "Notification"
-                ],
+                "tags": ["Notification"],
                 "operationId": "NotificationList",
                 "parameters": [
                     {
@@ -3081,9 +2925,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Notification"
-                ],
+                "tags": ["Notification"],
                 "operationId": "ImportNotification",
                 "parameters": [
                     {
@@ -3127,9 +2969,7 @@
         },
         "/notification/{id}": {
             "get": {
-                "tags": [
-                    "Notification"
-                ],
+                "tags": ["Notification"],
                 "operationId": "ShowNotification",
                 "parameters": [
                     {
@@ -3175,9 +3015,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Notification"
-                ],
+                "tags": ["Notification"],
                 "operationId": "UpdateNotification",
                 "parameters": [
                     {
@@ -3228,9 +3066,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Notification"
-                ],
+                "tags": ["Notification"],
                 "operationId": "DeleteNotification",
                 "parameters": [
                     {
@@ -3271,9 +3107,7 @@
         },
         "/pim/changeStatus/{productId}/{status}": {
             "put": {
-                "tags": [
-                    "PIM"
-                ],
+                "tags": ["PIM"],
                 "operationId": "changePageStatus",
                 "parameters": [
                     {
@@ -3309,9 +3143,7 @@
         },
         "/page": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "PageList",
                 "parameters": [
                     {
@@ -3351,9 +3183,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "AddPage",
                 "parameters": [
                     {
@@ -3397,9 +3227,7 @@
         },
         "/page/getProductRoutes/{id}": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "getProductRoutes",
                 "parameters": [
                     {
@@ -3442,9 +3270,7 @@
         },
         "/page/{id}": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "ShowPage",
                 "parameters": [
                     {
@@ -3490,9 +3316,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "UpdatePage",
                 "parameters": [
                     {
@@ -3543,9 +3367,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "DeletePage",
                 "parameters": [
                     {
@@ -3586,9 +3408,7 @@
         },
         "/page/getPage/{pageId}": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetPage",
                 "parameters": [
                     {
@@ -3636,9 +3456,7 @@
         },
         "/page/saveDraft/{pageId}": {
             "put": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "UpdatePageDraft",
                 "parameters": [
                     {
@@ -3689,9 +3507,7 @@
         },
         "/page/saveWidgets/{pageId}": {
             "put": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "UpdatePageWidgets",
                 "parameters": [
                     {
@@ -3742,9 +3558,7 @@
         },
         "/page/getPageDraft/{id}": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetPageDraft",
                 "parameters": [
                     {
@@ -3792,9 +3606,7 @@
         },
         "/page/getDynamicPages": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetListDynamicPage",
                 "parameters": [
                     {
@@ -3833,9 +3645,7 @@
         },
         "/page/getSummaryPages": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetListAllPages",
                 "parameters": [
                     {
@@ -3874,9 +3684,7 @@
         },
         "/page/doDeploy": {
             "post": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "doDeploy",
                 "parameters": [
                     {
@@ -3917,9 +3725,7 @@
         },
         "/page/getPage/{modelType}/{modelId}": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetPageByModelTypeModelId",
                 "parameters": [
                     {
@@ -3976,9 +3782,7 @@
         },
         "/page/lock/{pageId}": {
             "put": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "lockPage",
                 "parameters": [
                     {
@@ -4019,9 +3823,7 @@
         },
         "/page/unLock/{pageId}": {
             "put": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "unLockPage",
                 "parameters": [
                     {
@@ -4062,9 +3864,7 @@
         },
         "/page/getTrashedPages": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetTrashedPages",
                 "parameters": [
                     {
@@ -4103,9 +3903,7 @@
         },
         "/page/getTrashedPage/{pageId}": {
             "get": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "GetTrashedPage",
                 "parameters": [
                     {
@@ -4153,9 +3951,7 @@
         },
         "/page/restorePage/{pageId}": {
             "put": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "RestorePage",
                 "parameters": [
                     {
@@ -4196,9 +3992,7 @@
         },
         "/page/forceDelete/{pageId}": {
             "delete": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "ForceDeletePage",
                 "parameters": [
                     {
@@ -4239,9 +4033,7 @@
         },
         "/page/deployStageDbToProduction": {
             "post": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "deployStageDbToProd",
                 "parameters": [
                     {
@@ -4273,9 +4065,7 @@
         },
         "/page/deployProductionDbToStage": {
             "post": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "deployProdDbToStage",
                 "parameters": [
                     {
@@ -4307,9 +4097,7 @@
         },
         "/page/duplicate": {
             "post": {
-                "tags": [
-                    "Page"
-                ],
+                "tags": ["Page"],
                 "operationId": "0f917f275a0d5168341cc92753f96732",
                 "parameters": [
                     {
@@ -4353,9 +4141,7 @@
         },
         "/post": {
             "get": {
-                "tags": [
-                    "Post"
-                ],
+                "tags": ["Post"],
                 "operationId": "PostList",
                 "parameters": [
                     {
@@ -4395,9 +4181,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Post"
-                ],
+                "tags": ["Post"],
                 "operationId": "AddPost",
                 "parameters": [
                     {
@@ -4441,9 +4225,7 @@
         },
         "/post/{id}": {
             "get": {
-                "tags": [
-                    "Post"
-                ],
+                "tags": ["Post"],
                 "operationId": "GetPost",
                 "parameters": [
                     {
@@ -4489,9 +4271,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Post"
-                ],
+                "tags": ["Post"],
                 "operationId": "UpdatePost",
                 "parameters": [
                     {
@@ -4542,9 +4322,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Post"
-                ],
+                "tags": ["Post"],
                 "operationId": "DeletePost",
                 "parameters": [
                     {
@@ -4585,9 +4363,7 @@
         },
         "/post/getPostsByCategoryId/{categoryId}": {
             "get": {
-                "tags": [
-                    "Post"
-                ],
+                "tags": ["Post"],
                 "operationId": "getPostsByCategoryId",
                 "parameters": [
                     {
@@ -4638,9 +4414,7 @@
         },
         "/product": {
             "get": {
-                "tags": [
-                    "Product"
-                ],
+                "tags": ["Product"],
                 "operationId": "ProductList",
                 "responses": {
                     "200": {
@@ -4669,9 +4443,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Product"
-                ],
+                "tags": ["Product"],
                 "operationId": "AddProduct",
                 "requestBody": {
                     "required": true,
@@ -4704,9 +4476,7 @@
         },
         "/product/{id}": {
             "get": {
-                "tags": [
-                    "Product"
-                ],
+                "tags": ["Product"],
                 "operationId": "GetProduct",
                 "parameters": [
                     {
@@ -4743,9 +4513,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Product"
-                ],
+                "tags": ["Product"],
                 "operationId": "UpdateProduct",
                 "parameters": [
                     {
@@ -4787,9 +4555,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Product"
-                ],
+                "tags": ["Product"],
                 "operationId": "DeleteProduct",
                 "parameters": [
                     {
@@ -4821,9 +4587,7 @@
         },
         "/redirect": {
             "get": {
-                "tags": [
-                    "Redirect"
-                ],
+                "tags": ["Redirect"],
                 "operationId": "RedirectList",
                 "parameters": [
                     {
@@ -4863,9 +4627,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Redirect"
-                ],
+                "tags": ["Redirect"],
                 "operationId": "AddRedirect",
                 "parameters": [
                     {
@@ -4909,9 +4671,7 @@
         },
         "/redirect/{id}": {
             "get": {
-                "tags": [
-                    "Redirect"
-                ],
+                "tags": ["Redirect"],
                 "operationId": "GetRedirect",
                 "parameters": [
                     {
@@ -4957,9 +4717,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Redirect"
-                ],
+                "tags": ["Redirect"],
                 "operationId": "UpdateRedirect",
                 "parameters": [
                     {
@@ -5010,9 +4768,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Redirect"
-                ],
+                "tags": ["Redirect"],
                 "operationId": "DeleteRedirect",
                 "parameters": [
                     {
@@ -5053,9 +4809,7 @@
         },
         "/redirect/getRedirects/{pageId}": {
             "get": {
-                "tags": [
-                    "Redirect"
-                ],
+                "tags": ["Redirect"],
                 "operationId": "getRedirectsByPageId",
                 "parameters": [
                     {
@@ -5103,9 +4857,7 @@
         },
         "/region": {
             "get": {
-                "tags": [
-                    "Region"
-                ],
+                "tags": ["Region"],
                 "operationId": "RegionList",
                 "responses": {
                     "200": {
@@ -5134,9 +4886,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Region"
-                ],
+                "tags": ["Region"],
                 "operationId": "AddRegion",
                 "requestBody": {
                     "required": true,
@@ -5169,9 +4919,7 @@
         },
         "/region/getBySiteId/{siteId}": {
             "get": {
-                "tags": [
-                    "Region"
-                ],
+                "tags": ["Region"],
                 "operationId": "GetBySiteId",
                 "parameters": [
                     {
@@ -5213,9 +4961,7 @@
         },
         "/region/{id}": {
             "get": {
-                "tags": [
-                    "Region"
-                ],
+                "tags": ["Region"],
                 "operationId": "GetRegion",
                 "parameters": [
                     {
@@ -5252,9 +4998,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Region"
-                ],
+                "tags": ["Region"],
                 "operationId": "UpdateRegion",
                 "parameters": [
                     {
@@ -5296,9 +5040,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Region"
-                ],
+                "tags": ["Region"],
                 "operationId": "DeleteRegion",
                 "parameters": [
                     {
@@ -5330,9 +5072,7 @@
         },
         "/rule": {
             "get": {
-                "tags": [
-                    "Rule"
-                ],
+                "tags": ["Rule"],
                 "operationId": "RulesList",
                 "responses": {
                     "200": {
@@ -5363,9 +5103,7 @@
         },
         "/rule/getRules/{siteId}": {
             "get": {
-                "tags": [
-                    "Rule"
-                ],
+                "tags": ["Rule"],
                 "operationId": "GetRules",
                 "parameters": [
                     {
@@ -5407,9 +5145,7 @@
         },
         "/rule/addRules": {
             "post": {
-                "tags": [
-                    "Rule"
-                ],
+                "tags": ["Rule"],
                 "operationId": "AddRules",
                 "requestBody": {
                     "required": true,
@@ -5442,9 +5178,7 @@
         },
         "/rule/{id}": {
             "get": {
-                "tags": [
-                    "Rule"
-                ],
+                "tags": ["Rule"],
                 "operationId": "GetRule",
                 "parameters": [
                     {
@@ -5483,9 +5217,7 @@
         },
         "/rule/updateRules/{id}": {
             "put": {
-                "tags": [
-                    "Rule"
-                ],
+                "tags": ["Rule"],
                 "operationId": "UpdateRules",
                 "parameters": [
                     {
@@ -5529,9 +5261,7 @@
         },
         "rule/deleteRules/{id}": {
             "delete": {
-                "tags": [
-                    "Rule"
-                ],
+                "tags": ["Rule"],
                 "operationId": "DeleteRule",
                 "parameters": [
                     {
@@ -5563,9 +5293,7 @@
         },
         "/section": {
             "get": {
-                "tags": [
-                    "Section"
-                ],
+                "tags": ["Section"],
                 "operationId": "SectionList",
                 "responses": {
                     "200": {
@@ -5594,9 +5322,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Section"
-                ],
+                "tags": ["Section"],
                 "operationId": "AddSection",
                 "requestBody": {
                     "required": true,
@@ -5629,9 +5355,7 @@
         },
         "/section/{id}": {
             "get": {
-                "tags": [
-                    "Section"
-                ],
+                "tags": ["Section"],
                 "operationId": "GetSection",
                 "parameters": [
                     {
@@ -5668,9 +5392,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Section"
-                ],
+                "tags": ["Section"],
                 "operationId": "UpdateSection",
                 "parameters": [
                     {
@@ -5712,9 +5434,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Section"
-                ],
+                "tags": ["Section"],
                 "operationId": "DeleteSection",
                 "parameters": [
                     {
@@ -5746,9 +5466,7 @@
         },
         "/setting": {
             "get": {
-                "tags": [
-                    "Setting"
-                ],
+                "tags": ["Setting"],
                 "operationId": "SettingList",
                 "parameters": [
                     {
@@ -5788,9 +5506,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Setting"
-                ],
+                "tags": ["Setting"],
                 "operationId": "AddSetting",
                 "parameters": [
                     {
@@ -5861,9 +5577,7 @@
         },
         "/setting/{id}": {
             "get": {
-                "tags": [
-                    "Setting"
-                ],
+                "tags": ["Setting"],
                 "operationId": "GetSetting",
                 "parameters": [
                     {
@@ -5909,9 +5623,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Setting"
-                ],
+                "tags": ["Setting"],
                 "operationId": "UpdateSetting",
                 "parameters": [
                     {
@@ -5962,9 +5674,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Setting"
-                ],
+                "tags": ["Setting"],
                 "operationId": "DeleteSetting",
                 "parameters": [
                     {
@@ -6005,9 +5715,7 @@
         },
         "/site": {
             "get": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "SiteList",
                 "responses": {
                     "200": {
@@ -6036,9 +5744,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "AddSite",
                 "requestBody": {
                     "required": true,
@@ -6071,9 +5777,7 @@
         },
         "/site/{id}": {
             "get": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "GetSite",
                 "parameters": [
                     {
@@ -6110,9 +5814,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "UpdateSite",
                 "parameters": [
                     {
@@ -6154,9 +5856,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "DeleteSite",
                 "parameters": [
                     {
@@ -6188,9 +5888,7 @@
         },
         "/site/getSiteStatus/{siteId}": {
             "get": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "GetSiteStatus",
                 "parameters": [
                     {
@@ -6229,9 +5927,7 @@
         },
         "/site/setSiteStatus/{siteId}/{status}": {
             "put": {
-                "tags": [
-                    "Site"
-                ],
+                "tags": ["Site"],
                 "operationId": "setSiteStatus",
                 "parameters": [
                     {
@@ -6272,9 +5968,7 @@
         },
         "/status": {
             "get": {
-                "tags": [
-                    "Status"
-                ],
+                "tags": ["Status"],
                 "operationId": "cf600ec9f1950b8dd71b7f1dc100d49d",
                 "parameters": [
                     {
@@ -6316,9 +6010,7 @@
         },
         "/status/{id}": {
             "get": {
-                "tags": [
-                    "Status"
-                ],
+                "tags": ["Status"],
                 "operationId": "828944b026e392e8a9d24e0e25d6ffed",
                 "parameters": [
                     {
@@ -6366,9 +6058,7 @@
         },
         "/template": {
             "get": {
-                "tags": [
-                    "Template"
-                ],
+                "tags": ["Template"],
                 "operationId": "TemplateList",
                 "parameters": [
                     {
@@ -6408,9 +6098,7 @@
                 ]
             },
             "post": {
-                "tags": [
-                    "Template"
-                ],
+                "tags": ["Template"],
                 "operationId": "AddTemplate",
                 "parameters": [
                     {
@@ -6454,9 +6142,7 @@
         },
         "/template/{id}": {
             "get": {
-                "tags": [
-                    "Template"
-                ],
+                "tags": ["Template"],
                 "operationId": "GetTemplate",
                 "parameters": [
                     {
@@ -6502,9 +6188,7 @@
                 ]
             },
             "put": {
-                "tags": [
-                    "Template"
-                ],
+                "tags": ["Template"],
                 "operationId": "UpdateTemplate",
                 "parameters": [
                     {
@@ -6555,9 +6239,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Template"
-                ],
+                "tags": ["Template"],
                 "operationId": "DeleteTemplate",
                 "parameters": [
                     {
@@ -6598,9 +6280,7 @@
         },
         "/test/destroyPage/{id}": {
             "delete": {
-                "tags": [
-                    "Test"
-                ],
+                "tags": ["Test"],
                 "operationId": "a574b3c3f0299134bca9254b82b513b6",
                 "parameters": [
                     {
@@ -6636,9 +6316,7 @@
         },
         "/test/destroyPost/{id}": {
             "delete": {
-                "tags": [
-                    "Test"
-                ],
+                "tags": ["Test"],
                 "operationId": "7da359d7c1bf0aabba6769f3caaf5534",
                 "parameters": [
                     {

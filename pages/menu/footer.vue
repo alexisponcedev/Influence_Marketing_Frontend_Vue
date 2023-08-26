@@ -4,6 +4,9 @@
             <v-tab href="#Columns">Footer Columns</v-tab>
             <v-tab href="#Socials">Footer Socials</v-tab>
             <v-tab href="#Links">Footer Links</v-tab>
+            <v-tab v-if="getActiveBrandName() === 'hisenseusa'" href="#Texts"
+                >Texts</v-tab
+            >
         </v-tabs>
 
         <v-card>
@@ -31,8 +34,10 @@
                                         >
                                     </button>
                                 </div>
-
-                                <!--                                <menu-items v-model="Menu.widgets.columns[index]"/>-->
+                                <menu-items
+                                    v-if="getActiveBrandName() === 'hisenseusa'"
+                                    v-model="Menu.widgets.columns[index]"
+                                />
                             </li>
                             <li class="tw-mt-2">
                                 <button
@@ -139,15 +144,74 @@
                 </v-tab-item>
                 <v-tab-item value="Socials">
                     <v-card-text>
+                        <h6>Social Title</h6>
+
+                        <v-row>
+                            <v-col>
+                                <form-field-textarea
+                                    :field="{
+                                        label: '',
+                                        rules: [],
+                                        colAttrs: { cols: 12 },
+                                    }"
+                                    v-model="Menu.widgets.social_title"
+                                />
+                            </v-col>
+                        </v-row>
+
                         <h6>Footer Social Media</h6>
                         <menu-socials v-model="Menu.widgets.socials" />
                     </v-card-text>
                 </v-tab-item>
-
                 <v-tab-item value="Links">
                     <v-card-text>
+                        <h6>CopyRight</h6>
+                        <v-row>
+                            <v-col>
+                                <form-field-textarea
+                                    :field="{
+                                        label: '',
+                                        rules: [],
+                                        colAttrs: { cols: 12 },
+                                    }"
+                                    v-model="Menu.widgets.copyright"
+                                />
+                            </v-col>
+                        </v-row>
+
                         <h6>Footer Links</h6>
                         <menu-items v-model="Menu.widgets.links" />
+                    </v-card-text>
+                </v-tab-item>
+                <v-tab-item
+                    v-if="getActiveBrandName() === 'hisenseusa'"
+                    value="Texts"
+                >
+                    <v-card-text>
+                        <h6>Texts</h6>
+
+                        <v-row>
+                            <v-col cols="12">
+                                <form-field-textarea
+                                    :field="{
+                                        label: 'Social Title',
+                                        rules: [],
+                                        colAttrs: { cols: 12 },
+                                    }"
+                                    v-model="Menu.widgets.social_title"
+                                />
+                            </v-col>
+                            <v-col cols="12">
+                                <form-field-textarea
+                                    :field="{
+                                        label: 'Copy Right',
+                                        rules: [],
+                                        colAttrs: { cols: 12 },
+                                    }"
+                                    v-model="Menu.widgets.copyright"
+                                />
+                            </v-col>
+                        </v-row>
                     </v-card-text>
                 </v-tab-item>
             </v-tabs-items>
@@ -167,6 +231,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Api } from "@/store";
 import { Menu } from "@/repositories";
+import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component({
     layout: "panel",
@@ -178,8 +243,11 @@ export default class Menus extends Vue {
 
     selectedColumn = "";
 
+    getActiveBrandName = getActiveBrandName;
+
     Menu: any = {
         id: 2,
+        // id: 4,
         title: "footer",
         widgets: {
             links: [
@@ -204,8 +272,36 @@ export default class Menus extends Vue {
                     name: "California Consumer Privacy Act Portal",
                     target: "_self",
                 },
+                {
+                    id: 1,
+                    url: "/",
+                    name: "Terms Of Services",
+                },
+                {
+                    id: 2,
+                    url: "/",
+                    name: "Privacy Policy",
+                },
             ],
-            columns: [],
+            columns: [
+                [
+                    {
+                        url: null,
+                        name: "Locate Us",
+                    },
+                    {
+                        url: null,
+                        name: "3 Birrel Avenue, Sabo. Yaba, Lagos State, Nigeria",
+                    },
+                ],
+                [
+                    {
+                        url: null,
+                        name: "Contact Us",
+                    },
+                ],
+            ],
+            // columns: [],
             socials: [
                 {
                     url: "https://www.facebook.com/hisenseusa/",
@@ -227,6 +323,28 @@ export default class Menus extends Vue {
                     name: "youtube",
                     target: "_self",
                 },
+                //  {   url: "https://www.facebook.com/test/",
+                //     name: "facebook",
+                // },
+                // {
+                //     url: "https://twitter.com/test",
+                //     name: "twitter",
+                // },
+                // {
+                //     url: "https://www.instagram.com/test/",
+                //     name: "instagram",
+                // },
+                // {
+                //     url: "https://www.youtube.com/user/test",
+                //     name: "youtube",
+                // },
+                // ],
+                // copyright: "Copyright © 2022 IMDigital, Inc.",
+                // social_title:
+                // "To follow our latest news, training\nwith the community,chat with us \nfind us on our networks!",
+                // },
+                // brand_id: 1,
+                // };
             ],
         },
         brand_id: 3,
@@ -235,6 +353,16 @@ export default class Menus extends Vue {
     mounted() {
         this.fetchMenu();
     }
+
+    // async mounted() {
+    //     this.getFooter();
+    // }
+
+    // getFooter() {
+    //     Api.Menu.getFooter().then((res: any) => {
+    //         this.Menu.widgets = res.widgets;
+    //     });
+    // }
 
     async fetchMenu() {
         let widgets = ((await Api.Menu.getFooter()) as Menu).widgets as any;
@@ -263,8 +391,12 @@ export default class Menus extends Vue {
                       },
                   ];
         });
-        this.Menu.widgets = widgets;
+        // this.Menu.widgets = widgets;
     }
+
+    // addNewColumn() {
+    //     this.Menu.widgets.columns.push([{ name: "Sample Item", url: "/" }]);
+    // }
 
     addNewColumn(columns: any = null) {
         columns.push([

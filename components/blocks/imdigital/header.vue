@@ -8,12 +8,12 @@
             <div style="width: 134px">
                 <img
                     v-if="model.theme.value === Theme.light"
-                    src="~/assets/images/menu/logo-dark.png"
+                    src="~/assets/images/menu/imdigital.png"
                     alt="Hisense dark logo"
                 />
                 <img
                     v-else
-                    src="~/assets/images/menu/logo-light.png"
+                    src="~/assets/images/menu/logo-light.svg"
                     alt="Hisense light logo"
                 />
             </div>
@@ -35,20 +35,11 @@
                 >
                     {{ option.name }}
                 </li>
-                <li class="menuOption tw-flex tw-items-center">
-                    <img
-                        class="icon"
-                        v-if="model.theme.value === Theme.light"
-                        src="~/assets/images/menu/search-dark.png"
-                        alt="search icon"
-                    />
-                    <img
-                        class="icon"
-                        v-else
-                        src="~/assets/images/menu/search-light.png"
-                        alt="search icon"
-                    />
-                </li>
+                <!--                <li class="menuOption tw-flex tw-items-center">-->
+                <!--                    <img class="icon" v-if="model.theme.value === Theme.light"-->
+                <!--                         src="~/assets/images/menu/search-dark.png" alt="search icon">-->
+                <!--                    <img class="icon" v-else src="~/assets/images/menu/search-light.png" alt="search icon">-->
+                <!--                </li>-->
                 <li class="menuOption tw-flex tw-items-center">
                     <img
                         class="icon"
@@ -116,7 +107,7 @@ export default class LandingSlider extends Vue {
                 //     title: 'Notification',
                 //     value: {
                 //         title: {id: 0, type: StructureType.String, title: 'Title', value: 'Notification Text Message'},
-                //         link: {id: 1, type: StructureType.Url, target: "_self", title: 'Link', value: ''},
+                //         link: {id: 1, type: StructureType.Url, title: 'Link', value: ''},
                 //     }
                 // }
             };
@@ -145,10 +136,11 @@ export default class LandingSlider extends Vue {
 <style scoped>
 .menuBox {
     padding: 12px 24px;
+    background: linear-gradient(0deg, #0c2445, #0c2445), #002357;
 }
 
 .menuOption {
-    padding: 8px 14px;
+    padding: 8px 20px;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 1.3px;

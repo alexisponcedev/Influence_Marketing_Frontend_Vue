@@ -94,11 +94,12 @@ export default class api__redirect extends VuexModule {
     async create(Redirect: Redirect) {
         this.setLoading(true);
 
-        if (Redirect.source_url?.includes(process.env.BASE_URL!))
-        Redirect.source_url = Redirect.source_url?.substring(Redirect.source_url?.indexOf(process.env.BASE_URL!) + 15)
-        if (Redirect.redirect_url?.includes(process.env.BASE_URL!))
-        Redirect.redirect_url = Redirect.redirect_url?.substring(Redirect.redirect_url?.indexOf(process.env.BASE_URL!) + 15)
-        
+        let domain = process.env.LIVE_WEBSITE || "";
+        if (Redirect.source_url?.includes(domain))
+            Redirect.source_url = Redirect.source_url?.substring(Redirect.source_url?.indexOf(domain) + 15)
+        if (Redirect.redirect_url?.includes(domain))
+            Redirect.redirect_url = Redirect.redirect_url?.substring(Redirect.redirect_url?.indexOf(domain) + 15)
+
         Redirect.source_url = safeString(Redirect.source_url!);
         Redirect.redirect_url = safeString(Redirect.redirect_url!);
 
@@ -122,11 +123,15 @@ export default class api__redirect extends VuexModule {
     @Action
     async update(payload: { id: number; Redirect: Redirect }) {
         this.setLoading(true);
-        if (payload.Redirect.source_url?.includes(process.env.BASE_URL!))
-            payload.Redirect.source_url = payload.Redirect.source_url?.substring(payload.Redirect.source_url?.indexOf(process.env.BASE_URL!) + 15)
-        if (payload.Redirect.redirect_url?.includes(process.env.BASE_URL!))
-            payload.Redirect.redirect_url = payload.Redirect.redirect_url?.substring(payload.Redirect.redirect_url?.indexOf(process.env.BASE_URL!) + 15)
-        payload.Redirect.source_url = safeString(payload.Redirect.source_url!);
+      
+        let domain = process.env.LIVE_WEBSITE || "";
+        if (payload.Redirect.source_url?.includes(domain))
+            payload.Redirect.source_url = payload.Redirect.source_url?.substring(payload.Redirect.source_url?.indexOf(domain) + 15)
+        if (payload.Redirect.redirect_url?.includes(domain))
+        payload.Redirect.redirect_url = payload.Redirect.redirect_url?.substring(payload.Redirect.redirect_url?.indexOf(domain) + 15)
+      
+      
+      payload.Redirect.source_url = safeString(payload.Redirect.source_url!);
         payload.Redirect.redirect_url = safeString(payload.Redirect.redirect_url!);
         const response = await RedirectApiFactory(
             new Configuration({

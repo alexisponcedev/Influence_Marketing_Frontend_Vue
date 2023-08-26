@@ -1,4 +1,5 @@
-BASE_API_PATH="https://imcxm.dev-api.hisenseportal.com/api"
+BASE_API_PATH="https://imcxm.api.stage.imdigital.ca/api"
+# BASE_API_PATH="https://imcxm.dev-api.hisenseportal.com/api"
 export $(grep -v '^#' .env | xargs -d '\r\n')
 echo "BASE_API_PATH=$BASE_API_PATH"
 

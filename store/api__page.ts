@@ -8,8 +8,9 @@ import {
     PageResource,
     Configuration,
     PageApiFactory,
+    InlineResponse204,
 } from "@/repositories";
-import safeString from "~/utils/safeString";
+import safeString from "@/utils/safeString";
 
 @Module({
     name: "api__page",
@@ -31,7 +32,6 @@ export default class api__page extends VuexModule {
     updateAll(all: Array<PageResource>) {
         this.all = all;
     }
-
 
     @Mutation
     updateDynamicPages(all: Array<PageResource>) {
@@ -83,7 +83,7 @@ export default class api__page extends VuexModule {
             //   model_id: 0,
             //   model_type: '',
             //   route: '/',
-            //   domain: 'https://hisense-usa.com',
+            //   domain: 'https://public.stage.imdigital.ca/',
             // },
             ...routes.map((page: any) => {
                 return {
@@ -92,7 +92,7 @@ export default class api__page extends VuexModule {
                     model_id: page.model_id,
                     model_type: page.model_type,
                     route: page.route,
-                    domain: "https://hisense-usa.com" + page.route,
+                    domain: process.env.LIVE_WEBSITE + "/" + page.route,
                 };
             }),
         ];
@@ -312,7 +312,6 @@ export default class api__page extends VuexModule {
         payload.Page.meta = JSON.parse(
             safeString(JSON.stringify(payload.Page.meta))
         );
-        console.log(payload.Page.route);
         const response = await PageApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -537,6 +536,25 @@ export default class api__page extends VuexModule {
         )
             return response.data;
         return {};
+    }
+
+    @Action
+    async getLockStatus(pageId: number) {
+        const response = await PageApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .getLockStatus(getActiveBrand(), pageId)
+            .catch((error) => ResponseHandler.ErrorHandler(error));
+
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return (response.data as any).data as InlineResponse204;
+        return {} as InlineResponse204;
     }
 
     @Action({ commit: "updateAll" })

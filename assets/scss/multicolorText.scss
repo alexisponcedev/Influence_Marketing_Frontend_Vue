@@ -1,0 +1,15 @@
+.multicolor {
+    u {
+        @apply tw-no-underline #{!important};
+    }
+    &.skyblue {
+        u {
+            @apply tw-text-skyblue #{!important};
+        }
+    }
+    &.white-text {
+        u {
+            @apply tw-text-white #{!important};
+        }
+    }
+}

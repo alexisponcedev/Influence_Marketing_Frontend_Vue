@@ -2070,6 +2070,31 @@ export interface InlineResponse201 {
     'settings'?: Array<Setting>;
 }
 /**
+ * 
+ * @export
+ * @interface InlineResponse204
+ */
+export interface InlineResponse204 {
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse204
+     */
+    'locked_by'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse204
+     */
+    'locked_by_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse204
+     */
+    'lock_status'?: string;
+}
+/**
  * Inquiry Resource model
  * @export
  * @interface InquiryResource
@@ -2826,6 +2851,12 @@ export interface PageResource {
     'locked_by'?: number;
     /**
      * 
+     * @type {string}
+     * @memberof PageResource
+     */
+    'locked_name'?: string;
+    /**
+     * 
      * @type {object}
      * @memberof PageResource
      */
@@ -2909,6 +2940,12 @@ export interface Post {
      * @memberof Post
      */
     'status'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Post
+     */
+    'published_at'?: string;
 }
 /**
  * Post List Resource model
@@ -7687,10 +7724,11 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} [title] post/page title
          * @param {number} [perPage] Results Per Page
          * @param {string} [tag] Filter by Tag
+         * @param {Array<number>} [exclude] exclude results
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllPosts: async (brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAllPosts: async (brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
             assertParamExists('getAllPosts', 'brandId', brandId)
             const localVarPath = `/husa/getPosts`;
@@ -7727,6 +7765,10 @@ export const HUSAAPIsApiAxiosParamCreator = function (configuration?: Configurat
 
             if (tag !== undefined) {
                 localVarQueryParameter['tag'] = tag;
+            }
+
+            if (exclude) {
+                localVarQueryParameter['exclude[]'] = exclude;
             }
 
 
@@ -8615,11 +8657,12 @@ export const HUSAAPIsApiFp = function(configuration?: Configuration) {
          * @param {string} [title] post/page title
          * @param {number} [perPage] Results Per Page
          * @param {string} [tag] Filter by Tag
+         * @param {Array<number>} [exclude] exclude results
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllPosts(brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20031>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllPosts(brandId, type, year, title, perPage, tag, options);
+        async getAllPosts(brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20031>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllPosts(brandId, type, year, title, perPage, tag, exclude, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8918,11 +8961,12 @@ export const HUSAAPIsApiFactory = function (configuration?: Configuration, baseP
          * @param {string} [title] post/page title
          * @param {number} [perPage] Results Per Page
          * @param {string} [tag] Filter by Tag
+         * @param {Array<number>} [exclude] exclude results
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllPosts(brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, options?: any): AxiosPromise<InlineResponse20031> {
-            return localVarFp.getAllPosts(brandId, type, year, title, perPage, tag, options).then((request) => request(axios, basePath));
+        getAllPosts(brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options?: any): AxiosPromise<InlineResponse20031> {
+            return localVarFp.getAllPosts(brandId, type, year, title, perPage, tag, exclude, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9204,12 +9248,13 @@ export class HUSAAPIsApi extends BaseAPI {
      * @param {string} [title] post/page title
      * @param {number} [perPage] Results Per Page
      * @param {string} [tag] Filter by Tag
+     * @param {Array<number>} [exclude] exclude results
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HUSAAPIsApi
      */
-    public getAllPosts(brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, options?: AxiosRequestConfig) {
-        return HUSAAPIsApiFp(this.configuration).getAllPosts(brandId, type, year, title, perPage, tag, options).then((request) => request(this.axios, this.basePath));
+    public getAllPosts(brandId: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options?: AxiosRequestConfig) {
+        return HUSAAPIsApiFp(this.configuration).getAllPosts(brandId, type, year, title, perPage, tag, exclude, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11266,6 +11311,94 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        getLockStatus: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getLockStatus', 'brandId', brandId)
+            // verify required parameter 'pageId' is not null or undefined
+            assertParamExists('getLockStatus', 'pageId', pageId)
+            const localVarPath = `/page/getLockStatus/{pageId}`
+                .replace(`{${"pageId"}}`, encodeURIComponent(String(pageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} lockerId Locker ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLockerName: async (brandId: number, lockerId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getLockerName', 'brandId', brandId)
+            // verify required parameter 'lockerId' is not null or undefined
+            assertParamExists('getLockerName', 'lockerId', lockerId)
+            const localVarPath = `/page/getLockerName/{lockerId}`
+                .replace(`{${"lockerId"}}`, encodeURIComponent(String(lockerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         getPage: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'brandId' is not null or undefined
             assertParamExists('getPage', 'brandId', brandId)
@@ -11997,6 +12130,28 @@ export const PageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async getLockStatus(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse204>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLockStatus(brandId, pageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} lockerId Locker ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getLockerName(brandId: number, lockerId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLockerName(brandId, lockerId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async getPage(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20022>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPage(brandId, pageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -12241,6 +12396,26 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          */
         getListDynamicPage(brandId: number, options?: any): AxiosPromise<InlineResponse20043> {
             return localVarFp.getListDynamicPage(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLockStatus(brandId: number, pageId: number, options?: any): AxiosPromise<InlineResponse204> {
+            return localVarFp.getLockStatus(brandId, pageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} lockerId Locker ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLockerName(brandId: number, lockerId: number, options?: any): AxiosPromise<any> {
+            return localVarFp.getLockerName(brandId, lockerId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -12496,6 +12671,30 @@ export class PageApi extends BaseAPI {
      */
     public getListDynamicPage(brandId: number, options?: AxiosRequestConfig) {
         return PageApiFp(this.configuration).getListDynamicPage(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} pageId Page ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public getLockStatus(brandId: number, pageId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).getLockStatus(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} lockerId Locker ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public getLockerName(brandId: number, lockerId: number, options?: AxiosRequestConfig) {
+        return PageApiFp(this.configuration).getLockerName(brandId, lockerId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

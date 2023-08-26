@@ -11,7 +11,6 @@
 
         <div :class="{'selected tw-border tw-border-solid tw-border-black' : block.selected ,
       'tw-border tw-border-solid tw-border-gray-200' : !block.selected}"
-             style="min-height: 60px"
              @click="edit"
              class="tw-overflow-hidden tw-rounded tw-border-[3px] tw-border-solid tw-border-white hover:tw-border-gray-300 tw-transition tw-duration-300 tw-cursor-pointer tw-relative">
             <div class="tw-absolute tw-top-2 tw-right-2 tw-flex tw-items-center tw-space-x-1 tw-z-10 "
