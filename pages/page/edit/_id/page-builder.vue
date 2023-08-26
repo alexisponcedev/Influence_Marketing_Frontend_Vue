@@ -215,7 +215,7 @@ export default class PageBuilderSection extends Vue {
 
     async saveAndDeploy() {
         this.savePage()
-            // .then(Api.Page.doDeploy)
+            .then(Api.Page.doDeploy)
             .finally(() => {
                 this.shouldDeploy = false;
             });

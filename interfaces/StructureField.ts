@@ -11,6 +11,7 @@ export interface StructureFieldInterface {
     items?: any;
     itemText?: string;
     itemValue?: string;
+    disabled?: boolean;
 }
 
 export class StructureField implements StructureFieldInterface {
@@ -24,5 +25,6 @@ export class StructureField implements StructureFieldInterface {
     src: string = "";
     itemText: string = "title";
     itemValue: string = "value";
+    disabled?: boolean = false;
     onChanged?: (event: any) => any;
 }

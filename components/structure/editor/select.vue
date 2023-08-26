@@ -17,6 +17,7 @@ export default class StructureSelectEditor extends Vue {
         "item-value": "value",
         colAttrs: { cols: 12 },
         items: [],
+        disabled: false,
     };
 
     mounted() {
@@ -24,6 +25,7 @@ export default class StructureSelectEditor extends Vue {
         this.field["item-text"] = this.model.itemText ?? "title";
         this.field["item-value"] = this.model.itemValue ?? "value";
         this.field.items = this.model.items;
+        this.field.disabled = this.model.disabled || false;
     }
 
     changed(event: any) {
