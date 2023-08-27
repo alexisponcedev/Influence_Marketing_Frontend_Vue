@@ -902,6 +902,12 @@ export interface HUSAPostResource {
     'route'?: string;
     /**
      * 
+     * @type {PublishedAt}
+     * @memberof HUSAPostResource
+     */
+    'published_at'?: any;
+    /**
+     * 
      * @type {number}
      * @memberof HUSAPostResource
      */
@@ -3014,6 +3020,12 @@ export interface PostResource {
      * @memberof PostResource
      */
     'route'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostResource
+     */
+    'published_at'?: string;
     /**
      * 
      * @type {number}
@@ -9667,6 +9679,66 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [type] post or page
+         * @param {number} [modelId] post or page Id
+         * @param {number} [page] page number
+         * @param {number} [perPage] per page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHistoryLogs: async (brandId: number, type?: string, modelId?: number, page?: number, perPage?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('getHistoryLogs', 'brandId', brandId)
+            const localVarPath = `/history/logs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (modelId !== undefined) {
+                localVarQueryParameter['model_id'] = modelId;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['per_page'] = perPage;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
          * @param {HistoryRequest} historyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9800,6 +9872,20 @@ export const HistoryApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} brandId Brand ID
+         * @param {string} [type] post or page
+         * @param {number} [modelId] post or page Id
+         * @param {number} [page] page number
+         * @param {number} [perPage] per page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getHistoryLogs(brandId: number, type?: string, modelId?: number, page?: number, perPage?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20036>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getHistoryLogs(brandId, type, modelId, page, perPage, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
          * @param {HistoryRequest} historyRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9858,6 +9944,19 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
          */
         getHistoryByModelNameModelId(brandId: number, modelName: string, modelId: number, options?: any): AxiosPromise<InlineResponse20036> {
             return localVarFp.getHistoryByModelNameModelId(brandId, modelName, modelId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [type] post or page
+         * @param {number} [modelId] post or page Id
+         * @param {number} [page] page number
+         * @param {number} [perPage] per page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHistoryLogs(brandId: number, type?: string, modelId?: number, page?: number, perPage?: number, options?: any): AxiosPromise<InlineResponse20036> {
+            return localVarFp.getHistoryLogs(brandId, type, modelId, page, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9923,6 +10022,21 @@ export class HistoryApi extends BaseAPI {
      */
     public getHistoryByModelNameModelId(brandId: number, modelName: string, modelId: number, options?: AxiosRequestConfig) {
         return HistoryApiFp(this.configuration).getHistoryByModelNameModelId(brandId, modelName, modelId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {string} [type] post or page
+     * @param {number} [modelId] post or page Id
+     * @param {number} [page] page number
+     * @param {number} [perPage] per page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HistoryApi
+     */
+    public getHistoryLogs(brandId: number, type?: string, modelId?: number, page?: number, perPage?: number, options?: AxiosRequestConfig) {
+        return HistoryApiFp(this.configuration).getHistoryLogs(brandId, type, modelId, page, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

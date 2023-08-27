@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "generate:openapi": "openapi-generator-cli generate -i https://imcxm.api.stage.imdigital.ca/api/docs/api-docs.json -g typescript-axios -o repositories --additional-properties=supportsES6=true --skip-validate-spec",
+    "generate:openapi": "openapi-generator-cli generate -i https://imcxm.dev-api.hisenseportal.com/docs/api-docs.json -g typescript-axios -o repositories --additional-properties=supportsES6=true --skip-validate-spec",
     "generate:openapi:local": "openapi-generator-cli generate -i api-docs.json -g typescript-axios -o repositories --additional-properties=supportsES6=true --skip-validate-spec"
   },
   "dependencies": {

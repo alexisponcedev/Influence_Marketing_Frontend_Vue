@@ -44,6 +44,13 @@ export const items = () => [
         if: true,
     },
     {
+        title: "Page Changes Logs",
+        icon: "mdi-history",
+        group: "history",
+        to: "history",
+        if: getActiveBrandName() === "hisenseusa",
+    },
+    {
         title: "Redirection",
         icon: "mdi-undo-variant",
         group: "redirection",
