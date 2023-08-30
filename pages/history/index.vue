@@ -60,37 +60,168 @@
                                                             item.data.original
                                                         )"
                                                     >
-                                                        <v-col
-                                                            class="py-0"
-                                                            cols="4"
+                                                        <template
+                                                            v-if="
+                                                                key == 'widgets'
+                                                            "
                                                         >
-                                                            <strong>
-                                                                {{ key }}:
-                                                            </strong>
-                                                        </v-col>
-                                                        <v-col
-                                                            :class="`py-0 ${
-                                                                item.data
-                                                                    .updated &&
-                                                                item.data
-                                                                    .original[
-                                                                    key
-                                                                ] !=
+                                                            <v-col class="py-0">
+                                                                <strong>
+                                                                    {{ key }}:
+                                                                </strong>
+                                                                <v-card
+                                                                    outlined
+                                                                    v-for="(
+                                                                        widget,
+                                                                        index
+                                                                    ) in item
+                                                                        .data
+                                                                        .original[
+                                                                        key
+                                                                    ]"
+                                                                    :class="{
+                                                                        'my-2': true,
+                                                                        'red lighten-3':
+                                                                            JSON.stringify(
+                                                                                (
+                                                                                    item
+                                                                                        .data
+                                                                                        .updated[
+                                                                                        key
+                                                                                    ][
+                                                                                        item.data.updated[
+                                                                                            key
+                                                                                        ]
+                                                                                            .map(
+                                                                                                (
+                                                                                                    obj
+                                                                                                ) =>
+                                                                                                    obj.name
+                                                                                            )
+                                                                                            .indexOf(
+                                                                                                widget.name,
+                                                                                                index
+                                                                                            )
+                                                                                    ] || {
+                                                                                        structure:
+                                                                                            '{}',
+                                                                                    }
+                                                                                )
+                                                                                    .structure
+                                                                            ) !=
+                                                                            JSON.stringify(
+                                                                                widget.structure
+                                                                            ),
+                                                                    }"
+                                                                >
+                                                                    <v-card-text
+                                                                        class="py-1"
+                                                                    >
+                                                                        <v-col
+                                                                            class="py-0"
+                                                                        >
+                                                                            {{
+                                                                                widget.name
+                                                                            }}
+                                                                        </v-col>
+                                                                    </v-card-text>
+                                                                </v-card>
+                                                            </v-col>
+                                                        </template>
+                                                        <template
+                                                            v-else-if="
+                                                                key == 'meta'
+                                                            "
+                                                        >
+                                                            <v-col class="py-0">
+                                                                <strong>
+                                                                    {{ key }}:
+                                                                </strong>
+                                                                <v-card
+                                                                    outlined
+                                                                    v-for="meta in item
+                                                                        .data
+                                                                        .original[
+                                                                        key
+                                                                    ]"
+                                                                    :class="{
+                                                                        'my-2': true,
+                                                                        'red lighten-3':
+                                                                            (item.data.updated[
+                                                                                key
+                                                                            ].find(
+                                                                                (
+                                                                                    finded_meta
+                                                                                ) =>
+                                                                                    finded_meta.name ==
+                                                                                    meta.name
+                                                                            ) || {
+                                                                                content:
+                                                                                    '',
+                                                                            })[
+                                                                                'content'
+                                                                            ] !=
+                                                                            meta.content,
+                                                                    }"
+                                                                >
+                                                                    <v-card-text
+                                                                        class="py-1"
+                                                                    >
+                                                                        <v-col
+                                                                            v-for="metaKey in Object.keys(
+                                                                                meta
+                                                                            )"
+                                                                            class="py-0"
+                                                                        >
+                                                                            <strong>
+                                                                                {{
+                                                                                    metaKey
+                                                                                }}:
+                                                                            </strong>
+                                                                            {{
+                                                                                meta[
+                                                                                    metaKey
+                                                                                ]
+                                                                            }}
+                                                                        </v-col>
+                                                                    </v-card-text>
+                                                                </v-card>
+                                                            </v-col>
+                                                        </template>
+                                                        <template v-else>
+                                                            <v-col
+                                                                class="py-0"
+                                                                cols="4"
+                                                            >
+                                                                <strong>
+                                                                    {{ key }}:
+                                                                </strong>
+                                                            </v-col>
+                                                            <v-col
+                                                                :class="`py-0 ${
                                                                     item.data
-                                                                        .updated[
+                                                                        .updated &&
+                                                                    item.data
+                                                                        .original[
+                                                                        key
+                                                                    ] !=
+                                                                        item
+                                                                            .data
+                                                                            .updated[
+                                                                            key
+                                                                        ]
+                                                                        ? 'red lighten-3'
+                                                                        : ''
+                                                                }`"
+                                                            >
+                                                                {{
+                                                                    item.data
+                                                                        .original[
                                                                         key
                                                                     ]
-                                                                    ? 'red lighten-3'
-                                                                    : ''
-                                                            }`"
-                                                        >
-                                                            {{
-                                                                item.data
-                                                                    .original[
-                                                                    key
-                                                                ]
-                                                            }}
-                                                        </v-col>
+                                                                }}
+                                                            </v-col>
+                                                        </template>
                                                     </v-row>
                                                 </v-card-text>
                                             </v-card>
@@ -106,37 +237,168 @@
                                                             item.data.updated
                                                         )"
                                                     >
-                                                        <v-col
-                                                            class="py-0"
-                                                            cols="4"
+                                                        <template
+                                                            v-if="
+                                                                key == 'widgets'
+                                                            "
                                                         >
-                                                            <strong>
-                                                                {{ key }}:
-                                                            </strong>
-                                                        </v-col>
-                                                        <v-col
-                                                            :class="`py-0 ${
-                                                                item.data
-                                                                    .original &&
-                                                                item.data
-                                                                    .original[
-                                                                    key
-                                                                ] !=
+                                                            <v-col class="py-0">
+                                                                <strong>
+                                                                    {{ key }}:
+                                                                </strong>
+                                                                <v-card
+                                                                    outlined
+                                                                    v-for="(
+                                                                        widget,
+                                                                        index
+                                                                    ) in item
+                                                                        .data
+                                                                        .updated[
+                                                                        key
+                                                                    ]"
+                                                                    :class="{
+                                                                        'my-2': true,
+                                                                        'green lighten-3':
+                                                                            JSON.stringify(
+                                                                                (
+                                                                                    item
+                                                                                        .data
+                                                                                        .original[
+                                                                                        key
+                                                                                    ][
+                                                                                        item.data.original[
+                                                                                            key
+                                                                                        ]
+                                                                                            .map(
+                                                                                                (
+                                                                                                    obj
+                                                                                                ) =>
+                                                                                                    obj.name
+                                                                                            )
+                                                                                            .indexOf(
+                                                                                                widget.name,
+                                                                                                index
+                                                                                            )
+                                                                                    ] || {
+                                                                                        structure:
+                                                                                            '{}',
+                                                                                    }
+                                                                                )
+                                                                                    .structure
+                                                                            ) !=
+                                                                            JSON.stringify(
+                                                                                widget.structure
+                                                                            ),
+                                                                    }"
+                                                                >
+                                                                    <v-card-text
+                                                                        class="py-1"
+                                                                    >
+                                                                        <v-col
+                                                                            class="py-0"
+                                                                        >
+                                                                            {{
+                                                                                widget.name
+                                                                            }}
+                                                                        </v-col>
+                                                                    </v-card-text>
+                                                                </v-card>
+                                                            </v-col>
+                                                        </template>
+                                                        <template
+                                                            v-else-if="
+                                                                key == 'meta'
+                                                            "
+                                                        >
+                                                            <v-col class="py-0">
+                                                                <strong>
+                                                                    {{ key }}:
+                                                                </strong>
+                                                                <v-card
+                                                                    outlined
+                                                                    v-for="meta in item
+                                                                        .data
+                                                                        .updated[
+                                                                        key
+                                                                    ]"
+                                                                    :class="{
+                                                                        'my-2': true,
+                                                                        'green lighten-3':
+                                                                            (item.data.original[
+                                                                                key
+                                                                            ].find(
+                                                                                (
+                                                                                    finded_meta
+                                                                                ) =>
+                                                                                    finded_meta.name ==
+                                                                                    meta.name
+                                                                            ) || {
+                                                                                content:
+                                                                                    '',
+                                                                            })[
+                                                                                'content'
+                                                                            ] !=
+                                                                            meta.content,
+                                                                    }"
+                                                                >
+                                                                    <v-card-text
+                                                                        class="py-1"
+                                                                    >
+                                                                        <v-col
+                                                                            v-for="metaKey in Object.keys(
+                                                                                meta
+                                                                            )"
+                                                                            class="py-0"
+                                                                        >
+                                                                            <strong>
+                                                                                {{
+                                                                                    metaKey
+                                                                                }}:
+                                                                            </strong>
+                                                                            {{
+                                                                                meta[
+                                                                                    metaKey
+                                                                                ]
+                                                                            }}
+                                                                        </v-col>
+                                                                    </v-card-text>
+                                                                </v-card>
+                                                            </v-col>
+                                                        </template>
+                                                        <template v-else>
+                                                            <v-col
+                                                                class="py-0"
+                                                                cols="4"
+                                                            >
+                                                                <strong>
+                                                                    {{ key }}:
+                                                                </strong>
+                                                            </v-col>
+                                                            <v-col
+                                                                :class="`py-0 ${
+                                                                    item.data
+                                                                        .original &&
+                                                                    item.data
+                                                                        .original[
+                                                                        key
+                                                                    ] !=
+                                                                        item
+                                                                            .data
+                                                                            .updated[
+                                                                            key
+                                                                        ]
+                                                                        ? 'green lighten-3'
+                                                                        : ''
+                                                                }`"
+                                                            >
+                                                                {{
                                                                     item.data
                                                                         .updated[
                                                                         key
                                                                     ]
-                                                                    ? 'green lighten-3'
-                                                                    : ''
-                                                            }`"
-                                                        >
-                                                            {{
-                                                                item.data
-                                                                    .updated[
-                                                                    key
-                                                                ]
-                                                            }}
-                                                        </v-col>
+                                                                }}
+                                                            </v-col>
+                                                        </template>
                                                     </v-row>
                                                 </v-card-text>
                                             </v-card>
