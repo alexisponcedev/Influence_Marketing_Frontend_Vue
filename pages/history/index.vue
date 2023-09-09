@@ -459,7 +459,12 @@ export default class PageChangesHistory extends Vue {
     config = {
         headers: [
             { text: "Title", value: "historyable.title" },
-            { text: "Type", value: "historyable_type" },
+            {
+                text: "Type",
+                value: "historyable_type",
+                valueFunc: (item: any) =>
+                    item.historyable_type.includes("Page") ? "Page" : "Post",
+            },
             { text: "User", value: "user.user_name" },
             { text: "Action", value: "action" },
             {
