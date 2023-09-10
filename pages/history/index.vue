@@ -82,6 +82,11 @@
                                                                     :class="{
                                                                         'my-2': true,
                                                                         'red lighten-3':
+                                                                            item
+                                                                                .data
+                                                                                .updated[
+                                                                                key
+                                                                            ] &&
                                                                             JSON.stringify(
                                                                                 (
                                                                                     item
@@ -259,6 +264,11 @@
                                                                     :class="{
                                                                         'my-2': true,
                                                                         'green lighten-3':
+                                                                            item
+                                                                                .data
+                                                                                .original[
+                                                                                key
+                                                                            ] &&
                                                                             JSON.stringify(
                                                                                 (
                                                                                     item
@@ -286,9 +296,9 @@
                                                                                 )
                                                                                     .structure
                                                                             ) !=
-                                                                            JSON.stringify(
-                                                                                widget.structure
-                                                                            ),
+                                                                                JSON.stringify(
+                                                                                    widget.structure
+                                                                                ),
                                                                     }"
                                                                 >
                                                                     <v-card-text
