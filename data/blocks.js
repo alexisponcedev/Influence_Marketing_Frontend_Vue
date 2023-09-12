@@ -548,6 +548,12 @@ export const BLOCKS = () => {
                             image: "FirmWareDownloadSection.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "FirmwareDisclaimer",
+                            title: "FirmWare Disclaimer",
+                            image: "FirmwareDisclaimer.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
