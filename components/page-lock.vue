@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Component, VModel, Watch, Prop } from "vue-property-decorator";
-import { Api } from "@/store";
+import { Api, LockPageStore } from "@/store";
 
 @Component
 export default class PageLock extends Vue {
@@ -55,6 +55,10 @@ export default class PageLock extends Vue {
     _timerId: any = null;
 
     async getLockStatus() {
+        LockPageStore.start();
+
+        console.log("getLockStatus")
+
         if (this.page?.id) {
             const response = await Api.Page.getLockStatus(this.page.id);
             this.lockedByName = response.locked_by_name || "Admin";
@@ -78,10 +82,11 @@ export default class PageLock extends Vue {
                     this.$router.push("/page/edit/" + returnId);
         }
 
-        this._timerId = setTimeout(this.getLockStatus, 30000);
+        this._timerId = setTimeout(this.getLockStatus, 1000);
     }
 
     beforeDestroy() {
+        LockPageStore.stop();
         clearTimeout(this._timerId);
     }
 }
