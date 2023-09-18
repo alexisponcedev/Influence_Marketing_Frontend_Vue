@@ -20,10 +20,10 @@ export default class CareersAccordion extends Vue {
     }
 
     init() {
-        blockAddItem(this.model, "subList", {
+        blockAddItem(this.model, "singleItem", {
             id: 0,
             type: StructureType.Select,
-            title: "multiple sub-list item?",
+            title: "single sub-list item?",
             value: true,
             items: [
                 { title: "Yes", value: true },
