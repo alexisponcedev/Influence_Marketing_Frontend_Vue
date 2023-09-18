@@ -47,7 +47,7 @@ export default class CareersAccordion extends Vue {
                     id: 1,
                     type: StructureType.List,
                     title: "sublist of list",
-                    maxLength: !this.model.subList.value ? 1 : undefined,
+                    maxLength: this.model.singleItem.value ? 1 : undefined,
                     newItem: {
                         title: {
                             id: 0,
