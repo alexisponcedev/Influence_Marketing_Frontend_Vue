@@ -205,7 +205,10 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
             title: "Active Week",
             value: "",
             items: () =>
-                this.model.list.value.map((item: any) => item.title.value),
+                this.model.list.value.map((item: any, index: number) => ({
+                    title: item.title.value,
+                    value: index,
+                })),
         });
 
         this.model = { ...this.model };
