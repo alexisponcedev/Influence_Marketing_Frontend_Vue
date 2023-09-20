@@ -120,6 +120,38 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     value: "",
                     title: "Product Features",
                 },
+                retailers: {
+                    id: 6,
+                    title: "Retailers",
+                    type: StructureType.List,
+                    maxLength: 0,
+                    newItem: {
+                        id: {
+                            id: 0,
+                            type: StructureType.TextPreview,
+                            value: "",
+                            title: "Retialer id",
+                            hidden: true,
+                        },
+                        name: {
+                            id: 1,
+                            type: StructureType.TextPreview,
+                            title: "Retialer name",
+                            value: "",
+                        },
+                        status: {
+                            id: 3,
+                            type: StructureType.Select,
+                            title: "Status",
+                            value: "deactive",
+                            items: [
+                                { title: "Active", value: "active" },
+                                { title: "Deactive", value: "deactive" },
+                            ],
+                        },
+                    },
+                    value: [],
+                },
             },
         });
 
@@ -189,6 +221,68 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     type: StructureType.SimpleText,
                     value: "",
                     title: "Product Features",
+                },
+                retailers: {
+                    id: 6,
+                    title: "Retailers",
+                    type: StructureType.List,
+                    maxLength: 0,
+                    newItem: {
+                        id: {
+                            id: 0,
+                            type: StructureType.TextPreview,
+                            value: "",
+                            title: "Retialer id",
+                            hidden: true,
+                        },
+                        name: {
+                            id: 1,
+                            type: StructureType.TextPreview,
+                            title: "Retialer name",
+                            value: "",
+                        },
+                        status: {
+                            id: 3,
+                            type: StructureType.Select,
+                            title: "Status",
+                            value: "deactive",
+                            items: [
+                                { title: "Active", value: "active" },
+                                { title: "Deactive", value: "deactive" },
+                            ],
+                        },
+                    },
+                    value: product.retailers.map(
+                        (retailer: any) =>
+                            <any>{
+                                id: {
+                                    id: 0,
+                                    type: StructureType.TextPreview,
+                                    value: retailer.id,
+                                    title: "Retialer id",
+                                    hidden: true,
+                                },
+                                name: {
+                                    id: 1,
+                                    type: StructureType.TextPreview,
+                                    title: "Retialer name",
+                                    value: retailer.name,
+                                },
+                                status: {
+                                    id: 3,
+                                    type: StructureType.Select,
+                                    title: "Status",
+                                    value: "deactive",
+                                    items: [
+                                        { title: "Active", value: "active" },
+                                        {
+                                            title: "Deactive",
+                                            value: "deactive",
+                                        },
+                                    ],
+                                },
+                            }
+                    ),
                 },
             });
             this.model.selectProducts.value = "";
