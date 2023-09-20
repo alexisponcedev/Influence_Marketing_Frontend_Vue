@@ -60,13 +60,30 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
                 },
                 product_specs: {
                     id: 7,
-                    type: StructureType.SimpleText,
+                    type: StructureType.List,
                     title: "Product specs",
-                    value: "",
+                    value: [
+                        {
+                            text: {
+                                id: 0,
+                                type: StructureType.SimpleText,
+                                title: "Spec",
+                                value: "",
+                            },
+                        },
+                    ],
+                    newItem: {
+                        text: {
+                            id: 0,
+                            type: StructureType.SimpleText,
+                            title: "Spec",
+                            value: "",
+                        },
+                    },
                 },
                 button: {
                     id: 8,
-                    type: StructureType.SimpleText,
+                    type: StructureType.Url,
                     title: "Button",
                     value: "",
                 },
@@ -78,15 +95,17 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
                 },
                 product_image: {
                     id: 10,
-                    type: StructureType.SimpleText,
+                    type: StructureType.Image,
                     title: "Product Image",
-                    value: "",
+                    alt: "",
+                    src: "",
                 },
                 product_image_responsive: {
                     id: 11,
-                    type: StructureType.SimpleText,
+                    type: StructureType.Image,
                     title: "Product image responsive",
-                    value: "",
+                    alt: "",
+                    src: "",
                 },
             },
             value: [
@@ -129,13 +148,30 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
                     },
                     product_specs: {
                         id: 7,
-                        type: StructureType.SimpleText,
+                        type: StructureType.List,
                         title: "Product specs",
-                        value: "",
+                        value: [
+                            {
+                                text: {
+                                    id: 0,
+                                    type: StructureType.SimpleText,
+                                    title: "Spec",
+                                    value: "",
+                                },
+                            },
+                        ],
+                        newItem: {
+                            text: {
+                                id: 0,
+                                type: StructureType.SimpleText,
+                                title: "Spec",
+                                value: "",
+                            },
+                        },
                     },
                     button: {
                         id: 8,
-                        type: StructureType.SimpleText,
+                        type: StructureType.Url,
                         title: "Button",
                         value: "",
                     },
@@ -147,15 +183,17 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
                     },
                     product_image: {
                         id: 10,
-                        type: StructureType.SimpleText,
+                        type: StructureType.Image,
                         title: "Product Image",
-                        value: "",
+                        alt: "",
+                        src: "",
                     },
                     product_image_responsive: {
                         id: 11,
-                        type: StructureType.SimpleText,
+                        type: StructureType.Image,
                         title: "Product image responsive",
-                        value: "",
+                        alt: "",
+                        src: "",
                     },
                 },
             ],

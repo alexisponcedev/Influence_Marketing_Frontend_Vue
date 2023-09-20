@@ -116,9 +116,26 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 },
                 features: {
                     id: 5,
-                    type: StructureType.SimpleText,
-                    value: "",
+                    type: StructureType.List,
                     title: "Product Features",
+                    value: [
+                        {
+                            text: {
+                                id: 4,
+                                type: StructureType.SimpleText,
+                                value: "",
+                                title: "Spec",
+                            },
+                        },
+                    ],
+                    newItem: {
+                        text: {
+                            id: 4,
+                            type: StructureType.SimpleText,
+                            value: "",
+                            title: "Spec",
+                        },
+                    },
                 },
                 retailers: {
                     id: 6,
