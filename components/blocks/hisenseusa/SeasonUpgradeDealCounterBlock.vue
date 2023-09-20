@@ -5,73 +5,69 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
+import { Theme } from "@/interfaces/ThemeEnum";
 
 @Component
 export default class SeasonUpgradeDealCounterBlock extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop(Number) readonly product_id!: number;
     @VModel({ type: Object }) model!: any;
 
     Theme = Theme;
 
     mounted() {
         blockAddItem(this.model, "list", {
-            id: 4,
+            id: 1,
             type: StructureType.List,
             title: "Week List",
             newItem: {
-                object: {
+                title: {
                     id: 1,
-                    type: StructureType.Object,
-                    title: "Week Item",
-                    value: {
-                        title: {
-                            id: 1,
-                            type: StructureType.String,
-                            title: "Title",
-                            value: "",
-                        },
-                        status: {
-                            id: 2,
-                            type: StructureType.Select,
-                            title: "Status",
-                            value: "deactive",
-                            items: [
-                                { title: "Deactive", value: "deactive" },
-                                { title: "Active", value: "active" },
-                            ],
-                        },
-                    },
+                    type: StructureType.String,
+                    title: "Title",
+                    value: "",
+                },
+                end: {
+                    id: 2,
+                    type: StructureType.Datetime,
+                    title: "End Time",
+                    value: "",
+                },
+                status: {
+                    id: 3,
+                    type: StructureType.Select,
+                    title: "Status",
+                    value: "deactive",
+                    items: [
+                        { title: "Deactive", value: "deactive" },
+                        { title: "Active", value: "active" },
+                    ],
                 },
             },
             value: [
                 {
-                    object: {
+                    title: {
                         id: 1,
-                        type: StructureType.Object,
-                        title: "Week Item",
-                        value: {
-                            title: {
-                                id: 1,
-                                type: StructureType.String,
-                                title: "Title",
-                                value: "",
-                            },
-                            status: {
-                                id: 2,
-                                type: StructureType.Select,
-                                title: "Status",
-                                value: "deactive",
-                                items: [
-                                    { title: "Deactive", value: "deactive" },
-                                    { title: "Active", value: "active" },
-                                ],
-                            },
-                        },
+                        type: StructureType.String,
+                        title: "Title",
+                        value: "Week 1",
+                    },
+                    end: {
+                        id: 2,
+                        type: StructureType.Datetime,
+                        title: "End Time",
+                        value: "",
+                    },
+                    status: {
+                        id: 3,
+                        type: StructureType.Select,
+                        title: "Status",
+                        value: "active",
+                        items: [
+                            { title: "Deactive", value: "deactive" },
+                            { title: "Active", value: "active" },
+                        ],
                     },
                 },
             ],
@@ -79,11 +75,5 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
 
         this.model = { ...this.model };
     }
-
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
-    }
 }
 </script>
-
-<style type="text/css"></style>
