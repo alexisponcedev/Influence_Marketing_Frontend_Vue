@@ -31,6 +31,11 @@ export default function blockAddItem(base: any, name: string, item: any) {
         base[name].hidden = item.hidden || false;
     }
 
+    if (item.type === StructureType.AutoCompeleteSelect) {
+        base[name].items = item.items;
+        base[name].loading = item.loading;
+    }
+
     if (item.type === StructureType.Object) {
         Object.keys(item.value).forEach((key: string) => {
             blockAddItem(base[name].value, key, item.value[key]);

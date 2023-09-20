@@ -6,9 +6,10 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
-import blockAddItem from "~/utils/blockAddItem";
+import { StructureType } from "@/models/StructureType";
+import getActiveBrand from "@/utils/getActiveBrand";
+import blockAddItem from "@/utils/blockAddItem";
+import { Theme } from "@/interfaces/ThemeEnum";
 
 @Component
 export default class SeasonUpgradeProductsCarousel extends Vue {
@@ -18,21 +19,32 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
 
     Theme = Theme;
 
+    loading: boolean = false;
+    products: Array<any> = [];
+
     mounted() {
-        blockAddItem(this.model, "subtitle", {
-            id: 0,
-            type: StructureType.String,
-            title: "Subtitle",
-            value: "",
-        });
+        this.init();
+    }
+
+    init() {
+        this.getAllProducts();
+
         blockAddItem(this.model, "title", {
             id: 1,
             type: StructureType.SimpleText,
             title: "Title",
             value: "",
         });
-        blockAddItem(this.model, "text", {
+
+        blockAddItem(this.model, "subtitle", {
             id: 2,
+            type: StructureType.String,
+            title: "Subtitle",
+            value: "",
+        });
+
+        blockAddItem(this.model, "text", {
+            id: 3,
             type: StructureType.Select,
             title: "Theme",
             value: "light",
@@ -41,8 +53,9 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 { title: "Gradient", value: "gradient" },
             ],
         });
+
         blockAddItem(this.model, "direction", {
-            id: 3,
+            id: 4,
             type: StructureType.Select,
             title: "Carousel Start Direction",
             value: "left",
@@ -52,13 +65,134 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
             ],
         });
 
+        blockAddItem(this.model, "selectProducts", {
+            id: 7,
+            type: StructureType.AutoCompeleteSelect,
+            title: "Select Products",
+            itemText: "name",
+            itemValue: "id",
+            value: "",
+            items: () => this.products,
+            loading: () => this.loading,
+        });
+
+        blockAddItem(this.model, "selected_products", {
+            id: 8,
+            type: StructureType.List,
+            title: "Selected Products List",
+            maxLength: 0,
+            value: [],
+            newItem: {
+                id: {
+                    id: 0,
+                    type: StructureType.TextPreview,
+                    value: "",
+                    title: "Product id",
+                    hidden: true,
+                },
+                name: {
+                    id: 1,
+                    type: StructureType.TextPreview,
+                    title: "Product name",
+                    value: "",
+                },
+                old_price: {
+                    id: 2,
+                    type: StructureType.String,
+                    value: "",
+                    title: "Old Price",
+                },
+                new_price: {
+                    id: 3,
+                    type: StructureType.String,
+                    value: "",
+                    title: "New Price",
+                },
+                discount_amount: {
+                    id: 4,
+                    type: StructureType.String,
+                    value: "",
+                    title: "Discount Amount",
+                },
+                features: {
+                    id: 5,
+                    type: StructureType.SimpleText,
+                    value: "",
+                    title: "Product Features",
+                },
+            },
+        });
+
         this.model = { ...this.model };
     }
 
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
+    async getAllProducts() {
+        this.loading = true;
+        await this.$axios
+            .$get(
+                process.env.PIM_API_URL +
+                    `/cms/getProductsList?brand_id=${getActiveBrand()}`
+            )
+            .then((res) => {
+                this.products = res.data;
+            })
+            .finally(() => {
+                this.loading = false;
+            });
+        this.loading = false;
+    }
+
+    get selectProducts() {
+        return this.model.hasOwnProperty("selectProducts")
+            ? this.model.selectProducts.value
+            : null;
+    }
+
+    @Watch("selectProducts")
+    onselectProducts(value: any) {
+        const product = this.products.find((item) => item.id == value);
+        if (value) {
+            this.model.selected_products.value.push({
+                id: {
+                    id: 0,
+                    type: StructureType.TextPreview,
+                    value: product.id,
+                    title: "Product id",
+                    hidden: true,
+                },
+                name: {
+                    id: 1,
+                    type: StructureType.TextPreview,
+                    title: "Product name",
+                    value: product.name,
+                },
+                old_price: {
+                    id: 2,
+                    type: StructureType.String,
+                    value: "",
+                    title: "Old Price",
+                },
+                new_price: {
+                    id: 3,
+                    type: StructureType.String,
+                    value: "",
+                    title: "New Price",
+                },
+                discount_amount: {
+                    id: 4,
+                    type: StructureType.String,
+                    value: "",
+                    title: "Discount Amount",
+                },
+                features: {
+                    id: 5,
+                    type: StructureType.SimpleText,
+                    value: "",
+                    title: "Product Features",
+                },
+            });
+            this.model.selectProducts.value = "";
+        }
     }
 }
 </script>
-
-<style type="text/css"></style>

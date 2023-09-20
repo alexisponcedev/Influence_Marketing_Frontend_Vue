@@ -14,4 +14,5 @@ export enum StructureType {
     Null = "null",
     AutoCompeleteSelect = "autoCompeleteSelect",
     Datetime = "datetime",
+    TextPreview = "textPreview",
 }
