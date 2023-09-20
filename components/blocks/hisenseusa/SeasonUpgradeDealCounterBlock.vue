@@ -34,15 +34,59 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
                     title: "End Time",
                     value: "",
                 },
-                status: {
+                product_title: {
                     id: 3,
-                    type: StructureType.Select,
-                    title: "Status",
-                    value: "deactive",
-                    items: [
-                        { title: "Deactive", value: "deactive" },
-                        { title: "Active", value: "active" },
-                    ],
+                    type: StructureType.SimpleText,
+                    title: "Product title",
+                    value: "",
+                },
+                product_sale: {
+                    id: 4,
+                    type: StructureType.SimpleText,
+                    title: "Product sale",
+                    value: "",
+                },
+                price: {
+                    id: 5,
+                    type: StructureType.SimpleText,
+                    title: "Price",
+                    value: "",
+                },
+                old_price: {
+                    id: 6,
+                    type: StructureType.SimpleText,
+                    title: "Old price",
+                    value: "",
+                },
+                product_specs: {
+                    id: 7,
+                    type: StructureType.SimpleText,
+                    title: "Product specs",
+                    value: "",
+                },
+                button: {
+                    id: 8,
+                    type: StructureType.SimpleText,
+                    title: "Button",
+                    value: "",
+                },
+                blackbox_text: {
+                    id: 9,
+                    type: StructureType.SimpleText,
+                    title: "Black box text",
+                    value: "",
+                },
+                product_image: {
+                    id: 10,
+                    type: StructureType.SimpleText,
+                    title: "Product Image",
+                    value: "",
+                },
+                product_image_responsive: {
+                    id: 11,
+                    type: StructureType.SimpleText,
+                    title: "Product image responsive",
+                    value: "",
                 },
             },
             value: [
@@ -59,18 +103,71 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
                         title: "End Time",
                         value: "",
                     },
-                    status: {
+                    product_title: {
                         id: 3,
-                        type: StructureType.Select,
-                        title: "Status",
-                        value: "active",
-                        items: [
-                            { title: "Deactive", value: "deactive" },
-                            { title: "Active", value: "active" },
-                        ],
+                        type: StructureType.SimpleText,
+                        title: "Product title",
+                        value: "",
+                    },
+                    product_sale: {
+                        id: 4,
+                        type: StructureType.SimpleText,
+                        title: "Product sale",
+                        value: "",
+                    },
+                    price: {
+                        id: 5,
+                        type: StructureType.SimpleText,
+                        title: "Price",
+                        value: "",
+                    },
+                    old_price: {
+                        id: 6,
+                        type: StructureType.SimpleText,
+                        title: "Old price",
+                        value: "",
+                    },
+                    product_specs: {
+                        id: 7,
+                        type: StructureType.SimpleText,
+                        title: "Product specs",
+                        value: "",
+                    },
+                    button: {
+                        id: 8,
+                        type: StructureType.SimpleText,
+                        title: "Button",
+                        value: "",
+                    },
+                    blackbox_text: {
+                        id: 9,
+                        type: StructureType.SimpleText,
+                        title: "Black box text",
+                        value: "",
+                    },
+                    product_image: {
+                        id: 10,
+                        type: StructureType.SimpleText,
+                        title: "Product Image",
+                        value: "",
+                    },
+                    product_image_responsive: {
+                        id: 11,
+                        type: StructureType.SimpleText,
+                        title: "Product image responsive",
+                        value: "",
                     },
                 },
             ],
+        });
+
+        blockAddItem(this.model, "active", {
+            id: 2,
+            type: StructureType.Select,
+            title: "Active Week",
+            value: "",
+            items: () =>
+                this.model.list.value.map((item: any) => item.title.value),
         });
 
         this.model = { ...this.model };
