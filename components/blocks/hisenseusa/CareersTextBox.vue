@@ -5,15 +5,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import blockRemoveItem from "~/utils/blockRemoveItem";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, VModel, Watch } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockRemoveItem from "@/utils/blockRemoveItem";
+import blockAddItem from "@/utils/blockAddItem";
 
 @Component
 export default class CareersTextBox extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
     prepare() {
@@ -31,6 +29,7 @@ export default class CareersTextBox extends Vue {
                 title: "Background Color",
                 value: "",
             });
+
             blockAddItem(this.model, "image", {
                 id: 0,
                 type: StructureType.Image,
@@ -66,10 +65,6 @@ export default class CareersTextBox extends Vue {
     @Watch("template")
     onTemplateChanged() {
         this.prepare();
-    }
-
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
     }
 }
 </script>

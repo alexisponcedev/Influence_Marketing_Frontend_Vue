@@ -5,14 +5,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
 
 @Component
 export default class CareersBanner extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
     mounted() {
@@ -23,6 +21,7 @@ export default class CareersBanner extends Vue {
             src: "",
             alt: "",
         });
+
         blockAddItem(this.model, "logo", {
             id: 0,
             type: StructureType.Image,
@@ -30,16 +29,15 @@ export default class CareersBanner extends Vue {
             src: "",
             alt: "",
         });
+
         blockAddItem(this.model, "title", {
             id: 1,
             type: StructureType.SimpleText,
             title: "Title",
             value: "",
         });
-    }
 
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
+        this.model = { ...this.model };
     }
 }
 </script>

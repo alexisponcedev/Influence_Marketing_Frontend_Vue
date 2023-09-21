@@ -5,14 +5,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { Vue, Component, VModel } from "vue-property-decorator";
 import { StructureType } from "@/models/StructureType";
 import blockAddItem from "@/utils/blockAddItem";
 
 @Component
 export default class CareersVideoBlock extends Vue {
-    @Prop({ default: true }) readonly editable: boolean | undefined;
-    @Prop(Number) readonly id: number | undefined;
     @VModel({ type: Object }) model!: any;
 
     mounted() {
@@ -33,6 +31,8 @@ export default class CareersVideoBlock extends Vue {
             title: "Video",
             value: "",
         });
+
+        this.model = { ...this.model };
     }
 }
 </script>
