@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
 
 @Component
 export default class CareersAccordion extends Vue {
-    @Prop(Number) readonly id: number | undefined;
     @Prop({ default: true }) readonly editable: boolean | undefined;
+    @Prop(Number) readonly id: number | undefined;
     @VModel({ type: Object }) model!: any;
 
     mounted() {
@@ -137,10 +137,6 @@ export default class CareersAccordion extends Vue {
                 },
             ],
         });
-    }
-
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
     }
 }
 </script>
