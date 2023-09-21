@@ -2130,6 +2130,12 @@ export const BLOCKS = () => {
                             image: "CareersVideoBlock.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "CareersContactUs",
+                            title: "Careers Contact us",
+                            image: "CareersContactUs.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
             ],
