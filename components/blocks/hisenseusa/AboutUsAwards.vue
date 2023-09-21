@@ -45,6 +45,12 @@ export default class AboutUsAwards extends Vue {
                     title: "Text",
                     value: "",
                 },
+                image: {
+                    id: 3,
+                    type: StructureType.Image,
+                    title: "Background",
+                    value: "",
+                },
             },
             value: [],
         });
