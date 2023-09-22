@@ -29,6 +29,7 @@ export default function blockAddItem(base: any, name: string, item: any) {
             });
         });
         base[name].hidden = item.hidden || false;
+        base[name].maxLength = item.maxLength;
     }
 
     if (item.type === StructureType.Object) {
