@@ -31,7 +31,7 @@
                         />
                     </blocks-container>
 
-                    <blocks-drop />
+                    <!-- <blocks-drop /> -->
                 </draggable>
             </div>
             <resizable v-model="width">
