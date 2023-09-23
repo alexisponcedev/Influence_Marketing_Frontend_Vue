@@ -5,17 +5,32 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import blockAddItem from "~/utils/blockAddItem";
+
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
 
 @Component
 export default class CareersAccordion extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
     mounted() {
+        this.init();
+    }
+
+    init() {
+        blockAddItem(this.model, "singleItem", {
+            id: 0,
+            type: StructureType.Select,
+            title: "single sub-list item?",
+            value: true,
+            items: [
+                { title: "Yes", value: true },
+                { title: "No", value: false },
+            ],
+            onChanged: this.init,
+        });
+
         blockAddItem(this.model, "list", {
             id: 1,
             type: StructureType.List,
@@ -31,116 +46,35 @@ export default class CareersAccordion extends Vue {
                     id: 1,
                     type: StructureType.List,
                     title: "sublist of list",
+                    maxLength: this.model.singleItem.value ? 1 : undefined,
                     newItem: {
                         title: {
                             id: 0,
                             type: StructureType.String,
-                            title: "Title of sublist",
+                            title: "Title",
                             value: "",
                         },
                         subtitle: {
                             id: 2,
                             type: StructureType.SimpleText,
-                            title: "Description of sublist",
+                            title: "Description",
                             value: "",
                         },
                         link: {
                             id: 3,
                             type: StructureType.Url,
                             target: "_self",
-                            title: "Link of sublist",
+                            title: "Link",
                             value: "",
                         },
                     },
-                    value: [
-                        {
-                            title: {
-                                id: 0,
-                                type: StructureType.String,
-                                title: "Title of sublist",
-                                value: "",
-                            },
-                            subtitle: {
-                                id: 2,
-                                type: StructureType.SimpleText,
-                                title: "Description of sublist",
-                                value: "",
-                            },
-                            link: {
-                                id: 3,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Link of sublist",
-                                value: "",
-                            },
-                        },
-                    ],
+                    value: [],
                 },
             },
-            value: [
-                {
-                    title: {
-                        id: 0,
-                        type: StructureType.String,
-                        title: "Title of list",
-                        value: "",
-                    },
-                    list: {
-                        id: 1,
-                        type: StructureType.List,
-                        title: "sublist of list",
-                        newItem: {
-                            title: {
-                                id: 0,
-                                type: StructureType.String,
-                                title: "Title of sublist",
-                                value: "",
-                            },
-                            subtitle: {
-                                id: 2,
-                                type: StructureType.SimpleText,
-                                title: "Description of sublist",
-                                value: "",
-                            },
-                            link: {
-                                id: 3,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Link of sublist",
-                                value: "",
-                            },
-                        },
-                        value: [
-                            {
-                                title: {
-                                    id: 0,
-                                    type: StructureType.String,
-                                    title: "Title of sublist",
-                                    value: "",
-                                },
-                                subtitle: {
-                                    id: 2,
-                                    type: StructureType.SimpleText,
-                                    title: "Description of sublist",
-                                    value: "",
-                                },
-                                link: {
-                                    id: 3,
-                                    type: StructureType.Url,
-                                    target: "_self",
-                                    title: "Link of sublist",
-                                    value: "",
-                                },
-                            },
-                        ],
-                    },
-                },
-            ],
+            value: [],
         });
-    }
 
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
+        this.model = { ...this.model };
     }
 }
 </script>

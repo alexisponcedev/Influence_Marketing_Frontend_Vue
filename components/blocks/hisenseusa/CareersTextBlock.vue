@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/CareersBanner.png" alt="" />
+        <img src="/blocks/CareersTextBlock.png" alt="" />
     </div>
 </template>
 
@@ -10,30 +10,21 @@ import { StructureType } from "@/models/StructureType";
 import blockAddItem from "@/utils/blockAddItem";
 
 @Component
-export default class CareersBanner extends Vue {
+export default class CareersTextBlock extends Vue {
     @VModel({ type: Object }) model!: any;
 
     mounted() {
-        blockAddItem(this.model, "background", {
-            id: 0,
-            type: StructureType.Image,
-            title: "Background",
-            src: "",
-            alt: "",
-        });
-
-        blockAddItem(this.model, "logo", {
-            id: 0,
-            type: StructureType.Image,
-            title: "Logo",
-            src: "",
-            alt: "",
-        });
-
         blockAddItem(this.model, "title", {
             id: 1,
             type: StructureType.SimpleText,
             title: "Title",
+            value: "",
+        });
+
+        blockAddItem(this.model, "link", {
+            id: 2,
+            type: StructureType.Url,
+            title: "Link",
             value: "",
         });
 
