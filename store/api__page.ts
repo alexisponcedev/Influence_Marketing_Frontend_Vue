@@ -11,6 +11,7 @@ import {
     InlineResponse204,
 } from "@/repositories";
 import safeString from "@/utils/safeString";
+import { AppStore } from ".";
 
 @Module({
     name: "api__page",
@@ -527,7 +528,13 @@ export default class api__page extends VuexModule {
             })
         )
             .unLockPage(getActiveBrand(), id)
-            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .catch((error) =>
+                AppStore.showSnackBar({
+                    message:
+                        "Access Denied: You do not have permission to perform this operation.",
+                    color: "error",
+                })
+            )
             .finally(() => this.setLoading(false));
         if (
             response &&
@@ -535,7 +542,7 @@ export default class api__page extends VuexModule {
             ResponseHandler.checkResponse(response)
         )
             return response.data;
-        return {};
+        return;
     }
 
     @Action

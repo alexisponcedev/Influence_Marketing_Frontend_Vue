@@ -1,4 +1,5 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import { Api } from ".";
 
 @Module({
     name: "appLockPageStore",
@@ -6,29 +7,69 @@ import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
     namespaced: true,
 })
 export default class appLockPageStore extends VuexModule {
-    status: Boolean = false;
+    active: Boolean = false;
+    _timerStatus: Boolean = false;
+    lockedPage: any = null;
 
     @Mutation
     setStatus(status: Boolean) {
-        this.status = status;
+        this.active = status;
+    }
+
+    @Mutation
+    setTimerStatus(status: Boolean) {
+        this._timerStatus = status;
+    }
+
+    @Mutation
+    setLockedPage(page: any) {
+        this.lockedPage = page;
     }
 
     @Action
     start() {
-        console.log("LOCK PAGE STORE START");
         this.setStatus(true);
-        this.tick();
+        this.setupTimer();
     }
 
     @Action
     stop() {
-        console.log("LOCK PAGE STORE STOP");
         this.setStatus(false);
     }
 
     @Action
-    tick() {
-        console.log("tick");
-        if (this.status) setTimeout(this.tick, 1000); //, 30000);
+    async setupTimer() {
+        if (this.active)
+            if (!this._timerStatus) {
+                this.tick();
+                this.setTimerStatus(true);
+                await new Promise((resolve) => setTimeout(resolve, 30000));
+                this.setTimerStatus(false);
+                this.setupTimer();
+            }
+    }
+
+    @Action
+    async tick() {
+        const response = await Api.Page.getLockStatus(this.lockedPage.id);
+        if (response.locked_by !== this.userId) this.goBack();
+    }
+
+    get userId() {
+        let profile = JSON.parse(localStorage.getItem("profile")!.toString());
+        return Number(profile ? profile.user_id : 0);
+    }
+
+    @Action
+    goBack() {
+        if (this.lockedPage?.post?.type == "blog")
+            window.location.href =
+                "/posts/edit/" + this.lockedPage?.post?.id ||
+                "/page/edit/" + this.lockedPage.id;
+        else if (this.lockedPage?.post?.type == "news")
+            window.location.href =
+                "/news/edit/" + this.lockedPage?.post?.id ||
+                "/page/edit/" + this.lockedPage.id;
+        else window.location.href = "/page/edit/" + this.lockedPage.id;
     }
 }

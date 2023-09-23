@@ -56,8 +56,9 @@ export default class UnlockPageModal extends Vue {
     }
 
     async unlockPage() {
-        await Api.Page.unlockPage(this.pageId);
-        this.$router.push(`/page/edit/${this.pageId}/page-builder`);
+        const response = await Api.Page.unlockPage(this.pageId);
+        if (response)
+            this.$router.push(`/page/edit/${this.pageId}/page-builder`);
     }
 }
 </script>

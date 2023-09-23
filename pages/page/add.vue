@@ -733,12 +733,9 @@ export default class PageForm extends Vue {
         return profile ? profile.user_id : 0;
     }
 
-    async unlock(force?: boolean) {
-        if (force || this.Page.locked_by == this.userId)
-            if (this.Page.id) {
-                await Api.Page.unlockPage(this.Page.id!);
-                this.Page.locked_by = 0;
-            }
+    async unlock() {
+        if (this.Page.locked_by == this.userId)
+            if (this.Page.id) await Api.Page.unlockPage(this.Page.id!);
     }
 
     get isPDP() {
