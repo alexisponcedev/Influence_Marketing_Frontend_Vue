@@ -262,10 +262,10 @@ export default class StructureUrlEditor extends Vue {
             "openChannelAdvisor:" + this.productModel.toUpperCase();
     }
 
-    @Watch("productModel")
-    onAnchorChanged() {
-        this.model.value = this.anchor;
-    }
+    // @Watch("productModel")
+    // onAnchorChanged() {
+    //     this.model.value = this.anchor;
+    // }
 
     @Watch("value", { deep: true, immediate: true })
     onValueChanged(value: any, oldValue: any) {
