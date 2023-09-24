@@ -35,7 +35,10 @@
             </draggable>
         </div>
         <button
-            v-if="!model.maxLength || model.value.length < model.maxLength"
+            v-if="
+                (!model.maxLength && model.maxLength !== 0) ||
+                model.value.length < model.maxLength
+            "
             class="tw-text-center tw-px-3 tw-font-bold tw-py-3 tw-rounded-lg tw-bg-green-300 tw-w-full"
             @click="addNew"
         >
