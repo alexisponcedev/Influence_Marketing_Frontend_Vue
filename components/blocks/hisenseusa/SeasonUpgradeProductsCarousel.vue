@@ -205,6 +205,8 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 this.loading = false;
             });
         this.loading = false;
+
+        this.updateOldStructure();
     }
 
     get selectProducts() {
@@ -599,6 +601,96 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
 
             this.model.selectProducts.value = "";
         }
+    }
+
+    updateOldStructure() {
+        this.model?.selected_products?.value.map((item: any) => {
+            if (!item?.series_products?.value.length) {
+                if (item?.id?.value) {
+                    const product = this.products.find(
+                        (p) => p.id == item?.id?.value
+                    );
+
+                    item.series_products.value =
+                        product.productSeries && product.productSeries.length
+                            ? product.productSeries[0].values.map(
+                                  (ps: any) =>
+                                      <any>{
+                                          id: {
+                                              id: 0,
+                                              type: StructureType.TextPreview,
+                                              value: ps.products[0],
+                                              title: "Product id",
+                                              hidden: true,
+                                          },
+                                          name: {
+                                              id: 1,
+                                              type: StructureType.TextPreview,
+                                              title: "Product name",
+                                              value: ps.title,
+                                          },
+                                          old_price: {
+                                              ...item.old_price,
+                                              hidden: undefined,
+                                          },
+                                          new_price: {
+                                              ...item.new_price,
+                                              hidden: undefined,
+                                          },
+                                          discount_amount: {
+                                              ...item.discount_amount,
+                                              hidden: undefined,
+                                          },
+                                          features: {
+                                              ...item.features,
+                                              hidden: undefined,
+                                          },
+                                          retailers: {
+                                              ...item.retailers,
+                                              hidden: undefined,
+                                          },
+                                      }
+                              )
+                            : [
+                                  {
+                                      id: {
+                                          id: 0,
+                                          type: StructureType.TextPreview,
+                                          value: product.id,
+                                          title: "Product id",
+                                          hidden: true,
+                                      },
+                                      name: {
+                                          id: 1,
+                                          type: StructureType.TextPreview,
+                                          title: "Product name",
+                                          value: product.name,
+                                      },
+                                      old_price: {
+                                          ...item.old_price,
+                                          hidden: undefined,
+                                      },
+                                      new_price: {
+                                          ...item.new_price,
+                                          hidden: undefined,
+                                      },
+                                      discount_amount: {
+                                          ...item.discount_amount,
+                                          hidden: undefined,
+                                      },
+                                      features: {
+                                          ...item.features,
+                                          hidden: undefined,
+                                      },
+                                      retailers: {
+                                          ...item.retailers,
+                                          hidden: undefined,
+                                      },
+                                  },
+                              ];
+                }
+            }
+        });
     }
 }
 </script>
