@@ -6,11 +6,11 @@ export function SeasonUpgradeProductsCarousel(
     const result: any = { ...widget };
 
     result.structure.selected_products.value.forEach((item: any) => {
-        item.old_price.hidden = true;
-        item.new_price.hidden = true;
-        item.discount_amount.hidden = true;
-        item.features.hidden = true;
-        item.retailers.hidden = true;
+        if (item.old_price) item.old_price.hidden = true;
+        if (item.new_price) item.new_price.hidden = true;
+        if (item.discount_amount) item.discount_amount.hidden = true;
+        if (item.features) item.features.hidden = true;
+        if (item.retailers) item.retailers.hidden = true;
     });
 
     return result;
