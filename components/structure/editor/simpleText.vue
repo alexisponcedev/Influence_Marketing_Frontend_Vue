@@ -3,17 +3,19 @@
         <label v-if="field.label && field.label !== ''">
             {{ field.label }}
         </label>
-        <vue-editor v-model="model.value" :editor-toolbar="customToolbar" />
+        <vue-editor v-model="internalValue" :editor-toolbar="customToolbar" />
     </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, VModel } from "vue-property-decorator";
-import { StructureField } from "~/interfaces/StructureField";
+import { Vue, Component, VModel, Watch } from "vue-property-decorator";
+import { StructureField } from "@/interfaces/StructureField";
 
 @Component
 export default class StructureTextEditor extends Vue {
     @VModel({ type: StructureField }) model!: StructureField;
+
+    internalValue: string = "";
 
     customToolbar = [
         [
@@ -50,6 +52,13 @@ export default class StructureTextEditor extends Vue {
 
     mounted() {
         this.field.label = this.model.title ?? "";
+        this.internalValue = this.model.value;
+    }
+
+    @Watch("internalValue")
+    valueChanged() {
+        if (this.internalValue)
+            this.model.value = this.internalValue.replace(/\u00a0/g, " ");
     }
 }
 </script>
