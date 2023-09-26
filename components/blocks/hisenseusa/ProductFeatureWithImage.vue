@@ -63,6 +63,7 @@ export default class ProductFeatureWithImage extends Vue {
                 { title: "Version 2", value: "v2" },
             ],
         });
+
         blockAddItem(this.model, "theme", {
             id: 0,
             type: StructureType.Select,
