@@ -23,6 +23,17 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
     products: Array<any> = [];
 
     mounted() {
+        blockAddItem(this.model, "template", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Theme",
+            value: "v1",
+            items: [
+                { title: "Version 1", value: "v1" },
+                { title: "Version 2", value: "v2" },
+            ],
+        });
+
         this.init();
     }
 
