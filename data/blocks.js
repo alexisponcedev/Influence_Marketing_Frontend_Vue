@@ -2237,6 +2237,12 @@ export const BLOCKS = () => {
                             category: "TextBox",
                         },
                         {
+                            name: "SeasonUpgrade2KEmailBanner",
+                            title: "Season Upgrade 2K Email Banner",
+                            image: "SeasonUpgrade2KEmailBanner.png",
+                            category: "TextBox",
+                        },
+                        {
                             name: "SeasonUpgradeFooter",
                             title: "Season Upgrade Footer",
                             image: "SeasonUpgradeFooter.png",
