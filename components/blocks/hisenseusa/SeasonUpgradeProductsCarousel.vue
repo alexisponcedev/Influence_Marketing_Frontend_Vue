@@ -31,7 +31,7 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
         blockAddItem(this.model, "template", {
             id: 0,
             type: StructureType.Select,
-            title: "Theme",
+            title: "Template",
             value: "v1",
             items: [
                 { title: "Version 1", value: "v1" },
@@ -61,6 +61,7 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
             items: [
                 { title: "Light", value: "light" },
                 { title: "Gradient", value: "gradient" },
+                { title: "Transparent", value: "transparent" },
             ],
         });
 
