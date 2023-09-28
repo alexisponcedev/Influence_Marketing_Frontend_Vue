@@ -1,5 +1,8 @@
 <template>
-    <div class="tw-p-2">
+    <div
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        class="tw-p-2"
+    >
         <label>
             {{ model.title }}
         </label>
@@ -116,17 +119,18 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch, VModel } from "vue-property-decorator";
-import { StructureField } from "~/interfaces/StructureField";
-import { Api, AppStore } from "~/utils/store-accessor";
-import { Asset } from "~/repositories";
-import { AssetTokens } from "~/models/AssetTokens";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { StructureField } from "@/interfaces/StructureField";
+import { Api, AppStore } from "@/utils/store-accessor";
+import { Asset } from "@/repositories";
 
 @Component
 export default class StructureImageEditor extends Vue {
     @Prop({ type: String, default: "image" }) readonly type!: string;
     @VModel() model!: StructureField;
+
     Api = Api;
+
     showUploadBox: Boolean = false;
     showDialog: Boolean = false;
     mode: string = "add";

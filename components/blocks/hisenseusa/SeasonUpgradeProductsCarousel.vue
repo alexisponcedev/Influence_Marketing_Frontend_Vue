@@ -23,6 +23,11 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
     products: Array<any> = [];
 
     mounted() {
+        this.getAllProducts();
+        this.init();
+    }
+
+    init() {
         blockAddItem(this.model, "template", {
             id: 0,
             type: StructureType.Select,
@@ -33,12 +38,6 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 { title: "Version 2", value: "v2" },
             ],
         });
-
-        this.init();
-    }
-
-    init() {
-        this.getAllProducts();
 
         blockAddItem(this.model, "title", {
             id: 1,
@@ -74,6 +73,23 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 { title: "Left", value: "left" },
                 { title: "Right", value: "right" },
             ],
+        });
+
+        blockAddItem(this.model, "disclaimer", {
+            id: 5,
+            type: StructureType.SimpleText,
+            title: "Disclaimer",
+            hidden: true,
+            value: "",
+        });
+
+        blockAddItem(this.model, "backgroundImage", {
+            id: 6,
+            type: StructureType.Image,
+            title: "Background Image",
+            hidden: true,
+            src: "",
+            alt: "",
         });
 
         blockAddItem(this.model, "selectProducts", {
@@ -612,6 +628,19 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
 
             this.model.selectProducts.value = "";
         }
+    }
+
+    @Watch("model.template.value")
+    templateUpdated() {
+        if (this.model.template.value == "v1") {
+            this.model.disclaimer.hidden = true;
+            this.model.backgroundImage.hidden = true;
+        } else {
+            this.model.disclaimer.hidden = false;
+            this.model.backgroundImage.hidden = false;
+        }
+
+        this.$forceUpdate();
     }
 
     updateOldStructure() {
