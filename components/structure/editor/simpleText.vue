@@ -1,5 +1,5 @@
 <template>
-    <v-col>
+    <v-col v-if="typeof model.hidden === 'undefined' || !model.hidden">
         <label v-if="field.label && field.label !== ''">
             {{ field.label }}
         </label>
@@ -13,7 +13,7 @@ import { StructureField } from "@/interfaces/StructureField";
 
 @Component
 export default class StructureTextEditor extends Vue {
-    @VModel({ type: StructureField }) model!: StructureField;
+    @VModel() model!: StructureField;
 
     internalValue: string = "";
 

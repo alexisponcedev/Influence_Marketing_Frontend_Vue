@@ -23,11 +23,21 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
     products: Array<any> = [];
 
     mounted() {
+        this.getAllProducts();
         this.init();
     }
 
     init() {
-        this.getAllProducts();
+        blockAddItem(this.model, "template", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Template",
+            value: "v1",
+            items: [
+                { title: "Version 1", value: "v1" },
+                { title: "Version 2", value: "v2" },
+            ],
+        });
 
         blockAddItem(this.model, "title", {
             id: 1,
@@ -51,6 +61,7 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
             items: [
                 { title: "Light", value: "light" },
                 { title: "Gradient", value: "gradient" },
+                { title: "Transparent", value: "transparent" },
             ],
         });
 
@@ -63,6 +74,23 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 { title: "Left", value: "left" },
                 { title: "Right", value: "right" },
             ],
+        });
+
+        blockAddItem(this.model, "disclaimer", {
+            id: 5,
+            type: StructureType.SimpleText,
+            title: "Disclaimer",
+            hidden: true,
+            value: "",
+        });
+
+        blockAddItem(this.model, "backgroundImage", {
+            id: 6,
+            type: StructureType.Image,
+            title: "Background Image",
+            hidden: true,
+            src: "",
+            alt: "",
         });
 
         blockAddItem(this.model, "selectProducts", {
@@ -96,78 +124,101 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     title: "Product name",
                     value: "",
                 },
-                old_price: {
+                customImage: {
+                    id: 1,
+                    type: StructureType.Image,
+                    title: "Product Custom Image",
+                    src: "",
+                    alt: "",
+                },
+                series_products: {
                     id: 2,
-                    type: StructureType.String,
-                    value: "",
-                    title: "Old Price",
-                },
-                new_price: {
-                    id: 3,
-                    type: StructureType.String,
-                    value: "",
-                    title: "New Price",
-                },
-                discount_amount: {
-                    id: 4,
-                    type: StructureType.String,
-                    value: "",
-                    title: "Discount Amount",
-                },
-                features: {
-                    id: 5,
                     type: StructureType.List,
-                    title: "Product Features",
-                    value: [
-                        {
-                            text: {
-                                id: 4,
-                                type: StructureType.SimpleText,
-                                value: "",
-                                title: "Spec",
-                            },
-                        },
-                    ],
-                    newItem: {
-                        text: {
-                            id: 4,
-                            type: StructureType.SimpleText,
-                            value: "",
-                            title: "Spec",
-                        },
-                    },
-                },
-                retailers: {
-                    id: 6,
-                    title: "Retailers",
-                    type: StructureType.List,
+                    title: "Series Products",
                     maxLength: 0,
+                    value: [],
                     newItem: {
                         id: {
                             id: 0,
                             type: StructureType.TextPreview,
                             value: "",
-                            title: "Retialer id",
+                            title: "Product id",
                             hidden: true,
                         },
                         name: {
                             id: 1,
                             type: StructureType.TextPreview,
-                            title: "Retialer name",
+                            title: "Product name",
                             value: "",
                         },
-                        status: {
+                        old_price: {
+                            id: 2,
+                            type: StructureType.String,
+                            value: "",
+                            title: "Old Price",
+                        },
+                        new_price: {
                             id: 3,
-                            type: StructureType.Select,
-                            title: "Status",
-                            value: "deactive",
-                            items: [
-                                { title: "Active", value: "active" },
-                                { title: "Deactive", value: "deactive" },
-                            ],
+                            type: StructureType.String,
+                            value: "",
+                            title: "New Price",
+                        },
+                        discount_amount: {
+                            id: 4,
+                            type: StructureType.String,
+                            value: "",
+                            title: "Discount Amount",
+                        },
+                        features: {
+                            id: 5,
+                            type: StructureType.List,
+                            title: "Product Features",
+                            value: [],
+                            newItem: {
+                                text: {
+                                    id: 1,
+                                    type: StructureType.SimpleText,
+                                    value: "",
+                                    title: "Spec",
+                                },
+                            },
+                        },
+                        retailers: {
+                            id: 6,
+                            title: "Retailers",
+                            type: StructureType.List,
+                            maxLength: 0,
+                            newItem: {
+                                id: {
+                                    id: 1,
+                                    type: StructureType.TextPreview,
+                                    value: "",
+                                    title: "Retialer id",
+                                    hidden: true,
+                                },
+                                name: {
+                                    id: 2,
+                                    type: StructureType.TextPreview,
+                                    title: "Retialer name",
+                                    value: "",
+                                },
+                                status: {
+                                    id: 3,
+                                    type: StructureType.Select,
+                                    title: "Status",
+                                    value: "deactive",
+                                    items: [
+                                        { title: "Active", value: "active" },
+                                        {
+                                            title: "Deactive",
+                                            value: "deactive",
+                                        },
+                                    ],
+                                },
+                            },
+                            value: [],
                         },
                     },
-                    value: [],
                 },
             },
         });
@@ -189,6 +240,8 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                 this.loading = false;
             });
         this.loading = false;
+
+        this.updateOldStructure();
     }
 
     get selectProducts() {
@@ -215,92 +268,325 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     title: "Product name",
                     value: product.name,
                 },
-                old_price: {
+                customImage: {
+                    id: 1,
+                    type: StructureType.Image,
+                    title: "Product Custom Image",
+                    src: "",
+                    alt: "",
+                },
+                series_products: {
                     id: 2,
-                    type: StructureType.String,
-                    value: "",
-                    title: "Old Price",
-                },
-                new_price: {
-                    id: 3,
-                    type: StructureType.String,
-                    value: "",
-                    title: "New Price",
-                },
-                discount_amount: {
-                    id: 4,
-                    type: StructureType.String,
-                    value: "",
-                    title: "Discount Amount",
-                },
-                features: {
-                    id: 5,
                     type: StructureType.List,
-                    title: "Product Features",
-                    value: [
-                        {
-                            text: {
-                                id: 4,
-                                type: StructureType.SimpleText,
-                                value: "",
-                                title: "Spec",
-                            },
-                        },
-                    ],
-                    newItem: {
-                        text: {
-                            id: 4,
-                            type: StructureType.SimpleText,
-                            value: "",
-                            title: "Spec",
-                        },
-                    },
-                },
-                retailers: {
-                    id: 6,
-                    title: "Retailers",
-                    type: StructureType.List,
+                    title: "Series Products",
                     maxLength: 0,
+                    value:
+                        product.productSeries && product.productSeries.length
+                            ? product.productSeries[0].values.map(
+                                  (item: any) =>
+                                      <any>{
+                                          id: {
+                                              id: 0,
+                                              type: StructureType.TextPreview,
+                                              value: item.products[0],
+                                              title: "Product id",
+                                              hidden: true,
+                                          },
+                                          name: {
+                                              id: 1,
+                                              type: StructureType.TextPreview,
+                                              title: "Product name",
+                                              value: item.title,
+                                          },
+                                          old_price: {
+                                              id: 2,
+                                              type: StructureType.String,
+                                              value: "",
+                                              title: "Old Price",
+                                          },
+                                          new_price: {
+                                              id: 3,
+                                              type: StructureType.String,
+                                              value: "",
+                                              title: "New Price",
+                                          },
+                                          discount_amount: {
+                                              id: 4,
+                                              type: StructureType.String,
+                                              value: "",
+                                              title: "Discount Amount",
+                                          },
+                                          features: {
+                                              id: 5,
+                                              type: StructureType.List,
+                                              title: "Product Features",
+                                              value: [],
+                                              newItem: {
+                                                  text: {
+                                                      id: 1,
+                                                      type: StructureType.SimpleText,
+                                                      value: "",
+                                                      title: "Spec",
+                                                  },
+                                              },
+                                          },
+                                          retailers: {
+                                              id: 6,
+                                              title: "Retailers",
+                                              type: StructureType.List,
+                                              maxLength: 0,
+                                              newItem: {
+                                                  id: {
+                                                      id: 1,
+                                                      type: StructureType.TextPreview,
+                                                      value: "",
+                                                      title: "Retialer id",
+                                                      hidden: true,
+                                                  },
+                                                  name: {
+                                                      id: 2,
+                                                      type: StructureType.TextPreview,
+                                                      title: "Retialer name",
+                                                      value: "",
+                                                  },
+                                                  status: {
+                                                      id: 3,
+                                                      type: StructureType.Select,
+                                                      title: "Status",
+                                                      value: "deactive",
+                                                      items: [
+                                                          {
+                                                              title: "Active",
+                                                              value: "active",
+                                                          },
+                                                          {
+                                                              title: "Deactive",
+                                                              value: "deactive",
+                                                          },
+                                                      ],
+                                                  },
+                                              },
+                                              value: product.retailers.map(
+                                                  (retailer: any) =>
+                                                      <any>{
+                                                          id: {
+                                                              id: 0,
+                                                              type: StructureType.TextPreview,
+                                                              value: retailer.id,
+                                                              title: "Retialer id",
+                                                              hidden: true,
+                                                          },
+                                                          name: {
+                                                              id: 1,
+                                                              type: StructureType.TextPreview,
+                                                              title: "Retialer name",
+                                                              value: retailer.name,
+                                                          },
+                                                          status: {
+                                                              id: 3,
+                                                              type: StructureType.Select,
+                                                              title: "Status",
+                                                              value: "deactive",
+                                                              items: [
+                                                                  {
+                                                                      title: "Active",
+                                                                      value: "active",
+                                                                  },
+                                                                  {
+                                                                      title: "Deactive",
+                                                                      value: "deactive",
+                                                                  },
+                                                              ],
+                                                          },
+                                                      }
+                                              ),
+                                          },
+                                      }
+                              )
+                            : [
+                                  {
+                                      id: {
+                                          id: 0,
+                                          type: StructureType.TextPreview,
+                                          value: product.id,
+                                          title: "Product id",
+                                          hidden: true,
+                                      },
+                                      name: {
+                                          id: 1,
+                                          type: StructureType.TextPreview,
+                                          title: "Product name",
+                                          value: product.name,
+                                      },
+                                      old_price: {
+                                          id: 2,
+                                          type: StructureType.String,
+                                          value: "",
+                                          title: "Old Price",
+                                      },
+                                      new_price: {
+                                          id: 3,
+                                          type: StructureType.String,
+                                          value: "",
+                                          title: "New Price",
+                                      },
+                                      discount_amount: {
+                                          id: 4,
+                                          type: StructureType.String,
+                                          value: "",
+                                          title: "Discount Amount",
+                                      },
+                                      features: {
+                                          id: 5,
+                                          type: StructureType.List,
+                                          title: "Product Features",
+                                          value: [],
+                                          newItem: {
+                                              text: {
+                                                  id: 1,
+                                                  type: StructureType.SimpleText,
+                                                  value: "",
+                                                  title: "Spec",
+                                              },
+                                          },
+                                      },
+                                      retailers: {
+                                          id: 6,
+                                          title: "Retailers",
+                                          type: StructureType.List,
+                                          maxLength: 0,
+                                          newItem: {
+                                              id: {
+                                                  id: 1,
+                                                  type: StructureType.TextPreview,
+                                                  value: "",
+                                                  title: "Retialer id",
+                                                  hidden: true,
+                                              },
+                                              name: {
+                                                  id: 2,
+                                                  type: StructureType.TextPreview,
+                                                  title: "Retialer name",
+                                                  value: "",
+                                              },
+                                              status: {
+                                                  id: 3,
+                                                  type: StructureType.Select,
+                                                  title: "Status",
+                                                  value: "deactive",
+                                                  items: [
+                                                      {
+                                                          title: "Active",
+                                                          value: "active",
+                                                      },
+                                                      {
+                                                          title: "Deactive",
+                                                          value: "deactive",
+                                                      },
+                                                  ],
+                                              },
+                                          },
+                                          value: product.retailers.map(
+                                              (retailer: any) =>
+                                                  <any>{
+                                                      id: {
+                                                          id: 0,
+                                                          type: StructureType.TextPreview,
+                                                          value: retailer.id,
+                                                          title: "Retialer id",
+                                                          hidden: true,
+                                                      },
+                                                      name: {
+                                                          id: 1,
+                                                          type: StructureType.TextPreview,
+                                                          title: "Retialer name",
+                                                          value: retailer.name,
+                                                      },
+                                                      status: {
+                                                          id: 3,
+                                                          type: StructureType.Select,
+                                                          title: "Status",
+                                                          value: "deactive",
+                                                          items: [
+                                                              {
+                                                                  title: "Active",
+                                                                  value: "active",
+                                                              },
+                                                              {
+                                                                  title: "Deactive",
+                                                                  value: "deactive",
+                                                              },
+                                                          ],
+                                                      },
+                                                  }
+                                          ),
+                                      },
+                                  },
+                              ],
                     newItem: {
                         id: {
                             id: 0,
                             type: StructureType.TextPreview,
                             value: "",
-                            title: "Retialer id",
+                            title: "Product id",
                             hidden: true,
                         },
                         name: {
                             id: 1,
                             type: StructureType.TextPreview,
-                            title: "Retialer name",
+                            title: "Product name",
                             value: "",
                         },
-                        status: {
-                            id: 3,
-                            type: StructureType.Select,
-                            title: "Status",
-                            value: "deactive",
-                            items: [
-                                { title: "Active", value: "active" },
-                                { title: "Deactive", value: "deactive" },
-                            ],
+                        old_price: {
+                            id: 2,
+                            type: StructureType.String,
+                            value: "",
+                            title: "Old Price",
                         },
-                    },
-                    value: product.retailers.map(
-                        (retailer: any) =>
-                            <any>{
+                        new_price: {
+                            id: 3,
+                            type: StructureType.String,
+                            value: "",
+                            title: "New Price",
+                        },
+                        discount_amount: {
+                            id: 4,
+                            type: StructureType.String,
+                            value: "",
+                            title: "Discount Amount",
+                        },
+                        features: {
+                            id: 5,
+                            type: StructureType.List,
+                            title: "Product Features",
+                            value: [],
+                            newItem: {
+                                text: {
+                                    id: 1,
+                                    type: StructureType.SimpleText,
+                                    value: "",
+                                    title: "Spec",
+                                },
+                            },
+                        },
+                        retailers: {
+                            id: 6,
+                            title: "Retailers",
+                            type: StructureType.List,
+                            maxLength: 0,
+                            newItem: {
                                 id: {
-                                    id: 0,
+                                    id: 1,
                                     type: StructureType.TextPreview,
-                                    value: retailer.id,
+                                    value: "",
                                     title: "Retialer id",
                                     hidden: true,
                                 },
                                 name: {
-                                    id: 1,
+                                    id: 2,
                                     type: StructureType.TextPreview,
                                     title: "Retialer name",
-                                    value: retailer.name,
+                                    value: "",
                                 },
                                 status: {
                                     id: 3,
@@ -315,12 +601,151 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                                         },
                                     ],
                                 },
-                            }
-                    ),
+                            },
+                            value: product.retailers.map(
+                                (retailer: any) =>
+                                    <any>{
+                                        id: {
+                                            id: 0,
+                                            type: StructureType.TextPreview,
+                                            value: retailer.id,
+                                            title: "Retialer id",
+                                            hidden: true,
+                                        },
+                                        name: {
+                                            id: 1,
+                                            type: StructureType.TextPreview,
+                                            title: "Retialer name",
+                                            value: retailer.name,
+                                        },
+                                        status: {
+                                            id: 3,
+                                            type: StructureType.Select,
+                                            title: "Status",
+                                            value: "deactive",
+                                            items: [
+                                                {
+                                                    title: "Active",
+                                                    value: "active",
+                                                },
+                                                {
+                                                    title: "Deactive",
+                                                    value: "deactive",
+                                                },
+                                            ],
+                                        },
+                                    }
+                            ),
+                        },
+                    },
                 },
             });
+
             this.model.selectProducts.value = "";
         }
+    }
+
+    @Watch("model.template.value")
+    templateUpdated() {
+        if (this.model.template.value == "v1") {
+            this.model.disclaimer.hidden = true;
+            this.model.backgroundImage.hidden = true;
+        } else {
+            this.model.disclaimer.hidden = false;
+            this.model.backgroundImage.hidden = false;
+        }
+
+        this.$forceUpdate();
+    }
+
+    updateOldStructure() {
+        this.model?.selected_products?.value.map((item: any) => {
+            if (!item?.series_products?.value.length) {
+                if (item?.id?.value) {
+                    const product = this.products.find(
+                        (p) => p.id == item?.id?.value
+                    );
+
+                    item.series_products.value =
+                        product.productSeries && product.productSeries.length
+                            ? product.productSeries[0].values.map(
+                                  (ps: any) =>
+                                      <any>{
+                                          id: {
+                                              id: 0,
+                                              type: StructureType.TextPreview,
+                                              value: ps.products[0],
+                                              title: "Product id",
+                                              hidden: true,
+                                          },
+                                          name: {
+                                              id: 1,
+                                              type: StructureType.TextPreview,
+                                              title: "Product name",
+                                              value: ps.title,
+                                          },
+                                          old_price: {
+                                              ...item.old_price,
+                                              hidden: undefined,
+                                          },
+                                          new_price: {
+                                              ...item.new_price,
+                                              hidden: undefined,
+                                          },
+                                          discount_amount: {
+                                              ...item.discount_amount,
+                                              hidden: undefined,
+                                          },
+                                          features: {
+                                              ...item.features,
+                                              hidden: undefined,
+                                          },
+                                          retailers: {
+                                              ...item.retailers,
+                                              hidden: undefined,
+                                          },
+                                      }
+                              )
+                            : [
+                                  {
+                                      id: {
+                                          id: 0,
+                                          type: StructureType.TextPreview,
+                                          value: product.id,
+                                          title: "Product id",
+                                          hidden: true,
+                                      },
+                                      name: {
+                                          id: 1,
+                                          type: StructureType.TextPreview,
+                                          title: "Product name",
+                                          value: product.name,
+                                      },
+                                      old_price: {
+                                          ...item.old_price,
+                                          hidden: undefined,
+                                      },
+                                      new_price: {
+                                          ...item.new_price,
+                                          hidden: undefined,
+                                      },
+                                      discount_amount: {
+                                          ...item.discount_amount,
+                                          hidden: undefined,
+                                      },
+                                      features: {
+                                          ...item.features,
+                                          hidden: undefined,
+                                      },
+                                      retailers: {
+                                          ...item.retailers,
+                                          hidden: undefined,
+                                      },
+                                  },
+                              ];
+                }
+            }
+        });
     }
 }
 </script>
