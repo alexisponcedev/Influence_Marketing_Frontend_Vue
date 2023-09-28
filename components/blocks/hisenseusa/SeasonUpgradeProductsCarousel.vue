@@ -124,6 +124,13 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     title: "Product name",
                     value: "",
                 },
+                customImage: {
+                    id: 1,
+                    type: StructureType.Image,
+                    title: "Product Custom Image",
+                    src: "",
+                    alt: "",
+                },
                 series_products: {
                     id: 2,
                     type: StructureType.List,
@@ -260,6 +267,13 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     type: StructureType.TextPreview,
                     title: "Product name",
                     value: product.name,
+                },
+                customImage: {
+                    id: 1,
+                    type: StructureType.Image,
+                    title: "Product Custom Image",
+                    src: "",
+                    alt: "",
                 },
                 series_products: {
                     id: 2,
