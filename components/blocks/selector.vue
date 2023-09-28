@@ -79,7 +79,11 @@ export default class BlocksSelector extends Vue {
     get Blocks() {
         let search = this.search ? this.search.toLowerCase() : "";
         let blocks =
-            (BLOCKS() as any)[getActiveBrandName()][this.blocksType] ?? [];
+            BLOCKS() &&
+            (BLOCKS() as any)[getActiveBrandName()] &&
+            (BLOCKS() as any)[getActiveBrandName()][this.blocksType]
+                ? (BLOCKS() as any)[getActiveBrandName()][this.blocksType] ?? []
+                : [];
         blocks.forEach((i: any) => {
             i.blocks = i.blocks
                 .filter(
