@@ -2108,6 +2108,35 @@ export const BLOCKS = () => {
                         },
                     ],
                 },
+                {
+                    name: "About Us",
+                    blocks: [
+                        {
+                            name: "AboutUsMembersList",
+                            title: "About Us Members List",
+                            image: "AboutUsMembersList.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "AboutUsTimeline",
+                            title: "About Us Time line",
+                            image: "AboutUsTimeline.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "AboutUsAwards",
+                            title: "About Us Awards",
+                            image: "AboutUsAwards.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "AboutUsSimpleTextBox",
+                            title: "About Us Simple TextBox",
+                            image: "AboutUsSimpleTextBox.png",
+                            category: "TextBox",
+                        },
+                    ],
+                },
             ],
             // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             blog: [
