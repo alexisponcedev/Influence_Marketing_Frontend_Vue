@@ -1,6 +1,8 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
+import safeString from "@/utils/safeString";
 import {
     Page,
     Draft,
@@ -10,7 +12,6 @@ import {
     PageApiFactory,
     InlineResponse204,
 } from "@/repositories";
-import safeString from "@/utils/safeString";
 
 @Module({
     name: "api__page",
@@ -92,7 +93,7 @@ export default class api__page extends VuexModule {
                     model_id: page.model_id,
                     model_type: page.model_type,
                     route: page.route,
-                    domain: process.env.LIVE_WEBSITE + "/" + page.route,
+                    domain: getLiveWebisteURL() + page.route,
                 };
             }),
         ];

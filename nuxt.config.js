@@ -164,9 +164,22 @@ export default {
         ASSETS_IMAGES_TOKEN: process.env.ASSETS_IMAGES_TOKEN || "",
         ASSETS_VIDEOS_TOKEN: process.env.ASSETS_VIDEOS_TOKEN || "",
         ASSETS_FILES_TOKEN: process.env.ASSETS_FILES_TOKEN || "",
-        LIVE_WEBSITE:
-            process.env.LIVE_WEBSITE || "https://public.dev.hisenseportal.com",
         HEADER_KEY: process.env.HEADER_KEY || 1,
         FOOTER_KEY: process.env.FOOTER_KEY || 2,
+        LIVE_WEBSITE_HISENSEUSA:
+            process.env.LIVE_WEBSITE_HISENSEUSA ||
+            "https://public.dev.hisenseportal.com",
+        LIVE_WEBSITE_INFLUENCEMARKETING:
+            process.env.LIVE_WEBSITE_INFLUENCEMARKETING ||
+            "https://im.stage.imdigital.ca",
+        LIVE_WEBSITE_EMPOWER_MARKETING:
+            process.env.LIVE_WEBSITE_EMPOWER_MARKETING ||
+            "https://ebm.stage.imdigital.ca",
+        LIVE_WEBSITE_IM_AAFC:
+            process.env.LIVE_WEBSITE_IM_AAFC ||
+            "https://public.stage.imdigital.ca",
+        LIVE_WEBSITE_IM_AAFC:
+            process.env.LIVE_WEBSITE_IM_AAFC ||
+            "https://aafc-demo.stage.imdigital.ca",
     },
 };

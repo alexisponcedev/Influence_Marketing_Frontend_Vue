@@ -76,10 +76,10 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { BlockInterface } from "@/interfaces/BlockInterface";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
+import { Post } from "@/repositories";
 import { Api } from "@/store";
-import { Post, Widgets } from "~/repositories";
-import { BlockInterface } from "~/interfaces/BlockInterface";
-import { SettingEnum } from "~/interfaces/SettingEnum";
 
 @Component
 export default class PostBuilderSection extends Vue {
@@ -105,7 +105,7 @@ export default class PostBuilderSection extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Post.route || "");
+        return getLiveWebisteURL() + (this.Post.route || "");
     }
 
     gotoLiveWebsite() {

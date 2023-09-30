@@ -142,7 +142,6 @@ export default class AllPages extends Vue {
 
     mounted() {
         this.updatePages();
-        console.log(getActiveBrandName());
     }
 
     async updatePages() {

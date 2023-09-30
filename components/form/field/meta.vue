@@ -300,6 +300,7 @@
 
 <script lang="ts">
 import { Vue, Component, VModel, Watch } from "vue-property-decorator";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import { MetaInterface } from "@/models/Meta.model";
 import Validation from "@/utils/validation";
 
@@ -519,8 +520,7 @@ export default class TextMetaFormField extends Vue {
         if (this.model.meta && Array.isArray(this.model.meta))
             this.model.meta!.forEach((item: any) => {
                 if (item.rel && item.rel.includes("og:url"))
-                    item.content =
-                        process.env.LIVE_WEBSITE + "/" + this.model.route;
+                    item.content = getLiveWebisteURL() + "/" + this.model.route;
             });
     }
 

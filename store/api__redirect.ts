@@ -1,13 +1,14 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
+import safeString from "@/utils/safeString";
 import {
     Redirect,
     Configuration,
     RedirectResource,
     RedirectApiFactory,
 } from "@/repositories";
-import safeString from "~/utils/safeString";
 
 @Module({
     name: "api__redirect",
@@ -28,7 +29,7 @@ export default class api__redirect extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await RedirectApiFactory(
@@ -49,7 +50,7 @@ export default class api__redirect extends VuexModule {
         return [];
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getPageRedirects(id: number) {
         this.setLoading(true);
         const response = await RedirectApiFactory(
@@ -89,16 +90,19 @@ export default class api__redirect extends VuexModule {
         return {};
     }
 
-
     @Action
     async create(Redirect: Redirect) {
         this.setLoading(true);
 
-        let domain = process.env.LIVE_WEBSITE || "";
+        let domain = getLiveWebisteURL() || "";
         if (Redirect.source_url?.includes(domain))
-            Redirect.source_url = Redirect.source_url?.substring(Redirect.source_url?.indexOf(domain) + 15)
+            Redirect.source_url = Redirect.source_url?.substring(
+                Redirect.source_url?.indexOf(domain) + 15
+            );
         if (Redirect.redirect_url?.includes(domain))
-            Redirect.redirect_url = Redirect.redirect_url?.substring(Redirect.redirect_url?.indexOf(domain) + 15)
+            Redirect.redirect_url = Redirect.redirect_url?.substring(
+                Redirect.redirect_url?.indexOf(domain) + 15
+            );
 
         Redirect.source_url = safeString(Redirect.source_url!);
         Redirect.redirect_url = safeString(Redirect.redirect_url!);
@@ -123,16 +127,23 @@ export default class api__redirect extends VuexModule {
     @Action
     async update(payload: { id: number; Redirect: Redirect }) {
         this.setLoading(true);
-      
-        let domain = process.env.LIVE_WEBSITE || "";
+
+        let domain = getLiveWebisteURL() || "";
         if (payload.Redirect.source_url?.includes(domain))
-            payload.Redirect.source_url = payload.Redirect.source_url?.substring(payload.Redirect.source_url?.indexOf(domain) + 15)
+            payload.Redirect.source_url =
+                payload.Redirect.source_url?.substring(
+                    payload.Redirect.source_url?.indexOf(domain) + 15
+                );
         if (payload.Redirect.redirect_url?.includes(domain))
-        payload.Redirect.redirect_url = payload.Redirect.redirect_url?.substring(payload.Redirect.redirect_url?.indexOf(domain) + 15)
-      
-      
-      payload.Redirect.source_url = safeString(payload.Redirect.source_url!);
-        payload.Redirect.redirect_url = safeString(payload.Redirect.redirect_url!);
+            payload.Redirect.redirect_url =
+                payload.Redirect.redirect_url?.substring(
+                    payload.Redirect.redirect_url?.indexOf(domain) + 15
+                );
+
+        payload.Redirect.source_url = safeString(payload.Redirect.source_url!);
+        payload.Redirect.redirect_url = safeString(
+            payload.Redirect.redirect_url!
+        );
         const response = await RedirectApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
