@@ -175,11 +175,11 @@ export default {
         LIVE_WEBSITE_EMPOWER_MARKETING:
             process.env.LIVE_WEBSITE_EMPOWER_MARKETING ||
             "https://ebm.stage.imdigital.ca",
-        LIVE_WEBSITE_IM_AAFC:
-            process.env.LIVE_WEBSITE_IM_AAFC ||
+        LIVE_WEBSITE_IMDIGITAL:
+            process.env.LIVE_WEBSITE_IMDIGITAL ||
             "https://public.stage.imdigital.ca",
-        LIVE_WEBSITE_IM_AAFC:
-            process.env.LIVE_WEBSITE_IM_AAFC ||
+        LIVE_WEBSITE_AAFC:
+            process.env.LIVE_WEBSITE_AAFC ||
             "https://aafc-demo.stage.imdigital.ca",
     },
 };
