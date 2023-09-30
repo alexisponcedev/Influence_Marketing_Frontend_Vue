@@ -117,7 +117,7 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
     }
 
     getSlug(str: string): string {
-        const invalidCharsRegex = /[^a-zA-Z0-9(),.+\[\]:;&\"]/g;
+        const invalidCharsRegex = /[^a-zA-Z0-9]/g;
         return str.toLowerCase().replace(invalidCharsRegex, "-");
     }
 
