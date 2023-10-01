@@ -87,6 +87,7 @@ export default class StructureTextEditor extends Vue {
     valueChanged() {
         if (this.internalValue)
             this.model.value = this.internalValue.replace(/\u00a0/g, " ");
+        else this.model.value = "";
     }
 }
 </script>
