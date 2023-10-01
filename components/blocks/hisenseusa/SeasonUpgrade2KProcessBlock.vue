@@ -53,7 +53,7 @@ export default class SeasonUpgrade2KProcessBlock extends Vue {
                 bubbleLink: {
                     id: 1,
                     type: StructureType.Url,
-                    title: "Link",
+                    title: "Bubble Link",
                     value: "",
                 },
                 text: {
