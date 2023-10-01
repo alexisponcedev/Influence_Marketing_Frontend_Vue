@@ -45,9 +45,15 @@ export default class SeasonUpgrade2KProcessBlock extends Vue {
             value: [],
             newItem: {
                 title: {
-                    id: 1,
+                    id: 0,
                     type: StructureType.SimpleText,
                     title: "Title",
+                    value: "",
+                },
+                bubbleLink: {
+                    id: 1,
+                    type: StructureType.Url,
+                    title: "Bubble Link",
                     value: "",
                 },
                 text: {
