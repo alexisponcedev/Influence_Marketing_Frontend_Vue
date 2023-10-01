@@ -145,6 +145,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                             title: "Product id",
                             hidden: true,
                         },
+                        customTitle: {
+                            id: 0,
+                            type: StructureType.SimpleText,
+                            value: "",
+                            title: "Product Custom Title (Optional)",
+                        },
                         name: {
                             id: 1,
                             type: StructureType.TextPreview,
@@ -292,6 +298,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                                               title: "Product id",
                                               hidden: true,
                                           },
+                                          customTitle: {
+                                              id: 0,
+                                              type: StructureType.SimpleText,
+                                              value: "",
+                                              title: "Product Custom Title (Optional)",
+                                          },
                                           name: {
                                               id: 1,
                                               type: StructureType.TextPreview,
@@ -412,6 +424,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                                           title: "Product id",
                                           hidden: true,
                                       },
+                                      customTitle: {
+                                          id: 0,
+                                          type: StructureType.SimpleText,
+                                          value: "",
+                                          title: "Product Custom Title (Optional)",
+                                      },
                                       name: {
                                           id: 1,
                                           type: StructureType.TextPreview,
@@ -530,6 +548,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                             value: "",
                             title: "Product id",
                             hidden: true,
+                        },
+                        customTitle: {
+                            id: 0,
+                            type: StructureType.SimpleText,
+                            value: "",
+                            title: "Product Custom Title (Optional)",
                         },
                         name: {
                             id: 1,
@@ -678,6 +702,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                                               title: "Product id",
                                               hidden: true,
                                           },
+                                          customTitle: {
+                                              id: 0,
+                                              type: StructureType.SimpleText,
+                                              value: "",
+                                              title: "Product Custom Title (Optional)",
+                                          },
                                           name: {
                                               id: 1,
                                               type: StructureType.TextPreview,
@@ -714,6 +744,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                                           value: product.id,
                                           title: "Product id",
                                           hidden: true,
+                                      },
+                                      customTitle: {
+                                          id: 0,
+                                          type: StructureType.SimpleText,
+                                          value: "",
+                                          title: "Product Custom Title (Optional)",
                                       },
                                       name: {
                                           id: 1,
