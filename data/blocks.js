@@ -2138,6 +2138,89 @@ export const BLOCKS = () => {
                         },
                     ],
                 },
+                {
+                    name: "Season Upgrade",
+                    blocks: [
+                        {
+                            name: "SeasonUpgradeHeader",
+                            title: "Season Upgrade Header",
+                            image: "SeasonUpgradeHeader.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeHeaderBanner",
+                            title: "Season Upgrade Header Banner",
+                            image: "SeasonUpgradeHeaderBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeHeroBanner",
+                            title: "Season Upgrade Hero Banner",
+                            image: "SeasonUpgradeHeroBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeDealCounterBlock",
+                            title: "Season Upgrade Deal Counter Block",
+                            image: "SeasonUpgradeDealCounterBlock.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeLimitedTimeOfferBanner",
+                            title: "Season Upgrade Limited Time Offer Banner",
+                            image: "SeasonUpgradeLimitedTimeOfferBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeProductsCarousel",
+                            title: "Season Upgrade Products Carousel",
+                            image: "SeasonUpgradeProductsCarousel.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeExclusiveBanner",
+                            title: "Season Upgrade Exclusive Banner",
+                            image: "SeasonUpgradeExclusiveBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeEmailBanner",
+                            title: "Season Upgrade Email Banner",
+                            image: "SeasonUpgradeEmailBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgrade2KSweepstakes",
+                            title: "Season Upgrade 2K Sweepstakes",
+                            image: "SeasonUpgrade2KSweepstakes.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgrade2KProcessBlock",
+                            title: "Season Upgrade 2K Process Block",
+                            image: "SeasonUpgrade2KProcessBlock.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgrade2KHeroBanner",
+                            title: "Season Upgrade 2K Hero Banner",
+                            image: "SeasonUpgrade2KHeroBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgrade2KEmailBanner",
+                            title: "Season Upgrade 2K Email Banner",
+                            image: "SeasonUpgrade2KEmailBanner.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SeasonUpgradeFooter",
+                            title: "Season Upgrade Footer",
+                            image: "SeasonUpgradeFooter.png",
+                            category: "TextBox",
+                        },
+                    ],
+                },
             ],
             // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             blog: [
