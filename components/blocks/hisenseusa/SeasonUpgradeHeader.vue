@@ -20,11 +20,17 @@ export default class SeasonUpgradeHeader extends Vue {
 
     mounted() {
         blockAddItem(this.model, "image", {
-            id: 1,
+            id: 0,
             type: StructureType.Image,
             title: "image",
             src: "",
             alt: "",
+        });
+        blockAddItem(this.model, "imageLink", {
+            id: 1,
+            type: StructureType.Url,
+            title: "image Link",
+            value: "",
         });
         blockAddItem(this.model, "title", {
             id: 2,
