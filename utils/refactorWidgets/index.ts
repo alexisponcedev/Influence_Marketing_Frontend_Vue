@@ -5,6 +5,7 @@ import {
     ProductNewsBoxWidget,
     TVAndAudioFindHisenseWidget,
     ImageDescriptionTilesWidget,
+    SeasonUpgradeProductsCarousel,
 } from "./functions";
 
 function updateWidget(widget: BlockInterface): BlockInterface {
@@ -17,6 +18,8 @@ function updateWidget(widget: BlockInterface): BlockInterface {
             return ProductNewsBoxWidget(widget);
         case "ImageDescriptionTiles":
             return ImageDescriptionTilesWidget(widget);
+        case "SeasonUpgradeProductsCarousel":
+            return SeasonUpgradeProductsCarousel(widget);
         default:
             return { ...widget } as BlockInterface;
     }

@@ -27,4 +27,6 @@ export class StructureField implements StructureFieldInterface {
     itemValue: string = "value";
     disabled?: boolean = false;
     onChanged?: (event: any) => any;
+    loading?: Boolean | (() => Boolean);
+    hidden?: boolean = false;
 }

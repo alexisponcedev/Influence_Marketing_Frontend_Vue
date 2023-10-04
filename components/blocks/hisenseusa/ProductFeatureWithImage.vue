@@ -52,7 +52,7 @@ export default class ProductFeatureWithImage extends Vue {
     product: Object = {};
     loadingProduct: boolean = true;
 
-    mounted() {
+    prepare() {
         blockAddItem(this.model, "theme", {
             id: 0,
             type: StructureType.Select,
@@ -118,9 +118,41 @@ export default class ProductFeatureWithImage extends Vue {
             value: "#fff",
         });
 
-        // blockRemoveItem(this.model , ['textColor']);
+        if (this.model.template.value === "v2") {
+            blockAddItem(this.model, "text_size", {
+                id: 4,
+                type: StructureType.String,
+                title: "Text Maximum Widht",
+                value: "",
+            });
+        } else blockRemoveItem(this.model, ["text_size"]);
 
         this.model = { ...this.model };
+    }
+
+    mounted() {
+        blockAddItem(this.model, "template", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Template",
+            value: "v1",
+            items: [
+                { title: "Version 1", value: "v1" },
+                { title: "Version 2", value: "v2" },
+            ],
+        });
+        this.prepare();
+    }
+
+    get template() {
+        return this.model && this.model.template
+            ? this.model.template.value
+            : "";
+    }
+
+    @Watch("template")
+    onTemplateChanged() {
+        this.prepare();
     }
 
     get isEmpty(): Boolean {

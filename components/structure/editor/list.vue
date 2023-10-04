@@ -1,12 +1,14 @@
 <template>
     <div :class="`tw-p-2 tw-rounded-lg${model.hidden ? ' tw-hidden' : ''}`">
-        <h6 style="margin-bottom: 3px">{{ model.title }}</h6>
+        <h6 style="margin-bottom: 3px">
+            {{ model.title }}
+        </h6>
         <div class="tw-mb-4">
             <draggable
                 v-model="model.value"
-                group="blocks"
                 @start="drag = true"
                 @end="drag = false"
+                group="blocks"
             >
                 <div
                     class="tw-border tw-border-gray-200 tw-rounded-lg tw-border-solid tw-mb-4"
@@ -25,16 +27,16 @@
                     <structure-editor
                         v-if="index === open"
                         :key="model.title + model.id"
+                        @input="(v) => (fields = v)"
                         :simple="true"
                         :value="fields"
-                        @input="(v) => (fields = v)"
                     />
                 </div>
             </draggable>
         </div>
         <button
             v-if="
-                !model.hasOwnProperty('maxLength') ||
+                (!model.maxLength && model.maxLength !== 0) ||
                 model.value.length < model.maxLength
             "
             class="tw-text-center tw-px-3 tw-font-bold tw-py-3 tw-rounded-lg tw-bg-green-300 tw-w-full"
@@ -60,7 +62,9 @@ export default class StructureListEditor extends Vue {
 
     open: number = -1;
 
-    key = Math.round(Math.random() * 100000);
+    get key() {
+        return Math.round(Math.random() * 100000);
+    }
 
     mounted() {
         this.field.label = this.model.title ?? "field";
@@ -69,6 +73,7 @@ export default class StructureListEditor extends Vue {
     addNew() {
         this.model.value.push(JSON.parse(JSON.stringify(this.model.newItem)));
         this.open = this.model.value.length - 1;
+        this.$forceUpdate();
     }
 
     removeItem(i: any) {

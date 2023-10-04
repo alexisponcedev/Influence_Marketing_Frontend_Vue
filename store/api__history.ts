@@ -113,4 +113,35 @@ export default class api__history extends VuexModule {
             return response.data;
         return {};
     }
+
+    @Action
+    async getHistoryLogs(payload?: {
+        type?: "post" | "page";
+        modelId?: number;
+        page?: number;
+        perPage?: number;
+    }) {
+        this.setLoading(true);
+        const response = await HistoryApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .getHistoryLogs(
+                getActiveBrand(),
+                payload?.type,
+                payload?.modelId,
+                payload?.page,
+                payload?.perPage
+            )
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data as any;
+        return {} as any;
+    }
 }

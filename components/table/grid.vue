@@ -9,8 +9,8 @@
                 v-model="searchQuery"
                 append-icon="mdi-magnify"
             />
-            <v-spacer/>
-            <v-spacer/>
+            <v-spacer />
+            <v-spacer />
             <v-btn
                 v-if="!gridOnly"
                 small
@@ -19,33 +19,94 @@
                 color="secondary"
                 @click="showListView()"
             >
-                <v-icon left v-html="'mdi-format-list-bulleted'"/>
+                <v-icon left v-html="'mdi-format-list-bulleted'" />
                 List View
             </v-btn>
-            <v-btn
-                small
-                class="mx-1"
-                v-if="config.globalActions && config.globalActions.length === 1"
-                :color="config.globalActions[0].color"
-                :class="config.globalActions[0].class"
-                @click="
-          config.globalActions[0].action
-            ? $emit(config.globalActions[0].action)
-            : undefined
-        "
-                :to="config.globalActions[0].to"
+            <v-menu
+                v-for="(globalAction, index) in config.globalActions"
+                :key="index"
+                offset-y
             >
-                <v-icon v-if="config.globalActions[0].icon" left>
-                    {{ config.globalActions[0].icon }}
-                </v-icon>
-                {{ config.globalActions[0].text }}
-            </v-btn>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        small
+                        v-on="on"
+                        class="mx-1"
+                        v-bind="attrs"
+                        :to="globalAction.to"
+                        :color="globalAction.color"
+                        :class="globalAction.class"
+                        @click="
+                            !(
+                                globalAction.childs &&
+                                globalAction.childs.length
+                            ) && globalAction.action
+                                ? $emit(
+                                      globalAction.action,
+                                      globalAction.payload
+                                  )
+                                : undefined
+                        "
+                    >
+                        <v-icon
+                            v-if="
+                                globalAction.childs &&
+                                globalAction.childs.length
+                            "
+                            left
+                        >
+                            mdi-chevron-down
+                        </v-icon>
+                        <v-icon
+                            v-else-if="globalAction.icon"
+                            :left="!!globalAction.text"
+                        >
+                            {{ globalAction.icon }}
+                        </v-icon>
+                        {{ globalAction.text }}
+                    </v-btn>
+                </template>
+                <v-list
+                    dense
+                    v-if="globalAction.childs && globalAction.childs.length"
+                >
+                    <v-list-item
+                        v-for="(child, index) in globalAction.childs"
+                        style="cursor: pointer"
+                        :key="index"
+                    >
+                        <v-list-item-icon v-if="child.icon" class="mr-2">
+                            <v-icon small v-text="child.icon" />
+                        </v-list-item-icon>
+                        <v-list-item-content
+                            @click="
+                                child.to
+                                    ? $router.push(child.to)
+                                    : child.action
+                                    ? $emit(child.action, child.payload)
+                                    : undefined
+                            "
+                        >
+                            <v-list-item-title>
+                                {{ child.text }}
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
         </v-card-title>
         <v-container>
             <v-row>
                 <template v-if="loading">
-                    <v-col v-for="index in 4" :key="index" cols="12" lg="3" md="4" sm="6">
-                        <v-skeleton-loader type="card"/>
+                    <v-col
+                        v-for="index in 4"
+                        :key="index"
+                        cols="12"
+                        lg="3"
+                        md="4"
+                        sm="6"
+                    >
+                        <v-skeleton-loader type="card" />
                     </v-col>
                 </template>
                 <template v-else-if="config.grid">
@@ -61,24 +122,24 @@
                             <v-img
                                 height="200"
                                 v-if="
-                  config.grid.image &&
-                  (typeof config.grid.image === 'function'
-                    ? config.grid.image(item)
-                    : getProperty(item, config.grid.image))
-                "
+                                    config.grid.image &&
+                                    (typeof config.grid.image === 'function'
+                                        ? config.grid.image(item)
+                                        : getProperty(item, config.grid.image))
+                                "
                                 :src="
-                  typeof config.grid.image === 'function'
-                    ? config.grid.image(item)
-                    : getProperty(item, config.grid.image)
-                "
+                                    typeof config.grid.image === 'function'
+                                        ? config.grid.image(item)
+                                        : getProperty(item, config.grid.image)
+                                "
                             />
                             <v-card-title
                                 v-if="config.grid.title"
                                 :class="{
-                  'text-h4': gridCenter,
-                  'font-weight-bold': gridCenter,
-                  'justify-content-center': gridCenter,
-                }"
+                                    'text-h4': gridCenter,
+                                    'font-weight-bold': gridCenter,
+                                    'justify-content-center': gridCenter,
+                                }"
                             >
                                 {{
                                     typeof config.grid.title === "function"
@@ -88,28 +149,31 @@
                             </v-card-title>
                             <v-card-subtitle
                                 :class="{
-                  'text-center': gridCenter,
-                  ' pt-2 pb-0': gridCenter,
-                }"
+                                    'text-center': gridCenter,
+                                    ' pt-2 pb-0': gridCenter,
+                                }"
                                 v-if="config.grid.subtitle"
                             >
                                 {{
                                     typeof config.grid.subtitle === "function"
                                         ? config.grid.subtitle(item)
-                                        : getProperty(item, config.grid.subtitle)
+                                        : getProperty(
+                                              item,
+                                              config.grid.subtitle
+                                          )
                                 }}
                             </v-card-subtitle>
                             <v-card-text
                                 :class="{
-                  'text-center': gridCenter,
-                }"
+                                    'text-center': gridCenter,
+                                }"
                                 v-if="config.grid.chips"
                             >
                                 <v-chip
-                                    v-for="(chip, index) in typeof config.grid.chips ===
-                  'function'
-                    ? config.grid.chips(item)
-                    : getProperty(item, config.grid.chips)"
+                                    v-for="(chip, index) in typeof config.grid
+                                        .chips === 'function'
+                                        ? config.grid.chips(item)
+                                        : getProperty(item, config.grid.chips)"
                                     :key="index"
                                     class="mr-1 mb-1"
                                     small
@@ -120,13 +184,15 @@
 
                             <v-card-actions
                                 :class="{
-                  'flex-flow-column': gridCenter,
-                }"
+                                    'flex-flow-column': gridCenter,
+                                }"
                                 v-if="config.actions"
                             >
-                                <v-spacer/>
+                                <v-spacer />
                                 <template
-                                    v-for="(action, actionIndex) in config.actions"
+                                    v-for="(
+                                        action, actionIndex
+                                    ) in config.actions"
                                     @click="null"
                                 >
                                     <v-btn
@@ -134,11 +200,17 @@
                                         class="ma-1"
                                         :icon="!action.text"
                                         :text="!!action.text"
+                                        :small="!!action.text"
                                         :outlined="!!action.text"
                                         :to="getActionTo(action.to, item)"
-                                        :key="'1-' + itemIndex + '-' + actionIndex"
+                                        :key="
+                                            '1-' + itemIndex + '-' + actionIndex
+                                        "
                                     >
-                                        <v-icon>
+                                        <v-icon
+                                            :small="!!action.text"
+                                            :left="!!action.text"
+                                        >
                                             {{ action.icon }}
                                         </v-icon>
                                         {{ action.text }}
@@ -146,19 +218,35 @@
                                     <v-btn
                                         v-else
                                         class="ma-1"
+                                        target="_blank"
                                         :icon="!action.text"
                                         :text="!!action.text"
+                                        :small="!!action.text"
                                         :outlined="!!action.text"
-                                        @click.stop="action.onClick(item)"
-                                        :key="'2-' + itemIndex + '-' + actionIndex"
+                                        :key="
+                                            '2-' + itemIndex + '-' + actionIndex
+                                        "
+                                        @click.stop="
+                                            action.onClick
+                                                ? action.onClick(item)
+                                                : null
+                                        "
+                                        :href="
+                                            action.href
+                                                ? getProperty(item, action.href)
+                                                : null
+                                        "
                                     >
-                                        <v-icon>
+                                        <v-icon
+                                            :small="!!action.text"
+                                            :left="!!action.text"
+                                        >
                                             {{ action.icon }}
                                         </v-icon>
                                         {{ action.text }}
                                     </v-btn>
                                 </template>
-                                <v-spacer v-if="gridCenter"/>
+                                <v-spacer v-if="gridCenter" />
                             </v-card-actions>
                         </v-card>
                     </v-col>
@@ -169,27 +257,39 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Emit} from "vue-property-decorator";
-import {IIndexable} from "@/utils/IIndexable";
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { IIndexable } from "@/utils/IIndexable";
 
 @Component
 export default class StandardTable extends Vue {
-    @Prop({default: true}) readonly search!: Boolean;
+    @Prop({ default: true }) readonly search!: Boolean;
     @Prop(Array) readonly items!: Array<Object>;
     @Prop(Boolean) readonly gridOnly!: Boolean;
     @Prop(Boolean) readonly loading!: Boolean;
     @Prop(Boolean) readonly gridCenter!: Boolean;
     @Prop(Object) readonly config!: {
         globalActions?: Array<{
+            to?: string;
             text?: string;
-            class?: String;
+            icon?: string;
+            payload?: any;
+            class?: string;
             color?: string;
             action?: string;
+            childs?: Array<{
+                to?: string;
+                text?: string;
+                icon?: string;
+                payload?: any;
+                action?: string;
+            }>;
         }>;
         actions?: Array<{
             type?: string;
             text?: string;
             icon?: string;
+            href?: string;
+            onClick: any;
             to?: string;
         }>;
         grid?: {
@@ -208,7 +308,10 @@ export default class StandardTable extends Vue {
         let match = myRegexp.exec(to);
         let result = to;
         while (match != null) {
-            result = result.replaceAll(match[0], (item as IIndexable)[match[1]]);
+            result = result.replaceAll(
+                match[0],
+                (item as IIndexable)[match[1]]
+            );
             match = myRegexp.exec(to);
         }
         return result;
@@ -246,7 +349,6 @@ export default class StandardTable extends Vue {
     }
 
     @Emit("showListView")
-    showListView() {
-    }
+    showListView() {}
 }
 </script>

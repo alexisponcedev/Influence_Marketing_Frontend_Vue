@@ -29,6 +29,12 @@ export default function blockAddItem(base: any, name: string, item: any) {
             });
         });
         base[name].hidden = item.hidden || false;
+        base[name].maxLength = item.maxLength;
+    }
+
+    if (item.type === StructureType.AutoCompeleteSelect) {
+        base[name].items = item.items;
+        base[name].loading = item.loading;
     }
 
     if (item.type === StructureType.Object) {
