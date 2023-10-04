@@ -18,6 +18,7 @@ import api__category from "@/store/api__category";
 import api__template from "@/store/api__template";
 // import api__constant from "@/store/api__constant";
 import api__notification from "@/store/api__notification";
+import api__public_deployment from "@/store/api__public_deployment";
 
 let AppStore: appStore;
 let ThemeConfig = themeConfig;
@@ -38,6 +39,7 @@ class Api {
     static Category: api__category;
     // static Constant: api__constant;
     static Notification: api__notification;
+    static PublicDeployment: api__public_deployment;
 }
 
 function initialiseStores(store: Store<any>): void {
@@ -56,6 +58,7 @@ function initialiseStores(store: Store<any>): void {
     Api.Redirect = getModule(api__redirect, store);
     // Api.Constant = getModule(api__constant, store);
     Api.Notification = getModule(api__notification, store);
+    Api.PublicDeployment = getModule(api__public_deployment, store);
 }
 
 export { initialiseStores, AppStore, Api, ThemeConfig };
