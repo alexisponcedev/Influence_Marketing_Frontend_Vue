@@ -1,6 +1,8 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
+import safeString from "@/utils/safeString";
+import { AppStore, Api } from "@/store";
 import {
     Page,
     Draft,
@@ -10,8 +12,6 @@ import {
     PageApiFactory,
     InlineResponse204,
 } from "@/repositories";
-import safeString from "@/utils/safeString";
-import { AppStore } from ".";
 
 @Module({
     name: "api__page",
@@ -365,8 +365,10 @@ export default class api__page extends VuexModule {
             response &&
             response.data &&
             ResponseHandler.checkResponse(response)
-        )
+        ) {
+            Api.PublicDeployment.getStatus();
             return response.data;
+        }
         return {};
     }
 
