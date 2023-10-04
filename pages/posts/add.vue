@@ -173,6 +173,10 @@ export default class PostForm extends Vue {
         this.init();
     }
 
+    beforeDestroy() {
+        this.unlock();
+    }
+
     async init() {
         await this.initCategories();
         await this.initPostsTab();
@@ -352,6 +356,7 @@ export default class PostForm extends Vue {
             const { locked_by } = await Api.Page.getLockStatus(
                 this.Post.page.id
             );
+
             if (locked_by == this.userId)
                 this.$router.push(
                     `/page/edit/${this.Post.page!.id}/page-builder`
@@ -390,6 +395,14 @@ export default class PostForm extends Vue {
     get userId() {
         let profile = JSON.parse(localStorage.getItem("profile")!.toString());
         return profile ? profile.user_id : 0;
+    }
+
+    async unlock() {
+        if (this.Post.page.locked_by == this.userId)
+            if (this.Post.page.id) {
+                await Api.Page.unlockPage(this.Post.page.id!);
+                this.Post.page.locked_by = 0;
+            }
     }
 }
 </script>

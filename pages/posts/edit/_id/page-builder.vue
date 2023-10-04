@@ -76,10 +76,9 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { Api } from "@/store";
-import { Post, Widgets } from "~/repositories";
-import { BlockInterface } from "~/interfaces/BlockInterface";
-import { SettingEnum } from "~/interfaces/SettingEnum";
+import { BlockInterface } from "@/interfaces/BlockInterface";
+import { Api, LockPageStore } from "@/store";
+import { Post } from "@/repositories";
 
 @Component
 export default class PostBuilderSection extends Vue {
@@ -91,9 +90,16 @@ export default class PostBuilderSection extends Vue {
 
     Post: any = {};
 
-    async mounted() {
+    mounted() {
+        this.init();
+    }
+
+    async init() {
         this.Post = (await Api.Post.get(+this.$route.params.id)) as Post;
         this.blocksList = this.Post.page!.widgets as Array<BlockInterface>;
+
+        LockPageStore.setLockedPage(this.Post.page);
+        LockPageStore.start();
     }
 
     discard() {

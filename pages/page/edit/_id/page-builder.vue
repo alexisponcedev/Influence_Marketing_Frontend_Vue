@@ -150,7 +150,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { refactorWidgetsHelper } from "@/utils/refactorWidgets";
 import { BlockInterface } from "@/interfaces/BlockInterface";
 import { Page, Widgets } from "@/repositories";
-import { Api } from "@/store";
+import { Api, LockPageStore } from "@/store";
 
 @Component
 export default class PageBuilderSection extends Vue {
@@ -162,8 +162,14 @@ export default class PageBuilderSection extends Vue {
     shouldDeploy: Boolean = false;
     dialog: Boolean = false;
 
-    async mounted() {
-        this.fetchPage();
+    mounted() {
+        this.init();
+    }
+
+    async init() {
+        await this.fetchPage();
+        LockPageStore.setLockedPage(this.Page);
+        LockPageStore.start();
     }
 
     async fetchPage() {

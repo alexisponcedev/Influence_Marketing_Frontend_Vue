@@ -1,6 +1,7 @@
 import { getModule } from "vuex-module-decorators";
 import themeConfig from "@/store/themeConfig";
 import appStore from "@/store/appStore";
+import appLockPageStore from "@/store/appLockPageStore";
 import { Store } from "vuex";
 
 import api__auth from "@/store/api__auth";
@@ -20,6 +21,7 @@ import api__template from "@/store/api__template";
 import api__notification from "@/store/api__notification";
 
 let AppStore: appStore;
+let LockPageStore: appLockPageStore;
 let ThemeConfig = themeConfig;
 
 class Api {
@@ -42,6 +44,7 @@ class Api {
 
 function initialiseStores(store: Store<any>): void {
     AppStore = getModule(appStore, store);
+    LockPageStore = getModule(appLockPageStore, store);
     Api.Auth = getModule(api__auth, store);
     Api.Page = getModule(api__page, store);
     Api.Post = getModule(api__post, store);
@@ -58,4 +61,4 @@ function initialiseStores(store: Store<any>): void {
     Api.Notification = getModule(api__notification, store);
 }
 
-export { initialiseStores, AppStore, Api, ThemeConfig };
+export { initialiseStores, AppStore, LockPageStore, Api, ThemeConfig };
