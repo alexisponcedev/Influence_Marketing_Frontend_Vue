@@ -2210,7 +2210,7 @@ export const BLOCKS = () => {
                         {
                             name: "SeasonUpgrade2KEmailBanner",
                             title: "Season Upgrade 2K Email Banner",
-                            image: "SeasonUpgrade2KEmailBanner.png",
+                            image: "SeasonUpgradeEmailBanner.png",
                             category: "TextBox",
                         },
                         {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/SeasonUpgrade2KEmailBanner.png" alt="" />
+        <img src="/blocks/SeasonUpgradeEmailBanner.png" alt="" />
     </div>
 </template>
 
