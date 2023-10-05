@@ -79,8 +79,9 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { BlockInterface } from "@/interfaces/BlockInterface";
-import { Post } from "@/repositories";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import { Api, LockPageStore } from "@/store";
+import { Post } from "@/repositories";
 
 @Component
 export default class PostBuilderSection extends Vue {
@@ -113,7 +114,7 @@ export default class PostBuilderSection extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Post.route || "");
+        return getLiveWebisteURL() + (this.Post.route || "");
     }
 
     gotoLiveWebsite() {

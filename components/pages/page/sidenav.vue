@@ -37,7 +37,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, VModel, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import { Api } from "@/store";
 
 @Component
@@ -64,7 +65,7 @@ export default class PageSideNav extends Vue {
     }
 
     get domain() {
-        return process.env.LIVE_WEBSITE;
+        return getLiveWebisteURL();
     }
 
     get pagesList() {

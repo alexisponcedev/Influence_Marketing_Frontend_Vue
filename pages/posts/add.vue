@@ -16,7 +16,7 @@
                     class="btn"
                     @click="gotoLiveWebsite"
                 >
-                    <span>Live Preivew</span>
+                    <span>Live Preview</span>
                 </v-btn>
                 <v-btn
                     elevation="0"
@@ -124,6 +124,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import HoverButton from "@/components/base/HoverButton.vue";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import { PageResource } from "@/repositories";
 import Validation from "@/utils/validation";
 import { FormField } from "@/models";
@@ -366,7 +367,7 @@ export default class PostForm extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Post.page!.route || "");
+        return getLiveWebisteURL() + (this.Post.page!.route || "");
     }
 
     @Watch("tab")

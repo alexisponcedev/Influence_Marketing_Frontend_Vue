@@ -149,6 +149,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { refactorWidgetsHelper } from "@/utils/refactorWidgets";
 import { BlockInterface } from "@/interfaces/BlockInterface";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import { Page, Widgets } from "@/repositories";
 import { Api, LockPageStore } from "@/store";
 
@@ -228,13 +229,13 @@ export default class PageBuilderSection extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Page.route || "");
+        return getLiveWebisteURL() + (this.Page.route || "");
     }
 
     gotoLiveWebsite() {
         if (this.Page.status_id === 2)
             window.open(
-                process.env.LIVE_WEBSITE + "/preview/" + this.Page.id,
+                getLiveWebisteURL() + "/preview/" + this.Page.id,
                 "_blank"
             );
         else window.open(this.liveWebsite, "_blank");

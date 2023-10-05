@@ -49,8 +49,8 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import { Api } from "@/store";
-import getActiveBrandName from "~/utils/getActiveBrandName";
 
 @Component
 export default class Index extends Vue {
@@ -3504,7 +3504,7 @@ export default class Index extends Vue {
 
     loading: boolean = false;
 
-    liveWebsiteUrl = process.env.LIVE_WEBSITE;
+    liveWebsiteUrl = getLiveWebisteURL();
 
     async delay(time: number) {
         return new Promise((resolve) => setTimeout(resolve, time));

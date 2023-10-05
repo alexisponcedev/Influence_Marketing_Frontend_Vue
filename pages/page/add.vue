@@ -21,7 +21,7 @@
                             class="btn"
                             @click="gotoLiveWebsite"
                         >
-                            <span>Live Preivew</span>
+                            <span>Live Preview</span>
                         </v-btn>
                         <v-btn
                             elevation="0"
@@ -176,6 +176,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import HoverButton from "@/components/base/HoverButton.vue";
+import getLiveWebisteURL from "@/utils/getLiveWebisteURL";
 import getActiveBrand from "@/utils/getActiveBrand";
 import Validation from "@/utils/validation";
 import { Page } from "@/repositories";
@@ -393,7 +394,7 @@ export default class PageForm extends Vue {
     gotoLiveWebsite() {
         if (this.Page.status_id === 2)
             window.open(
-                process.env.LIVE_WEBSITE + "/preview/" + this.Page.id,
+                getLiveWebisteURL() + "/preview/" + this.Page.id,
                 "_blank"
             );
         else window.open(this.liveWebsite, "_blank");
@@ -414,7 +415,7 @@ export default class PageForm extends Vue {
     }
 
     get liveWebsite() {
-        return process.env.LIVE_WEBSITE + (this.Page.route || "");
+        return getLiveWebisteURL() + (this.Page.route || "");
     }
 
     openPageBuilder() {
