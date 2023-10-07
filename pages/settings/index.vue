@@ -203,6 +203,7 @@ export default class AllSettings extends Vue {
 
     get compareRoute() {
         let item = this.settings.find((k: any) => k.key === "compareRoute");
+        if (item) item.title = "Compare Route";
         return !item
             ? this.settings[
                   this.settings.push({
@@ -212,14 +213,12 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : {
-                  ...item,
-                  title: "Compare Route",
-              };
+            : item;
     }
 
     get siteName() {
         let item = this.settings.find((k: any) => k.key === "siteName");
+        if (item) item.title = "Site Name";
         return !item
             ? this.settings[
                   this.settings.push({
@@ -229,14 +228,12 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : {
-                  ...item,
-                  title: "Site Name",
-              };
+            : item;
     }
 
     get deployUrl() {
         let item = this.settings.find((k: any) => k.key === "deploy_url");
+        if (item) item.title = "Public Site Forge Deploy URL";
         return !item
             ? this.settings[
                   this.settings.push({
@@ -246,14 +243,12 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : {
-                  ...item,
-                  title: "Public Site Forge Deploy URL",
-              };
+            : item;
     }
 
     get prodDeployUrl() {
         let item = this.settings.find((k: any) => k.key === "prod_deploy_url");
+        if (item) item.title = "Prod Public Site Forge Deploy URL";
         return !item
             ? this.settings[
                   this.settings.push({
@@ -263,14 +258,12 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : {
-                  ...item,
-                  title: "Prod Public Site Forge Deploy URL",
-              };
+            : item;
     }
 
     get serverId() {
         let item = this.settings.find((k: any) => k.key === "public_server_id");
+        if (item) item.title = "Public Site Forge Server Id";
         return !item
             ? this.settings[
                   this.settings.push({
@@ -280,14 +273,12 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : {
-                  ...item,
-                  title: "Public Site Forge Server Id",
-              };
+            : item;
     }
 
     get siteId() {
         let item = this.settings.find((k: any) => k.key === "public_site_id");
+        if (item) item.title = "Public Site Forge Site Id";
         return !item
             ? this.settings[
                   this.settings.push({
@@ -297,10 +288,7 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : {
-                  ...item,
-                  title: "Public Site Forge Site Id",
-              };
+            : item;
     }
 }
 </script>
