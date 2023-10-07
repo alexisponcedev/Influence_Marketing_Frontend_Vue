@@ -76,6 +76,38 @@
                             v-model="prodDeployUrl.value"
                         />
                     </div>
+
+                    <div
+                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
+                    >
+                        <div class="tw-flex tw-space-x-2 tw-items-center">
+                            <span class="tw-whitespace-normal">
+                                {{ serverId.title }}
+                            </span>
+                        </div>
+                        <input
+                            type="text"
+                            class="x-input"
+                            placeholder="please enter the value"
+                            v-model="serverId.value"
+                        />
+                    </div>
+
+                    <div
+                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
+                    >
+                        <div class="tw-flex tw-space-x-2 tw-items-center">
+                            <span class="tw-whitespace-normal">
+                                {{ siteId.title }}
+                            </span>
+                        </div>
+                        <input
+                            type="text"
+                            class="x-input"
+                            placeholder="please enter the value"
+                            v-model="siteId.value"
+                        />
+                    </div>
                 </v-card-text>
             </v-tab-item>
 
@@ -180,7 +212,10 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : item;
+            : {
+                  ...item,
+                  title: "Compare Route",
+              };
     }
 
     get siteName() {
@@ -194,7 +229,10 @@ export default class AllSettings extends Vue {
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : item;
+            : {
+                  ...item,
+                  title: "Site Name",
+              };
     }
 
     get deployUrl() {
@@ -202,13 +240,16 @@ export default class AllSettings extends Vue {
         return !item
             ? this.settings[
                   this.settings.push({
-                      title: "Public Site Deploy URL",
+                      title: "Public Site Forge Deploy URL",
                       key: "deploy_url",
                       value: "",
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : item;
+            : {
+                  ...item,
+                  title: "Public Site Forge Deploy URL",
+              };
     }
 
     get prodDeployUrl() {
@@ -216,13 +257,50 @@ export default class AllSettings extends Vue {
         return !item
             ? this.settings[
                   this.settings.push({
-                      title: "Prod Public Site Deploy URL",
+                      title: "Prod Public Site Forge Deploy URL",
                       key: "prod_deploy_url",
                       value: "",
                       brand_id: getActiveBrand(),
                   }) - 1
               ]
-            : item;
+            : {
+                  ...item,
+                  title: "Prod Public Site Forge Deploy URL",
+              };
+    }
+
+    get serverId() {
+        let item = this.settings.find((k: any) => k.key === "public_server_id");
+        return !item
+            ? this.settings[
+                  this.settings.push({
+                      title: "Public Site Forge Server Id",
+                      key: "public_server_id",
+                      value: "",
+                      brand_id: getActiveBrand(),
+                  }) - 1
+              ]
+            : {
+                  ...item,
+                  title: "Public Site Forge Server Id",
+              };
+    }
+
+    get siteId() {
+        let item = this.settings.find((k: any) => k.key === "public_site_id");
+        return !item
+            ? this.settings[
+                  this.settings.push({
+                      title: "Public Site Forge Site Id",
+                      key: "public_site_id",
+                      value: "",
+                      brand_id: getActiveBrand(),
+                  }) - 1
+              ]
+            : {
+                  ...item,
+                  title: "Public Site Forge Site Id",
+              };
     }
 }
 </script>

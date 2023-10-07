@@ -19,10 +19,10 @@ export const deploy = [
         title: "Reusable blocks",
         table: "blocks",
     },
-    {
-        title: "Settings",
-        table: "settings",
-    },
+    // {
+    //     title: "Settings",
+    //     table: "settings",
+    // },
     {
         title: "Redirects",
         table: "redirects",
