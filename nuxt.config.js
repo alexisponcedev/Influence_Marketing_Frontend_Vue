@@ -172,8 +172,8 @@ export default {
         LIVE_WEBSITE_INFLUENCEMARKETING:
             process.env.LIVE_WEBSITE_INFLUENCEMARKETING ||
             "https://im.stage.imdigital.ca",
-        LIVE_WEBSITE_EMPOWER_MARKETING:
-            process.env.LIVE_WEBSITE_EMPOWER_MARKETING ||
+        LIVE_WEBSITE_EMPOWERMARKETING:
+            process.env.LIVE_WEBSITE_EMPOWERMARKETING ||
             "https://ebm.stage.imdigital.ca",
         LIVE_WEBSITE_IMDIGITAL:
             process.env.LIVE_WEBSITE_IMDIGITAL ||
