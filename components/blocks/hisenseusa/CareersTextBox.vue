@@ -37,7 +37,14 @@ export default class CareersTextBox extends Vue {
                 src: "",
                 alt: "",
             });
-        } else blockRemoveItem(this.model, ["backgroundColor", "image"]);
+            blockAddItem(this.model, "link", {
+                id: 1,
+                type: StructureType.Url,
+                title: "Link",
+                value: "",
+            });
+        } else
+            blockRemoveItem(this.model, ["backgroundColor", "image", "link"]);
 
         this.model = { ...this.model };
     }
