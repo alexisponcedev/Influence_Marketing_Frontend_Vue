@@ -16,6 +16,13 @@ export default class DownloadsSection extends Vue {
     @VModel({ type: Object }) model!: any;
 
     mounted() {
+        blockAddItem(this.model, "link", {
+            id: 0,
+            type: StructureType.Url,
+            target: "_self",
+            title: "here",
+            value: "",
+        });
         this.model = { ...this.model };
     }
 
