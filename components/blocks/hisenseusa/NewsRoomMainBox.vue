@@ -97,42 +97,6 @@ export default class NewsRoomMainBox extends Vue {
             value: "",
         });
 
-        blockAddItem(this.model, "row-1", {
-            id: 7,
-            type: StructureType.Select,
-            title: "columns in row 1",
-            value: 1,
-            items: [
-                { title: "1", value: 1 },
-                { title: "2", value: 2 },
-                { title: "3", value: 3 },
-            ],
-        });
-
-        blockAddItem(this.model, "row-2", {
-            id: 8,
-            type: StructureType.Select,
-            title: "columns in row 2",
-            value: 2,
-            items: [
-                { title: "1", value: 1 },
-                { title: "2", value: 2 },
-                { title: "3", value: 3 },
-            ],
-        });
-
-        blockAddItem(this.model, "row-3", {
-            id: 9,
-            type: StructureType.Select,
-            title: "columns in row 3",
-            value: 3,
-            items: [
-                { title: "1", value: 1 },
-                { title: "2", value: 2 },
-                { title: "3", value: 3 },
-            ],
-        });
-
         this.model.selectNews.items = () =>
             Api.Post.allNews
                 .filter((p: any) => p.hasOwnProperty("page") && p.page)
