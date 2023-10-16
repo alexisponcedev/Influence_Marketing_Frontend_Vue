@@ -5,7 +5,7 @@
                 <v-tabs v-model="tab" background-color="transparent">
                     <v-tab href="#general"> General </v-tab>
                     <v-tab href="#dam"> DAM </v-tab>
-                    <v-tab href="#logs"> Logs </v-tab>
+                    <!-- <v-tab href="#logs"> Logs </v-tab> -->
                 </v-tabs>
             </v-col>
         </v-row>
@@ -14,105 +14,43 @@
             <v-tab-item value="general">
                 <v-card-text>
                     <div
+                        v-for="setting in generalSettings"
                         class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
                     >
                         <div class="tw-flex tw-space-x-2 tw-items-center">
                             <span class="tw-whitespace-normal">
-                                {{ compareRoute.title }}
+                                {{ setting.title }}
                             </span>
                         </div>
                         <input
                             type="text"
                             class="x-input"
                             placeholder="please enter the value"
-                            v-model="compareRoute.value"
-                        />
-                    </div>
-
-                    <div
-                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
-                    >
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">
-                                {{ siteName.title }}
-                            </span>
-                        </div>
-                        <input
-                            type="text"
-                            class="x-input"
-                            placeholder="please enter the value"
-                            v-model="siteName.value"
-                        />
-                    </div>
-
-                    <div
-                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
-                    >
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">
-                                {{ deployUrl.title }}
-                            </span>
-                        </div>
-                        <input
-                            type="text"
-                            class="x-input"
-                            placeholder="please enter the value"
-                            v-model="deployUrl.value"
-                        />
-                    </div>
-
-                    <div
-                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
-                    >
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">
-                                {{ prodDeployUrl.title }}
-                            </span>
-                        </div>
-                        <input
-                            type="text"
-                            class="x-input"
-                            placeholder="please enter the value"
-                            v-model="prodDeployUrl.value"
-                        />
-                    </div>
-
-                    <div
-                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
-                    >
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">
-                                {{ serverId.title }}
-                            </span>
-                        </div>
-                        <input
-                            type="text"
-                            class="x-input"
-                            placeholder="please enter the value"
-                            v-model="serverId.value"
-                        />
-                    </div>
-
-                    <div
-                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
-                    >
-                        <div class="tw-flex tw-space-x-2 tw-items-center">
-                            <span class="tw-whitespace-normal">
-                                {{ siteId.title }}
-                            </span>
-                        </div>
-                        <input
-                            type="text"
-                            class="x-input"
-                            placeholder="please enter the value"
-                            v-model="siteId.value"
+                            v-model="setting.value"
                         />
                     </div>
                 </v-card-text>
             </v-tab-item>
 
             <v-tab-item value="dam">
-                <v-card-text> Dam Section will be here </v-card-text>
+                <v-card-text>
+                    <div
+                        v-for="setting in damSettings"
+                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-items-center tw-justify-between"
+                    >
+                        <div class="tw-flex tw-space-x-2 tw-items-center">
+                            <span class="tw-whitespace-normal">
+                                {{ setting.title }}
+                            </span>
+                        </div>
+                        <input
+                            type="text"
+                            class="x-input"
+                            placeholder="please enter the value"
+                            v-model="setting.value"
+                        />
+                    </div>
+                </v-card-text>
             </v-tab-item>
 
             <v-tab-item value="logs" background-color="tw-bg-gray-100">
@@ -201,6 +139,25 @@ export default class AllSettings extends Vue {
         await Api.Setting.addSetting(this.settings);
     }
 
+    get generalSettings() {
+        return [
+            this.compareRoute,
+            this.siteName,
+            this.deployUrl,
+            this.prodDeployUrl,
+            this.serverId,
+            this.siteId,
+        ];
+    }
+
+    get damSettings() {
+        return [
+            this.DAM_ImagesToken,
+            this.DAM_VideosToken,
+            this.DAM_FilesToken,
+        ];
+    }
+
     get compareRoute() {
         let item = this.settings.find((k: any) => k.key === "compareRoute");
         if (item) item.title = "Compare Route";
@@ -284,6 +241,51 @@ export default class AllSettings extends Vue {
                   this.settings.push({
                       title: "Public Site Forge Site Id",
                       key: "public_site_id",
+                      value: "",
+                      brand_id: getActiveBrand(),
+                  }) - 1
+              ]
+            : item;
+    }
+
+    get DAM_ImagesToken() {
+        let item = this.settings.find((k: any) => k.key === "dam_images_token");
+        if (item) item.title = "Images Token";
+        return !item
+            ? this.settings[
+                  this.settings.push({
+                      title: "Images Token",
+                      key: "dam_images_token",
+                      value: "",
+                      brand_id: getActiveBrand(),
+                  }) - 1
+              ]
+            : item;
+    }
+
+    get DAM_VideosToken() {
+        let item = this.settings.find((k: any) => k.key === "dam_videos_token");
+        if (item) item.title = "Videos Token";
+        return !item
+            ? this.settings[
+                  this.settings.push({
+                      title: "Videos Token",
+                      key: "dam_videos_token",
+                      value: "",
+                      brand_id: getActiveBrand(),
+                  }) - 1
+              ]
+            : item;
+    }
+
+    get DAM_FilesToken() {
+        let item = this.settings.find((k: any) => k.key === "dam_files_token");
+        if (item) item.title = "Files Token";
+        return !item
+            ? this.settings[
+                  this.settings.push({
+                      title: "Files Token",
+                      key: "dam_files_token",
                       value: "",
                       brand_id: getActiveBrand(),
                   }) - 1
