@@ -34,29 +34,22 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn :disabled="saving" @click="save" text color="green">
-                <span v-if="mode === 'edit'">Update</span>
-                <span v-else>Upload</span>
+                <span v-if="mode === 'edit'"> Update </span>
+                <span v-else> Upload </span>
             </v-btn>
             <v-btn :disabled="saving" @click="cancel" text color="red">
-                Cancel</v-btn
-            >
+                Cancel
+            </v-btn>
         </v-card-actions>
     </v-card>
 </template>
 
 <script lang="ts">
-import {
-    Vue,
-    Component,
-    Prop,
-    Watch,
-    VModel,
-    Emit,
-} from "vue-property-decorator";
-import { StructureField } from "~/interfaces/StructureField";
-import { Api } from "~/utils/store-accessor";
-import { Asset } from "~/repositories";
-import { AssetTokens } from "~/models/AssetTokens";
+import { Vue, Prop, Watch, Emit, Component } from "vue-property-decorator";
+import { StructureField } from "@/interfaces/StructureField";
+import getAccessTokens from "@/utils/getAccessTokens";
+import { Api } from "@/utils/store-accessor";
+import { Asset } from "@/repositories";
 
 @Component
 export default class StructureFileUploader extends Vue {
@@ -183,7 +176,9 @@ export default class StructureFileUploader extends Vue {
         return this.$axios.$post(
             process.env.DAM_API_URL +
                 "/upload/" +
-                (this.type === "image" ? AssetTokens.image : AssetTokens.file),
+                (this.type === "image"
+                    ? (await getAccessTokens()).image
+                    : (await getAccessTokens()).file),
             formData
         );
     }

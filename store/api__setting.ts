@@ -1,5 +1,5 @@
-import { InlineObject } from './../repositories/api';
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { InlineObject } from "./../repositories/api";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -17,6 +17,7 @@ import {
 export default class api__setting extends VuexModule {
     loading: Boolean = false;
     all: Array<SettingResource> = [];
+    lastBrandId?: number = 0;
 
     @Mutation
     setLoading(status: Boolean) {
@@ -26,6 +27,7 @@ export default class api__setting extends VuexModule {
     @Mutation
     updateAll(all: Array<SettingResource>) {
         this.all = all;
+        this.lastBrandId = this.all[0].brand_id || 0;
     }
 
     @Mutation
@@ -34,7 +36,7 @@ export default class api__setting extends VuexModule {
         return this.all.find((i) => i.key === key)?.value;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await SettingApiFactory(
@@ -62,7 +64,7 @@ export default class api__setting extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .getSetting(getActiveBrand() ,id)
+            .getSetting(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (response && ResponseHandler.checkResponse(response))
@@ -125,7 +127,7 @@ export default class api__setting extends VuexModule {
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .deleteSetting(getActiveBrand() , id)
+            .deleteSetting(getActiveBrand(), id)
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (
@@ -138,14 +140,14 @@ export default class api__setting extends VuexModule {
     }
 
     @Action
-    async addSetting(settings : any[]) {
+    async addSetting(settings: any[]) {
         this.setLoading(true);
         const response = await SettingApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
             })
         )
-            .addSetting(getActiveBrand(), {settings})
+            .addSetting(getActiveBrand(), { settings })
             .catch((error) => ResponseHandler.ErrorHandler(error))
             .finally(() => this.setLoading(false));
         if (

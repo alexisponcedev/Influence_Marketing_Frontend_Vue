@@ -4,22 +4,22 @@
             v-if="addNewTemplate"
             v-model="template"
             @saved="selected"
-            @cancel="addNewTemplate = false"/>
+            @cancel="addNewTemplate = false"
+        />
 
         <template-list
             v-else
             @selected="selected"
             @cancel="close"
-            @addNewTemplate="addNewTemplate = true"/>
+            @addNewTemplate="addNewTemplate = true"
+        />
     </v-dialog>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch, VModel} from "vue-property-decorator";
-import {StructureField} from "~/interfaces/StructureField";
-import {Api} from "~/utils/store-accessor";
-import {Asset, Template, TemplateResource} from "~/repositories";
-import {AssetTokens} from "~/models/AssetTokens";
+import { Vue, Component } from "vue-property-decorator";
+import { TemplateResource } from "@/repositories";
+import { Api } from "@/utils/store-accessor";
 
 @Component
 export default class TemplateSelector extends Vue {
@@ -34,8 +34,8 @@ export default class TemplateSelector extends Vue {
     template: TemplateResource = {};
 
     selected(template: TemplateResource) {
-        console.log('you have selected asset : ', template);
-        this.$emit('template-selected', template);
+        console.log("you have selected asset : ", template);
+        this.$emit("template-selected", template);
         this.close();
     }
 
