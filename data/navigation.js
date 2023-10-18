@@ -86,7 +86,7 @@ export const items = () => [
         if: true,
     },
     {
-        title: "Deploys",
+        title: "Publish",
         icon: "mdi-cloud-sync",
         group: "deploys",
         to: "deploys",

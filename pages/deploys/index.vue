@@ -3,7 +3,7 @@
         <v-row>
             <v-col>
                 <v-tabs background-color="transparent">
-                    <v-tab>Deploy Changes</v-tab>
+                    <v-tab>Publish Changes</v-tab>
                 </v-tabs>
             </v-col>
         </v-row>
@@ -32,7 +32,7 @@
                                     :loading="loading"
                                     class="tw-px-28 tw-rounded-[10px] tw-py-8"
                                 >
-                                    Deploy
+                                    Publish
                                 </v-btn>
                             </div>
                         </div>
