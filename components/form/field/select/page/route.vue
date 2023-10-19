@@ -30,11 +30,13 @@
                 class="tw-font-bold tw-text-gray-400 tw-flex tw-items-center tw-space-x-2"
             >
                 <div class="tw-flex tw-space-x-0">
-                    <span>{{ parentRoute }}</span>
-                    <span v-if="parentRoute !== '/'">/</span>
-                    <span class="tw-text-gray-800">{{
-                        getSlug(pageRoute)
-                    }}</span>
+                    <span>
+                        {{ parentRoute }}
+                    </span>
+                    <span v-if="parentRoute !== '/'"> / </span>
+                    <span class="tw-text-gray-800">
+                        {{ getSlug(pageRoute) }}
+                    </span>
                 </div>
 
                 <div
@@ -50,9 +52,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { FormField } from "~/models";
-import { Api } from "~/utils/store-accessor";
-import { Page } from "~/repositories";
+import { Api } from "@/utils/store-accessor";
+import { FormField } from "@/models";
 
 @Component
 export default class AutoCompleteSelectPageRouteFormField extends Vue {
@@ -92,8 +93,17 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
         );
     }
 
-    @Watch("calculateRoute")
-    onRouteChanged() {
+    @Watch("parentRoute")
+    parentRouteChanged() {
+        this.emitInput();
+    }
+
+    @Watch("pageRoute")
+    pageRouteChanged() {
+        this.emitInput();
+    }
+
+    emitInput() {
         this.$emit("input", this.calculateRoute);
     }
 
@@ -118,7 +128,10 @@ export default class AutoCompleteSelectPageRouteFormField extends Vue {
 
     getSlug(str: string): string {
         const invalidCharsRegex = /[^a-zA-Z0-9]/g;
-        return str.toLowerCase().replace(invalidCharsRegex, "-");
+        let slug = str.toLowerCase().replace(invalidCharsRegex, "-");
+        while (slug.includes("--")) slug = slug.replaceAll("--", "-");
+        slug = slug.replace(/-$/, "").replace(/^[-]/, "");
+        return slug;
     }
 
     @Watch("value")
