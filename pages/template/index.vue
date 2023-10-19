@@ -23,12 +23,16 @@
                         "
                     >
                         <template v-slot:[`item.status`]="{ item }">
-                            <v-icon v-if="item.status?.name === 'firmwareOnly'"
-                                >mdi-check
-                            </v-icon>
+                            <template v-if="item.status">
+                                {{ item.status.name }}
+                            </template>
                         </template>
                     </table-standard>
-                    <template-status-modal :show.sync="templateStatus" />
+                    <template-status-modal
+                        :show.sync="templateStatus"
+                        @submit="setDefaultTemplate"
+                        v-if="Api.Template.all.length"
+                    />
                 </v-card>
             </v-col>
         </v-row>
@@ -49,7 +53,7 @@ export default class AllTemplates extends Vue {
     config = {
         headers: [
             { text: "Name", value: "name" },
-            { text: "Firmware", value: "status" },
+            { text: "Default Template", value: "status" },
             { text: "", value: "actions", sortable: false, width: "0" },
         ],
         actions: [
@@ -72,7 +76,7 @@ export default class AllTemplates extends Vue {
         ],
         globalActions: [
             {
-                text: "Template Firmware",
+                text: "Set Default Tempalte",
                 class: "btn",
                 color: "primary",
                 action: "changeTemplateStatus",
@@ -97,6 +101,21 @@ export default class AllTemplates extends Vue {
 
     deleteTemplate(Template: TemplateResource) {
         Api.Template.delete(Template.id!).then(this.updateTemplates);
+    }
+
+    async setDefaultTemplate(payload: {
+        firmwareOnly: number;
+        support: number;
+    }) {
+        await Api.Template.setAsTemplate({
+            id: payload.firmwareOnly,
+            asTemplate: "firmwareOnly",
+        });
+        await Api.Template.setAsTemplate({
+            id: payload.support,
+            asTemplate: "support",
+        });
+        this.updateTemplates();
     }
 }
 </script>

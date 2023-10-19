@@ -1,4 +1,4 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import ResponseHandler from "@/utils/ResponseHandler";
 import getActiveBrand from "@/utils/getActiveBrand";
 import {
@@ -28,7 +28,7 @@ export default class api__template extends VuexModule {
         this.all = all;
     }
 
-    @Action({commit: "updateAll"})
+    @Action({ commit: "updateAll" })
     async getAll() {
         this.setLoading(true);
         const response = await TemplateApiFactory(
@@ -67,7 +67,9 @@ export default class api__template extends VuexModule {
     @Action
     async create(template: Template) {
         this.setLoading(true);
-        template.widgets = JSON.parse(safeString(JSON.stringify(template.widgets)));
+        template.widgets = JSON.parse(
+            safeString(JSON.stringify(template.widgets))
+        );
         const response = await TemplateApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -88,7 +90,9 @@ export default class api__template extends VuexModule {
     @Action
     async update(payload: { id: number; Template: Template }) {
         this.setLoading(true);
-        payload.Template.widgets = JSON.parse(safeString(JSON.stringify(payload.Template.widgets)));
+        payload.Template.widgets = JSON.parse(
+            safeString(JSON.stringify(payload.Template.widgets))
+        );
         const response = await TemplateApiFactory(
             new Configuration({
                 accessToken: localStorage.getItem("access_token") || "",
@@ -127,16 +131,34 @@ export default class api__template extends VuexModule {
     }
 
     @Action
-    async updateStatus(id: number) {
+    async setAsTemplate(payload: {
+        id: number;
+        asTemplate: "support" | "firmwareOnly";
+    }) {
         this.setLoading(true);
-        const response = await TemplateApiFactory(
-            new Configuration({
-                accessToken: localStorage.getItem("access_token") || "",
-            })
-        )
-            .setAsFirmwareOnly(getActiveBrand(), id)
-            .catch((error) => ResponseHandler.ErrorHandler(error))
-            .finally(() => this.setLoading(false));
+        var response = null;
+
+        if (payload.asTemplate == "firmwareOnly")
+            response = await TemplateApiFactory(
+                new Configuration({
+                    accessToken: localStorage.getItem("access_token") || "",
+                })
+            )
+                .setAsFirmwareOnly(getActiveBrand(), payload.id)
+                .catch((error) => ResponseHandler.ErrorHandler(error))
+                .finally(() => this.setLoading(false));
+        else if (payload.asTemplate == "support")
+            response = await TemplateApiFactory(
+                new Configuration({
+                    accessToken: localStorage.getItem("access_token") || "",
+                })
+            )
+                .setAsSupport(getActiveBrand(), payload.id)
+                .catch((error) => ResponseHandler.ErrorHandler(error))
+                .finally(() => this.setLoading(false));
+
+        this.setLoading(false);
+
         if (
             response &&
             response.data &&
@@ -145,5 +167,4 @@ export default class api__template extends VuexModule {
             return response.data;
         return {};
     }
-
 }

@@ -1,72 +1,56 @@
 <template>
-    <v-dialog
-        v-model="showSynced"
-        max-width="800px"
-        content-class="custom_height"
-    >
+    <v-dialog max-width="700px" v-model="showSynced">
         <v-card class="h-full">
             <v-card-title>
-                Template Status
+                Set Default Template
                 <v-spacer />
                 <v-btn icon @click="showSynced = false">
-                    <v-icon>mdi-window-close</v-icon>
+                    <v-icon> mdi-window-close </v-icon>
                 </v-btn>
             </v-card-title>
             <v-card-text>
                 <form-standard
-                    :model="template"
-                    :fields="formFields"
                     @submit="submit"
+                    :model="model"
+                    :fields="formFields"
                     ref="TemplateStatusForm"
                 />
             </v-card-text>
-            <v-card-text> </v-card-text>
         </v-card>
     </v-dialog>
 </template>
 
-<style lang="scss">
-.custom_height {
-    height: 100% !important;
-    max-height: 500px !important;
-}
-</style>
-
 <script lang="ts">
-import { Vue, Component, PropSync, Watch } from "vue-property-decorator";
+import { Vue, Component, PropSync, Emit, Watch } from "vue-property-decorator";
 import Validation from "@/utils/validation";
 import { FormField } from "@/models";
-import { Api, AppStore } from "@/store";
-import { Template } from "~/repositories";
+import { Api } from "@/store";
 
 @Component
 export default class TemplateStatusModal extends Vue {
     @PropSync("show", { type: Boolean }) showSynced!: Boolean;
 
-    forceUpdateIndex: number = 0;
-
+    Api = Api;
     Validation = Validation;
     formFields: Array<FormField> = [];
 
-    Api = Api;
-    template: any = {
-        status: "",
+    model: any = {
+        firmwareOnly: "",
+        support: "",
     };
 
     mounted() {
-        this.init();
         this.updateSettingFormFields();
         this.updateData();
     }
 
-    async init() {
-        if (!Api.Template.all.length) await Api.Template.getAll();
-    }
-
     updateData() {
-        this.template = {
-            status: Api.Template.all.find(
+        this.model = {
+            firmwareOnly: Api.Template.all.find(
                 (item: any) => item.status?.name === "firmwareOnly"
+            )?.id,
+            support: Api.Template.all.find(
+                (item: any) => item.status?.name === "Support"
             )?.id,
         };
     }
@@ -74,13 +58,26 @@ export default class TemplateStatusModal extends Vue {
     updateSettingFormFields() {
         this.formFields = [
             {
-                type: "form-field-select-autocomplete",
-                label: "Templates",
-                modelKey: "status",
+                modelKey: "firmwareOnly",
                 "item-value": "id",
                 "item-text": "name",
-                placeholder: "Search Template",
                 items: () => Api.Template.all,
+                loading: () => Api.Template.loading,
+                type: "form-field-select-autocomplete",
+                label: "Frimware Only Template",
+                placeholder: "Search Template",
+                rules: [Validation.required],
+                colAttrs: { cols: 12 },
+            },
+            {
+                modelKey: "support",
+                "item-value": "id",
+                "item-text": "name",
+                items: () => Api.Template.all,
+                loading: () => Api.Template.loading,
+                type: "form-field-select-autocomplete",
+                label: "Product Support Template",
+                placeholder: "Search Template",
                 rules: [Validation.required],
                 colAttrs: { cols: 12 },
             },
@@ -89,15 +86,22 @@ export default class TemplateStatusModal extends Vue {
 
     async submit() {
         if (this.formValidate()) {
-            Api.Template.updateStatus(this.template.status).then(() => {
-                this.showSynced = false;
-                Api.Template.getAll();
-            });
+            this.showSynced = false;
+            this.$emit("submit", { ...this.model });
+            this.model = {
+                firmwareOnly: "",
+                support: "",
+            };
         }
     }
 
     formValidate() {
         return (this.$refs.TemplateStatusForm as any).validate();
+    }
+
+    @Watch("show")
+    showed() {
+        this.updateData();
     }
 }
 </script>
