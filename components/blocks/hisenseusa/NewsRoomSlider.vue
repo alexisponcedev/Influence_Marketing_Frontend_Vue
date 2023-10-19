@@ -27,6 +27,13 @@ export default class NewsRoomSlider extends Vue {
             type: StructureType.List,
             title: "Newsroom",
             newItem: {
+                mobileImage: {
+                    id: 0,
+                    type: StructureType.Image,
+                    title: "Mobile Image",
+                    src: "",
+                    alt: "Image Alt",
+                },
                 image: {
                     id: 1,
                     type: StructureType.Image,
