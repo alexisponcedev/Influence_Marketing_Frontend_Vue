@@ -46,6 +46,18 @@ export default class SeasonUpgrade2KSweepstakes extends Vue {
             src: "",
             alt: "",
         });
+        blockAddItem(this.model, "subtitle", {
+            id: 2,
+            type: StructureType.SimpleText,
+            title: "Subtitle",
+            value: "",
+        });
+        blockAddItem(this.model, "link", {
+            id: 3,
+            type: StructureType.Url,
+            title: "link",
+            value: "",
+        });
         this.model = { ...this.model };
     }
 
