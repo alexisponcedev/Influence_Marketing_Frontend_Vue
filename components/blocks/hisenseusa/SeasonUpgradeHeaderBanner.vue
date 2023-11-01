@@ -25,6 +25,12 @@ export default class SeasonUpgradeHeaderBanner extends Vue {
             title: "Background Color",
             value: "#000",
         });
+        blockAddItem(this.model, "link", {
+            id: 3,
+            type: StructureType.Url,
+            title: "Banner Link",
+            value: "/",
+        });
         blockAddItem(this.model, "list", {
             id: 4,
             type: StructureType.List,
