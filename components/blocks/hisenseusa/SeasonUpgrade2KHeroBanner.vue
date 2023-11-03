@@ -39,6 +39,12 @@ export default class SeasonUpgrade2KHeroBanner extends Vue {
             src: "",
             alt: "",
         });
+        blockAddItem(this.model, "link", {
+            id: 2,
+            type: StructureType.Url,
+            title: "Image Link",
+            value: "",
+        });
         blockAddItem(this.model, "subtitle", {
             id: 3,
             type: StructureType.String,
