@@ -1,5 +1,5 @@
 import { BlockInterface } from "@/interfaces/BlockInterface";
-
+import { IIndexable } from "@/utils/IIndexable";
 import {
     UHDNewsBoxWidget,
     ProductNewsBoxWidget,
@@ -25,6 +25,15 @@ function updateWidget(widget: BlockInterface): BlockInterface {
     }
 }
 
+function updateHidden(widget: BlockInterface): BlockInterface {
+    Object.keys(widget.structure).forEach((key) => {
+        (widget.structure as IIndexable)[key].hidden = !!(
+            widget.structure as IIndexable
+        )[key].hidden;
+    });
+    return widget;
+}
+
 export function refactorWidgetsHelper(
     input: Array<any>
 ): Array<BlockInterface> {
@@ -32,7 +41,7 @@ export function refactorWidgetsHelper(
     const new_widgets: Array<BlockInterface> = [];
 
     old_widgets.forEach((widget) => {
-        const updatedWidget = updateWidget(widget);
+        const updatedWidget = updateHidden(updateWidget(widget));
         if (updatedWidget && Object.keys(updatedWidget).length)
             new_widgets.push(updatedWidget);
     });
