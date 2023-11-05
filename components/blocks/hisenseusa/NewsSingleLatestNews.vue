@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
 import { Api } from "@/store";
 
 @Component
@@ -19,156 +19,50 @@ export default class NewsSingleLatestNews extends Vue {
     Api = Api;
 
     async mounted() {
-        blockAddItem(this.model, "title", {
+        blockAddItem(this.model, "count", {
             id: 1,
-            type: StructureType.Text,
+            type: StructureType.String,
+            title: "Count",
+            value: 0,
+        });
+
+        blockAddItem(this.model, "selectby", {
+            id: 2,
+            type: StructureType.Select,
+            title: "Select By",
+            value: "rel",
+            items: [
+                { value: "rel", title: "Tag Related" },
+                { value: "new", title: "Newest" },
+            ],
+        });
+
+        blockAddItem(this.model, "title", {
+            id: 3,
+            type: StructureType.SimpleText,
             title: "Title",
             value: "",
         });
+
         blockAddItem(this.model, "link", {
-            id: 2,
+            id: 4,
             type: StructureType.Url,
             target: "_self",
             title: "Link",
             value: "",
         });
-        // blockAddItem(this.model, "count", {
-        //     id: 3,
-        //     type: StructureType.String,
-        //     title: "Count",
-        //     value: 4,
-        // });
+
         blockAddItem(this.model, "list", {
-            id: 4,
+            hidden: true,
+            id: 5,
             type: StructureType.List,
             title: "List",
-            newItem : {
-                image: {
-                    id: 0,
-                    type: StructureType.Image,
-                    title: "Image",
-                    src: "",
-                    alt: "",
-                },
-                title: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "",
-                },
-                tagLink: {
-                    id: 2,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Tag Link",
-                    value: "",
-                },
-                link: {
-                    id: 3,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Link",
-                    value: "",
-                },
-                date: {
-                    id: 4,
-                    type: StructureType.String,
-                    title: "date",
-                    value: "",
-                },
-            },
+            newItem: {},
             value: [],
         });
 
-        // await Api.Post.getAllNews();
-        // this.addPosts();
         this.model = { ...this.model };
-    }
-
-    // addPosts() {
-    //     this.model.list.value = [];
-    //     let posts = Api.Post.allNews
-    //         .filter((p: any) => p.hasOwnProperty("page") && p.page)
-    //         .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
-    //     console.log(posts);
-    //
-    //     let max = Math.min(Math.min(this.count, posts.length) , 3);
-    //
-    //     for (let i = 0; i < max; i++) {
-    //         this.model.list.value.push(this.addPost(posts[i]));
-    //     }
-    //
-    //     // for (let i = 0; i < max; i) {
-    //     //     this.model.list.value.push({
-    //     //         smallPost: this.addPost(posts[i++], "Small Post"),
-    //     //         largePost: this.addPost(posts[i++], "Large Post"),
-    //     //     });
-    //     // }
-    //
-    //     // console.log(max , this.model.list.value , Api.Post.allNews);
-    //
-    // }
-
-    // get count() {
-    //     return this.model.hasOwnProperty("count") ? this.model.count.value : 0;
-    // }
-
-    // @Watch("count")
-    // onCountChanged() {
-    //     this.addPosts();
-    // }
-
-    // addPost(post: any, title: string = "Small Title"): any {
-    //     let newItem: any = {
-    //         id: 1,
-    //         type: StructureType.Object,
-    //         title: title,
-    //         value: {
-    //             image: {
-    //                 id: 0,
-    //                 type: StructureType.Image,
-    //                 title: "Image",
-    //                 src: "",
-    //                 alt: "",
-    //             },
-    //             title: {
-    //                 id: 1,
-    //                 type: StructureType.String,
-    //                 title: "Title",
-    //                 value: "",
-    //             },
-    //             tagLink: {
-    //                 id: 2,
-    //                 type: StructureType.Url,
-    //                 target: "_self",
-    //                 title: "Tag Link",
-    //                 value: "",
-    //             },
-    //             link: {
-    //                 id: 3,
-    //                 type: StructureType.Url,
-    //                 target: "_self",
-    //                 title: "READ ARTICLE",
-    //                 value: "",
-    //             },
-    //         },
-    //     };
-    //     if (post) {
-    //         let imageMeta = post.page.meta.find(
-    //             (i: any) => i.name.includes("og:image") && i.content != null
-    //         );
-    //         if (imageMeta) newItem.value.image.src = imageMeta.content;
-    //         newItem.value.title.value = post.page.title;
-    //         newItem.value.link.value = post.page.route;
-    //     }
-    //     return newItem;
-    // }
-
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
     }
 }
 </script>
  
-
-
