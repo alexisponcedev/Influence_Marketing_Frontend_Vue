@@ -23,7 +23,7 @@ export default class NewsSingleLatestNews extends Vue {
             id: 1,
             type: StructureType.String,
             title: "Count",
-            value: 0,
+            value: 3,
         });
 
         blockAddItem(this.model, "selectby", {
