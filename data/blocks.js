@@ -2658,6 +2658,7 @@ export const BLOCKS = () => {
             ],
             blog: [],
         },
+
         influencemarketing: {
             page: [
                 {
@@ -2829,6 +2830,7 @@ export const BLOCKS = () => {
             ],
             blog: [],
         },
+
         empowermarketing: {
             page: [
                 {
@@ -3000,6 +3002,25 @@ export const BLOCKS = () => {
             ],
             blog: [],
         },
+
+        hisensecanda: {
+            page: [
+                {
+                    name: "Samples",
+                    blocks: [
+                        {
+                            name: "Sample",
+                            title: "Sample Component",
+                            image: "sample.png",
+                            category: "ImageBox",
+                        },
+                    ],
+                },
+            ],
+            blog: [],
+            news: [],
+        },
+
         none: {
             page: [],
             blog: [],
