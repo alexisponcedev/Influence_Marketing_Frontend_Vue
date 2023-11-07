@@ -26,6 +26,13 @@ export default class NewsPressArchive extends Vue {
             title: "Title 1",
             value: "Press Archive",
         });
+        blockAddItem(this.model, "titleOneLink", {
+            id: 1,
+            type: StructureType.Url,
+            title: "Title 1 link",
+            value: "/",
+            target:"_self"
+        });
         blockAddItem(this.model, "titleTwo", {
             id: 2,
             type: StructureType.String,
