@@ -1,5 +1,8 @@
 <template>
-    <div :class="`tw-p-2 tw-rounded-lg${model.hidden ? ' tw-hidden' : ''}`">
+    <div
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        :class="`tw-p-2 tw-rounded-lg ${model.hidden ? ' tw-hidden' : ''}`"
+    >
         <h6 style="margin-bottom: 3px">
             {{ model.title }}
         </h6>
