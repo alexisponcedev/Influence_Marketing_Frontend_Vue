@@ -3003,14 +3003,14 @@ export const BLOCKS = () => {
             blog: [],
         },
 
-        hisensecanda: {
+        hisensecanada: {
             page: [
                 {
                     name: "Samples",
                     blocks: [
                         {
                             name: "Sample",
-                            title: "Sample Component",
+                title: "Sample Component",
                             image: "sample.png",
                             category: "ImageBox",
                         },

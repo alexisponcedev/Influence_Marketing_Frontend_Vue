@@ -130,7 +130,7 @@ export default {
             getActiveBrandName: getActiveBrandName,
             logos: {
                 hisenseusa: require("~/assets/images/menu/logo-dark.png"),
-                hisensecanda: require("~/assets/images/menu/logo-dark.png"),
+                hisensecanada: require("~/assets/images/menu/logo-dark.png"),
                 imdigital: require("~/assets/images/menu/imdigital.png"),
             },
         };
