@@ -3016,6 +3016,47 @@ export const BLOCKS = () => {
                         },
                     ],
                 },
+                {
+                    name: "Firmware",
+                    blocks: [
+                        {
+                            name: "FirmwareBanner",
+                            title: "Firmware Banner",
+                            image: "FirmwareBanner.png",
+                            category: "ImageBox",
+                        },
+                        {
+                            name: "FirmWareDownloadSection",
+                            title: "FirmWare Download Section",
+                            image: "FirmWareDownloadSection.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "FirmwareDisclaimer",
+                            title: "FirmWare Disclaimer",
+                            image: "FirmwareDisclaimer.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "ExtendedWarrantyFeatureBlocks",
+                            title: "Extended Warranty Feature Blocks",
+                            image: "ExtendedWarrantyFeatureBlocks.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "SupportNeedAssistance",
+                            title: "Support Need Assistance",
+                            image: "SupportNeedAssistance.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "ProductSupportInfo",
+                            title: "Product Support Info",
+                            image: "ProductSupportInfo.png",
+                            category: "TextBox",
+                        },
+                    ],
+                },
             ],
             blog: [],
             news: [],
