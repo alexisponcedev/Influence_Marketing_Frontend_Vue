@@ -3006,17 +3006,6 @@ export const BLOCKS = () => {
         hisensecanada: {
             page: [
                 {
-                    name: "Samples",
-                    blocks: [
-                        {
-                            name: "Sample",
-                title: "Sample Component",
-                            image: "sample.png",
-                            category: "ImageBox",
-                        },
-                    ],
-                },
-                {
                     name: "Firmware",
                     blocks: [
                         {
