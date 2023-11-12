@@ -190,7 +190,7 @@ export default class PageBuilderSection extends Vue {
 
     async checkLockAndExit() {
         this.dialog = false;
-        if (this.lockedByMe) await this.unlock();
+        // if (this.lockedByMe) await this.unlock();
         this.goBack();
     }
 
@@ -273,12 +273,12 @@ export default class PageBuilderSection extends Vue {
         return this.Page.locked_by! > 0 && this.Page.locked_by === this.userId;
     }
 
-    async unlock() {
-        if (this.Page.locked_by == this.userId)
-            return Api.Page.unlockPage(this.Page.id!).then(() => {
-                this.Page.locked_by = 0;
-            });
-    }
+    // async unlock() {
+    //     if (this.Page.locked_by == this.userId)
+    //         return Api.Page.unlockPage(this.Page.id!).then(() => {
+    //             this.Page.locked_by = 0;
+    //         });
+    // }
 
     setHistory(history: any[]) {
         this.blocksList = refactorWidgetsHelper(history);
