@@ -2507,7 +2507,7 @@ export const BLOCKS = () => {
                         },
                         {
                             name: "NewsSingleLatestNews",
-                            title: "NewsSingleLatestNews Component",
+                            title: "Latest News Component",
                             image: "NewsSingleLatestNews.png",
                             category: "ImageBox",
                         },
