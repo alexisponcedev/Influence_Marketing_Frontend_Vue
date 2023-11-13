@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import { Theme } from "~/interfaces/ThemeEnum";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
+import { Theme } from "@/interfaces/ThemeEnum";
 
 @Component
 export default class SeasonUpgradeHeroBanner extends Vue {
@@ -26,12 +26,20 @@ export default class SeasonUpgradeHeroBanner extends Vue {
             src: "",
             alt: "",
         });
+
         blockAddItem(this.model, "image", {
             id: 1,
             type: StructureType.Image,
             title: "Image",
             src: "",
             alt: "",
+        });
+
+        blockAddItem(this.model, "link", {
+            id: 2,
+            type: StructureType.Url,
+            title: "Link",
+            value: "",
         });
 
         this.model = { ...this.model };
