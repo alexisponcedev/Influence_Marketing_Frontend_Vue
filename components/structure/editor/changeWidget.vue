@@ -4,6 +4,7 @@
             v-if="model.title"
             block
             outlined
+            class="mb-4"
             color="primary"
             @click="changeWidget"
         >
@@ -11,7 +12,7 @@
         </v-btn>
         <div
             v-else
-            class="tw-border-2 tw-border-solid tw-border-gray-200 tw-rounded-lg tw-bg-gray-50 tw-mb-2 tw-overflow-hidden tw-cursor-pointer"
+            class="tw-border-2 tw-border-solid tw-border-gray-200 tw-rounded-lg tw-bg-gray-50 tw-overflow-hidden tw-cursor-pointer"
             @click="changeWidget"
         >
             <div
