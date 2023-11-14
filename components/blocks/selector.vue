@@ -88,6 +88,7 @@ export default class BlocksSelector extends Vue {
             i.blocks = i.blocks
                 .filter(
                     (j: any) =>
+                        j.includes.toLowerCase().includes(search) ||
                         j.name.toLowerCase().includes(search) ||
                         j.title.toLowerCase().includes(search) ||
                         j.category?.toLowerCase().includes(search)
