@@ -25,7 +25,13 @@ export default class NewsRoomMainBox extends Vue {
             title: "Title",
             value: "NewsRoom Main Box",
         });
-
+        blockAddItem(this.model, "titleLink", {
+            id: 0,
+            type: StructureType.Url,
+            title: "Title link",
+            value: "/",
+            target:"_self"
+        });
         blockAddItem(this.model, "slider", {
             id: 1,
             type: StructureType.List,

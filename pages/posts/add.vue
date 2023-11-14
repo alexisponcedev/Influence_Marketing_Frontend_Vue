@@ -144,6 +144,7 @@ export default class PostForm extends Vue {
     route: string = "";
 
     UnlockPageModalShow: boolean = false;
+    goToPageBuilderMode: boolean = false;
 
     meta: Array<{ rel: string; name: string; content: string }> = [];
     oldRoute = "";
@@ -175,7 +176,7 @@ export default class PostForm extends Vue {
     }
 
     beforeDestroy() {
-        this.unlock();
+        if (!this.goToPageBuilderMode) this.unlock();
     }
 
     async init() {
@@ -358,11 +359,12 @@ export default class PostForm extends Vue {
                 this.Post.page.id
             );
 
-            if (locked_by == this.userId)
+            if (locked_by == this.userId) {
+                this.goToPageBuilderMode = true;
                 this.$router.push(
                     `/page/edit/${this.Post.page!.id}/page-builder`
                 );
-            else this.UnlockPageModalShow = true;
+            } else this.UnlockPageModalShow = true;
         }
     }
 

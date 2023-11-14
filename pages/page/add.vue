@@ -198,6 +198,7 @@ export default class PageForm extends Vue {
 
     openAddRedirectModal: boolean = false;
     UnlockPageModalShow: boolean = false;
+    goToPageBuilderMode: boolean = false;
 
     meta: Array<{ rel: string; name: string; content: string }> = [];
 
@@ -235,7 +236,7 @@ export default class PageForm extends Vue {
     }
 
     beforeDestroy() {
-        this.unlock();
+        if (!this.goToPageBuilderMode) this.unlock();
     }
 
     async init() {
@@ -419,6 +420,7 @@ export default class PageForm extends Vue {
     }
 
     openPageBuilder() {
+        this.goToPageBuilderMode = true;
         this.$router.push(`/page/edit/${this.Page.id}/page-builder`);
     }
 
