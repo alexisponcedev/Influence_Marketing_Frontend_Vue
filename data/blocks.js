@@ -3046,6 +3046,23 @@ export const BLOCKS = () => {
                         },
                     ],
                 },
+                {
+                    name: "Header and Footer",
+                    blocks: [
+                        {
+                            name: "Header",
+                            title: "Header Menu",
+                            image: "hcan/Header.jpg",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "Footer",
+                            title: "Footer Menu",
+                            image: "hcan/Footer.jpg",
+                            category: "TextBox",
+                        },
+                    ],
+                },
             ],
             blog: [],
             news: [],
