@@ -4,7 +4,7 @@
             <v-tab href="#Columns">Footer Columns</v-tab>
             <v-tab href="#Socials">Footer Socials</v-tab>
             <v-tab href="#Links">Footer Links</v-tab>
-            <v-tab v-if="getActiveBrandName() === 'hisenseusa'" href="#Texts"
+            <v-tab v-if="getActiveBrandName().includes('hisense')" href="#Texts"
                 >Texts</v-tab
             >
         </v-tabs>
@@ -35,7 +35,7 @@
                                     </button>
                                 </div>
                                 <menu-items
-                                    v-if="getActiveBrandName() === 'hisenseusa'"
+                                    v-if="getActiveBrandName().includes('hisense')"
                                     v-model="Menu.widgets.columns[index]"
                                 />
                             </li>
@@ -184,7 +184,7 @@
                     </v-card-text>
                 </v-tab-item>
                 <v-tab-item
-                    v-if="getActiveBrandName() === 'hisenseusa'"
+                    v-if="getActiveBrandName().includes('hisense')"
                     value="Texts"
                 >
                     <v-card-text>

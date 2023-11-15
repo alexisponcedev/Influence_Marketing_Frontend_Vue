@@ -116,27 +116,27 @@ export default class AllPages extends Vue {
         {
             id: this.PageType.landing,
             title: "Landing Pages",
-            if: getActiveBrandName() === "hisenseusa",
+            if: getActiveBrandName().includes("hisense"),
         },
         {
             id: this.PageType.static,
             title: "Static Pages",
-            if: getActiveBrandName() === "hisenseusa",
+            if: getActiveBrandName().includes("hisense"),
         },
         {
             id: this.PageType.product,
             title: "PDP",
-            if: getActiveBrandName() === "hisenseusa",
+            if: getActiveBrandName().includes("hisense"),
         },
         {
             id: this.PageType.support,
             title: "Support",
-            if: getActiveBrandName() === "hisenseusa",
+            if: getActiveBrandName().includes("hisense"),
         },
         {
             id: this.PageType.blog,
             title: "Blog",
-            if: getActiveBrandName() === "hisenseusa",
+            if: getActiveBrandName().includes("hisense"),
         },
     ];
 
