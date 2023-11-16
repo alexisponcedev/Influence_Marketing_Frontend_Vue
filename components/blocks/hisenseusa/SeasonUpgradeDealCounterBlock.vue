@@ -17,6 +17,17 @@ export default class SeasonUpgradeDealCounterBlock extends Vue {
     Theme = Theme;
 
     mounted() {
+        blockAddItem(this.model, "template", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Template",
+            value: "UpgradeSeason",
+            items: [
+                { title: "Upgrade Season", value: "UpgradeSeason" },
+                { title: "Black Friday", value: "BlackFriday" },
+            ],
+        });
+
         blockAddItem(this.model, "list", {
             id: 1,
             type: StructureType.List,
