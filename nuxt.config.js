@@ -181,5 +181,8 @@ export default {
         LIVE_WEBSITE_AAFC:
             process.env.LIVE_WEBSITE_AAFC ||
             "https://aafc-demo.stage.imdigital.ca",
+        LIVE_WEBSITE_HISENSECANADA:
+            process.env.LIVE_WEBSITE_HISENSECANADA ||
+            "https://hcan.dev.hisenseportal.com",
     },
 };

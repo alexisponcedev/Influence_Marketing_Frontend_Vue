@@ -4,7 +4,7 @@
             <div class="tw-p-2 tw-space-y-2">
                 <nuxt-link
                     :to="
-                        getActiveBrandName() === 'hisenseusa'
+                        getActiveBrandName().includes('hisense')
                             ? '/menu/header-menu'
                             : '/menu/header'
                     "
@@ -21,7 +21,7 @@
 
                 <nuxt-link
                     :to="
-                        getActiveBrandName() === 'hisenseusa'
+                        getActiveBrandName().includes('hisense')
                             ? '/menu/footer-menu'
                             : '/menu/footer'
                     "

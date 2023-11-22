@@ -108,10 +108,10 @@
 </template>
 
 <script>
+import getActiveBrandName from "@/utils/getActiveBrandName";
 import { mapGetters, mapActions } from "vuex";
 import getProfile from "@/utils/getProfile";
 import { items } from "@/data/navigation";
-import getActiveBrandName from "~/utils/getActiveBrandName";
 
 export default {
     data() {
@@ -130,6 +130,7 @@ export default {
             getActiveBrandName: getActiveBrandName,
             logos: {
                 hisenseusa: require("~/assets/images/menu/logo-dark.png"),
+                hisensecanada: require("~/assets/images/menu/logo-dark.png"),
                 imdigital: require("~/assets/images/menu/imdigital.png"),
             },
         };

@@ -13,21 +13,21 @@ export const items = () => [
         icon: "mdi-border-all",
         group: "product",
         to: "product",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         title: "Blog Posts",
         icon: "mdi-post",
         group: "posts",
         to: "posts",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         title: "News Room",
         icon: "mdi-post",
         group: "news",
         to: "news",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         title: "Menus",
@@ -48,7 +48,7 @@ export const items = () => [
         icon: "mdi-history",
         group: "history",
         to: "history",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         title: "Redirection",
@@ -62,7 +62,7 @@ export const items = () => [
         icon: "mdi-file-outline",
         group: "template",
         to: "template",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         title: "Notifications",
@@ -76,7 +76,7 @@ export const items = () => [
         icon: "mdi-border-none-variant",
         group: "block/reusable",
         to: "blocks/reusable",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         title: "Trash",
@@ -90,7 +90,7 @@ export const items = () => [
         icon: "mdi-cloud-sync",
         group: "deploys",
         to: "deploys",
-        if: getActiveBrandName() === "hisenseusa",
+        if: getActiveBrandName().includes("hisense"),
     },
     {
         divider: true,
