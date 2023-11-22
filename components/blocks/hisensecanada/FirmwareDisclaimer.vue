@@ -36,6 +36,12 @@ export default class FirmwareDisclaimer extends Vue {
             title: "Button Title",
             value: "",
         });
+        blockAddItem(this.model, "link", {
+            id: 2,
+            type: StructureType.Url,
+            title: "Link",
+            value: "/",
+        });
         this.model = { ...this.model };
     }
 
