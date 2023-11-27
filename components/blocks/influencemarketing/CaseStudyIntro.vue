@@ -7,13 +7,13 @@
           <div class="tw-flex tw-flex-col tw-justify-center tw-items-start tw-gap-4 md:tw-gap-6">
             <h1 v-if="model.title.value"
               class="tw-text-white tw-text-6xl md:tw-text-7xl lg:tw-text-8xl tw-font-bold tw-uppercase tw-tracking-[-1.92px]"
-              v-html="model?.title?.valu"></h1>
+              v-html="model?.title?.value"></h1>
             <h3 v-if="model.subtitle.value"
               class="tw-text-skyblue tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-font-bold tw-uppercase tw-tracking-[-0.96px]"
-              v-html="model?.subtitle?.valu"></h3>
+              v-html="model?.subtitle?.value"></h3>
           </div>
           <div v-if="model?.note?.value" class="tw-text-gray-200 tw-text-xs tw-font-normal " v-html="
-            model?.note?.valu"></div>
+            model?.note?.value"></div>
         </div>
         <div class="tw-w-full md:tw-w-1/2">
           <div v-if="model?.description?.value"
