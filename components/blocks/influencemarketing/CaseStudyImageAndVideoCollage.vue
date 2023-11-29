@@ -57,6 +57,7 @@ export default class CaseStudyImageAndVideoCollage extends Vue {
       id: 1,
       type: StructureType.List,
       title: "Rows",
+      maxLength: 2,
       newItem: {
         image: {
           id: 0,
