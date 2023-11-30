@@ -90,6 +90,38 @@ export default class BlockCards extends Vue {
                         { title: "Deactive", value: false },
                     ],
                 },
+                lightboxObject: {
+                    id: 8,
+                    type: StructureType.Object,
+                    title: "Light Box Data",
+                    value: {
+                        caption: {
+                            id: 0,
+                            type: StructureType.SimpleText,
+                            title: "Title",
+                            value: "",
+                        },
+                        image: {
+                            id: 1,
+                            type: StructureType.Image,
+                            title: "Image",
+                            src: "",
+                            alt: "some note about this asset",
+                        },
+                        video: {
+                            id: 2,
+                            type: StructureType.String,
+                            title: "Iframe Link",
+                            value: "",
+                        },
+                        link: {
+                            id: 3,
+                            type: StructureType.Url,
+                            title: "Download",
+                            value: "/",
+                        },
+                    }
+                }
             },
             value: [
                 {
@@ -157,6 +189,38 @@ export default class BlockCards extends Vue {
                             { title: "Deactive", value: false },
                         ],
                     },
+                    lightboxObject: {
+                        id: 8,
+                        type: StructureType.Object,
+                        title: "Light Box Data",
+                        value: {
+                            caption: {
+                                id: 0,
+                                type: StructureType.SimpleText,
+                                title: "Title",
+                                value: "",
+                            },
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: "Image",
+                                src: "",
+                                alt: "some note about this asset",
+                            },
+                            video: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: "Iframe Link",
+                                value: "",
+                            },
+                            link: {
+                                id: 3,
+                                type: StructureType.Url,
+                                title: "Download",
+                                value: "/",
+                            },
+                        }
+                    }
                 },
             ],
         });
