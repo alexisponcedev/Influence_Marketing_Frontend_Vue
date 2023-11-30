@@ -75,26 +75,6 @@ export default class HomePageMBTextedBoxes extends Vue {
                                 type: StructureType.Image,
                                 title: "Background Image",
                             },
-                            gradient: {
-                                id: 6,
-                                type: StructureType.Select,
-                                title: "Gradient Fade",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            },
-                            lightbox: {
-                                id: 7,
-                                type: StructureType.Select,
-                                title: "Open Light Box (this option will ignore the Link)",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            }
                         },
                         {
                             link: {
@@ -124,26 +104,6 @@ export default class HomePageMBTextedBoxes extends Vue {
                                 type: StructureType.Image,
                                 title: "Background Image",
                             },
-                            gradient: {
-                                id: 6,
-                                type: StructureType.Select,
-                                title: "Gradient Fade",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            },
-                            lightbox: {
-                                id: 7,
-                                type: StructureType.Select,
-                                title: "Open Light Box (this option will ignore the Link)",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            }
                         },
                         {
                             link: {
@@ -173,26 +133,6 @@ export default class HomePageMBTextedBoxes extends Vue {
                                 type: StructureType.Image,
                                 title: "Background Image",
                             },
-                            gradient: {
-                                id: 6,
-                                type: StructureType.Select,
-                                title: "Gradient Fade",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            },
-                            lightbox: {
-                                id: 7,
-                                type: StructureType.Select,
-                                title: "Open Light Box (this option will ignore the Link)",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            }
                         },
                         {
                             link: {
@@ -222,26 +162,6 @@ export default class HomePageMBTextedBoxes extends Vue {
                                 type: StructureType.Image,
                                 title: "Background Image",
                             },
-                            gradient: {
-                                id: 6,
-                                type: StructureType.Select,
-                                title: "Gradient Fade",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            },
-                            lightbox: {
-                                id: 7,
-                                type: StructureType.Select,
-                                title: "Open Light Box (this option will ignore the Link)",
-                                value: true,
-                                items: [
-                                    { title: "Active", value: true },
-                                    { title: "Deactive", value: false },
-                                ],
-                            }
                         },
                     ],
                     newItem: {
@@ -272,26 +192,6 @@ export default class HomePageMBTextedBoxes extends Vue {
                             type: StructureType.Image,
                             title: "Background Image",
                         },
-                        gradient: {
-                            id: 6,
-                            type: StructureType.Select,
-                            title: "Gradient Fade",
-                            value: true,
-                            items: [
-                                { title: "Active", value: true },
-                                { title: "Deactive", value: false },
-                            ],
-                        },
-                        lightbox: {
-                            id: 7,
-                            type: StructureType.Select,
-                            title: "Open Light Box (this option will ignore the Link)",
-                            value: true,
-                            items: [
-                                { title: "Active", value: true },
-                                { title: "Deactive", value: false },
-                            ],
-                        }
                     },
                 },
             };

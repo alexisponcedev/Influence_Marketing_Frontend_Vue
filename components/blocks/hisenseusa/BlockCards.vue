@@ -84,6 +84,26 @@ export default class BlockCards extends Vue {
                             title: "Learn More",
                             value: "/",
                         },
+                        gradient: {
+                            id: 6,
+                            type: StructureType.Select,
+                            title: "Gradient Fade",
+                            value: true,
+                            items: [
+                                { title: "Active", value: true },
+                                { title: "Deactive", value: false },
+                            ],
+                        },
+                        lightbox: {
+                            id: 7,
+                            type: StructureType.Select,
+                            title: "Open Light Box (this option will ignore the Link)",
+                            value: true,
+                            items: [
+                                { title: "Active", value: true },
+                                { title: "Deactive", value: false },
+                            ],
+                        }
                     },
                     value: [
                         {
@@ -131,6 +151,26 @@ export default class BlockCards extends Vue {
                                 title: "Learn More",
                                 value: "/",
                             },
+                            gradient: {
+                                id: 6,
+                                type: StructureType.Select,
+                                title: "Gradient Fade",
+                                value: true,
+                                items: [
+                                    { title: "Active", value: true },
+                                    { title: "Deactive", value: false },
+                                ],
+                            },
+                            lightbox: {
+                                id: 7,
+                                type: StructureType.Select,
+                                title: "Open Light Box (this option will ignore the Link)",
+                                value: true,
+                                items: [
+                                    { title: "Active", value: true },
+                                    { title: "Deactive", value: false },
+                                ],
+                            }
                         },
                     ],
                 },
