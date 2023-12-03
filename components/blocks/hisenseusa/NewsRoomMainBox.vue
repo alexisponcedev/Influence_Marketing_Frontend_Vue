@@ -14,8 +14,6 @@ import { Api } from "@/store";
 export default class NewsRoomMainBox extends Vue {
     @VModel() model!: any;
 
-    Api = Api;
-
     mounted() {
         Api.Post.getAllNews();
 
