@@ -48,10 +48,10 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Theme} from "~/interfaces/ThemeEnum";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import { Theme } from "@/interfaces/ThemeEnum";
+import blockAddItem from "@/utils/blockAddItem";
 
 enum SliderMonitorSize {
     mobile = "mobile",
@@ -61,184 +61,12 @@ enum SliderMonitorSize {
 
 @Component
 export default class LandingSlider extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({default: true}) readonly editable: Boolean | undefined;
-    @VModel({type: Object}) model!: any;
+    @VModel({ type: Object }) model!: any;
 
     activeSlide = 0;
     monitorSize = SliderMonitorSize;
 
-    reset(oldValue: any = {}) {
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue,
-                ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
-                    },
-                },
-            };
-        } else
-            this.model = {
-                theme: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: "Theme",
-                    value: Theme.dark,
-                    items: [
-                        {title: "Light", value: Theme.light},
-                        {title: "Dark", value: Theme.dark},
-                    ],
-                },
-                size: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: "Slider Monitor Size",
-                    value: "desktop",
-                    items: [
-                        {title: "Mobile", value: this.monitorSize.mobile},
-                        {title: "Table", value: this.monitorSize.tablet},
-                        {title: "Desktop", value: this.monitorSize.desktop},
-                    ],
-                },
-                list: {
-                    id: 1,
-                    type: StructureType.List,
-                    title: "Items",
-                    newItem: {
-                        url: {
-                            id: 0,
-                            type: StructureType.Url,
-                            target: "_self",
-                            title: "Target URL",
-                            value: "/products",
-                        },
-                        mobile: {
-                            id: 1,
-                            type: StructureType.Image,
-                            title: "Mobile Image",
-                            src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
-                            alt: "Small Image for Slider",
-                        },
-                        tablet: {
-                            id: 2,
-                            type: StructureType.Image,
-                            title: "Tablet Image",
-                            src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg",
-                            alt: "Large Image for Slider",
-                        },
-                        desktop: {
-                            id: 3,
-                            type: StructureType.Image,
-                            title: "Desktop Image",
-                            src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
-                            alt: "Large Image for Slider",
-                        },
-                    },
-                    value: [
-                        {
-                            url: {
-                                id: 0,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Target URL",
-                                value: "/products",
-                            },
-                            mobile: {
-                                id: 1,
-                                type: StructureType.Image,
-                                title: "Mobile Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
-                                alt: "Small Image for Slider",
-                            },
-                            tablet: {
-                                id: 2,
-                                type: StructureType.Image,
-                                title: "Tablet Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                            desktop: {
-                                id: 3,
-                                type: StructureType.Image,
-                                title: "Desktop Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                        },
-                        {
-                            url: {
-                                id: 0,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Target URL",
-                                value: "/products",
-                            },
-                            mobile: {
-                                id: 1,
-                                type: StructureType.Image,
-                                title: "Mobile Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
-                                alt: "Small Image for Slider",
-                            },
-                            tablet: {
-                                id: 2,
-                                type: StructureType.Image,
-                                title: "Tablet Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile__ScaleMaxWidthWzE1MzZd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                            desktop: {
-                                id: 3,
-                                type: StructureType.Image,
-                                title: "Desktop Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/de5912bcef/Homepage-Banner-HUSA-desk-update-v3__ScaleMaxWidthWzI1NjBd.png",
-                                alt: "Large Image for Slider",
-                            },
-                        },
-                        {
-                            url: {
-                                id: 0,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Target URL",
-                                value: "/products",
-                            },
-                            mobile: {
-                                id: 1,
-                                type: StructureType.Image,
-                                title: "Mobile Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v5__ScaleMaxWidthWzg1MF0.jpg",
-                                alt: "Small Image for Slider",
-                            },
-                            tablet: {
-                                id: 2,
-                                type: StructureType.Image,
-                                title: "Tablet Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v3__ScaleMaxWidthWzE1MzZd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                            desktop: {
-                                id: 3,
-                                type: StructureType.Image,
-                                title: "Desktop Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/eeaefdc6f6/Perfect-match-sweepstakes-v2__ScaleMaxWidthWzI1NjBd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                        },
-                    ],
-                },
-            };
-
-
-    }
-
     mounted() {
-        // if (this.isEmpty) this.reset();
-
         blockAddItem(this.model, "theme", {
             id: 0,
             type: StructureType.Select,
@@ -249,18 +77,20 @@ export default class LandingSlider extends Vue {
                 { title: "Dark", value: Theme.dark },
             ],
         });
-        blockAddItem(this.model , 'size' , {
+
+        blockAddItem(this.model, "size", {
             id: 1,
             type: StructureType.Select,
             title: "Slider Monitor Size",
             value: "desktop",
             items: [
-                {title: "Mobile", value: this.monitorSize.mobile},
-                {title: "Table", value: this.monitorSize.tablet},
-                {title: "Desktop", value: this.monitorSize.desktop},
+                { title: "Mobile", value: this.monitorSize.mobile },
+                { title: "Table", value: this.monitorSize.tablet },
+                { title: "Desktop", value: this.monitorSize.desktop },
             ],
-        })
-        blockAddItem(this.model , 'list' , {
+        });
+
+        blockAddItem(this.model, "list", {
             id: 2,
             type: StructureType.List,
             title: "Items",
@@ -293,6 +123,54 @@ export default class LandingSlider extends Vue {
                     src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
                     alt: "Large Image for Slider",
                 },
+                lightboxTitle: {
+                    id: 4,
+                    type: StructureType.String,
+                    title: "Lightbox Button Title",
+                    value: "",
+                },
+                lightbox: {
+                    id: 5,
+                    type: StructureType.Select,
+                    title: "Open Light Box (this option will ignore the Link)",
+                    value: true,
+                    items: [
+                        { title: "Active", value: true },
+                        { title: "Deactive", value: false },
+                    ],
+                },
+                lightboxObject: {
+                    id: 6,
+                    type: StructureType.Object,
+                    title: "Light Box Data",
+                    value: {
+                        caption: {
+                            id: 0,
+                            type: StructureType.SimpleText,
+                            title: "Title",
+                            value: "",
+                        },
+                        image: {
+                            id: 1,
+                            type: StructureType.Image,
+                            title: "Image",
+                            src: "",
+                            alt: "some note about this asset",
+                        },
+                        video: {
+                            id: 2,
+                            type: StructureType.String,
+                            title: "Iframe Link",
+                            value: "",
+                        },
+                        link: {
+                            id: 3,
+                            type: StructureType.Url,
+                            title: "Download",
+                            value: "/",
+                        },
+                    },
+                },
             },
             value: [
                 {
@@ -324,6 +202,54 @@ export default class LandingSlider extends Vue {
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
                         alt: "Large Image for Slider",
                     },
+                    lightboxTitle: {
+                        id: 4,
+                        type: StructureType.String,
+                        title: "Lightbox Button Title",
+                        value: "",
+                    },
+                    lightbox: {
+                        id: 5,
+                        type: StructureType.Select,
+                        title: "Open Light Box (this option will ignore the Link)",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    lightboxObject: {
+                        id: 6,
+                        type: StructureType.Object,
+                        title: "Light Box Data",
+                        value: {
+                            caption: {
+                                id: 0,
+                                type: StructureType.SimpleText,
+                                title: "Title",
+                                value: "",
+                            },
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: "Image",
+                                src: "",
+                                alt: "some note about this asset",
+                            },
+                            video: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: "Iframe Link",
+                                value: "",
+                            },
+                            link: {
+                                id: 3,
+                                type: StructureType.Url,
+                                title: "Download",
+                                value: "/",
+                            },
+                        },
+                    },
                 },
                 {
                     url: {
@@ -353,6 +279,54 @@ export default class LandingSlider extends Vue {
                         title: "Desktop Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/de5912bcef/Homepage-Banner-HUSA-desk-update-v3__ScaleMaxWidthWzI1NjBd.png",
                         alt: "Large Image for Slider",
+                    },
+                    lightboxTitle: {
+                        id: 4,
+                        type: StructureType.String,
+                        title: "Lightbox Button Title",
+                        value: "",
+                    },
+                    lightbox: {
+                        id: 5,
+                        type: StructureType.Select,
+                        title: "Open Light Box (this option will ignore the Link)",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    lightboxObject: {
+                        id: 6,
+                        type: StructureType.Object,
+                        title: "Light Box Data",
+                        value: {
+                            caption: {
+                                id: 0,
+                                type: StructureType.SimpleText,
+                                title: "Title",
+                                value: "",
+                            },
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: "Image",
+                                src: "",
+                                alt: "some note about this asset",
+                            },
+                            video: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: "Iframe Link",
+                                value: "",
+                            },
+                            link: {
+                                id: 3,
+                                type: StructureType.Url,
+                                title: "Download",
+                                value: "/",
+                            },
+                        },
                     },
                 },
                 {
@@ -384,9 +358,57 @@ export default class LandingSlider extends Vue {
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/eeaefdc6f6/Perfect-match-sweepstakes-v2__ScaleMaxWidthWzI1NjBd.jpg",
                         alt: "Large Image for Slider",
                     },
+                    lightboxTitle: {
+                        id: 4,
+                        type: StructureType.String,
+                        title: "Lightbox Button Title",
+                        value: "",
+                    },
+                    lightbox: {
+                        id: 5,
+                        type: StructureType.Select,
+                        title: "Open Light Box (this option will ignore the Link)",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    lightboxObject: {
+                        id: 6,
+                        type: StructureType.Object,
+                        title: "Light Box Data",
+                        value: {
+                            caption: {
+                                id: 0,
+                                type: StructureType.SimpleText,
+                                title: "Title",
+                                value: "",
+                            },
+                            image: {
+                                id: 1,
+                                type: StructureType.Image,
+                                title: "Image",
+                                src: "",
+                                alt: "some note about this asset",
+                            },
+                            video: {
+                                id: 2,
+                                type: StructureType.String,
+                                title: "Iframe Link",
+                                value: "",
+                            },
+                            link: {
+                                id: 3,
+                                type: StructureType.Url,
+                                title: "Download",
+                                value: "/",
+                            },
+                        },
+                    },
                 },
             ],
-        })
+        });
     }
 
     goNext() {
@@ -405,22 +427,17 @@ export default class LandingSlider extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch("isEmpty")
-    onValueChanged() {
-        if (this.isEmpty) this.reset();
-    }
-
     get maxWidth() {
         return this.isEmpty
             ? {}
             : {
-                "tw-max-w-sm":
-                    this.model.size.value === this.monitorSize.mobile,
-                "tw-max-w-md":
-                    this.model.size.value === this.monitorSize.tablet,
-                "tw-aspect-video":
-                    this.model.size.value === this.monitorSize.mobile,
-            };
+                  "tw-max-w-sm":
+                      this.model.size.value === this.monitorSize.mobile,
+                  "tw-max-w-md":
+                      this.model.size.value === this.monitorSize.tablet,
+                  "tw-aspect-video":
+                      this.model.size.value === this.monitorSize.mobile,
+              };
     }
 }
 </script>
