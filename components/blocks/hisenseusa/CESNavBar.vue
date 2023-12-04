@@ -192,8 +192,5 @@ export default class CESNavBar extends Vue {
         this.prepare();
     }
 
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
-    }
 }
 </script>
