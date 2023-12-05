@@ -1209,6 +1209,12 @@ export const BLOCKS = () => {
                             image: "CesIframe.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "CESCountdownTimerBlock",
+                            title: "CES Countdown Timer Block",
+                            image: "CESCountdownTimerBlock.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
