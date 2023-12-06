@@ -136,6 +136,8 @@ export default class CaseStudyImageAndVideoCollage extends Vue {
             onClick: this.showFields,
         });
 
+        this.unHideIfHaveValue();
+
         this.model = { ...this.model };
     }
 
@@ -149,6 +151,22 @@ export default class CaseStudyImageAndVideoCollage extends Vue {
             payload.list[payload.index].videoCaption.hidden = false;
             payload.list[payload.index].showVideoFieldsButton.hidden = true;
         }
+    }
+
+    unHideIfHaveValue() {
+        if (this.model?.list?.value && this.model?.list?.value?.length)
+            this.model?.list?.value.forEach((item: any) => {
+                if (item.image?.src || item.imageCaption?.value) {
+                    item.image.hidden = false;
+                    item.imageCaption.hidden = false;
+                    item.showImageFieldsButton.hidden = true;
+                }
+                if (item.video?.value || item.videoCaption?.value) {
+                    item.video.hidden = false;
+                    item.videoCaption.hidden = false;
+                    item.showVideoFieldsButton.hidden = true;
+                }
+            });
     }
 
     get isEmpty(): Boolean {
