@@ -1,47 +1,19 @@
 <template>
-    <div
-        class="tw-mx-auto tw-flex tw-justify-center tw-relative"
-        style="min-height: 682px"
-        v-if="!isEmpty"
-        :class="maxWidth"
-    >
-        <div
-            v-if="activeSlide === index"
-            v-for="(image, index) in model.list.value"
-            :key="index"
-        >
-            <img
-                v-if="model.size.value === monitorSize.mobile"
-                class="tw-bg-gray-50 tw-w-full tw-min-h-96"
-                :src="image.mobile.src"
-                :alt="image.mobile.alt"
-            />
-            <img
-                v-if="model.size.value === monitorSize.tablet"
-                class="tw-bg-gray-50 tw-w-full tw-min-h-96"
-                :src="image.tablet.src"
-                :alt="image.tablet.alt"
-            />
-            <img
-                v-if="model.size.value === monitorSize.desktop"
-                class="tw-object-cover tw-bg-gray-50 tw-w-full tw-min-h-96"
-                :src="image.desktop.src"
-                :alt="image.desktop.alt"
-            />
+    <div class="tw-mx-auto tw-flex tw-justify-center tw-relative" style="min-height: 682px" v-if="!isEmpty"
+        :class="maxWidth">
+        <div v-if="activeSlide === index" v-for="(image, index) in model.list.value" :key="index">
+            <img v-if="model.size.value === monitorSize.mobile" class="tw-bg-gray-50 tw-w-full tw-min-h-96"
+                :src="image.mobile.src" :alt="image.mobile.alt" />
+            <img v-if="model.size.value === monitorSize.tablet" class="tw-bg-gray-50 tw-w-full tw-min-h-96"
+                :src="image.tablet.src" :alt="image.tablet.alt" />
+            <img v-if="model.size.value === monitorSize.desktop" class="tw-object-cover tw-bg-gray-50 tw-w-full tw-min-h-96"
+                :src="image.desktop.src" :alt="image.desktop.alt" />
         </div>
 
-        <button
-            @click="goNext"
-            class="tw-text-white tw-absolute"
-            style="top: 48%; right: 4px"
-        >
+        <button @click="goNext" class="tw-text-white tw-absolute" style="top: 48%; right: 4px">
             <v-icon class="white--text" x-large>mdi-chevron-right</v-icon>
         </button>
-        <button
-            @click="goPrev"
-            class="tw-text-white tw-absolute"
-            style="top: 48%; left: 4px"
-        >
+        <button @click="goPrev" class="tw-text-white tw-absolute" style="top: 48%; left: 4px">
             <v-icon class="white--text" x-large>mdi-chevron-left</v-icon>
         </button>
     </div>
@@ -139,6 +111,16 @@ export default class LandingSlider extends Vue {
                         { title: "Deactive", value: false },
                     ],
                 },
+                lightbox_live_animation: {
+                    id: 5,
+                    type: StructureType.Select,
+                    title: "Light box live animation toggle",
+                    value: true,
+                    items: [
+                        { title: "Active", value: true },
+                        { title: "Deactive", value: false },
+                    ],
+                },
                 lightboxObject: {
                     id: 6,
                     type: StructureType.Object,
@@ -212,6 +194,16 @@ export default class LandingSlider extends Vue {
                         id: 5,
                         type: StructureType.Select,
                         title: "Open Light Box (this option will ignore the Link)",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    lightbox_live_animation: {
+                        id: 5,
+                        type: StructureType.Select,
+                        title: "Light box live animation toggle",
                         value: true,
                         items: [
                             { title: "Active", value: true },
@@ -296,6 +288,16 @@ export default class LandingSlider extends Vue {
                             { title: "Deactive", value: false },
                         ],
                     },
+                    lightbox_live_animation: {
+                        id: 5,
+                        type: StructureType.Select,
+                        title: "Light box live animation toggle",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
                     lightboxObject: {
                         id: 6,
                         type: StructureType.Object,
@@ -374,6 +376,16 @@ export default class LandingSlider extends Vue {
                             { title: "Deactive", value: false },
                         ],
                     },
+                    lightbox_live_animation: {
+                        id: 5,
+                        type: StructureType.Select,
+                        title: "Light box live animation toggle",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
                     lightboxObject: {
                         id: 6,
                         type: StructureType.Object,
@@ -431,13 +443,13 @@ export default class LandingSlider extends Vue {
         return this.isEmpty
             ? {}
             : {
-                  "tw-max-w-sm":
-                      this.model.size.value === this.monitorSize.mobile,
-                  "tw-max-w-md":
-                      this.model.size.value === this.monitorSize.tablet,
-                  "tw-aspect-video":
-                      this.model.size.value === this.monitorSize.mobile,
-              };
+                "tw-max-w-sm":
+                    this.model.size.value === this.monitorSize.mobile,
+                "tw-max-w-md":
+                    this.model.size.value === this.monitorSize.tablet,
+                "tw-aspect-video":
+                    this.model.size.value === this.monitorSize.mobile,
+            };
     }
 }
 </script>
