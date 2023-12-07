@@ -16,4 +16,5 @@ export enum StructureType {
     Datetime = "datetime",
     TextPreview = "textPreview",
     Button = "button",
+    Number = "number",
 }

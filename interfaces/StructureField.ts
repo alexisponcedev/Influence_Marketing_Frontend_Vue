@@ -31,4 +31,6 @@ export class StructureField implements StructureFieldInterface {
     hidden?: boolean = false;
     action: string = "";
     icon: string = "";
+    min?: number;
+    max?: number;
 }
