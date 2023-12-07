@@ -61,15 +61,23 @@ export default class CaseStudyIntro extends Vue {
         blockAddItem(this.model, "subtitle", {
             id: 2,
             type: StructureType.SimpleText,
-            title: "Subitle",
+            title: "Subtitle",
             value: "",
         });
 
-        blockAddItem(this.model, "note", {
+        blockAddItem(this.model, "tags", {
             id: 3,
-            type: StructureType.SimpleText,
-            title: "Note",
-            value: "",
+            type: StructureType.List,
+            title: "Tags",
+            newItem: {
+                link: {
+                    id: 1,
+                    type: StructureType.Url,
+                    title: "Url",
+                    value: "",
+                },
+            },
+            value: [],
         });
 
         blockAddItem(this.model, "description", {
