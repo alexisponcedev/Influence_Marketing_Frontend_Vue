@@ -34,8 +34,22 @@ export default class CesCollage extends Vue {
                     title: "Title",
                     value: "",
                 },
-                mediaList: {
+                desktopColumns: {
                     id: 1,
+                    type: StructureType.Number,
+                    title: "Desktop Columns",
+                    value: 0,
+                    max: 10,
+                },
+                mobileColumns: {
+                    id: 2,
+                    type: StructureType.Number,
+                    title: "Mobile Columns",
+                    value: 0,
+                    max: 5,
+                },
+                mediaList: {
+                    id: 3,
                     type: StructureType.List,
                     title: "Media List",
                     value: [],
