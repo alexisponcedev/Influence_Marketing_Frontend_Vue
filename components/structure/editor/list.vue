@@ -33,6 +33,15 @@
                         @input="(v) => (fields = v)"
                         :simple="true"
                         :value="fields"
+                        @onClick="
+                            (action) =>
+                                model.onClick &&
+                                model.onClick(action, {
+                                    fields,
+                                    index,
+                                    list: model.value,
+                                })
+                        "
                     />
                 </div>
             </draggable>
