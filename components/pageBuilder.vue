@@ -121,10 +121,10 @@ export default class PageBuilder extends Vue {
     }
 
     addBlock(block: any) {
-        let id = this.blocksList.length + 1;
+        const id = Math.max(...this.blocksList.map((item: any) => item.id)) + 1;
         this.blocksList.push({
             ...block,
-            id: id,
+            id,
             selected: false,
             structure: {},
         });
@@ -134,7 +134,8 @@ export default class PageBuilder extends Vue {
 
     addItemByDrag(e: any) {
         if (e.hasOwnProperty("added") && this.blocksList.length > 1) {
-            e.added.element.id = this.blocksList.length + 1;
+            e.added.element.id =
+                Math.max(...this.blocksList.map((item: any) => item.id)) + 1;
         }
         this.deploy();
     }
