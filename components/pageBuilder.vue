@@ -159,7 +159,8 @@ export default class PageBuilder extends Vue {
 
     duplicateBlock(i: any) {
         let newBlock = JSON.parse(JSON.stringify(this.blocksList[i]));
-        newBlock.id = this.blocksList.length + 1;
+        newBlock.id =
+            Math.max(...this.blocksList.map((item: any) => item.id)) + 1;
         this.blocksList.splice(i + 1, 0, newBlock);
         this.deploy();
     }
