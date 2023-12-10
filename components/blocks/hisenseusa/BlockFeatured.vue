@@ -93,10 +93,20 @@ export default class BlockFeatured extends Vue {
                         },
                     },
                 },
-                date: {
+                activate_date: {
                     id: 7,
+                    type: StructureType.Select,
+                    title: "Countdown timer activation",
+                    value: true,
+                    items: [
+                        { title: "Active", value: true },
+                        { title: "Deactive", value: false },
+                    ],
+                },
+                date: {
+                    id: 8,
                     type: StructureType.Datetime,
-                    title: "End Time (If not needed leave it empty)",
+                    title: "Countdown date",
                     value: "",
                 }
             },
@@ -175,10 +185,21 @@ export default class BlockFeatured extends Vue {
                                 value: "/",
                             },
                         },
-                    }, date: {
+                    },
+                    activate_date: {
                         id: 7,
+                        type: StructureType.Select,
+                        title: "Countdown timer activation",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    date: {
+                        id: 8,
                         type: StructureType.Datetime,
-                        title: "End Time (If not needed leave it empty)",
+                        title: "Countdown date",
                         value: "",
                     }
                 },
@@ -256,10 +277,21 @@ export default class BlockFeatured extends Vue {
                                 value: "/",
                             },
                         },
-                    }, date: {
+                    },
+                    activate_date: {
                         id: 7,
+                        type: StructureType.Select,
+                        title: "Countdown timer activation",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    date: {
+                        id: 8,
                         type: StructureType.Datetime,
-                        title: "End Time (If not needed leave it empty)",
+                        title: "Countdown date",
                         value: "",
                     }
                 },
@@ -337,10 +369,21 @@ export default class BlockFeatured extends Vue {
                                 value: "/",
                             },
                         },
-                    }, date: {
+                    },
+                    activate_date: {
                         id: 7,
+                        type: StructureType.Select,
+                        title: "Countdown timer activation",
+                        value: true,
+                        items: [
+                            { title: "Active", value: true },
+                            { title: "Deactive", value: false },
+                        ],
+                    },
+                    date: {
+                        id: 8,
                         type: StructureType.Datetime,
-                        title: "End Time (If not needed leave it empty)",
+                        title: "Countdown date",
                         value: "",
                     }
                 },
