@@ -30,6 +30,7 @@ export default function blockAddItem(base: any, name: string, item: any) {
             });
         });
         base[name].maxLength = item.maxLength;
+        base[name].onClick = item.onClick;
     }
 
     if (item.type === StructureType.AutoCompeleteSelect) {

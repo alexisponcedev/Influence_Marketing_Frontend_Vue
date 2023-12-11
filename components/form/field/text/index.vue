@@ -32,7 +32,7 @@ import { FormField } from "@/models";
 
 @Component
 export default class TextFormField extends Vue {
-    @Prop({ default: "text" }) readonly type!: "text" | "password";
+    @Prop({ default: "text" }) readonly type!: "text" | "password" | "number";
     @Prop(Number) readonly max!: number;
     @Prop(Object) readonly field!: FormField;
     @VModel() model!: string;

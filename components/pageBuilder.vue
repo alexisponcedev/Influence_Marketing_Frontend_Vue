@@ -121,10 +121,12 @@ export default class PageBuilder extends Vue {
     }
 
     addBlock(block: any) {
-        let id = this.blocksList.length + 1;
+        const id = this.blocksList.length
+            ? Math.max(...this.blocksList.map((item: any) => item.id)) + 1
+            : 1;
         this.blocksList.push({
             ...block,
-            id: id,
+            id,
             selected: false,
             structure: {},
         });
@@ -134,7 +136,9 @@ export default class PageBuilder extends Vue {
 
     addItemByDrag(e: any) {
         if (e.hasOwnProperty("added") && this.blocksList.length > 1) {
-            e.added.element.id = this.blocksList.length + 1;
+            e.added.element.id = this.blocksList.length
+                ? Math.max(...this.blocksList.map((item: any) => item.id)) + 1
+                : 1;
         }
         this.deploy();
     }
@@ -159,7 +163,9 @@ export default class PageBuilder extends Vue {
 
     duplicateBlock(i: any) {
         let newBlock = JSON.parse(JSON.stringify(this.blocksList[i]));
-        newBlock.id = this.blocksList.length + 1;
+        newBlock.id = this.blocksList.length
+            ? Math.max(...this.blocksList.map((item: any) => item.id)) + 1
+            : 1;
         this.blocksList.splice(i + 1, 0, newBlock);
         this.deploy();
     }

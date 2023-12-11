@@ -16,6 +16,12 @@
             v-model="structure[key]"
             :key="index"
             @forceUpdate="forceUpdateIndex++"
+            @onClick="
+                (action) => {
+                    $emit('onClick', action);
+                    forceUpdateIndex++;
+                }
+            "
         />
     </div>
 </template>
