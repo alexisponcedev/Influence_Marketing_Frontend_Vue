@@ -3,7 +3,6 @@
         <div v-if="editMode" class="d-flex justify-space-between align-center">
             <breadcrumbs :locations="locations" />
             <v-spacer />
-
             <v-menu
                 rounded
                 offset-y
