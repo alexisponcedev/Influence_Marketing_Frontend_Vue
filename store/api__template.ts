@@ -167,4 +167,35 @@ export default class api__template extends VuexModule {
             return response.data;
         return {};
     }
+
+    @Action
+    async addTranslation(payload: {
+        id: number;
+        language: string;
+        widgets: Array<any>;
+    }) {
+        this.setLoading(true);
+        const response = await TemplateApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .addTemplateTranslation(
+                getActiveBrand(),
+                payload.id,
+                payload.language,
+                { widgets: payload.widgets }
+            )
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        this.setLoading(false);
+
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
 }

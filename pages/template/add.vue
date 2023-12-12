@@ -3,14 +3,44 @@
         <div v-if="editMode" class="d-flex justify-space-between align-center">
             <breadcrumbs :locations="locations" />
             <v-spacer />
-            <v-btn
-                elevation="0"
-                color="grey darken-4 white--text"
-                class="btn"
-                :to="`/template/edit/${Template.id}/TemplateBuilder`"
+
+            <v-menu
+                rounded
+                offset-y
+                nudge-top="-3"
+                nudge-width="-30"
+                nudge-left="-15"
             >
-                Go to Template Builder
-            </v-btn>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        elevation="0"
+                        color="grey darken-4 white--text"
+                        class="btn"
+                        :to="
+                            Api.Auth.languages.length
+                                ? undefined
+                                : `/template/edit/${Template.id}/TemplateBuilder`
+                        "
+                        v-bind="attrs"
+                        v-on="on"
+                    >
+                        Go to Template Builder
+                        <v-icon v-if="Api.Auth.languages.length">
+                            mdi-chevron-down
+                        </v-icon>
+                    </v-btn>
+                </template>
+                <v-list v-if="Api.Auth.languages.length">
+                    <v-list-item
+                        v-for="language in Api.Auth.languages"
+                        :to="`/template/edit/${Template.id}/TemplateBuilder?lang=${language.slug}`"
+                    >
+                        <v-list-item-title>
+                            {{ language.title }}
+                        </v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
         </div>
 
         <v-row>
@@ -48,11 +78,11 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import HoverButton from "@/components/base/HoverButton.vue";
 import Validation from "@/utils/validation";
 import { Template } from "@/repositories";
 import { FormField } from "@/models";
 import { Api } from "@/store";
-import HoverButton from "~/components/base/HoverButton.vue";
 
 @Component({
     components: { HoverButton },
@@ -80,6 +110,7 @@ export default class EntityForm extends Vue {
     }
 
     async init() {
+        if (!Api.Auth.languages.length) await Api.Auth.getBrandLanguages();
         await this.initTemplatesTab();
         this.updateLocations();
     }
