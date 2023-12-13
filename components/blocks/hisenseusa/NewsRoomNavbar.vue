@@ -15,7 +15,6 @@ export default class NewsRoomNavbar extends Vue {
     @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
-
     mounted() {
         blockAddItem(this.model, "title_link", {
             id: 0,
