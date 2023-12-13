@@ -2530,6 +2530,12 @@ export const BLOCKS = () => {
                             category: "ImageBox",
                         },
                         {
+                            name: "NewsRoomMainBox",
+                            title: "NewsRoom Main Box",
+                            image: "NewsRoomMainBox.png",
+                            category: "ImageBox",
+                        },
+                        {
                             name: "NewsRoomNavbar",
                             title: "NewsRoom Navbar",
                             image: "NewsRoomNavbar.png",
