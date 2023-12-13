@@ -52,6 +52,7 @@
         </draggable>
 
         <button
+            v-if="!single || model.length < 1"
             @click="addNew"
             class="tw-border tw-border-dashed tw-bg-gray-50 tw-border-gray-200 tw-rounded-xl tw-text-center tw-p-3 hover:tw-bg-gray-200"
         >
@@ -60,13 +61,15 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component, VModel } from "vue-property-decorator";
+import { Vue, Component, VModel, Prop } from "vue-property-decorator";
 import { UrlTypeEnum } from "@/interfaces/UrlTypeEnum";
 import { Api } from "@/utils/store-accessor";
 
 @Component
 export default class MenuItemEditor extends Vue {
     @VModel({ type: Array }) model!: any;
+    @Prop(Boolean) single!: boolean;
+
     Api = Api;
 
     type = UrlTypeEnum.Internal;

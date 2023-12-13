@@ -43,6 +43,11 @@ export default class Menus extends Vue {
                         value: "hamburger",
                         type: "links",
                     },
+                    {
+                        title: "Logo",
+                        value: "logo",
+                        type: "links-single",
+                    },
                 ];
                 break;
             case "footer-menu":
