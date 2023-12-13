@@ -20,7 +20,7 @@ export default class NewsRoomNavbar extends Vue {
         blockAddItem(this.model, "title_link", {
             id: 0,
             type: StructureType.Url,
-            title: "Title 1 link",
+            title: "Title",
             value: "/",
             target:"_self"
         });
@@ -42,7 +42,13 @@ export default class NewsRoomNavbar extends Vue {
             title: "Search Newsroom",
             value: "",
         });
-      
+        blockAddItem(this.model, "target_route", {
+            id: 4,
+            type: StructureType.Url,
+            title: "",
+            value: "/",
+            target:"_self"
+        });
         this.model = { ...this.model };
     }
 
