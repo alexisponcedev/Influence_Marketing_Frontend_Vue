@@ -10,7 +10,7 @@
                             elevation="0"
                             class="tw-block tw-h-20 tw-bg-gray-50 tw-text-center tw-py-5 tw-rounded-xl tw-flex tw-items-center tw-justify-center hover:tw-bg-gray-100 tw-border tw-border-dashed tw-border-gray-200"
                         >
-                            Edit Footer Menu
+                            Edit Header Menu
                         </v-card>
                     </template>
                     <v-list>
