@@ -1,5 +1,8 @@
 <template>
-    <div class="tw-p-2">
+    <div
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        class="tw-p-2"
+    >
         <label>
             {{ model.title }}
         </label>

@@ -6,15 +6,16 @@
         >
             <h6>{{ title }}</h6>
             <button @click="close">
-                <v-icon>mdi-close</v-icon>
+                <v-icon> mdi-close </v-icon>
             </button>
         </div>
 
         <component
-            :is="`structure-editor-${structure[key].type}`"
             v-for="(key, index) in structureKeys.filter((i) => i.type !== null)"
-            v-model="structure[key]"
+            :is="`structure-editor-${structure[key].type}`"
             :key="index"
+            v-model="structure[key]"
+            @changeWidget="changeWidget"
             @forceUpdate="forceUpdateIndex++"
             @onClick="
                 (action) => {
@@ -56,6 +57,10 @@ export default class StructureEditor extends Vue {
                   })
                   .map((i) => i[0])
             : [];
+    }
+
+    changeWidget(toWidget: any) {
+        this.$emit("changeWidget", { structure: this.structure, toWidget });
     }
 }
 </script>
