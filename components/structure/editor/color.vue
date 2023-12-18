@@ -68,7 +68,9 @@ export default class StructureColorEditor extends Vue {
 
     mounted() {
         this.color =
-            (typeof this.model.value == "object" && this.model.value.hexa) ||
+            (this.model.value &&
+                typeof this.model.value == "object" &&
+                this.model.value.hexa) ||
             this.model.value ||
             "#fff";
     }
