@@ -1,5 +1,10 @@
 <template>
-    <form-field-select :field="field" v-model="model.value" @change="changed" />
+    <form-field-select
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        v-model="model.value"
+        @change="changed"
+        :field="field"
+    />
 </template>
 
 <script lang="ts">

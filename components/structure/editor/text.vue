@@ -1,5 +1,5 @@
 <template>
-    <v-col>
+    <v-col v-if="typeof model.hidden === 'undefined' || !model.hidden">
         <label v-if="field.label && field.label !== ''">
             {{ field.label }}
         </label>

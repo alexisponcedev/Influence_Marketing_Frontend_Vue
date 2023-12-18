@@ -33,4 +33,5 @@ export class StructureField implements StructureFieldInterface {
     icon: string = "";
     min?: number;
     max?: number;
+    toWidget?: any;
 }

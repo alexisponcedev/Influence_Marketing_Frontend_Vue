@@ -1,5 +1,6 @@
 <template>
     <form-field-date-standard
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
         type="datetime"
         v-model="internalValue"
         :dateFormat="dateFormat"

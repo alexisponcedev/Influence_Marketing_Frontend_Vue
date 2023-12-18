@@ -17,6 +17,7 @@
             <v-tab-item
                 v-for="(section, index) in sections"
                 :value="section.value"
+                eager
             >
                 <v-card>
                     <v-card-text>
