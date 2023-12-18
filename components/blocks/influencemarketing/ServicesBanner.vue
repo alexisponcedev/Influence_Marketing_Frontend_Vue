@@ -2,26 +2,15 @@
     <div v-if="!isEmpty">
         <section>
             <div class="tw-h-screen tw-relative">
-                <img
-                    :src="model.image.src"
-                    :alt="model.image.alt"
-                    class="tw-h-full tw-w-full tw-absolute tw-left-0 tw-top-0 tw-object-cover"
-                />
-                <div
-                    class="tw-w-full tw-absolute tw-left-0 tw-top-1/2 -tw-translate-y-1/2 tw-text-center"
-                >
-                    <h2
-                        :class="`multicolor ${
-                            model.theme.value === 'light'
-                                ? 'white-text'
-                                : 'skyblue'
+                <img :src="model.image.src" :alt="model.image.alt"
+                    class="tw-h-full tw-w-full tw-absolute tw-left-0 tw-top-0 tw-object-cover" />
+                <div class="tw-w-full tw-absolute tw-left-0 tw-top-1/2 -tw-translate-y-1/2 tw-text-center">
+                    <h2 :class="`multicolor ${model.theme.value === 'light'
+                            ? 'white-text'
+                            : 'skyblue'
                         } tw-font-bold tw-text-midnight tw-text-4xl md:tw-text-6xl tw-my-7 -tw-tracking-wide tw-uppercase`"
-                        v-html="model.title.value"
-                    ></h2>
-                    <div
-                        class="tw-text-midnight tw-max-w-[625px] tw-mx-auto"
-                        v-html="model.text.value"
-                    ></div>
+                        v-html="model.title.value"></h2>
+                    <div class="tw-text-midnight tw-max-w-[625px] tw-mx-auto" v-html="model.text.value"></div>
                 </div>
             </div>
         </section>

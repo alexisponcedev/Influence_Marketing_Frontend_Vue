@@ -2843,6 +2843,12 @@ export const BLOCKS = () => {
                             image: "CaseStudyImageAndVideoCollage.png",
                             category: "banner",
                         },
+                        {
+                            name: "CaseStudyTabs",
+                            title: "Case Study Tabs",
+                            image: "CaseStudyTabs.png",
+                            category: "banner",
+                        },
                     ],
                 },
             ],
