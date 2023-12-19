@@ -162,4 +162,36 @@ export default class api__menu extends VuexModule {
             return response.data;
         return {};
     }
+
+    @Action
+    async addTranslation(payload: {
+        id: number;
+        language: string;
+        widgets: Array<any>;
+    }) {
+        this.setLoading(true);
+        payload.widgets = JSON.parse(
+            safeString(JSON.stringify(payload.widgets))
+        );
+        const response = await MenuApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .addMenuTranslation(
+                getActiveBrand(),
+                payload.id,
+                payload.language,
+                { widgets: payload.widgets }
+            )
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data;
+        return {};
+    }
 }

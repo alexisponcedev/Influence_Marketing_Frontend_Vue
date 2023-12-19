@@ -905,7 +905,7 @@ export interface HUSAPostResource {
      * @type {PublishedAt}
      * @memberof HUSAPostResource
      */
-    'published_at'?: any;
+    'published_at'?: string;
     /**
      * 
      * @type {number}
@@ -2317,6 +2317,44 @@ export interface MenuResource {
      * @memberof MenuResource
      */
     'brand_id'?: number;
+    /**
+     * 
+     * @type {Array<MenuResourceTranslations>}
+     * @memberof MenuResource
+     */
+    'translations'?: Array<MenuResourceTranslations>;
+}
+/**
+ * 
+ * @export
+ * @interface MenuResourceBody
+ */
+export interface MenuResourceBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof MenuResourceBody
+     */
+    'title'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MenuResourceTranslations
+ */
+export interface MenuResourceTranslations {
+    /**
+     * 
+     * @type {string}
+     * @memberof MenuResourceTranslations
+     */
+    'language'?: string;
+    /**
+     * 
+     * @type {Array<MenuResourceBody>}
+     * @memberof MenuResourceTranslations
+     */
+    'body'?: Array<MenuResourceBody>;
 }
 /**
  * Error model
@@ -3811,6 +3849,12 @@ export interface TemplateResource {
      * @memberof TemplateResource
      */
     'brand_id'?: number;
+    /**
+     * 
+     * @type {Array<MenuResourceTranslations>}
+     * @memberof TemplateResource
+     */
+    'translations'?: Array<MenuResourceTranslations>;
 }
 /**
  * User model
@@ -4825,6 +4869,46 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authBrand: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('authBrand', 'brandId', brandId)
+            const localVarPath = `/auth/brand`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4901,6 +4985,16 @@ export const AuthApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authBrand(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Login>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authBrand(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4930,6 +5024,15 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authBrand(brandId: number, options?: any): AxiosPromise<Login> {
+            return localVarFp.authBrand(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4955,6 +5058,17 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
  * @extends {BaseAPI}
  */
 export class AuthApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public authBrand(brandId: number, options?: AxiosRequestConfig) {
+        return AuthApiFp(this.configuration).authBrand(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {*} [options] Override http request option.
@@ -10146,6 +10260,63 @@ export const MenuApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {number} brandId Brand Id
+         * @param {number} id Menu ID
+         * @param {string} language language
+         * @param {Menu} menu 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addMenuTranslation: async (brandId: number, id: number, language: string, menu: Menu, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('addMenuTranslation', 'brandId', brandId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('addMenuTranslation', 'id', id)
+            // verify required parameter 'language' is not null or undefined
+            assertParamExists('addMenuTranslation', 'language', language)
+            // verify required parameter 'menu' is not null or undefined
+            assertParamExists('addMenuTranslation', 'menu', menu)
+            const localVarPath = `/menu/translate/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (language !== undefined) {
+                localVarQueryParameter['language'] = language;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(menu, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} brandId Brand ID
          * @param {number} id Menu ID
          * @param {*} [options] Override http request option.
@@ -10345,6 +10516,19 @@ export const MenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand Id
+         * @param {number} id Menu ID
+         * @param {string} language language
+         * @param {Menu} menu 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addMenuTranslation(brandId: number, id: number, language: string, menu: Menu, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Menu>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addMenuTranslation(brandId, id, language, menu, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} brandId Brand ID
          * @param {number} id Menu ID
          * @param {*} [options] Override http request option.
@@ -10409,6 +10593,18 @@ export const MenuApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {number} brandId Brand Id
+         * @param {number} id Menu ID
+         * @param {string} language language
+         * @param {Menu} menu 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addMenuTranslation(brandId: number, id: number, language: string, menu: Menu, options?: any): AxiosPromise<Menu> {
+            return localVarFp.addMenuTranslation(brandId, id, language, menu, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} brandId Brand ID
          * @param {number} id Menu ID
          * @param {*} [options] Override http request option.
@@ -10467,6 +10663,20 @@ export class MenuApi extends BaseAPI {
      */
     public addMenu(brandId: number, menu: Menu, options?: AxiosRequestConfig) {
         return MenuApiFp(this.configuration).addMenu(brandId, menu, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand Id
+     * @param {number} id Menu ID
+     * @param {string} language language
+     * @param {Menu} menu 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MenuApi
+     */
+    public addMenuTranslation(brandId: number, id: number, language: string, menu: Menu, options?: AxiosRequestConfig) {
+        return MenuApiFp(this.configuration).addMenuTranslation(brandId, id, language, menu, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11050,6 +11260,2034 @@ export class PIMApi extends BaseAPI {
      */
     public changePageStatus(productId: number, status: number, options?: AxiosRequestConfig) {
         return PIMApiFp(this.configuration).changePageStatus(productId, status, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * PUBLICAPIsApi - axios parameter creator
+ * @export
+ */
+export const PUBLICAPIsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        _611328c2d3e3d506b83b71921706191b: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('_611328c2d3e3d506b83b71921706191b', 'brandId', brandId)
+            const localVarPath = `/public/getCategories`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {ModelError} modelError 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCAddError: async (modelError: ModelError, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'modelError' is not null or undefined
+            assertParamExists('publiCAddError', 'modelError', modelError)
+            const localVarPath = `/public/addError`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modelError, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetAllPages: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetAllPages', 'brandId', brandId)
+            const localVarPath = `/public/getPages`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId brand id
+         * @param {number} brandId2 Brand ID
+         * @param {string} [type] Filter by type
+         * @param {number} [year] post created year
+         * @param {string} [title] post/page title
+         * @param {number} [perPage] Results Per Page
+         * @param {string} [tag] Filter by Tag
+         * @param {Array<number>} [exclude] exclude results
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetAllPosts: async (brandId: number, brandId2: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetAllPosts', 'brandId', brandId)
+            // verify required parameter 'brandId2' is not null or undefined
+            assertParamExists('publiCGetAllPosts', 'brandId2', brandId2)
+            const localVarPath = `/public/getPosts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined) {
+                localVarQueryParameter['brand_id'] = brandId;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (year !== undefined) {
+                localVarQueryParameter['year'] = year;
+            }
+
+            if (title !== undefined) {
+                localVarQueryParameter['title'] = title;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (exclude) {
+                localVarQueryParameter['exclude[]'] = exclude;
+            }
+
+            if (brandId2 !== undefined && brandId2 !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId2));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetAllPostsTags: async (brandId: number, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetAllPostsTags', 'brandId', brandId)
+            const localVarPath = `/public/getPosts/meta`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} blockId Block ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetBlockInfo: async (blockId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('publiCGetBlockInfo', 'blockId', blockId)
+            const localVarPath = `/public/getBlockInfo/{blockId}`
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} modelId Model ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetDynamicPages: async (brandId: number, modelId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetDynamicPages', 'brandId', brandId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('publiCGetDynamicPages', 'modelId', modelId)
+            const localVarPath = `/public/getDynamicPages/{modelId}`
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetMenuList: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetMenuList', 'brandId', brandId)
+            const localVarPath = `/public/getMenus`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} url Page URL
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPageByUrl: async (brandId: number, url: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetPageByUrl', 'brandId', brandId)
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('publiCGetPageByUrl', 'url', url)
+            const localVarPath = `/public/getPageByUrl/{url}`
+                .replace(`{${"url"}}`, encodeURIComponent(String(url)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} value Page ID or Page Url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPageDetail: async (brandId: number, value: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetPageDetail', 'brandId', brandId)
+            // verify required parameter 'value' is not null or undefined
+            assertParamExists('publiCGetPageDetail', 'value', value)
+            const localVarPath = `/public/getPageDetail/{value}`
+                .replace(`{${"value"}}`, encodeURIComponent(String(value)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPageInfo: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetPageInfo', 'brandId', brandId)
+            // verify required parameter 'pageId' is not null or undefined
+            assertParamExists('publiCGetPageInfo', 'pageId', pageId)
+            const localVarPath = `/public/getPageInfo/{pageId}`
+                .replace(`{${"pageId"}}`, encodeURIComponent(String(pageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} postId Post ID
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPostById: async (postId: number, brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postId' is not null or undefined
+            assertParamExists('publiCGetPostById', 'postId', postId)
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetPostById', 'brandId', brandId)
+            const localVarPath = `/public/getPostInfo/{postId}`
+                .replace(`{${"postId"}}`, encodeURIComponent(String(postId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [postIds] id of posts as json array [1,2,3]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPostTags: async (brandId: number, postIds?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetPostTags', 'brandId', brandId)
+            const localVarPath = `/public/getPostTags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (postIds !== undefined) {
+                localVarQueryParameter['postIds'] = postIds;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetRedirectList: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetRedirectList', 'brandId', brandId)
+            const localVarPath = `/public/getRedirects`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetSettingList: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetSettingList', 'brandId', brandId)
+            const localVarPath = `/public/getSettings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetStaticPages: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetStaticPages', 'brandId', brandId)
+            const localVarPath = `/public/getStaticPages`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} tempId Template ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetTemplateInfo: async (brandId: number, tempId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetTemplateInfo', 'brandId', brandId)
+            // verify required parameter 'tempId' is not null or undefined
+            assertParamExists('publiCGetTemplateInfo', 'tempId', tempId)
+            const localVarPath = `/public/getTemplateInfo/{tempId}`
+                .replace(`{${"tempId"}}`, encodeURIComponent(String(tempId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetTemplateList: async (brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCGetTemplateList', 'brandId', brandId)
+            const localVarPath = `/public/getTemplates`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} string string
+         * @param {number} [brandId] Brand Id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCdoSearchPage: async (string: string, brandId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'string' is not null or undefined
+            assertParamExists('publiCdoSearchPage', 'string', string)
+            const localVarPath = `/public/searchPage/{string}`
+                .replace(`{${"string"}}`, encodeURIComponent(String(string)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined) {
+                localVarQueryParameter['brand_id'] = brandId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} categoryId Category ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetBlocksByCategoryId: async (categoryId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'categoryId' is not null or undefined
+            assertParamExists('publiCgetBlocksByCategoryId', 'categoryId', categoryId)
+            const localVarPath = `/public/getBlocksByCategoryId/{categoryId}`
+                .replace(`{${"categoryId"}}`, encodeURIComponent(String(categoryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetBlocksByPageId: async (brandId: number, pageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCgetBlocksByPageId', 'brandId', brandId)
+            // verify required parameter 'pageId' is not null or undefined
+            assertParamExists('publiCgetBlocksByPageId', 'pageId', pageId)
+            const localVarPath = `/public/getBlocksByPageId/{pageId}`
+                .replace(`{${"pageId"}}`, encodeURIComponent(String(pageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} pageId Page ID
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetNotifications: async (pageId: number, brandId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pageId' is not null or undefined
+            assertParamExists('publiCgetNotifications', 'pageId', pageId)
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCgetNotifications', 'brandId', brandId)
+            const localVarPath = `/public/getNotifications/{pageId}`
+                .replace(`{${"pageId"}}`, encodeURIComponent(String(pageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} [perPage] Number per page
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetPaginatePosts: async (brandId: number, perPage?: number, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCgetPaginatePosts', 'brandId', brandId)
+            const localVarPath = `/public/getPaginatePosts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetSupportByProductId: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/public/page/support/route/{productId}`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} productId Product Id
+         * @param {number} serialNumber Serial Number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetTemplateByProductId: async (productId: number, serialNumber: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productId' is not null or undefined
+            assertParamExists('publiCgetTemplateByProductId', 'productId', productId)
+            // verify required parameter 'serialNumber' is not null or undefined
+            assertParamExists('publiCgetTemplateByProductId', 'serialNumber', serialNumber)
+            const localVarPath = `/public/template/{productId}/{serialNumber}`
+                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)))
+                .replace(`{${"serialNumber"}}`, encodeURIComponent(String(serialNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [string] string
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCsearchPost: async (brandId: number, string?: string, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('publiCsearchPost', 'brandId', brandId)
+            const localVarPath = `/public/searchPost`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (string !== undefined) {
+                localVarQueryParameter['string'] = string;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [categoryId] Category ID
+         * @param {string} [string] string
+         * @param {string} [condition] condition: or/and, default: or
+         * @param {Array<string>} [filters] filters array
+         * @param {string} [sort] sort by newest / oldest
+         * @param {string} [type] page type: product or support
+         * @param {number} [brandId] Brand Id
+         * @param {Array<number>} [status] array of status_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCsearchProductByCategoryId: async (categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, status?: Array<number>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/public/searchProduct`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (categoryId !== undefined) {
+                localVarQueryParameter['category_id'] = categoryId;
+            }
+
+            if (string !== undefined) {
+                localVarQueryParameter['string'] = string;
+            }
+
+            if (condition !== undefined) {
+                localVarQueryParameter['condition'] = condition;
+            }
+
+            if (filters) {
+                localVarQueryParameter['filters[]'] = filters;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (brandId !== undefined) {
+                localVarQueryParameter['brand_id'] = brandId;
+            }
+
+            if (status) {
+                localVarQueryParameter['status[]'] = status;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PUBLICAPIsApi - functional programming interface
+ * @export
+ */
+export const PUBLICAPIsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PUBLICAPIsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async _611328c2d3e3d506b83b71921706191b(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator._611328c2d3e3d506b83b71921706191b(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {ModelError} modelError 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCAddError(modelError: ModelError, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCAddError(modelError, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetAllPages(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20021>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetAllPages(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId brand id
+         * @param {number} brandId2 Brand ID
+         * @param {string} [type] Filter by type
+         * @param {number} [year] post created year
+         * @param {string} [title] post/page title
+         * @param {number} [perPage] Results Per Page
+         * @param {string} [tag] Filter by Tag
+         * @param {Array<number>} [exclude] exclude results
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetAllPosts(brandId: number, brandId2: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20031>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetAllPosts(brandId, brandId2, type, year, title, perPage, tag, exclude, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetAllPostsTags(brandId: number, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetAllPostsTags(brandId, type, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} blockId Block ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetBlockInfo(blockId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetBlockInfo(blockId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} modelId Model ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetDynamicPages(brandId: number, modelId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20021>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetDynamicPages(brandId, modelId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetMenuList(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20028>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetMenuList(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} url Page URL
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetPageByUrl(brandId: number, url: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20022>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetPageByUrl(brandId, url, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} value Page ID or Page Url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetPageDetail(brandId: number, value: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20022>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetPageDetail(brandId, value, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetPageInfo(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20022>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetPageInfo(brandId, pageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} postId Post ID
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetPostById(postId: number, brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20032>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetPostById(postId, brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [postIds] id of posts as json array [1,2,3]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetPostTags(brandId: number, postIds?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetPostTags(brandId, postIds, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetRedirectList(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20029>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetRedirectList(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetSettingList(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20030>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetSettingList(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetStaticPages(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20021>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetStaticPages(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} tempId Template ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetTemplateInfo(brandId: number, tempId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20025>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetTemplateInfo(brandId, tempId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCGetTemplateList(brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20024>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCGetTemplateList(brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} string string
+         * @param {number} [brandId] Brand Id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCdoSearchPage(string: string, brandId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCdoSearchPage(string, brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} categoryId Category ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCgetBlocksByCategoryId(categoryId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCgetBlocksByCategoryId(categoryId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCgetBlocksByPageId(brandId: number, pageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20023>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCgetBlocksByPageId(brandId, pageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} pageId Page ID
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCgetNotifications(pageId: number, brandId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20033>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCgetNotifications(pageId, brandId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} [perPage] Number per page
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCgetPaginatePosts(brandId: number, perPage?: number, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20035>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCgetPaginatePosts(brandId, perPage, type, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCgetSupportByProductId(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20019>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCgetSupportByProductId(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} productId Product Id
+         * @param {number} serialNumber Serial Number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCgetTemplateByProductId(productId: number, serialNumber: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20020>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCgetTemplateByProductId(productId, serialNumber, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [string] string
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCsearchPost(brandId: number, string?: string, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse20034>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCsearchPost(brandId, string, type, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [categoryId] Category ID
+         * @param {string} [string] string
+         * @param {string} [condition] condition: or/and, default: or
+         * @param {Array<string>} [filters] filters array
+         * @param {string} [sort] sort by newest / oldest
+         * @param {string} [type] page type: product or support
+         * @param {number} [brandId] Brand Id
+         * @param {Array<number>} [status] array of status_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publiCsearchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, status?: Array<number>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publiCsearchProductByCategoryId(categoryId, string, condition, filters, sort, type, brandId, status, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * PUBLICAPIsApi - factory interface
+ * @export
+ */
+export const PUBLICAPIsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PUBLICAPIsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        _611328c2d3e3d506b83b71921706191b(brandId: number, options?: any): AxiosPromise<InlineResponse2006> {
+            return localVarFp._611328c2d3e3d506b83b71921706191b(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {ModelError} modelError 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCAddError(modelError: ModelError, options?: any): AxiosPromise<Error> {
+            return localVarFp.publiCAddError(modelError, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetAllPages(brandId: number, options?: any): AxiosPromise<InlineResponse20021> {
+            return localVarFp.publiCGetAllPages(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId brand id
+         * @param {number} brandId2 Brand ID
+         * @param {string} [type] Filter by type
+         * @param {number} [year] post created year
+         * @param {string} [title] post/page title
+         * @param {number} [perPage] Results Per Page
+         * @param {string} [tag] Filter by Tag
+         * @param {Array<number>} [exclude] exclude results
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetAllPosts(brandId: number, brandId2: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options?: any): AxiosPromise<InlineResponse20031> {
+            return localVarFp.publiCGetAllPosts(brandId, brandId2, type, year, title, perPage, tag, exclude, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetAllPostsTags(brandId: number, type?: string, options?: any): AxiosPromise<any> {
+            return localVarFp.publiCGetAllPostsTags(brandId, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} blockId Block ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetBlockInfo(blockId: number, options?: any): AxiosPromise<InlineResponse2005> {
+            return localVarFp.publiCGetBlockInfo(blockId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} modelId Model ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetDynamicPages(brandId: number, modelId: number, options?: any): AxiosPromise<InlineResponse20021> {
+            return localVarFp.publiCGetDynamicPages(brandId, modelId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetMenuList(brandId: number, options?: any): AxiosPromise<InlineResponse20028> {
+            return localVarFp.publiCGetMenuList(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} url Page URL
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPageByUrl(brandId: number, url: string, options?: any): AxiosPromise<InlineResponse20022> {
+            return localVarFp.publiCGetPageByUrl(brandId, url, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} value Page ID or Page Url
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPageDetail(brandId: number, value: string, options?: any): AxiosPromise<InlineResponse20022> {
+            return localVarFp.publiCGetPageDetail(brandId, value, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPageInfo(brandId: number, pageId: number, options?: any): AxiosPromise<InlineResponse20022> {
+            return localVarFp.publiCGetPageInfo(brandId, pageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} postId Post ID
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPostById(postId: number, brandId: number, options?: any): AxiosPromise<InlineResponse20032> {
+            return localVarFp.publiCGetPostById(postId, brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [postIds] id of posts as json array [1,2,3]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetPostTags(brandId: number, postIds?: string, options?: any): AxiosPromise<any> {
+            return localVarFp.publiCGetPostTags(brandId, postIds, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetRedirectList(brandId: number, options?: any): AxiosPromise<InlineResponse20029> {
+            return localVarFp.publiCGetRedirectList(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetSettingList(brandId: number, options?: any): AxiosPromise<InlineResponse20030> {
+            return localVarFp.publiCGetSettingList(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetStaticPages(brandId: number, options?: any): AxiosPromise<InlineResponse20021> {
+            return localVarFp.publiCGetStaticPages(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} tempId Template ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetTemplateInfo(brandId: number, tempId: number, options?: any): AxiosPromise<InlineResponse20025> {
+            return localVarFp.publiCGetTemplateInfo(brandId, tempId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCGetTemplateList(brandId: number, options?: any): AxiosPromise<InlineResponse20024> {
+            return localVarFp.publiCGetTemplateList(brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} string string
+         * @param {number} [brandId] Brand Id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCdoSearchPage(string: string, brandId?: number, options?: any): AxiosPromise<void> {
+            return localVarFp.publiCdoSearchPage(string, brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} categoryId Category ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetBlocksByCategoryId(categoryId: number, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.publiCgetBlocksByCategoryId(categoryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} pageId Page ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetBlocksByPageId(brandId: number, pageId: number, options?: any): AxiosPromise<InlineResponse20023> {
+            return localVarFp.publiCgetBlocksByPageId(brandId, pageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} pageId Page ID
+         * @param {number} brandId Brand ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetNotifications(pageId: number, brandId: number, options?: any): AxiosPromise<InlineResponse20033> {
+            return localVarFp.publiCgetNotifications(pageId, brandId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {number} [perPage] Number per page
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetPaginatePosts(brandId: number, perPage?: number, type?: string, options?: any): AxiosPromise<InlineResponse20035> {
+            return localVarFp.publiCgetPaginatePosts(brandId, perPage, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetSupportByProductId(options?: any): AxiosPromise<InlineResponse20019> {
+            return localVarFp.publiCgetSupportByProductId(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} productId Product Id
+         * @param {number} serialNumber Serial Number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCgetTemplateByProductId(productId: number, serialNumber: number, options?: any): AxiosPromise<InlineResponse20020> {
+            return localVarFp.publiCgetTemplateByProductId(productId, serialNumber, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} brandId Brand ID
+         * @param {string} [string] string
+         * @param {string} [type] Filter by type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCsearchPost(brandId: number, string?: string, type?: string, options?: any): AxiosPromise<InlineResponse20034> {
+            return localVarFp.publiCsearchPost(brandId, string, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [categoryId] Category ID
+         * @param {string} [string] string
+         * @param {string} [condition] condition: or/and, default: or
+         * @param {Array<string>} [filters] filters array
+         * @param {string} [sort] sort by newest / oldest
+         * @param {string} [type] page type: product or support
+         * @param {number} [brandId] Brand Id
+         * @param {Array<number>} [status] array of status_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publiCsearchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, status?: Array<number>, options?: any): AxiosPromise<InlineResponse2004> {
+            return localVarFp.publiCsearchProductByCategoryId(categoryId, string, condition, filters, sort, type, brandId, status, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * PUBLICAPIsApi - object-oriented interface
+ * @export
+ * @class PUBLICAPIsApi
+ * @extends {BaseAPI}
+ */
+export class PUBLICAPIsApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public _611328c2d3e3d506b83b71921706191b(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration)._611328c2d3e3d506b83b71921706191b(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {ModelError} modelError 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCAddError(modelError: ModelError, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCAddError(modelError, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetAllPages(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetAllPages(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId brand id
+     * @param {number} brandId2 Brand ID
+     * @param {string} [type] Filter by type
+     * @param {number} [year] post created year
+     * @param {string} [title] post/page title
+     * @param {number} [perPage] Results Per Page
+     * @param {string} [tag] Filter by Tag
+     * @param {Array<number>} [exclude] exclude results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetAllPosts(brandId: number, brandId2: number, type?: string, year?: number, title?: string, perPage?: number, tag?: string, exclude?: Array<number>, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetAllPosts(brandId, brandId2, type, year, title, perPage, tag, exclude, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {string} [type] Filter by type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetAllPostsTags(brandId: number, type?: string, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetAllPostsTags(brandId, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} blockId Block ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetBlockInfo(blockId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetBlockInfo(blockId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} modelId Model ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetDynamicPages(brandId: number, modelId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetDynamicPages(brandId, modelId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetMenuList(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetMenuList(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {string} url Page URL
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetPageByUrl(brandId: number, url: string, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetPageByUrl(brandId, url, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {string} value Page ID or Page Url
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetPageDetail(brandId: number, value: string, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetPageDetail(brandId, value, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} pageId Page ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetPageInfo(brandId: number, pageId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetPageInfo(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} postId Post ID
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetPostById(postId: number, brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetPostById(postId, brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {string} [postIds] id of posts as json array [1,2,3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetPostTags(brandId: number, postIds?: string, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetPostTags(brandId, postIds, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetRedirectList(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetRedirectList(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetSettingList(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetSettingList(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetStaticPages(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetStaticPages(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} tempId Template ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetTemplateInfo(brandId: number, tempId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetTemplateInfo(brandId, tempId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCGetTemplateList(brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCGetTemplateList(brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} string string
+     * @param {number} [brandId] Brand Id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCdoSearchPage(string: string, brandId?: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCdoSearchPage(string, brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} categoryId Category ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCgetBlocksByCategoryId(categoryId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCgetBlocksByCategoryId(categoryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} pageId Page ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCgetBlocksByPageId(brandId: number, pageId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCgetBlocksByPageId(brandId, pageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} pageId Page ID
+     * @param {number} brandId Brand ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCgetNotifications(pageId: number, brandId: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCgetNotifications(pageId, brandId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {number} [perPage] Number per page
+     * @param {string} [type] Filter by type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCgetPaginatePosts(brandId: number, perPage?: number, type?: string, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCgetPaginatePosts(brandId, perPage, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCgetSupportByProductId(options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCgetSupportByProductId(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} productId Product Id
+     * @param {number} serialNumber Serial Number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCgetTemplateByProductId(productId: number, serialNumber: number, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCgetTemplateByProductId(productId, serialNumber, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand ID
+     * @param {string} [string] string
+     * @param {string} [type] Filter by type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCsearchPost(brandId: number, string?: string, type?: string, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCsearchPost(brandId, string, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [categoryId] Category ID
+     * @param {string} [string] string
+     * @param {string} [condition] condition: or/and, default: or
+     * @param {Array<string>} [filters] filters array
+     * @param {string} [sort] sort by newest / oldest
+     * @param {string} [type] page type: product or support
+     * @param {number} [brandId] Brand Id
+     * @param {Array<number>} [status] array of status_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PUBLICAPIsApi
+     */
+    public publiCsearchProductByCategoryId(categoryId?: number, string?: string, condition?: string, filters?: Array<string>, sort?: string, type?: string, brandId?: number, status?: Array<number>, options?: AxiosRequestConfig) {
+        return PUBLICAPIsApiFp(this.configuration).publiCsearchProductByCategoryId(categoryId, string, condition, filters, sort, type, brandId, status, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -17038,6 +19276,63 @@ export const TemplateApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @param {number} brandId Brand Id
+         * @param {number} id Template ID
+         * @param {string} language language
+         * @param {Template} template 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addTemplateTranslation: async (brandId: number, id: number, language: string, template: Template, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'brandId' is not null or undefined
+            assertParamExists('addTemplateTranslation', 'brandId', brandId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('addTemplateTranslation', 'id', id)
+            // verify required parameter 'language' is not null or undefined
+            assertParamExists('addTemplateTranslation', 'language', language)
+            // verify required parameter 'template' is not null or undefined
+            assertParamExists('addTemplateTranslation', 'template', template)
+            const localVarPath = `/template/translate/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (language !== undefined) {
+                localVarQueryParameter['language'] = language;
+            }
+
+            if (brandId !== undefined && brandId !== null) {
+                localVarHeaderParameter['BrandId'] = String(JSON.stringify(brandId));
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(template, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} brandId Brand ID
          * @param {number} id Template ID
          * @param {*} [options] Override http request option.
@@ -17325,6 +19620,19 @@ export const TemplateApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} brandId Brand Id
+         * @param {number} id Template ID
+         * @param {string} language language
+         * @param {Template} template 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addTemplateTranslation(brandId: number, id: number, language: string, template: Template, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Template>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addTemplateTranslation(brandId, id, language, template, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} brandId Brand ID
          * @param {number} id Template ID
          * @param {*} [options] Override http request option.
@@ -17411,6 +19719,18 @@ export const TemplateApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @param {number} brandId Brand Id
+         * @param {number} id Template ID
+         * @param {string} language language
+         * @param {Template} template 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addTemplateTranslation(brandId: number, id: number, language: string, template: Template, options?: any): AxiosPromise<Template> {
+            return localVarFp.addTemplateTranslation(brandId, id, language, template, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} brandId Brand ID
          * @param {number} id Template ID
          * @param {*} [options] Override http request option.
@@ -17489,6 +19809,20 @@ export class TemplateApi extends BaseAPI {
      */
     public addTemplate(brandId: number, template: Template, options?: AxiosRequestConfig) {
         return TemplateApiFp(this.configuration).addTemplate(brandId, template, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} brandId Brand Id
+     * @param {number} id Template ID
+     * @param {string} language language
+     * @param {Template} template 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TemplateApi
+     */
+    public addTemplateTranslation(brandId: number, id: number, language: string, template: Template, options?: AxiosRequestConfig) {
+        return TemplateApiFp(this.configuration).addTemplateTranslation(brandId, id, language, template, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

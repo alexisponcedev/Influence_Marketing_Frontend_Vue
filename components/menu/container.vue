@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Emit } from "vue-property-decorator";
 import { Api } from "@/store";
 
 @Component({
@@ -66,8 +66,10 @@ export default class Menus extends Vue {
         if (Array.isArray(this.menu.widgets)) this.menu.widgets = {};
     }
 
-    async submit() {
-        await Api.Menu.update({ id: Number(this.menu.id), Menu: this.menu });
+    @Emit("submit")
+    submit() {
+        return this.menu;
+        // await Api.Menu.update({ id: Number(this.menu.id), Menu: this.menu });
     }
 }
 </script>
