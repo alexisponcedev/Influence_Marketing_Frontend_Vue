@@ -1,23 +1,23 @@
 <template>
     <section v-if="!isEmpty">
         <div class="tw-bg-midnight">
-            <div class="flex flex-col justify-center items-center">
-                <ul class="w-full md:h-[100px] flex justify-center items-center gap-4">
-                    <li v-for="(item, index) in model.tabs.value" :key=index @click="activeItemIndex = index" :class="`px-4 py-6 md:px-4 h-full w-fit flex justify-center items-center cursor-pointer border-skyblue transition-all duration-500 ease-in
-                            ${activeItemIndex === index ? 'border-b-2' : 'border-none'}
+            <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+                <ul class="tw-w-full md:tw-h-[100px] tw-flex tw-justify-center tw-items-center tw-gap-4">
+                    <li v-for="(item, index) in model.tabs.value" :key=index @click="activeItemIndex = index" :class="`tw-px-4 tw-py-6 md:tw-px-4 tw-h-full tw-w-fit tw-flex tw-justify-center tw-items-center tw-cursor-pointer tw-border-skyblue tw-transition-all tw-duration-500 tw-ease-in
+                            ${activeItemIndex === index ? 'tw-border-b-2' : 'tw-border-none'}
                             `">
-                        <h6 class="text-white text-center md:text-xl font-normal md:leading-[25px]">
+                        <h6 class="tw-text-white tw-text-center md:tw-text-xl tw-font-normal md:tw-leading-[25px]">
                             {{ item.title.value }}
                         </h6>
                     </li>
                 </ul>
                 <div
-                    class="w-full flex justify-center items-center py-10 md:py-16 border-t border-gray-400 overflow-hidden">
-                    <div v-for="(item, index) in model.tabs.value" :key=index :class="`text-white text-base font-normal leading-5 text-center px-4 absolute max-w-2xl transition-[opacity] ease-in ${activeItemIndex === index
-                        ? 'opacity-100 z-[1] duration-700' : 'opacity-0 z-[-1] pointer-events-none duration-500'}`"
-                        v-html=item.description.value></div>
+                    class="tw-w-full tw-flex tw-justify-center tw-items-center tw-py-10 md:tw-py-16 tw-border-t tw-border-gray-400 tw-overflow-hidden">
                     <div v-for="(item, index) in model.tabs.value" :key=index
-                        :class="`min-w-[100vw] px-4 relative max-w-2xl opacity-0  z-[-1] pointer-events-none`"
+                        :class="`tw-text-white tw-text-base tw-font-normal tw-leading-5 tw-text-center tw-px-4 tw-absolute tw-max-w-2xl tw-transition-[opacity] tw-ease-in ${activeItemIndex === index
+                            ? 'tw-opacity-100 tw-z-[1] tw-duration-700' : 'tw-opacity-0 tw-z-[-1] tw-pointer-events-none tw-duration-500'}`" v-html=item.description.value></div>
+                    <div v-for="(item, index) in model.tabs.value" :key=index
+                        :class="`tw-min-w-[100vw] tw-px-4 tw-relative tw-max-w-2xl tw-opacity-0  tw-z-[-1] tw-pointer-events-none`"
                         v-html=item.description.value></div>
                 </div>
             </div>
