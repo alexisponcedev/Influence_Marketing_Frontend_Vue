@@ -1,5 +1,9 @@
 <template>
-    <div class="tw-w-full" :class="{ 'tw-px-2': hasBackground }">
+    <div
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        class="tw-w-full"
+        :class="{ 'tw-px-2': hasBackground }"
+    >
         <!-- <div class="tw-mb-1" v-if="showTitle">
             {{ model.title }}
         </div> -->

@@ -1,5 +1,8 @@
 <template>
-    <div class="tw-p-2">
+    <div
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        class="tw-p-2"
+    >
         <label>
             {{ model.title }}
         </label>
@@ -65,7 +68,9 @@ export default class StructureColorEditor extends Vue {
 
     mounted() {
         this.color =
-            (typeof this.model.value == "object" && this.model.value.hexa) ||
+            (this.model.value &&
+                typeof this.model.value == "object" &&
+                this.model.value.hexa) ||
             this.model.value ||
             "#fff";
     }

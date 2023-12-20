@@ -245,6 +245,7 @@ export default class NewsRoomMainBox extends Vue {
             newItem.link.value = post.page.route;
             newItem.tag.value = post.tags.join(", ");
             newItem.created_at = post.page.created_at;
+            newItem.published_at = post.published_at;
         }
         return newItem;
     }

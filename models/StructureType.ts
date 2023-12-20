@@ -15,4 +15,8 @@ export enum StructureType {
     AutoCompeleteSelect = "autoCompeleteSelect",
     Datetime = "datetime",
     TextPreview = "textPreview",
+    Button = "button",
+    Number = "number",
+    ChangeWidget = "changeWidget",
+    PopupObject = "popupObject",
 }

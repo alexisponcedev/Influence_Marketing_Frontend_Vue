@@ -1,11 +1,11 @@
 <template>
-        <menu-items-with-child
-            v-if="widgets && Object.keys(widgets).includes(modelKey)"
-            :with-products="withProducts"
-            v-model="widgets[modelKey]"
-            :key="forceUpdateIndex"
-            @addItem="forceUpdate"
-        />
+    <menu-items-with-child
+        v-if="widgets && Object.keys(widgets).includes(modelKey)"
+        :with-products="withProducts"
+        v-model="widgets[modelKey]"
+        :key="forceUpdateIndex"
+        @addItem="forceUpdate"
+    />
 </template>
 
 <script lang="ts">
@@ -23,6 +23,7 @@ export default class MenuLinksMenuType extends Vue {
 
     @Watch("widgets")
     widgetsUpdated() {
+        if (!this.widgets) this.widgets = {};
         if (!Object.keys(this.widgets).includes(this.modelKey))
             this.widgets[this.modelKey] = {
                 childs: [],

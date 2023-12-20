@@ -5,9 +5,9 @@ export default function blockAddItem(base: any, name: string, item: any) {
 
     base[name].id = item.id;
     base[name].hidden = !!item.hidden;
-    // base[name].title = item.title;
 
     if (base[name].type !== item.type) base[name].type = item.type;
+    if (base[name].type !== "url") base[name].title = item.title;
 
     if (item.type === StructureType.Image) {
         base[name].src = base[name].src || item.src;
@@ -30,6 +30,7 @@ export default function blockAddItem(base: any, name: string, item: any) {
             });
         });
         base[name].maxLength = item.maxLength;
+        base[name].onClick = item.onClick;
     }
 
     if (item.type === StructureType.AutoCompeleteSelect) {
