@@ -41,7 +41,11 @@
             />
         </div>
 
-        <button @click="goNext" class="tw-text-white tw-absolute" style="top: 48%; right: 4px">
+        <button
+            @click="goNext"
+            class="tw-text-white tw-absolute"
+            style="top: 48%; right: 4px"
+        >
             <v-icon class="white--text" x-large>mdi-chevron-right</v-icon>
         </button>
 
@@ -103,13 +107,6 @@ export default class LandingSlider extends Vue {
             type: StructureType.List,
             title: "Items",
             newItem: {
-                url: {
-                    id: 2,
-                    type: StructureType.Url,
-                    target: "_self",
-                    title: "Target URL",
-                    value: "/products",
-                },
                 buttonStyle: {
                     id: 1,
                     type: StructureType.PopupObject,
@@ -153,6 +150,13 @@ export default class LandingSlider extends Vue {
                         },
                     },
                 },
+                url: {
+                    id: 2,
+                    type: StructureType.Url,
+                    target: "_self",
+                    title: "Target URL",
+                    value: "/products",
+                },
                 mobile: {
                     id: 3,
                     type: StructureType.Image,
@@ -175,13 +179,13 @@ export default class LandingSlider extends Vue {
                     alt: "Large Image for Slider",
                 },
                 lightboxTitle: {
-                    id: 4,
+                    id: 6,
                     type: StructureType.String,
                     title: "Lightbox Button Title",
                     value: "",
                 },
                 lightbox: {
-                    id: 5,
+                    id: 7,
                     type: StructureType.Select,
                     title: "Open Light Box (this option will ignore the Link)",
                     value: true,
@@ -191,7 +195,7 @@ export default class LandingSlider extends Vue {
                     ],
                 },
                 lightbox_live_animation: {
-                    id: 5,
+                    id: 8,
                     type: StructureType.Select,
                     title: "Light box live animation toggle",
                     value: true,
@@ -201,7 +205,7 @@ export default class LandingSlider extends Vue {
                     ],
                 },
                 lightboxObject: {
-                    id: 6,
+                    id: 9,
                     type: StructureType.Object,
                     title: "Light Box Data",
                     value: {
@@ -235,13 +239,6 @@ export default class LandingSlider extends Vue {
             },
             value: [
                 {
-                    url: {
-                        id: 2,
-                        type: StructureType.Url,
-                        target: "_self",
-                        title: "Target URL",
-                        value: "/products",
-                    },
                     buttonStyle: {
                         id: 1,
                         type: StructureType.PopupObject,
@@ -284,6 +281,13 @@ export default class LandingSlider extends Vue {
                                 value: "#000",
                             },
                         },
+                    },
+                    url: {
+                        id: 2,
+                        type: StructureType.Url,
+                        target: "_self",
+                        title: "Target URL",
+                        value: "/products",
                     },
                     mobile: {
                         id: 3,
@@ -307,13 +311,13 @@ export default class LandingSlider extends Vue {
                         alt: "Large Image for Slider",
                     },
                     lightboxTitle: {
-                        id: 4,
+                        id: 6,
                         type: StructureType.String,
                         title: "Lightbox Button Title",
                         value: "",
                     },
                     lightbox: {
-                        id: 5,
+                        id: 7,
                         type: StructureType.Select,
                         title: "Open Light Box (this option will ignore the Link)",
                         value: true,
@@ -323,7 +327,7 @@ export default class LandingSlider extends Vue {
                         ],
                     },
                     lightbox_live_animation: {
-                        id: 5,
+                        id: 8,
                         type: StructureType.Select,
                         title: "Light box live animation toggle",
                         value: true,
@@ -333,7 +337,7 @@ export default class LandingSlider extends Vue {
                         ],
                     },
                     lightboxObject: {
-                        id: 6,
+                        id: 9,
                         type: StructureType.Object,
                         title: "Light Box Data",
                         value: {
@@ -366,13 +370,6 @@ export default class LandingSlider extends Vue {
                     },
                 },
                 {
-                    url: {
-                        id: 2,
-                        type: StructureType.Url,
-                        target: "_self",
-                        title: "Target URL",
-                        value: "/products",
-                    },
                     buttonStyle: {
                         id: 1,
                         type: StructureType.PopupObject,
@@ -415,6 +412,13 @@ export default class LandingSlider extends Vue {
                                 value: "#000",
                             },
                         },
+                    },
+                    url: {
+                        id: 2,
+                        type: StructureType.Url,
+                        target: "_self",
+                        title: "Target URL",
+                        value: "/products",
                     },
                     mobile: {
                         id: 3,
@@ -438,13 +442,13 @@ export default class LandingSlider extends Vue {
                         alt: "Large Image for Slider",
                     },
                     lightboxTitle: {
-                        id: 4,
+                        id: 6,
                         type: StructureType.String,
                         title: "Lightbox Button Title",
                         value: "",
                     },
                     lightbox: {
-                        id: 5,
+                        id: 7,
                         type: StructureType.Select,
                         title: "Open Light Box (this option will ignore the Link)",
                         value: true,
@@ -454,7 +458,7 @@ export default class LandingSlider extends Vue {
                         ],
                     },
                     lightbox_live_animation: {
-                        id: 5,
+                        id: 8,
                         type: StructureType.Select,
                         title: "Light box live animation toggle",
                         value: true,
@@ -464,7 +468,7 @@ export default class LandingSlider extends Vue {
                         ],
                     },
                     lightboxObject: {
-                        id: 6,
+                        id: 9,
                         type: StructureType.Object,
                         title: "Light Box Data",
                         value: {
@@ -497,13 +501,6 @@ export default class LandingSlider extends Vue {
                     },
                 },
                 {
-                    url: {
-                        id: 2,
-                        type: StructureType.Url,
-                        target: "_self",
-                        title: "Target URL",
-                        value: "/products",
-                    },
                     buttonStyle: {
                         id: 1,
                         type: StructureType.PopupObject,
@@ -547,6 +544,13 @@ export default class LandingSlider extends Vue {
                             },
                         },
                     },
+                    url: {
+                        id: 2,
+                        type: StructureType.Url,
+                        target: "_self",
+                        title: "Target URL",
+                        value: "/products",
+                    },
                     mobile: {
                         id: 3,
                         type: StructureType.Image,
@@ -569,13 +573,13 @@ export default class LandingSlider extends Vue {
                         alt: "Large Image for Slider",
                     },
                     lightboxTitle: {
-                        id: 4,
+                        id: 6,
                         type: StructureType.String,
                         title: "Lightbox Button Title",
                         value: "",
                     },
                     lightbox: {
-                        id: 5,
+                        id: 7,
                         type: StructureType.Select,
                         title: "Open Light Box (this option will ignore the Link)",
                         value: true,
@@ -585,7 +589,7 @@ export default class LandingSlider extends Vue {
                         ],
                     },
                     lightbox_live_animation: {
-                        id: 5,
+                        id: 8,
                         type: StructureType.Select,
                         title: "Light box live animation toggle",
                         value: true,
@@ -595,7 +599,7 @@ export default class LandingSlider extends Vue {
                         ],
                     },
                     lightboxObject: {
-                        id: 6,
+                        id: 9,
                         type: StructureType.Object,
                         title: "Light Box Data",
                         value: {
