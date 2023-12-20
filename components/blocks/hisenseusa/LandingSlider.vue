@@ -2,8 +2,8 @@
     <div
         class="tw-mx-auto tw-flex tw-justify-center tw-relative"
         style="min-height: 682px"
-        v-if="!isEmpty"
         :class="maxWidth"
+        v-if="!isEmpty"
     >
         <div
             v-if="activeSlide === index"
@@ -11,19 +11,30 @@
             :key="index"
         >
             <img
-                v-if="model.size.value === monitorSize.mobile"
+                v-if="
+                    model.size.value === SliderMonitorSize.Mobile &&
+                    image.mobile
+                "
                 class="tw-bg-gray-50 tw-w-full tw-min-h-96"
                 :src="image.mobile.src"
                 :alt="image.mobile.alt"
             />
+
             <img
-                v-if="model.size.value === monitorSize.tablet"
+                v-if="
+                    model.size.value === SliderMonitorSize.Tablet &&
+                    image.tablet
+                "
                 class="tw-bg-gray-50 tw-w-full tw-min-h-96"
                 :src="image.tablet.src"
                 :alt="image.tablet.alt"
             />
+
             <img
-                v-if="model.size.value === monitorSize.desktop"
+                v-if="
+                    model.size.value === SliderMonitorSize.Desktop &&
+                    image.desktop
+                "
                 class="tw-object-cover tw-bg-gray-50 tw-w-full tw-min-h-96"
                 :src="image.desktop.src"
                 :alt="image.desktop.alt"
@@ -37,6 +48,7 @@
         >
             <v-icon class="white--text" x-large>mdi-chevron-right</v-icon>
         </button>
+
         <button
             @click="goPrev"
             class="tw-text-white tw-absolute"
@@ -48,197 +60,25 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, VModel, Watch} from "vue-property-decorator";
-import {StructureType} from "~/models/StructureType";
-import {Theme} from "~/interfaces/ThemeEnum";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
+import { Theme } from "@/interfaces/ThemeEnum";
 
 enum SliderMonitorSize {
-    mobile = "mobile",
-    tablet = "tablet",
-    desktop = "desktop",
+    Mobile = "mobile",
+    Tablet = "tablet",
+    Desktop = "desktop",
 }
 
 @Component
 export default class LandingSlider extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({default: true}) readonly editable: Boolean | undefined;
-    @VModel({type: Object}) model!: any;
+    @VModel({ type: Object }) model!: any;
 
     activeSlide = 0;
-    monitorSize = SliderMonitorSize;
-
-    reset(oldValue: any = {}) {
-        if (oldValue && Object.keys(oldValue).length > 0) {
-            this.model = {
-                ...oldValue,
-                ...{
-                    backgroundColor: {
-                        id: 7,
-                        type: StructureType.Color,
-                        title: "Background color",
-                        value: "#fff",
-                    },
-                },
-            };
-        } else
-            this.model = {
-                theme: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: "Theme",
-                    value: Theme.dark,
-                    items: [
-                        {title: "Light", value: Theme.light},
-                        {title: "Dark", value: Theme.dark},
-                    ],
-                },
-                size: {
-                    id: 0,
-                    type: StructureType.Select,
-                    title: "Slider Monitor Size",
-                    value: "desktop",
-                    items: [
-                        {title: "Mobile", value: this.monitorSize.mobile},
-                        {title: "Table", value: this.monitorSize.tablet},
-                        {title: "Desktop", value: this.monitorSize.desktop},
-                    ],
-                },
-                list: {
-                    id: 1,
-                    type: StructureType.List,
-                    title: "Items",
-                    newItem: {
-                        url: {
-                            id: 0,
-                            type: StructureType.Url,
-                            target: "_self",
-                            title: "Target URL",
-                            value: "/products",
-                        },
-                        mobile: {
-                            id: 1,
-                            type: StructureType.Image,
-                            title: "Mobile Image",
-                            src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
-                            alt: "Small Image for Slider",
-                        },
-                        tablet: {
-                            id: 2,
-                            type: StructureType.Image,
-                            title: "Tablet Image",
-                            src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg",
-                            alt: "Large Image for Slider",
-                        },
-                        desktop: {
-                            id: 3,
-                            type: StructureType.Image,
-                            title: "Desktop Image",
-                            src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
-                            alt: "Large Image for Slider",
-                        },
-                    },
-                    value: [
-                        {
-                            url: {
-                                id: 0,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Target URL",
-                                value: "/products",
-                            },
-                            mobile: {
-                                id: 1,
-                                type: StructureType.Image,
-                                title: "Mobile Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
-                                alt: "Small Image for Slider",
-                            },
-                            tablet: {
-                                id: 2,
-                                type: StructureType.Image,
-                                title: "Tablet Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                            desktop: {
-                                id: 3,
-                                type: StructureType.Image,
-                                title: "Desktop Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                        },
-                        {
-                            url: {
-                                id: 0,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Target URL",
-                                value: "/products",
-                            },
-                            mobile: {
-                                id: 1,
-                                type: StructureType.Image,
-                                title: "Mobile Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
-                                alt: "Small Image for Slider",
-                            },
-                            tablet: {
-                                id: 2,
-                                type: StructureType.Image,
-                                title: "Tablet Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile__ScaleMaxWidthWzE1MzZd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                            desktop: {
-                                id: 3,
-                                type: StructureType.Image,
-                                title: "Desktop Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/de5912bcef/Homepage-Banner-HUSA-desk-update-v3__ScaleMaxWidthWzI1NjBd.png",
-                                alt: "Large Image for Slider",
-                            },
-                        },
-                        {
-                            url: {
-                                id: 0,
-                                type: StructureType.Url,
-                                target: "_self",
-                                title: "Target URL",
-                                value: "/products",
-                            },
-                            mobile: {
-                                id: 1,
-                                type: StructureType.Image,
-                                title: "Mobile Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v5__ScaleMaxWidthWzg1MF0.jpg",
-                                alt: "Small Image for Slider",
-                            },
-                            tablet: {
-                                id: 2,
-                                type: StructureType.Image,
-                                title: "Tablet Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v3__ScaleMaxWidthWzE1MzZd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                            desktop: {
-                                id: 3,
-                                type: StructureType.Image,
-                                title: "Desktop Image",
-                                src: "https://assets.hisense-usa.com/assets/HomePageSlides/eeaefdc6f6/Perfect-match-sweepstakes-v2__ScaleMaxWidthWzI1NjBd.jpg",
-                                alt: "Large Image for Slider",
-                            },
-                        },
-                    ],
-                },
-            };
-
-
-    }
+    SliderMonitorSize = SliderMonitorSize;
 
     mounted() {
-        // if (this.isEmpty) this.reset();
-
         blockAddItem(this.model, "theme", {
             id: 0,
             type: StructureType.Select,
@@ -249,45 +89,90 @@ export default class LandingSlider extends Vue {
                 { title: "Dark", value: Theme.dark },
             ],
         });
-        blockAddItem(this.model , 'size' , {
+
+        blockAddItem(this.model, "size", {
             id: 1,
             type: StructureType.Select,
             title: "Slider Monitor Size",
             value: "desktop",
             items: [
-                {title: "Mobile", value: this.monitorSize.mobile},
-                {title: "Table", value: this.monitorSize.tablet},
-                {title: "Desktop", value: this.monitorSize.desktop},
+                { title: "Mobile", value: SliderMonitorSize.Mobile },
+                { title: "Table", value: SliderMonitorSize.Tablet },
+                { title: "Desktop", value: SliderMonitorSize.Desktop },
             ],
-        })
-        blockAddItem(this.model , 'list' , {
+        });
+
+        blockAddItem(this.model, "list", {
             id: 2,
             type: StructureType.List,
             title: "Items",
             newItem: {
                 url: {
-                    id: 0,
+                    id: 2,
                     type: StructureType.Url,
                     target: "_self",
                     title: "Target URL",
                     value: "/products",
                 },
-                mobile: {
+                buttonStyle: {
                     id: 1,
+                    type: StructureType.PopupObject,
+                    title: "Button Style",
+                    value: {
+                        outlineColor: {
+                            id: 1,
+                            type: StructureType.Color,
+                            title: "Outline Color",
+                            value: "#000",
+                        },
+                        outlineHoverColor: {
+                            id: 2,
+                            type: StructureType.Color,
+                            title: "Outline Hover Color",
+                            value: "#000",
+                        },
+                        textColor: {
+                            id: 3,
+                            type: StructureType.Color,
+                            title: "Text Color",
+                            value: "#000",
+                        },
+                        textHoverColor: {
+                            id: 4,
+                            type: StructureType.Color,
+                            title: "Text Hover Color",
+                            value: "#fff",
+                        },
+                        fillColor: {
+                            id: 5,
+                            type: StructureType.Color,
+                            title: "Fill Color",
+                            value: "#fff",
+                        },
+                        fillHoverColor: {
+                            id: 6,
+                            type: StructureType.Color,
+                            title: "Fill Hover Color",
+                            value: "#000",
+                        },
+                    },
+                },
+                mobile: {
+                    id: 3,
                     type: StructureType.Image,
                     title: "Mobile Image",
                     src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
                     alt: "Small Image for Slider",
                 },
                 tablet: {
-                    id: 2,
+                    id: 4,
                     type: StructureType.Image,
                     title: "Tablet Image",
                     src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg",
                     alt: "Large Image for Slider",
                 },
                 desktop: {
-                    id: 3,
+                    id: 5,
                     type: StructureType.Image,
                     title: "Desktop Image",
                     src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
@@ -297,28 +182,71 @@ export default class LandingSlider extends Vue {
             value: [
                 {
                     url: {
-                        id: 0,
+                        id: 2,
                         type: StructureType.Url,
                         target: "_self",
                         title: "Target URL",
                         value: "/products",
                     },
-                    mobile: {
+                    buttonStyle: {
                         id: 1,
+                        type: StructureType.PopupObject,
+                        title: "Button Style",
+                        value: {
+                            outlineColor: {
+                                id: 1,
+                                type: StructureType.Color,
+                                title: "Outline Color",
+                                value: "#000",
+                            },
+                            outlineHoverColor: {
+                                id: 2,
+                                type: StructureType.Color,
+                                title: "Outline Hover Color",
+                                value: "#000",
+                            },
+                            textColor: {
+                                id: 3,
+                                type: StructureType.Color,
+                                title: "Text Color",
+                                value: "#000",
+                            },
+                            textHoverColor: {
+                                id: 4,
+                                type: StructureType.Color,
+                                title: "Text Hover Color",
+                                value: "#fff",
+                            },
+                            fillColor: {
+                                id: 5,
+                                type: StructureType.Color,
+                                title: "Fill Color",
+                                value: "#fff",
+                            },
+                            fillHoverColor: {
+                                id: 6,
+                                type: StructureType.Color,
+                                title: "Fill Hover Color",
+                                value: "#000",
+                            },
+                        },
+                    },
+                    mobile: {
+                        id: 3,
                         type: StructureType.Image,
                         title: "Mobile Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
                         alt: "Small Image for Slider",
                     },
                     tablet: {
-                        id: 2,
+                        id: 4,
                         type: StructureType.Image,
                         title: "Tablet Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/881cd9b3f1/No2-mobile__ScaleMaxWidthWzE1MzZd.jpg",
                         alt: "Large Image for Slider",
                     },
                     desktop: {
-                        id: 3,
+                        id: 5,
                         type: StructureType.Image,
                         title: "Desktop Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/8e29040da0/No2-v2__ScaleMaxWidthWzI1NjBd.jpg",
@@ -327,28 +255,71 @@ export default class LandingSlider extends Vue {
                 },
                 {
                     url: {
-                        id: 0,
+                        id: 2,
                         type: StructureType.Url,
                         target: "_self",
                         title: "Target URL",
                         value: "/products",
                     },
-                    mobile: {
+                    buttonStyle: {
                         id: 1,
+                        type: StructureType.PopupObject,
+                        title: "Button Style",
+                        value: {
+                            outlineColor: {
+                                id: 1,
+                                type: StructureType.Color,
+                                title: "Outline Color",
+                                value: "#000",
+                            },
+                            outlineHoverColor: {
+                                id: 2,
+                                type: StructureType.Color,
+                                title: "Outline Hover Color",
+                                value: "#000",
+                            },
+                            textColor: {
+                                id: 3,
+                                type: StructureType.Color,
+                                title: "Text Color",
+                                value: "#000",
+                            },
+                            textHoverColor: {
+                                id: 4,
+                                type: StructureType.Color,
+                                title: "Text Hover Color",
+                                value: "#fff",
+                            },
+                            fillColor: {
+                                id: 5,
+                                type: StructureType.Color,
+                                title: "Fill Color",
+                                value: "#fff",
+                            },
+                            fillHoverColor: {
+                                id: 6,
+                                type: StructureType.Color,
+                                title: "Fill Hover Color",
+                                value: "#000",
+                            },
+                        },
+                    },
+                    mobile: {
+                        id: 3,
                         type: StructureType.Image,
                         title: "Mobile Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile-v2__ScaleMaxWidthWzg1MF0.jpg",
                         alt: "Small Image for Slider",
                     },
                     tablet: {
-                        id: 2,
+                        id: 4,
                         type: StructureType.Image,
                         title: "Tablet Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/7864d0fbb5/Homepage-Banner-HUSA-Mobile__ScaleMaxWidthWzE1MzZd.jpg",
                         alt: "Large Image for Slider",
                     },
                     desktop: {
-                        id: 3,
+                        id: 5,
                         type: StructureType.Image,
                         title: "Desktop Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/de5912bcef/Homepage-Banner-HUSA-desk-update-v3__ScaleMaxWidthWzI1NjBd.png",
@@ -357,28 +328,71 @@ export default class LandingSlider extends Vue {
                 },
                 {
                     url: {
-                        id: 0,
+                        id: 2,
                         type: StructureType.Url,
                         target: "_self",
                         title: "Target URL",
                         value: "/products",
                     },
-                    mobile: {
+                    buttonStyle: {
                         id: 1,
+                        type: StructureType.PopupObject,
+                        title: "Button Style",
+                        value: {
+                            outlineColor: {
+                                id: 1,
+                                type: StructureType.Color,
+                                title: "Outline Color",
+                                value: "#000",
+                            },
+                            outlineHoverColor: {
+                                id: 2,
+                                type: StructureType.Color,
+                                title: "Outline Hover Color",
+                                value: "#000",
+                            },
+                            textColor: {
+                                id: 3,
+                                type: StructureType.Color,
+                                title: "Text Color",
+                                value: "#000",
+                            },
+                            textHoverColor: {
+                                id: 4,
+                                type: StructureType.Color,
+                                title: "Text Hover Color",
+                                value: "#fff",
+                            },
+                            fillColor: {
+                                id: 5,
+                                type: StructureType.Color,
+                                title: "Fill Color",
+                                value: "#fff",
+                            },
+                            fillHoverColor: {
+                                id: 6,
+                                type: StructureType.Color,
+                                title: "Fill Hover Color",
+                                value: "#000",
+                            },
+                        },
+                    },
+                    mobile: {
+                        id: 3,
                         type: StructureType.Image,
                         title: "Mobile Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v5__ScaleMaxWidthWzg1MF0.jpg",
                         alt: "Small Image for Slider",
                     },
                     tablet: {
-                        id: 2,
+                        id: 4,
                         type: StructureType.Image,
                         title: "Tablet Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/454c68e2c7/Perfect-match-sweepstakes-mobile-v3__ScaleMaxWidthWzE1MzZd.jpg",
                         alt: "Large Image for Slider",
                     },
                     desktop: {
-                        id: 3,
+                        id: 5,
                         type: StructureType.Image,
                         title: "Desktop Image",
                         src: "https://assets.hisense-usa.com/assets/HomePageSlides/eeaefdc6f6/Perfect-match-sweepstakes-v2__ScaleMaxWidthWzI1NjBd.jpg",
@@ -386,7 +400,7 @@ export default class LandingSlider extends Vue {
                     },
                 },
             ],
-        })
+        });
     }
 
     goNext() {
@@ -405,22 +419,17 @@ export default class LandingSlider extends Vue {
         return this.model && Object.keys(this.model).length === 0;
     }
 
-    @Watch("isEmpty")
-    onValueChanged() {
-        if (this.isEmpty) this.reset();
-    }
-
     get maxWidth() {
         return this.isEmpty
             ? {}
             : {
-                "tw-max-w-sm":
-                    this.model.size.value === this.monitorSize.mobile,
-                "tw-max-w-md":
-                    this.model.size.value === this.monitorSize.tablet,
-                "tw-aspect-video":
-                    this.model.size.value === this.monitorSize.mobile,
-            };
+                  "tw-max-w-sm":
+                      this.model.size.value === SliderMonitorSize.Mobile,
+                  "tw-max-w-md":
+                      this.model.size.value === SliderMonitorSize.Tablet,
+                  "tw-aspect-video":
+                      this.model.size.value === SliderMonitorSize.Mobile,
+              };
     }
 }
 </script>
