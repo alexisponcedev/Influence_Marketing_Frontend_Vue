@@ -18,4 +18,5 @@ export enum StructureType {
     Button = "button",
     Number = "number",
     ChangeWidget = "changeWidget",
+    PopupObject = "popupObject",
 }
