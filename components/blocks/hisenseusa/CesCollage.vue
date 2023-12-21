@@ -79,6 +79,13 @@ export default class CesCollage extends Vue {
                             title: "Download",
                             value: "/",
                         },
+                        thumbnail_image: {
+                            id: 4,
+                            type: StructureType.Image,
+                            title: "Thumbnail Image (for video)",
+                            src: "",
+                            alt: "some note about this asset",
+                        },
                     }
                 }
             }
