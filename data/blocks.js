@@ -117,6 +117,12 @@ export const BLOCKS = () => {
                             image: "TextProductDescription.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "BambooHR",
+                            title: "BambooHR",
+                            image: "BambooHR.png",
+                            category: "TextBox",
+                        },
                         // {
                         //     name: "VideoFeature",
                         //     title: "Video feature",
