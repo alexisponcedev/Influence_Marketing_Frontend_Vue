@@ -108,7 +108,7 @@ export default class BlockFeatured extends Vue {
                     type: StructureType.Datetime,
                     title: "Countdown date",
                     value: "",
-                }
+                },
             },
             value: [
                 {
@@ -201,7 +201,7 @@ export default class BlockFeatured extends Vue {
                         type: StructureType.Datetime,
                         title: "Countdown date",
                         value: "",
-                    }
+                    },
                 },
                 {
                     title: {
@@ -293,7 +293,7 @@ export default class BlockFeatured extends Vue {
                         type: StructureType.Datetime,
                         title: "Countdown date",
                         value: "",
-                    }
+                    },
                 },
                 {
                     title: {
@@ -385,7 +385,7 @@ export default class BlockFeatured extends Vue {
                         type: StructureType.Datetime,
                         title: "Countdown date",
                         value: "",
-                    }
+                    },
                 },
             ],
         });
