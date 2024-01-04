@@ -145,6 +145,7 @@ export default class CESArticles extends Vue {
             newItem.tag.value = post.tags.join(", ");
             newItem.created_at = post.page.created_at;
             newItem.postId.value = post.id;
+            newItem.published_at = post.published_at;
         }
         return newItem;
     }
