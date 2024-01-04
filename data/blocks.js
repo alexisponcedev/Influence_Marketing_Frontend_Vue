@@ -2541,6 +2541,12 @@ export const BLOCKS = () => {
                             image: "NewsRoomAnnouncementsForm.png",
                             category: "ImageBox",
                         },
+                        {
+                            name: "NewsRoomNavbar",
+                            title: "NewsRoom Navbar",
+                            image: "NewsRoomNavbar.png",
+                            category: "ImageBox",
+                        },
                     ],
                 },
             ],
