@@ -1,5 +1,9 @@
 <template>
-    <structure-editor-image v-model="model" type="file" />
+    <structure-editor-image
+        v-if="typeof model.hidden === 'undefined' || !model.hidden"
+        v-model="model"
+        type="file"
+    />
 </template>
 
 <script lang="ts">
@@ -8,6 +12,6 @@ import { StructureField } from "~/interfaces/StructureField";
 
 @Component
 export default class StructureFileEditor extends Vue {
-    @VModel() model!: StructureField
+    @VModel() model!: StructureField;
 }
 </script>

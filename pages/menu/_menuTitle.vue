@@ -1,5 +1,5 @@
 <template>
-    <menu-container :sections="sections" :menu="menu" />
+    <menu-container :sections="sections" :menu="menu" @submit="updateMenu" />
 </template>
 
 <script lang="ts">
@@ -12,6 +12,7 @@ import { Api } from "@/store";
 })
 export default class Menus extends Vue {
     menu: MenuResource = {};
+    lang: string | null = null;
 
     sections: Array<{
         title: string;
@@ -20,8 +21,15 @@ export default class Menus extends Vue {
     }> = [];
 
     mounted() {
+        this.setLanguage();
         this.updateMenuSections();
         this.getMenu();
+    }
+
+    setLanguage() {
+        if (!Api.Auth.languages.length) Api.Auth.getBrandLanguages();
+        if (this.$route.query.lang)
+            this.lang = this.$route.query.lang as string;
     }
 
     updateMenuSections() {
@@ -42,6 +50,11 @@ export default class Menus extends Vue {
                         title: "Hamburger Menu",
                         value: "hamburger",
                         type: "links",
+                    },
+                    {
+                        title: "Logo",
+                        value: "logo",
+                        type: "links-single",
                     },
                 ];
                 break;
@@ -67,17 +80,48 @@ export default class Menus extends Vue {
         }
     }
 
+    async updateMenu() {
+        if (this.menu.id)
+            if (this.isDefaultLanguage)
+                await Api.Menu.update({
+                    id: +this.menu.id,
+                    Menu: this.menu,
+                });
+            else if (this.lang)
+                Api.Menu.addTranslation({
+                    id: +this.menu.id,
+                    language: this.lang,
+                    widgets: this.menu.widgets!,
+                });
+    }
+
     async getMenu() {
         await Api.Menu.getAll();
-        const finded = Api.Menu.all.filter(
+        const selectedMenu = Api.Menu.all.find(
             (menu) => menu.title == this.$route.params.menuTitle
         );
-        if (finded && finded.length) this.menu = finded[0];
-        else
+        if (selectedMenu) {
+            const langMenu: any =
+                selectedMenu.translations?.find(
+                    (translation) => translation.language == this.lang
+                )?.body || null;
+            selectedMenu.widgets =
+                langMenu?.widgets || selectedMenu.widgets || [];
+            this.menu = selectedMenu;
+        } else
             Api.Menu.create({
                 title: this.$route.params.menuTitle,
                 widgets: [],
             }).then(this.getMenu);
+    }
+
+    get isDefaultLanguage() {
+        if (!this.lang) return true;
+        const defaultLangSlug = Api.Auth.languages.find(
+            (language: any) => language.pivot.primary == 1
+        )?.slug;
+        if (this.lang == defaultLangSlug) return true;
+        return false;
     }
 }
 </script>

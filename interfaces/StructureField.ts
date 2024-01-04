@@ -29,4 +29,9 @@ export class StructureField implements StructureFieldInterface {
     onChanged?: (event: any) => any;
     loading?: Boolean | (() => Boolean);
     hidden?: boolean = false;
+    action: string = "";
+    icon: string = "";
+    min?: number;
+    max?: number;
+    toWidget?: any;
 }

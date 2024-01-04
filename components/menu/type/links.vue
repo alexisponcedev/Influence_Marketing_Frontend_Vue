@@ -4,6 +4,7 @@
         v-model="widgets[modelKey]"
         :key="forceUpdateIndex"
         @addItem="forceUpdate"
+        :single="single"
     />
 </template>
 
@@ -14,8 +15,9 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
     layout: "panel",
 })
 export default class MenuLinksType extends Vue {
-    @Prop() widgets!: any;
     @Prop(String) readonly modelKey!: string;
+    @Prop(Boolean) single!: boolean;
+    @Prop() widgets!: any;
 
     forceUpdateIndex: number = 0;
 
@@ -25,6 +27,7 @@ export default class MenuLinksType extends Vue {
 
     @Watch("widgets")
     widgetsUpdated() {
+        if (!this.widgets) this.widgets = {};
         if (!Object.keys(this.widgets).includes(this.modelKey))
             this.widgets[this.modelKey] = [];
         this.forceUpdate();

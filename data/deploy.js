@@ -13,7 +13,7 @@ export const deploy = [
     },
     {
         title: "Templates",
-        table: "templates",
+        table: "templates,status_templates",
     },
     {
         title: "Reusable blocks",

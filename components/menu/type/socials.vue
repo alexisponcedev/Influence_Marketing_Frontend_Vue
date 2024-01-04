@@ -25,6 +25,7 @@ export default class MenuSocialsType extends Vue {
 
     @Watch("widgets")
     widgetsUpdated() {
+        if (!this.widgets) this.widgets = {};
         if (!Object.keys(this.widgets).includes(this.modelKey))
             this.widgets[this.modelKey] = [];
         this.forceUpdate();

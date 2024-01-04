@@ -1,5 +1,5 @@
 <template>
-    <v-row>
+    <v-row v-if="typeof model.hidden === 'undefined' || !model.hidden">
         <v-col cols="11" class="pr-0">
             <form-field-select-autocomplete
                 :field="field"

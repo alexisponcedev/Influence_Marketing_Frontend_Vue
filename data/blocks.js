@@ -1215,6 +1215,12 @@ export const BLOCKS = () => {
                             image: "NewsPressArchive.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "CESCountdownTimerBlock",
+                            title: "CES Countdown Timer Block",
+                            image: "CESCountdownTimerBlock.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
@@ -2841,6 +2847,18 @@ export const BLOCKS = () => {
                             name: "CaseStudyImageAndVideoCollage",
                             title: "Case Study Image And Video Collage",
                             image: "CaseStudyImageAndVideoCollage.png",
+                            category: "banner",
+                        },
+                        {
+                            name: "CaseStudyQuantitativeResults",
+                            title: "Case Study Quantitative Results",
+                            image: "CaseStudyQuantitativeResults.png",
+                            category: "banner",
+                        },
+                        {
+                            name: "CaseStudyTabs",
+                            title: "Case Study Tabs",
+                            image: "CaseStudyTabs.png",
                             category: "banner",
                         },
                     ],

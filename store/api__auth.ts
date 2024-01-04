@@ -1,6 +1,7 @@
-import {VuexModule, Module, Mutation, Action} from "vuex-module-decorators";
-import {AuthApiFactory, Configuration} from "@/repositories";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import { AuthApiFactory, Configuration } from "@/repositories";
 import ResponseHandler from "@/utils/ResponseHandler";
+import getActiveBrand from "~/utils/getActiveBrand";
 
 @Module({
     name: "api__auth",
@@ -9,10 +10,16 @@ import ResponseHandler from "@/utils/ResponseHandler";
 })
 export default class api__auth extends VuexModule {
     loading: Boolean = false;
+    languages: Array<{ id: number; title: string; slug: string }> = [];
 
     @Mutation
     setLoading(status: Boolean) {
         this.loading = status;
+    }
+
+    @Mutation
+    updateLanguages(languages: Array<any>) {
+        this.languages = languages;
     }
 
     @Action
@@ -60,5 +67,26 @@ export default class api__auth extends VuexModule {
             return response.data;
         }
         return {};
+    }
+
+    @Action({ commit: "updateLanguages" })
+    async getBrandLanguages() {
+        this.setLoading(true);
+        const response: any = await AuthApiFactory(
+            new Configuration({
+                accessToken: localStorage.getItem("access_token") || "",
+            })
+        )
+            .authBrand(getActiveBrand())
+            .catch((error) => ResponseHandler.ErrorHandler(error))
+            .finally(() => this.setLoading(false));
+        this.setLoading(false);
+        if (
+            response &&
+            response.data &&
+            ResponseHandler.checkResponse(response)
+        )
+            return response.data.brand.languages;
+        return [];
     }
 }
