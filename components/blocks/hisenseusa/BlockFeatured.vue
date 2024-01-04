@@ -108,7 +108,13 @@ export default class BlockFeatured extends Vue {
                     type: StructureType.Datetime,
                     title: "Countdown date",
                     value: "",
-                }
+                },
+                itemCenter: {
+                    id: 9,
+                    type: StructureType.Number,
+                    title: "The percentage that the item will be placed in the center of the slider",
+                    value: "",
+                },
             },
             value: [
                 {
@@ -201,7 +207,13 @@ export default class BlockFeatured extends Vue {
                         type: StructureType.Datetime,
                         title: "Countdown date",
                         value: "",
-                    }
+                    },
+                    itemCenter: {
+                        id: 9,
+                        type: StructureType.Number,
+                        title: "The percentage that the item will be placed in the center of the slider",
+                        value: "",
+                    },
                 },
                 {
                     title: {
@@ -293,7 +305,13 @@ export default class BlockFeatured extends Vue {
                         type: StructureType.Datetime,
                         title: "Countdown date",
                         value: "",
-                    }
+                    },
+                    itemCenter: {
+                        id: 9,
+                        type: StructureType.Number,
+                        title: "The percentage that the item will be placed in the center of the slider",
+                        value: "",
+                    },
                 },
                 {
                     title: {
@@ -385,7 +403,13 @@ export default class BlockFeatured extends Vue {
                         type: StructureType.Datetime,
                         title: "Countdown date",
                         value: "",
-                    }
+                    },
+                    itemCenter: {
+                        id: 9,
+                        type: StructureType.Number,
+                        title: "The percentage that the item will be placed in the center of the slider",
+                        value: "",
+                    },
                 },
             ],
         });
