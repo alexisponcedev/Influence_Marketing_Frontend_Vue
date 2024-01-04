@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="/blocks/NewsRoomMainBox.jpg" alt="" />
+        <img src="/blocks/NewsPressArchive.png" alt="" />
     </div>
 </template>
 
@@ -11,128 +11,17 @@ import blockAddItem from "@/utils/blockAddItem";
 import { Api } from "@/store";
 
 @Component
-export default class NewsRoomMainBox extends Vue {
-    @VModel() model!: any;
+export default class CESArticles extends Vue {
+    @VModel({ type: Object }) model!: any;
 
-    mounted() {
+    async mounted() {
         Api.Post.getAllNews();
 
         blockAddItem(this.model, "title", {
-            id: 0,
+            id: 1,
             type: StructureType.String,
             title: "Title",
-            value: "NewsRoom Main Box",
-        });
-        blockAddItem(this.model, "titleLink", {
-            id: 0,
-            type: StructureType.Url,
-            title: "Title link",
-            value: "/",
-            target: "_self",
-        });
-        blockAddItem(this.model, "slider", {
-            id: 1,
-            type: StructureType.List,
-            title: "Slider",
-            newItem: {
-                mobileImage: {
-                    id: 0,
-                    type: StructureType.Image,
-                    title: "Mobile Image",
-                    src: "",
-                    alt: "Image Alt",
-                },
-                image: {
-                    id: 1,
-                    type: StructureType.Image,
-                    title: "Image",
-                    src: "",
-                    alt: "Image Alt",
-                },
-                title: {
-                    id: 2,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "",
-                },
-                subtitle: {
-                    id: 3,
-                    type: StructureType.String,
-                    title: "Subtitle",
-                    value: "",
-                },
-                btn: {
-                    id: 4,
-                    type: StructureType.Url,
-                    title: "Read More",
-                    value: "",
-                },
-            },
-            value: [],
-        });
-
-        blockAddItem(this.model, "year_text", {
-            id: 2,
-            type: StructureType.String,
-            title: "Year",
             value: "",
-        });
-
-        blockAddItem(this.model, "product_category", {
-            id: 3,
-            type: StructureType.String,
-            title: "Product Category",
-            value: "",
-        });
-
-        blockAddItem(this.model, "newsroom_search", {
-            id: 4,
-            type: StructureType.String,
-            title: "Search Newsroom",
-            value: "",
-        });
-
-        blockAddItem(this.model, "link", {
-            id: 5,
-            type: StructureType.Url,
-            title: "link",
-            value: "",
-        });
-
-        blockAddItem(this.model, "row-1", {
-            id: 6,
-            type: StructureType.Select,
-            title: "columns in row 1",
-            value: 1,
-            items: [
-                { title: "1", value: 1 },
-                { title: "2", value: 2 },
-                { title: "3", value: 3 },
-            ],
-        });
-
-        blockAddItem(this.model, "row-2", {
-            id: 7,
-            type: StructureType.Select,
-            title: "columns in row 2",
-            value: 2,
-            items: [
-                { title: "1", value: 1 },
-                { title: "2", value: 2 },
-                { title: "3", value: 3 },
-            ],
-        });
-
-        blockAddItem(this.model, "row-3", {
-            id: 8,
-            type: StructureType.Select,
-            title: "columns in row 3",
-            value: 3,
-            items: [
-                { title: "1", value: 1 },
-                { title: "2", value: 2 },
-                { title: "3", value: 3 },
-            ],
         });
 
         blockAddItem(this.model, "selectNews", {
@@ -179,6 +68,12 @@ export default class NewsRoomMainBox extends Vue {
                     type: StructureType.Url,
                     target: "_self",
                     title: "Link",
+                    value: "",
+                },
+                postId: {
+                    id: 4,
+                    type: StructureType.String,
+                    hidden: true,
                     value: "",
                 },
             },
@@ -233,6 +128,12 @@ export default class NewsRoomMainBox extends Vue {
                 title: "READ ARTICLE",
                 value: "",
             },
+            postId: {
+                id: 4,
+                type: StructureType.String,
+                hidden: true,
+                value: "",
+            },
         };
         if (post) {
             let imageMeta = post.page.meta.find(
@@ -243,6 +144,7 @@ export default class NewsRoomMainBox extends Vue {
             newItem.link.value = post.page.route;
             newItem.tag.value = post.tags.join(", ");
             newItem.created_at = post.page.created_at;
+            newItem.postId.value = post.id;
             newItem.published_at = post.published_at;
         }
         return newItem;

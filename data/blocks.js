@@ -1210,6 +1210,12 @@ export const BLOCKS = () => {
                             category: "TextBox",
                         },
                         {
+                            name: "CESArticles",
+                            title: "CES Articles",
+                            image: "NewsPressArchive.png",
+                            category: "TextBox",
+                        },
+                        {
                             name: "CESCountdownTimerBlock",
                             title: "CES Countdown Timer Block",
                             image: "CESCountdownTimerBlock.png",
