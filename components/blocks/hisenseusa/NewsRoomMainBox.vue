@@ -181,6 +181,12 @@ export default class NewsRoomMainBox extends Vue {
                     title: "Link",
                     value: "",
                 },
+                postId: {
+                    id: 4,
+                    type: StructureType.String,
+                    hidden: true,
+                    value: "",
+                },
             },
             value: [],
         });
@@ -233,6 +239,12 @@ export default class NewsRoomMainBox extends Vue {
                 title: "READ ARTICLE",
                 value: "",
             },
+            postId: {
+                id: 4,
+                type: StructureType.String,
+                hidden: true,
+                value: "",
+            },
         };
         if (post) {
             let imageMeta = post.page.meta.find(
@@ -243,6 +255,7 @@ export default class NewsRoomMainBox extends Vue {
             newItem.link.value = post.page.route;
             newItem.tag.value = post.tags.join(", ");
             newItem.created_at = post.page.created_at;
+            newItem.postId.value = post.id;
             newItem.published_at = post.published_at;
         }
         return newItem;
