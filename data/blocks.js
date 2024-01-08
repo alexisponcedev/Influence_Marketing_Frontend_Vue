@@ -2446,6 +2446,12 @@ export const BLOCKS = () => {
                             image: "BlogListWithBigTitleAndLittleItem.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "BlogListMainBox",
+                            title: "Blog List Main Box",
+                            image: "BlogListMainBox.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
             ],
