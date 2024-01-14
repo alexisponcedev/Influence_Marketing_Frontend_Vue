@@ -21,15 +21,22 @@ export default class BlogListMainBox extends Vue {
             value: "More Stories",
         });
 
-        blockAddItem(this.model, "row-count", {
+        blockAddItem(this.model, "start-offset", {
             id: 2,
+            type: StructureType.String,
+            title: "Start Offset",
+            value: 0,
+        });
+
+        blockAddItem(this.model, "row-count", {
+            id: 3,
             type: StructureType.String,
             title: "Row Count",
             value: 0,
         });
 
         blockAddItem(this.model, "grid-count", {
-            id: 3,
+            id: 4,
             type: StructureType.String,
             title: "Grid Count",
             value: 0,
