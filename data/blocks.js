@@ -123,6 +123,12 @@ export const BLOCKS = () => {
                             image: "BambooHR.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "SignUpPopUp",
+                            title: "Signup Popup",
+                            image: "SignUpPopUp.png",
+                            category: "TextBox",
+                        },
                         // {
                         //     name: "VideoFeature",
                         //     title: "Video feature",
