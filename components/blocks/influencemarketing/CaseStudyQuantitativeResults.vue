@@ -42,7 +42,7 @@ export default class CaseStudyQuantitativeResults extends Vue {
             newItem: {
                 result: {
                     id: 0,
-                    type: StructureType.String,
+                    type: StructureType.SimpleText,
                     title: "result",
                     value: "",
                 },
