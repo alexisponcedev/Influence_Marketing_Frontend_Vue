@@ -141,6 +141,12 @@ export const BLOCKS = () => {
                         //     image: "FullFeature.png",
                         //     category: "VideoBox",
                         // },
+                        {
+                            name: "AdditionalResourcesModule",
+                            title: "Additional Resources Module",
+                            image: "AdditionalResourcesModule.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
