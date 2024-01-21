@@ -21,27 +21,6 @@ export default class FirmwareDisclaimer extends Vue {
             value: "",
         });
 
-        blockAddItem(this.model, "firmware-title", {
-            id: 2,
-            type: StructureType.String,
-            title: "Firmware title",
-            value: "",
-        });
-
-        blockAddItem(this.model, "firmware-warning", {
-            id: 3,
-            type: StructureType.String,
-            title: "Firmware warning text",
-            value: "",
-        });
-
-        blockAddItem(this.model, "document-title", {
-            id: 4,
-            type: StructureType.String,
-            title: "Document title",
-            value: "",
-        });
-
         blockAddItem(this.model, "text", {
             id: 5,
             type: StructureType.SimpleText,
