@@ -46,7 +46,7 @@ import { Vue, Component, VModel } from "vue-property-decorator";
 
 @Component
 export default class StructurePopUpObjectEditor extends Vue {
-    @VModel({ type: Array }) model!: any;
+    @VModel() model!: any;
 
     showDialog: boolean = false;
 }
