@@ -141,6 +141,12 @@ export const BLOCKS = () => {
                         //     image: "FullFeature.png",
                         //     category: "VideoBox",
                         // },
+                        {
+                            name: "RetailersList",
+                            title: "Retailers List",
+                            image: "RetailersList.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
