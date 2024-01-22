@@ -8,7 +8,7 @@
         </v-col>
         <v-col cols="1" class="px-0">
             <v-btn icon class="mt-7" color="primary" @click="selectValue">
-                <v-icon> mdi-plus </v-icon>
+                <v-icon> {{ field.icon }} </v-icon>
             </v-btn>
         </v-col>
     </v-row>
@@ -32,6 +32,7 @@ export default class StructureAutoCompeleteEditor extends Vue {
         colAttrs: { cols: 12 },
         items: [],
         loading: false,
+        icon: "mdi-plus",
     };
 
     mounted() {
@@ -40,6 +41,9 @@ export default class StructureAutoCompeleteEditor extends Vue {
         this.field["item-value"] = this.model.itemValue ?? "value";
         this.field.items = this.model.items;
         this.field.loading = this.model.loading as any;
+        this.field.icon = this.model?.data?.icon ?? "mdi-plus";
+
+        if (!this.internalValue) this.internalValue = this.model.value;
     }
 
     selectValue() {
