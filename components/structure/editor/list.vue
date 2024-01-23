@@ -85,11 +85,20 @@ export default class StructureListEditor extends Vue {
     addNew() {
         this.model.value.push(JSON.parse(JSON.stringify(this.model.newItem)));
         this.open = this.model.value.length - 1;
+        this.changed(this.model);
         this.$forceUpdate();
     }
 
     removeItem(i: any) {
         this.model.value.splice(i, 1);
+        this.changed(this.model);
+    }
+
+    changed(event: any) {
+        if (this.model && this.model.onChanged) {
+            this.$emit("forceUpdate");
+            this.model.onChanged(event);
+        }
     }
 }
 </script>
