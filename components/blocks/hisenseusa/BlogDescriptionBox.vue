@@ -21,7 +21,7 @@ export default class BlogDescriptionBox extends Vue {
             title: "Template",
             itemText: "title",
             itemValue: "value",
-            value: "",
+            value: "template_1",
             items: [
                 { title: "Template 1", value: "template_1" },
                 { title: "Template 2", value: "template_2" },
