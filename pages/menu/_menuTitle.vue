@@ -75,6 +75,11 @@ export default class Menus extends Vue {
                         value: "links",
                         type: "links",
                     },
+                    {
+                        title: "Texts",
+                        value: "texts",
+                        type: "texts",
+                    },
                 ];
                 break;
         }

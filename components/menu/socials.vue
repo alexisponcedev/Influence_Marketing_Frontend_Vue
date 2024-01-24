@@ -13,7 +13,7 @@
 
                     <v-col justify="center">
                         <v-btn icon elevation="0" text @click="confirm">
-                            <v-icon class="red--text">mdi-check</v-icon>
+                            <v-icon class="red--text"> mdi-check </v-icon>
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -27,16 +27,22 @@
                         <span
                             style="font-size: 20px"
                             :class="`socicon socicon-${item.name}`"
-                        ></span>
-                        <span>{{ item.name }}</span>
+                        />
+                        <span>
+                            {{ item.name }}
+                        </span>
                     </div>
                     <div class="tw-flex-1">{{ item.url }}</div>
                     <div class="tw-flex tw-items-center tw-space-x-4">
                         <button @click="edit(index)">
-                            <v-icon small class="gray--text">mdi-pencil</v-icon>
+                            <v-icon small class="gray--text">
+                                mdi-pencil
+                            </v-icon>
                         </button>
                         <button @click="remove(index)">
-                            <v-icon small class="red--text">mdi-delete</v-icon>
+                            <v-icon small class="red--text">
+                                mdi-delete
+                            </v-icon>
                         </button>
                     </div>
                 </div>
@@ -57,13 +63,17 @@ import { Vue, Component, VModel } from "vue-property-decorator";
 @Component
 export default class MenuSocialsEditor extends Vue {
     @VModel({ type: Array }) model!: any;
+
     editing: number = -1;
+    pages: Array<any> = [];
+
     textField = {
         label: "",
         placeholder: "enter name",
         rules: [],
         colAttrs: { cols: 7 },
     };
+
     selectField = {
         label: "",
         placeholder: "Enter page name",
@@ -72,13 +82,16 @@ export default class MenuSocialsEditor extends Vue {
         rules: [],
         colAttrs: { cols: 4 },
     };
-    pages: Array<any> = [];
+
     edit(index: number) {
         this.editing = index;
     }
+
     remove(index: number) {
         this.model.splice(index, 1);
+        this.$forceUpdate();
     }
+
     addNew() {
         this.model.push({
             id: this.model.length + 1,
@@ -88,6 +101,7 @@ export default class MenuSocialsEditor extends Vue {
         this.edit(this.model.length - 1);
         this.$emit("addItem");
     }
+
     confirm() {
         this.editing = -1;
     }
