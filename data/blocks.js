@@ -129,6 +129,13 @@ export const BLOCKS = () => {
                             image: "SignUpPopUp.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "AwardsAndAccolades",
+                            title: "Awards And Accolades",
+                            image: "AwardsAndAccolades.png",
+                            category: "TextBox",
+                        },
+
                         // {
                         //     name: "VideoFeature",
                         //     title: "Video feature",
