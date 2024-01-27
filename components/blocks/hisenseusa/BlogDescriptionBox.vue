@@ -15,19 +15,6 @@ export default class BlogDescriptionBox extends Vue {
 
     mounted() {
 
-        blockAddItem(this.model, "template", {
-            id: 0,
-            type: StructureType.Select,
-            title: "Template",
-            itemText: "title",
-            itemValue: "value",
-            value: "template_1",
-            items: [
-                { title: "Template 1", value: "template_1" },
-                { title: "Template 2", value: "template_2" },
-            ],
-        });
-
         blockAddItem(this.model, "title", {
             id: 1,
             type: StructureType.String,
