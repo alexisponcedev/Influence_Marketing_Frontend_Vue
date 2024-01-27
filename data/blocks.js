@@ -579,7 +579,7 @@ export const BLOCKS = () => {
                         },
                         {
                             name: "FirmwareDisclaimer",
-                            title: "FirmWare Disclaimer",
+                            title: "Firmware Disclaimer",
                             image: "FirmwareDisclaimer.png",
                             category: "TextBox",
                         },

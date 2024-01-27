@@ -5,14 +5,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel, Watch } from "vue-property-decorator";
-import { StructureType } from "~/models/StructureType";
-import blockAddItem from "~/utils/blockAddItem";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureType } from "@/models/StructureType";
+import blockAddItem from "@/utils/blockAddItem";
 
 @Component
 export default class FirmwareDisclaimer extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: Boolean | undefined;
     @VModel({ type: Object }) model!: any;
 
     mounted() {
@@ -24,29 +22,27 @@ export default class FirmwareDisclaimer extends Vue {
         });
 
         blockAddItem(this.model, "text", {
-            id: 1,
+            id: 5,
             type: StructureType.SimpleText,
-            title: "modal text",
+            title: "Modal text",
             value: "",
         });
 
         blockAddItem(this.model, "button", {
-            id: 1,
+            id: 6,
             type: StructureType.String,
-            title: "Button Title",
+            title: "Modal button title",
             value: "",
         });
+
         blockAddItem(this.model, "link", {
-            id: 2,
+            id: 7,
             type: StructureType.Url,
             title: "Link",
             value: "/",
         });
-        this.model = { ...this.model };
-    }
 
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
+        this.model = { ...this.model };
     }
 }
 </script>
