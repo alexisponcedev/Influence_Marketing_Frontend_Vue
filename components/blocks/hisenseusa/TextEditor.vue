@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, VModel } from "vue-property-decorator";
+import { Vue, Component, VModel } from "vue-property-decorator";
 import { StructureType } from "@/models/StructureType";
-import { Theme } from "@/interfaces/ThemeEnum";
 import blockAddItem from "~/utils/blockAddItem";
+import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class BlockCommercialBecomeAPartner extends Vue {
@@ -19,10 +19,6 @@ export default class BlockCommercialBecomeAPartner extends Vue {
 
     Theme = Theme;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 16d176c (updated)
     mounted() {
 
         blockAddItem(this.model, "theme", {
