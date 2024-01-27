@@ -19,7 +19,10 @@ export default class BlockCommercialBecomeAPartner extends Vue {
 
     Theme = Theme;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 16d176c (updated)
     mounted() {
 
         blockAddItem(this.model, "theme", {
