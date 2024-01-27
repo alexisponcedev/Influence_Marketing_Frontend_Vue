@@ -17,7 +17,20 @@ import blockAddItem from "~/utils/blockAddItem";
 export default class BlockCommercialBecomeAPartner extends Vue {
     @VModel({ type: Object }) model!: any;
 
+    Theme = Theme;
+
     mounted() {
+
+        blockAddItem(this.model, "theme", {
+            id: 0,
+            type: StructureType.Select,
+            title: "Theme",
+            value: Theme.dark,
+            items: [
+                { title: "Light", value: this.Theme.light },
+                { title: "Dark", value: this.Theme.dark },
+            ],
+        });
 
         blockAddItem(this.model, "template", {
             id: 0,
