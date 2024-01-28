@@ -62,6 +62,13 @@ export default class NewsRoomMedia extends Vue {
                     src: "",
                     alt: "",
                 },
+                main_link: {
+                    id: 5,
+                    type: StructureType.Url,
+                    title: "Link",
+                    value: "/",
+
+                },
             },
             value: [],
         });
