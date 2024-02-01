@@ -1,59 +1,26 @@
 <template>
-    <div
-        class="tw-mx-auto tw-flex tw-justify-center tw-relative"
-        style="min-height: 682px"
-        :class="maxWidth"
-        v-if="!isEmpty"
-    >
-        <div
-            v-if="activeSlide === index"
-            v-for="(image, index) in model.list.value"
-            :key="index"
-        >
-            <img
-                v-if="
-                    model.size.value === SliderMonitorSize.Mobile &&
-                    image.mobile
-                "
-                class="tw-bg-gray-50 tw-w-full tw-min-h-96"
-                :src="image.mobile.src"
-                :alt="image.mobile.alt"
-            />
+    <div class="tw-mx-auto tw-flex tw-justify-center tw-relative" style="min-height: 682px" :class="maxWidth"
+        v-if="!isEmpty">
+        <div v-if="activeSlide === index" v-for="(image, index) in model.list.value" :key="index">
+            <img v-if="model.size.value === SliderMonitorSize.Mobile &&
+                image.mobile
+                " class="tw-bg-gray-50 tw-w-full tw-min-h-96" :src="image.mobile.src" :alt="image.mobile.alt" />
 
-            <img
-                v-if="
-                    model.size.value === SliderMonitorSize.Tablet &&
-                    image.tablet
-                "
-                class="tw-bg-gray-50 tw-w-full tw-min-h-96"
-                :src="image.tablet.src"
-                :alt="image.tablet.alt"
-            />
+            <img v-if="model.size.value === SliderMonitorSize.Tablet &&
+                image.tablet
+                " class="tw-bg-gray-50 tw-w-full tw-min-h-96" :src="image.tablet.src" :alt="image.tablet.alt" />
 
-            <img
-                v-if="
-                    model.size.value === SliderMonitorSize.Desktop &&
-                    image.desktop
-                "
-                class="tw-object-cover tw-bg-gray-50 tw-w-full tw-min-h-96"
-                :src="image.desktop.src"
-                :alt="image.desktop.alt"
-            />
+            <img v-if="model.size.value === SliderMonitorSize.Desktop &&
+                image.desktop
+                " class="tw-object-cover tw-bg-gray-50 tw-w-full tw-min-h-96" :src="image.desktop.src"
+                :alt="image.desktop.alt" />
         </div>
 
-        <button
-            @click="goNext"
-            class="tw-text-white tw-absolute"
-            style="top: 48%; right: 4px"
-        >
+        <button @click="goNext" class="tw-text-white tw-absolute" style="top: 48%; right: 4px">
             <v-icon class="white--text" x-large>mdi-chevron-right</v-icon>
         </button>
 
-        <button
-            @click="goPrev"
-            class="tw-text-white tw-absolute"
-            style="top: 48%; left: 4px"
-        >
+        <button @click="goPrev" class="tw-text-white tw-absolute" style="top: 48%; left: 4px">
             <v-icon class="white--text" x-large>mdi-chevron-left</v-icon>
         </button>
     </div>
@@ -633,6 +600,17 @@ export default class LandingSlider extends Vue {
                 },
             ],
         });
+
+        blockAddItem(this.model, "autoslide", {
+            id: 3,
+            type: StructureType.Select,
+            title: "Automatically Slide",
+            value: Theme.dark,
+            items: [
+                { title: "Active", value: "active" },
+                { title: "Deactive", value: "deactive" },
+            ],
+        });
     }
 
     goNext() {
@@ -655,13 +633,13 @@ export default class LandingSlider extends Vue {
         return this.isEmpty
             ? {}
             : {
-                  "tw-max-w-sm":
-                      this.model.size.value === SliderMonitorSize.Mobile,
-                  "tw-max-w-md":
-                      this.model.size.value === SliderMonitorSize.Tablet,
-                  "tw-aspect-video":
-                      this.model.size.value === SliderMonitorSize.Mobile,
-              };
+                "tw-max-w-sm":
+                    this.model.size.value === SliderMonitorSize.Mobile,
+                "tw-max-w-md":
+                    this.model.size.value === SliderMonitorSize.Tablet,
+                "tw-aspect-video":
+                    this.model.size.value === SliderMonitorSize.Mobile,
+            };
     }
 }
 </script>
