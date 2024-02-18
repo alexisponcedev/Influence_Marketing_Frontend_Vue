@@ -154,6 +154,12 @@ export const BLOCKS = () => {
                             image: "RetailersList.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "AdditionalResourcesModule",
+                            title: "Additional Resources Module",
+                            image: "AdditionalResourcesModule.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
