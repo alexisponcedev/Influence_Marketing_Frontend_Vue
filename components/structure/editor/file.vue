@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch, VModel } from "vue-property-decorator";
-import { StructureField } from "~/interfaces/StructureField";
+import { Vue, Component, VModel } from "vue-property-decorator";
+import { StructureField } from "@/interfaces/StructureField";
 
 @Component
 export default class StructureFileEditor extends Vue {
