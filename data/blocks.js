@@ -2364,6 +2364,12 @@ export const BLOCKS = () => {
                             image: "subscribe.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "LandingVideoPlayer",
+                            title: "Landing Video Player",
+                            image: "LandingVideoPlayer.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
@@ -2517,6 +2523,12 @@ export const BLOCKS = () => {
                             name: "Subscribe",
                             title: "Subscribe",
                             image: "subscribe.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "LandingVideoPlayer",
+                            title: "Landing Video Player",
+                            image: "LandingVideoPlayer.png",
                             category: "TextBox",
                         },
                     ],
