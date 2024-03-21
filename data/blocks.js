@@ -129,6 +129,13 @@ export const BLOCKS = () => {
                             image: "SignUpPopUp.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "AwardsAndAccolades",
+                            title: "Awards And Accolades",
+                            image: "AwardsAndAccolades.png",
+                            category: "TextBox",
+                        },
+
                         // {
                         //     name: "VideoFeature",
                         //     title: "Video feature",
@@ -145,6 +152,12 @@ export const BLOCKS = () => {
                             name: "AdditionalResourcesModule",
                             title: "Additional Resources Module",
                             image: "AdditionalResourcesModule.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "RetailersList",
+                            title: "Retailers List",
+                            image: "RetailersList.png",
                             category: "TextBox",
                         },
                     ],
@@ -585,7 +598,7 @@ export const BLOCKS = () => {
                         },
                         {
                             name: "FirmwareDisclaimer",
-                            title: "FirmWare Disclaimer",
+                            title: "Firmware Disclaimer",
                             image: "FirmwareDisclaimer.png",
                             category: "TextBox",
                         },
@@ -2357,6 +2370,12 @@ export const BLOCKS = () => {
                             image: "subscribe.png",
                             category: "TextBox",
                         },
+                        {
+                            name: "LandingVideoPlayer",
+                            title: "Landing Video Player",
+                            image: "LandingVideoPlayer.png",
+                            category: "TextBox",
+                        },
                     ],
                 },
                 {
@@ -2510,6 +2529,12 @@ export const BLOCKS = () => {
                             name: "Subscribe",
                             title: "Subscribe",
                             image: "subscribe.png",
+                            category: "TextBox",
+                        },
+                        {
+                            name: "LandingVideoPlayer",
+                            title: "Landing Video Player",
+                            image: "LandingVideoPlayer.png",
                             category: "TextBox",
                         },
                     ],

@@ -16,6 +16,11 @@
                 :field="fileField"
                 v-model="file"
             />
+            <form-field-checkbox
+                v-if="canUpload"
+                :field="keepOriginalNameField"
+                v-model="keepOriginalName"
+            />
             <div v-if="canUpload" class="tw-my-2 tw-text-center tw-w-full">
                 OR
             </div>
@@ -73,6 +78,7 @@ export default class StructureFileUploader extends Vue {
     }
 
     file: any = null;
+    keepOriginalName: any = "0";
 
     saving: Boolean = false;
 
@@ -107,6 +113,12 @@ export default class StructureFileUploader extends Vue {
     fileField = {
         label: "File",
         placeholder: "please select file to upload",
+        rules: [],
+        colAttrs: { cols: 12 },
+    };
+
+    keepOriginalNameField = {
+        label: "Keep original name?",
         rules: [],
         colAttrs: { cols: 12 },
     };
@@ -165,7 +177,7 @@ export default class StructureFileUploader extends Vue {
     async upload() {
         let formData = new FormData();
         formData.append("attachment", this.file);
-        formData.append("keep_original_name", "0");
+        formData.append("keep_original_name", this.keepOriginalName);
         formData.append(
             "meta",
             JSON.stringify({

@@ -17,21 +17,30 @@ export default class NewsRoomMainBox extends Vue {
     mounted() {
         Api.Post.getAllNews();
 
+        blockAddItem(this.model, "titleColor", {
+            id: 1,
+            type: StructureType.Color,
+            title: "Title Color",
+            value: "#00aaa6",
+        });
+
         blockAddItem(this.model, "title", {
-            id: 0,
+            id: 2,
             type: StructureType.String,
             title: "Title",
             value: "NewsRoom Main Box",
         });
+
         blockAddItem(this.model, "titleLink", {
-            id: 0,
+            id: 3,
             type: StructureType.Url,
             title: "Title link",
             value: "/",
             target: "_self",
         });
+
         blockAddItem(this.model, "slider", {
-            id: 1,
+            id: 4,
             type: StructureType.List,
             title: "Slider",
             newItem: {
@@ -72,35 +81,35 @@ export default class NewsRoomMainBox extends Vue {
         });
 
         blockAddItem(this.model, "year_text", {
-            id: 2,
+            id: 5,
             type: StructureType.String,
             title: "Year",
             value: "",
         });
 
         blockAddItem(this.model, "product_category", {
-            id: 3,
+            id: 6,
             type: StructureType.String,
             title: "Product Category",
             value: "",
         });
 
         blockAddItem(this.model, "newsroom_search", {
-            id: 4,
+            id: 7,
             type: StructureType.String,
             title: "Search Newsroom",
             value: "",
         });
 
         blockAddItem(this.model, "link", {
-            id: 5,
+            id: 8,
             type: StructureType.Url,
             title: "link",
             value: "",
         });
 
         blockAddItem(this.model, "row-1", {
-            id: 6,
+            id: 9,
             type: StructureType.Select,
             title: "columns in row 1",
             value: 1,
@@ -112,7 +121,7 @@ export default class NewsRoomMainBox extends Vue {
         });
 
         blockAddItem(this.model, "row-2", {
-            id: 7,
+            id: 10,
             type: StructureType.Select,
             title: "columns in row 2",
             value: 2,
@@ -124,7 +133,7 @@ export default class NewsRoomMainBox extends Vue {
         });
 
         blockAddItem(this.model, "row-3", {
-            id: 8,
+            id: 11,
             type: StructureType.Select,
             title: "columns in row 3",
             value: 3,
@@ -136,7 +145,7 @@ export default class NewsRoomMainBox extends Vue {
         });
 
         blockAddItem(this.model, "selectNews", {
-            id: 9,
+            id: 12,
             type: StructureType.AutoCompeleteSelect,
             title: "Add News",
             itemText: "page.title",
@@ -150,7 +159,7 @@ export default class NewsRoomMainBox extends Vue {
                 .sort((a: any, b: any) => (a.id < b.id ? 1 : -1));
 
         blockAddItem(this.model, "list", {
-            id: 10,
+            id: 13,
             type: StructureType.List,
             title: "List",
             maxLength: 0,
