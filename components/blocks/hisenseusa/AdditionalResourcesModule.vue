@@ -158,6 +158,13 @@ export default class AdditionalResourcesModule extends Vue {
                         icon: "mdi-check",
                     },
                 },
+                file: {
+                    id: 11,
+                    type: StructureType.File,
+                    title: "File",
+                    src: "",
+                    alt: "",
+                },
             },
             value: [],
         });
@@ -172,13 +179,16 @@ export default class AdditionalResourcesModule extends Vue {
                         item.link.hidden = true;
                         item.selected_news.hidden = true;
                         item.selected_blog.hidden = true;
+                        item.file.hidden = true;
                         break;
                     case "link":
                         item.lightbox.hidden = true;
                         item.selected_news.hidden = true;
                         item.selected_blog.hidden = true;
+                        item.file.hidden = true;
                         break;
                     case "download":
+                        item.link.hidden = true;
                         item.lightbox.hidden = true;
                         item.selected_news.hidden = true;
                         item.selected_blog.hidden = true;
@@ -187,6 +197,7 @@ export default class AdditionalResourcesModule extends Vue {
                         item.link.hidden = true;
                         item.lightbox.hidden = true;
                         item.selected_blog.hidden = true;
+                        item.file.hidden = true;
                         item.selected_news.items = () =>
                             Api.Post.allNews
                                 .filter(
@@ -201,6 +212,7 @@ export default class AdditionalResourcesModule extends Vue {
                         item.link.hidden = true;
                         item.lightbox.hidden = true;
                         item.selected_news.hidden = true;
+                        item.file.hidden = true;
                         item.selected_blog.items = () =>
                             Api.Post.all
                                 .filter(
