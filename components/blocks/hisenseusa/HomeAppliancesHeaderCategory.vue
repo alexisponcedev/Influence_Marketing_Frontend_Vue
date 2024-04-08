@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <img src="/blocks/HomeAppliancesHeaderCategory.png" alt="" />
-  </div>
+    <div>
+        <img src="/blocks/HomeAppliancesHeaderCategory.png" alt="" />
+    </div>
 </template>
 
 <script lang="ts">
@@ -12,42 +12,53 @@ import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class HomeAppliancesHeaderCategory extends Vue {
-  @Prop(Number) readonly id: number | undefined;
-  @Prop({ default: true }) readonly editable: boolean | undefined;
-  @VModel({ type: Object }) model!: any;
+    @Prop(Number) readonly id: number | undefined;
+    @Prop({ default: true }) readonly editable: boolean | undefined;
+    @VModel({ type: Object }) model!: any;
 
     mounted() {
+        blockAddItem(this.model, "backgroundColor", {
+            id: 0,
+            type: StructureType.Color,
+            title: "Background Color",
+            value: "#ffffff",
+        });
         blockAddItem(this.model, "title", {
-            id: 1,
-            type: StructureType.SimpleText,
-            title: "Title",
-            value: "",
+          id: 1,
+          type: StructureType.SimpleText,
+          title: "Title",
+          value: "",
         });
         blockAddItem(this.model, "list", {
-            id: 2,
-            type: StructureType.List,
-            title: "list",
-            value: [{}],
-            newItem: {
-                image: {
-                    id: 0,
-                    type: StructureType.Image,
-                    title: "Image",
-                    src: "",
-                    alt: "",
-                },
-                title: {
-                    id: 1,
-                    type: StructureType.String,
-                    title: "Title",
-                    value: "",
-                },
+          id: 2,
+          type: StructureType.List,
+          title: "list",
+          value: [{}],
+          newItem: {
+            image: {
+              id: 0,
+              type: StructureType.Image,
+              title: "Image",
+              src: "",
+              alt: "",
             },
+            title: {
+              id: 1,
+              type: StructureType.SimpleText,
+              title: "Title",
+              value: "",
+            },
+            link: {
+              id: 2,
+              type: StructureType.Url,
+              target: "_self",
+            },
+          },
         });
     }
 
-  get isEmpty(): Boolean {
-      return this.model && Object.keys(this.model).length === 0;
-  }
+    get isEmpty(): Boolean {
+        return this.model && Object.keys(this.model).length === 0;
+    }
 }
 </script>
