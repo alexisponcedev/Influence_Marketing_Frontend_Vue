@@ -1,79 +1,39 @@
 <template>
     <div>
-        <div
-            class="tw-flex tw-flex-wrap tw-items-center tw-bg-gray-50 tw-rounded-lg"
-        >
+        <div class="tw-flex tw-flex-wrap tw-items-center tw-bg-gray-50 tw-rounded-lg">
+
             <template v-for="(item, index) in items">
-                <div
-                    class="divider"
-                    v-if="item.type === 'divider'"
-                    :key="`divider${index}`"
-                />
-                <div
-                    class="tw-w-full"
-                    v-else-if="item.type === 'new-line'"
-                    :key="`new-line${index}`"
-                />
+                <div class="divider" v-if="item.type === 'divider'" :key="`divider${index}`" />
+                <div class="tw-w-full" v-else-if="item.type === 'new-line'" :key="`new-line${index}`" />
                 <editor-menu-item v-else :key="index" v-bind="item" />
             </template>
         </div>
 
-        <div
-            v-if="table.enable"
-            class="tw-flex tw-items-center tw-space-x-1 tw-bg-gray-50 tw-px-2 tw-py-1 tw-rounded-lg tw-mt-2"
-        >
+        <div v-if="table.enable"
+            class="tw-flex tw-items-center tw-space-x-1 tw-bg-gray-50 tw-px-2 tw-py-1 tw-rounded-lg tw-mt-2">
             <span>Insert Table , rows : </span>
-            <input
-                class="tw-px-1 tw-bg-white tw-w-10"
-                type="number"
-                placeholder="rows"
-                v-model="table.rows"
-            />
+            <input class="tw-px-1 tw-bg-white tw-w-10" type="number" placeholder="rows" v-model="table.rows" />
             <span> columns : </span>
-            <input
-                class="tw-px-1 tw-bg-white tw-w-10"
-                type="number"
-                placeholder="columns"
-                v-model="table.columns"
-            />
+            <input class="tw-px-1 tw-bg-white tw-w-10" type="number" placeholder="columns" v-model="table.columns" />
             <button @click="addTable" class="tw-px-1 tw-text-blue-500">
                 Insert
             </button>
-            <button
-                @click="table.enable = false"
-                class="tw-px-1 tw-text-red-500"
-            >
+            <button @click="table.enable = false" class="tw-px-1 tw-text-red-500">
                 cancel
             </button>
         </div>
 
-        <div
-            v-if="color.enable"
-            class="tw-flex tw-items-center tw-space-x-1 tw-bg-gray-50 tw-p-2 tw-py-1 tw-rounded-lg tw-mt-2"
-        >
-            <button
-                v-for="color in color.items"
-                :key="color"
-                @click="setColor(color)"
-            >
-                <div
-                    class="tw-w-4 tw-h-4"
-                    :style="{ backgroundColor: color }"
-                />
+        <div v-if="color.enable"
+            class="tw-flex tw-items-center tw-space-x-1 tw-bg-gray-50 tw-p-2 tw-py-1 tw-rounded-lg tw-mt-2">
+            <button v-for="color in color.items" :key="color" @click="setColor(color)">
+                <div class="tw-w-4 tw-h-4" :style="{ backgroundColor: color }" />
             </button>
 
-            <button
-                @click="color.enable = false"
-                class="tw-px-1 tw-text-red-500"
-            >
+            <button @click="color.enable = false" class="tw-px-1 tw-text-red-500">
                 cancel
             </button>
         </div>
-        <v-dialog
-            v-model="linkDialog"
-            transition="dialog-bottom-transition"
-            max-width="600"
-        >
+        <v-dialog v-model="linkDialog" transition="dialog-bottom-transition" max-width="600">
             <v-card elevation="0" class="pa-6">
                 <v-row class="mx-0">
                     <v-col cols="12">
@@ -83,25 +43,15 @@
                     </v-col>
                     <v-col cols="12">
                         <label>Url</label>
-                        <v-text-field
-                            hide-details
-                            v-model="link.url"
-                            outlined
-                        />
+                        <v-text-field hide-details v-model="link.url" outlined />
                     </v-col>
                     <v-col cols="12">
                         <label>Open In</label>
-                        <v-select
-                            v-model="link.target"
-                            :items="targetTypes"
-                            outlined
-                        />
+                        <v-select v-model="link.target" :items="targetTypes" outlined />
                     </v-col>
                     <v-col cols="12" class="text-right">
                         <v-btn color="primary" @click="setLink">Ok</v-btn>
-                        <v-btn color="primary" outlined @click="closeDialog"
-                            >Cancel</v-btn
-                        >
+                        <v-btn color="primary" outlined @click="closeDialog">Cancel</v-btn>
                     </v-col>
                 </v-row>
             </v-card>
@@ -242,6 +192,30 @@ export default {
                     icon: "mdi-format-color-text",
                     title: "Text Color",
                     action: this.enableColor,
+                },
+                {
+                    type: "divider",
+                },
+                {
+                    icon: "LI",
+                    title: "Light",
+                    action: () =>
+                        this.editor.chain().focus().setFontWeight("300").run(),
+                    isActive: () => this.editor.isActive("300"),
+                },
+                {
+                    icon: "RE",
+                    title: "Regular",
+                    action: () =>
+                        this.editor.chain().focus().setFontWeight("400").run(),
+                    isActive: () => this.editor.isActive("400"),
+                },
+                {
+                    icon: "ME",
+                    title: "Medium",
+                    action: () =>
+                        this.editor.chain().focus().setFontWeight("500").run(),
+                    isActive: () => this.editor.isActive("500"),
                 },
                 {
                     type: "divider",

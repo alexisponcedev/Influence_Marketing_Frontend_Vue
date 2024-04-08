@@ -23,6 +23,36 @@ import Link from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 
+import Bold from "@tiptap/extension-bold";
+
+const BoldExtend = Bold.extend({
+
+    addAttributes() {
+        return {
+            fontWeight: {
+                default: '400',
+                parseHTML: element => element.style.fontWeight || '400',
+                renderHTML: attributes => {
+                    return { style: `font-weight: ${attributes.fontWeight}` }
+                },
+            },
+        }
+    },
+
+    addCommands() {
+        return {
+            setFontWeight: (weight) => ({ commands }) => {
+                return commands.setMark(this.name, { fontWeight: weight })
+            },
+
+            unsetFontWeight: () => ({ commands }) => {
+                return commands.resetAttributes('fontWeight')
+            },
+        }
+    },
+
+});
+
 export default {
     components: {
         EditorContent,
@@ -64,6 +94,7 @@ export default {
             extensions: [
                 StarterKit,
                 Document,
+                BoldExtend,
                 Paragraph,
                 Link.configure({
                     // protocols: ['ftp', 'mailto'],
@@ -129,7 +160,7 @@ export default {
             box-sizing: border-box;
             position: relative;
 
-            > * {
+            >* {
                 margin-bottom: 0;
             }
         }
@@ -161,11 +192,12 @@ export default {
             background-color: #adf;
             pointer-events: none;
         }
+
     }
 
-    strong {
-        font-weight: bold !important;
-    }
+    /* strong {
+        font-weight: bold;
+    } */
 
     p {
         margin-bottom: 2px;
@@ -187,6 +219,6 @@ export default {
 }
 
 .is-active {
-    font-weight: bold;
+     font-weight: bold;
 }
 </style>

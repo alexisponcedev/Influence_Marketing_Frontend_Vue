@@ -19,9 +19,7 @@ export default class BlockCommercialBecomeAPartner extends Vue {
 
     Theme = Theme;
 
-
     mounted() {
-
         blockAddItem(this.model, "theme", {
             id: 0,
             type: StructureType.Select,
@@ -65,6 +63,22 @@ export default class BlockCommercialBecomeAPartner extends Vue {
             type: StructureType.Color,
             title: "Background color",
             value: "#fff",
+        });
+
+        blockAddItem(this.model, "backgroundImage", {
+            id: 4,
+            type: StructureType.Image,
+            title: "Background Image",
+            src: "",
+            alt: "",
+        });
+
+        blockAddItem(this.model, "mobileBackgroundImage", {
+            id: 5,
+            type: StructureType.Image,
+            title: "Mobile Background Image",
+            src: "",
+            alt: "",
         });
 
         this.model = { ...this.model };
