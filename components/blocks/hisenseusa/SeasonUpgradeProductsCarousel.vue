@@ -118,6 +118,13 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     title: "Product id",
                     hidden: true,
                 },
+                model: {
+                    id: 3,
+                    type: StructureType.TextPreview,
+                    title: "Product Model #",
+                    placeholder: "Enter Product Model",
+                    value: "",
+                },
                 name: {
                     id: 1,
                     type: StructureType.TextPreview,
@@ -226,6 +233,18 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                         },
                     },
                 },
+                customModel: {
+                    id: 4,
+                    type: StructureType.String,
+                    title: "Custom Model # (Optional)",
+                    value: "",
+                },
+                tag_copy: {
+                    id: 3,
+                    type: StructureType.String,
+                    title: "Tag Copy",
+                    value: "",
+                },
             },
         });
 
@@ -267,6 +286,12 @@ export default class SeasonUpgradeProductsCarousel extends Vue {
                     value: product.id,
                     title: "Product id",
                     hidden: true,
+                },
+                model: {
+                    id: 3,
+                    type: StructureType.TextPreview,
+                    title: "Product Model #",
+                    value: product.model,
                 },
                 name: {
                     id: 1,
