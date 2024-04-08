@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <img src="/blocks/HomeAppliancesHeaderCategory.png" alt="" />
-    </div>
+  <div>
+      <img src="/blocks/HomeAppliancesHeaderCategory.png" alt="" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,9 +12,9 @@ import { Theme } from "~/interfaces/ThemeEnum";
 
 @Component
 export default class HomeAppliancesHeaderCategory extends Vue {
-    @Prop(Number) readonly id: number | undefined;
-    @Prop({ default: true }) readonly editable: boolean | undefined;
-    @VModel({ type: Object }) model!: any;
+  @Prop(Number) readonly id: number | undefined;
+  @Prop({ default: true }) readonly editable: boolean | undefined;
+  @VModel({ type: Object }) model!: any;
 
     mounted() {
         blockAddItem(this.model, "title", {
@@ -46,8 +46,8 @@ export default class HomeAppliancesHeaderCategory extends Vue {
         });
     }
 
-    get isEmpty(): Boolean {
-        return this.model && Object.keys(this.model).length === 0;
-    }
+  get isEmpty(): Boolean {
+      return this.model && Object.keys(this.model).length === 0;
+  }
 }
 </script>
