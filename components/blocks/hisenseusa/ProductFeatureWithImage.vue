@@ -139,6 +139,7 @@ export default class ProductFeatureWithImage extends Vue {
             items: [
                 { title: "Version 1", value: "v1" },
                 { title: "Version 2", value: "v2" },
+                { title: "Version 3", value: "v3" }
             ],
         });
         this.prepare();
